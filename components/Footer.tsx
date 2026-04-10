@@ -1,8 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="border-t mt-20 p-6 text-center text-sm text-gray-500">
-      <p>© 2026 - Tu proyecto</p>
-      <p>Instagram | Contacto | Créditos</p>
+    <footer className="mt-24 border-t">
+      <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-zinc-400 text-center">
+        <p>© 2026 Biblio</p>
+        <p className="mt-2">Instagram · Contacto · Créditos</p>
+      </div>
     </footer>
   )
 }

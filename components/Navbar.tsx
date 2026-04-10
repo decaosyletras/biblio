@@ -2,16 +2,22 @@ import Link from "next/link"
 
 export default function Navbar() {
   return (
-    <nav className="flex justify-between p-6 border-b bg-white">
-      <div className="font-bold">LOGO</div>
+    <nav className="sticky top-0 z-50 backdrop-blur bg-zinc-900/70 backdrop-blur border-b border-zinc-700 border-b">
+      <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+        
+        <div className="font-semibold text-lg tracking-tight">
+          Biblio
+        </div>
 
-      <div className="flex gap-6 text-sm">
-        <Link href="/resenas">Reseñas</Link>
-        <Link href="/libros">Mis libros</Link>
-        <Link href="/autores">Autores</Link>
-        <Link href="/recursos">Recursos</Link>
-        <Link href="/blog">Blog</Link>
-        <Link href="/contacto">Contacto</Link>
+        <div className="hidden md:flex gap-8 text-sm text-gray-600">
+          <Link href="/resenas" className="hover:text-black transition">Reseñas</Link>
+          <Link href="/libros" className="hover:text-black transition">Mis libros</Link>
+          <Link href="/autores" className="hover:text-black transition">Autores</Link>
+          <Link href="/recursos" className="hover:text-black transition">Recursos</Link>
+          <Link href="/blog" className="hover:text-black transition">Blog</Link>
+          <Link href="/contacto" className="hover:text-black transition">Contacto</Link>
+        </div>
+
       </div>
     </nav>
   )

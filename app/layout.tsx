@@ -10,9 +10,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <Navbar />
-        {children}
-        <Footer />
+        <div className="bg-[#18181b] text-zinc-100 min-h-screen">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   )
