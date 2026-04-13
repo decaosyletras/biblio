@@ -6,12 +6,13 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
         
         <div className="font-semibold text-lg tracking-tight">
-          Biblio
+          Biblioteca Indie
         </div>
 
         <div className="hidden md:flex gap-8 text-sm text-gray-600">
-          <Link href="/resenas" className="hover:text-black transition">Reseñas</Link>
-          <Link href="/libros" className="hover:text-black transition">Mis libros</Link>
+          <Link href="/" className="hover:text-black transition">Inicio</Link>
+          <Link href="/resenas" className="hover:text-black transition">Mis reseñas</Link>
+          <Link href="/libros" className="hover:text-black transition">Libros</Link>
           <Link href="/autores" className="hover:text-black transition">Autores</Link>
           <Link href="/recursos" className="hover:text-black transition">Recursos</Link>
           <Link href="/blog" className="hover:text-black transition">Blog</Link>

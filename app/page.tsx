@@ -1,52 +1,102 @@
-import CardReview from "@/components/CardReview"
-import { reviews } from "@/data/reviews"
+import Link from "next/link"
+import { books } from "@/data/books"
+import { authors } from "@/data/authors"
+import CardBook from "@/components/CardBook"
 
 export default function Home() {
   return (
-    <main>
+    <div className="text-zinc-100">
 
       {/* HERO */}
-      <section className="py-24 text-center">
-        <div className="max-w-3xl mx-auto px-6">
+      <section className="py-28 text-center">
+        <h1 className="text-5xl font-bold tracking-tight">
+          Descubre historias que valen la pena
+        </h1>
 
-          <h1 className="text-5xl font-bold tracking-tight leading-tight">
-            Descubre tu próxima lectura favorita
-          </h1>
+        <p className="mt-6 text-zinc-400 max-w-2xl mx-auto">
+          Reseñas rápidas, autores independientes y libros que probablemente no conocías.
+        </p>
 
-          <p className="mt-6 text-gray-500">
-            Reseñas rápidas, directas y autores independientes que valen la pena.
-          </p>
+        <div className="mt-10 flex justify-center gap-4">
+          <Link href="/resenas" className="bg-white text-black px-6 py-3 rounded-full">
+            Explorar reseñas
+          </Link>
 
-          <div className="mt-8 flex justify-center gap-4">
-            <button className="bg-black text-white px-8 py-3 rounded-full hover:scale-105 transition">
-              Explorar reseñas
-            </button>
-
-            <button className="border px-8 py-3 rounded-full hover:bg-gray-100 transition">
-              Ver mis libros
-            </button>
-          </div>
-
+          <Link href="/libros" className="border border-zinc-600 px-6 py-3 rounded-full">
+            Ver libros
+          </Link>
         </div>
       </section>
 
-      {/* RESEÑAS */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* FRASES */}
+      <section className="py-16 text-center space-y-6">
+        <p className="text-xl text-zinc-300">
+          “Un buen libro te cambia, uno grande te persigue.”
+        </p>
 
-          <h2 className="text-2xl font-semibold mb-10">
-            Últimas reseñas
-          </h2>
+        <p className="text-zinc-500">
+          “Escribir es dejar una parte de ti en alguien que no conoces.”
+        </p>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {reviews.map(r => (
-              <CardReview key={r.slug} review={r} />
-            ))}
-          </div>
+      {/* LIBROS */}
+      <section className="py-16 px-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold">Libros</h2>
+          <Link href="/libros" className="text-zinc-400 hover:text-white">
+            Ver todos →
+          </Link>
+        </div>
 
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {books.slice(0, 4).map(book => (
+            <CardBook key={book.slug} book={book} />
+          ))}
         </div>
       </section>
 
-    </main>
+      {/* AUTORES */}
+      <section className="py-16 px-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold">Autores</h2>
+          <Link href="/autores" className="text-zinc-400 hover:text-white">
+            Ver todos →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {authors.slice(0, 4).map(author => (
+            <Link key={author.slug} href={`/autores/${author.slug}`}>
+              <div className="bg-zinc-800 p-4 rounded-xl text-center hover:scale-105 transition">
+                <img
+                  src={author.avatar}
+                  className="w-16 h-16 rounded-full mx-auto"
+                />
+                <p className="mt-3">{author.name}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 text-center">
+        <h2 className="text-2xl font-semibold">
+          ¿Eres escritor independiente?
+        </h2>
+
+        <p className="text-zinc-400 mt-4">
+          Comparte tu historia y llega a nuevos lectores.
+        </p>
+
+        <Link
+          href="/contacto"
+          className="inline-block mt-6 bg-yellow-400 text-black px-6 py-3 rounded-full"
+        >
+          Contactar
+        </Link>
+      </section>
+
+    </div>
   )
 }

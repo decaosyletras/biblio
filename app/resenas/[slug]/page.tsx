@@ -1,27 +1,29 @@
-import { reviews } from "@/data/reviews"
+import { books } from "@/data/books"
 
-export default function Page({ params }: any) {
-  const review = reviews.find(r => r.slug === params.slug)
+export default async function Page({ params }: any) {
+  const { slug } = await params
 
-  if (!review) return <div>No encontrado</div>
+  const book = books.find(b => b.slug === slug)
+
+  if (!book) return <div>No encontrada</div>
 
   return (
-    <section className="py-16">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="py-16 px-6 max-w-3xl mx-auto text-zinc-100">
 
-        <img src={review.cover} className="w-64 rounded-xl mb-6" />
+      <img src={book.cover} className="w-48 mb-6 rounded-lg" />
 
-        <h1 className="text-3xl font-bold">{review.title}</h1>
-        <p className="text-gray-500">{review.author}</p>
+      <h1 className="text-3xl font-bold">
+        {book.review.title}
+      </h1>
 
-        <p className="mt-4">⭐ {review.rating}</p>
+      <p className="text-yellow-400 mt-2">
+        ⭐ {book.review.rating}
+      </p>
 
-        <div className="mt-10 space-y-6 text-gray-700">
-          <p><strong>🎯 ¿Para quién es?</strong> Lectores curiosos.</p>
-          <p><strong>📚 Libros similares</strong> Próximamente...</p>
-        </div>
+      <p className="mt-6 text-zinc-300 leading-relaxed">
+        {book.review.content}
+      </p>
 
-      </div>
     </section>
   )
 }

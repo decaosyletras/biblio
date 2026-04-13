@@ -1,20 +1,28 @@
 import { authors } from "@/data/authors"
 import CardAuthor from "@/components/CardAuthor"
+import Link from "next/link"
+import SearchAuthors from "@/components/SearchAuthors"
 
 export default function Page() {
   return (
     <section className="py-16">
-      <div className="max-w-6xl mx-auto px-6">
 
-        <h1 className="text-3xl font-semibold mb-10">Autores</h1>
+      <h1 className="text-3xl font-semibold text-zinc-100 px-6 mb-8">
+        Autores
+      </h1>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {authors.map(a => (
-            <CardAuthor key={a.slug} author={a} />
-          ))}
-        </div>
+      <SearchAuthors />
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-6">
+
+        {authors.map(author => (
+          <Link key={author.slug} href={`/autores/${author.slug}`}>
+            <CardAuthor key={author.slug} author={author} />
+          </Link>
+        ))}
 
       </div>
+
     </section>
   )
 }

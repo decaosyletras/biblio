@@ -1,31 +1,31 @@
 import Link from "next/link"
-import { Review } from "@/types"
+import { Book } from "@/types"
 
-export default function CardReview({ review }: { review: Review }) {
+export default function CardReview({ book }: { book: Book }) {
   return (
-    <Link href={`/resenas/${review.slug}`}>
-      <div className="group bg-zinc-800 text-zinc-100 rounded-2xl shadow rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+    <Link href={`/resenas/${book.slug}`}>
+      
+      <div className="bg-zinc-800 p-5 rounded-xl hover:scale-105 transition">
 
-        <div className="overflow-hidden">
-          <img 
-            src={review.cover} 
-            className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
-          />
-        </div>
+        <img
+          src={book.cover}
+          className="w-full h-48 object-cover rounded-lg"
+        />
 
-        <div className="p-5">
-          <h3 className="font-semibold text-lg">
-            {review.title}
-          </h3>
+        <h2 className="mt-4 font-semibold text-zinc-100">
+          {book.review.title}
+        </h2>
 
-          <p className="text-sm text-gray-500">{review.author}</p>
+        <p className="text-zinc-400 text-sm mt-2">
+          {book.review.excerpt}
+        </p>
 
-          <p className="text-sm mt-3 text-gray-600 italic">
-            “{review.excerpt}”
-          </p>
-        </div>
+        <p className="text-yellow-400 mt-3">
+          ⭐ {book.review.rating}
+        </p>
 
       </div>
+
     </Link>
   )
 }

@@ -9,9 +9,18 @@ export type Review = {
 }
 
 export type Book = {
+  slug: string
   title: string
   cover: string
   amazonLink: string
+  authorSlug: string
+  categories: number[]
+  review: {
+    title: string
+    excerpt: string
+    content: string
+    rating: number
+  }
 }
 
 export type Author = {
@@ -19,5 +28,12 @@ export type Author = {
   name: string
   avatar: string
   bio: string
-  books: Book[]
+  description: string
+  style: string
+  similar: string[]
+}
+
+export type Category = {
+  id: number
+  name: string
 }
