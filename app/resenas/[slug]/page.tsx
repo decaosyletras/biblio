@@ -1,4 +1,6 @@
 import { books } from "@/data/books"
+import { getReviewScore } from "@/lib/getReviewScore"
+import ReviewMetrics from "@/components/ReviewMetrics"
 
 export default async function Page({ params }: any) {
   const { slug } = await params
@@ -6,6 +8,8 @@ export default async function Page({ params }: any) {
   const book = books.find(b => b.slug === slug)
 
   if (!book) return <div>No encontrada</div>
+
+  const score = <ReviewMetrics metrics={book.review.metrics} />
 
   return (
     <section className="py-16 px-6 max-w-3xl mx-auto text-zinc-100">
@@ -16,8 +20,20 @@ export default async function Page({ params }: any) {
         {book.review.title}
       </h1>
 
-      <p className="text-yellow-400 mt-2">
-        ⭐ {book.review.rating}
+      <div className="mt-4 space-y-2">
+        {Object.entries(book.review.metrics).map(([key, value]) => (
+          <div key={key} className="flex justify-between text-sm">
+            <span className="capitalize text-zinc-400">
+              {key}
+            </span>
+            <span className="text-zinc-100">
+              {value}/5
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="text-4xl font-bold text-yellow-400 mt-6">
+      {score} promedio
       </p>
 
       <p className="mt-6 text-zinc-300 leading-relaxed">

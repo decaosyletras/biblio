@@ -1,7 +1,10 @@
 import Link from "next/link"
 import { Book } from "@/types"
+import { getReviewScore } from "@/lib/getReviewScore"
 
 export default function CardReview({ book }: { book: Book }) {
+  const score = getReviewScore(book.review.metrics)
+
   return (
     <Link href={`/resenas/${book.slug}`}>
       
@@ -20,8 +23,9 @@ export default function CardReview({ book }: { book: Book }) {
           {book.review.excerpt}
         </p>
 
-        <p className="text-yellow-400 mt-3">
-          ⭐ {book.review.rating}
+        {/* SCORE */}
+        <p className="text-yellow-400 mt-3 text-lg font-bold">
+          ⭐ {score}
         </p>
 
       </div>

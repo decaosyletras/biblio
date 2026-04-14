@@ -49,3 +49,13 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* 🔥 Ocultar scrollbar pero permitir scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}

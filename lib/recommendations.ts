@@ -1,5 +1,18 @@
 import { Book } from "@/types"
 
+function getDistance(a: Record<string, number>, b: Record<string, number>) {
+  const keys = Object.keys(a)
+
+  let sum = 0
+
+  for (const key of keys) {
+    const diff = a[key] - b[key]
+    sum += diff * diff
+  }
+
+  return Math.sqrt(sum)
+}
+
 export function getRecommendedBooks(
   currentBook: Book,
   allBooks: Book[]
@@ -8,16 +21,16 @@ export function getRecommendedBooks(
   return allBooks
     .filter(b => b.slug !== currentBook.slug)
     .map(book => {
-      const sharedCategories = book.categories.filter(cat =>
-        currentBook.categories.includes(cat)
-      ).length
+      const distance = getDistance(
+        currentBook.review.metrics,
+        book.review.metrics
+      )
 
       return {
         ...book,
-        score: sharedCategories
+        score: distance
       }
     })
-    .filter(book => book.score > 0)
-    .sort((a, b) => b.score - a.score)
+    .sort((a, b) => a.score - b.score) // 🔥 menor distancia = más similar
     .slice(0, 6)
 }

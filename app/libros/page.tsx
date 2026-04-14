@@ -2,6 +2,8 @@ import { books } from "@/data/books"
 import { categories } from "@/data/categories"
 import BookRow from "@/components/BookRow"
 import SearchBooks from "@/components/SearchBooks"
+import SearchOverlay from "@/components/SearchOverlay"
+import CardBook from "@/components/CardBook"
 
 export default function Page() {
   return (
@@ -16,8 +18,11 @@ export default function Page() {
         <h1 className="text-3xl font-semibold text-zinc-100 px-6 mb-8">
           Explorar libros
         </h1>
-
-        <SearchBooks />
+        <SearchOverlay
+          placeholder="Buscar libros..."
+          data={books}
+          type="books"
+        />
 
         {categories.map(category => {
           const filteredBooks = books.filter(book =>

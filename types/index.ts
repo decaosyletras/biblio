@@ -19,7 +19,15 @@ export type Book = {
     title: string
     excerpt: string
     content: string
-    rating: number
+
+    metrics: {
+      originalidad: number
+      prosa: number
+      complejidad: number
+      personajes: number
+      consistencia: number
+      adictivo: number
+    }
   }
 }
 

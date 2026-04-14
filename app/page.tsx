@@ -2,8 +2,14 @@ import Link from "next/link"
 import { books } from "@/data/books"
 import { authors } from "@/data/authors"
 import CardBook from "@/components/CardBook"
+import { shuffleArray } from "@/lib/shuffle"
+import CardReview from "@/components/CardReview"
 
 export default function Home() {
+  const randomBooks = shuffleArray(books).slice(0, 4)
+  const randomAuthors = shuffleArray(authors).slice(0, 4)
+  const randomReviews = shuffleArray(books).slice(0, 3)
+
   return (
     <div className="text-zinc-100">
 
@@ -49,7 +55,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {books.slice(0, 4).map(book => (
+          {randomBooks.map(book => (
             <CardBook key={book.slug} book={book} />
           ))}
         </div>
@@ -65,7 +71,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {authors.slice(0, 4).map(author => (
+          {randomAuthors.map(author => (
             <Link key={author.slug} href={`/autores/${author.slug}`}>
               <div className="bg-zinc-800 p-4 rounded-xl text-center hover:scale-105 transition">
                 <img
@@ -75,6 +81,25 @@ export default function Home() {
                 <p className="mt-3">{author.name}</p>
               </div>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* RESEÑAS */}
+      <section className="py-16 px-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold">
+            Reseñas destacadas
+          </h2>
+
+          <a href="/resenas" className="text-zinc-400 hover:text-white">
+            Ver todas →
+          </a>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {randomReviews.map(book => (
+            <CardReview key={book.slug} book={book} />
           ))}
         </div>
       </section>

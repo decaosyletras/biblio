@@ -2,6 +2,7 @@ import { authors } from "@/data/authors"
 import CardAuthor from "@/components/CardAuthor"
 import Link from "next/link"
 import SearchAuthors from "@/components/SearchAuthors"
+import SearchOverlay from "@/components/SearchOverlay"
 
 export default function Page() {
   return (
@@ -11,7 +12,11 @@ export default function Page() {
         Autores
       </h1>
 
-      <SearchAuthors />
+      <SearchOverlay
+        placeholder="Buscar autores..."
+        data={authors}
+        type="authors"
+      />
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-6">
 
