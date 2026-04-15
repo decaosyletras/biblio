@@ -21,6 +21,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 2,
+      cienciaFiccion: 5,
+      fantasia: 2,
+      misterio: 2
     }
   },
   {
@@ -42,6 +49,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 2,
+      cienciaFiccion: 4,
+      fantasia: 2,
+      misterio: 2
     }
   },
   {
@@ -64,6 +78,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 2,
+      cienciaFiccion: 4,
+      fantasia: 2,
+      misterio: 2
     }
   },
   {
@@ -86,6 +107,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 2,
+      cienciaFiccion: 5,
+      fantasia: 2,
+      misterio: 2
     }
   }
 
@@ -110,6 +138,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
   },
   {
@@ -132,6 +167,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
 
   },
@@ -155,6 +197,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
 
   },
@@ -178,6 +227,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
   },
   {
@@ -200,6 +256,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
   },
   {
@@ -222,6 +285,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
   }
   ,{
@@ -244,6 +314,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
   },
   {
@@ -266,6 +343,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
   },
   {
@@ -288,6 +372,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
   },
   {
@@ -310,6 +401,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 2,
+      cienciaFiccion: 5,
+      fantasia: 2,
+      misterio: 2
     }
   },
   {
@@ -332,6 +430,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
   },
   {
@@ -354,6 +459,13 @@ export const books: Book[] = [
           consistencia: 5,
           adictivo: 4.5,
         }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
     }
   }
 ]

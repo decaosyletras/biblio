@@ -24,12 +24,12 @@ export default function CardBook({ book }: { book: Book }) {
       </Link>
 
       {/* Autor */}
-      <Link
+      {/*<Link
         href={`/autores/${author?.slug}`}
         className="block mt-1 text-xs text-zinc-400 hover:text-zinc-200 transition"
       >
         {author?.name}
-      </Link>
+      </Link>*/}
 
       {/* Botón */}
       <a

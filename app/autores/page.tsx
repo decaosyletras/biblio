@@ -1,8 +1,6 @@
 import { authors } from "@/data/authors"
 import CardAuthor from "@/components/CardAuthor"
 import Link from "next/link"
-import SearchAuthors from "@/components/SearchAuthors"
-import SearchOverlay from "@/components/SearchOverlay"
 import SearchSimple from "@/components/SearchSimple"
 
 export default function Page() {

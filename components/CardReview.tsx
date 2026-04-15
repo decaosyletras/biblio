@@ -4,10 +4,8 @@ import { getReviewScore } from "@/lib/getReviewScore"
 
 export default function CardReview({ book }: { book: Book }) {
   const score = getReviewScore(book.review.metrics)
-
   return (
     <Link href={`/resenas/${book.slug}`}>
-      
       <div className="bg-zinc-800 p-5 rounded-xl hover:scale-105 transition">
 
         <img
@@ -27,9 +25,8 @@ export default function CardReview({ book }: { book: Book }) {
         <p className="text-yellow-400 mt-3 text-lg font-bold">
           ⭐ {score}
         </p>
-
+        
       </div>
-
     </Link>
   )
 }

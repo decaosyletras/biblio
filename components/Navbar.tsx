@@ -9,7 +9,7 @@ export default function Navbar() {
       <div className="flex justify-between items-center">
 
         <Link href="/" className="font-bold text-lg">
-          Biblio
+          Biblioteca Indie
         </Link>
 
         {/* LINKS SIEMPRE VISIBLES */}

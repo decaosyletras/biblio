@@ -4,6 +4,7 @@ import { authors } from "@/data/authors"
 import CardBook from "@/components/CardBook"
 import { shuffleArray } from "@/lib/shuffle"
 import CardReview from "@/components/CardReview"
+import CardAuthor from "@/components/CardAuthor"
 
 export default function Home() {
   const randomBooks = shuffleArray(books).slice(0, 4)
@@ -72,7 +73,8 @@ export default function Home() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {randomAuthors.map(author => (
-            <Link key={author.slug} href={`/autores/${author.slug}`}>
+            <CardAuthor key={author.slug} author={author} />
+            /*<Link key={author.slug} href={`/autores/${author.slug}`}>
               <div className="bg-zinc-800 p-4 rounded-xl text-center hover:scale-105 transition">
                 <img
                   src={author.avatar}
@@ -80,7 +82,7 @@ export default function Home() {
                 />
                 <p className="mt-3">{author.name}</p>
               </div>
-            </Link>
+            </Link>*/
           ))}
         </div>
       </section>
@@ -89,12 +91,12 @@ export default function Home() {
       <section className="py-16 px-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">
-            Reseñas destacadas
+            Mis reseñas
           </h2>
 
-          <a href="/resenas" className="text-zinc-400 hover:text-white">
+          <Link href="/resenas" className="text-zinc-400 hover:text-white">
             Ver todas →
-          </a>
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -105,7 +107,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 text-center">
+      {<section className="py-20 text-center">
         <h2 className="text-2xl font-semibold">
           ¿Eres escritor independiente?
         </h2>
@@ -120,7 +122,7 @@ export default function Home() {
         >
           Contactar
         </Link>
-      </section>
+      </section>}
 
     </div>
   )

@@ -1,4 +1,4 @@
-export type Review = {
+{/*export type Review = {
   slug: string
   title: string
   author: string
@@ -6,7 +6,7 @@ export type Review = {
   excerpt: string
   rating: number
   genre: string
-}
+}*/}
 
 export type Book = {
   slug: string
@@ -28,6 +28,13 @@ export type Book = {
       consistencia: number
       adictivo: number
     }
+  }
+  
+  genres: {
+    romance: number
+    cienciaFiccion: number
+    fantasia: number
+    misterio: number
   }
 }
 

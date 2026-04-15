@@ -1,9 +1,6 @@
 import { books } from "@/data/books"
 import { categories } from "@/data/categories"
 import BookRow from "@/components/BookRow"
-import SearchBooks from "@/components/SearchBooks"
-import SearchOverlay from "@/components/SearchOverlay"
-import CardBook from "@/components/CardBook"
 import SearchSimple from "@/components/SearchSimple"
 
 export default function Page() {

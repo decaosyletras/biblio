@@ -1,6 +1,5 @@
 import { books } from "@/data/books"
 import CardReview from "@/components/CardReview"
-import SearchOverlay from "@/components/SearchOverlay"
 import SearchSimple from "@/components/SearchSimple"
 
 export default function Page() {

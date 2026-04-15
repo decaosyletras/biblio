@@ -1,6 +1,7 @@
 import { books } from "@/data/books"
 import { getReviewScore } from "@/lib/getReviewScore"
 import ReviewMetrics from "@/components/ReviewMetrics"
+import ReviewGenres from "@/components/ReviewGenres"
 
 export default async function Page({ params }: any) {
   const { slug } = await params
@@ -9,7 +10,7 @@ export default async function Page({ params }: any) {
 
   if (!book) return <div>No encontrada</div>
 
-  const score = <ReviewMetrics metrics={book.review.metrics} />
+  const score = <ReviewGenres genres={book.genres} />
 
   return (
     <section className="py-16 px-6 max-w-3xl mx-auto text-zinc-100">

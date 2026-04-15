@@ -22,8 +22,8 @@ export function getRecommendedBooks(
     .filter(b => b.slug !== currentBook.slug)
     .map(book => {
       const distance = getDistance(
-        currentBook.review.metrics,
-        book.review.metrics
+        currentBook.genres, // 🔥 ahora usa géneros
+        book.genres
       )
 
       return {
@@ -31,6 +31,6 @@ export function getRecommendedBooks(
         score: distance
       }
     })
-    .sort((a, b) => a.score - b.score) // 🔥 menor distancia = más similar
-    .slice(0, 6)
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 3)
 }
