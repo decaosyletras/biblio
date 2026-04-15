@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 
 export default function SearchOverlay({
@@ -14,8 +14,17 @@ export default function SearchOverlay({
 }) {
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState("")
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  // 🔥 normalizar texto (clave para móvil + acentos)
+  // 🔥 FORZAR FOCO REAL (clave en móvil)
+  useEffect(() => {
+    if (open) {
+      setTimeout(() => {
+        inputRef.current?.focus()
+      }, 100)
+    }
+  }, [open])
+
   const normalize = (text: string) =>
     text
       .toLowerCase()
@@ -24,7 +33,6 @@ export default function SearchOverlay({
 
   const q = normalize(query)
 
-  // 🔎 filtro correcto
   const filtered = data.filter((item) => {
     if (!q) return false
 
@@ -37,7 +45,6 @@ export default function SearchOverlay({
     }
 
     if (type === "reviews") {
-      // 🔥 SOLO por título del libro (como quieres)
       return normalize(item.title).includes(q)
     }
 
@@ -57,7 +64,7 @@ export default function SearchOverlay({
 
       {/* OVERLAY */}
       {open && (
-        <div className="fixed inset-0 bg-black z-50 p-6 overflow-y-auto">
+        <div className="fixed inset-0 z-[9999] bg-black p-6 flex flex-col">
 
           {/* HEADER */}
           <div className="flex justify-between items-center mb-4">
@@ -71,35 +78,27 @@ export default function SearchOverlay({
 
           {/* INPUT */}
           <input
-            autoFocus
+            ref={inputRef}
             type="text"
             placeholder={placeholder}
-            className="w-full p-4 rounded-lg bg-zinc-800 text-zinc-100 outline-none"
+            className="w-full p-4 rounded-lg bg-zinc-800 text-zinc-100 outline-none text-lg"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
 
           {/* RESULTADOS */}
-          <div className="mt-6 space-y-4">
+          <div className="mt-6 space-y-4 overflow-y-auto">
 
             {filtered.map((item) => {
 
-              // 📖 RESEÑAS (basadas en libro)
               if (type === "reviews") {
                 return (
                   <Link href={`/resenas/${item.slug}`} key={item.slug}>
-                    <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
-                      <img
-                        src={item.cover}
-                        className="w-12 h-20 object-cover rounded"
-                      />
-
+                    <div className="bg-zinc-800 p-4 rounded-xl flex gap-4">
+                      <img src={item.cover} className="w-12 h-20 object-cover rounded" />
                       <div>
-                        <p className="text-zinc-100 text-sm">
-                          {item.title}
-                        </p>
-
-                        <p className="text-zinc-400 text-xs">
+                        <p>{item.title}</p>
+                        <p className="text-xs text-zinc-400">
                           {item.review.title}
                         </p>
                       </div>
@@ -108,37 +107,23 @@ export default function SearchOverlay({
                 )
               }
 
-              // 📚 LIBROS
               if (type === "books") {
                 return (
                   <Link href={`/libros/${item.slug}`} key={item.slug}>
-                    <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
-                      <img
-                        src={item.cover}
-                        className="w-12 h-20 object-cover rounded"
-                      />
-
-                      <p className="text-zinc-100 text-sm">
-                        {item.title}
-                      </p>
+                    <div className="bg-zinc-800 p-4 rounded-xl flex gap-4">
+                      <img src={item.cover} className="w-12 h-20 object-cover rounded" />
+                      <p>{item.title}</p>
                     </div>
                   </Link>
                 )
               }
 
-              // 👤 AUTORES
               if (type === "authors") {
                 return (
                   <Link href={`/autores/${item.slug}`} key={item.slug}>
-                    <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
-                      <img
-                        src={item.avatar}
-                        className="w-12 h-12 rounded-full"
-                      />
-
-                      <p className="text-zinc-100 text-sm">
-                        {item.name}
-                      </p>
+                    <div className="bg-zinc-800 p-4 rounded-xl flex gap-4">
+                      <img src={item.avatar} className="w-12 h-12 rounded-full" />
+                      <p>{item.name}</p>
                     </div>
                   </Link>
                 )
@@ -147,7 +132,6 @@ export default function SearchOverlay({
               return null
             })}
 
-            {/* SIN RESULTADOS */}
             {query && filtered.length === 0 && (
               <p className="text-zinc-500 text-sm">
                 No se encontraron resultados

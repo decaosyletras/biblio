@@ -4,12 +4,11 @@ import BookRow from "@/components/BookRow"
 import SearchBooks from "@/components/SearchBooks"
 import SearchOverlay from "@/components/SearchOverlay"
 import CardBook from "@/components/CardBook"
+import SearchSimple from "@/components/SearchSimple"
 
 export default function Page() {
   return (
     <div className="relative">
-    <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent z-10" />
-    <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent z-10" />
 
     {/* contenido */
 
@@ -18,11 +17,7 @@ export default function Page() {
         <h1 className="text-3xl font-semibold text-zinc-100 px-6 mb-8">
           Explorar libros
         </h1>
-        <SearchOverlay
-          placeholder="Buscar libros..."
-          data={books}
-          type="books"
-        />
+        <SearchSimple data={books} type="books" />
 
         {categories.map(category => {
           const filteredBooks = books.filter(book =>

@@ -1,6 +1,7 @@
 import { books } from "@/data/books"
 import CardReview from "@/components/CardReview"
 import SearchOverlay from "@/components/SearchOverlay"
+import SearchSimple from "@/components/SearchSimple"
 
 export default function Page() {
   return (
@@ -13,11 +14,7 @@ export default function Page() {
         Sección personal: estas no son calificaciones “correctas”. Es simplemente cómo yo experimenté cada libro según mis gustos.
       </h4>
       
-      <SearchOverlay
-        placeholder="Buscar reseñas..."
-        data={books}
-        type="reviews"
-      />
+      <SearchSimple data={books} type="reviews" />
 
       <div className="grid md:grid-cols-3 gap-8">
 
