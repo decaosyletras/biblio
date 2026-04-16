@@ -31,11 +31,40 @@ export const books: Book[] = [
     }
   },
   {
+    slug: "holocausto-biologico",
+    title: "HOLOCAUSTO BIOLÓGICO",
+    cover: "/covers/book2.jpg",
+    amazonLink: "https://amazon.com",
+    authorSlug: "Javier Maeso",
+    categories: [1, 4],
+    review: {
+      title: "Una historia que se queda contigo",
+      excerpt: "Intenso, emocional y difícil de soltar.",
+      content:
+        "Este libro logra meterte en la mente de los personajes y no soltarte...",
+        metrics: {
+          originalidad: 4,
+          prosa: 5,
+          complejidad: 4.3,
+          personajes: 4.5,
+          consistencia: 5,
+          adictivo: 4.5,
+        }
+    },
+    
+    genres: {
+      romance: 2,
+      cienciaFiccion: 5,
+      fantasia: 2,
+      misterio: 2
+    }
+  },
+  {
     slug: "2092-la-era-de-la-superinteligencia-artificial",
     title: "2092 LA ERA DE LA SUPERINTELIGENCIA ARTIFICIAL",
     cover: "/covers/book1.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "CAMILO ROJAS RODRÍGUEZ",
+    authorSlug: "Camilo Rojas Rodríguez",
     categories: [2, 3, 4],
     review: {
       title: "Una historia que se queda contigo",
@@ -115,10 +144,66 @@ export const books: Book[] = [
       fantasia: 2,
       misterio: 2
     }
-  }
-
-
-  ,{
+  },
+  {
+    slug: "el-asesino-de-google-maps",
+    title: "EL ASESINO DE GOOGLE MAPS",
+    cover: "/covers/book1.jpg",
+    amazonLink: "https://amazon.com",
+    authorSlug: "Juan Herranz",
+    categories: [1, 2],
+    review: {
+      title: "Una historia que se queda contigo",
+      excerpt: "Intenso, emocional y difícil de soltar.",
+      content:
+        "RESEÑA 4...",
+        metrics: {
+          originalidad: 4,
+          prosa: 5,
+          complejidad: 4.3,
+          personajes: 4.5,
+          consistencia: 5,
+          adictivo: 4.5,
+        }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
+    }
+  },
+  {
+    slug: "el-bucle",
+    title: "EL BUCLE",
+    cover: "/covers/book1.jpg",
+    amazonLink: "https://amazon.com",
+    authorSlug: "José M. Aldasoro",
+    categories: [1, 2],
+    review: {
+      title: "Una historia que se queda contigo",
+      excerpt: "Intenso, emocional y difícil de soltar.",
+      content:
+        "RESEÑA 4...",
+        metrics: {
+          originalidad: 4,
+          prosa: 5,
+          complejidad: 4.3,
+          personajes: 4.5,
+          consistencia: 5,
+          adictivo: 4.5,
+        }
+    },
+    
+    genres: {
+      romance: 4,
+      cienciaFiccion: 1,
+      fantasia: 2,
+      misterio: 3
+    }
+  },
+  {
     slug: "el-juego-de-la-realidad",
     title: "EL JUEGO DE LA REALIDAD",
     cover: "/covers/book1.jpg",
