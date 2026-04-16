@@ -13,21 +13,24 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+          { id: 22, value: 8 },
+        ]
     },
-    
     genres: {
-      romance: 2,
       cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 2
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -42,21 +45,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 2,
       cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 2
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -70,21 +75,23 @@ export const books: Book[] = [
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content: "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 2,
-      cienciaFiccion: 4,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 2
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -99,21 +106,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 2...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 2,
-      cienciaFiccion: 4,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 2
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -128,21 +137,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 3...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 2,
       cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 2
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -157,21 +168,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 4...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -186,21 +199,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 4...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -215,21 +230,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 4...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -244,21 +261,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 5...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
 
   },
@@ -274,21 +293,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 6...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
 
   },
@@ -304,21 +325,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -333,21 +356,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -362,21 +387,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   }
   ,{
@@ -391,21 +418,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -420,21 +449,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -449,21 +480,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -478,21 +511,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 2,
       cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 2
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -507,21 +542,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   },
   {
@@ -536,21 +573,23 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: {
-          originalidad: 4,
-          prosa: 5,
-          complejidad: 4.3,
-          personajes: 4.5,
-          consistencia: 5,
-          adictivo: 4.5,
-        }
+        metrics: [
+          { id: 1, value: 9 },
+          { id: 2, value: 7 },
+          { id: 3, value: 8 },
+          { id: 4, value: 6 },
+          { id: 5, value: 7 },
+        ]
     },
-    
     genres: {
-      romance: 4,
-      cienciaFiccion: 1,
+      cienciaFiccion: 5,
       fantasia: 2,
-      misterio: 3
+      misterio: 2,
+      thriller: 2,
+      terror: 2,
+      suspenso: 2,
+      aventura: 2,
+      romance: 2,
     }
   }
 ]

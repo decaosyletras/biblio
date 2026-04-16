@@ -20,21 +20,21 @@ export type Book = {
     excerpt: string
     content: string
 
-    metrics: {
-      originalidad: number
-      prosa: number
-      complejidad: number
-      personajes: number
-      consistencia: number
-      adictivo: number
-    }
+     metrics: {
+      id: number
+      value: number
+    }[]
   }
   
   genres: {
-    romance: number
     cienciaFiccion: number
     fantasia: number
     misterio: number
+    thriller: number
+    terror: number
+    suspenso: number
+    aventura: number
+    romance: number
   }
 }
 

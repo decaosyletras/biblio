@@ -1,7 +1,5 @@
-export function getReviewScore(metrics: Record<string, number>) {
-  const values = Object.values(metrics)
-  const avg =
-    values.reduce((acc, val) => acc + val, 0) / values.length
-
-  return avg.toFixed(1)
+export function getReviewScore(metrics: { id: number; value: number }[]
+) {
+  const total = metrics.reduce((acc, m) => acc + m.value, 0)
+  return (total / metrics.length).toFixed(1)
 }
