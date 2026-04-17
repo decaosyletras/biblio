@@ -1,8 +1,10 @@
 import { books } from "@/data/books"
 import CardReview from "@/components/CardReview"
 import SearchSimple from "@/components/SearchSimple"
+import { shuffleArray } from "@/lib/shuffle"
 
 export default function Page() {
+  const randomReview = shuffleArray(books)
   return (
     <section className="py-16 px-6">
       
@@ -17,7 +19,7 @@ export default function Page() {
 
       <div className="grid md:grid-cols-3 gap-8">
 
-        {books.map(book => (
+        {randomReview.map(book => (
           <CardReview key={book.slug} book={book} />
         ))}
 

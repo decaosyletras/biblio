@@ -25,8 +25,8 @@ export default function Home() {
         </p>
 
         <div className="mt-10 flex justify-center gap-4">
-          <Link href="/resenas" className="bg-white text-black px-6 py-3 rounded-full">
-            Explorar reseñas
+          <Link href="/autores" className="bg-white text-black px-6 py-3 rounded-full">
+            Conocer Autores
           </Link>
 
           <Link href="/libros" className="border border-zinc-600 px-6 py-3 rounded-full">
@@ -74,15 +74,6 @@ export default function Home() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {randomAuthors.map(author => (
             <CardAuthor key={author.slug} author={author} />
-            /*<Link key={author.slug} href={`/autores/${author.slug}`}>
-              <div className="bg-zinc-800 p-4 rounded-xl text-center hover:scale-105 transition">
-                <img
-                  src={author.avatar}
-                  className="w-16 h-16 rounded-full mx-auto"
-                />
-                <p className="mt-3">{author.name}</p>
-              </div>
-            </Link>*/
           ))}
         </div>
       </section>

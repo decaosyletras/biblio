@@ -2,8 +2,10 @@ import { authors } from "@/data/authors"
 import CardAuthor from "@/components/CardAuthor"
 import Link from "next/link"
 import SearchSimple from "@/components/SearchSimple"
+import { shuffleArray } from "@/lib/shuffle"
 
 export default function Page() {
+  const randomAuthors = shuffleArray(authors)
   return (
     <section className="py-16">
 
@@ -15,10 +17,8 @@ export default function Page() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-6">
 
-        {authors.map(author => (
-          <Link key={author.slug} href={`/autores/${author.slug}`}>
-            <CardAuthor key={author.slug} author={author} />
-          </Link>
+        {randomAuthors.map(author => (
+          <CardAuthor key={author.slug} author={author} />
         ))}
 
       </div>

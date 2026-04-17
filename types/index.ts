@@ -30,7 +30,6 @@ export type Book = {
     cienciaFiccion: number
     fantasia: number
     misterio: number
-    thriller: number
     terror: number
     suspenso: number
     aventura: number
