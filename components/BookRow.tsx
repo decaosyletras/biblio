@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useMemo } from "react"
 import { Book } from "@/types"
 import CardBook from "./CardBook"
 import { shuffleArray } from "@/lib/shuffle"
@@ -16,13 +16,15 @@ export default function BookRow({
 }) {
   const rowRef = useRef<HTMLDivElement>(null)
 
-  const isSpecialCategory = categoryId === 9
-  const displayedBooks = isSpecialCategory
-    ? books
-    : shuffleArray(books)
+  // 🔥 AQUÍ está la solución correcta
+  const displayedBooks = useMemo(() => {
+    if (categoryId === 9) return books
+    return shuffleArray([...books]) // copia para evitar mutación
+  }, [books, categoryId])
 
   const scroll = (dir: "left" | "right") => {
     if (!rowRef.current) return
+
     const amount = 300
     rowRef.current.scrollBy({
       left: dir === "left" ? -amount : amount,
@@ -33,10 +35,12 @@ export default function BookRow({
   return (
     <div className="mb-14 relative group">
 
+      {/* Título */}
       <h2 className="text-xl font-semibold text-zinc-100 mb-4 px-6">
         {title}
       </h2>
 
+      {/* botón izquierda */}
       <button
         onClick={() => scroll("left")}
         className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/60 px-3 py-6 opacity-0 group-hover:opacity-100 transition"
@@ -44,6 +48,7 @@ export default function BookRow({
         ◀
       </button>
 
+      {/* lista */}
       <div
         ref={rowRef}
         className="flex gap-4 overflow-x-auto px-6 scroll-smooth scrollbar-hide"
@@ -55,6 +60,7 @@ export default function BookRow({
         ))}
       </div>
 
+      {/* botón derecha */}
       <button
         onClick={() => scroll("right")}
         className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/60 px-3 py-6 opacity-0 group-hover:opacity-100 transition"
