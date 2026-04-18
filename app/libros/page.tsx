@@ -26,7 +26,6 @@ export default function Page() {
           return (
             <BookRow
               key={category.id}
-              categoryId={category.id}
               title={category.name}
               books={filteredBooks}
             />
