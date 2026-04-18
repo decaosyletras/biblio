@@ -6,6 +6,8 @@ import { shuffleArray } from "@/lib/shuffle"
 import CardReview from "@/components/CardReview"
 import CardAuthor from "@/components/CardAuthor"
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   const randomBooks = shuffleArray(books).slice(0, 4)
   const randomAuthors = shuffleArray(authors).slice(0, 4)
