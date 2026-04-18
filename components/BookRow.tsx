@@ -6,11 +6,9 @@ import CardBook from "./CardBook"
 import { shuffleArray } from "@/lib/shuffle"
 
 export default function BookRow({
-  categoryId,
   title,
   books,
 }: {
-  categoryId: number
   title: string
   books: Book[]
 }) {
