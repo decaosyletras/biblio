@@ -48,11 +48,19 @@ export default function BookRow({
         className="flex gap-4 overflow-x-auto px-6 scroll-smooth scrollbar-hide"
       >
 
-      {randomBooks.map(book => (
-        <div key={book.slug} className="flex-shrink-0 w-[180px]">
-          <CardBook book={book} />
-        </div>
-      ))}
+      {keyCategory === 9 ? (
+        books.map(book => (
+          <div key={book.slug} className="flex-shrink-0 w-[180px]">
+            <CardBook book={book} />
+          </div>
+        ))
+      ) : (
+        randomBooks.map(book => (
+          <div key={book.slug} className="flex-shrink-0 w-[180px]">
+            <CardBook book={book} />
+          </div>
+        ))
+      )}
                   
       </div>
 
