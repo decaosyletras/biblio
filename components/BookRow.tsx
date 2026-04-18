@@ -6,9 +6,11 @@ import CardBook from "./CardBook"
 import { shuffleArray } from "@/lib/shuffle"
 
 export default function BookRow({
+  keyCategory,
   title,
   books,
 }: {
+  keyCategory: number
   title: string
   books: Book[]
 }) {
@@ -45,12 +47,21 @@ export default function BookRow({
         ref={rowRef}
         className="flex gap-4 overflow-x-auto px-6 scroll-smooth scrollbar-hide"
       >
-
-      {randomBooks.map(book => (
-        <div key={book.slug} className="flex-shrink-0 w-[180px]">
-          <CardBook book={book} />
-        </div>
-      ))}
+        {/* 9 === MIS libros */}
+        {keyCategory === 9 ? (
+          books.map(book => (
+            <div key={book.slug} className="flex-shrink-0 w-[180px]">
+              <CardBook book={book} />
+            </div>
+          ))
+        ) : (
+          randomBooks.map(book => (
+            <div key={book.slug} className="flex-shrink-0 w-[180px]">
+              <CardBook book={book} />
+            </div>
+          ))
+        )}
+      
                   
       </div>
 
