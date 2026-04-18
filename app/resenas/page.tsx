@@ -3,6 +3,8 @@ import CardReview from "@/components/CardReview"
 import SearchSimple from "@/components/SearchSimple"
 import { shuffleArray } from "@/lib/shuffle"
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   const randomReview = shuffleArray(books)
   return (

@@ -4,6 +4,8 @@ import Link from "next/link"
 import SearchSimple from "@/components/SearchSimple"
 import { shuffleArray } from "@/lib/shuffle"
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   const randomAuthors = shuffleArray(authors)
   return (
