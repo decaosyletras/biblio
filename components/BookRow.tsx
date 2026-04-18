@@ -4,6 +4,7 @@ import { useRef } from "react"
 import { Book } from "@/types"
 import CardBook from "./CardBook"
 import { shuffleArray } from "@/lib/shuffle"
+import { useEffect, useState } from "react"
 
 export default function BookRow({
   keyCategory,
@@ -15,7 +16,17 @@ export default function BookRow({
   books: Book[]
 }) {
   const rowRef = useRef<HTMLDivElement>(null)
-  const randomBooks = shuffleArray(books)
+  
+
+  const [randomBooks, setRandomBooks] = useState<Book[]>([])
+
+  useEffect(() => {
+    if (keyCategory !== 9) {
+      setRandomBooks(shuffleArray(books))
+    } else {
+      setRandomBooks(books)
+    }
+  }, [books, keyCategory])
 
   const scroll = (dir: "left" | "right") => {
     if (!rowRef.current) return
@@ -49,10 +60,10 @@ export default function BookRow({
       >
 
       {randomBooks.map(book => (
-        <div key={book.slug} className="flex-shrink-0 w-[180px]">
-          <CardBook book={book} />
-        </div>
-      ))}
+          <div key={book.slug} className="flex-shrink-0 w-[180px]">
+            <CardBook book={book} />
+          </div>
+        ))}
                   
       </div>
 
