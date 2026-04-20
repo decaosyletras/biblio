@@ -24,14 +24,17 @@ export const books: Book[] = [
           { id: 25, value: 10 },
         ]
     },
-    genres: {
-      cienciaFiccion: 10,
-      fantasia: 0,
-      misterio: 0,
-      terror: 0,
-      suspenso: 0,
-      aventura: 0,
-      romance: 0,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },{
     slug: "tras-el-caos-de-la-existencia-divisiones-y-conflictos",
@@ -56,14 +59,17 @@ export const books: Book[] = [
           { id: 25, value: 10 },
         ]
     },
-    genres: {
-      cienciaFiccion: 10,
-      fantasia: 0,
-      misterio: 0,
-      terror: 0,
-      suspenso: 0,
-      aventura: 0,
-      romance: 0,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },{
     slug: "tras-el-caos-de-la-existencia-designios-ancestrales",
@@ -89,14 +95,17 @@ export const books: Book[] = [
           { id: 23, value: 10 },
         ]
     },
-    genres: {
-      cienciaFiccion: 10,
-      fantasia: 0,
-      misterio: 0,
-      terror: 0,
-      suspenso: 0,
-      aventura: 0,
-      romance: 0,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },{
     slug: "jodidos-mas-no-vencidos",
@@ -119,14 +128,17 @@ export const books: Book[] = [
           { id: 22, value: 8 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 0,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -150,14 +162,17 @@ export const books: Book[] = [
           { id: 22, value: 8 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -180,14 +195,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -209,14 +227,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -239,14 +260,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -269,14 +293,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   /*{
@@ -329,14 +356,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -359,14 +389,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -389,16 +422,18 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
-    }
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
 
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
+    }
   },
   {
     slug: "el-silencio-del-agua",
@@ -420,16 +455,18 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
-    }
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
 
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
+    }
   },
   {
     slug: "solo-quedaron-las-cascaras",
@@ -451,14 +488,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -481,14 +521,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -511,14 +554,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "romance",
+    subgenres: ["amorimposible"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   }
   ,{
@@ -541,14 +587,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -571,14 +620,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -601,14 +653,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -631,14 +686,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -661,14 +719,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -691,14 +752,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -721,18 +785,21 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
-    slug: "compilacion-de-relatos",
+    slug: "cronicas-walker-discordia",
     title: "CRÓNICAS WALKER: DISCORDIA",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
@@ -751,14 +818,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -781,14 +851,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -811,14 +884,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -841,14 +917,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -871,14 +950,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -901,14 +983,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -931,14 +1016,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -961,14 +1049,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -991,14 +1082,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "romance",
+    subgenres: ["amorimposible"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -1021,14 +1115,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -1051,14 +1148,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -1081,14 +1181,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -1111,14 +1214,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "cienciaFiccion",
+    subgenres: ["operaespacial"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   },
   {
@@ -1141,14 +1247,17 @@ export const books: Book[] = [
           { id: 5, value: 7 },
         ]
     },
-    genres: {
-      cienciaFiccion: 5,
-      fantasia: 2,
-      misterio: 2,
-      terror: 2,
-      suspenso: 2,
-      aventura: 2,
-      romance: 2,
+    genre: "romance",
+    subgenres: ["enemiestolovers"],
+
+    tags: {
+      ritmo: 2,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 2,
+      accesibilidad: 1,
+      profundidadTematica: 1,
     }
   }
 ]

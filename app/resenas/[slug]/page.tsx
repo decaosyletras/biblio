@@ -36,7 +36,7 @@ export default async function Page({ params }: any) {
       <ReviewMetrics metrics={book.review.metrics} />
 
       {/* 🔥 GÉNEROS */}
-      <ReviewGenres genres={book.genres} />
+      <ReviewGenres genre={book.genre} />
 
       {/* contenido */}
       <p className="mt-6 text-zinc-300 leading-relaxed">

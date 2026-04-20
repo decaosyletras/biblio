@@ -26,14 +26,17 @@ export type Book = {
     }[]
   }
   
-  genres: {
-    cienciaFiccion: number
-    fantasia: number
-    misterio: number
-    terror: number
-    suspenso: number
-    aventura: number
-    romance: number
+  genre: string
+  subgenres: string[]
+
+  tags: {
+    ritmo: number
+    complejidad: number
+    cargaEmocional: number
+    conflicto: number
+    worldbuilding: number
+    accesibilidad: number
+    profundidadTematica: number
   }
 }
 

@@ -1,12 +1,12 @@
 export default function ReviewGenres({
-  genres,
+  genre,
 }: {
-  genres: Record<string, number>
+  genre: Record<string, string>
 }) {
   return (
     <div className="mt-6 space-y-3">
 
-      {Object.entries(genres).map(([key, value]) => (
+      {Object.entries(genre).map(([key, value]) => (
         <div key={key}>
 
           <div className="flex justify-between text-sm mb-1">

@@ -1,45 +1,37 @@
 import { Book } from "@/types"
 
-function getDistance(a: Record<string, number>, b: Record<string, number>) {
-  const keys = Object.keys(a)
+function getScore(a: Book, b: Book) {
+  let score = 0
 
-  let sum = 0
+  // 🔥 mismo género
+  if (a.genre === b.genre) score += 5
 
-  for (const key of keys) {
-    const diff = a[key] - b[key]
-    sum += diff * diff
-  }
+  // 🔥 subgéneros en común
+  const sharedSub = a.subgenres.filter(s => b.subgenres.includes(s))
+  score += sharedSub.length * 3
 
-  return Math.sqrt(sum)
+  // 🔥 etiquetas (distancia)
+  Object.keys(a.tags).forEach((key) => {
+    const diff = Math.abs(a.tags[key as keyof typeof a.tags] - b.tags[key as keyof typeof b.tags])
+    score += (2 - diff) // mientras más parecido, más suma
+  })
+
+  return score
 }
 
-// 🔥 helper random
 function getRandomItems<T>(arr: T[], n: number): T[] {
-  const shuffled = [...arr].sort(() => 0.5 - Math.random())
-  return shuffled.slice(0, n)
+  return [...arr].sort(() => 0.5 - Math.random()).slice(0, n)
 }
 
-export function getRecommendedBooks(
-  currentBook: Book,
-  allBooks: Book[]
-): Book[] {
+export function getRecommendedBooks(current: Book, books: Book[]) {
+  const ranked = books
+    .filter(b => b.slug !== current.slug)
+    .map(b => ({
+      ...b,
+      score: getScore(current, b),
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
 
-  const topMatches = allBooks
-    .filter(b => b.slug !== currentBook.slug)
-    .map(book => {
-      const distance = getDistance(
-        currentBook.genres,
-        book.genres
-      )
-
-      return {
-        ...book,
-        score: distance
-      }
-    })
-    .sort((a, b) => a.score - b.score) // más similar primero
-    .slice(0, 5) // 🔥 top 5
-
-  // 🔥 ahora aleatorio de esos 5
-  return getRandomItems(topMatches, 3)
+  return getRandomItems(ranked, 3)
 }

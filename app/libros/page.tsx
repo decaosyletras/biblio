@@ -2,6 +2,8 @@ import { books } from "@/data/books"
 import { categories } from "@/data/categories"
 import BookRow from "@/components/BookRow"
 import SearchSimple from "@/components/SearchSimple"
+import { genresCatalog } from "@/data/genres"
+import { tagsCatalog } from "@/data/tags"
 
 export default function Page() {
   return (
