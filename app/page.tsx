@@ -5,6 +5,8 @@ import CardBook from "@/components/CardBook"
 import { shuffleArray } from "@/lib/shuffle"
 import CardReview from "@/components/CardReview"
 import CardAuthor from "@/components/CardAuthor"
+import GenreFilter from "@/components/GenreFilter"
+import BookRow from "@/components/BookRow"
 
 export const dynamic = "force-dynamic";
 
@@ -48,6 +50,8 @@ export default function Home() {
         </p>
       </section>
 
+      <GenreFilter />
+
       {/* LIBROS */}
       <section className="py-16 px-6">
         <div className="flex justify-between items-center mb-6">
@@ -57,11 +61,11 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {randomBooks.map(book => (
-            <CardBook key={book.slug} book={book} />
-          ))}
-        </div>
+        
+          <BookRow
+            title=""
+            books={books}
+          />
       </section>
 
       {/* AUTORES */}

@@ -1,6 +1,8 @@
 import { authors } from "@/data/authors"
 import { books } from "@/data/books"
 import BookRow from "@/components/BookRow"
+import { getRecommendedAuthors } from "@/lib/recommendAuthors"
+import CardAuthor from "@/components/CardAuthor"
 
 export default async function Page({
   params,
@@ -20,6 +22,8 @@ export default async function Page({
   const similarAuthors = authors.filter(a =>
     author.similar.includes(a.slug)
   )
+
+  const recommendedAuthors = getRecommendedAuthors(author.slug)
 
   return (
     <div className="text-zinc-100">
@@ -66,29 +70,39 @@ export default async function Page({
           </p>
         </div>
 
+        
+
+        {/* LIBROS DEL AUTOR (Netflix style) */}
+        <h3 className="mt-10 text-xl font-semibold">
+          Libros del autor
+        </h3>
+
+        <div className="flex gap-4 mt-4 overflow-x-auto no-scrollbar">
+          {authorBooks.map((book) => (
+            <a key={book.slug} href={`/libros/${book.slug}`}>
+              <img
+                src={book.cover}
+                className="w-32 h-48 object-cover rounded-lg"
+              />
+            </a>
+          ))}
+        </div>
+        <BookRow title="" books={authorBooks} />
+
         {/* Similares */}
         <div>
-          <h2 className="text-xl font-semibold mb-4">
-            Si te gustó, también puedes leer a:
-          </h2>
+          <h3 className="mt-10 text-xl font-semibold">
+            Si te gustó también puedes leer a:
+          </h3>
 
-          <div className="flex gap-6">
-            {similarAuthors.map(a => (
-              <div key={a.slug} className="text-center">
-                <img
-                  src={a.avatar}
-                  className="w-16 h-16 rounded-full mx-auto"
-                />
-                <p className="mt-2 text-sm">{a.name}</p>
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+            {recommendedAuthors.map((a) => (
+              <CardAuthor key={a.slug} author={a} />
             ))}
           </div>
         </div>
 
       </div>
-
-      {/* LIBROS DEL AUTOR (Netflix style) */}
-      <BookRow title="Libros del autor" books={authorBooks} />
 
     </div>
   )
