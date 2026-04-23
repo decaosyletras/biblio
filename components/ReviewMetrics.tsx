@@ -1,4 +1,4 @@
-import { metricsCatalog } from "@/data/metrics"
+/*import { metricsCatalog } from "@/data/metrics"
 
 export default function ReviewMetrics({
   metrics,
@@ -34,7 +34,7 @@ export default function ReviewMetrics({
             </span>
           </div>
 
-          {/* barra */}
+          
           <div className="w-full h-2 bg-zinc-700 rounded-full overflow-hidden">
             <div
               className="h-full bg-yellow-400 transition-all duration-500"
@@ -47,4 +47,4 @@ export default function ReviewMetrics({
 
     </div>
   )
-}
+}*/
