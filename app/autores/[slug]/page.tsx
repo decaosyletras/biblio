@@ -33,7 +33,7 @@ export default async function Page({
         
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
 
-        <div className="relative z-10 flex items-center gap-6">
+        {/*<div className="relative z-10 flex items-center gap-6">
           <img
             src={author.avatar}
             className="w-24 h-24 rounded-full border-4 border-zinc-800"
@@ -43,7 +43,7 @@ export default async function Page({
             <h1 className="text-3xl font-bold">{author.name}</h1>
             <p className="text-zinc-400">{author.bio}</p>
           </div>
-        </div>
+        </div>*/}
 
       </section>
 

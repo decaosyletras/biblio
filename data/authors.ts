@@ -54,7 +54,7 @@ export const authors: Author[] = [
     style: "Ligero, emocional y fácil de leer.",
     similar: ["autor-x"]
   },
-  {
+  /*{
     slug: "juan-herranz",
     name: "Juan Herranz",
     avatar: "/authors/autor2.jpg",
@@ -62,7 +62,7 @@ export const authors: Author[] = [
     description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
     style: "Ligero, emocional y fácil de leer.",
     similar: ["autor-x"]
-  },
+  },*/
   {
     slug: "jose-m-aldasoro",
     name: "José M. Aldasoro",
@@ -199,7 +199,7 @@ export const authors: Author[] = [
     similar: ["autor-x"]
   },
   {
-    slug: "Adner-perez-garcia",
+    slug: "adner-perez-garcia",
     name: "Adner Pérez García",
     avatar: "/authors/autor2.jpg",
     bio: "Narrativa emocional contemporánea.",

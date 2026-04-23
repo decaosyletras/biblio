@@ -13,15 +13,15 @@ export default function Page() {
       <h1 className="text-3xl font-semibold text-zinc-100 mb-10">
         Mis reseñas
       </h1>
-      <h4 className="font-semibold text-zinc-100">
+      {/*<h4 className="font-semibold text-zinc-100">
         Sección personal: estas no son calificaciones “correctas”. Es simplemente cómo yo experimenté cada libro según mis gustos.
-      </h4>
+      </h4>*/}
       
-      <SearchSimple data={books} type="reviews" />
+      <SearchSimple data={books.filter(book => book.review?.title !== "")} type="reviews" />
 
       <div className="grid md:grid-cols-3 gap-8">
 
-        {randomReview.map(book => (
+        {randomReview.filter(book => book.review?.title !== "").map(book => (
           <CardReview key={book.slug} book={book} />
         ))}
 

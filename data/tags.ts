@@ -1,9 +1,9 @@
 export const tagsCatalog = {
-  ritmo: ["Lento", "Equilibrado", "Rápido"],
-  complejidad: ["Simple", "Media", "Compleja"],
-  cargaEmocional: ["Ligera", "Media", "Intensa"],
-  conflicto: ["Suave", "Moderado", "Alto"],
-  worldbuilding: ["Básico", "Desarrollado", "Profundo"],
-  accesibilidad: ["Fácil", "Media", "Exigente"],
-  profundidadTematica: ["Ligera", "Media", "Densa"],
+  ritmo: ["","Lento", "Equilibrado", "Rápido"],
+  complejidad: ["","Simple", "Media", "Alta"],
+  cargaEmocional: ["","Ligera", "Media", "Intensa"],
+  conflicto: ["","Suave", "Moderado", "Alto"],
+  worldbuilding: ["","Básico", "Desarrollado", "Profundo"],
+  accesibilidad: ["","Fácil", "Media", "Exigente"],
+  profundidadTematica: ["","Ligera", "Media", "Densa"],
 }

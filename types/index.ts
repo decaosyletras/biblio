@@ -15,18 +15,15 @@ export type Book = {
   amazonLink: string
   authorSlug: string
   categories: number[]
+  summary: string
   review: {
     title: string
     excerpt: string
     content: string
-
-     metrics: {
-      id: number
-      value: number
-    }[]
+    metrics: string[]
   }
   
-  genre: string
+  genre: string[]
   subgenres: string[]
 
   tags: {

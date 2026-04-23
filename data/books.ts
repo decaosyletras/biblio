@@ -6,139 +6,109 @@ export const books: Book[] = [
     title: "TRAS EL CAOS DE LA EXISTENCIA: DESCUBRIMIENTO",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Marcos M. Jiménez González",
+    authorSlug: "marcos-m-jimenez-gonzalez",
     categories: [3, 5, 9],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
-      excerpt: "Intenso, emocional y difícil de soltar.",
+      excerpt: "¿Para quién es?",
       content:
-        "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 2, value: 9 },
-          { id: 5, value: 9 },
-          { id: 6, value: 8 },
-          { id: 7, value: 10 },
-          { id: 19, value: 8 },
-          { id: 20, value: 9 },
-          { id: 24, value: 10 },
-          { id: 25, value: 10 },
-        ]
+        "",
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["operaespacial", "xenoficcion", "evolucionespeculativa", "espiritual"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 1,
+      complejidad: 2,
       cargaEmocional: 2,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },{
     slug: "tras-el-caos-de-la-existencia-divisiones-y-conflictos",
     title: "TRAS EL CAOS DE LA EXISTENCIA: DIVISIONES Y CONFLICTOS",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Marcos M. Jiménez González",
+    authorSlug: "marcos-m-jimenez-gonzalez",
     categories: [3, 9],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 3, value: 10 },
-          { id: 4, value: 8 },
-          { id: 7, value: 10 },
-          { id: 11, value: 9 },
-          { id: 20, value: 7 },
-          { id: 23, value: 10 },
-          { id: 24, value: 10 },
-          { id: 25, value: 10 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["operaespacial", "xenoficcion", "evolucionespeculativa", "viajestiempo"],
 
     tags: {
       ritmo: 2,
-      complejidad: 1,
-      cargaEmocional: 2,
+      complejidad: 2,
+      cargaEmocional: 3,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
-  },{
+  },
+  {
     slug: "tras-el-caos-de-la-existencia-designios-ancestrales",
     title: "TRAS EL CAOS DE LA EXISTENCIA: DESIGNIOS ANCESTRALES",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Marcos M. Jiménez González",
+    authorSlug: "marcos-m-jimenez-gonzalez",
     categories: [3, 9],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 3, value: 7 },
-          { id: 7, value: 10 },
-          { id: 11, value: 10 },
-          { id: 21, value: 9 },
-          { id: 24, value: 10 },
-          { id: 25, value: 10 },
-          { id: 26, value: 5 },
-          { id: 27, value: 7 },
-          { id: 23, value: 10 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["operaespacial", "xenoficcion", "evolucionespeculativa"],
 
     tags: {
       ritmo: 2,
-      complejidad: 1,
+      complejidad: 3,
       cargaEmocional: 2,
-      conflicto: 2,
+      conflicto: 3,
       worldbuilding: 2,
-      accesibilidad: 1,
-      profundidadTematica: 1,
+      accesibilidad: 2,
+      profundidadTematica: 2,
     }
   },{
     slug: "jodidos-mas-no-vencidos",
     title: "JODIDOS, MAS NO VENCIDOS",
-    cover: "/covers/book2.jpg",
+    cover: "/covers/jodidos.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Marcos M. Jiménez González",
+    authorSlug: "marcos-m-jimenez-gonzalez",
     categories: [1, 9],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-          { id: 22, value: 8 },
-        ]
+      metrics: ["cuentos","ia", "espiritualidad"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia"],
 
     tags: {
-      ritmo: 0,
-      complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 0,
-      worldbuilding: 2,
-      accesibilidad: 1,
-      profundidadTematica: 1,
+      ritmo: 2,
+      complejidad: 2,
+      cargaEmocional: 3,
+      conflicto: 2,
+      worldbuilding: 1,
+      accesibilidad: 2,
+      profundidadTematica: 3,
     }
   },
   {
@@ -146,33 +116,27 @@ export const books: Book[] = [
     title: "LIBERTADORES",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Juan Carlos López Bayón",
+    authorSlug: "juan-carlos-lopez-bayon",
     categories: [2, 5],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-          { id: 22, value: 8 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["operaespacial", "exploracionespacial", "militar"],
 
     tags: {
       ritmo: 2,
       complejidad: 1,
       cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      conflicto: 3,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },
   {
@@ -180,28 +144,23 @@ export const books: Book[] = [
     title: "HOLOCAUSTO BIOLÓGICO",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Javier Maeso",
+    authorSlug: "javier-maeso",
     categories: [2],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
+    genre: ["cienciaFiccion"],
     subgenres: ["operaespacial"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
+      cargaEmocional: 1,
       conflicto: 2,
       worldbuilding: 2,
       accesibilidad: 1,
@@ -213,31 +172,26 @@ export const books: Book[] = [
     title: "2092 LA ERA DE LA SUPERINTELIGENCIA ARTIFICIAL",
     cover: "/covers/book1.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Camilo Rojas Rodríguez",
+    authorSlug: "camilo-rojas-rodriguez",
     categories: [3, 6],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content: "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia", "ai", "technothriller"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 3,
+      complejidad: 2,
       cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      conflicto: 3,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },
   {
@@ -245,32 +199,27 @@ export const books: Book[] = [
     title: "RUSTIC METAVERSE: LA ERA DE LA ASCENCIÓN",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "J. E. FOURT",
+    authorSlug: "j-e-fourt",
     categories: [3, 6],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 2...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia, technothriller, cyberpunk"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      ritmo: 3,
+      complejidad: 2,
+      cargaEmocional: 3,
+      conflicto: 3,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },
   {
@@ -278,32 +227,27 @@ export const books: Book[] = [
     title: "PLANETA MISTERIO",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Oscar González Cruz",
+    authorSlug: "oscar-gonzalez-cruz",
     categories: [1],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 3...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["cuentos, distopia, viajestiempo, cyberpunk"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
+      cargaEmocional: 3,
       conflicto: 2,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },
   /*{
@@ -341,32 +285,27 @@ export const books: Book[] = [
     title: "EL BUCLE",
     cover: "/covers/book1.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "José M. Aldasoro",
+    authorSlug: "jose-m-aldasoro",
     categories: [3, 6],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 4...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia, technothriller, cyberpunk"],
 
     tags: {
       ritmo: 2,
-      complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
-      accesibilidad: 1,
-      profundidadTematica: 1,
+      complejidad: 2,
+      cargaEmocional: 3,
+      conflicto: 3,
+      worldbuilding: 3,
+      accesibilidad: 2,
+      profundidadTematica: 3,
     }
   },
   {
@@ -374,32 +313,27 @@ export const books: Book[] = [
     title: "EL JUEGO DE LA REALIDAD",
     cover: "/covers/book1.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "A. A. Espiño",
+    authorSlug: "a-a-espino",
     categories: [6],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 4...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["technothriller, militar, realidadvirtual"],
 
     tags: {
       ritmo: 2,
       complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      cargaEmocional: 3,
+      conflicto: 3,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },
   {
@@ -407,29 +341,24 @@ export const books: Book[] = [
     title: "LOS TRECE ROSTROS DE LA MUERTE",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Noé Martín Salido",
+    authorSlug: "noe-martin-salido",
     categories: [3],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 5...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["fantasia", "+"],
+    subgenres: ["urbana, historica, relatos"],
 
     tags: {
       ritmo: 2,
       complejidad: 1,
       cargaEmocional: 2,
-      conflicto: 2,
+      conflicto: 1,
       worldbuilding: 2,
       accesibilidad: 1,
       profundidadTematica: 1,
@@ -440,30 +369,25 @@ export const books: Book[] = [
     title: "EL SILENCIO DEL AGUA",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Julián Drake",
+    authorSlug: "julian-drake",
     categories: [1],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 6...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia, postapocaliptica"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      cargaEmocional: 3,
+      conflicto: 3,
+      worldbuilding: 3,
       accesibilidad: 1,
       profundidadTematica: 1,
     }
@@ -473,28 +397,23 @@ export const books: Book[] = [
     title: "SOLO QUEDARON LAS CÁSCARAS",
     cover: "/covers/book1.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Nicole Sánchez Castillo",
+    authorSlug: "nicole-sanchez-castillo",
     categories: [1],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["terror"],
+    subgenres: ["psicologico","existencial"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
+      cargaEmocional: 3,
       conflicto: 2,
       worldbuilding: 2,
       accesibilidad: 1,
@@ -506,30 +425,25 @@ export const books: Book[] = [
     title: "REMNAX",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Alejandro P. C.",
+    authorSlug: "alejandro-p-c",
     categories: [2],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["aventura"],
+    subgenres: ["supervivencia","militar"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      cargaEmocional: 1,
+      conflicto: 1,
+      worldbuilding: 3,
       accesibilidad: 1,
       profundidadTematica: 1,
     }
@@ -539,65 +453,55 @@ export const books: Book[] = [
     title: "DONES MORTALES",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Keira Moreau",
+    authorSlug: "keira-moreau",
     categories: [2],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "romance",
-    subgenres: ["amorimposible"],
+    genre: ["romance", "fantasia"],
+    subgenres: ["amorprohibido", "erotico", "oscura"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 3,
+      complejidad: 2,
       cargaEmocional: 2,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 3,
       accesibilidad: 1,
       profundidadTematica: 1,
     }
-  }
-  ,{
+  },
+  {
     slug: "draguenorux",
     title: "DRAGUENORUX: EL DRAGÓN FLUORESCENTE",
     cover: "/covers/book1.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Gabriel Vilches Barroso",
+    authorSlug: "gabriel-vilches-barroso",
     categories: [4, 5],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["militar", "biopunk", "satira"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 3,
+      complejidad: 2,
       cargaEmocional: 2,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 2,
     }
   },
   {
@@ -605,30 +509,25 @@ export const books: Book[] = [
     title: "MUSI REGRESA POR NAVIDAD",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Juan Carlos López Bayón",
+    authorSlug: "juan-carlos-lopez-bayon",
     categories: [1, 2],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["ficcion", "+"],
+    subgenres: ["emotiva"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      cargaEmocional: 3,
+      conflicto: 1,
+      worldbuilding: 1,
       accesibilidad: 1,
       profundidadTematica: 1,
     }
@@ -638,32 +537,27 @@ export const books: Book[] = [
     title: "EL HIMNO DEL DESIERTO I: EL DESIERTO SIN FIN",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Eduardo D. Allen",
+    authorSlug: "eduardo-d-allen",
     categories: [3, 5],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos","aventura","supervivencia"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia", "postapocaliptica"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      ritmo: 1,
+      complejidad: 2,
+      cargaEmocional: 3,
+      conflicto: 3,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 2,
     }
   },
   {
@@ -671,32 +565,27 @@ export const books: Book[] = [
     title: "OZYUX: EL VALOR DE UNA VIDA INTERGALÁCTICA",
     cover: "/covers/book1.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Gabriel Vilches Barroso",
+    authorSlug: "gabriel-vilches-barroso",
     categories: [3],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos", "militar", "adulta"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["operaespacial","xenoficcion"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 3,
+      complejidad: 2,
       cargaEmocional: 2,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },
   {
@@ -704,32 +593,27 @@ export const books: Book[] = [
     title: "EL HIMNO DEL DESIERTO II: LA LEYENDA DEL VIENTO",
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Eduardo D. Allen",
+    authorSlug: "eduardo-d-allen",
     categories: [3],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos", "rebelion"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia", "postapocaliptica"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 1,
+      complejidad: 2,
       cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      conflicto: 3,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 2,
     }
   },
   {
@@ -737,30 +621,25 @@ export const books: Book[] = [
     title: "COMPILACIÓN DE RELATOS: CINCO RELATOS DE EMOCIÓN, OSCURIDAD Y REFLEXIÓN",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Sergio Vélez Rodríguez",
+    authorSlug: "sergio-velez-rodríguez",
     categories: [1],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos", "reflexion"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["aventura"],
+    subgenres: ["cuentos"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
       cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      conflicto: 1,
+      worldbuilding: 1,
       accesibilidad: 1,
       profundidadTematica: 1,
     }
@@ -770,32 +649,27 @@ export const books: Book[] = [
     title: "CRÓNICAS WALKER: DESTINO",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Luis Rivera",
+    authorSlug: "luis-rivera",
     categories: [3, 5],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos", "juvenil"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["fantasia"],
+    subgenres: ["urbana"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 3,
+      complejidad: 2,
       cargaEmocional: 2,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 2,
     }
   },
   {
@@ -803,32 +677,27 @@ export const books: Book[] = [
     title: "CRÓNICAS WALKER: DISCORDIA",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Luis Rivera",
+    authorSlug: "luis-rivera",
     categories: [3],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cuentos","juvenil","accion","conspiracion"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["fantasia"],
+    subgenres: ["urbana"],
 
     tags: {
       ritmo: 2,
-      complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
-      accesibilidad: 1,
-      profundidadTematica: 1,
+      complejidad: 3,
+      cargaEmocional: 3,
+      conflicto: 3,
+      worldbuilding: 3,
+      accesibilidad: 2,
+      profundidadTematica: 2,
     }
   },
   {
@@ -836,32 +705,27 @@ export const books: Book[] = [
     title: "OVNI: REDENCIÓN",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "J. C. Plaza",
+    authorSlug: "j-c-plaza",
     categories: [3],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["supervivencia"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["thriller", "cienciaFiccion"],
+    subgenres: [""],
 
     tags: {
       ritmo: 2,
       complejidad: 1,
       cargaEmocional: 2,
-      conflicto: 2,
+      conflicto: 3,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 2,
     }
   },
   {
@@ -869,32 +733,27 @@ export const books: Book[] = [
     title: "TABLERO MORTAL",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Javier Marín",
+    authorSlug: "javier-marin",
     categories: [5],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["misterioaresolver"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["thriller"],
+    subgenres: ["policial", "psicologico", "asesinoenserie"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
       cargaEmocional: 2,
-      conflicto: 2,
+      conflicto: 3,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 2,
     }
   },
   {
@@ -902,32 +761,27 @@ export const books: Book[] = [
     title: "PROYECTO SOMBRAS",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Maximilian Cross",
+    authorSlug: "maximilian-cross",
     categories: [3],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["conspiracion"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["misterio"],
+    subgenres: ["especulativo"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 1,
+      complejidad: 2,
       cargaEmocional: 2,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 1,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },
   {
@@ -935,32 +789,27 @@ export const books: Book[] = [
     title: "MUTAGÉNESIS CONVERGENTE",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Juan Antonio Jiménez",
+    authorSlug: "juan-antonio-jimenez",
     categories: [3, 6],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["cienciadura"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["solarpunk"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 1,
+      complejidad: 3,
       cargaEmocional: 2,
       conflicto: 2,
       worldbuilding: 2,
-      accesibilidad: 1,
-      profundidadTematica: 1,
+      accesibilidad: 2,
+      profundidadTematica: 3,
     }
   },
   {
@@ -968,32 +817,27 @@ export const books: Book[] = [
     title: "CUANDO TE LLEVE",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Adner Pérez García",
+    authorSlug: "adner-perez-garcia",
     categories: [1, 2],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["relatos", "reflexion"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["ficcion"],
+    subgenres: [],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
+      cargaEmocional: 3,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 1,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },
   {
@@ -1001,32 +845,27 @@ export const books: Book[] = [
     title: "CRÓNICAS WALKER: OBLIVION",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Luis Rivera",
+    authorSlug: "luis-rivera",
     categories: [3],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["conspiracion", "accion"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["fantasia", "misterio"],
+    subgenres: ["oscura"],
 
     tags: {
       ritmo: 2,
-      complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
-      accesibilidad: 1,
-      profundidadTematica: 1,
+      complejidad: 3,
+      cargaEmocional: 3,
+      conflicto: 3,
+      worldbuilding: 3,
+      accesibilidad: 2,
+      profundidadTematica: 2,
     }
   },
   {
@@ -1034,32 +873,27 @@ export const books: Book[] = [
     title: "TORMENTA DE AZAR",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Daniel Gálvez Estévez",
+    authorSlug: "daniel-galvez-estevez",
     categories: [2],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["misticismo"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["Ficción","misterio","romance"],
+    subgenres: ["psicologico"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
+      cargaEmocional: 3,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 1,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 2,
     }
   },
   {
@@ -1067,32 +901,27 @@ export const books: Book[] = [
     title: "EL MUNDO DE ETERNA: LA ELEGIDA",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Belu Elein",
+    authorSlug: "belu-elein",
     categories: [5],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["aventura"],
     },
-    genre: "romance",
-    subgenres: ["amorimposible"],
+    genre: ["fantasia", "romance"],
+    subgenres: ["epica", "amorprohibido"],
 
     tags: {
       ritmo: 2,
       complejidad: 1,
       cargaEmocional: 2,
-      conflicto: 2,
-      worldbuilding: 2,
+      conflicto: 3,
+      worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 2,
     }
   },
   {
@@ -1100,32 +929,27 @@ export const books: Book[] = [
     title: "EL HIMNO DEL DESIERTO III: LA CIMA DEL MUNDO",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Eduardo D. Allen",
+    authorSlug: "eduardo-d-allen",
     categories: [3],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["supervivencia"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia", "postapocaliptica"],
 
     tags: {
       ritmo: 2,
-      complejidad: 1,
-      cargaEmocional: 2,
+      complejidad: 2,
+      cargaEmocional: 3,
       conflicto: 2,
-      worldbuilding: 2,
-      accesibilidad: 1,
-      profundidadTematica: 1,
+      worldbuilding: 3,
+      accesibilidad: 2,
+      profundidadTematica: 2,
     }
   },
   {
@@ -1133,30 +957,25 @@ export const books: Book[] = [
     title: "EL ÚLTIMO VIAJE",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Arnulfo Diaz",
+    authorSlug: "arnulfo-diaz",
     categories: [1],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["relatocorto"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["ficcion"],
+    subgenres: ["emotiva"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
+      cargaEmocional: 3,
       conflicto: 2,
-      worldbuilding: 2,
+      worldbuilding: 1,
       accesibilidad: 1,
       profundidadTematica: 1,
     }
@@ -1166,32 +985,27 @@ export const books: Book[] = [
     title: "HAN ROBADO EL INFINITO",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "David Sanz",
+    authorSlug: "david-sanz",
     categories: [3, 6],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["humor", "reflexion"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["cienciaFiccion"],
+    subgenres: ["exploracionespacial"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 1,
+      ritmo: 1,
+      complejidad: 3,
       cargaEmocional: 2,
       conflicto: 2,
-      worldbuilding: 2,
-      accesibilidad: 1,
-      profundidadTematica: 1,
+      worldbuilding: 3,
+      accesibilidad: 2,
+      profundidadTematica: 3,
     }
   },
   {
@@ -1199,32 +1013,27 @@ export const books: Book[] = [
     title: "FISURA INTERDIMENSIONAL",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Marcos Vega",
+    authorSlug: "marcos-vega",
     categories: [3, 6, 7],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["historiasparalelas", "espiritualidad"],
     },
-    genre: "cienciaFiccion",
-    subgenres: ["operaespacial"],
+    genre: ["fantasia", "terror"],
+    subgenres: ["oscura", "cosmico"],
 
     tags: {
       ritmo: 2,
-      complejidad: 1,
+      complejidad: 2,
       cargaEmocional: 2,
-      conflicto: 2,
+      conflicto: 3,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 3,
     }
   },
   {
@@ -1232,32 +1041,55 @@ export const books: Book[] = [
     title: "EL SINSENTIDO DE LAS CARTAS: DEL AMOR AL ODIO HAY UN UNIVERSO DE POR MEDIO",
     cover: "/covers/book3.jpg",
     amazonLink: "https://amazon.com",
-    authorSlug: "Beatriz Lillo",
+    authorSlug: "beatriz-lillo",
     categories: [4],
+    summary: "Resumen del libro...",
     review: {
       title: "Una historia que se queda contigo",
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-        metrics: [
-          { id: 1, value: 9 },
-          { id: 2, value: 7 },
-          { id: 3, value: 8 },
-          { id: 4, value: 6 },
-          { id: 5, value: 7 },
-        ]
+      metrics: ["misticismo"],
     },
-    genre: "romance",
+    genre: ["romance"],
     subgenres: ["enemiestolovers"],
 
     tags: {
-      ritmo: 2,
+      ritmo: 3,
       complejidad: 1,
-      cargaEmocional: 2,
+      cargaEmocional: 3,
       conflicto: 2,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidadTematica: 2,
+    }
+  },
+  {
+    slug: "prueba",
+    title: "PRUEBA",
+    cover: "/covers/book3.jpg",
+    amazonLink: "https://amazon.com",
+    authorSlug: "beatriz-lillo",
+    categories: [4],
+    summary: "Resumen del libro...",
+    review: {
+      title: "",
+      excerpt: "",
+      content:
+        "Este libro logra meterte en la mente de los personajes y no soltarte...",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion"],
+    subgenres: ["exploracionespacial"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidadTematica: 0,
     }
   }
 ]

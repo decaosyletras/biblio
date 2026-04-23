@@ -46,13 +46,27 @@ export default function SearchSimple({
       {query && (
         <div className="mt-6 space-y-4">
 
-          {filtered.map((item) => {
+          <div className="mt-6 space-y-4 max-h-[70vh] overflow-y-auto">
+
+          {filtered.map((item: any) => {
+
+            // 🔥 RESEÑAS = LIBRO
+            if (type === "reviews") {
+              return (
+                <Link href={`/libros/${item.slug}`} key={item.slug}>
+                  <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
+                    <img src={item.cover} className="w-12 h-24" />
+                    <p>{item.title}</p>
+                  </div>
+                </Link>
+              )
+            }
 
             if (type === "books") {
               return (
                 <Link href={`/libros/${item.slug}`} key={item.slug}>
-                  <div className="bg-zinc-800 p-4 rounded-xl flex gap-4">
-                    <img src={item.cover} className="w-12 h-20 object-cover rounded" />
+                  <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
+                    <img src={item.cover} className="w-12 h-24" />
                     <p>{item.title}</p>
                   </div>
                 </Link>
@@ -62,7 +76,7 @@ export default function SearchSimple({
             if (type === "authors") {
               return (
                 <Link href={`/autores/${item.slug}`} key={item.slug}>
-                  <div className="bg-zinc-800 p-4 rounded-xl flex gap-4">
+                  <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
                     <img src={item.avatar} className="w-12 h-12 rounded-full" />
                     <p>{item.name}</p>
                   </div>
@@ -70,24 +84,10 @@ export default function SearchSimple({
               )
             }
 
-            if (type === "reviews") {
-              return (
-                <Link href={`/resenas/${item.slug}`} key={item.slug}>
-                  <div className="bg-zinc-800 p-4 rounded-xl flex gap-4">
-                    <img src={item.cover} className="w-12 h-20 object-cover rounded" />
-                    <div>
-                      <p>{item.title}</p>
-                      <p className="text-xs text-zinc-400">
-                        {item.review.title}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              )
-            }
-
             return null
           })}
+
+        </div>
 
           {filtered.length === 0 && (
             <p className="text-zinc-500 text-sm">

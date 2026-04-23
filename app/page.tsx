@@ -69,7 +69,7 @@ export default function Home() {
       </section>
 
       {/* AUTORES */}
-      <section className="py-16 px-6">
+      {/*<section className="py-16 px-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">Autores</h2>
           <Link href="/autores" className="text-zinc-400 hover:text-white">
@@ -82,7 +82,7 @@ export default function Home() {
             <CardAuthor key={author.slug} author={author} />
           ))}
         </div>
-      </section>
+      </section>/*}
 
       {/* RESEÑAS */}
       <section className="py-16 px-6">
@@ -97,9 +97,10 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {randomReviews.map(book => (
-            <CardReview key={book.slug} book={book} />
-          ))}
+          {randomReviews.filter(book => book.review?.title !== "")
+            .map(book => (
+              <CardReview key={book.slug} book={book} />
+            ))}
         </div>
       </section>
 

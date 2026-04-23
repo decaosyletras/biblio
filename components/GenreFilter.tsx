@@ -9,8 +9,8 @@ export default function GenreFilter() {
   const [selected, setSelected] = useState("")
 
   const filtered = selected
-    ? books.filter(b => b.genre === selected)
-    : []
+    ? books.filter(b => b.genre.includes(selected))
+    : [];
 
   const genreLabel = genresCatalog.find(g => g.id === selected)?.label
 

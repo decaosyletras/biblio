@@ -8,6 +8,11 @@ import { genresCatalog } from "@/data/genres"
 import { tagsCatalog } from "@/data/tags"
 import TagBadge from "@/components/TagBadge"
 
+import GenreBadge from "@/components/GenreBadge"
+import TagBar from "@/components/TagBar"
+import { metricsCatalog } from "@/data/metrics"
+import { div } from "framer-motion/client"
+
 export default async function Page({ params }: any) {
   const { slug } = await params
   const book = books.find(b => b.slug === slug)
@@ -16,9 +21,12 @@ export default async function Page({ params }: any) {
 
   const author = authors.find(a => a.slug === book.authorSlug)
 
-  const recommended = getRecommendedBooks(book, books)
+  const recommended = getRecommendedBooks(book.slug)
 
-  const genreData = genresCatalog.find(g => g.id === book.genre)
+  /*const genresData =
+  genresCatalog.filter(g => book.genre.includes(g.id))*/
+
+  const genreData = genresCatalog.find(g => book.genre.includes(g.id));
 
   const subgenres = genreData?.subgenres.filter(s =>
     book.subgenres.includes(s.id)
@@ -29,7 +37,9 @@ export default async function Page({ params }: any) {
       <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 text-zinc-100">
 
         {/* Imagen */}
-        <img src={book.cover} className="rounded-xl" />
+        <div className="relative">
+          <img src={book.cover} className="rounded-xl" />
+        </div>
 
         {/* Info */}
         <div>
@@ -39,22 +49,84 @@ export default async function Page({ params }: any) {
             {author?.name}
           </p>
 
-          {/* 📚 GÉNERO */}
-          <p className="text-sm text-zinc-400 mt-2">
-            {genreData?.label}
-            {subgenres.length > 0 && (
-              <> • {subgenres.map(s => s.label).join(", ")}</>
-            )}
-          </p>
-
-          {/* 🏷️ ETIQUETAS */}
           <div className="mt-4 flex flex-wrap gap-2">
-            {Object.entries(book.tags).map(([key, value]) => {
 
+            {/* género */}
+            {genreData && (
+              <GenreBadge
+                label={genreData.label}
+                type={genreData.id}
+              />
+            )}
+
+            {/* subgéneros */}
+            {subgenres.map(s => (
+              <GenreBadge
+                key={s.id}
+                label={s.label}
+                type={genreData?.id || ""}
+              />
+            ))}
+
+          </div>
+
+          {/* Descripción */}
+          {book.summary !== "" && (
+            <div className="mt-2">
+              <h3 className="text-lg font-semibold text-zinc-200 mb-2">
+                ¿De qué va?
+              </h3>
+
+              <p className="text-zinc-400">
+                {book.summary}
+              </p>
+            </div>
+          )}
+
+          {book.review.title !== "" ? (
+            <div className="mt-6">
+              <span className="text-xs px-3 py-1 rounded-full bg-green-600">
+                  ✓ Leído
+                </span>
+            </div>
+          ):(
+            <div className="mt-6">
+                <span className="text-xs px-3 py-1 rounded-full bg-zinc-700">
+                  Pendiente
+                </span>
+            </div>
+          )}
+
+          {book.review.metrics?.length > 0 && (
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold text-zinc-200 mb-3">
+                ¿Qué encontrarás?
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {book.review.metrics.map((m) => {
+                  const meta = metricsCatalog.find(x => x.id === m);
+                  if (!meta) return null;
+
+                  return (
+                    <span
+                      key={m}
+                      className="text-xs bg-zinc-800 px-3 py-1 rounded-full border border-zinc-700"
+                    >
+                      {meta.label}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          <div className="mt-6 space-y-4">
+            {Object.entries(book.tags)
+            .filter(([_, value]) => value !== 0)
+            .map(([key, value]) => {
               const text = tagsCatalog[key as keyof typeof tagsCatalog][value]
-
               return (
-                <TagBadge
+                <TagBar
                   key={key}
                   label={key}
                   level={value}
@@ -64,16 +136,18 @@ export default async function Page({ params }: any) {
             })}
           </div>
 
-          {/* Descripción fake */}
-          <div className="mt-8">
-            <h3 className="text-lg font-semibold text-zinc-200 mb-2">
-              ¿Para quién es?
-            </h3>
+          {/* Reseña */}
+          {book.review.excerpt !== "" && (
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold text-zinc-200 mb-2">
+                ¿Para quién es?
+              </h3>
 
-            <p className="text-zinc-400">
-              Una historia intensa que explora emociones profundas y personajes complejos.
-            </p>
-          </div>
+              <p className="text-zinc-400">
+                {book.review.excerpt}
+              </p>
+            </div>
+          )}
 
           <a
             href={book.amazonLink}
@@ -89,6 +163,7 @@ export default async function Page({ params }: any) {
       <div className="mt-12">
         <BookRow title="También te puede gustar" books={recommended} />
       </div>
+
     </section>
   )
 }
