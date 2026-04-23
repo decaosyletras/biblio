@@ -73,7 +73,7 @@ export default function SearchSimple({
               )
             }
 
-            if (type === "authors") {
+            {/*if (type === "authors") {
               return (
                 <Link href={`/autores/${item.slug}`} key={item.slug}>
                   <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
@@ -82,7 +82,7 @@ export default function SearchSimple({
                   </div>
                 </Link>
               )
-            }
+            }*/}
 
             return null
           })}

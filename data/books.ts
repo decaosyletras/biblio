@@ -1066,8 +1066,8 @@ export const books: Book[] = [
   },
   {
     slug: "prueba",
-    title: "PRUEBA",
-    cover: "/covers/book3.jpg",
+    title: "PRUEBA DE LIBRO NO LEÍDO",
+    cover: "/covers/jodidos.jpg",
     amazonLink: "https://amazon.com",
     authorSlug: "beatriz-lillo",
     categories: [4],
