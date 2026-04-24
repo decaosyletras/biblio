@@ -14,10 +14,10 @@ export const books: Book[] = [
       excerpt: "¿Para quién es?",
       content:
         "",
-      metrics: ["cuentos"],
+      metrics: ["espiritualidad", "reflexion", "historiasparalelas", "viajedelheroe", "mentoraprendiz", "traicion", "razasalienigenas"],
     },
-    genre: ["cienciaFiccion"],
-    subgenres: ["operaespacial", "xenoficcion", "evolucionespeculativa", "espiritual"],
+    genre: ["cienciaFiccion", "aventura"],
+    subgenres: ["operaespacial", "xenoficcion", "evolucionespeculativa"],
 
     tags: {
       ritmo: 1,
@@ -41,10 +41,10 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-      metrics: ["cuentos"],
+      metrics: ["reflexion", "historiasparalelas", "razasalienigenas", "viajestiempo"],
     },
-    genre: ["cienciaFiccion"],
-    subgenres: ["operaespacial", "xenoficcion", "evolucionespeculativa", "viajestiempo"],
+    genre: ["cienciaFiccion","misterio"],
+    subgenres: ["operaespacial", "xenoficcion", "evolucionespeculativa"],
 
     tags: {
       ritmo: 2,
@@ -69,9 +69,9 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-      metrics: ["cuentos"],
+      metrics: ["historiasparalelas", "razasalienigenas", "pasadoorigenes", "misterioaresolver", "militar", "accion"],
     },
-    genre: ["cienciaFiccion"],
+    genre: ["cienciaFiccion", "misterio"],
     subgenres: ["operaespacial", "xenoficcion", "evolucionespeculativa"],
 
     tags: {
@@ -96,9 +96,9 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
-      metrics: ["cuentos","ia", "espiritualidad"],
+      metrics: ["cuentos", "ia", "espiritualidad", "supervivencia", "viajestiempo", "reflexion", "colonizacionexpansion", "razasalienigenas"],
     },
-    genre: ["cienciaFiccion"],
+    genre: ["cienciaFiccion", "misterio"],
     subgenres: ["distopia"],
 
     tags: {
@@ -349,10 +349,10 @@ export const books: Book[] = [
       excerpt: "Intenso, emocional y difícil de soltar.",
       content:
         "RESEÑA 5...",
-      metrics: ["cuentos"],
+      metrics: ["relatos"],
     },
-    genre: ["fantasia", "+"],
-    subgenres: ["urbana, historica, relatos"],
+    genre: ["fantasia"],
+    subgenres: ["urbana", "historica"],
 
     tags: {
       ritmo: 2,
@@ -519,7 +519,7 @@ export const books: Book[] = [
         "Este libro logra meterte en la mente de los personajes y no soltarte...",
       metrics: ["cuentos"],
     },
-    genre: ["ficcion", "+"],
+    genre: ["ficcion"],
     subgenres: ["emotiva"],
 
     tags: {

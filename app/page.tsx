@@ -88,7 +88,7 @@ export default function Home() {
       <section className="py-16 px-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">
-            Mis reseñas
+            Diario lector
           </h2>
 
           <Link href="/resenas" className="text-zinc-400 hover:text-white">

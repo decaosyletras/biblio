@@ -5,6 +5,7 @@ export const metricsCatalog = [
   { id: "aventura", label: "Aventura" },
   { id: "supervivencia", label: "Supervivencia" },
   { id: "cienciadura", label: "Ciencia Dura" },
+  { id: "viajestiempo", label: "Viajes en el Tiempo" },
   { id: "accion", label: "Acción" },
   { id: "humor", label: "Humor" },
   { id: "juvenil", label: "Juvenil" },

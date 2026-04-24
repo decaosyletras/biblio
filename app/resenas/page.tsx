@@ -11,7 +11,7 @@ export default function Page() {
     <section className="py-16 px-6">
       
       <h1 className="text-3xl font-semibold text-zinc-100 mb-10">
-        Mis reseñas
+        Diario lector
       </h1>
       {/*<h4 className="font-semibold text-zinc-100">
         Sección personal: estas no son calificaciones “correctas”. Es simplemente cómo yo experimenté cada libro según mis gustos.

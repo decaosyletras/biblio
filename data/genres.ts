@@ -17,7 +17,6 @@ export const genresCatalog = [
       { id: "exploracionespacial", label: "Exploración Espacial" },
       { id: "utopia", label: "Utopía" },
       { id: "operaespacial", label: "Ópera espacial" },
-      { id: "viajestiempo", label: "Viajes en el Tiempo" },
       { id: "realidadesalternas", label: "Realidades alternas" },
       { id: "postapocaliptica", label: "Postapocalíptica" },
       { id: "cyberpunk", label: "Cyberpunk" },
@@ -81,21 +80,6 @@ export const genresCatalog = [
     subgenres: [
       { id: "psicologico", label: "Psicológico" },
       { id: "emotiva", label: "Emotiva" },
-    ],
-  },
-  {
-    id: "+",
-    label: "",
-    subgenres: [
-      { id: "cuentos", label: "Cuentos" },
-      { id: "relatos", label: "Relatos" }, 
-      { id: "humor", label: "Humor" },
-      { id: "militar", label: "Militar" },
-      { id: "satira", label: "Sátira" },
-      { id: "adulta", label: "Adulta" },
-      { id: "reflexion", label: "Reflexión" },
-      { id: "conspiracion", label: "Conspiración" },
-      { id: "misticismo", label: "Misticismo" },
     ],
   },
 ]
