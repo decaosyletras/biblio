@@ -25,8 +25,8 @@ export default function Navbar() {
         {/* LINKS DESKTOP */}
         <div className="hidden md:flex gap-4 text-sm">
           <Link href="/">Inicio</Link>
-          <Link href="/resenas">Reseñas</Link>
           <Link href="/libros">Libros</Link>
+          <Link href="/resenas">Diario Lector</Link>
           {/*<Link href="/autores">Autores</Link>*/}
           <Link href="/conoceme">Conóceme</Link>
         </div>
@@ -36,8 +36,8 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden mt-4 bg-zinc-800 rounded-xl p-4 flex flex-col gap-3 text-sm shadow-lg">
           <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
-          <Link href="/resenas" onClick={() => setOpen(false)}>Reseñas</Link>
           <Link href="/libros" onClick={() => setOpen(false)}>Libros</Link>
+          <Link href="/resenas" onClick={() => setOpen(false)}>Diario Lector</Link>
           {/*<Link href="/autores" onClick={() => setOpen(false)}>Autores</Link>*/}
           <Link href="/conoceme" onClick={() => setOpen(false)}>Conóceme</Link>
         </div>
