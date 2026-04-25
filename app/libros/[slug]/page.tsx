@@ -87,7 +87,7 @@ export default async function Page({ params }: any) {
             <div className="mt-6">
               <span className="text-xs px-3 py-1 rounded-full bg-green-600">
                   ✓ Leído
-                </span>
+              </span>
             </div>
           ):(
             <div className="mt-6">
@@ -145,6 +145,10 @@ export default async function Page({ params }: any) {
 
               <p className="text-zinc-400">
                 {book.review.excerpt}
+              </p>
+              
+              <p className="text-zinc-400 italic">
+                {book.review.title}
               </p>
             </div>
           )}
