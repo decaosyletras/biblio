@@ -37,8 +37,14 @@ export default async function Page({ params }: any) {
       <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 text-zinc-100">
 
         {/* Imagen */}
-        <div className="relative">
+        <div className="relative w-fit mx-auto">
           <img src={book.cover} className="rounded-xl" />
+
+          {book.review.title && (
+            <p className="mt-10 text-lg text-zinc-300 italic text-center">
+              "{book.review.title}"
+            </p>
+          )}
         </div>
 
         {/* Info */}
@@ -145,10 +151,6 @@ export default async function Page({ params }: any) {
 
               <p className="text-zinc-400">
                 {book.review.excerpt}
-              </p>
-              
-              <p className="text-zinc-400 italic">
-                {book.review.title}
               </p>
             </div>
           )}
