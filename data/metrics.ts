@@ -29,4 +29,5 @@ export const metricsCatalog = [
   { id: "razasalienigenas", label: "Razas alienígenas" },
   { id: "pasadoorigenes", label: "Pasado / orígenes" },
   { id: "misticismo", label: "Misticismo" },
+  { id: "existencial", label: "Existencial" },
 ]
