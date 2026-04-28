@@ -26,7 +26,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },{
     slug: "tras-el-caos-de-la-existencia-divisiones-y-conflictos",
@@ -53,7 +53,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -81,7 +81,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 2,
       accesibilidad: 2,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },{
     slug: "jodidos-mas-no-vencidos",
@@ -108,7 +108,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 1,
       accesibilidad: 2,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -136,7 +136,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -164,7 +164,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidad: 1,
     }
   },
   {
@@ -191,7 +191,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -219,7 +219,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -247,7 +247,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   /*{
@@ -305,7 +305,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 2,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -333,7 +333,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -361,7 +361,7 @@ export const books: Book[] = [
       conflicto: 1,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidad: 1,
     }
   },
   {
@@ -389,7 +389,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidad: 1,
     }
   },
   {
@@ -417,7 +417,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidad: 1,
     }
   },
   {
@@ -445,7 +445,7 @@ export const books: Book[] = [
       conflicto: 1,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidad: 1,
     }
   },
   {
@@ -473,7 +473,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidad: 1,
     }
   },
   {
@@ -501,7 +501,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -529,7 +529,7 @@ export const books: Book[] = [
       conflicto: 1,
       worldbuilding: 1,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidad: 1,
     }
   },
   {
@@ -557,7 +557,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -585,7 +585,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -613,7 +613,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -641,7 +641,7 @@ export const books: Book[] = [
       conflicto: 1,
       worldbuilding: 1,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidad: 1,
     }
   },
   {
@@ -669,7 +669,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -697,7 +697,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 2,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -725,7 +725,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -753,7 +753,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -781,7 +781,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 1,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -809,7 +809,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 2,
       accesibilidad: 2,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -837,7 +837,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 1,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -865,7 +865,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 2,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -893,7 +893,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 1,
       accesibilidad: 1,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -921,7 +921,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 3,
       accesibilidad: 1,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -949,7 +949,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 3,
       accesibilidad: 2,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -977,7 +977,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 1,
       accesibilidad: 1,
-      profundidadTematica: 1,
+      profundidad: 1,
     }
   },
   {
@@ -1005,7 +1005,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 3,
       accesibilidad: 2,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -1033,7 +1033,7 @@ export const books: Book[] = [
       conflicto: 3,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 3,
+      profundidad: 3,
     }
   },
   {
@@ -1061,7 +1061,7 @@ export const books: Book[] = [
       conflicto: 2,
       worldbuilding: 2,
       accesibilidad: 1,
-      profundidadTematica: 2,
+      profundidad: 2,
     }
   },
   {
@@ -1089,7 +1089,7 @@ export const books: Book[] = [
       conflicto: 0,
       worldbuilding: 0,
       accesibilidad: 0,
-      profundidadTematica: 0,
+      profundidad: 0,
     }
   }
 ]

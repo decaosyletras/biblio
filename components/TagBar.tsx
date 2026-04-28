@@ -34,7 +34,7 @@ const iconMap: Record<string, any> = {
   conflicto: Swords,
   worldbuilding: Globe,
   accesibilidad: BookOpen,
-  profundidadTematica: Layers,
+  profundidad: Layers,
 }
 
 export default function TagBar({
@@ -53,7 +53,7 @@ export default function TagBar({
     <div className="flex items-center gap-4">
 
       {/* 🔤 icono + nombre */}
-      <div className="w-40 flex items-center gap-2 text-zinc-400">
+      <div className="w-36 flex items-center gap-2 text-zinc-400">
         <Icon className="w-4 h-4 text-blue-400" />
         <span className="text-sm">
           {formatLabel(label)}

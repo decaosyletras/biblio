@@ -33,7 +33,7 @@ export type Book = {
     conflicto: number
     worldbuilding: number
     accesibilidad: number
-    profundidadTematica: number
+    profundidad: number
   }
 }
 

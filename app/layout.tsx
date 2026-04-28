@@ -1,7 +1,6 @@
 import "./globals.css"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
-import BackWrapper from "@/components/BackWrapper"
 import FloatingBack from "@/components/FloatingBack"
 
 export default function RootLayout({

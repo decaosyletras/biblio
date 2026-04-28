@@ -5,5 +5,5 @@ export const tagsCatalog = {
   conflicto: ["","Suave", "Moderado", "Alto"],
   worldbuilding: ["","Básico", "Desarrollado", "Profundo"],
   accesibilidad: ["","Fácil", "Media", "Exigente"],
-  profundidadTematica: ["","Ligera", "Media", "Densa"],
+  profundidad: ["","Ligera", "Media", "Densa"],
 }

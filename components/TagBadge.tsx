@@ -18,7 +18,7 @@ const icons: Record<string, any> = {
   conflicto: Swords,
   worldbuilding: Globe,
   accesibilidad: BookOpen,
-  profundidadTematica: Layers,
+  profundidad: Layers,
 }
 
 // 🔥 separar camelCase → bonito
