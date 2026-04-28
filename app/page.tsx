@@ -18,10 +18,12 @@ export default function Home() {
   const randomReviews = shuffleArray(books).slice(0, 3)
 
   const frases = [
-    "Voces independientes que importan",
     "Literatura fuera del algoritmo",
-    "Historias que no están en tendencia",
-    "Libros que no siguen el centro",
+    "Historias que merecen estar en tendencia",
+    "Más allá del bestseller",
+    "Lecturas que rompen el molde",
+    "Voces nuevas con fuerza propia",
+    "Historias que merecen ser encontradas",
     "Narrativas que se quedan contigo"
   ];
 
@@ -37,7 +39,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
 
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.05]">
-          Literatura independiente
+          Explora mundos independientes
         </h1>
 
         <p className="mt-6 text-lg md:text-xl text-zinc-300 italic max-w-xl mx-auto leading-relaxed">
