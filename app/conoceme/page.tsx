@@ -69,7 +69,7 @@ export default function ConocemePage() {
         </a>
 
         <a
-          href="https://instagram.com/TU_USUARIO"
+          href="https://instagram.com/usuario"
           target="_blank"
           className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
         >
@@ -77,7 +77,7 @@ export default function ConocemePage() {
         </a>
 
         <a
-          href="https://tu-saga.com"
+          href="https://decaosyletras.github.io/traselcaosdelaexistencia/"
           target="_blank"
           className="flex items-center gap-2 px-4 py-2 bg-yellow-400 text-black rounded-lg font-semibold hover:bg-yellow-300 transition"
         >
