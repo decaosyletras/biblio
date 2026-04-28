@@ -47,8 +47,7 @@ export default function Home() {
         </p>
 
         <p className="mt-6 text-sm md:text-base text-zinc-500 max-w-lg mx-auto leading-relaxed">
-          Un espacio para descubrir autores independientes, lecturas fuera del algoritmo
-          y libros que no aparecen en vitrinas comerciales.
+          Un espacio para descubrir historias que no siempre tienen foco, pero sí valor
         </p>
 
         <div className="mt-10 flex justify-center gap-4">
