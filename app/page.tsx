@@ -7,13 +7,23 @@ import CardReview from "@/components/CardReview"
 import CardAuthor from "@/components/CardAuthor"
 import GenreFilter from "@/components/GenreFilter"
 import BookRow from "@/components/BookRow"
+import { useMemo } from "react";
 
 export const dynamic = "force-dynamic";
 
 export default function Home() {
+  
   const randomBooks = shuffleArray(books).slice(0, 4)
   const randomAuthors = shuffleArray(authors).slice(0, 4)
   const randomReviews = shuffleArray(books).slice(0, 3)
+
+  const frases = [
+    "Descubre mundos creados por autores independientes",
+    "Tu próxima lectura está fuera del mainstream",
+    "Explora el talento literario independiente",
+  ];
+
+  const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
 
   return (
     <div className="text-zinc-100">
@@ -21,11 +31,11 @@ export default function Home() {
       {/* HERO */}
       <section className="py-28 text-center">
         <h1 className="text-5xl font-bold tracking-tight">
-          Descubre historias que valen la pena
+          {fraseAleatoria}
         </h1>
 
         <p className="mt-6 text-zinc-400 max-w-2xl mx-auto">
-          Reseñas rápidas, autores independientes y libros que probablemente no conocías.
+          Un diario lector, autores independientes y libros que probablemente no conocías.
         </p>
 
         <div className="mt-10 flex justify-center gap-4">
@@ -41,12 +51,12 @@ export default function Home() {
 
       {/* FRASES */}
       <section className="py-16 text-center space-y-6">
-        <p className="text-xl text-zinc-300">
-          “Un buen libro te cambia, uno grande te persigue.”
+        <p className="text-xl text-zinc-300 italic">
+          Voces nuevas, literatura sin filtros
         </p>
 
         <p className="text-zinc-500">
-          “Escribir es dejar una parte de ti en alguien que no conoces.”
+          “Los buenos libros se leen; los grandes se viven.”
         </p>
       </section>
 
