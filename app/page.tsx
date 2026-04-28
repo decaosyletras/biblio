@@ -18,11 +18,11 @@ export default function Home() {
   const randomReviews = shuffleArray(books).slice(0, 3)
 
   const frases = [
-    "Historias independientes que no sabías que necesitabas leer",
-    "La literatura que no entra en los rankings, pero se queda contigo",
-    "Descubre voces nuevas. Lee distinto. Lee independiente.",
-    "Donde los libros no siguen reglas, siguen emociones",
-    "Tu próxima obsesión literaria no está en lo mainstream"
+    "Voces independientes que importan",
+    "Literatura fuera del algoritmo",
+    "Historias que no están en tendencia",
+    "Libros que no siguen el centro",
+    "Narrativas que se quedan contigo"
   ];
 
   const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
@@ -36,13 +36,17 @@ export default function Home() {
         {/* glow / ambient background */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
 
-        <p className="text-xs tracking-[0.3em] uppercase text-zinc-500 mb-6">
-          Archivo de lectura independiente
-        </p>
+        <h1 className="text-5xl md:text-6xl font-light tracking-tight leading-[1.05]">
+            Literatura independiente
+          </h1>
 
-        <h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight max-w-4xl mx-auto">
+          <p className="mt-6 text-xl md:text-2xl text-zinc-300 italic max-w-2xl mx-auto">
+            {fraseAleatoria}
+          </p>
+
+        {/*<h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight max-w-4xl mx-auto">
           {fraseAleatoria}
-        </h1>
+        </h1>*/}
 
         <p className="mt-6 text-zinc-400 max-w-2xl mx-auto text-lg leading-relaxed">
           Un espacio para descubrir autores independientes, lecturas fuera del algoritmo
