@@ -61,7 +61,7 @@ export default function ConocemePage() {
       <div className="flex flex-wrap items-center gap-4 mb-10">
 
         <a
-          href="https://twitter.com/TU_USUARIO"
+          href="https://twitter.com/"
           target="_blank"
           className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
         >

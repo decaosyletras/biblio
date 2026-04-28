@@ -29,8 +29,8 @@ export default function Home() {
         </p>
 
         <div className="mt-10 flex justify-center gap-4">
-          <Link href="/autores" className="bg-white text-black px-6 py-3 rounded-full">
-            Conocer Autores
+          <Link href="/resenas" className="bg-white text-black px-6 py-3 rounded-full">
+            Diario Lector
           </Link>
 
           <Link href="/libros" className="border border-zinc-600 px-6 py-3 rounded-full">
