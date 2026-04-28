@@ -33,12 +33,12 @@ export default function Home() {
     <div className="text-zinc-100">
 
       {/* HERO */}
-      <section className="py-32 text-center relative overflow-hidden">
+      <section className="py-16 text-center relative overflow-hidden">
         
         {/* glow / ambient background */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold md:font-light tracking-tight md:tracking-normal leading-[1.05]">
+        <h1 className="text-5xl sm:text-7xl md:text-7xl font-bold md:font-light tracking-tight md:tracking-normal leading-[1.05]">
           Explora mundos independientes
         </h1>
 
@@ -69,7 +69,7 @@ export default function Home() {
       </section>
 
       {/* FRASES */}
-      <section className="py-4 text-center">
+      <section className="py-8 text-center">
         <p className="text-zinc-500 text-sm md:text-base italic">
           “Los libros independientes no compiten, resisten.”
         </p>
