@@ -21,7 +21,7 @@ export default function GenreFilter() {
       <div className="flex flex-col items-center">
 
         <p className="text-lg text-zinc-300 mb-3 text-center">
-          ¿Quieres algún género en específico?
+          ¿Qué género te gustaría leer hoy?
         </p>
 
         <select

@@ -18,9 +18,11 @@ export default function Home() {
   const randomReviews = shuffleArray(books).slice(0, 3)
 
   const frases = [
-    "Descubre mundos creados por autores independientes",
-    "Tu próxima lectura está fuera del mainstream",
-    "Explora el talento literario independiente",
+    "Historias independientes que no sabías que necesitabas leer",
+    "La literatura que no entra en los rankings, pero se queda contigo",
+    "Descubre voces nuevas. Lee distinto. Lee independiente.",
+    "Donde los libros no siguen reglas, siguen emociones",
+    "Tu próxima obsesión literaria no está en lo mainstream"
   ];
 
   const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
@@ -29,22 +31,37 @@ export default function Home() {
     <div className="text-zinc-100">
 
       {/* HERO */}
-      <section className="py-28 text-center">
-        <h1 className="text-5xl font-bold tracking-tight">
+      <section className="py-32 text-center relative overflow-hidden">
+        
+        {/* glow / ambient background */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
+
+        <p className="text-xs tracking-[0.3em] uppercase text-zinc-500 mb-6">
+          Archivo de lectura independiente
+        </p>
+
+        <h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight max-w-4xl mx-auto">
           {fraseAleatoria}
         </h1>
 
-        <p className="mt-6 text-zinc-400 max-w-2xl mx-auto">
-          Un diario lector, autores independientes y libros que probablemente no conocías.
+        <p className="mt-6 text-zinc-400 max-w-2xl mx-auto text-lg leading-relaxed">
+          Un espacio para descubrir autores independientes, lecturas fuera del algoritmo
+          y libros que no aparecen en vitrinas comerciales.
         </p>
 
         <div className="mt-10 flex justify-center gap-4">
-          <Link href="/resenas" className="bg-white text-black px-6 py-3 rounded-full">
-            Diario Lector
+          <Link
+            href="/resenas"
+            className="bg-white text-black px-7 py-3 rounded-full font-medium hover:scale-105 transition"
+          >
+            Explorar lecturas
           </Link>
 
-          <Link href="/libros" className="border border-zinc-600 px-6 py-3 rounded-full">
-            Ver libros
+          <Link
+            href="/libros"
+            className="border border-zinc-700 px-7 py-3 rounded-full hover:bg-zinc-900 transition"
+          >
+            Ver catálogo
           </Link>
         </div>
       </section>
@@ -52,11 +69,11 @@ export default function Home() {
       {/* FRASES */}
       <section className="py-16 text-center space-y-6">
         <p className="text-xl text-zinc-300 italic">
-          Voces nuevas, literatura sin filtros
+          Literatura sin algoritmos. Solo historias.
         </p>
 
         <p className="text-zinc-500">
-          “Los buenos libros se leen; los grandes se viven.”
+          “Los libros independientes no compiten, resisten.”
         </p>
       </section>
 
