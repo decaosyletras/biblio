@@ -36,19 +36,15 @@ export default function Home() {
         {/* glow / ambient background */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
 
-        <h1 className="text-5xl md:text-6xl font-light tracking-tight leading-[1.05]">
-            Literatura independiente
-          </h1>
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.05]">
+          Literatura independiente
+        </h1>
 
-          <p className="mt-6 text-xl md:text-2xl text-zinc-300 italic max-w-2xl mx-auto">
-            {fraseAleatoria}
-          </p>
-
-        {/*<h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight max-w-4xl mx-auto">
+        <p className="mt-6 text-lg md:text-xl text-zinc-300 italic max-w-xl mx-auto leading-relaxed">
           {fraseAleatoria}
-        </h1>*/}
+        </p>
 
-        <p className="mt-6 text-zinc-400 max-w-2xl mx-auto text-lg leading-relaxed">
+        <p className="mt-6 text-sm md:text-base text-zinc-500 max-w-lg mx-auto leading-relaxed">
           Un espacio para descubrir autores independientes, lecturas fuera del algoritmo
           y libros que no aparecen en vitrinas comerciales.
         </p>
