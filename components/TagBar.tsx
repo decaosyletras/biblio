@@ -1,5 +1,15 @@
 "use client"
 
+import {
+  Zap,
+  Brain,
+  Heart,
+  Swords,
+  Globe,
+  BookOpen,
+  Layers,
+} from "lucide-react"
+
 const wordFixes: Record<string, string> = {
   tematica: "temática",
   generica: "genérica",
@@ -16,6 +26,17 @@ function formatLabel(text: string) {
     .replace(/^./, (c) => c.toUpperCase())
 }
 
+// 🔥 mapa de iconos
+const iconMap: Record<string, any> = {
+  ritmo: Zap,
+  complejidad: Brain,
+  cargaEmocional: Heart,
+  conflicto: Swords,
+  worldbuilding: Globe,
+  accesibilidad: BookOpen,
+  profundidadTematica: Layers,
+}
+
 export default function TagBar({
   label,
   level,
@@ -26,19 +47,23 @@ export default function TagBar({
   text: string
 }) {
   const percentage = (level / 3) * 100
+  const Icon = iconMap[label] || Zap // fallback
 
   return (
     <div className="flex items-center gap-4">
 
-      {/* 🔤 nombre */}
-      <span className="w-34 text-sm text-zinc-400">
-        {formatLabel(label)}
-      </span>
+      {/* 🔤 icono + nombre */}
+      <div className="w-40 flex items-center gap-2 text-zinc-400">
+        <Icon className="w-4 h-4 text-blue-400" />
+        <span className="text-sm">
+          {formatLabel(label)}
+        </span>
+      </div>
 
       {/* 🔥 barra */}
       <div className="flex-1 h-2 bg-zinc-700 rounded">
         <div
-          className="h-2 bg-yellow-400 rounded"
+          className="h-2 bg-yellow-400 rounded transition-all duration-300"
           style={{ width: `${percentage}%` }}
         />
       </div>

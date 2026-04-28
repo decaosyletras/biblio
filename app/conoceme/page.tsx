@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { FaTwitter, FaInstagram, FaGlobe } from "react-icons/fa"
 
 export default function ConocemePage() {
   const [error, setError] = useState("")
@@ -46,16 +47,46 @@ export default function ConocemePage() {
   return (
     <section className="py-16 px-6 max-w-3xl mx-auto text-zinc-100">
 
-      <h1 className="text-3xl font-bold mb-6">
-        Sobre mí
+      {/* HEADER */}
+      <h1 className="text-3xl font-bold mb-4">
+        👋 Sobre mí
       </h1>
 
-      <p className="text-zinc-300 leading-relaxed">
+      <p className="text-zinc-300 leading-relaxed mb-6">
         Soy un lector enfocado en descubrir libros poco conocidos pero con
         gran valor, especialmente de autores independientes.
       </p>
 
-      {/* 🔥 NUEVA SECCIÓN */}
+      {/* REDES + SAGA */}
+      <div className="flex flex-wrap items-center gap-4 mb-10">
+
+        <a
+          href="https://twitter.com/TU_USUARIO"
+          target="_blank"
+          className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
+        >
+          <FaTwitter /> Twitter
+        </a>
+
+        <a
+          href="https://instagram.com/TU_USUARIO"
+          target="_blank"
+          className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
+        >
+          <FaInstagram /> Instagram
+        </a>
+
+        <a
+          href="https://tu-saga.com"
+          target="_blank"
+          className="flex items-center gap-2 px-4 py-2 bg-yellow-400 text-black rounded-lg font-semibold hover:bg-yellow-300 transition"
+        >
+          <FaGlobe /> Ver mi saga
+        </a>
+
+      </div>
+
+      {/* BLOQUE FUTURO */}
       <div className="mt-10 p-6 bg-zinc-900 rounded-xl border border-zinc-800">
 
         <h2 className="text-xl font-semibold mb-3">
@@ -101,9 +132,9 @@ export default function ConocemePage() {
 
             <button
               type="submit"
-              className="px-4 py-2 bg-yellow-400 text-black rounded-lg font-semibold hover:bg-yellow-300 transition"
+              className="px-5 py-2 bg-yellow-400 text-black rounded-lg font-semibold hover:bg-yellow-300 transition"
             >
-              Unirme
+              ✨ Unirme
             </button>
 
             {error && (

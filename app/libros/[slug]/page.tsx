@@ -116,7 +116,14 @@ export default async function Page({ params }: any) {
                   return (
                     <span
                       key={m}
-                      className="text-xs bg-zinc-800 px-3 py-1 rounded-full border border-zinc-700"
+                      className="text-xs px-3 py-1 rounded-full 
+                        bg-zinc-900 
+                        text-yellow-400 
+                        border border-yellow-500/40 
+                        shadow-[0_0_8px_rgba(234,179,8,0.25)] 
+                        hover:shadow-[0_0_12px_rgba(234,179,8,0.4)] 
+                        hover:bg-zinc-800 
+                        transition-all duration-200"
                     >
                       {meta.label}
                     </span>

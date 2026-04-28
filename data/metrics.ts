@@ -30,4 +30,9 @@ export const metricsCatalog = [
   { id: "pasadoorigenes", label: "Pasado / orígenes" },
   { id: "misticismo", label: "Misticismo" },
   { id: "existencial", label: "Existencial" },
+  
+  { id: "inmortalidad", label: "Inmortalidad" },
+  { id: "soledad", label: "Soledad" },
+  { id: "redencion", label: "Redencion" },
+  { id: "dragones", label: "Redencion" },
 ]
