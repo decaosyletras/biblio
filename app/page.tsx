@@ -33,12 +33,12 @@ export default function Home() {
     <div className="text-zinc-100">
 
       {/* HERO */}
-      <section className="py-16 text-center relative overflow-hidden">
+      <section className="py-12 text-center relative overflow-hidden">
         
         {/* glow / ambient background */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
 
-        <h1 className="text-5xl sm:text-7xl md:text-7xl font-bold md:font-light tracking-tight md:tracking-normal leading-[1.05]">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold md:font-light tracking-tight md:tracking-normal leading-[1.05]">
           Explora mundos independientes
         </h1>
 
@@ -113,7 +113,7 @@ export default function Home() {
       <section className="py-16 px-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">
-            Diario lector
+            Lectómetro
           </h2>
 
           <Link href="/resenas" className="text-zinc-400 hover:text-white">
