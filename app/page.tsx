@@ -40,9 +40,9 @@ export default function Home() {
             Literatura independiente
           </h1>
 
-          <h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight max-w-4xl mx-auto">
+          <p className="mt-6 text-xl md:text-2xl text-zinc-300 italic max-w-2xl mx-auto">
             {fraseAleatoria}
-          </h1>
+          </p>
 
         {/*<h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-tight max-w-4xl mx-auto">
           {fraseAleatoria}
