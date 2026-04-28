@@ -38,7 +38,7 @@ export default function Home() {
         {/* glow / ambient background */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.05]">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-semibold md:font-light tracking-tight md:tracking-normal leading-[1.05]">
           Explora mundos independientes
         </h1>
 
