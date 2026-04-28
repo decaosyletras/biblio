@@ -53,28 +53,24 @@ export default function Home() {
 
         <div className="mt-10 flex justify-center gap-4">
           <Link
-            href="/resenas"
+            href="/libros"
             className="bg-white text-black px-7 py-3 rounded-full font-medium hover:scale-105 transition"
           >
-            Explorar lecturas
+            Ver catálogo
           </Link>
-
+          
           <Link
-            href="/libros"
+            href="/resenas"
             className="border border-zinc-700 px-7 py-3 rounded-full hover:bg-zinc-900 transition"
           >
-            Ver catálogo
+            Lectómetro
           </Link>
         </div>
       </section>
 
       {/* FRASES */}
-      <section className="py-16 text-center space-y-6">
-        <p className="text-xl text-zinc-300 italic">
-          Literatura sin algoritmos. Solo historias.
-        </p>
-
-        <p className="text-zinc-500">
+      <section className="py-4 text-center">
+        <p className="text-zinc-500 text-sm md:text-base italic">
           “Los libros independientes no compiten, resisten.”
         </p>
       </section>
