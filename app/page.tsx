@@ -18,7 +18,6 @@ export default function Home() {
   const randomReviews = shuffleArray(books).slice(0, 3)
 
   const frases = [
-    "Literatura fuera del algoritmo",
     "Historias que merecen estar en tendencia",
     "Más allá del bestseller",
     "Lecturas que rompen el molde",
@@ -68,16 +67,16 @@ export default function Home() {
       </section>
 
       {/* FRASES */}
-      <section className="py-8 text-center">
+      {/*<section className="py-8 text-center">
         <p className="text-zinc-400 text-base md:text-lg italic">
           “Los libros independientes no compiten, resisten.”
         </p>
-      </section>
+      </section>*/}
 
       <GenreFilter />
 
       {/* LIBROS */}
-      <section className="py-8 px-4">
+      <section className="py-6 px-4">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">Libros</h2>
           <Link href="/libros" className="text-zinc-400 hover:text-white">
@@ -109,7 +108,7 @@ export default function Home() {
       </section>/*}
 
       {/* RESEÑAS */}
-      <section className="py-8 px-6">
+      <section className="py-6 px-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">
             Lectómetro

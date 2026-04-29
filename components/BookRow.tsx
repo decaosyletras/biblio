@@ -43,7 +43,7 @@ export default function BookRow({
       {/* Fila */}
       <div
         ref={rowRef}
-        className="flex gap-4 overflow-x-auto px-6 scroll-smooth scrollbar-hide"
+        className="flex gap-4 overflow-x-auto px-2 scroll-smooth scrollbar-hide"
       >
 
       {randomBooks.map(book => (
