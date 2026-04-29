@@ -23,8 +23,7 @@ export default function Home() {
     "Lecturas que rompen el molde",
     "Voces nuevas con fuerza propia",
     "Historias que merecen ser encontradas",
-    "Narrativas que se quedan contigo",
-    "Los libros independientes no compiten, resisten"
+    "Narrativas que se quedan contigo"
   ];
 
   const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];

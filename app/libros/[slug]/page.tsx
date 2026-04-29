@@ -153,7 +153,7 @@ export default async function Page({ params }: any) {
           {book.review.excerpt !== "" && (
             <div className="mt-6">
               <h3 className="text-lg font-semibold text-zinc-200 mb-2">
-                ¿Para quién es?
+                Ideal si buscas
               </h3>
 
               <p className="text-zinc-400">
