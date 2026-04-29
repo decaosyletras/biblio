@@ -39,16 +39,16 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
 
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold md:font-light tracking-tight md:tracking-normal leading-[1.05]">
-          Explora mundos independientes
+          Descubre la literatura independiente
         </h1>
 
         <p className="mt-6 text-lg md:text-xl text-zinc-300 italic max-w-xl mx-auto leading-relaxed">
           {fraseAleatoria}
         </p>
 
-        <p className="mt-6 text-sm md:text-base text-zinc-500 max-w-lg mx-auto leading-relaxed">
+        {/*<p className="mt-6 text-sm md:text-base text-zinc-500 max-w-lg mx-auto leading-relaxed">
           Un espacio para descubrir historias que no siempre tienen foco, pero sí valor
-        </p>
+        </p>*/}
 
         <div className="mt-10 flex justify-center gap-4">
           <Link

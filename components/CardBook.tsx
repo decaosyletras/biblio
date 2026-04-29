@@ -26,7 +26,7 @@ export default function CardBook({ book }: { book: Book }) {
         </div>
 
         {/* Info */}
-        <h4 className="mt-4 text-sm font-semibold text-zinc-100 line-clamp-2">
+        <h4 className="mt-4 text-xs sm:text-sm font-semibold text-zinc-100 line-clamp-2">
           {book.title}
         </h4>
       </Link>
