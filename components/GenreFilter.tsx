@@ -29,7 +29,7 @@ export default function GenreFilter() {
           onChange={(e) => setSelected(e.target.value)}
           className="bg-zinc-800 text-zinc-100 px-6 py-3 rounded-xl outline-none border border-zinc-700 hover:border-zinc-500 transition"
         >
-          <option value="">Explorar todo</option>
+          <option value="">Selecciona una opción</option>
 
           {genresCatalog.map((g) => (
             <option key={g.id} value={g.id}>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { FaHome } from "react-icons/fa";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -9,9 +10,9 @@ export default function Navbar() {
   return (
     <nav className="bg-zinc-900 text-zinc-100 p-4 sticky top-0 z-50">
       <div className="flex justify-between items-center">
-
-        <Link href="/" className="font-bold text-lg">
-          Biblioteca Indie
+        <Link href="/" className="font-bold text-lg flex items-center gap-2">
+          <FaHome />
+          Casa Indie
         </Link>
 
         {/* BOTÓN MOBILE */}

@@ -23,7 +23,8 @@ export default function Home() {
     "Lecturas que rompen el molde",
     "Voces nuevas con fuerza propia",
     "Historias que merecen ser encontradas",
-    "Narrativas que se quedan contigo"
+    "Narrativas que se quedan contigo",
+    "Los libros independientes no compiten, resisten"
   ];
 
   const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
@@ -54,12 +55,12 @@ export default function Home() {
             href="/libros"
             className="bg-white text-black px-7 py-3 rounded-full font-medium hover:scale-105 transition"
           >
-            Ver catálogo
+            Catálogo
           </Link>
           
           <Link
             href="/resenas"
-            className="border border-zinc-700 px-7 py-3 rounded-full hover:bg-zinc-900 transition"
+            className="border border-zinc-400 px-7 py-3 rounded-full hover:bg-zinc-800 hover:scale-105 transition"
           >
             Lectómetro
           </Link>
