@@ -10,10 +10,10 @@ export default function CardBook({ book }: { book: Book }) {
 
       <Link href={`/libros/${book.slug}`}>
         {/* Imagen */}
-        <div className="w-full h-62 overflow-hidden rounded-lg">
+        <div className="w-full h-38 sm:h-50 md:h-62 overflow-hidden rounded-lg">
           <img
             src={book.cover}
-            className="w-full h-full object-cover hover:scale-105 transition duration-300"
+            className="w-full h-full object-cover "
           />
           
           {book.review?.title && (
@@ -26,9 +26,9 @@ export default function CardBook({ book }: { book: Book }) {
         </div>
 
         {/* Info */}
-        <h3 className="mt-4 text-sm font-semibold text-zinc-100 line-clamp-2">
+        <h4 className="mt-4 text-sm font-semibold text-zinc-100 line-clamp-2">
           {book.title}
-        </h3>
+        </h4>
       </Link>
 
       {/* Autor */}
@@ -43,7 +43,7 @@ export default function CardBook({ book }: { book: Book }) {
       <a
         href={book.amazonLink}
         target="_blank"
-        className="block mt-3 text-center bg-yellow-400 text-black text-sm py-2 rounded-full hover:bg-yellow-300 transition"
+        className="block mt-3 text-center bg-yellow-400 text-black text-xs py-2 rounded-full hover:bg-yellow-300 transition"
       >
         Ver en Amazon
       </a>

@@ -35,7 +35,7 @@ export default function BookRow({
       {/* Botón izquierda */}
       <button
         onClick={() => scroll("left")}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/60 px-3 py-6 opacity-0 group-hover:opacity-100 transition"
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-30 bg-black/60 px-3 py-6 opacity-0 group-hover:opacity-100 transition"
       >
         ◀
       </button>
@@ -47,7 +47,10 @@ export default function BookRow({
       >
 
       {randomBooks.map(book => (
-        <div key={book.slug} className="flex-shrink-0 w-[180px]">
+        <div
+          key={book.slug}
+          className="flex-shrink-0 w-[120px] sm:w-[150px] md:w-[180px]"
+        >
           <CardBook book={book} />
         </div>
       ))}
@@ -57,7 +60,7 @@ export default function BookRow({
       {/* Botón derecha */}
       <button
         onClick={() => scroll("right")}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/60 px-3 py-6 opacity-0 group-hover:opacity-100 transition"
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-30 bg-black/60 px-3 py-6 opacity-0 group-hover:opacity-100 transition"
       >
         ▶
       </button>
