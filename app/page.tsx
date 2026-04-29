@@ -69,7 +69,7 @@ export default function Home() {
 
       {/* FRASES */}
       <section className="py-8 text-center">
-        <p className="text-zinc-500 text-sm md:text-base italic">
+        <p className="text-zinc-400 text-base md:text-lg italic">
           “Los libros independientes no compiten, resisten.”
         </p>
       </section>
@@ -109,7 +109,7 @@ export default function Home() {
       </section>/*}
 
       {/* RESEÑAS */}
-      <section className="py-16 px-6">
+      <section className="py-8 px-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">
             Lectómetro
