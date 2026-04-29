@@ -43,7 +43,7 @@ export default function CardBook({ book }: { book: Book }) {
       <a
         href={book.amazonLink}
         target="_blank"
-        className="block mt-3 text-center bg-yellow-400 text-black text-xs py-2 rounded-full hover:bg-yellow-300 transition"
+        className="block mt-3 text-center bg-yellow-500 text-black text-xs py-2 rounded-full hover:bg-yellow-400 transition"
       >
         Ver en Amazon
       </a>

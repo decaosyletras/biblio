@@ -139,7 +139,7 @@ export default function Home() {
 
         <Link
           href="/contacto"
-          className="inline-block mt-6 bg-yellow-400 text-black px-6 py-3 rounded-full"
+          className="inline-block mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full"
         >
           Contactar
         </Link>
