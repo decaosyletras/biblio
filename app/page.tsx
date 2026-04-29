@@ -33,7 +33,7 @@ export default function Home() {
     <div className="text-zinc-100">
 
       {/* HERO */}
-      <section className="py-12 text-center relative overflow-hidden">
+      <section className="py-10 text-center relative overflow-hidden">
         
         {/* glow / ambient background */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
@@ -77,7 +77,7 @@ export default function Home() {
       <GenreFilter />
 
       {/* LIBROS */}
-      <section className="py-16 px-6">
+      <section className="py-8 px-4">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">Libros</h2>
           <Link href="/libros" className="text-zinc-400 hover:text-white">
