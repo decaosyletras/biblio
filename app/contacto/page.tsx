@@ -47,10 +47,8 @@ export default function Page() {
         return
       }
 
-      // ✅ éxito
       setSent(true)
 
-      // reset form
       setLink("")
       setResumen("")
       setSelectedGenres([])
@@ -64,75 +62,81 @@ export default function Page() {
   }
 
   return (
-    <section className="max-w-3xl mx-auto text-white">
+    <section className="min-h-screen bg-black px-4 py-8 flex items-start justify-center">
+      
+      <div className="w-full max-w-xl bg-zinc-900 rounded-2xl p-5 sm:p-8 shadow-xl">
 
-      <h1 className="text-3xl font-bold mb-4">
-        Comparte un libro independiente
-      </h1>
+        {/* HEADER */}
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">
+          Comparte un libro
+        </h1>
 
-      <p className="text-zinc-400 mb-6">
-        Puedes registrar tu libro o uno que te haya gustado.
-      </p>
-
-      {/* LINK */}
-      <input
-        type="text"
-        placeholder="Link de Amazon"
-        value={link}
-        onChange={(e) => setLink(e.target.value)}
-        className="w-full p-3 mb-4 rounded bg-zinc-800"
-      />
-
-      {/* RESUMEN */}
-      <textarea
-        placeholder="¿De qué va?"
-        maxLength={700}
-        value={resumen}
-        onChange={(e) => setResumen(e.target.value)}
-        className="w-full p-3 mb-2 rounded bg-zinc-800 h-32"
-      />
-
-      <p className="text-xs text-zinc-500 mb-6">
-        {resumen.length}/700
-      </p>
-
-      {/* GENRES */}
-      <GenreSelector
-        genresCatalog={genresCatalog}
-        selectedGenres={selectedGenres}
-        setSelectedGenres={setSelectedGenres}
-      />
-
-      <SubgenreSelector
-        genresCatalog={genresCatalog}
-        selectedGenres={selectedGenres}
-        selectedSubgenres={selectedSubgenres}
-        setSelectedSubgenres={setSelectedSubgenres}
-      />
-
-      {/* ❌ ERROR */}
-      {error && (
-        <p className="text-red-400 mb-4 text-sm">
-          {error}
+        <p className="text-zinc-400 text-sm sm:text-base mb-6">
+          Recomienda tu libro o uno que te haya gustado.
         </p>
-      )}
 
-      {/* ✅ SUCCESS */}
-      {sent && (
-        <p className="text-green-400 mb-4 text-sm">
-          ¡Listo! Realizaremos un proceso de revisión para dar de alta tu libro. ¡Muchas gracias! 🙌
+        {/* LINK */}
+        <input
+          type="text"
+          placeholder="Link de Amazon"
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+          className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
+        />
+
+        {/* RESUMEN */}
+        <textarea
+          placeholder="¿De qué trata el libro?"
+          maxLength={700}
+          value={resumen}
+          onChange={(e) => setResumen(e.target.value)}
+          className="w-full p-4 mb-2 rounded-xl bg-zinc-800 h-36 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
+        />
+
+        <p className="text-xs text-zinc-500 mb-6 text-right">
+          {resumen.length}/700
         </p>
-      )}
 
-      {/* BUTTON */}
-      <button
-        onClick={handleSubmit}
-        disabled={loading}
-        className="bg-yellow-500 text-black px-6 py-3 rounded-full disabled:opacity-50"
-      >
-        {loading ? "Guardando..." : "Guardar"}
-      </button>
+        {/* GENRES */}
+        <div className="mb-6 space-y-4">
+          <GenreSelector
+            genresCatalog={genresCatalog}
+            selectedGenres={selectedGenres}
+            setSelectedGenres={setSelectedGenres}
+          />
 
+          <SubgenreSelector
+            genresCatalog={genresCatalog}
+            selectedGenres={selectedGenres}
+            selectedSubgenres={selectedSubgenres}
+            setSelectedSubgenres={setSelectedSubgenres}
+          />
+        </div>
+
+        {/* ERROR */}
+        {error && (
+          <div className="bg-red-500/10 border border-red-500/30 text-red-400 p-3 rounded-lg mb-4 text-sm">
+            {error}
+          </div>
+        )}
+
+        {/* SUCCESS */}
+        {sent && (
+          <div className="bg-green-500/10 border border-green-500/30 text-green-400 p-3 rounded-lg mb-4 text-sm">
+            ¡Gracias! Tu libro fue enviado y será revisado antes de publicarse. 🙌
+          </div>
+        )}
+
+        {/* BUTTON */}
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className="w-full sm:w-auto sm:px-8 py-4 rounded-xl font-semibold bg-yellow-500 text-black hover:bg-yellow-400 transition disabled:opacity-50"
+        >
+          {loading ? "Enviando..." : "Enviar"}
+        </button>
+
+      </div>
     </section>
   )
 }

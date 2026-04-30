@@ -20,18 +20,22 @@ export default function GenreSelector({
   return (
     <div className="flex flex-wrap gap-2 mb-6">
 
+      <h2 className="mb-2 font-semibold">
+        Géneros (máx 3)
+      </h2>
+
       {genresCatalog.map((g: any) => (
         <button
-          key={g.id}
-          onClick={() => toggleGenre(g.id)}
-          className={`px-3 py-1 rounded-full text-sm transition
-            ${selectedGenres.includes(g.id)
-              ? "bg-yellow-400 text-black"
-              : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"}
-          `}
-        >
-          {g.label}
-        </button>
+        key={g.id}
+        onClick={() => toggleGenre(g.id)}
+        className={`px-4 py-2 rounded-full text-sm transition
+          ${selectedGenres.includes(g.id)
+            ? "bg-yellow-400 text-black"
+            : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"}
+        `}
+      >
+        {g.label}
+      </button>
       ))}
 
     </div>
