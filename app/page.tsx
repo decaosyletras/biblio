@@ -130,18 +130,18 @@ export default function Home() {
       {/* CTA */}
       {<section className="py-20 text-center">
         <h2 className="text-2xl font-semibold">
-          ¿Eres escritor independiente?
+          ¿Eres escritor independiente o conoces a uno?
         </h2>
 
         <p className="text-zinc-400 mt-4">
-          Comparte tu historia y llega a nuevos lectores.
+          Comparte esa gran historia para que llegue a nuevos lectores.
         </p>
 
         <Link
           href="/contacto"
           className="inline-block mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full"
         >
-          Contactar
+          Compartir
         </Link>
       </section>}
 
