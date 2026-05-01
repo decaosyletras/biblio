@@ -6,6 +6,11 @@ import SubgenreSelector from "@/components/SubgenreSelector"
 import { genresCatalog } from "@/data/genres"
 
 export default function Page() {
+  const [titulo, setTitulo] = useState("")
+  const [autor, setAutor] = useState("")
+  const [esAutor, setEsAutor] = useState("")
+  const [registrante, setRegistrante] = useState("")
+
   const [link, setLink] = useState("")
   const [resumen, setResumen] = useState("")
   const [selectedGenres, setSelectedGenres] = useState<string[]>([])
@@ -18,7 +23,15 @@ export default function Page() {
     setError("")
     setSent(false)
 
-    if (!link || !resumen || selectedGenres.length === 0) {
+    if (
+      !titulo ||
+      !autor ||
+      !esAutor ||
+      (esAutor === "no" && !registrante) ||
+      !link ||
+      !resumen ||
+      selectedGenres.length === 0
+    ) {
       setError("Completa todos los campos obligatorios")
       return
     }
@@ -32,6 +45,10 @@ export default function Page() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
+          titulo,
+          autor,
+          esAutor,
+          registrante: esAutor === "no" ? registrante : null,
           link,
           resumen,
           generos: selectedGenres,
@@ -49,6 +66,11 @@ export default function Page() {
 
       setSent(true)
 
+      // reset
+      setTitulo("")
+      setAutor("")
+      setEsAutor("")
+      setRegistrante("")
       setLink("")
       setResumen("")
       setSelectedGenres([])
@@ -63,10 +85,8 @@ export default function Page() {
 
   return (
     <section className="min-h-screen bg-black px-4 py-8 flex items-start justify-center">
-      
       <div className="w-full max-w-xl bg-zinc-900 rounded-2xl p-5 sm:p-8 shadow-xl">
 
-        {/* HEADER */}
         <h1 className="text-2xl sm:text-3xl font-bold mb-2">
           Comparte un libro
         </h1>
@@ -74,6 +94,67 @@ export default function Page() {
         <p className="text-zinc-400 text-sm sm:text-base mb-6">
           Recomienda tu libro o uno que te haya gustado.
         </p>
+
+        {/* TITULO */}
+        <input
+          type="text"
+          placeholder="Título del libro (máx. 50 caracteres)"
+          maxLength={50}
+          value={titulo}
+          onChange={(e) => setTitulo(e.target.value)}
+          className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
+        />
+
+        {/* AUTOR */}
+        <input
+          type="text"
+          placeholder="Nombre del autor"
+          value={autor}
+          onChange={(e) => setAutor(e.target.value)}
+          className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
+        />
+
+        {/* RADIO */}
+        <div className="mb-4">
+          <p className="mb-2 text-sm text-zinc-300">
+            ¿Eres el autor del libro?
+          </p>
+
+          <label className="mr-4 text-sm">
+            <input
+              type="radio"
+              name="esAutor"
+              value="si"
+              checked={esAutor === "si"}
+              onChange={(e) => setEsAutor(e.target.value)}
+              className="mr-1"
+            />
+            Sí
+          </label>
+
+          <label className="text-sm">
+            <input
+              type="radio"
+              name="esAutor"
+              value="no"
+              checked={esAutor === "no"}
+              onChange={(e) => setEsAutor(e.target.value)}
+              className="mr-1"
+            />
+            No
+          </label>
+        </div>
+
+        {/* REGISTRANTE */}
+        {esAutor === "no" && (
+          <input
+            type="text"
+            placeholder="Nombre de quien registra"
+            value={registrante}
+            onChange={(e) => setRegistrante(e.target.value)}
+            className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
+          />
+        )}
 
         {/* LINK */}
         <input
@@ -112,6 +193,11 @@ export default function Page() {
             setSelectedSubgenres={setSelectedSubgenres}
           />
         </div>
+
+        {/* AVISO */}
+        <p className="text-xs text-zinc-500 mb-4">
+          La información proporcionada será sometida a un proceso de validación y podrá ser modificada como resultado de revisiones de consistencia.
+        </p>
 
         {/* ERROR */}
         {error && (

@@ -7,32 +7,73 @@ const supabase = createClient(
 )
 
 export async function POST(req: Request) {
-  const body = await req.json()
+  try {
+    const body = await req.json()
 
-  const { link, resumen, generos, subgeneros } = body
-
-  if (!link || !resumen || !generos?.length) {
-    return NextResponse.json(
-      { error: "Faltan datos obligatorios" },
-      { status: 400 }
-    )
-  }
-
-  const { error } = await supabase.from("libros").insert([
-    {
+    const {
+      titulo,
+      autor,
+      esAutor,
+      registrante,
       link,
       resumen,
       generos,
       subgeneros
-    }
-  ])
+    } = body
 
-  if (error) {
+    // Validación básica
+    if (
+      !titulo ||
+      titulo.length > 50 ||
+      !autor ||
+      !esAutor ||
+      !link ||
+      !resumen ||
+      !generos?.length
+    ) {
+      return NextResponse.json(
+        { error: "Faltan datos obligatorios o inválidos" },
+        { status: 400 }
+      )
+    }
+
+    // Convertir a boolean
+    const es_autor = esAutor === "si"
+
+    // Validación lógica
+    if (!es_autor && !registrante) {
+      return NextResponse.json(
+        { error: "Debes indicar quién registra el libro" },
+        { status: 400 }
+      )
+    }
+
+    const { error } = await supabase.from("libros").insert([
+      {
+        titulo,
+        autor,
+        es_autor,
+        registrante: es_autor ? null : registrante,
+        link,
+        resumen,
+        generos,
+        subgeneros
+      }
+    ])
+
+    if (error) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: 500 }
+      )
+    }
+
+    return NextResponse.json({ success: true })
+
+  } catch (err) {
     return NextResponse.json(
-      { error: error.message },
+      { error: "Error procesando la solicitud" },
       { status: 500 }
     )
   }
-
-  return NextResponse.json({ success: true })
 }
