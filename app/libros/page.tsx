@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { books } from "@/data/books"
 import { categories } from "@/data/categories"
 import BookRow from "@/components/BookRow"
@@ -16,7 +17,20 @@ export default function Page() {
         <h1 className="text-3xl font-semibold text-zinc-100 px-6 mb-8">
           Explorar libros
         </h1>
-        <SearchSimple data={books} type="books" />
+
+        <p className="text-sm text-zinc-400 px-6 mb-6 max-w-2xl md:max-w-none">
+          Estos enlaces son de afiliado: si compras a través de ellos, puedo recibir una comisión sin costo extra para ti y me ayudas a sostener este proyecto. Más información.{" "}
+          <Link
+            href="/afiliados"
+            className="text-yellow-400 hover:underline"
+          >
+            Más información
+          </Link>
+        </p>
+
+        <div className="px-6 mt-4">
+          <SearchSimple data={books} type="books" />
+        </div>
 
         {categories.map(category => {
           const filteredBooks = books.filter(book =>

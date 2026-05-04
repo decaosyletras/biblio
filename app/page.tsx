@@ -83,12 +83,10 @@ export default function Home() {
             Ver todos →
           </Link>
         </div>
-
-        
-          <BookRow
-            title=""
-            books={books}
-          />
+        <p className="text-sm text-zinc-400 mt-2">
+          Algunos enlaces son de afiliado y pueden generar una comisión sin costo extra.
+        </p>
+        <BookRow title="" books={books} />
       </section>
 
       {/* AUTORES */}
@@ -118,6 +116,11 @@ export default function Home() {
             Ver todas →
           </Link>
         </div>
+        
+
+        <p className="text-sm text-zinc-400 mt-2">
+          Opiniones personales sin influencia externa.
+        </p>
 
         <div className="grid md:grid-cols-3 gap-6">
           {randomReviews.filter(book => book.review?.title !== "")
