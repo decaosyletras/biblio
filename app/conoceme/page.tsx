@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { FaTwitter, FaInstagram, FaGlobe } from "react-icons/fa"
+import { FaInstagram, FaGlobe } from "react-icons/fa"
+import { SiThreads, SiTiktok } from "react-icons/si"
 
 export default function ConocemePage() {
   const [error, setError] = useState("")
@@ -9,6 +10,7 @@ export default function ConocemePage() {
   const [apellido, setApellido] = useState("")
   const [email, setEmail] = useState("")
   const [sent, setSent] = useState(false)
+  
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -61,19 +63,27 @@ export default function ConocemePage() {
       <div className="flex flex-wrap items-center gap-4 mb-10">
 
         <a
-          href="https://twitter.com/"
-          target="_blank"
-          className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
-        >
-          <FaTwitter /> Twitter
-        </a>
-
-        <a
           href="https://instagram.com/usuario"
           target="_blank"
           className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
         >
           <FaInstagram /> Instagram
+        </a>
+
+        <a
+          href="https://tiktok.com/"
+          target="_blank"
+          className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
+        >
+          <SiTiktok /> TikTok
+        </a>
+
+        <a
+          href="https://threads.net/"
+          target="_blank"
+          className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
+        >
+          <SiThreads /> Threads
         </a>
 
         <a
@@ -134,7 +144,7 @@ export default function ConocemePage() {
               type="submit"
               className="px-5 py-2 bg-yellow-400 text-black rounded-lg font-semibold hover:bg-yellow-300 transition"
             >
-              ✨ Unirme
+              Unirme ✨
             </button>
 
             {error && (
