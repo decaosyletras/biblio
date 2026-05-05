@@ -37,7 +37,7 @@ export default function FloatingBack() {
         w-10 h-10 rounded-full
         bg-yellow-400/90 backdrop-blur
         text-white flex items-center justify-center
-        hover:bg-yellow-400 transition
+        hover:bg-yellow-500 transition
         shadow-lg
         ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}
       `}
