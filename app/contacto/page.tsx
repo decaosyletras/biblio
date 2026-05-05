@@ -162,7 +162,7 @@ export default function Page() {
           placeholder="Link de Amazon"
           value={link}
           onChange={(e) => setLink(e.target.value)}
-          className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
+          className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm sm:text-base"
         />
 
         {/* RESUMEN */}

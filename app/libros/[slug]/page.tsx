@@ -165,7 +165,7 @@ export default async function Page({ params }: any) {
           <a
             href={book.amazonLink}
             target="_blank"
-            className="inline-block mt-6 bg-yellow-400 text-black px-6 py-3 rounded-full hover:bg-yellow-300 transition"
+            className="inline-block mt-6 bg-yellow-400 text-black px-6 py-3 rounded-full hover:bg-yellow-400 transition"
           >
             Comprar en Amazon
           </a>
