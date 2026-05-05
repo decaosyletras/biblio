@@ -35,9 +35,9 @@ export default function FloatingBack() {
       className={`
         fixed bottom-6 left-6 z-50
         w-10 h-10 rounded-full
-        bg-zinc-800/80 backdrop-blur
+        bg-yellow-400/90 backdrop-blur
         text-white flex items-center justify-center
-        hover:bg-zinc-700 transition
+        hover:bg-yellow-500 transition
         shadow-lg
         ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}
       `}
