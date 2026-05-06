@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useState } from "react"
 import { genresCatalog } from "@/data/genres"
 import { books } from "@/data/books"
@@ -43,6 +44,16 @@ export default function GenreFilter() {
       {/* 🔥 RESULTADO TIPO NETFLIX */}
       {selected && filtered.length > 0 && (
         <div className="mt-10">
+          <p className="text-sm text-zinc-400 px-6 mb-6 max-w-2xl md:max-w-none">
+            Algunos enlaces son de afiliado y pueden generar comisión sin costo extra para ti.{" "}
+            <Link
+              href="/afiliados"
+              className="text-yellow-400 hover:underline"
+            >
+              Más información.
+            </Link>
+          </p>
+
           <BookRow
             title={`Explorando: ${genreLabel}`}
             books={filtered}

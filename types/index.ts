@@ -14,6 +14,7 @@ export type Book = {
   cover: string
   amazonLink: string
   authorSlug: string
+  isSaga: boolean
   categories: number[]
   summary: string
   review: {

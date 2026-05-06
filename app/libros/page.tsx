@@ -44,6 +44,7 @@ export default function Page() {
               key={category.id}
               title={category.name}
               books={filteredBooks}
+              noShuffle={category.id === 9}
             />
           )
         })}

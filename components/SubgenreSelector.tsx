@@ -13,6 +13,7 @@ export default function SubgenreSelector({
   const selectionOrder = useRef<string[]>([])
 
   const maxSubgenres =
+    selectedGenres.length === 4 ? 3 :
     selectedGenres.length === 3 ? 5 :
     selectedGenres.length === 2 ? 6 :
     7

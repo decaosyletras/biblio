@@ -8,12 +8,17 @@ import { shuffleArray } from "@/lib/shuffle"
 export default function BookRow({
   title,
   books,
+  noShuffle = false,
 }: {
   title: string
   books: Book[]
+  noShuffle?: boolean
 }) {
   const rowRef = useRef<HTMLDivElement>(null)
   const randomBooks = shuffleArray(books)
+  const displayedBooks = noShuffle
+  ? books
+  : shuffleArray(books)
 
   const scroll = (dir: "left" | "right") => {
     if (!rowRef.current) return
@@ -46,7 +51,7 @@ export default function BookRow({
         className="flex gap-4 overflow-x-auto px-2 scroll-smooth scrollbar-hide"
       >
 
-      {randomBooks.map(book => (
+      {displayedBooks.map(book => (
         <div
           key={book.slug}
           className="flex-shrink-0 w-[120px] sm:w-[150px] md:w-[180px]"

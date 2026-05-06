@@ -12,7 +12,7 @@ export default function GenreSelector({
         prev.filter(g => g !== id)
       )
     } else {
-      if (selectedGenres.length >= 3) return
+      if (selectedGenres.length >= 4) return
       setSelectedGenres((prev: string[]) => [...prev, id])
     }
   }
@@ -21,7 +21,7 @@ export default function GenreSelector({
     <div className="flex flex-wrap gap-2 mb-6">
 
       <h2 className="mb-2 font-semibold">
-        Géneros (máx 3)
+        Géneros (máx 4)
       </h2>
 
       {genresCatalog.map((g: any) => (

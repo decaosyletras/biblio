@@ -23,6 +23,10 @@ export default async function Page({ params }: any) {
 
   const recommended = getRecommendedBooks(book.slug)
 
+  const sameAuthorBooks = books.filter(
+    b => b.authorSlug === book.authorSlug && b.slug !== book.slug
+  )
+
   /*const genresData =
   genresCatalog.filter(g => book.genre.includes(g.id))*/
 
@@ -89,19 +93,41 @@ export default async function Page({ params }: any) {
             </div>
           )}
 
-          {book.review.title !== "" ? (
-            <div className="mt-6">
+          <div className="mt-6 flex flex-wrap gap-2">
+
+            {/* Estado */}
+            {book.review.title !== "" ? (
               <span className="text-xs px-3 py-1 rounded-full bg-green-600">
-                  ✓ Leído
+                ✓ Leído
               </span>
-            </div>
-          ):(
-            <div className="mt-6">
-                <span className="text-xs px-3 py-1 rounded-full bg-zinc-700">
-                  Pendiente
-                </span>
-            </div>
-          )}
+            ) : (
+              <span className="text-xs px-3 py-1 rounded-full bg-zinc-700">
+                Pendiente
+              </span>
+            )}
+
+            {/* Saga */}
+            {book.isSaga ? (
+              <span
+                className="text-xs px-3 py-1 rounded-full
+                bg-purple-500/20
+                text-purple-300
+                border border-purple-400/30"
+              >
+                📚 Saga
+              </span>
+            ) : (
+              <span
+                className="text-xs px-3 py-1 rounded-full
+                bg-zinc-800
+                text-zinc-400
+                border border-zinc-700"
+              >
+                📖 Autoconclusivo
+              </span>
+            )}
+
+          </div>
 
           {book.review.metrics?.length > 0 && (
             <div className="mt-4">
@@ -156,9 +182,18 @@ export default async function Page({ params }: any) {
                 Ideal si buscas
               </h3>
 
-              <p className="text-zinc-400">
-                {book.review.excerpt}
-              </p>
+              <div className="text-zinc-400 space-y-2">
+                {book.review.excerpt
+                  .split("\n")
+                  .map((line, i) =>
+                    line.trim() ? (
+                      <p key={i} className="flex gap-2">
+                        <span>•</span>
+                        <span>{line}</span>
+                      </p>
+                    ) : null
+                  )}
+              </div>
             </div>
           )}
 
@@ -173,6 +208,17 @@ export default async function Page({ params }: any) {
         </div>
 
       </div>
+      
+      {sameAuthorBooks.length > 0 && (
+        <div className="mt-12">
+          <BookRow
+            title={`Más libros de ${author?.name}`}
+            books={sameAuthorBooks}
+            noShuffle
+          />
+        </div>
+      )}
+
       <div className="mt-12">
         <BookRow title="También te puede gustar" books={recommended} />
       </div>
