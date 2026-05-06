@@ -26,11 +26,12 @@ export default function Navbar() {
         {/* LINKS DESKTOP */}
         <div className="hidden md:flex gap-4 text-sm">
           <Link href="/">Inicio</Link>
-          <Link href="/libros">Libros</Link>
-          <Link href="/resenas">Lectómetro</Link>
+          {/*<Link href="/libros">Libros</Link>*/}
+          {/*<Link href="/resenas">Lectómetro</Link>*/}
           {/*<Link href="/autores">Autores</Link>*/}
           <Link href="/conoceme">Conóceme</Link>
-          <Link href="/contacto">Compartir</Link>
+          <Link href="/contacto">Recomendar</Link>
+          <Link href="/afiliados">Transparencia</Link>
         </div>
       </div>
 
@@ -38,11 +39,12 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden mt-4 bg-zinc-800 rounded-xl p-4 flex flex-col gap-3 text-sm shadow-lg">
           <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
-          <Link href="/libros" onClick={() => setOpen(false)}>Libros</Link>
-          <Link href="/resenas" onClick={() => setOpen(false)}>Lectómetro</Link>
+          {/*<Link href="/libros" onClick={() => setOpen(false)}>Libros</Link>*/}
+          {/*<Link href="/resenas" onClick={() => setOpen(false)}>Lectómetro</Link>*/}
           {/*<Link href="/autores" onClick={() => setOpen(false)}>Autores</Link>*/}
           <Link href="/conoceme" onClick={() => setOpen(false)}>Conóceme</Link>
-          <Link href="/contacto" onClick={() => setOpen(false)}>Compartir</Link>
+          <Link href="/contacto" onClick={() => setOpen(false)}>Recomendar</Link>
+          <Link href="/afiliados" onClick={() => setOpen(false)}>Transparencia</Link>
         </div>
       )}
     </nav>

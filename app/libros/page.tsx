@@ -19,7 +19,7 @@ export default function Page() {
         </h1>
 
         <p className="text-sm text-zinc-400 px-6 mb-6 max-w-2xl md:max-w-none">
-          Estos enlaces son de afiliado: si compras a través de ellos, puedo recibir una comisión sin costo extra para ti y me ayudas a sostener este proyecto. Más información.{" "}
+          Estos enlaces son de afiliado: si compras a través de ellos, puedo recibir una comisión sin costo extra para ti y me ayudas a sostener este proyecto. {" "}
           <Link
             href="/afiliados"
             className="text-yellow-400 hover:underline"

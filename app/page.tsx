@@ -84,7 +84,13 @@ export default function Home() {
           </Link>
         </div>
         <p className="text-sm text-zinc-400 mt-2">
-          Algunos enlaces son de afiliado y pueden generar una comisión sin costo extra.
+          Algunos enlaces son de afiliado y pueden generar comisión sin costo extra para ti. {" "}
+          <Link
+            href="/afiliados"
+            className="text-yellow-400 hover:underline"
+          >
+            Más información.
+          </Link>
         </p>
         <BookRow title="" books={books} />
       </section>
@@ -144,7 +150,7 @@ export default function Home() {
           href="/contacto"
           className="inline-block mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full"
         >
-          Compartir
+          Recomendar
         </Link>
       </section>}
 
