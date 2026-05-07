@@ -160,7 +160,7 @@ export const books: Book[] = [
     cover: "/covers/book2.jpg",
     amazonLink: "https://amazon.com",
     authorSlug: "juan-carlos-lopez-bayon",
-    isSaga: false,
+    isSaga: true,
     categories: [2, 5],
     summary:
       "Una historia de aventuras espaciales donde dos personas acaban encontrándose por error (¿o destino?), en medio de un conflicto galáctico. Ambos se unen a una organización militar que lucha contra una terrible amenaza. Mientras combaten juntos en primera línea, también enfrentan sus propios dilemas personales y valores. Con el tiempo, se convierten en piezas clave de una guerra decisiva donde no solo se juega el destino de civilizaciones enteras, sino también lo que están dispuestos a sacrificar por sus principios.",
