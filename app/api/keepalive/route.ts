@@ -33,7 +33,7 @@ export async function GET() {
 
     const hoursPassed = (now - lastInsert) / (1000 * 60 * 60)
 
-    if (hoursPassed >= 12) {
+    if (hoursPassed >= 0.08) {
       shouldInsert = true
     }
   }
