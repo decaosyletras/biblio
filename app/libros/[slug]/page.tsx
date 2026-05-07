@@ -30,11 +30,13 @@ export default async function Page({ params }: any) {
   /*const genresData =
   genresCatalog.filter(g => book.genre.includes(g.id))*/
 
-  const genreData = genresCatalog.find(g => book.genre.includes(g.id));
+  const genresData = genresCatalog.filter(g =>
+    book.genre.includes(g.id)
+  );
 
-  const subgenres = genreData?.subgenres.filter(s =>
-    book.subgenres.includes(s.id)
-  ) || []
+  const subgenres = genresData.flatMap(g =>
+    g.subgenres.filter(s => book.subgenres.includes(s.id))
+  );
 
   return (
     <section className="py-16">
@@ -62,19 +64,20 @@ export default async function Page({ params }: any) {
           <div className="mt-4 flex flex-wrap gap-2">
 
             {/* género */}
-            {genreData && (
+            {genresData.map(g => (
               <GenreBadge
-                label={genreData.label}
-                type={genreData.id}
+                key={g.id}
+                label={g.label}
+                type={g.id}
               />
-            )}
+            ))}
 
             {/* subgéneros */}
             {subgenres.map(s => (
               <GenreBadge
                 key={s.id}
                 label={s.label}
-                type={genreData?.id || ""}
+                type={""}
               />
             ))}
 
