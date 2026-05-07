@@ -38,6 +38,12 @@ export default async function Page({ params }: any) {
     g.subgenres.filter(s => book.subgenres.includes(s.id))
   );
 
+  const getGenreFromSubgenre = (subId: string) => {
+    return genresCatalog.find(g =>
+      g.subgenres.some(s => s.id === subId)
+    )?.id
+  }
+
   return (
     <section className="py-16">
       <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 text-zinc-100">
@@ -77,7 +83,7 @@ export default async function Page({ params }: any) {
               <GenreBadge
                 key={s.id}
                 label={s.label}
-                type={""}
+                type={getGenreFromSubgenre(s.id) || ""}
               />
             ))}
 
