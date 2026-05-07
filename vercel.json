@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/heartbeat-cron",
+      "schedule": "0 */6 * * *"
+    }
+  ]
+}
