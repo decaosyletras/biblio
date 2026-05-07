@@ -57,7 +57,7 @@ export async function GET() {
   }
 
   return NextResponse.json({
-    success: true,
-    action: 'skipped'
+    ok: true,
+    time: new Date().toISOString()
   })
 }
