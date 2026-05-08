@@ -1623,7 +1623,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "la-maldicion-de-morsten",
     title: "La maldición de Morsten Sea: El mar guarda secretos que solo el amor es capaz de despertar",
@@ -1682,7 +1681,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "metalipedics",
     title: "Metalipedics: G. Kajal y la Enciclopedia de Alienígenas Simbióticos.",
@@ -1712,7 +1710,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "unitaria-astralis",
     title: "Unitaria Astralis: Yadrin, el Nuevo Rey Oscuro",
@@ -1771,7 +1768,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "el-escriba-de-las-estrellas",
     title: "El escriba de las estrellas",
@@ -1779,7 +1775,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "juan-carlos-lopez-bayon",
     isSaga: false,
-    categories: [0],
+    categories: [0, 2],
     summary:
       "Una colección de 17 relatos breves que combinan ciencia ficción, fantasía y emociones profundas. Cada historia propone viajes imaginativos que exploran mundos más allá de las estrellas, al mismo tiempo que conectan con sentimientos humanos como la empatía, la pérdida y el asombro.\n\nEl conjunto ofrece una experiencia variada donde lo fantástico y lo emocional se entrelazan en narraciones independientes que invitan a reflexionar y sentir.",
     review: {
@@ -1801,7 +1797,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "el-himno-del-desierto-cuentos-de-navidad",
     title: "El Himno del Desierto: Cuentos de Navidad",
@@ -1860,7 +1855,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "vestigio-remachado",
     title: "Vestigio Remachado: Intriga de época con secretos y manipulación científica",
@@ -1890,7 +1884,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "desde-mis-ojos-faraona-la-bailarina-sin-cabeza",
     title: "Desde mis ojos: Faraona: La bailarina sin cabeza",
@@ -1927,7 +1920,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "javier-marin",
     isSaga: false,
-    categories: [0],
+    categories: [0, 3],
     summary:
       "El inspector Marco Duarte y su equipo se enfrentan a un nuevo caso cuando aparece el cadáver de una mujer con una mutilación inexplicable. Lo que comienza como una investigación policial pronto se convierte en un juego peligroso contra un asesino meticuloso y perturbado que parece anticiparse a cada movimiento.\n\nA medida que el caso avanza, la presión psicológica aumenta y los investigadores se ven obligados a enfrentarse no solo al criminal, sino también a los límites de la mente humana y la oscuridad que se esconde tras la violencia.",
     review: {
@@ -1949,7 +1942,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "enigmas-para-un-rey",
     title: "Enigmas para un rey",
@@ -1957,7 +1949,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "javier-marin",
     isSaga: false,
-    categories: [0],
+    categories: [0, 3],
     summary:
       "El inspector Marco Duarte se convierte en el objetivo de un asesino en serie extremadamente calculador, que inicia una cacería tras el secuestro de una agente de policía. El criminal convierte la investigación en un juego mortal, donde cada pista es parte de una partida de ajedrez manipulada a su favor.\n\nEl equipo policial debe resolver enigmáticos mensajes en una carrera contrarreloj para evitar más víctimas, mientras el asesino controla cada movimiento con precisión, llevando la situación al límite en una confrontación cada vez más desesperada.",
     review: {
@@ -1979,7 +1971,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "desafio-59",
     title: "Desafío 59´: Thriller policíaco en el que resolver los enigmas a tiempo separa tu vida de la muerte.",
@@ -1987,7 +1978,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "javier-marin",
     isSaga: false,
-    categories: [0],
+    categories: [0, 3],
     summary:
       "El hallazgo del cadáver decapitado de una periodista convierte a Samuel Castillo en el principal sospechoso, obligándolo a huir mientras es perseguido por la policía y envuelto en una conspiración que no comprende del todo. En su camino, encuentra ayuda en dos personas en su misma situación, formando una alianza frágil en medio del caos.\n\nLo que parece una investigación criminal se transforma en un juego macabro de enigmas y manipulación, donde un misterioso “Desafío 59” controla los acontecimientos. Samuel deberá resolver acertijos contrarreloj mientras se adentra en una trama de poder, muerte y escenarios cada vez más imposibles.",
     review: {
@@ -2038,7 +2029,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "imitheos-ascenso",
     title: "IMITHEOS: Ascenso",
@@ -2068,7 +2058,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "incendio-de-posibilidades",
     title: "Incendio de posibilidades",
@@ -2127,7 +2116,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "cenit-memorias-de-un-hada",
     title: "Cenit : Memorias de un hada",
@@ -2157,7 +2145,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "el-mundo-de-eterna-la-guerrera-de-las-estrellas",
     title: "El Mundo de Eterna: La Guerrera de las Estrellas",
@@ -2216,7 +2203,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "dejar-huella",
     title: "Dejar huella",
@@ -2246,7 +2232,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "en-los-tejados",
     title: "En los tejados",
@@ -2305,7 +2290,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "historias-de-boston",
     title: "Historias de Boston: 21 relatos de fantasía, ciencia ficción y terror",
@@ -2335,7 +2319,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
   {
     slug: "el-futuro-que-escribimos-juntos",
     title: "El futuro que escribimos juntos: Una comedia romántica donde arder en el infierno será el menor de sus problemas",
