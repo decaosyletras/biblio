@@ -71,7 +71,7 @@ export function getRecommendedBooks(currentSlug: string) {
   if (!current) return []
 
   const ranked = books
-    .filter(b => b.slug !== currentSlug)
+    .filter(b => b.slug !== currentSlug && b.authorSlug !== current.authorSlug)
     .map(b => ({
       ...b,
       score: getScore(current, b),
@@ -79,7 +79,7 @@ export function getRecommendedBooks(currentSlug: string) {
     .sort((a, b) => b.score - a.score)
 
   // 🔥 top real
-  const top = ranked.slice(0, 6)
+  const top = ranked.slice(0, 7)
 
-  return getRandomItems(top, 3)
+  return getRandomItems(top, 4)
 }
