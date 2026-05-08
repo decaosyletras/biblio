@@ -1355,39 +1355,1016 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
+
+
+
+
+
+
+  //NO LEÍDOS
   {
-    slug: "prueba",
-    title: "PRUEBA DE LIBRO NO LEÍDO",
-    cover: "/covers/jodidos.jpg",
-    amazonLink: "https://amazon.com",
-    authorSlug: "marcos-m-jimenez-gonzalez",
-    isSaga: true,
-    categories: [1, 9],
+    slug: "frecuencia-zero",
+    title: "Frecuencia Zero",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "jose-m-aldasoro",
+    isSaga: false,
+    categories: [],
     summary:
-      "Cuentos que exploran lo que significa ser humano (desde la perspectiva de inteligencias artificiales hasta visitantes de otros mundos), poniendo bajo la lupa los errores, las caídas y las segundas oportunidades que forman parte inevitable del crecimiento. Cada historia sugiere que la evolución no es un camino recto, sino un proceso torpe pero persistente hacia algo mejor.",
+      "Una extraña frecuencia comienza a alterar la mente humana, desatando una crisis global que amenaza con destruir la realidad tal como se conoce. Mientras el caos se expande y la locura colectiva se vuelve imparable, un grupo de personas descubre que antiguos monumentos alrededor del mundo esconden un patrón conectado con el origen de la amenaza.\n\nEntre investigaciones arqueológicas, teorías de física cuántica y conspiraciones ocultas durante siglos, la búsqueda de respuestas se convierte en una carrera desesperada para evitar la extinción de la humanidad.",
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: [
-      ],
+      metrics: [],
     },
-    genre: ["cienciaFiccion", "misterio"],
-    subgenres: ["distopia"],
+    genre: ["cienciaFiccion", "thriller", "misterio"],
+    subgenres: ["technothriller", "conspiracion", "especulativo", "psicologico"],
 
     tags: {
-      ritmo: 2,
-      complejidad: 2,
-      cargaEmocional: 3,
-      conflicto: 2,
-      worldbuilding: 1,
-      accesibilidad: 2,
-      profundidad: 3,
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "apocalipsis-porcina",
+    title: "Apocalipsis porcina",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "a-a-espino",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Una extraña infección comienza a propagarse entre los cerdos, desencadenando un desastre que rápidamente transforma la vida cotidiana en una lucha por sobrevivir. En medio del caos, un grupo de vecinos comunes —lejos de los típicos héroes preparados— intenta enfrentarse a una amenaza cada vez más incontrolable.\n\nEntre situaciones absurdas, tensión constante y decisiones desesperadas, la historia combina horror, humor negro y drama para mostrar cómo personas corrientes reaccionan cuando el mundo comienza a derrumbarse.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["terror", "cienciaFiccion", "thriller", "aventura"],
+    subgenres: ["postapocaliptica", "supervivencia", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "el-gran-apagon",
+    title: "El gran apagón: Novela de ficción apocalíptica sobre un apagón mundial",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "julian-drake",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Un apagón global deja al mundo entero incomunicado y sumido en el caos. En medio de la incertidumbre, una científica, un hacker y una doctora comienzan a descubrir que la caída de la red eléctrica no fue un accidente, sino el inicio de un evento mucho más peligroso y deliberado.\n\nMientras la sociedad colapsa y la desconfianza crece, los protagonistas intentan entender qué está ocurriendo realmente antes de que la oscuridad termine por consumirlo todo.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion", "thriller", "misterio"],
+    subgenres: ["technothriller", "postapocaliptica", "conspiracion", "supervivencia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "contagio-silencioso",
+    title: "Contagio silencioso: Novela corta de ciencia ficción distópica",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "julian-drake",
+    isSaga: false,
+    categories: [],
+    summary:
+      "En un hospital de Madrid, un extraño fenómeno comienza a propagarse entre los pacientes: dejan de sentir dolor, de hablar y poco a poco pierden toda voluntad. Leo, un enfermero agotado por la rutina, percibe que esa calma anormal oculta algo mucho más perturbador que una enfermedad común.\n\nA medida que el silencio se expande y el comportamiento de las personas cambia de forma inquietante, descubre que el contagio actúa directamente sobre la mente, convirtiéndose en una amenaza imposible de detener.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["terror", "thriller", "cienciaFiccion"],
+    subgenres: ["psicologico", "existencial", "supervivencia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "linea-muerta",
+    title: "Línea Muerta: Novela corta de ciencia ficción distópica",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "julian-drake",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Cuando todas las pantallas del mundo se apagan al mismo tiempo, la sociedad entra en un estado de desconcierto y aislamiento. En medio de una Madrid silenciosa y desconectada, Iván intercepta una extraña señal cifrada que lo lleva a descubrir una verdad inquietante: su propia mente fue utilizada en la creación del sistema que ahora controla y vigila a la población.\n\nMientras intenta comprender el alcance de la conspiración, se enfrenta a una realidad donde la tecnología, el control y la identidad personal se mezclan de forma peligrosa.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion", "thriller", "misterio"],
+    subgenres: ["cyberpunk", "technothriller", "conspiracion", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "ciudad-bajo-tierra",
+    title: "Ciudad bajo tierra: Novela corta de ciencia ficción",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "julian-drake",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Una tormenta solar convierte la superficie en un lugar mortal, obligando a los supervivientes de Madrid a refugiarse bajo tierra. Clara se adentra en el sistema de metro buscando a su hija, pero descubre una comunidad subterránea regida por normas estrictas, vigilancia constante y un clima de miedo silencioso.\n\nMientras intenta sobrevivir en ese nuevo mundo aislado y opresivo, deberá enfrentarse a los peligros de una sociedad que ha cambiado radicalmente tras el desastre.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion", "thriller", "aventura"],
+    subgenres: ["distopia", "postapocaliptica", "supervivencia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "inhumana",
+    title: "Inhumana",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "nicole-sanchez-castillo",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Inhumana reúne una serie de relatos centrados en emociones humanas intensas y conflictos sociales que exponen las contradicciones, injusticias y heridas de la vida contemporánea. A través de situaciones donde lo cotidiano se mezcla con elementos inquietantes o extraños, los personajes enfrentan experiencias marcadas por el dolor, la culpa, la violencia y la desigualdad.\n\nCada cuento aborda distintas formas de resistencia y vulnerabilidad humana, construyendo una visión crítica y emocional sobre la sociedad y los límites de nuestra propia humanidad.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion", "terror"],
+    subgenres: ["emotiva", "psicologico", "existencial"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "hija",
+    title: "Hija: Un thriller sobrenatural",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "nicole-sanchez-castillo",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Tras presenciar cómo una criatura devora al perro de su vecino en plena noche, un niño comienza a notar cambios aterradores en su entorno, especialmente en el comportamiento de su padre, cada vez más agresivo y violento. Mientras tanto, el pueblo de Merfai se hunde en una ola de asesinatos, desapariciones y episodios de furia inexplicable.\n\nLa jefa de policía Ángela Akello y su esposa investigan los extraños sucesos, descubriendo una antigua profecía vinculada a secretos enterrados en la historia del pueblo. A medida que la violencia crece, deberán enfrentar una amenaza que parece despertar lo peor de la naturaleza humana.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["terror", "thriller", "misterio"],
+    subgenres: ["psicologico", "sobrenatural", "existencial", "conspiracion", "asesinoenserie"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "belo",
+    title: "Belo: un héroe del campo",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "nicole-sanchez-castillo",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Cascabelo ha sido secuestrado por unos pumas que buscan oro y una poderosa flor mágica. Para sobrevivir y escapar, deberá enfrentarse a un entorno peligroso junto a sus amigos, intentando regresar a su hogar y reunirse con su familia.\n\nEn el camino, la historia presenta un viaje lleno de paisajes naturales, animales salvajes y desafíos emocionales, funcionando como una alegoría del conflicto colombiano a través de una aventura de supervivencia y valentía.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "aventura", "ficcion"],
+    subgenres: ["epica", "juvenil", "supervivencia", "emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
     }
   },
 
+  {
+    slug: "la-maldicion-de-morsten",
+    title: "La maldición de Morsten Sea: El mar guarda secretos que solo el amor es capaz de despertar",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "keira-moreau",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Wendy vive con una extraña sensación de vacío y pérdida, como si algo esencial en su vida hubiera sido borrado de su memoria. Aunque su entorno parece normal, percibe que algo ha cambiado y que está siendo observada. Todo se intensifica cuando aparece un desconocido que asegura conocerla y le habla de un pasado compartido que ella no puede recordar.\n\nA medida que intenta recuperar su memoria, descubre que lo que olvidó está ligado a un amor profundo, pero también a un posible peligro que podría haber desencadenado una maldición.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance", "misterio", "fantasia"],
+    subgenres: ["amorprohibido", "psicologico", "sobrenatural", "emotiva"],
 
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "hijos-de-las-tinieblas",
+    title: "Hijos de las Tinieblas: Hay puertas que no deben abrirse",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "keira-moreau",
+    isSaga: false,
+    categories: [],
+    summary:
+      "En un hotel aislado en el desierto, el señor Coulson parte a una expedición guiando a una pareja de turistas misteriosos que exigen condiciones extrañas y despiertan sospechas en todos a su alrededor. Su esposa, Fernanda, permanece en el hotel, cada vez más inquieta por el comportamiento de los visitantes y por la creciente extrañeza que envuelve a su esposo.\n\nA medida que los sucesos se vuelven más perturbadores, Fernanda empieza a investigar y descubre que la pareja oculta un secreto oscuro relacionado con una puerta prohibida del hotel. Al acercarse a la verdad, se enfrenta a una realidad que no debería ser revelada.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["terror", "misterio", "thriller"],
+    subgenres: ["sobrenatural", "psicologico", "conspiracion"],
 
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "metalipedics",
+    title: "Metalipedics: G. Kajal y la Enciclopedia de Alienígenas Simbióticos.",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "gabriel-vilches-barroso",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Gabriel Kajal, hijo de un prestigioso metabiólogo, emprende un viaje para completar la enciclopedia iniciada por su padre sobre los Metalien, unas criaturas cósmicas capaces de viajar por el universo, influir en la evolución y establecer vínculos simbióticos con otras formas de vida, especialmente los humanos.\n\nA lo largo de su aventura, Gabriel busca conocer y documentar estas entidades fascinantes, explorando distintos mundos y descubriendo los secretos de su origen, en una travesía llena de acción, humor y descubrimiento científico.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion", "aventura", "ficcion"],
+    subgenres: ["exploracionespacial", "xenoficcion", "evolucionespeculativa", "emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "unitaria-astralis",
+    title: "Unitaria Astralis: Yadrin, el Nuevo Rey Oscuro",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "gabriel-vilches-barroso",
+    isSaga: false,
+    categories: [],
+    summary:
+      "En el mundo de Unitaria, la realidad está dividida entre dos fuerzas opuestas, Luz y Oscuridad, influenciadas por los astros Ker y Yara. Esta división ha creado dos reinos enfrentados, Draerk y Laxia, cuya frágil paz está al borde del colapso.\n\nYadrin Banarto I, heredero del Trono de la Oscuridad, emprende una misión para evitar la guerra y restaurar el equilibrio. Para ello deberá recuperar los fragmentos de la antigua canción “Unitaria Astralis”, capaz de mantener la armonía entre ambos mundos. En su camino contará con la ayuda de un misterioso maestro y jóvenes aprendices de magia.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "aventura", "ficcion"],
+    subgenres: ["epica", "magia", "emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "cronica-de-mi-viaje-a-mandavia",
+    title: "Crónica de mi viaje a Mandavia: Un viaje imaginario al mundo de los libertadores",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "juan-carlos-lopez-bayon",
+    isSaga: true,
+    categories: [],
+    summary:
+      "El autor de la saga Libertadores emprende un viaje imaginario hacia la Gran Nube de Magallanes, donde descubre que los mundos y personajes que creó han cobrado vida. Invitado por ellos, se adentra en Mandavia para conocer de primera mano el universo que antes solo existía en su imaginación.\n\nLa historia funciona como una expansión del universo de la saga, incluyendo material inédito sobre el origen de X77 y un adelanto de la continuación, mientras explora una experiencia donde la ficción y la realidad se entrelazan.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion", "fantasia", "aventura"],
+    subgenres: ["realidadesalternas", "exploracionespacial", "emotiva", "epica"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "el-escriba-de-las-estrellas",
+    title: "El escriba de las estrellas",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "juan-carlos-lopez-bayon",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Una colección de 17 relatos breves que combinan ciencia ficción, fantasía y emociones profundas. Cada historia propone viajes imaginativos que exploran mundos más allá de las estrellas, al mismo tiempo que conectan con sentimientos humanos como la empatía, la pérdida y el asombro.\n\nEl conjunto ofrece una experiencia variada donde lo fantástico y lo emocional se entrelazan en narraciones independientes que invitan a reflexionar y sentir.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion", "fantasia", "ficcion"],
+    subgenres: ["exploracionespacial", "emotiva", "epica"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "el-himno-del-desierto-cuentos-de-navidad",
+    title: "El Himno del Desierto: Cuentos de Navidad",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "eduardo-d-allen",
+    isSaga: true,
+    categories: [],
+    summary:
+      "En un futuro postapocalíptico, estos relatos exploran cómo podría sobrevivir el espíritu de la Navidad, conocida como la “Fiesta de las Luces”, en un mundo marcado por la pérdida y la distopía. Thaellori el Caminante emprende una misión para recuperar la fraternidad y la esperanza en una sociedad fracturada.\n\nA través de historias breves y emotivas, se transmiten valores como la resiliencia, la tolerancia, la piedad y la importancia de la unión humana, mostrando la Navidad como una luz simbólica que persiste incluso en los tiempos más oscuros.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion", "fantasia", "ficcion"],
+    subgenres: ["postapocaliptica", "distopia", "emotiva", "epica"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "el-juramento-de-la-presencia-errante",
+    title: "El juramento de la presencia errante",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "sergio-velez-rodriguez",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Una figura misteriosa, marcada por una tragedia personal, avanza hacia un lugar dominado por fuerzas oscuras con el objetivo de cumplir una misión de redención. En ese territorio consumido por sombras, deberá enfrentarse a un desafío ligado a un pasado doloroso y a vínculos rotos por una conjuración imprudente.\n\nPara contener las fuerzas desatadas, el protagonista recurre a un arma especial: un acero imbuido de magia, en una historia donde el conflicto entre culpa, destino y poder sobrenatural guía el desarrollo del viaje.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "terror", "ficcion"],
+    subgenres: ["oscura", "epica", "sobrenatural", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "vestigio-remachado",
+    title: "Vestigio Remachado: Intriga de época con secretos y manipulación científica",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "sergio-velez-rodriguez",
+    isSaga: false,
+    categories: [],
+    summary:
+      "En una ciudad austrohúngara a finales del siglo XIX, una joven aristócrata busca escapar del tedio y las restricciones sociales a través del estudio y el desarrollo de su intelecto. Su curiosidad la conduce a descubrir una realidad oculta y cuestionable que desafía todo lo que conoce sobre su entorno.\n\nA medida que se adentra en estos misterios, se enfrenta a decisiones que pondrán a prueba sus valores y su deseo de libertad, en un contexto donde la intriga, la tensión y elementos inesperadamente futuristas se entrelazan con la historia.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion", "misterio", "cienciaFiccion"],
+    subgenres: ["historica", "conspiracion", "realidadesalternas", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "desde-mis-ojos-faraona-la-bailarina-sin-cabeza",
+    title: "Desde mis ojos: Faraona: La bailarina sin cabeza",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "luis-rivera",
+    isSaga: false,
+    categories: [],
+    summary:
+      "En la ciudad de Tijuana, una joven comienza a comportarse de manera extraña, lo que coincide con el resurgimiento de una antigua leyenda urbana sobre una bailarina sin cabeza. A medida que los sucesos inquietantes se intensifican, la frontera entre mito y realidad comienza a difuminarse.\n\nSin embargo, el verdadero peligro no parece provenir solo de lo sobrenatural, sino también de la corrupción humana, los secretos ocultos y la manipulación de la verdad a través de los medios. La historia avanza hacia una revelación que desafía lo que es real y lo que es construido.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["terror", "misterio", "thriller"],
+    subgenres: ["sobrenatural", "conspiracion", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "descenso-al-abismo",
+    title: "Descenso al Abismo",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "javier-marin",
+    isSaga: false,
+    categories: [],
+    summary:
+      "El inspector Marco Duarte y su equipo se enfrentan a un nuevo caso cuando aparece el cadáver de una mujer con una mutilación inexplicable. Lo que comienza como una investigación policial pronto se convierte en un juego peligroso contra un asesino meticuloso y perturbado que parece anticiparse a cada movimiento.\n\nA medida que el caso avanza, la presión psicológica aumenta y los investigadores se ven obligados a enfrentarse no solo al criminal, sino también a los límites de la mente humana y la oscuridad que se esconde tras la violencia.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller", "misterio", "terror"],
+    subgenres: ["policial", "asesinoenserie", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "enigmas-para-un-rey",
+    title: "Enigmas para un rey",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "javier-marin",
+    isSaga: false,
+    categories: [],
+    summary:
+      "El inspector Marco Duarte se convierte en el objetivo de un asesino en serie extremadamente calculador, que inicia una cacería tras el secuestro de una agente de policía. El criminal convierte la investigación en un juego mortal, donde cada pista es parte de una partida de ajedrez manipulada a su favor.\n\nEl equipo policial debe resolver enigmáticos mensajes en una carrera contrarreloj para evitar más víctimas, mientras el asesino controla cada movimiento con precisión, llevando la situación al límite en una confrontación cada vez más desesperada.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller", "misterio", "terror"],
+    subgenres: ["asesinoenserie", "policial", "supervivencia", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "desafio-59",
+    title: "Desafío 59´: Thriller policíaco en el que resolver los enigmas a tiempo separa tu vida de la muerte.",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "javier-marin",
+    isSaga: false,
+    categories: [],
+    summary:
+      "El hallazgo del cadáver decapitado de una periodista convierte a Samuel Castillo en el principal sospechoso, obligándolo a huir mientras es perseguido por la policía y envuelto en una conspiración que no comprende del todo. En su camino, encuentra ayuda en dos personas en su misma situación, formando una alianza frágil en medio del caos.\n\nLo que parece una investigación criminal se transforma en un juego macabro de enigmas y manipulación, donde un misterioso “Desafío 59” controla los acontecimientos. Samuel deberá resolver acertijos contrarreloj mientras se adentra en una trama de poder, muerte y escenarios cada vez más imposibles.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller", "misterio", "terror"],
+    subgenres: ["policial", "conspiracion", "supervivencia", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "a-anio-luz-de-ti",
+    title: "A año luz de Ti",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "adner-perez-garcia",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Julia descubre una misteriosa señal que la conecta con alguien situado a años luz de distancia, iniciando un vínculo inesperado entre dos personas de mundos completamente distintos. A través de esta conexión, ambos comienzan a comprenderse de una forma profunda e inusual, desafiando las limitaciones del espacio y la lógica.\n\nSin embargo, esta relación plantea dudas sobre lo que puede o no existir, y sobre las consecuencias de un lazo que parece ir más allá de lo permitido por la realidad. La historia explora el amor y la conexión emocional desde una perspectiva íntima y casi imposible.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance", "cienciaFiccion", "ficcion"],
+    subgenres: ["realidadesalternas", "amorprohibido", "emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "imitheos-ascenso",
+    title: "IMITHEOS: Ascenso",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "adner-perez-garcia",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Arda, un joven marcado por un pasado desconocido y cicatrices emocionales profundas, se ve arrastrado a un conflicto donde fuerzas opuestas del bien y el mal moldean el destino del mundo. En su camino deberá descubrir su verdadera identidad mientras enfrenta pruebas que pondrán a prueba su valentía y su voluntad de seguir adelante.\n\nA medida que avanza su viaje, se ve envuelto en una serie de eventos decisivos que lo obligan a confrontar tanto enemigos externos como sus propios conflictos internos, en una historia de crecimiento personal y lucha por el propósito.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "aventura", "ficcion"],
+    subgenres: ["epica", "emotiva", "oscura"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "incendio-de-posibilidades",
+    title: "Incendio de posibilidades",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "daniel-galvez-estevez",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Gustavo, un experto en negociación y química, se ve atrapado en un peligroso juego donde tres decisiones escritas en papel pueden determinar el rumbo de su vida. Armado únicamente con su ingenio y un mechero con el que puede materializar esas elecciones, se enfrenta a una situación límite que amenaza tanto su supervivencia como la de las personas que le importan.\n\nA medida que el conflicto avanza, deberá decidir cuánto está dispuesto a sacrificar y hasta dónde puede llegar para proteger a los suyos, en una historia de tensión creciente y decisiones irreversibles.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller", "ficcion", "cienciaFiccion"],
+    subgenres: ["psicologico", "supervivencia", "technothriller"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "danza-de-recuerdos",
+    title: "Danza de recuerdos",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "daniel-galvez-estevez",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Nicolás, acostumbrado a la mala suerte y a ocupar siempre el peor lugar en todo, se ve inesperadamente involucrado en un extraño juego donde, por primera vez, tiene la oportunidad de cambiar su destino. Sin embargo, el juego no es simple ni seguro.\n\nA través de notas adhesivas rojas y azules capaces de modificar recuerdos, Nicolás deberá navegar una serie de situaciones confusas donde la identidad, la memoria y la realidad se vuelven inestables. Cada decisión lo acerca más a un objetivo incierto, pero también a un precio que aún no comprende del todo.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion", "thriller", "misterio"],
+    subgenres: ["realidadesalternas", "psicologico", "conspiracion"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "cenit-memorias-de-un-hada",
+    title: "Cenit : Memorias de un hada",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "belu-elein",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Nimie, una joven que siempre ha creído en la magia y los cuentos de hadas, es transportada inesperadamente a un reino fantástico donde esas historias son reales. Sin embargo, pronto descubre que ese mundo no es tan ideal como imaginaba y que sus deseos tienen consecuencias.\n\nEnfrentándose a criaturas mágicas, misterios y desafíos peligrosos, Nimie emprende un viaje de autodescubrimiento en el que deberá definir su identidad y decidir qué está dispuesta a sacrificar para cumplir su destino.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "aventura", "ficcion"],
+    subgenres: ["juvenil", "epica", "emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "el-mundo-de-eterna-la-guerrera-de-las-estrellas",
+    title: "El Mundo de Eterna: La Guerrera de las Estrellas",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "belu-elein",
+    isSaga: true,
+    categories: [],
+    summary:
+      "Eileen, tras completar su duro entrenamiento, está a punto de convertirse en la guerrera que siempre ha deseado ser. Junto a Tolfian, se dirige hacia un enfrentamiento decisivo mientras fuerzas oscuras avanzan y una hechicera observa desde las sombras.\n\nEn medio de una guerra inminente, ambos deberán enfrentarse a un destino incierto que pone a prueba su amor y su supervivencia. La historia se desarrolla bajo la sombra de un sacrificio inevitable, donde la victoria tiene un precio mortal.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "romance", "aventura"],
+    subgenres: ["epica", "amorprohibido", "oscura", "emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "el-mundo-de-eterna-el-rey-elfo",
+    title: "El Mundo de Eterna: El Rey Elfo",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "belu-elein",
+    isSaga: true,
+    categories: [],
+    summary:
+      "Tras el fin de la guerra oscura, el reino de Eterna entra en una era de paz entre humanos y elfos, pero la muerte del anterior rey de Numantia rompe la estabilidad. Tolfian debe asumir la corona en un contexto político tenso, acompañado por Eileen, mientras ambos enfrentan un reino lleno de ambición, secretos y conspiraciones.\n\nUna amenaza oculta, simbolizada por la figura de un cuervo, comienza a manipular los acontecimientos desde las sombras, donde cualquier aliado podría ser un enemigo. El poder, la traición y la incertidumbre convierten la sucesión en un juego mortal.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "thriller", "ficcion"],
+    subgenres: ["epica", "conspiracion", "oscura", "politica"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "dejar-huella",
+    title: "Dejar huella",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "arnulfo-diaz",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Dejar huella es una antología de relatos inspirados en historias reales de animales en situación de calle o maltrato. A través de las voces de protagonistas como Jacinto, Peludo y Lenteja, se muestra su día a día, sus dificultades y su esperanza, permitiendo ver el mundo desde su perspectiva.\n\nCada cuento ofrece dos posibles desenlaces: uno esperanzador y otro más duro y realista, reflejando la crudeza de la vida que enfrentan muchos animales. La obra invita a la reflexión sobre la empatía y la responsabilidad humana hacia los seres vivos.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion", "aventura"],
+    subgenres: ["emotiva", "juvenil"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "en-los-tejados",
+    title: "En los tejados",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "arnulfo-diaz",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Lyra, una joven que vive en un mundo donde la magia se oculta en lo cotidiano, sufre un hechizo que la transforma en gata tras un error inesperado. Obligada a sobrevivir en las calles, deberá recorrer lugares peligrosos y enfrentarse a pruebas que pondrán a prueba su ingenio, su valentía y su identidad.\n\nEn su búsqueda por recuperar su forma humana, descubrirá secretos ocultos y vivirá un proceso de transformación interna, donde el miedo, la esperanza y la lealtad se entrelazan en cada paso de su viaje.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "misterio", "ficcion"],
+    subgenres: ["magia", "supervivencia", "juvenil", "emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "heraldos-de-la-muerte",
+    title: "Heraldos de la Muerte",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "david-sanz",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Cuatro desconocidos son arrastrados por fuerzas sobrenaturales cuando el destino de la humanidad se encuentra en peligro. En su viaje, se enfrentan a entidades cósmicas y situaciones que desafían su comprensión, descubriendo que el verdadero reto no es salvar al mundo, sino aprender a convivir y entenderse entre ellos.\n\nLa historia mezcla humor, misterio y elementos fantásticos para explorar temas como el destino, el libre albedrío y la naturaleza humana, en una narrativa satírica que combina lo cotidiano con lo extraordinario.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "ficcion", "aventura"],
+    subgenres: ["epica", "emotiva", "sobrenatural", "magia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "historias-de-boston",
+    title: "Historias de Boston: 21 relatos de fantasía, ciencia ficción y terror",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "david-sanz",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Una antología de relatos cortos ambientados en una versión misteriosa y versátil de la ciudad de Boston, donde la fantasía, la ciencia ficción y el terror se entrelazan. Cada historia presenta escenarios y personajes distintos, desde capitanes espaciales hasta camioneros de los años 80 o héroes enfrentados a dragones, explorando múltiples estilos narrativos.\n\nLa colección combina ucronías, eventos sobrenaturales, realismo mágico y horror cósmico, creando un conjunto de relatos impredecibles que destacan por su variedad de tonos, atmósferas y giros inesperados.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "cienciaFiccion", "terror"],
+    subgenres: ["epica", "exploracionespacial", "realidadesalternas", "cosmico", "magia", "historica"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  {
+    slug: "el-futuro-que-escribimos-juntos",
+    title: "El futuro que escribimos juntos: Una comedia romántica donde arder en el infierno será el menor de sus problemas",
+    cover: "",
+    amazonLink: "",
+    authorSlug: "beatriz-lillo",
+    isSaga: false,
+    categories: [],
+    summary:
+      "Una serie de misteriosas cartas del tarot comienza a marcar el destino alguien, desencadenando una cadena de eventos que alteran sus caminos de forma irreversible.\n\nUna pelirroja, un mago y un entorno caótico de intrigas y peligros se ven arrastrados hacia un conflicto donde las decisiones tienen consecuencias cada vez más intensas. A medida que los polos opuestos se acercan, el control sobre la realidad parece desvanecerse.",
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia", "romance", "thriller"],
+    subgenres: ["magia", "amorprohibido", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
   
 ]
