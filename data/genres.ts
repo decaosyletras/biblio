@@ -45,6 +45,7 @@ export const genresCatalog = [
       { id: "psicologico", label: "Psicológico" },
       { id: "existencial", label: "Exitencial" },
       { id: "cosmico", label: "Cósmico" },
+      { id: "sobrenatural", label: "Sobrenatural" },
     ],
   },
   {
