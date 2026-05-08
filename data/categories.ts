@@ -1,6 +1,7 @@
 import { Category } from "@/types"
 
 export const categories: Category[] = [
+  { id: 0, name: "Todos los libros" },
   { id: 1, name: "Para una tarde completa" },
   { id: 2, name: "Lectura tranquila" },
   { id: 3, name: "Libros que te hacen pensar" },

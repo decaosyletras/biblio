@@ -8,7 +8,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "marcos-m-jimenez-gonzalez",
     isSaga: true,
-    categories: [3, 5, 9],
+    categories: [0, 3, 5, 9],
     summary:
       "Un invididuo de otra especie es empujado a un viaje entre mundos que transformará su cuerpo, mente y espíritu, revelándole que el caos no es un error, sino parte esencial del universo. Al mismo tiempo, una civilización condenada a desaparecer arriesga todo en un plan desesperado que dará origen a un individuo cuya existencia podría desestabilizarlo todo. Dos caminos que convergen en la manipulación de la existencia y de las memorias.",
     review: {
@@ -48,7 +48,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "marcos-m-jimenez-gonzalez",
     isSaga: true,
-    categories: [3, 9],
+    categories: [0, 3, 9],
     summary:
       "El encuentro entre dos especie pone a Encoa frente a una decisión que puede cambiar su destino y el de su libertad, en medio de un conflicto ideológico que sacude a las civilizaciones avanzadas. Mientras tanto, una especie aislada durante mucho tiempo, se ve obligada a abrirse al universo cuando una raza fugitiva solicita su ayuda. Esa situación reaviva su relación con una figura casi divina que ha guiado su evolución, dando paso a una alianza con consecuencias inesperadas.",
     review: {
@@ -81,7 +81,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "marcos-m-jimenez-gonzalez",
     isSaga: true,
-    categories: [3, 9],
+    categories: [0, 3, 9],
     summary:
       "Una antigua influencia condiciona las decisiones de los Ratti, obligándolos a posicionarse en un conflicto que está más allá de los intereses personales. Al mismo tiempo, se revelan acuerdos ancestrales que explican el delicado equilibrio actual. Por otro lado, distintas facciones preparan movimientos estratégicos para evitar que sus rivales ganen ventaja, mientras crece la sensación de que una amenaza mayor está a punto de revelarse.",
     review: {
@@ -120,7 +120,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "marcos-m-jimenez-gonzalez",
     isSaga: false,
-    categories: [1, 9],
+    categories: [0, 1, 9],
     summary:
       "Cuentos que exploran lo que significa ser humano (desde la perspectiva de la humanidad, de las inteligencias artificiales, y hasta de visitantes de otros mundos), poniendo bajo la lupa los errores, las caídas y las segundas oportunidades que forman parte inevitable del crecimiento. Cada historia sugiere que la evolución no es un camino recto, sino un proceso torpe pero persistente hacia algo mejor.",
     review: {
@@ -161,7 +161,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "juan-carlos-lopez-bayon",
     isSaga: true,
-    categories: [2, 5],
+    categories: [0, 2, 5],
     summary:
       "Una historia de aventuras espaciales donde dos personas acaban encontrándose por error (¿o destino?), en medio de un conflicto galáctico. Ambos se unen a una organización militar que lucha contra una terrible amenaza. Mientras combaten juntos en primera línea, también enfrentan sus propios dilemas personales y valores. Con el tiempo, se convierten en piezas clave de una guerra decisiva donde no solo se juega el destino de civilizaciones enteras, sino también lo que están dispuestos a sacrificar por sus principios.",
     review: {
@@ -194,7 +194,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "j-e-fourt",
     isSaga: false,
-    categories: [3, 6],
+    categories: [0, 3, 6],
     summary:
       "Ignacio se ve envuelto en una conexión inesperada que lo introduce a un entorno virtual mucho más profundo de lo que imaginaba. Lo que parecía una experiencia curiosa pronto revela una dimensión peligrosa que comienza a influir en el mundo real. A medida que la situación se vuelve más crítica, se ve obligado a salir del entorno digital y buscar respuestas en distintos puntos del mundo físico. Allí comprende que todo está ligado a un conflicto de gran escala con consecuencias que podrían afectar el futuro de la humanidad.",
     review: {
@@ -236,7 +236,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "oscar-gonzalez-cruz",
     isSaga: false,
-    categories: [1],
+    categories: [0, 1],
     summary:
         "Una colección de 13 cuentos ambientados en futuros posibles y realidades alternativas, donde la humanidad se enfrenta a escenarios tecnológicos avanzados y situaciones extremas. Cada relato plantea conflictos distintos en los que los personajes deben tomar decisiones difíciles, enfrentarse a los límites de la tecnología y cuestionar su propia supervivencia dentro de un universo en transformación constante.",
     review: {
@@ -275,7 +275,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "jose-m-aldasoro",
     isSaga: false,
-    categories: [3, 6],
+    categories: [0, 3, 6],
     summary:
       "En un futuro donde la muerte ha sido eliminada, la humanidad vive atrapada en un ciclo temporal perfecto: un mismo día que se repite indefinidamente para todos. Óliver considera que el bucle es la forma ideal de preservar el orden; sin embargo, su perspectiva cambia cuando aparece una mujer capaz de recordar cada repetición del día y está decidida a romper con este ciclo repetitivo. A partir de este encuentro, la historia se convierte en una lucha por alterar una estructura que mantiene a toda la sociedad en una prisión temporal sin consecuencias reales.",
     review: {
@@ -316,7 +316,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "a-a-espino",
     isSaga: false,
-    categories: [6],
+    categories: [0, 6],
     summary:
       "En un futuro cercano, la tecnología permite a las personas vivir experiencias extremadamente realistas dentro de entornos virtuales, incluso recreaciones de conflictos armados sin riesgo físico real. Pero puede que el verdadero peligro se encuentre al otro lado de esta tecnología. Lo que para Javier parece un entretenimiento sofisticado pronto se convierte en algo mucho más serio, donde las decisiones tomadas dentro de la simulación empiezan a tener implicaciones inesperadas. Una historia en donde la línea entre lo virtual y lo real se vuelve cada vez más difusa, obligando a Javier a cuestionar la naturaleza de sus actos y el verdadero propósito de la tecnología que domina su mundo.",
     review: {
@@ -355,7 +355,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "noe-martin-salido",
     isSaga: false,
-    categories: [3],
+    categories: [0, 3],
     summary:
       "En una taberna aislada al final de un camino, un grupo de viajeros de distintas regiones se resguarda de una tormenta implacable. Mientras esperan, comienzan a compartir relatos personales sobre la Muerte, cada uno desde su propia experiencia y creencias. Sin embargo, la conversación toma un tono inquietante cuando se insinúa que la Parca podría no ser solo una figura simbólica, sino una presencia consciente que escucha lo que se dice de ella.",
     review: {
@@ -394,7 +394,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "julian-drake",
     isSaga: false,
-    categories: [1],
+    categories: [0, 1],
     summary:
       "En una ciudad que se deshidrata bajo un calor extremo, la escasez de agua transforma la vida cotidiana en una lucha silenciosa por la supervivencia. Leena registra en su diario el deterioro progresivo del entorno y de la sociedad que la rodea, mientras el mundo exterior se vuelve cada vez más hostil y desolado. A medida que los recursos desaparecen, también lo hace la estabilidad emocional de las personas, y el silencio empieza a ocupar el lugar que antes tenía la vida. La historia sigue esa lenta descomposición desde una perspectiva íntima y personal.",
     review: {
@@ -432,7 +432,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "nicole-sanchez-castillo",
     isSaga: false,
-    categories: [1],
+    categories: [0, 1],
     summary:
       "Una colección de relatos donde lo cotidiano se mezcla con lo sobrenatural y lo emocional. Cada historia explora distintas facetas de la condición humana (el duelo, la culpa, la violencia, la creatividad y la esperanza), siempre atravesadas por un entorno cargado de simbolismo, cultura y elementos fantásticos.",
     review: {
@@ -472,7 +472,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "alejandro-p-c",
     isSaga: false,
-    categories: [2],
+    categories: [0, 2],
     summary:
       "Ryler, un joven recluta, inicia su formación militar en el Cuartel de las Praderas, donde la disciplina es dura y el entrenamiento no deja espacio para la debilidad. Mientras los días de instrucción avanzan, el entorno empieza a revelar indicios de algo más grande que simples ejercicios militares. Secretos antiguos y una amenaza latente comienzan a emerger más allá del cuartel, transformando la formación en una preparación para un conflicto real que pondrá a prueba su supervivencia.",
     review: {
@@ -512,7 +512,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "keira-moreau",
     isSaga: false,
-    categories: [2],
+    categories: [0, 2],
     summary:
       "En una sociedad dominada por una élite 'sangre pura' que explota a los demás, Cala ha crecido marcada por la opresión tras ser separada de su familia. Cuando recibe la orden de servir a un poderoso señor, descubrirá lo fácil que es caer rendida ante sus deseos más profundos, peligrando así la misión original de asesinarlo.",
     review: {
@@ -551,7 +551,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "gabriel-vilches-barroso",
     isSaga: false,
-    categories: [4, 5],
+    categories: [0, 4, 5],
     summary:
       "En un mundo caótico, ser superhéroe está lejos de ser ideal: implica persecución, peligro constante y una responsabilidad abrumadora. El protagonista, transformado por su propio padre en una criatura fuera de lo común, se ve obligado a luchar contra amenazas cada vez más extrañas en una realidad que pierde sentido. Entre combates, humor irreverente y situaciones absurdas, enfrenta este caos acompañado de sus amigos y de Elvira, mientras intenta sobrevivir a un papel que nunca quiso asumir.",
     review: {
@@ -592,7 +592,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "juan-carlos-lopez-bayon",
     isSaga: false,
-    categories: [1, 2],
+    categories: [0, 1, 2],
     summary:
       "En Navidad, Juan Carlos anhela volver a ver a su gatita Musi, a quien perdió tiempo atrás. De forma inesperada, su deseo se cumple, dando lugar a un reencuentro tan emotivo como especial. La historia recorre el vínculo entre ambos, desde sus primeros momentos juntos hasta la despedida, ofreciendo un relato conmovedor para quienes han amado y extrañan a sus mascotas.",
     review: {
@@ -630,7 +630,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "eduardo-d-allen",
     isSaga: true,
-    categories: [3, 5],
+    categories: [0, 3, 5],
     summary:
       "En una última ciudad del mundo, la humanidad sobrevive bajo el control de El Regente, un líder que mantiene un supuesto orden perfecto basado en el control y el miedo. Jon, (que ha perdido la memoria), se une a Helena para desafiar al sistema, iniciando un camino que los llevará más allá de los límites conocidos. Al descubrir un mundo exterior oculto, su lucha se convierte en una búsqueda por desvelar la verdad que sostiene su realidad y enfrentar las consecuencias de hacerlo.",
     review: {
@@ -671,7 +671,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "gabriel-vilches-barroso",
     isSaga: false,
-    categories: [3],
+    categories: [0, 3],
     summary:
       "Un periodista intergaláctico cuenta, desde dentro, la historia de un vasto imperio alienígena en plena expansión, donde la conquista de nuevos mundos forma parte de su identidad. A través de sus vivencias, especialmente durante una campaña militar clave, se muestra una sociedad avanzada pero marcada por la guerra y las tensiones políticas. Lo que comienza como una simple observación de su entorno evoluciona hacia una crónica de conflictos, traiciones y descubrimientos que cambian su percepción del imperio, sus líderes y el rumbo de toda su civilización.",
     review: {
@@ -710,7 +710,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "eduardo-d-allen",
     isSaga: true,
-    categories: [3],
+    categories: [0, 3],
     summary:
       "Una rebelión contra un sistema dominante se intensifica cuando salen a la luz secretos sobre el origen del mundo exterior y el plan que ha mantenido dividida a la humanidad. Jon se adentra en territorios desconocidos, enfrentando múltiples peligros en su búsqueda de respuestas. Al mismo tiempo, Helena lidera un levantamiento dentro de la ciudad, intentando evitar un conflicto mayor. Mientras ambos avanzan, comienzan a surgir antiguas historias que parecen conectar con los acontecimientos actuales, sugiriendo que el destino de todos podría estar ligado a algo mucho más antiguo de lo que creían.",
     review: {
@@ -751,7 +751,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "sergio-velez-rodríguez",
     isSaga: false,
-    categories: [1],
+    categories: [0, 1],
     summary:
       "Se trata de una antología compuesta por cinco relatos breves que parten de situaciones cotidianas. El conjunto explora distintas formas de lo extraordinario dentro de lo común, jugando con la sorpresa y la ambigüedad emocional en formatos concisos dejando una impresión variable en el lector.",
     review: {
@@ -783,7 +783,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "luis-rivera",
     isSaga: true,
-    categories: [3, 5],
+    categories: [0, 3, 5],
     summary:
       "Un evento misterioso transforma la vida de varias personas al otorgarles habilidades fuera de lo común, entre ellas a Matt, quien junto a sus amigos, se embarca en la búsqueda de un objeto enigmático que podría alterar el equilibrio de todo lo que conocen. Pero a medida que avanzan, surge un peligro cada vez mayor y difícil de comprender, llevándolos a cuestionar el origen de sus poderes y la verdadera amenaza que se cierne sobre su mundo.",
     review: {
@@ -822,7 +822,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "luis-rivera",
     isSaga: true,
-    categories: [3],
+    categories: [0, 3],
     summary:
       "Tras un conflicto que dejó profundas pérdidas, los protagonistas intentan seguir adelante mientras enfrentan las secuelas emocionales de lo vivido. En su comunidad, la llegada de un nuevo líder y la creación de un torneo cambian por completo la estabilidad, desatando nuevas tensiones. A medida que todo se complica, comienzan a salir a la luz vínculos ocultos entre hechos pasados y presentes, empujándolos a replantearse lo que creían cierto sobre su mundo.",
     review: {
@@ -862,7 +862,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "j-c-plaza",
     isSaga: false,
-    categories: [3],
+    categories: [0, 3],
     summary:
       "Víctor inicia un viaje que pronto se transforma en una experiencia extrema, dejándolo atrapado en una situación que pone en riesgo su vida. Lo que parecía algo cotidiano da paso a un entorno hostil donde debe luchar por sobrevivir. A medida que se adentra en lo desconocido de la vida alienígena, se enfrenta a situaciones ligadas a lo inexplicable, en una historia que mezcla tensión, peligro y una visión más realista de lo extraordinario.",
     review: {
@@ -903,7 +903,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "javier-marin",
     isSaga: false,
-    categories: [5],
+    categories: [0, 5],
     summary:
       "En una ciudad dominada por el temor, una serie de crímenes con un patrón ritual pone en alerta a las autoridades. Marco Duarte y su equipo se encargan del caso, descubriendo que cada pista parece encajar en un esquema cuidadosamente planificado. Conforme avanzan en la investigación, la situación se vuelve cada vez más tensa y peligrosa, mientras intentan adelantarse a un responsable que siempre parece estar fuera de su alcance.",
     review: {
@@ -936,7 +936,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "maximilian-cross",
     isSaga: false,
-    categories: [3],
+    categories: [0, 3],
     summary:
       "Una recopilación de supuestos archivos y testimonios expone la existencia de programas secretos desarrollados a lo largo de décadas, relacionados con el estudio de la mente humana y fenómenos fuera de lo común. A través de distintos casos y referencias cruzadas, se plantea una red de investigaciones ocultas que involucran desapariciones, manipulación de la percepción y proyectos clasificados, ofreciendo una visión inquietante de lo que podría haberse mantenido fuera del conocimiento público.",
     review: {
@@ -974,7 +974,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "juan-antonio-jimenez",
     isSaga: false,
-    categories: [3, 6],
+    categories: [0, 3, 6],
     summary:
       "Carmen Arístegui logra un avance científico que permite anticipar con gran precisión la evolución de los seres vivos, atrayendo la atención de la comunidad científica y de diversas figuras influyentes. Su hallazgo la conecta con otros expertos y empresarios del ámbito tecnológico y ecológico, dando lugar a la posibilidad de un proyecto ambicioso que busca integrar ciencia y desarrollo futuro. Sin embargo, la colaboración también plantea dudas sobre sus implicaciones tanto éticas como prácticas.",
     review: {
@@ -1013,7 +1013,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "adner-perez-garcia",
     isSaga: false,
-    categories: [1, 2],
+    categories: [0, 1, 2],
     summary:
       "Se trata de una colección de cuentos centrados en distintas experiencias humanas atravesadas por la pérdida, el amor y el paso del tiempo. A lo largo del libro, la muerte aparece como un elemento inevitable, pero el enfoque se mantiene en lo vivido: los recuerdos, los sacrificios y las huellas emocionales que dejan las personas en los demás.",
     review: {
@@ -1052,7 +1052,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "luis-rivera",
     isSaga: true,
-    categories: [3],
+    categories: [0, 3],
     summary:
       "Tras un torneo marcado por la violencia, la aparente estabilidad se rompe con la llegada de misteriosos forasteros y sucesos inquietantes en una prisión que parece ocultar algo peligroso. El hallazgo de información clave revela que todo forma parte de un entramado más profundo, donde las decisiones del pasado comienzan a pasar factura. A medida que surgen secretos, los protagonistas se ven atrapados en una red de amenazas y verdades que ponen en duda su realidad.",
     review: {
@@ -1092,7 +1092,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "daniel-galvez-estevez",
     isSaga: false,
-    categories: [2],
+    categories: [0, 2],
     summary:
       "Una mujer le entrega a Vero unos dados con una simple indicación: usarlos varias veces al día durante una semana. Lo que parece un juego inofensivo pronto comienza a tener efectos en su vida, influyendo en situaciones y decisiones de formas inesperadas. Con el paso de los días, el azar deja de ser algo trivial y se convierte en una fuerza que altera su realidad, llevándola a enfrentarse a consecuencias imprevisibles y a cuestionar el control que tiene sobre su propio destino.",
     review: {
@@ -1131,7 +1131,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "belu-elein",
     isSaga: true,
-    categories: [5],
+    categories: [0, 5],
     summary:
       "Eileen, una joven que anhela convertirse en guerrera, se adentra en un territorio prohibido donde su destino cambia al cruzarse con Tolfian, el príncipe de los elfos. Juntos quedan envueltos en un conflicto que amenaza con destruir los mundos de ambos. Mientras un amor prohibido comienza a florecer, una fuerza oscura avanza, impulsando a Eileen a enfrentar peligros constantes y descubrir si tiene lo necesario para cumplir el papel que parece esperarla o si será superada por una guerra más grande que ella.",
     review: {
@@ -1170,7 +1170,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "eduardo-d-allen",
     isSaga: true,
-    categories: [3],
+    categories: [0, 3],
     summary:
       "Helena, presionada por fuerzas de poder y por un plan que apenas comienza a comprender, impulsa los inicios de una rebelión en un mundo al borde del colapso, mientras intenta reencontrarse con Jon. Por su parte, Jon atraviesa un entorno devastado enfrentando peligros constantes con la esperanza de hallarla. Aunque los cambios ya han comenzado, la estabilidad sigue lejos, y ambos terminan descubriendo verdades que transforman su visión del mundo, manteniendo su vínculo como el eje de la historia.",
     review: {
@@ -1210,7 +1210,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "arnulfo-diaz",
     isSaga: false,
-    categories: [1],
+    categories: [0, 1],
     summary:
       "La historia sigue a Nilo, un perrito que llega a un hogar afectado por la tristeza y, con el tiempo, cambia la dinámica de quienes viven allí. A través de su compañía, logra aportar calma y una nueva forma de conexión emocional. Una narración que recorre momentos de convivencia, duelo y sanación, mostrando cómo el cariño y la lealtad pueden ayudar a reconstruir incluso los vínculos más dañados.",
     review: {
@@ -1241,7 +1241,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "david-sanz",
     isSaga: false,
-    categories: [3, 6],
+    categories: [0, 3, 6],
     summary:
       "Una señal inexplicable en una zona desconocida da inicio a una misión que pronto se transforma en una serie de decisiones capaces de cambiar el equilibrio del universo. La historia combina exploración espacial con dilemas morales complejos, donde la ciencia, la filosofía y las emociones humanas se entrelazan. Lo que empieza como una operación técnica se transforma en una cadena de eventos que obliga a replantear el valor de cada elección.",
     review: {
@@ -1281,7 +1281,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "marcos-vega",
     isSaga: false,
-    categories: [3, 6, 7],
+    categories: [0, 3, 6, 7],
     summary:
       "Desde hace siglos, fuerzas procedentes de otra dimensión intentan abrirse paso al mundo humano a través de grietas que se manifiestan como grandes catástrofes. Estas amenazas han sido contenidas por antiguos sellos y por personas capaces de hacerles frente, manteniendo un frágil equilibrio que pocos conocen. Judith, marcada por enfrentamientos pasados y profundas pérdidas, ha quedado emocionalmente desgastada y alejada de esa lucha. Sin embargo, un hecho inesperado la obliga a revivir su historia y a enfrentarse a las consecuencias de haber bajado la guardia, justo cuando una nueva fisura permite que el peligro resurja con más fuerza. Entre recuerdos, culpa y un mundo al borde del colapso, deberá decidir si retomar el papel que una vez la definió o renunciar definitivamente mientras la amenaza avanza sin control.",
     review: {
@@ -1324,7 +1324,7 @@ export const books: Book[] = [
     amazonLink: "https://amazon.com",
     authorSlug: "beatriz-lillo",
     isSaga: false,
-    categories: [4],
+    categories: [0, 4],
     summary:
       "Lucía experimenta un giro inesperado cuando una tirada accidentada del tarot empieza a reflejarse en su vida de maneras que no puede comprender. Poco a poco, su realidad parece influida por una serie de coincidencias y cambios que sugieren una lógica oculta detrás de sus decisiones. Entre su inestabilidad, también se desarrolla una relación compleja, marcada por la duda y la atracción, mientras intenta entender si lo que vive responde al azar, al destino o a algo que escapa por completo a su control.",
     review: {
@@ -1369,7 +1369,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "jose-m-aldasoro",
     isSaga: false,
-    categories: [],
+    categories: [0, 3],
     summary:
       "Una extraña frecuencia comienza a alterar la mente humana, desatando una crisis global que amenaza con destruir la realidad tal como se conoce. Mientras el caos se expande y la locura colectiva se vuelve imparable, un grupo de personas descubre que antiguos monumentos alrededor del mundo esconden un patrón conectado con el origen de la amenaza.\n\nEntre investigaciones arqueológicas, teorías de física cuántica y conspiraciones ocultas durante siglos, la búsqueda de respuestas se convierte en una carrera desesperada para evitar la extinción de la humanidad.",
     review: {
@@ -1398,7 +1398,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "a-a-espino",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "Una extraña infección comienza a propagarse entre los cerdos, desencadenando un desastre que rápidamente transforma la vida cotidiana en una lucha por sobrevivir. En medio del caos, un grupo de vecinos comunes —lejos de los típicos héroes preparados— intenta enfrentarse a una amenaza cada vez más incontrolable.\n\nEntre situaciones absurdas, tensión constante y decisiones desesperadas, la historia combina horror, humor negro y drama para mostrar cómo personas corrientes reaccionan cuando el mundo comienza a derrumbarse.",
     review: {
@@ -1427,7 +1427,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "julian-drake",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "Un apagón global deja al mundo entero incomunicado y sumido en el caos. En medio de la incertidumbre, una científica, un hacker y una doctora comienzan a descubrir que la caída de la red eléctrica no fue un accidente, sino el inicio de un evento mucho más peligroso y deliberado.\n\nMientras la sociedad colapsa y la desconfianza crece, los protagonistas intentan entender qué está ocurriendo realmente antes de que la oscuridad termine por consumirlo todo.",
     review: {
@@ -1456,7 +1456,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "julian-drake",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "En un hospital de Madrid, un extraño fenómeno comienza a propagarse entre los pacientes: dejan de sentir dolor, de hablar y poco a poco pierden toda voluntad. Leo, un enfermero agotado por la rutina, percibe que esa calma anormal oculta algo mucho más perturbador que una enfermedad común.\n\nA medida que el silencio se expande y el comportamiento de las personas cambia de forma inquietante, descubre que el contagio actúa directamente sobre la mente, convirtiéndose en una amenaza imposible de detener.",
     review: {
@@ -1485,7 +1485,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "julian-drake",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "Cuando todas las pantallas del mundo se apagan al mismo tiempo, la sociedad entra en un estado de desconcierto y aislamiento. En medio de una Madrid silenciosa y desconectada, Iván intercepta una extraña señal cifrada que lo lleva a descubrir una verdad inquietante: su propia mente fue utilizada en la creación del sistema que ahora controla y vigila a la población.\n\nMientras intenta comprender el alcance de la conspiración, se enfrenta a una realidad donde la tecnología, el control y la identidad personal se mezclan de forma peligrosa.",
     review: {
@@ -1514,7 +1514,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "julian-drake",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "Una tormenta solar convierte la superficie en un lugar mortal, obligando a los supervivientes de Madrid a refugiarse bajo tierra. Clara se adentra en el sistema de metro buscando a su hija, pero descubre una comunidad subterránea regida por normas estrictas, vigilancia constante y un clima de miedo silencioso.\n\nMientras intenta sobrevivir en ese nuevo mundo aislado y opresivo, deberá enfrentarse a los peligros de una sociedad que ha cambiado radicalmente tras el desastre.",
     review: {
@@ -1543,7 +1543,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "nicole-sanchez-castillo",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "Inhumana reúne una serie de relatos centrados en emociones humanas intensas y conflictos sociales que exponen las contradicciones, injusticias y heridas de la vida contemporánea. A través de situaciones donde lo cotidiano se mezcla con elementos inquietantes o extraños, los personajes enfrentan experiencias marcadas por el dolor, la culpa, la violencia y la desigualdad.\n\nCada cuento aborda distintas formas de resistencia y vulnerabilidad humana, construyendo una visión crítica y emocional sobre la sociedad y los límites de nuestra propia humanidad.",
     review: {
@@ -1572,7 +1572,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "nicole-sanchez-castillo",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Tras presenciar cómo una criatura devora al perro de su vecino en plena noche, un niño comienza a notar cambios aterradores en su entorno, especialmente en el comportamiento de su padre, cada vez más agresivo y violento. Mientras tanto, el pueblo de Merfai se hunde en una ola de asesinatos, desapariciones y episodios de furia inexplicable.\n\nLa jefa de policía Ángela Akello y su esposa investigan los extraños sucesos, descubriendo una antigua profecía vinculada a secretos enterrados en la historia del pueblo. A medida que la violencia crece, deberán enfrentar una amenaza que parece despertar lo peor de la naturaleza humana.",
     review: {
@@ -1601,7 +1601,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "nicole-sanchez-castillo",
     isSaga: false,
-    categories: [],
+    categories: [0, 1, 2],
     summary:
       "Cascabelo ha sido secuestrado por unos pumas que buscan oro y una poderosa flor mágica. Para sobrevivir y escapar, deberá enfrentarse a un entorno peligroso junto a sus amigos, intentando regresar a su hogar y reunirse con su familia.\n\nEn el camino, la historia presenta un viaje lleno de paisajes naturales, animales salvajes y desafíos emocionales, funcionando como una alegoría del conflicto colombiano a través de una aventura de supervivencia y valentía.",
     review: {
@@ -1631,7 +1631,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "keira-moreau",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "Wendy vive con una extraña sensación de vacío y pérdida, como si algo esencial en su vida hubiera sido borrado de su memoria. Aunque su entorno parece normal, percibe que algo ha cambiado y que está siendo observada. Todo se intensifica cuando aparece un desconocido que asegura conocerla y le habla de un pasado compartido que ella no puede recordar.\n\nA medida que intenta recuperar su memoria, descubre que lo que olvidó está ligado a un amor profundo, pero también a un posible peligro que podría haber desencadenado una maldición.",
     review: {
@@ -1660,7 +1660,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "keira-moreau",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "En un hotel aislado en el desierto, el señor Coulson parte a una expedición guiando a una pareja de turistas misteriosos que exigen condiciones extrañas y despiertan sospechas en todos a su alrededor. Su esposa, Fernanda, permanece en el hotel, cada vez más inquieta por el comportamiento de los visitantes y por la creciente extrañeza que envuelve a su esposo.\n\nA medida que los sucesos se vuelven más perturbadores, Fernanda empieza a investigar y descubre que la pareja oculta un secreto oscuro relacionado con una puerta prohibida del hotel. Al acercarse a la verdad, se enfrenta a una realidad que no debería ser revelada.",
     review: {
@@ -1690,7 +1690,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "gabriel-vilches-barroso",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Gabriel Kajal, hijo de un prestigioso metabiólogo, emprende un viaje para completar la enciclopedia iniciada por su padre sobre los Metalien, unas criaturas cósmicas capaces de viajar por el universo, influir en la evolución y establecer vínculos simbióticos con otras formas de vida, especialmente los humanos.\n\nA lo largo de su aventura, Gabriel busca conocer y documentar estas entidades fascinantes, explorando distintos mundos y descubriendo los secretos de su origen, en una travesía llena de acción, humor y descubrimiento científico.",
     review: {
@@ -1720,7 +1720,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "gabriel-vilches-barroso",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "En el mundo de Unitaria, la realidad está dividida entre dos fuerzas opuestas, Luz y Oscuridad, influenciadas por los astros Ker y Yara. Esta división ha creado dos reinos enfrentados, Draerk y Laxia, cuya frágil paz está al borde del colapso.\n\nYadrin Banarto I, heredero del Trono de la Oscuridad, emprende una misión para evitar la guerra y restaurar el equilibrio. Para ello deberá recuperar los fragmentos de la antigua canción “Unitaria Astralis”, capaz de mantener la armonía entre ambos mundos. En su camino contará con la ayuda de un misterioso maestro y jóvenes aprendices de magia.",
     review: {
@@ -1749,7 +1749,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "juan-carlos-lopez-bayon",
     isSaga: true,
-    categories: [],
+    categories: [0],
     summary:
       "El autor de la saga Libertadores emprende un viaje imaginario hacia la Gran Nube de Magallanes, donde descubre que los mundos y personajes que creó han cobrado vida. Invitado por ellos, se adentra en Mandavia para conocer de primera mano el universo que antes solo existía en su imaginación.\n\nLa historia funciona como una expansión del universo de la saga, incluyendo material inédito sobre el origen de X77 y un adelanto de la continuación, mientras explora una experiencia donde la ficción y la realidad se entrelazan.",
     review: {
@@ -1779,7 +1779,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "juan-carlos-lopez-bayon",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Una colección de 17 relatos breves que combinan ciencia ficción, fantasía y emociones profundas. Cada historia propone viajes imaginativos que exploran mundos más allá de las estrellas, al mismo tiempo que conectan con sentimientos humanos como la empatía, la pérdida y el asombro.\n\nEl conjunto ofrece una experiencia variada donde lo fantástico y lo emocional se entrelazan en narraciones independientes que invitan a reflexionar y sentir.",
     review: {
@@ -1809,7 +1809,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "eduardo-d-allen",
     isSaga: true,
-    categories: [],
+    categories: [0, 1],
     summary:
       "En un futuro postapocalíptico, estos relatos exploran cómo podría sobrevivir el espíritu de la Navidad, conocida como la “Fiesta de las Luces”, en un mundo marcado por la pérdida y la distopía. Thaellori el Caminante emprende una misión para recuperar la fraternidad y la esperanza en una sociedad fracturada.\n\nA través de historias breves y emotivas, se transmiten valores como la resiliencia, la tolerancia, la piedad y la importancia de la unión humana, mostrando la Navidad como una luz simbólica que persiste incluso en los tiempos más oscuros.",
     review: {
@@ -1838,7 +1838,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "sergio-velez-rodriguez",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "Una figura misteriosa, marcada por una tragedia personal, avanza hacia un lugar dominado por fuerzas oscuras con el objetivo de cumplir una misión de redención. En ese territorio consumido por sombras, deberá enfrentarse a un desafío ligado a un pasado doloroso y a vínculos rotos por una conjuración imprudente.\n\nPara contener las fuerzas desatadas, el protagonista recurre a un arma especial: un acero imbuido de magia, en una historia donde el conflicto entre culpa, destino y poder sobrenatural guía el desarrollo del viaje.",
     review: {
@@ -1868,7 +1868,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "sergio-velez-rodriguez",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "En una ciudad austrohúngara a finales del siglo XIX, una joven aristócrata busca escapar del tedio y las restricciones sociales a través del estudio y el desarrollo de su intelecto. Su curiosidad la conduce a descubrir una realidad oculta y cuestionable que desafía todo lo que conoce sobre su entorno.\n\nA medida que se adentra en estos misterios, se enfrenta a decisiones que pondrán a prueba sus valores y su deseo de libertad, en un contexto donde la intriga, la tensión y elementos inesperadamente futuristas se entrelazan con la historia.",
     review: {
@@ -1898,7 +1898,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "luis-rivera",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "En la ciudad de Tijuana, una joven comienza a comportarse de manera extraña, lo que coincide con el resurgimiento de una antigua leyenda urbana sobre una bailarina sin cabeza. A medida que los sucesos inquietantes se intensifican, la frontera entre mito y realidad comienza a difuminarse.\n\nSin embargo, el verdadero peligro no parece provenir solo de lo sobrenatural, sino también de la corrupción humana, los secretos ocultos y la manipulación de la verdad a través de los medios. La historia avanza hacia una revelación que desafía lo que es real y lo que es construido.",
     review: {
@@ -1927,7 +1927,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "javier-marin",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "El inspector Marco Duarte y su equipo se enfrentan a un nuevo caso cuando aparece el cadáver de una mujer con una mutilación inexplicable. Lo que comienza como una investigación policial pronto se convierte en un juego peligroso contra un asesino meticuloso y perturbado que parece anticiparse a cada movimiento.\n\nA medida que el caso avanza, la presión psicológica aumenta y los investigadores se ven obligados a enfrentarse no solo al criminal, sino también a los límites de la mente humana y la oscuridad que se esconde tras la violencia.",
     review: {
@@ -1957,7 +1957,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "javier-marin",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "El inspector Marco Duarte se convierte en el objetivo de un asesino en serie extremadamente calculador, que inicia una cacería tras el secuestro de una agente de policía. El criminal convierte la investigación en un juego mortal, donde cada pista es parte de una partida de ajedrez manipulada a su favor.\n\nEl equipo policial debe resolver enigmáticos mensajes en una carrera contrarreloj para evitar más víctimas, mientras el asesino controla cada movimiento con precisión, llevando la situación al límite en una confrontación cada vez más desesperada.",
     review: {
@@ -1987,7 +1987,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "javier-marin",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "El hallazgo del cadáver decapitado de una periodista convierte a Samuel Castillo en el principal sospechoso, obligándolo a huir mientras es perseguido por la policía y envuelto en una conspiración que no comprende del todo. En su camino, encuentra ayuda en dos personas en su misma situación, formando una alianza frágil en medio del caos.\n\nLo que parece una investigación criminal se transforma en un juego macabro de enigmas y manipulación, donde un misterioso “Desafío 59” controla los acontecimientos. Samuel deberá resolver acertijos contrarreloj mientras se adentra en una trama de poder, muerte y escenarios cada vez más imposibles.",
     review: {
@@ -2016,7 +2016,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "adner-perez-garcia",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Julia descubre una misteriosa señal que la conecta con alguien situado a años luz de distancia, iniciando un vínculo inesperado entre dos personas de mundos completamente distintos. A través de esta conexión, ambos comienzan a comprenderse de una forma profunda e inusual, desafiando las limitaciones del espacio y la lógica.\n\nSin embargo, esta relación plantea dudas sobre lo que puede o no existir, y sobre las consecuencias de un lazo que parece ir más allá de lo permitido por la realidad. La historia explora el amor y la conexión emocional desde una perspectiva íntima y casi imposible.",
     review: {
@@ -2046,7 +2046,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "adner-perez-garcia",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Arda, un joven marcado por un pasado desconocido y cicatrices emocionales profundas, se ve arrastrado a un conflicto donde fuerzas opuestas del bien y el mal moldean el destino del mundo. En su camino deberá descubrir su verdadera identidad mientras enfrenta pruebas que pondrán a prueba su valentía y su voluntad de seguir adelante.\n\nA medida que avanza su viaje, se ve envuelto en una serie de eventos decisivos que lo obligan a confrontar tanto enemigos externos como sus propios conflictos internos, en una historia de crecimiento personal y lucha por el propósito.",
     review: {
@@ -2076,7 +2076,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "daniel-galvez-estevez",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Gustavo, un experto en negociación y química, se ve atrapado en un peligroso juego donde tres decisiones escritas en papel pueden determinar el rumbo de su vida. Armado únicamente con su ingenio y un mechero con el que puede materializar esas elecciones, se enfrenta a una situación límite que amenaza tanto su supervivencia como la de las personas que le importan.\n\nA medida que el conflicto avanza, deberá decidir cuánto está dispuesto a sacrificar y hasta dónde puede llegar para proteger a los suyos, en una historia de tensión creciente y decisiones irreversibles.",
     review: {
@@ -2105,7 +2105,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "daniel-galvez-estevez",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Nicolás, acostumbrado a la mala suerte y a ocupar siempre el peor lugar en todo, se ve inesperadamente involucrado en un extraño juego donde, por primera vez, tiene la oportunidad de cambiar su destino. Sin embargo, el juego no es simple ni seguro.\n\nA través de notas adhesivas rojas y azules capaces de modificar recuerdos, Nicolás deberá navegar una serie de situaciones confusas donde la identidad, la memoria y la realidad se vuelven inestables. Cada decisión lo acerca más a un objetivo incierto, pero también a un precio que aún no comprende del todo.",
     review: {
@@ -2135,7 +2135,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "belu-elein",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Nimie, una joven que siempre ha creído en la magia y los cuentos de hadas, es transportada inesperadamente a un reino fantástico donde esas historias son reales. Sin embargo, pronto descubre que ese mundo no es tan ideal como imaginaba y que sus deseos tienen consecuencias.\n\nEnfrentándose a criaturas mágicas, misterios y desafíos peligrosos, Nimie emprende un viaje de autodescubrimiento en el que deberá definir su identidad y decidir qué está dispuesta a sacrificar para cumplir su destino.",
     review: {
@@ -2165,7 +2165,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "belu-elein",
     isSaga: true,
-    categories: [],
+    categories: [0],
     summary:
       "Eileen, tras completar su duro entrenamiento, está a punto de convertirse en la guerrera que siempre ha deseado ser. Junto a Tolfian, se dirige hacia un enfrentamiento decisivo mientras fuerzas oscuras avanzan y una hechicera observa desde las sombras.\n\nEn medio de una guerra inminente, ambos deberán enfrentarse a un destino incierto que pone a prueba su amor y su supervivencia. La historia se desarrolla bajo la sombra de un sacrificio inevitable, donde la victoria tiene un precio mortal.",
     review: {
@@ -2194,7 +2194,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "belu-elein",
     isSaga: true,
-    categories: [],
+    categories: [0],
     summary:
       "Tras el fin de la guerra oscura, el reino de Eterna entra en una era de paz entre humanos y elfos, pero la muerte del anterior rey de Numantia rompe la estabilidad. Tolfian debe asumir la corona en un contexto político tenso, acompañado por Eileen, mientras ambos enfrentan un reino lleno de ambición, secretos y conspiraciones.\n\nUna amenaza oculta, simbolizada por la figura de un cuervo, comienza a manipular los acontecimientos desde las sombras, donde cualquier aliado podría ser un enemigo. El poder, la traición y la incertidumbre convierten la sucesión en un juego mortal.",
     review: {
@@ -2224,7 +2224,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "arnulfo-diaz",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "Dejar huella es una antología de relatos inspirados en historias reales de animales en situación de calle o maltrato. A través de las voces de protagonistas como Jacinto, Peludo y Lenteja, se muestra su día a día, sus dificultades y su esperanza, permitiendo ver el mundo desde su perspectiva.\n\nCada cuento ofrece dos posibles desenlaces: uno esperanzador y otro más duro y realista, reflejando la crudeza de la vida que enfrentan muchos animales. La obra invita a la reflexión sobre la empatía y la responsabilidad humana hacia los seres vivos.",
     review: {
@@ -2254,7 +2254,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "arnulfo-diaz",
     isSaga: false,
-    categories: [],
+    categories: [0, 1],
     summary:
       "Lyra, una joven que vive en un mundo donde la magia se oculta en lo cotidiano, sufre un hechizo que la transforma en gata tras un error inesperado. Obligada a sobrevivir en las calles, deberá recorrer lugares peligrosos y enfrentarse a pruebas que pondrán a prueba su ingenio, su valentía y su identidad.\n\nEn su búsqueda por recuperar su forma humana, descubrirá secretos ocultos y vivirá un proceso de transformación interna, donde el miedo, la esperanza y la lealtad se entrelazan en cada paso de su viaje.",
     review: {
@@ -2283,7 +2283,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "david-sanz",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Cuatro desconocidos son arrastrados por fuerzas sobrenaturales cuando el destino de la humanidad se encuentra en peligro. En su viaje, se enfrentan a entidades cósmicas y situaciones que desafían su comprensión, descubriendo que el verdadero reto no es salvar al mundo, sino aprender a convivir y entenderse entre ellos.\n\nLa historia mezcla humor, misterio y elementos fantásticos para explorar temas como el destino, el libre albedrío y la naturaleza humana, en una narrativa satírica que combina lo cotidiano con lo extraordinario.",
     review: {
@@ -2313,7 +2313,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "david-sanz",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Una antología de relatos cortos ambientados en una versión misteriosa y versátil de la ciudad de Boston, donde la fantasía, la ciencia ficción y el terror se entrelazan. Cada historia presenta escenarios y personajes distintos, desde capitanes espaciales hasta camioneros de los años 80 o héroes enfrentados a dragones, explorando múltiples estilos narrativos.\n\nLa colección combina ucronías, eventos sobrenaturales, realismo mágico y horror cósmico, creando un conjunto de relatos impredecibles que destacan por su variedad de tonos, atmósferas y giros inesperados.",
     review: {
@@ -2343,7 +2343,7 @@ export const books: Book[] = [
     amazonLink: "",
     authorSlug: "beatriz-lillo",
     isSaga: false,
-    categories: [],
+    categories: [0],
     summary:
       "Una serie de misteriosas cartas del tarot comienza a marcar el destino alguien, desencadenando una cadena de eventos que alteran sus caminos de forma irreversible.\n\nUna pelirroja, un mago y un entorno caótico de intrigas y peligros se ven arrastrados hacia un conflicto donde las decisiones tienen consecuencias cada vez más intensas. A medida que los polos opuestos se acercan, el control sobre la realidad parece desvanecerse.",
     review: {
