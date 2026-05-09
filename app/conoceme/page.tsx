@@ -66,7 +66,7 @@ export default function ConocemePage() {
       <div className="flex flex-wrap items-center gap-4 mb-10">
 
         <a
-          href="https://instagram.com/usuario"
+          href="https://www.instagram.com/decaosyletras?igsh=dXpxNzU3eWhsYmo1"
           target="_blank"
           className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
         >
@@ -74,7 +74,7 @@ export default function ConocemePage() {
         </a>
 
         <a
-          href="https://tiktok.com/"
+          href="https://www.tiktok.com/@decaosyletras?_r=1&_t=ZS-96CxbSs4gvI"
           target="_blank"
           className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
         >
@@ -82,7 +82,7 @@ export default function ConocemePage() {
         </a>
 
         <a
-          href="https://threads.net/"
+          href="https://www.threads.com/@decaosyletras"
           target="_blank"
           className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
         >
