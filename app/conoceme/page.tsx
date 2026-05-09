@@ -55,8 +55,11 @@ export default function ConocemePage() {
       </h1>
 
       <p className="text-zinc-300 leading-relaxed mb-6">
-        Soy un lector enfocado en descubrir libros poco conocidos pero con
-        gran valor, especialmente de autores independientes.
+        Soy un escritor independiente y un lector enfocado en descubrir libros poco conocidos, pero de gran valor. Consciente del esfuerzo que implica escribir, editar y autopublicar, he creado este proyecto para dar visibilidad a obras de autores independientes.
+      </p>
+
+      <p className="text-zinc-300 leading-relaxed mb-6">
+        Puedes seguirme en mis redes sociales o contactarme por mensaje directo en cualquiera de ellas si detectas alguna inconsistencia en la información de cualquier libro del catálogo, si deseas solicitar la eliminación de tu obra, o si quieres compartir algún comentario sobre esta página. Todo aporte hecho con respeto será bien recibido.
       </p>
 
       {/* REDES + SAGA */}

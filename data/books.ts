@@ -1364,7 +1364,7 @@ export const books: Book[] = [
   //NO LEÍDOS
   {
     slug: "frecuencia-zero",
-    title: "Frecuencia Zero",
+    title: "FRECUENCIA ZERO",
     cover: "",
     amazonLink: "",
     authorSlug: "jose-m-aldasoro",
@@ -1393,7 +1393,7 @@ export const books: Book[] = [
   },
   {
     slug: "apocalipsis-porcina",
-    title: "Apocalipsis porcina",
+    title: "APOCALIPSIS PORCINA",
     cover: "",
     amazonLink: "",
     authorSlug: "a-a-espino",
@@ -1422,7 +1422,7 @@ export const books: Book[] = [
   },
   {
     slug: "el-gran-apagon",
-    title: "El gran apagón: Novela de ficción apocalíptica sobre un apagón mundial",
+    title: "EL GRAN APAGÓN",
     cover: "",
     amazonLink: "",
     authorSlug: "julian-drake",
@@ -1451,7 +1451,7 @@ export const books: Book[] = [
   },
   {
     slug: "contagio-silencioso",
-    title: "Contagio silencioso: Novela corta de ciencia ficción distópica",
+    title: "CONTAGIO SILENCIOSO",
     cover: "",
     amazonLink: "",
     authorSlug: "julian-drake",
@@ -1480,7 +1480,7 @@ export const books: Book[] = [
   },
   {
     slug: "linea-muerta",
-    title: "Línea Muerta: Novela corta de ciencia ficción distópica",
+    title: "LÍNEA MUERTA",
     cover: "",
     amazonLink: "",
     authorSlug: "julian-drake",
@@ -1509,7 +1509,7 @@ export const books: Book[] = [
   },
   {
     slug: "ciudad-bajo-tierra",
-    title: "Ciudad bajo tierra: Novela corta de ciencia ficción",
+    title: "CIUDAD BAJO TIERRA",
     cover: "",
     amazonLink: "",
     authorSlug: "julian-drake",
@@ -1538,7 +1538,7 @@ export const books: Book[] = [
   },
   {
     slug: "inhumana",
-    title: "Inhumana",
+    title: "INHUMANA",
     cover: "",
     amazonLink: "",
     authorSlug: "nicole-sanchez-castillo",
@@ -1567,7 +1567,7 @@ export const books: Book[] = [
   },
   {
     slug: "hija",
-    title: "Hija: Un thriller sobrenatural",
+    title: "HIJA",
     cover: "",
     amazonLink: "",
     authorSlug: "nicole-sanchez-castillo",
@@ -1596,7 +1596,7 @@ export const books: Book[] = [
   },
   {
     slug: "belo",
-    title: "Belo: un héroe del campo",
+    title: "BELO: UN HÉROE DEL CAMPO",
     cover: "",
     amazonLink: "",
     authorSlug: "nicole-sanchez-castillo",
@@ -1625,7 +1625,7 @@ export const books: Book[] = [
   },
   {
     slug: "la-maldicion-de-morsten",
-    title: "La maldición de Morsten Sea: El mar guarda secretos que solo el amor es capaz de despertar",
+    title: "LA MALDICIÓN DE MORSTEN SEA: EL MAR GUARDA SECRETOS QUE SOLO EL AMOR ES CAPAZ DE DESPERTAR",
     cover: "",
     amazonLink: "",
     authorSlug: "keira-moreau",
@@ -1654,7 +1654,7 @@ export const books: Book[] = [
   },
   {
     slug: "hijos-de-las-tinieblas",
-    title: "Hijos de las Tinieblas: Hay puertas que no deben abrirse",
+    title: "HIJOS DE LAS TINIEBLAS: HAY PUERTAS QUE NO DEBEN ABRIRSE",
     cover: "",
     amazonLink: "",
     authorSlug: "keira-moreau",
@@ -1683,7 +1683,7 @@ export const books: Book[] = [
   },
   {
     slug: "metalipedics",
-    title: "Metalipedics: G. Kajal y la Enciclopedia de Alienígenas Simbióticos.",
+    title: "METALIPEDICS: G. KAJAL Y LA ENCICLOPEDIA DE ALIENÍGENAS SIMBIÓTICOS.",
     cover: "",
     amazonLink: "",
     authorSlug: "gabriel-vilches-barroso",
@@ -1712,7 +1712,7 @@ export const books: Book[] = [
   },
   {
     slug: "unitaria-astralis",
-    title: "Unitaria Astralis: Yadrin, el Nuevo Rey Oscuro",
+    title: "UNITARIA ASTRALIS: YADRIN, EL NUEVO REY OSCURO",
     cover: "",
     amazonLink: "",
     authorSlug: "gabriel-vilches-barroso",
@@ -1741,7 +1741,7 @@ export const books: Book[] = [
   },
   {
     slug: "cronica-de-mi-viaje-a-mandavia",
-    title: "Crónica de mi viaje a Mandavia: Un viaje imaginario al mundo de los libertadores",
+    title: "CRÓNICA DE MI VIAJE A MANDAVIA: UN VIAJE IMAGINARIO AL MUNDO DE LOS LIBERTADORES",
     cover: "",
     amazonLink: "",
     authorSlug: "juan-carlos-lopez-bayon",
@@ -1770,7 +1770,7 @@ export const books: Book[] = [
   },
   {
     slug: "el-escriba-de-las-estrellas",
-    title: "El escriba de las estrellas",
+    title: "EL ESCRIBA DE LAS ESTRELLAS",
     cover: "",
     amazonLink: "",
     authorSlug: "juan-carlos-lopez-bayon",
@@ -1799,7 +1799,7 @@ export const books: Book[] = [
   },
   {
     slug: "el-himno-del-desierto-cuentos-de-navidad",
-    title: "El Himno del Desierto: Cuentos de Navidad",
+    title: "EL HIMNO DEL DESIERTO: CUENTOS DE NAVIDAD",
     cover: "",
     amazonLink: "",
     authorSlug: "eduardo-d-allen",
@@ -1828,7 +1828,7 @@ export const books: Book[] = [
   },
   {
     slug: "el-juramento-de-la-presencia-errante",
-    title: "El juramento de la presencia errante",
+    title: "EL JURAMENTO DE LA PRESENCIA ERRANTE",
     cover: "",
     amazonLink: "",
     authorSlug: "sergio-velez-rodriguez",
@@ -1857,7 +1857,7 @@ export const books: Book[] = [
   },
   {
     slug: "vestigio-remachado",
-    title: "Vestigio Remachado: Intriga de época con secretos y manipulación científica",
+    title: "VESTIGIO REMACHADO: INTRIGA DE ÉPOCA CON SECRETOS Y MANIPULACIÓN CIENTÍFICA",
     cover: "",
     amazonLink: "",
     authorSlug: "sergio-velez-rodriguez",
@@ -1886,7 +1886,7 @@ export const books: Book[] = [
   },
   {
     slug: "desde-mis-ojos-faraona-la-bailarina-sin-cabeza",
-    title: "Desde mis ojos: Faraona: La bailarina sin cabeza",
+    title: "DESDE MIS OJOS: FARAONA: LA BAILARINA SIN CABEZA",
     cover: "",
     amazonLink: "",
     authorSlug: "luis-rivera",
@@ -1915,7 +1915,7 @@ export const books: Book[] = [
   },
   {
     slug: "descenso-al-abismo",
-    title: "Descenso al Abismo",
+    title: "DESCENSO AL ABISMO",
     cover: "",
     amazonLink: "",
     authorSlug: "javier-marin",
@@ -1944,7 +1944,7 @@ export const books: Book[] = [
   },
   {
     slug: "enigmas-para-un-rey",
-    title: "Enigmas para un rey",
+    title: "ENIGMAS PARA UN REY",
     cover: "",
     amazonLink: "",
     authorSlug: "javier-marin",
@@ -1973,7 +1973,7 @@ export const books: Book[] = [
   },
   {
     slug: "desafio-59",
-    title: "Desafío 59´: Thriller policíaco en el que resolver los enigmas a tiempo separa tu vida de la muerte.",
+    title: "DESAFÍO 59´",
     cover: "",
     amazonLink: "",
     authorSlug: "javier-marin",
@@ -2002,7 +2002,7 @@ export const books: Book[] = [
   },
   {
     slug: "a-anio-luz-de-ti",
-    title: "A año luz de Ti",
+    title: "A AÑO LUZ DE TI",
     cover: "",
     amazonLink: "",
     authorSlug: "adner-perez-garcia",
@@ -2031,7 +2031,7 @@ export const books: Book[] = [
   },
   {
     slug: "imitheos-ascenso",
-    title: "IMITHEOS: Ascenso",
+    title: "IMITHEOS: ASCENSO",
     cover: "",
     amazonLink: "",
     authorSlug: "adner-perez-garcia",
@@ -2060,7 +2060,7 @@ export const books: Book[] = [
   },
   {
     slug: "incendio-de-posibilidades",
-    title: "Incendio de posibilidades",
+    title: "INCENDIO DE POSIBILIDADES",
     cover: "",
     amazonLink: "",
     authorSlug: "daniel-galvez-estevez",
@@ -2089,7 +2089,7 @@ export const books: Book[] = [
   },
   {
     slug: "danza-de-recuerdos",
-    title: "Danza de recuerdos",
+    title: "DANZA DE RECUERDOS",
     cover: "",
     amazonLink: "",
     authorSlug: "daniel-galvez-estevez",
@@ -2118,7 +2118,7 @@ export const books: Book[] = [
   },
   {
     slug: "cenit-memorias-de-un-hada",
-    title: "Cenit : Memorias de un hada",
+    title: "CENIT: MEMORIAS DE UN HADA",
     cover: "",
     amazonLink: "",
     authorSlug: "belu-elein",
@@ -2147,7 +2147,7 @@ export const books: Book[] = [
   },
   {
     slug: "el-mundo-de-eterna-la-guerrera-de-las-estrellas",
-    title: "El Mundo de Eterna: La Guerrera de las Estrellas",
+    title: "EL MUNDO DE ETERNA: LA GUERRERA DE LAS ESTRELLAS",
     cover: "",
     amazonLink: "",
     authorSlug: "belu-elein",
@@ -2176,7 +2176,7 @@ export const books: Book[] = [
   },
   {
     slug: "el-mundo-de-eterna-el-rey-elfo",
-    title: "El Mundo de Eterna: El Rey Elfo",
+    title: "EL MUNDO DE ETERNA: EL REY ELFO",
     cover: "",
     amazonLink: "",
     authorSlug: "belu-elein",
@@ -2205,7 +2205,7 @@ export const books: Book[] = [
   },
   {
     slug: "dejar-huella",
-    title: "Dejar huella",
+    title: "DEJAR HUELLA",
     cover: "",
     amazonLink: "",
     authorSlug: "arnulfo-diaz",
@@ -2234,7 +2234,7 @@ export const books: Book[] = [
   },
   {
     slug: "en-los-tejados",
-    title: "En los tejados",
+    title: "EN LOS TEJADOS",
     cover: "",
     amazonLink: "",
     authorSlug: "arnulfo-diaz",
@@ -2263,7 +2263,7 @@ export const books: Book[] = [
   },
   {
     slug: "heraldos-de-la-muerte",
-    title: "Heraldos de la Muerte",
+    title: "HERALDOS DE LA MUERTE",
     cover: "",
     amazonLink: "",
     authorSlug: "david-sanz",
@@ -2292,7 +2292,7 @@ export const books: Book[] = [
   },
   {
     slug: "historias-de-boston",
-    title: "Historias de Boston: 21 relatos de fantasía, ciencia ficción y terror",
+    title: "HISTORIAS DE BOSTON: 21 RELATOS DE FANTASÍA, CIENCIA FICCIÓN Y TERROR",
     cover: "",
     amazonLink: "",
     authorSlug: "david-sanz",
@@ -2321,7 +2321,7 @@ export const books: Book[] = [
   },
   {
     slug: "el-futuro-que-escribimos-juntos",
-    title: "El futuro que escribimos juntos: Una comedia romántica donde arder en el infierno será el menor de sus problemas",
+    title: "EL FUTURO QUE ESCRIBIMOS JUNTOS: UNA COMEDIA ROMÁNTICA DONDE ARDER EN EL INFIERNO SERÁ EL MENOR DE SUS PROBLEMAS",
     cover: "",
     amazonLink: "",
     authorSlug: "beatriz-lillo",

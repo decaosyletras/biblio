@@ -1,123 +1,304 @@
-export type CategoryRule = {
-  id: string
-  name: string
-  match: (book: {
-    genre: string[]
-    subgenres: string[]
-  }) => boolean
+export type BookInput = {
+  genre: string[]
+  subgenres: string[]
+  metrics?: string[]
+  tags?: Record<string, number>
 }
 
+type CategoryRule = {
+  id: string
+  name: string
+  description?: string
+  threshold: number
+  score: (book: BookInput) => number
+  match: (book: BookInput) => boolean
+}
+
+// --------------------
+// HELPERS
+// --------------------
+
+const hasAny = (arr: string[] = [], values: string[] = []) =>
+  values.some((v) => arr.includes(v))
+
+// --------------------
+// BASE CATEGORY (UI ONLY)
+// --------------------
+
+export const baseCategory = {
+  id: "todos",
+  name: "Todos los libros",
+  description: "Explora todo el catálogo",
+}
+
+// --------------------
+// RULES ENGINE
+// --------------------
+
 export const categoryRules: CategoryRule[] = [
+  // 🌑 MUNDOS OSCUROS Y DISTÓPICOS
   {
-    id: "todos",
-    name: "Todos los libros",
-    match: () => true,
+    id: "mundos_oscuros",
+    name: "Mundos oscuros y distópicos",
+    description: "Sociedades rotas, decadentes y moralmente grises",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
+
+      if (
+        hasAny(b.subgenres, [
+          "oscura",
+          "distopia",
+          "postapocaliptica",
+          "gore",
+          "asesinoenserie",
+          "cyberpunk",
+        ])
+      ) s += 2
+
+      if (hasAny(b.genre, ["terror", "cienciaFiccion"])) s += 1
+
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find((r) => r.id === "mundos_oscuros")
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
   },
 
-  // 🌌 CIENCIA FICCIÓN TECNOLÓGICA
+  // 🧠 REALIDAD Y MENTE HUMANA
   {
-    id: "scifi_tecnologica",
-    name: "Ciencia ficción tecnológica",
-    match: (b) =>
-      b.genre.includes("cienciaFiccion") &&
-      b.subgenres.some(s =>
-        ["cyberpunk", "biopunk", "technothriller"].includes(s)
-      )
+    id: "mente_realidad",
+    name: "Realidad y mente humana",
+    description:
+      "Psicología, filosofía y distorsión de la percepción de la realidad",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
+
+      if (
+        hasAny(b.subgenres, [
+          "psicologico",
+          "existencial",
+          "realidadesalternas",
+          "especulativo",
+        ])
+      ) s += 2
+
+      if (hasAny(b.subgenres, ["utopia", "evolucionespeculativa"])) s += 1
+
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find((r) => r.id === "mente_realidad")
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
   },
 
-  // 🪐 CIENCIA FICCIÓN ESPECULATIVA
-  {
-    id: "scifi_especulativa",
-    name: "Ciencia ficción especulativa",
-    match: (b) =>
-      b.genre.includes("cienciaFiccion") &&
-      b.subgenres.some(s =>
-        ["realidadesalternas", "utopia", "xenoficcion", "evolucionespeculativa", "especulativo"].includes(s)
-      )
-  },
-
-  // 🚀 CIENCIA FICCIÓN ESPACIAL
-  {
-    id: "scifi_espacial",
-    name: "Ciencia ficción espacial",
-    match: (b) =>
-      b.genre.includes("cienciaFiccion") &&
-      b.subgenres.some(s =>
-        ["exploracionespacial", "operaespacial"].includes(s)
-      )
-  },
-
-  // ⚔️ THRILLER TECNOLÓGICO / CONSPIRATIVO
+  // ⚡ THRILLER Y CONSPIRACIONES
   {
     id: "thriller_conspiracion",
-    name: "Thriller de conspiración",
-    match: (b) =>
-      b.genre.includes("thriller") &&
-      b.subgenres.some(s =>
-        ["conspiracion", "technothriller", "asesinoenserie"].includes(s)
+    name: "Thriller y conspiraciones",
+    description: "Tensión, crimen, secretos y persecuciones",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
+
+      if (
+        hasAny(b.subgenres, [
+          "conspiracion",
+          "technothriller",
+          "policial",
+          "asesinoenserie",
+        ])
+      ) s += 2
+
+      if (hasAny(b.subgenres, ["supervivencia"])) s += 1
+
+      if (hasAny(b.genre, ["thriller"])) s += 1
+
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find((r) => r.id === "thriller_conspiracion")
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
+  },
+
+  // 🌌 CIENCIA FICCIÓN Y FUTUROS EXTRAÑOS
+  {
+    id: "scifi_futuros",
+    name: "Ciencia ficción y futuros extraños",
+    description: "Tecnología, IA, alienígenas y futuros alternativos",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
+
+      if (
+        hasAny(b.subgenres, [
+          "exploracionespacial",
+          "cyberpunk",
+          "biopunk",
+          "technothriller",
+          "xenoficcion",
+          "operaespacial",
+        ])
+      ) s += 2
+
+      if (hasAny(b.genre, ["cienciaFiccion"])) s += 1
+
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find((r) => r.id === "scifi_futuros")
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
+  },
+
+  // 🌍 GRANDES MUNDOS Y AVENTURAS
+  {
+    id: "grandes_mundos",
+    name: "Grandes mundos y aventuras",
+    description: "Épica, exploración y mundos expansivos",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
+
+      if (
+        hasAny(b.subgenres, [
+          "epica",
+          "historica",
+          "juvenil",
+          "exploracionespacial",
+          "operaespacial",
+        ])
+      ) s += 2
+
+      if (hasAny(b.genre, ["aventura"])) s += 1
+
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find((r) => r.id === "grandes_mundos")
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
+  },
+
+  // ❤️ HISTORIAS EMOCIONALES
+  {
+    id: "emocionales_intensas",
+    name: "Historias emocionales intensas",
+    description: "Drama, romance y carga emocional alta",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
+
+      if (
+        hasAny(b.subgenres, [
+          "amorprohibido",
+          "enemiestolovers",
+          "friendstolovers",
+          "emotiva",
+        ])
+      ) s += 2
+
+      if (hasAny(b.subgenres, ["erotico"])) s += 1
+
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find((r) => r.id === "emocionales_intensas")
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
+  },
+
+  // 👁️ HORROR Y LO DESCONOCIDO
+  {
+    id: "horror_desconocido",
+    name: "Horror y lo desconocido",
+    description: "Sobrenatural, cósmico y terror existencial",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
+
+      if (hasAny(b.subgenres, ["cosmico", "sobrenatural", "existencial"]))
+        s += 2
+
+      if (hasAny(b.genre, ["terror"])) s += 1
+
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find((r) => r.id === "horror_desconocido")
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
+  },
+
+  // ⚡ SUPERVIVENCIA Y ACCIÓN
+  {
+    id: "adrenalina_supervivencia",
+    name: "Adrenalina y supervivencia",
+    description: "Acción, peligro y supervivencia",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
+
+      if (hasAny(b.subgenres, ["supervivencia", "postapocaliptica", "gore"]))
+        s += 2
+
+      if (hasAny(b.genre, ["aventura"])) s += 1
+
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find(
+        (r) => r.id === "adrenalina_supervivencia"
       )
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
   },
 
-  // 🧠 THRILLER PSICOLÓGICO
+  // 🧭 PARANOIA Y TENSIÓN MENTAL
   {
-    id: "thriller_psicologico",
-    name: "Thriller psicológico",
-    match: (b) =>
-      b.genre.includes("thriller") &&
-      b.subgenres.includes("psicologico")
+    id: "paranoia_tension",
+    name: "Paranoia y tensión mental",
+    description: "Inestabilidad psicológica y conspiración",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
+
+      if (
+        hasAny(b.subgenres, [
+          "psicologico",
+          "conspiracion",
+          "realidadesalternas",
+        ])
+      ) s += 2
+
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find((r) => r.id === "paranoia_tension")
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
   },
 
-  // 🕵️ MISTERIO ESPECULATIVO
+  // 🌱 ESPERANZA
   {
-    id: "misterio_especulativo",
-    name: "Misterio especulativo",
-    match: (b) =>
-      b.genre.includes("misterio") &&
-      b.subgenres.includes("especulativo")
-  },
+    id: "futuros_esperanzadores",
+    name: "Futuros esperanzadores",
+    description: "Utopía, redención y esperanza",
+    threshold: 2,
+    score: (b) => {
+      let s = 0
 
-  // ❤️ ROMANCE (si lo tienes en otros libros)
-  {
-    id: "romance_enemies",
-    name: "Romance enemies to lovers",
-    match: (b) =>
-      b.genre.includes("romance") &&
-      b.subgenres.includes("enemiestolovers")
-  },
+      if (hasAny(b.subgenres, ["utopia", "emotiva", "xenoficcion"])) s += 2
 
-  // 🌑 TERROR PSICOLÓGICO
-  {
-    id: "terror_psicologico",
-    name: "Terror psicológico",
-    match: (b) =>
-      b.genre.includes("terror") &&
-      b.subgenres.includes("psicologico")
-  },
-
-  // 🌌 TERROR CÓSMICO
-  {
-    id: "terror_cosmico",
-    name: "Terror cósmico",
-    match: (b) =>
-      b.genre.includes("terror") &&
-      b.subgenres.includes("cosmico")
-  },
-
-  // 📖 FICCIÓN PSICOLÓGICA
-  {
-    id: "ficcion_psicologica",
-    name: "Ficción psicológica",
-    match: (b) =>
-      b.genre.includes("ficcion") &&
-      b.subgenres.includes("psicologico")
-  },
-
-  // 🌿 FICCIÓN EMOCIONAL
-  {
-    id: "ficcion_emocional",
-    name: "Ficción emocional",
-    match: (b) =>
-      b.genre.includes("ficcion") &&
-      b.subgenres.includes("emotiva")
+      return s
+    },
+    match: (b) => {
+      const rule = categoryRules.find((r) => r.id === "futuros_esperanzadores")
+      return rule ? rule.score(b) >= rule.threshold : false
+    },
   },
 ]

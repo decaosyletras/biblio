@@ -15,7 +15,9 @@ export default function Home() {
   
   const randomBooks = shuffleArray(books).slice(0, 4)
   const randomAuthors = shuffleArray(authors).slice(0, 4)
-  const randomReviews = shuffleArray(books).slice(0, 3)
+  const randomReviews = shuffleArray(
+    books.filter(book => book.review?.title)
+  ).slice(0, 3)
 
   const frases = [
     "Historias que merecen estar en tendencia",
@@ -129,8 +131,7 @@ export default function Home() {
         </p>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {randomReviews.filter(book => book.review?.title !== "")
-            .map(book => (
+          {randomReviews.map(book => (
               <CardReview key={book.slug} book={book} />
             ))}
         </div>

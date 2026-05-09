@@ -1,8 +1,12 @@
 import Link from "next/link"
+
 import { books } from "@/data/books"
 import { categories } from "@/data/categories"
+import { categoryRules } from "@/data/categoryRules"
+
 import BookRow from "@/components/BookRow"
 import SearchSimple from "@/components/SearchSimple"
+
 import { getCategoriesForBook } from "@/data/categoryEngine"
 
 export default function Page() {
@@ -11,76 +15,165 @@ export default function Page() {
 
       <section className="py-10">
 
-        <h1 className="text-3xl font-semibold text-zinc-100 px-6 mb-8">
-          Explorar libros
-        </h1>
+        {/* ========================= */}
+        {/* HERO */}
+        {/* ========================= */}
 
-        <p className="text-sm text-zinc-400 px-6 mb-6 max-w-2xl md:max-w-none">
-          Estos enlaces son de afiliado: si compras a través de ellos, puedo recibir una comisión sin costo extra para ti y me ayudas a sostener este proyecto.{" "}
-          <Link href="/afiliados" className="text-yellow-400 hover:underline">
-            Más información
-          </Link>
-        </p>
+        <div className="px-6 mb-10">
 
-        <div className="px-6 mt-4">
-          <SearchSimple data={books} type="books" />
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-zinc-100">
+            Explora historias
+          </h1>
+
+          <p className="text-sm text-zinc-500 mt-4 max-w-8xl leading-relaxed">
+            Algunos enlaces son de afiliado: si compras a través de ellos,
+            puedo recibir una comisión sin costo extra para ti y ayudas a
+            sostener este proyecto{" "}
+            <Link
+              href="/afiliados"
+              className="text-yellow-400 hover:text-yellow-300 transition-colors underline underline-offset-4"
+            >
+              Más información
+            </Link>
+          </p>
+
         </div>
 
         {/* ========================= */}
-        {/* 🔵 SISTEMA NUEVO (MODERNO) */}
+        {/* SEARCH */}
         {/* ========================= */}
 
-        {[
-          { id: "scifi_tecnologica", name: "Ciencia ficción tecnológica" },
-          { id: "scifi_especulativa", name: "Ciencia ficción especulativa" },
-          { id: "scifi_espacial", name: "Ciencia ficción espacial" },
-          { id: "thriller_conspiracion", name: "Thriller de conspiración" },
-          { id: "thriller_psicologico", name: "Thriller psicológico" },
-          { id: "misterio_especulativo", name: "Misterio especulativo" },
-          { id: "terror_psicologico", name: "Terror psicológico" },
-          { id: "terror_cosmico", name: "Terror cósmico" },
-          { id: "ficcion_psicologica", name: "Ficción psicológica" },
-          { id: "ficcion_emocional", name: "Ficción emocional" },
-        ].map(category => {
+        <div className="px-6 mb-14">
+          <SearchSimple
+            data={books}
+            type="books"
+          />
+        </div>
 
-          const filteredBooks = books.filter(book => {
-            const matched = getCategoriesForBook(book)
-            return matched.some(c => c.id === category.id)
-          })
+        {/* TODOS LOS LIBROS */}
+        <section className="space-y-4">
 
-          if (filteredBooks.length === 0) return null
+          <div className="px-6">
+            <h2 className="text-2xl md:text-3xl font-semibold text-zinc-100">
+              Todos los libros
+            </h2>
 
-          return (
-            <BookRow
-              key={category.id}
-              title={category.name}
-              books={filteredBooks}
-              noShuffle={false}
-            />
-          )
-        })}
+            <p className="mt-2 text-sm text-zinc-400 max-w-2xl">
+              Explora todo el catálogo sin filtros.
+            </p>
+          </div>
+
+          <BookRow
+            title=""
+            books={books}
+            noShuffle={false}
+          />
+
+        </section>
 
         {/* ========================= */}
-        {/* 🔢 SISTEMA VIEJO (LEGACY) */}
+        {/* 🌌 DESCUBRIMIENTO CURADO */}
         {/* ========================= */}
 
-        {categories.map(category => {
+        <div className="space-y-14">
 
-          const filteredBooks = books.filter(book =>
-            book.categories?.includes(category.id)
-          )
+          {categoryRules
+            .filter((category) => category.id !== "todos")
+            .map((category) => {
 
-          if (filteredBooks.length === 0) return null
+              const filteredBooks = books.filter((book) => {
+                const rule = categoryRules.find((r) => r.id === category.id)
+                if (!rule) return false
 
-          return (
-            <BookRow
-              key={category.id}
-              title={category.name}
-              books={filteredBooks}
-              noShuffle={category.id === 0}
-            />
-          )
-        })}
+                return rule.match(book)
+              })
+
+              if (filteredBooks.length === 0) return null
+
+              return (
+                <section
+                  key={category.id}
+                  className="space-y-4"
+                >
+
+                  {/* HEADER */}
+                  <div className="px-6">
+
+                    <div className="flex items-end justify-between gap-4">
+
+                      <div>
+
+                        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-100">
+                          {category.name}
+                        </h2>
+
+                        {category.description && (
+                          <p className="mt-2 text-sm md:text-base text-zinc-400 max-w-2xl leading-relaxed">
+                            {category.description}
+                          </p>
+                        )}
+
+                      </div>
+
+                      <span className="hidden md:block text-[10px] uppercase tracking-[0.25em] text-zinc-600">
+                        Curado
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  {/* BOOKS */}
+                  <BookRow
+                    title=""
+                    books={filteredBooks}
+                    noShuffle={false}
+                  />
+
+                </section>
+              )
+            })}
+
+        </div>
+
+        {/* ========================= */}
+        {/* ✨ COLECCIONES ESPECIALES */}
+        {/* ========================= */}
+
+        {categories.length > 0 && (
+
+          <div className="mt-24 space-y-14">
+
+            {/* HEADER */}
+            <div className="px-6">
+
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-100">
+                Colecciones especiales
+              </h2>
+
+            </div>
+
+            {/* ROWS */}
+            {categories.map((category) => {
+
+              const filteredBooks = books.filter((book) =>
+                book.categories?.includes(category.id)
+              )
+
+              if (filteredBooks.length === 0) return null
+
+              return (
+                <BookRow
+                  key={category.id}
+                  title={category.name}
+                  books={filteredBooks}
+                  noShuffle={[7, 9].includes(category.id)}
+                />
+              )
+            })}
+
+          </div>
+        )}
 
       </section>
 
