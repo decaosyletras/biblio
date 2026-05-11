@@ -6,6 +6,9 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+const isValidASIN = (value: string) =>
+  /^[a-zA-Z0-9]{10}$/.test(value)
+
 export async function POST(req: Request) {
   try {
     const body = await req.json()
@@ -18,7 +21,8 @@ export async function POST(req: Request) {
       link,
       resumen,
       generos,
-      subgeneros
+      subgeneros,
+      asin // 👈 NUEVO
     } = body
 
     // Validación básica
@@ -33,6 +37,14 @@ export async function POST(req: Request) {
     ) {
       return NextResponse.json(
         { error: "Faltan datos obligatorios o inválidos" },
+        { status: 400 }
+      )
+    }
+
+    // Validación ASIN (si viene)
+    if (asin && !isValidASIN(asin)) {
+      return NextResponse.json(
+        { error: "ASIN inválido (debe tener 10 caracteres alfanuméricos)" },
         { status: 400 }
       )
     }
@@ -57,7 +69,8 @@ export async function POST(req: Request) {
         link,
         resumen,
         generos,
-        subgeneros
+        subgeneros,
+        asin: asin || null // 👈 AQUÍ SE GUARDA
       }
     ])
 

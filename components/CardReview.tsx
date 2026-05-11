@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { tagsCatalog } from "@/data/tags"
+import { getAmazonCover } from "@/lib/getAmazonCover"
 
 export default function CardReview({ book }: any) {
 
@@ -26,8 +27,12 @@ export default function CardReview({ book }: any) {
       <Link href={`/libros/${book.slug}`}>
         <div className="flex gap-4">
           <img
-            src={book.cover}
-            className="w-20 h-32 object-cover rounded"
+            src={getAmazonCover(book.asin)}
+            alt={book.title}
+            className="w-20 h-32 object-cover rounded-xl"
+            onError={(e) => {
+              e.currentTarget.src = "/placeholder-book.jpg"
+            }}
           />
           <div>
             <h3 className="text-lg font-semibold text-zinc-100">

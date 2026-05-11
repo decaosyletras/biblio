@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { Book } from "@/types"
 import { authors } from "@/data/authors"
+import { getAmazonCover } from "@/lib/getAmazonCover"
+import CoverImage from "@/components/CoverImage"
 
 export default function CardBook({ book }: { book: Book }) {
   const author = authors.find(a => a.slug === book.authorSlug)
@@ -11,9 +13,10 @@ export default function CardBook({ book }: { book: Book }) {
       <Link href={`/libros/${book.slug}`}>
         {/* Imagen */}
         <div className="w-full h-38 sm:h-50 md:h-62 overflow-hidden rounded-lg">
-          <img
-            src={book.cover}
-            className="w-full h-full object-cover "
+          <CoverImage
+            src={getAmazonCover(book.asin)}
+            alt={book.title}
+            className="w-full h-full object-cover rounded-xl"
           />
           
           {book.review?.title && (

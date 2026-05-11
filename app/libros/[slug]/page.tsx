@@ -12,6 +12,8 @@ import GenreBadge from "@/components/GenreBadge"
 import TagBar from "@/components/TagBar"
 import { metricsCatalog } from "@/data/metrics"
 import { div } from "framer-motion/client"
+import { getAmazonCover } from "@/lib/getAmazonCover"
+import CoverImage from "@/components/CoverImage"
 
 export default async function Page({ params }: any) {
   const { slug } = await params
@@ -49,8 +51,12 @@ export default async function Page({ params }: any) {
       <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 text-zinc-100">
 
         {/* Imagen */}
-        <div className="relative w-fit mx-auto">
-          <img src={book.cover} className="rounded-xl" />
+        <div className="relative mx-auto w-full max-w-sm">
+          <CoverImage
+            src={getAmazonCover(book.asin)}
+            alt={book.title}
+            className="w-full aspect-[2/3] object-cover rounded-xl"
+          />
 
           {book.review.title && (
             <p className="mt-10 text-lg text-zinc-300 italic text-center">

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { getAmazonCover } from "@/lib/getAmazonCover"
 
 export default function SearchSimple({
   data,
@@ -55,7 +56,11 @@ export default function SearchSimple({
               return (
                 <Link href={`/libros/${item.slug}`} key={item.slug}>
                   <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
-                    <img src={item.cover} className="w-12 h-24" />
+                    <img
+                      src={item.asin ? getAmazonCover(item.asin) : "/covers/jodidos.jpg"}
+                      alt={item.title}
+                      className="w-12 h-24 object-cover"
+                    />
                     <p>{item.title}</p>
                   </div>
                 </Link>
@@ -66,7 +71,11 @@ export default function SearchSimple({
               return (
                 <Link href={`/libros/${item.slug}`} key={item.slug}>
                   <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
-                    <img src={item.cover} className="w-12 h-24" />
+                    <img
+                      src={item.asin ? getAmazonCover(item.asin) : "/covers/jodidos.jpg"}
+                      alt={item.title}
+                      className="w-12 h-24 object-cover"
+                    />
                     <p>{item.title}</p>
                   </div>
                 </Link>

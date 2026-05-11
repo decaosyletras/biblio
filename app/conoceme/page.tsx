@@ -99,6 +99,11 @@ export default function ConocemePage() {
 
       </div>
 
+      <p className="text-zinc-400 mb-6">
+        Si quieres apoyar este proyecto, puedes hacerlo comprando a través de los enlaces de mi web. 
+        ¡No tiene costo extra para ti y sí ayudas a mantenerlo vivo! 💛
+      </p>
+
       {/* BLOQUE FUTURO */}
       <div className="mt-10 p-6 bg-zinc-900 rounded-xl border border-zinc-800">
 
@@ -115,7 +120,7 @@ export default function ConocemePage() {
 
         <p className="text-zinc-400 mb-6">
           Si quieres ser de los primeros en formar parte, agregar tus libros o
-          simplemente apoyar este proyecto, deja tu correo aquí:
+          simplemente apoyar el desarrollo de este segundo proyecto, deja tu correo aquí:
         </p>
 
         {sent ? (
@@ -147,7 +152,7 @@ export default function ConocemePage() {
               type="submit"
               className="px-5 py-2 bg-yellow-400 text-black rounded-lg font-semibold hover:bg-yellow-300 transition"
             >
-              Unirme ✨
+              Unirme
             </button>
 
             {error && (

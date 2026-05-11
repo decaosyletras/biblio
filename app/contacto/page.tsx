@@ -13,11 +13,16 @@ export default function Page() {
 
   const [link, setLink] = useState("")
   const [resumen, setResumen] = useState("")
+  const [asin, setAsin] = useState("") // 👈 NUEVO
+
   const [selectedGenres, setSelectedGenres] = useState<string[]>([])
   const [selectedSubgenres, setSelectedSubgenres] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [sent, setSent] = useState(false)
+
+  const isValidASIN = (value: string) =>
+    /^[a-zA-Z0-9]{10}$/.test(value)
 
   const handleSubmit = async () => {
     setError("")
@@ -30,9 +35,11 @@ export default function Page() {
       (esAutor === "no" && !registrante) ||
       !link ||
       !resumen ||
+      !asin ||
+      !isValidASIN(asin) ||
       selectedGenres.length === 0
     ) {
-      setError("Completa todos los campos obligatorios")
+      setError("Completa todos los campos obligatorios (ASIN debe tener 10 caracteres alfanuméricos)")
       return
     }
 
@@ -51,6 +58,7 @@ export default function Page() {
           registrante: esAutor === "no" ? registrante : null,
           link,
           resumen,
+          asin, // 👈 NUEVO
           generos: selectedGenres,
           subgeneros: selectedSubgenres
         })
@@ -73,6 +81,7 @@ export default function Page() {
       setRegistrante("")
       setLink("")
       setResumen("")
+      setAsin("") // 👈 RESET
       setSelectedGenres([])
       setSelectedSubgenres([])
 
@@ -92,7 +101,7 @@ export default function Page() {
         </h1>
 
         <p className="text-zinc-400 text-sm sm:text-base mb-6">
-          Recomienda tu libro o uno que te haya gustado.
+          Recomienda tu libro o uno que te haya gustado. Llena los datos tal como quieres que se muestren en la página.
         </p>
 
         {/* TITULO */}
@@ -108,7 +117,7 @@ export default function Page() {
         {/* AUTOR */}
         <input
           type="text"
-          placeholder="Nombre del autor"
+          placeholder="Nombre del autor (de preferencia como aparece en Amazon)"
           value={autor}
           onChange={(e) => setAutor(e.target.value)}
           className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
@@ -163,6 +172,16 @@ export default function Page() {
           value={link}
           onChange={(e) => setLink(e.target.value)}
           className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
+        />        
+
+        {/* ASIN */}
+        <input
+          type="text"
+          placeholder="ASIN (10 caracteres alfanuméricos)"
+          value={asin}
+          onChange={(e) => setAsin(e.target.value)}
+          maxLength={10}
+          className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
         />
 
         {/* RESUMEN */}
@@ -194,11 +213,6 @@ export default function Page() {
           />
         </div>
 
-        {/* AVISO */}
-        <p className="text-xs text-zinc-500 mb-4">
-          La información proporcionada será sometida a un proceso de validación y podrá ser modificada como resultado de revisiones de consistencia.
-        </p>
-
         {/* ERROR */}
         {error && (
           <div className="bg-red-500/10 border border-red-500/30 text-red-400 p-3 rounded-lg mb-4 text-sm">
@@ -209,7 +223,7 @@ export default function Page() {
         {/* SUCCESS */}
         {sent && (
           <div className="bg-green-500/10 border border-green-500/30 text-green-400 p-3 rounded-lg mb-4 text-sm">
-            ¡Gracias! Tu libro fue enviado y será revisado antes de publicarse. 🙌
+            ¡Gracias! Tu libro fue enviado 🙌
           </div>
         )}
 
