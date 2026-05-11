@@ -33,7 +33,7 @@ export default function BookRow({
     <div className="mb-14 relative group">
 
       {/* Título */}
-      <h2 className="text-xl font-semibold text-zinc-100 mb-4 px-6">
+      <h2 className="text-lg font-semibold text-zinc-100 mb-4 px-6">
         {title}
       </h2>
 
