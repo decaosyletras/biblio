@@ -177,7 +177,7 @@ export default function Page() {
         {/* ASIN */}
         <input
           type="text"
-          placeholder="ASIN (10 caracteres alfanuméricos)"
+          placeholder="ASIN del ebook (solo versión digital, 10 caracteres)"
           value={asin}
           onChange={(e) => setAsin(e.target.value)}
           maxLength={10}

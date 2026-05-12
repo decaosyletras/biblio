@@ -12,8 +12,9 @@ import GenreBadge from "@/components/GenreBadge"
 import TagBar from "@/components/TagBar"
 import { metricsCatalog } from "@/data/metrics"
 import { div } from "framer-motion/client"
-import { getAmazonCover } from "@/lib/getAmazonCover"
+import { getAmazonCover } from "@/lib/amazon"
 import CoverImage from "@/components/CoverImage"
+import AmazonButton from "@/components/AmazonButton"
 
 export default async function Page({ params }: any) {
   const { slug } = await params
@@ -53,7 +54,7 @@ export default async function Page({ params }: any) {
         {/* Imagen */}
         <div className="relative mx-auto w-full max-w-[200px] sm:max-w-[240px] md:max-w-xs">
           <CoverImage
-            src={getAmazonCover(book.asin)}
+            src={getAmazonCover(book.amazon)}
             alt={book.title}
             className="w-full aspect-[2/3] object-cover rounded-xl"
           />
@@ -212,13 +213,7 @@ export default async function Page({ params }: any) {
             </div>
           )}
 
-          <a
-            href={book.amazonLink}
-            target="_blank"
-            className="inline-block mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full hover:bg-yellow-400 transition"
-          >
-            Comprar en Amazon
-          </a>
+          <AmazonButton amazon={book.amazon} />
 
         </div>
 

@@ -12,7 +12,11 @@ export type Book = {
   slug: string
   title: string
   cover: string
-  asin?: string
+  amazon: {
+    es: string,
+    mx: string,
+    us: string,
+  },
   amazonLink: string
   authorSlug: string
   isSaga: boolean

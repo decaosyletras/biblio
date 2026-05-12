@@ -1,8 +1,9 @@
 import Link from "next/link"
 import { Book } from "@/types"
 import { authors } from "@/data/authors"
-import { getAmazonCover } from "@/lib/getAmazonCover"
+import { getAmazonCover } from "@/lib/amazon"
 import CoverImage from "@/components/CoverImage"
+import AmazonButton from "@/components/AmazonButton"
 
 export default function CardBook({ book }: { book: Book }) {
   const author = authors.find(a => a.slug === book.authorSlug)
@@ -14,7 +15,7 @@ export default function CardBook({ book }: { book: Book }) {
         {/* Imagen */}
         <div className="w-full h-38 sm:h-50 md:h-62 overflow-hidden rounded-lg">
           <CoverImage
-            src={getAmazonCover(book.asin)}
+            src={getAmazonCover(book.amazon)}
             alt={book.title}
             className="w-full h-full object-cover rounded-xl"
           />
@@ -43,13 +44,7 @@ export default function CardBook({ book }: { book: Book }) {
       </Link>*/}
 
       {/* Botón */}
-      <a
-        href={book.amazonLink}
-        target="_blank"
-        className="block mt-3 text-center bg-yellow-500 text-black text-xs py-2 rounded-full hover:bg-yellow-400 transition"
-      >
-        Ver en Amazon
-      </a>
+      <AmazonButton amazon={book.amazon} />
 
     </div>
   )
