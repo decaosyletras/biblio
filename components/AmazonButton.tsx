@@ -40,7 +40,7 @@ export default function AmazonButton({
   }
 
   return (
-    <button
+    <button 
       onClick={handleClick}
       className="
         mt-4
@@ -51,6 +51,7 @@ export default function AmazonButton({
         rounded-full
         font-medium
         transition
+        whitespace-nowrap
       "
     >
       Ver en Amazon
