@@ -25,18 +25,18 @@ export default function Page() {
             Explora historias
           </h1>
 
-          <p className="text-sm text-zinc-500 mt-4 max-w-8xl leading-relaxed">
+          <p className="text-sm text-zinc-400 mt-2">
             Algunos enlaces son de afiliado: si compras a través de ellos,
             puedo recibir una comisión sin costo extra para ti y ayudas a
-            sostener este proyecto{" "}
+            sostener este proyecto.{" "}
             <Link
               href="/afiliados"
-              className="text-yellow-400 hover:text-yellow-300 transition-colors underline underline-offset-4"
+              className="text-yellow-400 hover:underline"
             >
-              Más información
+              Más información.
             </Link>
           </p>
-
+          
         </div>
 
         {/* ========================= */}
