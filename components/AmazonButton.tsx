@@ -51,7 +51,6 @@ export default function AmazonButton({
         rounded-full
         font-medium
         transition
-        leading-snug
       "
     >
       Ver en Amazon
