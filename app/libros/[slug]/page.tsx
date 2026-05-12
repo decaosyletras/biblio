@@ -51,7 +51,7 @@ export default async function Page({ params }: any) {
       <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 text-zinc-100">
 
         {/* Imagen */}
-        <div className="relative mx-auto w-full max-w-[180px] sm:max-w-[200px] md:max-w-xs">
+        <div className="relative mx-auto w-full max-w-[200px] sm:max-w-[240px] md:max-w-xs">
           <CoverImage
             src={getAmazonCover(book.asin)}
             alt={book.title}
