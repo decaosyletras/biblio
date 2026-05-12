@@ -48,7 +48,7 @@ export default function AmazonButton({
         hover:bg-yellow-400
         text-black
         px-4 py-2
-        rounded-full
+        rounded-lg
         font-medium
         transition
       "
