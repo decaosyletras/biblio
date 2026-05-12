@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
 
           {/* CONTACTO */}
-          <div className="flex flex-col gap-2">
+          <div className="hidden md:flex flex-col gap-2">
             <p className="text-zinc-500 text-xs mb-1">Contacto</p>
 
             <Link href="/conoceme" className="hover:text-zinc-200 transition">
