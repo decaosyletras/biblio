@@ -29,8 +29,7 @@ export default function AmazonButton({
   return (
     <a
       href={url}
-      target="_blank"
-      rel="noopener noreferrer"
+      rel="external"
       className="
         inline-block
         mt-4
