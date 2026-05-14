@@ -950,7 +950,8 @@ export const books: Book[] = [
         "rebelion",
         "traicion",
         "misterioaresolver",
-        "historiasparalelas"
+        "historiasparalelas",
+        "drama"
       ],
     },
     genre: ["cienciaFiccion", "fantasia", "aventura", "misterio"],
@@ -1974,7 +1975,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["cienciaFiccion", "aventura", "ficcion"],
-    subgenres: ["exploracionespacial", "xenoficcion", "evolucionespeculativa", "emotiva"],
+    subgenres: ["exploracionespacial", "xenoficcion", "evolucionespeculativa"],
 
     tags: {
       ritmo: 0,

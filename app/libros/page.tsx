@@ -115,10 +115,6 @@ export default function Page() {
 
                       </div>
 
-                      <span className="hidden md:block text-[10px] uppercase tracking-[0.25em] text-zinc-600">
-                        Curado
-                      </span>
-
                     </div>
 
                   </div>
