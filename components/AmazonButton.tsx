@@ -1,35 +1,16 @@
 "use client"
 
-import { generateAmazonLink }
-from "@/lib/amazon"
+import Link from "next/link"
 
 export default function AmazonButton({
-  amazon
+  slug
 }: {
-  amazon: Record<string, string>
+  slug: string
 }) {
 
-  let country = "US"
-
-  if (typeof navigator !== "undefined") {
-    const lang =
-      navigator.language.toLowerCase()
-
-    if (lang.includes("es-es")) {
-      country = "ES"
-    }
-  }
-
-  const url =
-    generateAmazonLink(
-      amazon,
-      country
-    )
-
   return (
-    <a
-      href={url}
-      rel="external"
+    <Link
+      href={`/go/${slug}`}
       className="
         inline-block
         mt-4
@@ -45,6 +26,6 @@ export default function AmazonButton({
       "
     >
       Ver en Amazon
-    </a>
+    </Link>
   )
 }

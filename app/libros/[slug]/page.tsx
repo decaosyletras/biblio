@@ -213,7 +213,7 @@ export default async function Page({ params }: any) {
             </div>
           )}
 
-          <AmazonButton amazon={book.amazon} />
+          <AmazonButton slug={book.slug} />
 
         </div>
 
