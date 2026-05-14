@@ -3,11 +3,13 @@
 import { generateAmazonLink } from "@/lib/amazon"
 
 export default function AmazonButton({
-  amazon,
+  amazon
 }: {
   amazon: Record<string, string>
 }) {
+
   const handleClick = () => {
+
     let country = "US"
     const lang = navigator.language.toLowerCase()
 
@@ -21,10 +23,8 @@ export default function AmazonButton({
       /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
 
     if (isMobile) {
-      // ✔️ móvil: navegación directa (evita problemas de back stack)
       window.location.href = url
     } else {
-      // ✔️ desktop: nueva pestaña normal
       window.open(url, "_blank", "noopener,noreferrer")
     }
   }
