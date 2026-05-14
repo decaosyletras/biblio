@@ -9,40 +9,30 @@ export default function AmazonButton({
   amazon: Record<string, string>
 }) {
 
-  const handleClick = () => {
+  let country = "US"
 
-
-    //PARA PROBAR COMENTAMOS DESDE ACÁ
-    let country = "US"
+  if (typeof navigator !== "undefined") {
     const lang =
       navigator.language.toLowerCase()
 
-    if (
-      lang.includes("es-es")
-    ) {
+    if (lang.includes("es-es")) {
       country = "ES"
-    } // Y HASTA ACÁ, Y LUEGO
-
-    //DESCOMENTAMOS ESTA PARTECITA
-    /*const TEST_COUNTRY = "US"
-    let country = TEST_COUNTRY*/
-
-
-    
-
-    const url =
-      generateAmazonLink(
-        amazon,
-        country
-      )
-
-    window.open(url, "_blank")
+    }
   }
 
+  const url =
+    generateAmazonLink(
+      amazon,
+      country
+    )
+
   return (
-    <button 
-      onClick={handleClick}
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
       className="
+        inline-block
         mt-4
         bg-yellow-500
         hover:bg-yellow-400
@@ -56,6 +46,6 @@ export default function AmazonButton({
       "
     >
       Ver en Amazon
-    </button>
+    </a>
   )
 }
