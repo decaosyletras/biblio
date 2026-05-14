@@ -76,3 +76,27 @@ export function getAmazonCover(
 
   return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`
 }
+
+export function getBookCover(
+  amazon: Record<string, string>,
+  localCover?: string
+) {
+  const asin =
+    amazon.us ||
+    amazon.es ||
+    amazon.mx ||
+    Object.values(amazon)[0]
+
+  // 1. Amazon cover si hay ASIN
+  if (asin) {
+    return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`
+  }
+
+  // 2. Cover local del libro
+  if (localCover && localCover.trim() !== "") {
+    return localCover
+  }
+
+  // 3. fallback final
+  return "/covers/portadagenerica.png"
+}

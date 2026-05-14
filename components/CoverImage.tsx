@@ -16,9 +16,6 @@ export default function CoverImage({
       src={src}
       alt={alt}
       className={className}
-      onError={(e) => {
-        e.currentTarget.src = "/covers/jodidos.jpg";
-      }}
     />
   );
 }

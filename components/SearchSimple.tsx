@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { getAmazonCover } from "@/lib/amazon"
+import { getBookCover } from "@/lib/amazon"
 
 export default function SearchSimple({
   data,
@@ -93,11 +94,7 @@ export default function SearchSimple({
                     ">
 
                       <img
-                        src={
-                          item.amazon
-                            ? getAmazonCover(item.amazon)
-                            : "/covers/jodidos.jpg"
-                        }
+                        src={getBookCover(item.amazon, item.cover)}
                         alt={item.title}
                         className="
                           w-12 

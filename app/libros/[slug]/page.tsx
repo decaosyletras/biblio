@@ -15,6 +15,7 @@ import { div } from "framer-motion/client"
 import { getAmazonCover } from "@/lib/amazon"
 import CoverImage from "@/components/CoverImage"
 import AmazonButton from "@/components/AmazonButton"
+import { getBookCover } from "@/lib/amazon"
 
 export default async function Page({ params }: any) {
   const { slug } = await params
@@ -54,7 +55,7 @@ export default async function Page({ params }: any) {
         {/* Imagen */}
         <div className="relative mx-auto w-full max-w-[200px] sm:max-w-[240px] md:max-w-xs">
           <CoverImage
-            src={getAmazonCover(book.amazon)}
+            src={getBookCover(book.amazon, book.cover)}
             alt={book.title}
             className="w-full aspect-[2/3] object-cover rounded-xl"
           />

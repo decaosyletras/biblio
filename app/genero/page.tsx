@@ -1,6 +1,7 @@
 import { books } from "@/data/books"
 import { genresCatalog } from "@/data/genres"
 import Link from "next/link"
+import { getBookCover } from "@/lib/amazon"
 
 export default function Page({ params }: any) {
   const { id } = params
@@ -32,8 +33,9 @@ export default function Page({ params }: any) {
               <div className="flex gap-4 bg-zinc-900 p-4 rounded-xl hover:bg-zinc-800 transition">
 
                 <img
-                  src={book.cover}
+                  src={getBookCover(book.amazon, book.cover)}
                   className="w-24 h-36 object-cover rounded"
+                  alt={book.title}
                 />
 
                 <div>

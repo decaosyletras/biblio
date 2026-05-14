@@ -4,6 +4,7 @@ import { authors } from "@/data/authors"
 import { getAmazonCover } from "@/lib/amazon"
 import CoverImage from "@/components/CoverImage"
 import AmazonButton from "@/components/AmazonButton"
+import { getBookCover } from "@/lib/amazon"
 
 export default function CardBook({ book }: { book: Book }) {
   const author = authors.find(a => a.slug === book.authorSlug)
@@ -15,7 +16,7 @@ export default function CardBook({ book }: { book: Book }) {
         {/* Imagen */}
         <div className="w-full h-38 sm:h-50 md:h-62 overflow-hidden rounded-lg">
           <CoverImage
-            src={getAmazonCover(book.amazon)}
+            src={getBookCover(book.amazon, book.cover)}
             alt={book.title}
             className="w-full h-full object-cover rounded-xl"
           />
