@@ -1445,9 +1445,9 @@ export const books: Book[] = [
     title: "FISURA INTERDIMENSIONAL",
     cover: "/covers/book3.jpg",
     amazon: {
-      es: "B0F79XW9WZ",
+      es: "B0F79HQK2B",
       mx: "B0F79HQK2B",
-      us: "B0F79XW9WZ",
+      us: "B0F79HQK2B",
     },
     amazonLink: "https://amazon.com",
     authorSlug: "marcos-vega",
