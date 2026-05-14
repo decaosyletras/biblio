@@ -44,7 +44,7 @@ export default function CardBook({ book }: { book: Book }) {
       </Link>*/}
 
       {/* Botón */}
-      <AmazonButton slug={book.slug} />
+      <AmazonButton amazon={book.amazon} />
 
     </div>
   )
