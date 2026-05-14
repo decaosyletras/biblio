@@ -1,3 +1,5 @@
+"use client"
+
 import { generateAmazonLink } from "@/lib/amazon"
 
 export default function AmazonButton({
@@ -5,20 +7,31 @@ export default function AmazonButton({
 }: {
   amazon: Record<string, string>
 }) {
-  let country = "US"
-  const lang = navigator.language.toLowerCase()
+  const handleClick = () => {
+    let country = "US"
+    const lang = navigator.language.toLowerCase()
 
-  if (lang.includes("es-es")) {
-    country = "ES"
+    if (lang.includes("es-es")) {
+      country = "ES"
+    }
+
+    const url = generateAmazonLink(amazon, country)
+
+    const isMobile =
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+    if (isMobile) {
+      // ✔️ móvil: navegación directa (evita problemas de back stack)
+      window.location.href = url
+    } else {
+      // ✔️ desktop: nueva pestaña normal
+      window.open(url, "_blank", "noopener,noreferrer")
+    }
   }
 
-  const url = generateAmazonLink(amazon, country)
-
   return (
-    <a
-      href={url}
-      target="_self"
-      rel="noopener noreferrer"
+    <button
+      onClick={handleClick}
       className="
         mt-4
         bg-yellow-500
@@ -29,11 +42,10 @@ export default function AmazonButton({
         font-medium
         text-sm
         transition
-        inline-block
         whitespace-nowrap
       "
     >
       Ver en Amazon
-    </a>
+    </button>
   )
 }
