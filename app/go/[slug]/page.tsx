@@ -1,49 +1,40 @@
-"use client"
-
-import { useEffect } from "react"
-import { useParams } from "next/navigation"
+import { redirect } from "next/navigation"
+import { headers } from "next/headers"
 
 import { books } from "@/data/books"
 import { generateAmazonLink } from "@/lib/amazon"
 
-export default function GoPage() {
+export default async function GoPage({
+  params
+}: {
+  params: Promise<{ slug: string }>
+}) {
 
-  const params = useParams()
+  const { slug } = await params
 
-  const book = books.find(
-    b => b.slug === params.slug
+  const book = books.find(b => b.slug === slug)
+
+  if (!book) {
+    redirect("/")
+  }
+
+  // Detectar país desde headers (más fiable que navigator)
+  const h = await headers()
+  const lang = h.get("accept-language")?.toLowerCase() || ""
+
+  let country = "US"
+
+  if (lang.includes("es-es")) {
+    country = "ES"
+  }
+  /*else if (lang.includes("es-mx")) {
+    country = "MX"
+  }*/
+
+  const url = generateAmazonLink(
+    book.amazon,
+    country
   )
 
-  useEffect(() => {
-
-    if (!book) return
-
-    let country = "US"
-
-    const lang =
-      navigator.language.toLowerCase()
-
-    /*if (lang.includes("es-mx")) {
-      country = "MX"
-    }
-    else */if (lang.includes("es-es")) {
-      country = "ES"
-    }
-
-    const url =
-      generateAmazonLink(
-        book.amazon,
-        country
-      )
-
-    // IMPORTANTE:
-    window.location.replace(url)
-
-  }, [book])
-
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-black text-white">
-      Redirigiendo a Amazon...
-    </div>
-  )
+  redirect(url)
 }
