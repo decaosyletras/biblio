@@ -213,7 +213,10 @@ export default async function Page({ params }: any) {
             </div>
           )}
 
-          <AmazonButton amazon={book.amazon} />
+          <AmazonButton 
+            amazon={book.amazon} 
+            amazonLink={book.amazonLink}
+          />
 
         </div>
 

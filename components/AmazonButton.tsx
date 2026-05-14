@@ -4,9 +4,11 @@ import { generateAmazonLink }
 from "@/lib/amazon"
 
 export default function AmazonButton({
-  amazon
+  amazon,
+  amazonLink
 }: {
   amazon: Record<string, string>
+  amazonLink?: string
 }) {
 
   const handleClick = () => {
@@ -30,11 +32,11 @@ export default function AmazonButton({
 
     
 
-    const url =
-      generateAmazonLink(
-        amazon,
-        country
-      )
+    const url = generateAmazonLink(
+      amazon,
+      country,
+      amazonLink
+    )
 
     window.open(url, "_blank")
   }

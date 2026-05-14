@@ -30,37 +30,34 @@ export function getBookAsin(
   amazon: Record<string, string>,
   country: string
 ) {
-
   const store = getAmazonStore(country)
 
-  return (
+  const asin =
     amazon[store.asinKey] ||
     amazon.us ||
     amazon.es ||
-    amazon.mx ||
-    Object.values(amazon)[0]
-  )
+    amazon.mx
+
+  return asin || undefined
 }
 
 export function generateAmazonLink(
   amazon: Record<string, string>,
-  country: string
+  country: string,
+  fallbackUrl?: string
 ) {
-
   const store = getAmazonStore(country)
 
-  const asin = getBookAsin(
-    amazon,
-    country
-  )
+  const asin = getBookAsin(amazon, country)
 
-  const baseUrl =
-    `https://${store.domain}/dp/${asin}`
+  // 👇 si NO hay asin, usa link manual
+  if (!asin) {
+    return fallbackUrl || "https://amazon.com"
+  }
 
-  if (
-    store.tag &&
-    store.tag.length > 0
-  ) {
+  const baseUrl = `https://${store.domain}/dp/${asin}`
+
+  if (store.tag && store.tag.length > 0) {
     return `${baseUrl}?tag=${store.tag}`
   }
 

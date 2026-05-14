@@ -1449,7 +1449,7 @@ export const books: Book[] = [
       mx: "",
       us: "",
     },
-    amazonLink: "https://amazon.com",
+    amazonLink: "https://amzn.to/4tFiqqP",
     authorSlug: "marcos-vega",
     isSaga: false,
     categories: [0, 3, 6, 7],
