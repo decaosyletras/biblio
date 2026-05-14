@@ -51,11 +51,16 @@ export default function BookRow({
         className="flex gap-4 overflow-x-auto px-2 scroll-smooth scrollbar-hide"
       >
 
-      {displayedBooks.map(book => (
+      {displayedBooks.map((book: any) => (
         <div
           key={book.slug}
           className="flex-shrink-0 w-[120px] sm:w-[150px] md:w-[180px]"
         >
+
+          {/*<div className="text-xs text-zinc-400 mb-1 px-1">
+            ⭐ Score: {book.score}
+          </div>*/}
+
           <CardBook book={book} />
         </div>
       ))}

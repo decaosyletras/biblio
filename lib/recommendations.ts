@@ -18,12 +18,12 @@ function getScore(a: Book, b: Book) {
   const sharedGenres = genresA.filter(g => genresB.includes(g))
 
   // peso fuerte
-  score += sharedGenres.length * 8
+  score += sharedGenres.length * 5
 
   // bonus si comparten al menos uno
-  if (sharedGenres.length > 0) {
+  /*if (sharedGenres.length > 0) {
     score += 5
-  }
+  }*/
 
   // 🔵 2. SUBGÉNEROS POR GÉNERO
   sharedGenres.forEach((genre) => {
@@ -79,7 +79,7 @@ export function getRecommendedBooks(currentSlug: string) {
     .sort((a, b) => b.score - a.score)
 
   // 🔥 top real
-  const top = ranked.slice(0, 7)
+  const top = ranked.slice(0, 5)
 
-  return getRandomItems(top, 4)
+  return getRandomItems(top, 3)
 }
