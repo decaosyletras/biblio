@@ -2502,9 +2502,9 @@ export const books: Book[] = [
     title: "EL MUNDO DE ETERNA: LA GUERRERA DE LAS ESTRELLAS",
     cover: "",
     amazon: {
-      es: "B0898WGHFV",
-      mx: "B0898WGHFV",
-      us: "B0898WGHFV",
+      es: "B07ZJZ698X",
+      mx: "B07ZJZ698X",
+      us: "B07ZJZ698X",
     },
     amazonLink: "https://amazon.com",
     authorSlug: "belu-elein",
