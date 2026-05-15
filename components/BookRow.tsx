@@ -9,24 +9,20 @@ export default function BookRow({
   title,
   books,
   noShuffle = false,
-  country,
 }: {
   title: string
   books: Book[]
   noShuffle?: boolean
-  country: string
 }) {
   const rowRef = useRef<HTMLDivElement>(null)
-
+  const randomBooks = shuffleArray(books)
   const displayedBooks = noShuffle
-    ? books
-    : shuffleArray(books)
+  ? books
+  : shuffleArray(books)
 
   const scroll = (dir: "left" | "right") => {
     if (!rowRef.current) return
-
     const amount = 300
-
     rowRef.current.scrollBy({
       left: dir === "left" ? -amount : amount,
       behavior: "smooth",
@@ -54,17 +50,21 @@ export default function BookRow({
         ref={rowRef}
         className="flex gap-4 overflow-x-auto px-2 scroll-smooth scrollbar-hide"
       >
-        {displayedBooks.map((book) => (
-          <div
-            key={book.slug}
-            className="flex-shrink-0 w-[120px] sm:w-[150px] md:w-[180px]"
-          >
-            <CardBook
-              book={book}
-              country={country}
-            />
-          </div>
-        ))}
+
+      {displayedBooks.map((book: any) => (
+        <div
+          key={book.slug}
+          className="flex-shrink-0 w-[120px] sm:w-[150px] md:w-[180px]"
+        >
+
+          {/*<div className="text-xs text-zinc-400 mb-1 px-1">
+            ⭐ Score: {book.score}
+          </div>*/}
+
+          <CardBook book={book} />
+        </div>
+      ))}
+                  
       </div>
 
       {/* Botón derecha */}

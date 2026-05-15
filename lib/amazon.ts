@@ -23,6 +23,16 @@ export function getAmazonStore(country: string = "US") {
   }
 }
 
+/**
+ * 🔥 NUEVO: detección segura (sin romper compatibilidad)
+ */
+export function detectAmazonCountry(): string {
+  if (typeof window === "undefined") return "US"
+
+  // fallback simple y estable (NO idioma)
+  return "US"
+}
+
 export function getBookAsin(
   amazon: Record<string, string>,
   country: string
@@ -48,19 +58,18 @@ export function generateAmazonLink(
 
   const asin = getBookAsin(amazon, country)
 
-  // si NO hay asin, usa link manual
   if (!asin) {
     return fallbackUrl || "https://amazon.com"
   }
 
   const baseUrl = `https://${store.domain}/dp/${asin}`
 
-  if (store.tag && store.tag.length > 0) {
-    return `${baseUrl}?tag=${store.tag}`
-  }
-
-  return baseUrl
+  return `${baseUrl}?tag=${store.tag}`
 }
+
+/* =========================================================
+   🔥 TODAS TUS FUNCIONES ORIGINALES (RESTORED / NO BORRADAS)
+   ========================================================= */
 
 // 👇 NO quitar porque ya lo usas
 export function getAmazonCover(

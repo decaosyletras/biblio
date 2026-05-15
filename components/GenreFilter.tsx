@@ -1,36 +1,24 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { genresCatalog } from "@/data/genres"
 import { books } from "@/data/books"
 import BookRow from "@/components/BookRow"
 
 export default function GenreFilter() {
   const [selected, setSelected] = useState("")
-  const [country, setCountry] = useState("US")
-
-  useEffect(() => {
-    // fallback client-side (cuando no viene del server)
-    const lang = navigator.language.toLowerCase()
-
-    if (lang === "es-es") {
-      setCountry("ES")
-    }
-  }, [])
 
   const filtered = selected
     ? books.filter(b => b.genre.includes(selected))
-    : []
+    : [];
 
-  const genreLabel = genresCatalog.find(
-    g => g.id === selected
-  )?.label
+  const genreLabel = genresCatalog.find(g => g.id === selected)?.label
 
   return (
     <div className="mb-16">
 
-      {/* CENTRADO */}
+      {/* 🔥 CENTRADO */}
       <div className="flex flex-col items-center">
 
         <p className="text-lg text-zinc-300 mb-3 text-center">
@@ -53,10 +41,9 @@ export default function GenreFilter() {
 
       </div>
 
-      {/* RESULTADO */}
+      {/* 🔥 RESULTADO TIPO NETFLIX */}
       {selected && filtered.length > 0 && (
         <div className="mt-10">
-
           <p className="text-sm text-zinc-400 px-6 mb-6 max-w-2xl md:max-w-none">
             Algunos enlaces son de afiliado y pueden generar comisión sin costo extra para ti.{" "}
             <Link
@@ -70,7 +57,6 @@ export default function GenreFilter() {
           <BookRow
             title={`Explorando: ${genreLabel}`}
             books={filtered}
-            country={country}
           />
         </div>
       )}

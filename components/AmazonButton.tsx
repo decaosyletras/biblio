@@ -1,17 +1,21 @@
 "use client"
 
-import { generateAmazonLink } from "@/lib/amazon"
+import {
+  generateAmazonLink,
+  detectAmazonCountry
+} from "@/lib/amazon"
 
 export default function AmazonButton({
   amazon,
-  amazonLink,
-  country,
+  amazonLink
 }: {
   amazon: Record<string, string>
   amazonLink?: string
-  country: string
 }) {
+
   const handleClick = () => {
+    const country = detectAmazonCountry()
+
     const url = generateAmazonLink(
       amazon,
       country,

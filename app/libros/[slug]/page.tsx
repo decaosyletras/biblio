@@ -270,7 +270,7 @@ export default async function Page({ params }: any) {
           <BookRow
             title={`Más libros de ${author?.name}`}
             books={sameAuthorBooks}
-            country={country}
+            noShuffle
           />
         </div>
       )}
@@ -279,7 +279,6 @@ export default async function Page({ params }: any) {
         <BookRow
           title="También te puede gustar"
           books={recommended}
-          country={country}
         />
       </div>
 
