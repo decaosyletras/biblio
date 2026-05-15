@@ -10,14 +10,6 @@ export function useAmazonCountry() {
       try {
         const res = await fetch("/api/geo")
         const data = await res.json()
-
-        // 🔥 HARD OVERRIDE DE SEGURIDAD
-        if (data.country === "ES" && !navigator.language.includes("es-es")) {
-          // sospechoso → ignora geo
-          setCountry("US")
-          return
-        }
-
         setCountry(data.country || "US")
       } catch {
         setCountry("US")
