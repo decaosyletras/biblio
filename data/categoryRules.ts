@@ -179,11 +179,11 @@ export const categoryRules: CategoryRule[] = [
           "realidadesalternas",
           "especulativo",
           "conspiracion",
+          "utopia",
+          "evolucionespeculativa",
         ]) * 2
 
-      s += countMatches(b.subgenres, [
-        "utopia",
-        "evolucionespeculativa",
+      s += countMatches(b.genre, [
       ]) * 2
 
       s += countMetrics(b.metrics, categoryMetricsMap.mente_realidad) * 2
@@ -308,7 +308,7 @@ export const categoryRules: CategoryRule[] = [
           "emotiva",
         ]) * 2
 
-      s += countMatches(b.subgenres, ["erotico"]) * 2
+      s += countMatches(b.genre, ["romance"]) * 2
 
       s += countMetrics(
         b.metrics,
