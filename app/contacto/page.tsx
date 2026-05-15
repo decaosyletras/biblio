@@ -101,7 +101,7 @@ export default function Page() {
         </h1>
 
         <p className="text-zinc-400 text-sm sm:text-base mb-6">
-          Recomienda tu libro o uno que te haya gustado. Llena los datos tal como quieres que se muestren en la página...
+          Recomienda tu libro o uno que te haya gustado. Llena los datos tal como quieres que se muestren en la página.
         </p>
 
         {/* TITULO */}
