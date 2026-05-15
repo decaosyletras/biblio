@@ -666,9 +666,9 @@ export const books: Book[] = [
     title: "MUSI REGRESA POR NAVIDAD",
     cover: "/covers/book2.jpg",
     amazon: {
-      es: "B0GQYMF7TX",
-      mx: "B0GQYMF7TX",
-      us: "B0GQYMF7TX",
+      es: "B0DQVHMR93",
+      mx: "B0DQVHMR93",
+      us: "B0DQVHMR93",
     },
     amazonLink: "https://amazon.com",
     authorSlug: "juan-carlos-lopez-bayon",
