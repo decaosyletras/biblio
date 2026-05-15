@@ -1,3 +1,5 @@
+import { headers } from "next/headers"
+
 import { authors } from "@/data/authors"
 import { books } from "@/data/books"
 import BookRow from "@/components/BookRow"
@@ -23,27 +25,24 @@ export default async function Page({
     author.similar.includes(a.slug)
   )
 
-  const recommendedAuthors = getRecommendedAuthors(author.slug)
+  const recommendedAuthors =
+    getRecommendedAuthors(author.slug)
+
+  // 🌍 Detectar país real
+  const headersList = await headers()
+
+  const country =
+    headersList.get("x-vercel-ip-country") === "ES"
+      ? "ES"
+      : "US"
 
   return (
     <div className="text-zinc-100">
 
       {/* HERO */}
       <section className="relative h-[300px] flex items-end px-6 pb-6">
-        
+
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
-
-        {/*<div className="relative z-10 flex items-center gap-6">
-          <img
-            src={author.avatar}
-            className="w-24 h-24 rounded-full border-4 border-zinc-800"
-          />
-
-          <div>
-            <h1 className="text-3xl font-bold">{author.name}</h1>
-            <p className="text-zinc-400">{author.bio}</p>
-          </div>
-        </div>*/}
 
       </section>
 
@@ -70,16 +69,18 @@ export default async function Page({
           </p>
         </div>
 
-        
-
-        {/* LIBROS DEL AUTOR (Netflix style) */}
+        {/* LIBROS DEL AUTOR */}
         <h3 className="mt-10 text-xl font-semibold">
           Libros del autor
         </h3>
 
+        {/* versión simple scroll (la que ya tenías) */}
         <div className="flex gap-4 mt-4 overflow-x-auto no-scrollbar">
           {authorBooks.map((book) => (
-            <a key={book.slug} href={`/libros/${book.slug}`}>
+            <a
+              key={book.slug}
+              href={`/libros/${book.slug}`}
+            >
               <img
                 src={book.cover}
                 className="w-32 h-48 object-cover rounded-lg"
@@ -87,7 +88,13 @@ export default async function Page({
             </a>
           ))}
         </div>
-        <BookRow title="" books={authorBooks} />
+
+        {/* BOOKROW (ahora corregido) */}
+        <BookRow
+          title=""
+          books={authorBooks}
+          country={country}
+        />
 
         {/* Similares */}
         <div>

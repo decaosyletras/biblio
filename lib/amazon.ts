@@ -1,26 +1,23 @@
 const affiliateTags = {
-  es: "casaindie-21",
-  us: "casaindie-20",
+  ES: "casaindie-21",
+  US: "casaindie-20",
 }
 
-export function getAmazonStore(country: string) {
-
+export function getAmazonStore(country: string = "US") {
   const c = country.toUpperCase()
 
   switch (c) {
-
     case "ES":
       return {
         domain: "amazon.es",
-        tag: affiliateTags.es,
+        tag: affiliateTags.ES,
         asinKey: "es",
       }
 
-    // 👇 TODO lo demás usa USA
     default:
       return {
         domain: "amazon.com",
-        tag: affiliateTags.us,
+        tag: affiliateTags.US,
         asinKey: "us",
       }
   }
@@ -46,11 +43,12 @@ export function generateAmazonLink(
   country: string,
   fallbackUrl?: string
 ) {
-  const store = getAmazonStore(country)
+  const safeCountry = country || "US"
+  const store = getAmazonStore(safeCountry)
 
   const asin = getBookAsin(amazon, country)
 
-  // 👇 si NO hay asin, usa link manual
+  // si NO hay asin, usa link manual
   if (!asin) {
     return fallbackUrl || "https://amazon.com"
   }
@@ -64,10 +62,10 @@ export function generateAmazonLink(
   return baseUrl
 }
 
+// 👇 NO quitar porque ya lo usas
 export function getAmazonCover(
   amazon: Record<string, string>
 ) {
-
   const asin =
     amazon.us ||
     amazon.es ||

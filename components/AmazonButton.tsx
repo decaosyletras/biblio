@@ -1,37 +1,17 @@
 "use client"
 
-import { generateAmazonLink }
-from "@/lib/amazon"
+import { generateAmazonLink } from "@/lib/amazon"
 
 export default function AmazonButton({
   amazon,
-  amazonLink
+  amazonLink,
+  country,
 }: {
   amazon: Record<string, string>
   amazonLink?: string
+  country: string
 }) {
-
   const handleClick = () => {
-
-
-    //PARA PROBAR COMENTAMOS DESDE ACÁ
-    let country = "US"
-    const lang =
-      navigator.language.toLowerCase()
-
-    if (
-      lang.includes("es-es")
-    ) {
-      country = "ES"
-    } // Y HASTA ACÁ, Y LUEGO
-
-    //DESCOMENTAMOS ESTA PARTECITA
-    /*const TEST_COUNTRY = "US"
-    let country = TEST_COUNTRY*/
-
-
-    
-
     const url = generateAmazonLink(
       amazon,
       country,
@@ -42,7 +22,7 @@ export default function AmazonButton({
   }
 
   return (
-    <button 
+    <button
       onClick={handleClick}
       className="
         mt-4

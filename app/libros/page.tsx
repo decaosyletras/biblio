@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { headers } from "next/headers"
 
 import { books } from "@/data/books"
 import { categories } from "@/data/categories"
@@ -7,18 +8,21 @@ import { categoryRules } from "@/data/categoryRules"
 import BookRow from "@/components/BookRow"
 import SearchSimple from "@/components/SearchSimple"
 
-import { getCategoriesForBook } from "@/data/categoryEngine"
+export default async function Page() {
+  // 🌍 Detectar país real (Vercel / Edge)
+  const headersList = await headers()
 
-export default function Page() {
+  const country =
+    headersList.get("x-vercel-ip-country") === "ES"
+      ? "ES"
+      : "US"
+
   return (
     <div className="relative">
 
       <section className="py-10">
 
-        {/* ========================= */}
         {/* HERO */}
-        {/* ========================= */}
-
         <div className="px-6 mb-10">
 
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-zinc-100">
@@ -36,13 +40,10 @@ export default function Page() {
               Más información.
             </Link>
           </p>
-          
+
         </div>
 
-        {/* ========================= */}
         {/* SEARCH */}
-        {/* ========================= */}
-
         <div className="px-6 mb-14">
           <SearchSimple
             data={books}
@@ -67,22 +68,22 @@ export default function Page() {
             title=""
             books={books}
             noShuffle={true}
+            country={country}
           />
-
         </section>
 
-        {/* ========================= */}
-        {/* 🌌 DESCUBRIMIENTO CURADO */}
-        {/* ========================= */}
-
+        {/* DESCUBRIMIENTO CURADO */}
         <div className="space-y-14">
 
           {categoryRules
-            .filter((category) => category.id !== "todos")
-            .map((category) => {
+            .filter(category => category.id !== "todos")
+            .map(category => {
 
-              const filteredBooks = books.filter((book) => {
-                const rule = categoryRules.find((r) => r.id === category.id)
+              const filteredBooks = books.filter(book => {
+                const rule = categoryRules.find(
+                  r => r.id === category.id
+                )
+
                 if (!rule) return false
 
                 return rule.match(book)
@@ -96,7 +97,6 @@ export default function Page() {
                   className="space-y-4"
                 >
 
-                  {/* HEADER */}
                   <div className="px-6">
 
                     <div className="flex items-end justify-between gap-4">
@@ -119,11 +119,11 @@ export default function Page() {
 
                   </div>
 
-                  {/* BOOKS */}
                   <BookRow
                     title=""
                     books={filteredBooks}
                     noShuffle={false}
+                    country={country}
                   />
 
                 </section>
@@ -132,27 +132,20 @@ export default function Page() {
 
         </div>
 
-        {/* ========================= */}
-        {/* ✨ COLECCIONES ESPECIALES */}
-        {/* ========================= */}
-
+        {/* COLECCIONES ESPECIALES */}
         {categories.length > 0 && (
 
           <div className="mt-24 space-y-14">
 
-            {/* HEADER */}
             <div className="px-6">
-
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-100">
                 Colecciones especiales
               </h2>
-
             </div>
 
-            {/* ROWS */}
-            {categories.map((category) => {
+            {categories.map(category => {
 
-              const filteredBooks = books.filter((book) =>
+              const filteredBooks = books.filter(book =>
                 book.categories?.includes(category.id)
               )
 
@@ -164,6 +157,7 @@ export default function Page() {
                   title={category.name}
                   books={filteredBooks}
                   noShuffle={[7, 9].includes(category.id)}
+                  country={country}
                 />
               )
             })}

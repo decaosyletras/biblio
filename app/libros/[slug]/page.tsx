@@ -1,48 +1,64 @@
+import { headers } from "next/headers"
+
 import { books } from "@/data/books"
 import { authors } from "@/data/authors"
 
 import { getRecommendedBooks } from "@/lib/recommendations"
+import { getBookCover } from "@/lib/amazon"
+
 import BookRow from "@/components/BookRow"
+import CoverImage from "@/components/CoverImage"
+import AmazonButton from "@/components/AmazonButton"
 
 import { genresCatalog } from "@/data/genres"
 import { tagsCatalog } from "@/data/tags"
-import TagBadge from "@/components/TagBadge"
+import { metricsCatalog } from "@/data/metrics"
 
 import GenreBadge from "@/components/GenreBadge"
 import TagBar from "@/components/TagBar"
-import { metricsCatalog } from "@/data/metrics"
-import { div } from "framer-motion/client"
-import { getAmazonCover } from "@/lib/amazon"
-import CoverImage from "@/components/CoverImage"
-import AmazonButton from "@/components/AmazonButton"
-import { getBookCover } from "@/lib/amazon"
 
 export default async function Page({ params }: any) {
   const { slug } = await params
+
   const book = books.find(b => b.slug === slug)
 
-  if (!book) return <div>No encontrado</div>
+  if (!book) {
+    return <div>No encontrado</div>
+  }
 
-  const author = authors.find(a => a.slug === book.authorSlug)
+  const author = authors.find(
+    a => a.slug === book.authorSlug
+  )
 
   const recommended = getRecommendedBooks(book.slug)
 
   const sameAuthorBooks = books.filter(
-    b => b.authorSlug === book.authorSlug && b.slug !== book.slug
+    b =>
+      b.authorSlug === book.authorSlug &&
+      b.slug !== book.slug
   )
 
-  /*const genresData =
-  genresCatalog.filter(g => book.genre.includes(g.id))*/
+  // Detectar país real del visitante
+  const headersList = await headers()
+
+  const country =
+    headersList.get("x-vercel-ip-country") === "ES"
+      ? "ES"
+      : "US"
 
   const genresData = genresCatalog.filter(g =>
     book.genre.includes(g.id)
-  );
+  )
 
   const subgenres = genresData.flatMap(g =>
-    g.subgenres.filter(s => book.subgenres.includes(s.id))
-  );
+    g.subgenres.filter(s =>
+      book.subgenres.includes(s.id)
+    )
+  )
 
-  const getGenreFromSubgenre = (subId: string) => {
+  const getGenreFromSubgenre = (
+    subId: string
+  ) => {
     return genresCatalog.find(g =>
       g.subgenres.some(s => s.id === subId)
     )?.id
@@ -55,7 +71,10 @@ export default async function Page({ params }: any) {
         {/* Imagen */}
         <div className="relative mx-auto w-full max-w-[220px] sm:max-w-[240px] md:max-w-xs">
           <CoverImage
-            src={getBookCover(book.amazon, book.cover)}
+            src={getBookCover(
+              book.amazon,
+              book.cover
+            )}
             alt={book.title}
             className="w-full aspect-[2/3] object-cover rounded-xl"
           />
@@ -69,7 +88,9 @@ export default async function Page({ params }: any) {
 
         {/* Info */}
         <div>
-          <h1 className="text-3xl font-bold">{book.title}</h1>
+          <h1 className="text-3xl font-bold">
+            {book.title}
+          </h1>
 
           <p className="text-blue-400 mt-2">
             {author?.name}
@@ -91,7 +112,9 @@ export default async function Page({ params }: any) {
               <GenreBadge
                 key={s.id}
                 label={s.label}
-                type={getGenreFromSubgenre(s.id) || ""}
+                type={
+                  getGenreFromSubgenre(s.id) || ""
+                }
               />
             ))}
 
@@ -126,19 +149,23 @@ export default async function Page({ params }: any) {
             {/* Saga */}
             {book.isSaga ? (
               <span
-                className="text-xs px-3 py-1 rounded-full
-                bg-purple-500/20
-                text-purple-300
-                border border-purple-400/30"
+                className="
+                  text-xs px-3 py-1 rounded-full
+                  bg-purple-500/20
+                  text-purple-300
+                  border border-purple-400/30
+                "
               >
                 📚 Saga
               </span>
             ) : (
               <span
-                className="text-xs px-3 py-1 rounded-full
-                bg-zinc-800
-                text-zinc-400
-                border border-zinc-700"
+                className="
+                  text-xs px-3 py-1 rounded-full
+                  bg-zinc-800
+                  text-zinc-400
+                  border border-zinc-700
+                "
               >
                 📖 Autoconclusivo
               </span>
@@ -151,26 +178,33 @@ export default async function Page({ params }: any) {
               <h3 className="text-lg font-semibold text-zinc-200 mb-3">
                 ¿Qué encontrarás?
               </h3>
+
               <div className="flex flex-wrap gap-2">
-                {book.review.metrics.map((m) => {
-                  const meta = metricsCatalog.find(x => x.id === m);
-                  if (!meta) return null;
+                {book.review.metrics.map(m => {
+                  const meta =
+                    metricsCatalog.find(
+                      x => x.id === m
+                    )
+
+                  if (!meta) return null
 
                   return (
                     <span
                       key={m}
-                      className="text-xs px-3 py-1 rounded-full 
-                        bg-zinc-900 
-                        text-yellow-400 
-                        border border-yellow-500/40 
-                        shadow-[0_0_8px_rgba(234,179,8,0.25)] 
-                        hover:shadow-[0_0_12px_rgba(234,179,8,0.4)] 
-                        hover:bg-zinc-800 
-                        transition-all duration-200"
+                      className="
+                        text-xs px-3 py-1 rounded-full
+                        bg-zinc-900
+                        text-yellow-400
+                        border border-yellow-500/40
+                        shadow-[0_0_8px_rgba(234,179,8,0.25)]
+                        hover:shadow-[0_0_12px_rgba(234,179,8,0.4)]
+                        hover:bg-zinc-800
+                        transition-all duration-200
+                      "
                     >
                       {meta.label}
                     </span>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -178,18 +212,22 @@ export default async function Page({ params }: any) {
 
           <div className="mt-6 space-y-4">
             {Object.entries(book.tags)
-            .filter(([_, value]) => value !== 0)
-            .map(([key, value]) => {
-              const text = tagsCatalog[key as keyof typeof tagsCatalog][value]
-              return (
-                <TagBar
-                  key={key}
-                  label={key}
-                  level={value}
-                  text={text}
-                />
-              )
-            })}
+              .filter(([_, value]) => value !== 0)
+              .map(([key, value]) => {
+                const text =
+                  tagsCatalog[
+                    key as keyof typeof tagsCatalog
+                  ][value]
+
+                return (
+                  <TagBar
+                    key={key}
+                    label={key}
+                    level={value}
+                    text={text}
+                  />
+                )
+              })}
           </div>
 
           {/* Reseña */}
@@ -204,7 +242,10 @@ export default async function Page({ params }: any) {
                   .split("\n")
                   .map((line, i) =>
                     line.trim() ? (
-                      <p key={i} className="flex gap-2">
+                      <p
+                        key={i}
+                        className="flex gap-2"
+                      >
                         <span>•</span>
                         <span>{line}</span>
                       </p>
@@ -214,27 +255,32 @@ export default async function Page({ params }: any) {
             </div>
           )}
 
-          <AmazonButton 
-            amazon={book.amazon} 
+          <AmazonButton
+            amazon={book.amazon}
             amazonLink={book.amazonLink}
+            country={country}
           />
 
         </div>
 
       </div>
-      
+
       {sameAuthorBooks.length > 0 && (
         <div className="mt-12">
           <BookRow
             title={`Más libros de ${author?.name}`}
             books={sameAuthorBooks}
-            noShuffle
+            country={country}
           />
         </div>
       )}
 
       <div className="mt-12">
-        <BookRow title="También te puede gustar" books={recommended} />
+        <BookRow
+          title="También te puede gustar"
+          books={recommended}
+          country={country}
+        />
       </div>
 
     </section>
