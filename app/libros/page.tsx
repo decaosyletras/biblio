@@ -66,7 +66,7 @@ export default function Page() {
           <BookRow
             title=""
             books={books}
-            noShuffle={false}
+            noShuffle={true}
           />
 
         </section>
