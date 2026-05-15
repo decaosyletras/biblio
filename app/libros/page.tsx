@@ -22,7 +22,7 @@ export default function Page() {
         <div className="px-6 mb-10">
 
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-zinc-100">
-            Explora historias
+            Explorando historias
           </h1>
 
           <p className="text-sm text-zinc-400 mt-2">
