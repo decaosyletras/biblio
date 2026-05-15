@@ -112,7 +112,7 @@ export default function ConocemePage() {
         </h2>
 
         <p className="text-zinc-400 mb-4">
-          Estoy trabajando en una segunda versión de esta plataforma donde los
+          Trabajaré en una segunda versión de esta plataforma donde los
           lectores y escritores independientes podrán interactuar directamente.
           La idea es que los autores puedan agregar sus libros, recibir
           visibilidad y conectar con lectores reales.

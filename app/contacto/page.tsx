@@ -117,7 +117,7 @@ export default function Page() {
         {/* AUTOR */}
         <input
           type="text"
-          placeholder="Nombre del autor (de preferencia como aparece en Amazon)"
+          placeholder="Nombre del autor (como en Amazon)"
           value={autor}
           onChange={(e) => setAutor(e.target.value)}
           className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
@@ -177,7 +177,7 @@ export default function Page() {
         {/* ASIN */}
         <input
           type="text"
-          placeholder="ASIN del ebook (solo versión digital, 10 caracteres)"
+          placeholder="ASIN del ebook (versión digital)"
           value={asin}
           onChange={(e) => setAsin(e.target.value)}
           maxLength={10}
