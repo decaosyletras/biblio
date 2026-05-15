@@ -49,7 +49,7 @@ export default async function Page({ params }: any) {
   }
 
   return (
-    <section className="py-16">
+    <section className="py-14">
       <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 text-zinc-100">
 
         {/* Imagen */}
@@ -61,7 +61,7 @@ export default async function Page({ params }: any) {
           />
 
           {book.review.title && (
-            <p className="mt-10 text-lg text-zinc-300 italic text-center">
+            <p className="mt-8 text-lg text-zinc-300 italic text-center">
               "{book.review.title}"
             </p>
           )}
