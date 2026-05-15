@@ -1444,7 +1444,7 @@ export const books: Book[] = [
   {
     slug: "fisura-interdimensional",
     title: "FISURA INTERDIMENSIONAL",
-    cover: "/covers/fisurainterdimensional.jpg",
+    cover: "/covers/fisura.jpg",
     amazon: {
       es: "",
       mx: "",
