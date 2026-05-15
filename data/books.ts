@@ -131,7 +131,7 @@ export const books: Book[] = [
   {
     slug: "jodidos-mas-no-vencidos",
     title: "JODIDOS, MAS NO VENCIDOS",
-    cover: "/covers/jodidos.jpg",
+    cover: "",
     amazon: {
       es: "B0F79HQK2B",
       mx: "B0F79HQK2B",
@@ -1444,7 +1444,7 @@ export const books: Book[] = [
   {
     slug: "fisura-interdimensional",
     title: "FISURA INTERDIMENSIONAL",
-    cover: "",
+    cover: "/covers/fisurainterdimensional.jpg",
     amazon: {
       es: "",
       mx: "",
@@ -2179,7 +2179,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["ficcion", "misterio", "cienciaFiccion"],
-    subgenres: ["historica", "conspiracion", "realidadesalternas", "psicologico"],
+    subgenres: ["historica", "conspiracion", "psicologico"],
 
     tags: {
       ritmo: 0,
