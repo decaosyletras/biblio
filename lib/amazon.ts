@@ -73,37 +73,67 @@ export function generateAmazonLink(
 
 // 👇 NO quitar porque ya lo usas
 export function getAmazonCover(
-  amazon: Record<string, string>
+  amazon: Record<string, string>,
+  localCover?: string
 ) {
-  const asin =
-    amazon.us ||
-    amazon.es ||
-    amazon.mx ||
-    Object.values(amazon)[0]
+  // Buscar primer ASIN válido (no vacío)
+  const asin = [
+    amazon.us,
+    amazon.es,
+    amazon.mx,
+    ...Object.values(amazon),
+  ].find(
+    (value) =>
+      typeof value === "string" &&
+      value.trim() !== ""
+  )
 
-  return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`
+  // 1. Portada de Amazon si hay ASIN válido
+  if (asin) {
+    return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`
+  }
+
+  // 2. Cover local si existe
+  if (
+    typeof localCover === "string" &&
+    localCover.trim() !== ""
+  ) {
+    return localCover
+  }
+
+  // 3. Fallback genérico
+  return "/covers/portadagenerica.png"
 }
 
 export function getBookCover(
   amazon: Record<string, string>,
   localCover?: string
 ) {
-  const asin =
-    amazon.us ||
-    amazon.es ||
-    amazon.mx ||
-    Object.values(amazon)[0]
+  // Buscar primer ASIN válido (no vacío)
+  const asin = [
+    amazon.us,
+    amazon.es,
+    amazon.mx,
+    ...Object.values(amazon),
+  ].find(
+    (value) =>
+      typeof value === "string" &&
+      value.trim() !== ""
+  )
 
-  // 1. Amazon cover si hay ASIN
+  // 1. Portada de Amazon si hay ASIN válido
   if (asin) {
     return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`
   }
 
-  // 2. Cover local del libro
-  if (localCover && localCover.trim() !== "") {
+  // 2. Cover local si existe
+  if (
+    typeof localCover === "string" &&
+    localCover.trim() !== ""
+  ) {
     return localCover
   }
 
-  // 3. fallback final
+  // 3. Fallback genérico
   return "/covers/portadagenerica.png"
 }
