@@ -3,7 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { tagsCatalog } from "@/data/tags"
-import { getAmazonCover } from "@/lib/amazon"
+import { getBookCover } from "@/lib/amazon"
 
 export default function CardReview({ book }: any) {
 
@@ -46,13 +46,7 @@ export default function CardReview({ book }: any) {
         <div className="flex gap-4">
 
           <img
-            src={
-              book.amazon
-                ? getAmazonCover(
-                    book.amazon
-                  )
-                : "/placeholder-book.jpg"
-            }
+            src={getBookCover(book.amazon, book.cover)}
             alt={book.title}
             className="
               w-20
