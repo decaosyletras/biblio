@@ -236,6 +236,12 @@ export default function Page() {
           {loading ? "Enviando..." : "Enviar"}
         </button>
 
+        
+
+        <p className="text-zinc-400 text-sm sm:text-base mb-6 mt-6">
+          Todos los libros pasarán por una verificación en la información. Solicitamos un poco de paciencia.
+        </p>
+
       </div>
     </section>
   )
