@@ -13,8 +13,10 @@ export default function AmazonButton({
   amazonLink?: string
 }) {
 
-  const handleClick = () => {
-    const country = detectAmazonCountry()
+  const handleClick = async () => {
+
+    const country =
+      await detectAmazonCountry()
 
     const url = generateAmazonLink(
       amazon,

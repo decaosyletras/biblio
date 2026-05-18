@@ -26,11 +26,16 @@ export function getAmazonStore(country: string = "US") {
 /**
  * 🔥 NUEVO: detección segura (sin romper compatibilidad)
  */
-export function detectAmazonCountry(): string {
-  if (typeof window === "undefined") return "US"
+export async function detectAmazonCountry() {
+  try {
+    const res = await fetch("/api/country")
 
-  // fallback simple y estable (NO idioma)
-  return "US"
+    const data = await res.json()
+
+    return data.country || "US"
+  } catch {
+    return "US"
+  }
 }
 
 export function getBookAsin(
