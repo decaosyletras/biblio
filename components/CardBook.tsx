@@ -8,9 +8,9 @@ import AmazonButton from "@/components/AmazonButton"
 export default function CardBook({ book }: { book: Book }) {
 
   // 👇 multi-autor
-  const bookAuthors = authors.filter(a =>
-    book.authorSlug?.includes(a.slug)
-  )
+  const bookAuthors = book.authorSlug
+  .map(slug => authors.find(a => a.slug === slug))
+  .filter(Boolean)
 
   return (
     <div className="bg-zinc-800 rounded-xl p-3 hover:scale-108 transition duration-300 relative z-10 hover:z-20">
@@ -40,8 +40,8 @@ export default function CardBook({ book }: { book: Book }) {
       </Link>
 
       {/* Autor (multi-autor) */}
-      <div className="mt-1 text-xs text-zinc-400">
-        {bookAuthors.map(a => a.name).join(", ")}
+      <div className="mt-1 text-xs text-zinc-400 line-clamp-2">
+        {bookAuthors.map(a => a?.name).join(", ")}
       </div>
 
       {/* Botón */}
