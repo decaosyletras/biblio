@@ -22,24 +22,26 @@ export default async function Page({ params }: any) {
 
   if (!book) return <div>No encontrado</div>
 
-  const author = authors.find(a => a.slug === book.authorSlug)
+  // 👇 AUTORES (multi-autor)
+  const bookAuthors = authors.filter(a =>
+    book.authorSlug.includes(a.slug)
+  )
 
   const recommended = getRecommendedBooks(book.slug)
 
   const sameAuthorBooks = books.filter(
-    b => b.authorSlug === book.authorSlug && b.slug !== book.slug
+    b =>
+      b.slug !== book.slug &&
+      b.authorSlug?.some(slug => book.authorSlug.includes(slug))
   )
-
-  /*const genresData =
-  genresCatalog.filter(g => book.genre.includes(g.id))*/
 
   const genresData = genresCatalog.filter(g =>
     book.genre.includes(g.id)
-  );
+  )
 
   const subgenres = genresData.flatMap(g =>
     g.subgenres.filter(s => book.subgenres.includes(s.id))
-  );
+  )
 
   const getGenreFromSubgenre = (subId: string) => {
     return genresCatalog.find(g =>
@@ -70,8 +72,9 @@ export default async function Page({ params }: any) {
         <div>
           <h1 className="text-3xl font-bold">{book.title}</h1>
 
+          {/* 👇 autores (multi) */}
           <p className="text-blue-400 mt-2">
-            {author?.name}
+            {bookAuthors.map(a => a.name).join(", ")}
           </p>
 
           <div className="mt-4 flex flex-wrap gap-2">
@@ -152,8 +155,8 @@ export default async function Page({ params }: any) {
               </h3>
               <div className="flex flex-wrap gap-2">
                 {book.review.metrics.map((m) => {
-                  const meta = metricsCatalog.find(x => x.id === m);
-                  if (!meta) return null;
+                  const meta = metricsCatalog.find(x => x.id === m)
+                  if (!meta) return null
 
                   return (
                     <span
@@ -169,7 +172,7 @@ export default async function Page({ params }: any) {
                     >
                       {meta.label}
                     </span>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -177,18 +180,18 @@ export default async function Page({ params }: any) {
 
           <div className="mt-6 space-y-4">
             {Object.entries(book.tags)
-            .filter(([_, value]) => value !== 0)
-            .map(([key, value]) => {
-              const text = tagsCatalog[key as keyof typeof tagsCatalog][value]
-              return (
-                <TagBar
-                  key={key}
-                  label={key}
-                  level={value}
-                  text={text}
-                />
-              )
-            })}
+              .filter(([_, value]) => value !== 0)
+              .map(([key, value]) => {
+                const text = tagsCatalog[key as keyof typeof tagsCatalog][value]
+                return (
+                  <TagBar
+                    key={key}
+                    label={key}
+                    level={value}
+                    text={text}
+                  />
+                )
+              })}
           </div>
 
           {/* Reseña */}
@@ -213,19 +216,19 @@ export default async function Page({ params }: any) {
             </div>
           )}
 
-          <AmazonButton 
-            amazon={book.amazon} 
+          <AmazonButton
+            amazon={book.amazon}
             amazonLink={book.amazonLink}
           />
 
         </div>
-
       </div>
-      
+
+      {/* Más libros del mismo autor (o coautores) */}
       {sameAuthorBooks.length > 0 && (
         <div className="mt-12">
           <BookRow
-            title={`Más libros de ${author?.name}`}
+            title={`Más libros de ${bookAuthors.map(a => a.name).join(", ")}`}
             books={sameAuthorBooks}
             noShuffle
           />

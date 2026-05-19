@@ -22,25 +22,28 @@ function getScore(a: Book, b: Book) {
   return score
 }
 
+// ⚠️ evitamos hydration mismatch
 function getRandomItems<T>(arr: T[], n: number): T[] {
-  const shuffled = [...arr].sort(() => 0.5 - Math.random())
+  const shuffled = [...arr].sort((a, b) =>
+    String((a as any).slug).localeCompare(String((b as any).slug))
+  )
   return shuffled.slice(0, n)
 }
 
 export function getRecommendedAuthors(currentAuthorSlug: string) {
 
-  // 🔥 libros del autor actual
+  // 🔥 libros del autor actual (MULTI-AUTOR)
   const currentBooks = books.filter(
-    b => b.authorSlug === currentAuthorSlug
+    b => b.authorSlug?.includes(currentAuthorSlug)
   )
 
   // 🔥 calcular scores SOLO de otros autores
   const scoredAuthors = authors
-    .filter(a => a.slug !== currentAuthorSlug) // ✅ FIX CLAVE
+    .filter(a => a.slug !== currentAuthorSlug)
     .map(author => {
 
       const authorBooks = books.filter(
-        b => b.authorSlug === author.slug
+        b => b.authorSlug?.includes(author.slug)
       )
 
       let totalScore = 0
@@ -62,6 +65,6 @@ export function getRecommendedAuthors(currentAuthorSlug: string) {
     .sort((a, b) => b.score - a.score)
     .slice(0, 4)
 
-  // 🔥 random 2
+  // 🔥 random estable (sin hydration issues)
   return getRandomItems(top4, 2)
 }

@@ -11,7 +11,7 @@ export const books: Book[] = [
       us: "B09XCCWTLY",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "marcos-m-jimenez-gonzalez",
+    authorSlug: ["marcos-m-jimenez-gonzalez"],
     isSaga: true,
     categories: [0, 3, 5, 9],
     summary:
@@ -56,7 +56,7 @@ export const books: Book[] = [
       us: "B0DB52QBX3",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "marcos-m-jimenez-gonzalez",
+    authorSlug: ["marcos-m-jimenez-gonzalez"],
     isSaga: true,
     categories: [0, 3, 9],
     summary:
@@ -94,7 +94,7 @@ export const books: Book[] = [
       us: "B0GJTWFXM5",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "marcos-m-jimenez-gonzalez",
+    authorSlug: ["marcos-m-jimenez-gonzalez"],
     isSaga: true,
     categories: [0, 3, 9],
     summary:
@@ -138,7 +138,7 @@ export const books: Book[] = [
       us: "B0F79HQK2B",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "marcos-m-jimenez-gonzalez",
+    authorSlug: ["marcos-m-jimenez-gonzalez"],
     isSaga: false,
     categories: [0, 1, 9],
     summary:
@@ -184,7 +184,7 @@ export const books: Book[] = [
       us: "B09F1QBXMD",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "juan-carlos-lopez-bayon",
+    authorSlug: ["juan-carlos-lopez-bayon"],
     isSaga: true,
     categories: [0, 2, 5],
     summary:
@@ -222,7 +222,7 @@ export const books: Book[] = [
       us: "B0CGYHXVBY",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "j-e-fourt",
+    authorSlug: ["j-e-fourt"],
     isSaga: false,
     categories: [0, 3, 6],
     summary:
@@ -269,7 +269,7 @@ export const books: Book[] = [
       us: "B0CHVDTT5W",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "oscar-gonzalez-cruz",
+    authorSlug: ["oscar-gonzalez-cruz"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -313,7 +313,7 @@ export const books: Book[] = [
       us: "B0GLLVJY2C",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "jose-m-aldasoro",
+    authorSlug: ["jose-m-aldasoro"],
     isSaga: false,
     categories: [0, 3, 6],
     summary:
@@ -359,7 +359,7 @@ export const books: Book[] = [
       us: "B0DDY47VLH",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "a-a-espino",
+    authorSlug: ["a-a-espino"],
     isSaga: false,
     categories: [0, 6],
     summary:
@@ -404,7 +404,7 @@ export const books: Book[] = [
     },
     asin: "",
     amazonLink: "https://amazon.com",
-    authorSlug: "noe-martin-salido",
+    authorSlug: ["noe-martin-salido"],
     isSaga: false,
     categories: [0, 3],
     summary:
@@ -448,7 +448,7 @@ export const books: Book[] = [
       us: "B0F7F315ZZ",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "julian-drake",
+    authorSlug: ["julian-drake"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -491,7 +491,7 @@ export const books: Book[] = [
       us: "B0D3BVLJ96",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "nicole-sanchez-castillo",
+    authorSlug: ["nicole-sanchez-castillo"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -536,7 +536,7 @@ export const books: Book[] = [
       us: "B0F7G53PGY",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "alejandro-p-c",
+    authorSlug: ["alejandro-p-c"],
     isSaga: false,
     categories: [0, 2],
     summary:
@@ -581,7 +581,7 @@ export const books: Book[] = [
       us: "B0F3QD1LQF",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "keira-moreau",
+    authorSlug: ["keira-moreau"],
     isSaga: false,
     categories: [0, 2],
     summary:
@@ -625,7 +625,7 @@ export const books: Book[] = [
       us: "B0FHDS9W2D",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "gabriel-vilches-barroso",
+    authorSlug: ["gabriel-vilches-barroso"],
     isSaga: false,
     categories: [0, 4, 5],
     summary:
@@ -671,7 +671,7 @@ export const books: Book[] = [
       us: "B0DQVHMR93",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "juan-carlos-lopez-bayon",
+    authorSlug: ["juan-carlos-lopez-bayon"],
     isSaga: false,
     categories: [0, 1, 2],
     summary:
@@ -714,7 +714,7 @@ export const books: Book[] = [
       us: "B0CJJZ3YMW",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "eduardo-d-allen",
+    authorSlug: ["eduardo-d-allen"],
     isSaga: true,
     categories: [0, 3, 5],
     summary:
@@ -760,7 +760,7 @@ export const books: Book[] = [
       us: "B0DX7GKT7K",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "gabriel-vilches-barroso",
+    authorSlug: ["gabriel-vilches-barroso"],
     isSaga: false,
     categories: [0, 3],
     summary:
@@ -804,7 +804,7 @@ export const books: Book[] = [
       us: "B0CW1M28T2",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "eduardo-d-allen",
+    authorSlug: ["eduardo-d-allen"],
     isSaga: true,
     categories: [0, 3],
     summary:
@@ -850,7 +850,7 @@ export const books: Book[] = [
       us: "B0CNQG5YYY",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "sergio-velez-rodríguez",
+    authorSlug: ["sergio-velez-rodríguez"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -887,7 +887,7 @@ export const books: Book[] = [
       us: "B0CYYMDHPX",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "luis-rivera",
+    authorSlug: ["luis-rivera"],
     isSaga: true,
     categories: [0, 3, 5],
     summary:
@@ -931,7 +931,7 @@ export const books: Book[] = [
       us: "B0F517N3HD",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "luis-rivera",
+    authorSlug: ["luis-rivera"],
     isSaga: true,
     categories: [0, 3],
     summary:
@@ -977,7 +977,7 @@ export const books: Book[] = [
       us: "B0CB791SVR",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "j-c-plaza",
+    authorSlug: ["j-c-plaza"],
     isSaga: false,
     categories: [0, 3],
     summary:`
@@ -1025,7 +1025,7 @@ export const books: Book[] = [
       us: "B08BDG5B9L",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "javier-marin",
+    authorSlug: ["javier-marin"],
     isSaga: false,
     categories: [0, 5],
     summary:
@@ -1063,7 +1063,7 @@ export const books: Book[] = [
       us: "B0DWXSNYB8",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "maximilian-cross",
+    authorSlug: ["maximilian-cross"],
     isSaga: false,
     categories: [0, 3],
     summary:
@@ -1106,7 +1106,7 @@ export const books: Book[] = [
       us: "B0CM28C1H7",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "juan-antonio-jimenez",
+    authorSlug: ["juan-antonio-jimenez"],
     isSaga: false,
     categories: [0, 3, 6],
     summary:
@@ -1150,7 +1150,7 @@ export const books: Book[] = [
       us: "B0FRKMR34W",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "adner-perez-garcia",
+    authorSlug: ["adner-perez-garcia"],
     isSaga: false,
     categories: [0, 1, 2],
     summary:
@@ -1194,7 +1194,7 @@ export const books: Book[] = [
       us: "B0GDNTT4MT",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "luis-rivera",
+    authorSlug: ["luis-rivera"],
     isSaga: true,
     categories: [0, 3],
     summary:
@@ -1239,7 +1239,7 @@ export const books: Book[] = [
       us: "B0CJ5DF3ZB",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "daniel-galvez-estevez",
+    authorSlug: ["daniel-galvez-estevez"],
     isSaga: false,
     categories: [0, 2],
     summary:
@@ -1283,7 +1283,7 @@ export const books: Book[] = [
       us: "B07ZJZ698X",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "belu-elein",
+    authorSlug: ["belu-elein"],
     isSaga: true,
     categories: [0, 5],
     summary:
@@ -1327,7 +1327,7 @@ export const books: Book[] = [
       us: "B0D5HWMMPY",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "eduardo-d-allen",
+    authorSlug: ["eduardo-d-allen"],
     isSaga: true,
     categories: [0, 3],
     summary:
@@ -1372,7 +1372,7 @@ export const books: Book[] = [
       us: "B0FNQY52XQ",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "arnulfo-diaz",
+    authorSlug: ["arnulfo-diaz"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -1408,7 +1408,7 @@ export const books: Book[] = [
       us: "B0FGZL7YCH",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "david-sanz",
+    authorSlug: ["david-sanz"],
     isSaga: false,
     categories: [0, 3, 6],
     summary:
@@ -1453,7 +1453,7 @@ export const books: Book[] = [
       us: "",
     },
     amazonLink: "https://amzn.to/4tFiqqP",
-    authorSlug: "marcos-vega",
+    authorSlug: ["marcos-vega"],
     isSaga: false,
     categories: [0, 3, 6, 7],
     summary:
@@ -1501,7 +1501,7 @@ export const books: Book[] = [
       us: "B0FHC37GVW",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "beatriz-lillo",
+    authorSlug: ["beatriz-lillo"],
     isSaga: false,
     categories: [0, 4],
     summary:
@@ -1544,7 +1544,7 @@ export const books: Book[] = [
       us: "B0F45Q873Y",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "eduardo-d-allen",
+    authorSlug: ["eduardo-d-allen"],
     isSaga: false,
     categories: [0, 4],
     summary:
@@ -1591,7 +1591,7 @@ export const books: Book[] = [
       us: "B0GMLDN1M7",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "jose-m-aldasoro",
+    authorSlug: ["jose-m-aldasoro"],
     isSaga: false,
     categories: [0, 3],
     summary:
@@ -1625,7 +1625,7 @@ export const books: Book[] = [
       us: "B0FQJG9S66",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "a-a-espino",
+    authorSlug: ["a-a-espino"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -1659,7 +1659,7 @@ export const books: Book[] = [
       us: "B0F74JP29Q",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "julian-drake",
+    authorSlug: ["julian-drake"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -1693,7 +1693,7 @@ export const books: Book[] = [
       us: "B0F7XF4QSP",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "julian-drake",
+    authorSlug: ["julian-drake"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -1727,7 +1727,7 @@ export const books: Book[] = [
       us: "B0F7WZ6117",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "julian-drake",
+    authorSlug: ["julian-drake"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -1761,7 +1761,7 @@ export const books: Book[] = [
       us: "B0F7GGXPPL",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "julian-drake",
+    authorSlug: ["julian-drake"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -1795,7 +1795,7 @@ export const books: Book[] = [
       us: "B0G75CM2PD",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "nicole-sanchez-castillo",
+    authorSlug: ["nicole-sanchez-castillo"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -1829,7 +1829,7 @@ export const books: Book[] = [
       us: "B0DTGT1575",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "nicole-sanchez-castillo",
+    authorSlug: ["nicole-sanchez-castillo"],
     isSaga: false,
     categories: [0],
     summary:
@@ -1863,7 +1863,7 @@ export const books: Book[] = [
       us: "B0B8C6ZJRD",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "nicole-sanchez-castillo",
+    authorSlug: ["nicole-sanchez-castillo"],
     isSaga: false,
     categories: [0, 1, 2],
     summary:
@@ -1897,7 +1897,7 @@ export const books: Book[] = [
       us: "B0FFHJ1Y55",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "keira-moreau",
+    authorSlug: ["keira-moreau"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -1931,7 +1931,7 @@ export const books: Book[] = [
       us: "B0FHQFYHB1",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "keira-moreau",
+    authorSlug: ["keira-moreau"],
     isSaga: false,
     categories: [0],
     summary:
@@ -1965,7 +1965,7 @@ export const books: Book[] = [
       us: "B0GRRDJ7KB",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "gabriel-vilches-barroso",
+    authorSlug: ["gabriel-vilches-barroso"],
     isSaga: false,
     categories: [0],
     summary:
@@ -1999,7 +1999,7 @@ export const books: Book[] = [
       us: "B0G3LM55KW",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "gabriel-vilches-barroso",
+    authorSlug: ["gabriel-vilches-barroso"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2033,7 +2033,7 @@ export const books: Book[] = [
       us: "B0BWZQGLM3",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "juan-carlos-lopez-bayon",
+    authorSlug: ["juan-carlos-lopez-bayon"],
     isSaga: true,
     categories: [0],
     summary:
@@ -2067,7 +2067,7 @@ export const books: Book[] = [
       us: "B0FVKNDPWK",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "juan-carlos-lopez-bayon",
+    authorSlug: ["juan-carlos-lopez-bayon"],
     isSaga: false,
     categories: [0, 2],
     summary:
@@ -2101,7 +2101,7 @@ export const books: Book[] = [
       us: "B0DLP45SC5",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "eduardo-d-allen",
+    authorSlug: ["eduardo-d-allen"],
     isSaga: true,
     categories: [0, 1],
     summary:
@@ -2135,7 +2135,7 @@ export const books: Book[] = [
       us: "B0GX2WLSYF",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "sergio-velez-rodriguez",
+    authorSlug: ["sergio-velez-rodriguez"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -2169,7 +2169,7 @@ export const books: Book[] = [
       us: "B0CFG8W2VQ",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "sergio-velez-rodriguez",
+    authorSlug: ["sergio-velez-rodriguez"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2203,7 +2203,7 @@ export const books: Book[] = [
       us: "B0GNLY4JLB",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "luis-rivera",
+    authorSlug: ["luis-rivera"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -2237,7 +2237,7 @@ export const books: Book[] = [
       us: "B09411PVCG",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "javier-marin",
+    authorSlug: ["javier-marin"],
     isSaga: false,
     categories: [0, 3],
     summary:
@@ -2271,7 +2271,7 @@ export const books: Book[] = [
       us: "B09TG37YFZ",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "javier-marin",
+    authorSlug: ["javier-marin"],
     isSaga: false,
     categories: [0, 3],
     summary:
@@ -2305,7 +2305,7 @@ export const books: Book[] = [
       us: "B0CWVN1JSP",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "javier-marin",
+    authorSlug: ["javier-marin"],
     isSaga: false,
     categories: [0, 3],
     summary:
@@ -2339,7 +2339,7 @@ export const books: Book[] = [
       us: "B0GT4H9QZH",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "adner-perez-garcia",
+    authorSlug: ["adner-perez-garcia"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2373,7 +2373,7 @@ export const books: Book[] = [
       us: "B0F4Q4JYQB",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "adner-perez-garcia",
+    authorSlug: ["adner-perez-garcia"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2407,7 +2407,7 @@ export const books: Book[] = [
       us: "B0DCV25KBK",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "daniel-galvez-estevez",
+    authorSlug: ["daniel-galvez-estevez"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2441,7 +2441,7 @@ export const books: Book[] = [
       us: "B0GWWJVRX4",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "daniel-galvez-estevez",
+    authorSlug: ["daniel-galvez-estevez"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2475,7 +2475,7 @@ export const books: Book[] = [
       us: "B0DJNN1YHC",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "belu-elein",
+    authorSlug: ["belu-elein"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2509,7 +2509,7 @@ export const books: Book[] = [
       us: "B0897YGV1T",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "belu-elein",
+    authorSlug: ["belu-elein"],
     isSaga: true,
     categories: [0],
     summary:
@@ -2543,7 +2543,7 @@ export const books: Book[] = [
       us: "B09MYYWXVG",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "belu-elein",
+    authorSlug: ["belu-elein"],
     isSaga: true,
     categories: [0],
     summary:
@@ -2577,7 +2577,7 @@ export const books: Book[] = [
       us: "B0FNRXH85M",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "arnulfo-diaz",
+    authorSlug: ["arnulfo-diaz"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -2611,7 +2611,7 @@ export const books: Book[] = [
       us: "B0FNRW2MRB",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "arnulfo-diaz",
+    authorSlug: ["arnulfo-diaz"],
     isSaga: false,
     categories: [0, 1],
     summary:
@@ -2645,7 +2645,7 @@ export const books: Book[] = [
       us: "B0D3WQ5KBC",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "david-sanz",
+    authorSlug: ["david-sanz"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2679,7 +2679,7 @@ export const books: Book[] = [
       us: "B0C37YR387",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "david-sanz",
+    authorSlug: ["david-sanz"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2713,7 +2713,7 @@ export const books: Book[] = [
       us: "B0FZ5YZKWZ",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "beatriz-lillo",
+    authorSlug: ["beatriz-lillo"],
     isSaga: false,
     categories: [0],
     summary:
@@ -2750,7 +2750,7 @@ export const books: Book[] = [
       us: "B0GMXLSNSB",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: "j-c-plaza",
+    authorSlug: ["j-c-plaza", "julio-embid"],
     isSaga: false,
     categories: [0],
     summary:

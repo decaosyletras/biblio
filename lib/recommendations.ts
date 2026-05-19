@@ -17,25 +17,19 @@ function getScore(a: Book, b: Book) {
 
   const sharedGenres = genresA.filter(g => genresB.includes(g))
 
-  // peso fuerte
   score += sharedGenres.length * 5
 
-  // bonus si comparten al menos uno
-  /*if (sharedGenres.length > 0) {
-    score += 5
-  }*/
-
-  // 🔵 2. SUBGÉNEROS POR GÉNERO
+  // 🔵 2. SUBGÉNEROS
   sharedGenres.forEach((genre) => {
-    const subA = (a.subgenres as any)?.[genre] || [];
-    const subB = (b.subgenres as any)?.[genre] || [];
+    const subA = (a.subgenres as any)?.[genre] || []
+    const subB = (b.subgenres as any)?.[genre] || []
 
     const sharedSub = subA.filter((s: string) => subB.includes(s))
 
     score += sharedSub.length * 5
   })
 
-  // 🧠 3. MÉTRICAS (strings)
+  // 🧠 3. MÉTRICAS
   const metricsA = a.review.metrics || []
   const metricsB = b.review.metrics || []
 
@@ -54,15 +48,19 @@ function getScore(a: Book, b: Book) {
 
     const diff = Math.abs(valA - valB)
 
-    score += (2 - diff) // 0–2
+    score += (2 - diff)
   })
 
   return score
 }
 
-// 🎲 random controlado
-function getRandomItems<T>(arr: T[], n: number): T[] {
-  return [...arr].sort(() => 0.5 - Math.random()).slice(0, n)
+// 🎲 SIN RANDOM (evita hydration mismatch)
+function getStableItems<T>(arr: T[], n: number): T[] {
+  return [...arr]
+    .sort((a: any, b: any) =>
+      String(a.slug).localeCompare(String(b.slug))
+    )
+    .slice(0, n)
 }
 
 // 🚀 MAIN
@@ -70,16 +68,27 @@ export function getRecommendedBooks(currentSlug: string) {
   const current = books.find(b => b.slug === currentSlug)
   if (!current) return []
 
+  const currentAuthors = normalizeArray(current.authorSlug)
+
   const ranked = books
-    .filter(b => b.slug !== currentSlug && b.authorSlug !== current.authorSlug)
+    .filter(b => {
+      const bookAuthors = normalizeArray(b.authorSlug)
+
+      // ❌ excluir mismo libro
+      if (b.slug === currentSlug) return false
+
+      // ❌ excluir libros con mismos autores (multi-autor safe)
+      if (bookAuthors.some(a => currentAuthors.includes(a))) return false
+
+      return true
+    })
     .map(b => ({
       ...b,
       score: getScore(current, b),
     }))
     .sort((a, b) => b.score - a.score)
 
-  // 🔥 top real
   const top = ranked.slice(0, 5)
 
-  return getRandomItems(top, 3)
+  return getStableItems(top, 3)
 }

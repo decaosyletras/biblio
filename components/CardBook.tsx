@@ -6,7 +6,11 @@ import CoverImage from "@/components/CoverImage"
 import AmazonButton from "@/components/AmazonButton"
 
 export default function CardBook({ book }: { book: Book }) {
-  const author = authors.find(a => a.slug === book.authorSlug)
+
+  // 👇 multi-autor
+  const bookAuthors = authors.filter(a =>
+    book.authorSlug?.includes(a.slug)
+  )
 
   return (
     <div className="bg-zinc-800 rounded-xl p-3 hover:scale-108 transition duration-300 relative z-10 hover:z-20">
@@ -19,7 +23,7 @@ export default function CardBook({ book }: { book: Book }) {
             alt={book.title}
             className="w-full h-full object-cover rounded-xl"
           />
-          
+
           {book.review?.title && (
             <div className="absolute top-0 right-0 w-24 h-24 overflow-hidden z-50 pointer-events-none">
               <div className="absolute top-4 right-[-34px] rotate-45 bg-green-500 text-white text-[10px] font-bold px-10 py-1 shadow-md whitespace-nowrap">
@@ -35,17 +39,14 @@ export default function CardBook({ book }: { book: Book }) {
         </h4>
       </Link>
 
-      {/* Autor */}
-      {/*<Link
-        href={`/autores/${author?.slug}`}
-        className="block mt-1 text-xs text-zinc-400 hover:text-zinc-200 transition"
-      >
-        {author?.name}
-      </Link>*/}
+      {/* Autor (multi-autor) */}
+      <div className="mt-1 text-xs text-zinc-400">
+        {bookAuthors.map(a => a.name).join(", ")}
+      </div>
 
       {/* Botón */}
-      <AmazonButton 
-        amazon={book.amazon} 
+      <AmazonButton
+        amazon={book.amazon}
         amazonLink={book.amazonLink}
       />
 

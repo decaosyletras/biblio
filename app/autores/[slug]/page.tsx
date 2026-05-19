@@ -15,8 +15,9 @@ export default async function Page({
 
   if (!author) return <div>No encontrado</div>
 
+  // 👇 libros del autor (ahora multi-autor)
   const authorBooks = books.filter(
-    b => b.authorSlug === author.slug
+    b => b.authorSlug?.includes(author.slug)
   )
 
   const similarAuthors = authors.filter(a =>
@@ -30,9 +31,9 @@ export default async function Page({
 
       {/* HERO */}
       <section className="relative h-[300px] flex items-end px-6 pb-6">
-        
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
 
+        {/* HERO UI (comentado) */}
         {/*<div className="relative z-10 flex items-center gap-6">
           <img
             src={author.avatar}
@@ -44,7 +45,6 @@ export default async function Page({
             <p className="text-zinc-400">{author.bio}</p>
           </div>
         </div>*/}
-
       </section>
 
       {/* CONTENIDO */}
@@ -70,9 +70,7 @@ export default async function Page({
           </p>
         </div>
 
-        
-
-        {/* LIBROS DEL AUTOR (Netflix style) */}
+        {/* LIBROS DEL AUTOR (Netflix style horizontal) */}
         <h3 className="mt-10 text-xl font-semibold">
           Libros del autor
         </h3>
@@ -83,10 +81,13 @@ export default async function Page({
               <img
                 src={book.cover}
                 className="w-32 h-48 object-cover rounded-lg"
+                alt={book.title}
               />
             </a>
           ))}
         </div>
+
+        {/* (opcional) row reutilizable */}
         <BookRow title="" books={authorBooks} />
 
         {/* Similares */}
@@ -103,7 +104,6 @@ export default async function Page({
         </div>
 
       </div>
-
     </div>
   )
 }
