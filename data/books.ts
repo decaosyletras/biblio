@@ -980,8 +980,10 @@ export const books: Book[] = [
     authorSlug: "j-c-plaza",
     isSaga: false,
     categories: [0, 3],
-    summary:
-      "Víctor inicia un viaje que pronto se transforma en una experiencia extrema, dejándolo atrapado en una situación que pone en riesgo su vida. Lo que parecía algo cotidiano da paso a un entorno hostil donde debe luchar por sobrevivir. A medida que se adentra en lo desconocido de la vida alienígena, se enfrenta a situaciones ligadas a lo inexplicable, en una historia que mezcla tensión, peligro y una visión más realista de lo extraordinario.",
+    summary:`
+      Una nave extraterrestre ha sido interceptada y derribada en una zona desértica de Argentina. Un equipo de soldados es enviado para asaltarla y recuperar su tecnología.
+      Un ingeniero sin entrenamiento militar participa en la misión, sin saber qué se va a encontrar y teniendo claro que no es un hombre de acción.
+      La misión fracasará estrepitosamente y a partir de ese momento acompañaremos al protagonista en su intento de escapar y de encontrar su lugar en el mundo, mientras descubre una realidad compleja y apasionante, oculta a la mayoría de la humanidad... pero ¿logrará sobrevivir?`,
     review: {
       title: "Un viaje sin retorno",
       excerpt: `Atmósferas tensas y ciencia ficción especulativa.
@@ -1000,8 +1002,8 @@ export const books: Book[] = [
         "traicion"
       ],
     },
-    genre: ["thriller", "cienciaFiccion", "misterio"],
-    subgenres: ["technothriller", "supervivencia", "invasionalienigena"],
+    genre: ["cienciaFiccion","thriller","aventura","ficcion"],
+    subgenres: ["xenoficcion","supervivencia"],
 
     tags: {
       ritmo: 2,
@@ -2724,6 +2726,48 @@ export const books: Book[] = [
     },
     genre: ["fantasia", "romance", "thriller"],
     subgenres: ["magia", "amorprohibido", "psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+
+
+  {
+    slug: "guerras-lunares",
+    title: "GUERRAS LUNARES",
+    cover: "",
+    amazon: {
+      es: "B0GMXLSNSB",
+      mx: "B0GMXLSNSB",
+      us: "B0GMXLSNSB",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: "j-c-plaza",
+    isSaga: false,
+    categories: [0],
+    summary:
+      `Desde el vacío espacial, una madre cambiará el curso de la historia.
+        En el año 2050, la carrera por la colonización lunar ya no es un sueño: está en pleno auge.
+        La Luna se convierte en el nuevo campo de batalla por la hegemonía mundial.
+        Las primeras bases permanentes en el polo sur aprovechan el hielo de los cráteres de sombra eterna, mientras se producen operaciones militares entre astronautas estadounidenses y taikonautas chinos.
+        ¿Surgirá un nuevo amanecer para la Humanidad en la Luna?
+        Guerras Lunares, con un ritmo ágil y basada en conceptos científicos y tecnológicos reales, es un intenso thriller político que plantea un futuro cercano extraordinariamente plausible.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","thriller","ficcion","aventura"],
+    subgenres: ["exploracionespacial","technothriller","distopia"],
 
     tags: {
       ritmo: 0,
