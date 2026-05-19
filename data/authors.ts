@@ -191,7 +191,7 @@ export const authors: Author[] = [
   },
   {
     slug: "juan-antonio-jimenez",
-    name: "Juan Antonio Jiménez",
+    name: "Juan Antonio Jiménez Torres",
     avatar: "/authors/autor2.jpg",
     bio: "Narrativa emocional contemporánea.",
     description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
@@ -264,6 +264,69 @@ export const authors: Author[] = [
   {
     slug: "julio-embid",
     name: "Julio Embid",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "j-f-goulding",
+    name: "J. F. Goulding",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "carlos-j-eguren",
+    name: "Carlos J. Eguren",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "juan-baez",
+    name: "Juan Báez",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "alfredo-rubio",
+    name: "Alfredo Rubio",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "a-n-berth",
+    name: "A.N. Berth",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "pablo-albaladejo-perona",
+    name: "Pablo Albaladejo Perona",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "vicente-moraga-costoso",
+    name: "Vicente Moraga Costoso",
     avatar: "/authors/autor2.jpg",
     bio: "Narrativa emocional contemporánea.",
     description: "Sus historias conectan con experiencias cotidianas y emociones reales.",

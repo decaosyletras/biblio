@@ -2737,9 +2737,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
-
-
   {
     slug: "guerras-lunares",
     title: "GUERRAS LUNARES",
@@ -2768,6 +2765,79 @@ export const books: Book[] = [
     },
     genre: ["cienciaFiccion","thriller","ficcion","aventura"],
     subgenres: ["exploracionespacial","technothriller","distopia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "amanecer-relatos-de-ciencia-ficcion",
+    title: "AMANECER: RELATOS DE CIENCIA FICCIÓN",
+    cover: "",
+    amazon: {
+      es: "B0GTFQGS6R",
+      mx: "B0GTFQGS6R",
+      us: "B0GTFQGS6R",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["j-f-goulding","carlos-j-eguren","juan-baez","j-c-plaza","alfredo-rubio","juan-antonio-jimenez","a-n-berth","pablo-albaladejo-perona","eduardo-d-allen","vicente-moraga-costoso"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Futuros improbables, tierras desconocidas, viajes por el espacio. Si hay un género que una conocimiento y fantasía, progreso e imaginación, hipótesis y sueños, este es, sin duda, el de la ciencia ficción.
+        Diez escritores, con voces narrativas bien diferenciadas, han creado esta antología de ciencia ficción en la que, además de hacer disfrutar al lector de unos buenos relatos, pretenden dejar ideas, conceptos, sensaciones, pero, por encima de todo, desean que el lector se pregunte: ¿Qué pasaría si…?
+        Juntos atravesaremos realidades paralelas a bordo de la nave Amanecer. Abróchate el cinturón y prepárate para soportar la presión de las fuerzas g.
+        16 relatos de 10 autores.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia","realidadesalternas","invasionalienigena","exploracionespacial","utopia","cyberpunk","evolucionespeculativa"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "ha-caido-un-meteorito-en-el-pueblo",
+    title: "HA CAÍDO UN METEORITO EN EL PUEBLO",
+    cover: "",
+    amazon: {
+      es: "B0GT2FJP2J",
+      mx: "B0GT2FJP2J",
+      us: "B0GT2FJP2J",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["alfredo-rubio"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Lucas viaja a Encinares del Valle para escapar de la ciudad y de unos recuerdos que amenazan con asfixiarlo. Felipe regresa a su pueblo con la intención de retomar la vida que dejó atrás. Ninguno de los dos imagina que el impacto de la lágrima de hierro y piedra está a punto de cambiarlo todo.
+        Lo que desde un comienzo parece un fenómeno extraordinario pronto se convierte en una marea de rumores, intereses y ambiciones. El alcalde habla de progreso cuando comienzan a llegar científicos, periodistas y curiosos atraídos por lo sucedido, pero muchos vecinos sospechan que no va a traer nada bueno.
+        Un thriller con elementos de ciencia ficción y aventura ambientado en la España rural.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","thriller","aventura","misterio"],
+    subgenres: ["supervivencia"],
 
     tags: {
       ritmo: 0,
