@@ -2055,7 +2055,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
+  /*{
     slug: "el-escriba-de-las-estrellas",
     title: "EL ESCRIBA DE LAS ESTRELLAS",
     cover: "",
@@ -2088,7 +2088,7 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
+  },*/
   {
     slug: "el-himno-del-desierto-cuentos-de-navidad",
     title: "EL HIMNO DEL DESIERTO: CUENTOS DE NAVIDAD",
