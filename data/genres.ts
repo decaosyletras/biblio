@@ -70,7 +70,6 @@ export const genresCatalog = [
     id: "aventura",
     label: "Aventura",
     subgenres: [
-      { id: "supervivencia", label: "Supervivencia" },
       { id: "gore", label: "Gore" },
       { id: "juvenil", label: "Juvenil" },
     ],

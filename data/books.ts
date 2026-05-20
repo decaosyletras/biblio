@@ -1875,7 +1875,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["fantasia", "aventura", "ficcion"],
-    subgenres: ["epica", "juvenil", "supervivencia", "emotiva"],
+    subgenres: ["epica", "juvenil", "emotiva"],
 
     tags: {
       ritmo: 0,
@@ -2623,7 +2623,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["fantasia", "misterio", "ficcion"],
-    subgenres: ["magia", "supervivencia", "juvenil", "emotiva"],
+    subgenres: ["magia", "juvenil", "emotiva"],
 
     tags: {
       ritmo: 0,
