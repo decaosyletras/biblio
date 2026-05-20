@@ -11,12 +11,11 @@ function normalizeArray(val: any): string[] {
 function getScore(a: Book, b: Book) {
   let score = 0
 
-  // 🟣 1. GÉNEROS (MULTI)
+  // 🟣 1. GÉNEROS
   const genresA = normalizeArray(a.genre)
   const genresB = normalizeArray(b.genre)
 
   const sharedGenres = genresA.filter(g => genresB.includes(g))
-
   score += sharedGenres.length * 5
 
   // 🔵 2. SUBGÉNEROS
@@ -25,7 +24,6 @@ function getScore(a: Book, b: Book) {
     const subB = (b.subgenres as any)?.[genre] || []
 
     const sharedSub = subA.filter((s: string) => subB.includes(s))
-
     score += sharedSub.length * 5
   })
 
@@ -47,20 +45,22 @@ function getScore(a: Book, b: Book) {
     if (valA === undefined || valB === undefined) return
 
     const diff = Math.abs(valA - valB)
-
     score += (2 - diff)
   })
 
   return score
 }
 
-// 🎲 SIN RANDOM (evita hydration mismatch)
-function getStableItems<T>(arr: T[], n: number): T[] {
-  return [...arr]
-    .sort((a: any, b: any) =>
-      String(a.slug).localeCompare(String(b.slug))
-    )
-    .slice(0, n)
+// 🎲 SHUFFLE REAL (Fisher-Yates)
+function shuffleArray<T>(array: T[]): T[] {
+  const arr = [...array]
+
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+
+  return arr
 }
 
 // 🚀 MAIN
@@ -77,7 +77,7 @@ export function getRecommendedBooks(currentSlug: string) {
       // ❌ excluir mismo libro
       if (b.slug === currentSlug) return false
 
-      // ❌ excluir libros con mismos autores (multi-autor safe)
+      // ❌ excluir mismos autores
       if (bookAuthors.some(a => currentAuthors.includes(a))) return false
 
       return true
@@ -88,7 +88,12 @@ export function getRecommendedBooks(currentSlug: string) {
     }))
     .sort((a, b) => b.score - a.score)
 
-  const top = ranked.slice(0, 5)
+  // 🔥 TOP 5 por relevancia
+  const top5 = ranked.slice(0, 5)
 
-  return getStableItems(top, 3)
+  // 🎲 shuffle SOLO de esos 5
+  const shuffledTop5 = shuffleArray(top5)
+
+  // 🎯 devolver 3 finales
+  return shuffledTop5.slice(0, 3)
 }
