@@ -2848,6 +2848,328 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
+  },  
+  {
+    slug: "el-renacer-de-alexa",
+    title: "EL RENACER DE ALEXA",
+    cover: "",
+    amazon: {
+      es: "B0CYXW9ZR3",
+      mx: "B0CYXW9ZR3",
+      us: "B0CYXW9ZR3",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["v-jumela"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Alexa es una Metahumana que debe sobrevivir a la organización que busca aprovecharse de sus poderes, y a sus propios impulsos destructivos y traumas que la alejan de sus seres queridos. En su camino, Jorge será el mentor clave en el refugio para meta humanos, donde tendrá que convivir con otros como ella.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","fantasia","ficcion"],
+    subgenres: ["urbana","biopunk","oscura","technothriller"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "historias-de-arena-y-metal",
+    title: "HISTORIAS DE ARENA Y METAL (HIMNO DEL DESIERTO)",
+    cover: "",
+    amazon: {
+      es: "B0GQ582XNM",
+      mx: "B0GQ582XNM",
+      us: "B0GQ582XNM",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["eduardo-d-allen", "beatriz-lillo", "daniel-galvez-estevez", "belen-arce", "gabriel-vilches-barroso","ivano-de-la-rosa","narya-a-vicens","sergio-durango-arias","susana-uboldi","virginia-rios"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Una antología benéfica centrada en la saga Himno del Desierto, en colaboración con múltiples autores. Complementa el universo construido en la saga con relatos alternativos que abarcan a los pueblos de Onnan y Umbriland. Combinan diferentes escenarios, emociones y situaciones para enriquecer esta distopía postnuclear.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","aventura","misterio"],
+    subgenres: ["distopia","postapocaliptica","especulativo","technothriller"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "clasmathia",
+    title: "CLASMATHIA: UN LUGAR MEJOR",
+    cover: "",
+    amazon: {
+      es: "B0CDVM4G3J",
+      mx: "B0CDVM4G3J",
+      us: "B0CDVM4G3J",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["narya-a-vicens"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Clasmathia es un mundo postnuclear en el que la humanidad ha sido reducida a unos poblados dispersos, obligados a retroceder a una estructura social y tecnológica equivalente a los cromañones o neandertales. Una historia emotiva que combina supervivencia con nostalgia humana y construcción familiar.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","aventura","misterio"],
+    subgenres: ["postapocaliptica","distopia","especulativo"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "todavia-novelette-de-clasmathia",
+    title: "TODAVÍA (NOVELETTE DE CLASMATHIA)",
+    cover: "",
+    amazon: {
+      es: "B0DKKJT5Z1",
+      mx: "B0DKKJT5Z1",
+      us: "B0DKKJT5Z1",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["narya-a-vicens"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Una novelette de Clasmathia, la cual ejerce como una emotiva precuela para la familia protagónica de la historia principal.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","misterio","ficcion"],
+    subgenres: ["emotiva","especulativo","distopia","postapocaliptica"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "la-geometria-del-sufrimiento",
+    title: "LA GEOMETRÍA DEL SUFRIMIENTO",
+    cover: "",
+    amazon: {
+      es: "B0FDH7HKS8",
+      mx: "B0FDH7HKS8",
+      us: "B0FDH7HKS8",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["omar-escobedo"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `La Geometría del Sufrimiento: Antología de Pesadillas, es un viaje visceral hacia los abismos más oscuros de la psique. Con una narrativa que entrelaza el horror poético con la crudeza de la carne, la obra demuestra una premisa aterradora: el infierno no es un lugar al que vamos, sino uno que ya habitamos por dentro.
+        Inspirado en referentes como Clive Barker y Stephen King, nos invita a un banquete impío, un espejo implacable para reflejar nuestras fracturas y deseos inconfesables. Ideal para quienes están dispuestos a asomarse al abismo y aceptar que, el único paraíso florece en la más absoluta oscuridad.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["terror"],
+    subgenres: ["psicologico","sobrenatural"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "la-ciudad-desollada",
+    title: "LA CIUDAD DESOLLADA",
+    cover: "",
+    amazon: {
+      es: "B0GX2Y1W65",
+      mx: "B0GX2Y1W65",
+      us: "B0GX2Y1W65",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["omar-escobedo"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `La Ciudad Desollada es un noir prehispánico ambientado en un Distrito Federal apocalíptico en vísperas del año 2000. El agente Víctor Martínez investiga una serie de crímenes quirúrgicos donde los cadáveres, desollados meticulosamente por lo que parece un asesino serial, forman coordenadas geográficas precisas. Con la ayuda de la antropóloga Leonora Aris, Martínez descubre que los homicidios son ofrendas para un antiguo ritual azteca. Traicionado por un sistema corrupto y convertido en prófugo, el detective iniciará una carrera contrarreloj para detener el nacimiento violento de la ciudad.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller","terror"],
+    subgenres: ["sobrenatural","asesinoenserie","supervivencia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "terminos-y-condiciones",
+    title: "TÉRMINOS Y CONDICIONES",
+    cover: "",
+    amazon: {
+      es: "B0GX2V2FGS",
+      mx: "B0GX2V2FGS",
+      us: "B0GX2V2FGS",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["omar-escobedo"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Términos y Condiciones es un thriller tech-noir donde la mayor amenaza humana no es un arma, sino una app de bienestar. La corporación SoulWare lanza "Nexo", un sistema diseñado para erradicar la ansiedad que oculta un código fractal capaz de hackear el sistema nervioso y extirpar el libre albedrío, clasificando el sufrimiento como data ineficiente. Tras una tragedia familiar, la ex-agente del FBI Lucía Hernández recluta a un equipo de mentes fracturadas para iniciar una resistencia suicida desde las sombras. Mientras el mundo acepta ciegamente el control digital, ellos lucharán por devolverle a la humanidad su doloroso derecho a sufrir.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller","terror"],
+    subgenres: ["policial","cosmico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "hijos-del-yermo-libro-1",
+    title: "HIJOS DEL YERMO – LIBRO I: EL ESCLAVO Y LA LLAMA",
+    cover: "",
+    amazon: {
+      es: "B0FYTBHJF9",
+      mx: "B0FYTBHJF9",
+      us: "B0FYTBHJF9",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["mirim-ko"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Tras la Caída, el mundo conocido se fragmentó en clanes, ruinas y desiertos gobernados por la fe, la esclavitud y el miedo. El conocimiento está prohibido. La verdad, enterrada. Y una energía llamada Lumen sostiene un equilibrio que nadie se atreve a cuestionar.
+
+        Kael nació sin apellido, marcado por el fuego y condenado a la esclavitud. Sobrevive entre cadenas, castigos y pruebas que deberían haberlo matado… pero no lo hacen. Cada clan que lo reclama intenta usarlo, destruirlo o convertirlo en símbolo. Cada paso hacia la libertad lo acerca también a una verdad peligrosa: el mundo no es como le han contado.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","aventura"],
+    subgenres: ["epica","oscura","postapocaliptica"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "hijos-del-yermo-libro-2",
+    title: "HIJOS DEL YERMO – LIBRO II: RENACER",
+    cover: "",
+    amazon: {
+      es: "B0GYGBDLFQ",
+      mx: "B0GYGBDLFQ",
+      us: "B0GYGBDLFQ",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["mirim-ko"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `El equilibrio del Yermo se rompe.
+          Lo que empezó como un juicio ha abierto grietas en todo el sistema.
+          Los clanes ya no contienen la violencia: la preparan.
+          La verdad empieza a emerger… y nadie está preparado para sostenerla.
+          Pero en el Yermo, sobrevivir no significa ser libre.
+          Significa convertirse en algo que otros temen, buscan… o necesitan destruir.
+          Mientras el mundo se reorganiza a su alrededor, las piezas se mueven en silencio.
+          El conocimiento sigue en manos de quienes lo controlan.
+          Las alianzas se tensan antes de romperse.
+          Y en los lugares donde no llega la ley, empiezan a surgir nuevas formas de poder.
+          Nada vuelve a su sitio.
+          Nada puede hacerlo.
+
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","aventura"],
+    subgenres: ["epica","oscura"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
   },
 
   
