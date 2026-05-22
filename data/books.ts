@@ -3173,5 +3173,125 @@ export const books: Book[] = [
     }
   },
 
+
+
+  /*{
+    slug: "lluvia-de-cafe",
+    title: "LLUVIA DE CAFÉ",
+    cover: "",
+    amazon: {
+      es: "B0FRYSPXDY",
+      mx: "B0FRYSPXDY",
+      us: "B0FRYSPXDY",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["abraham-pech-barrancos"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Lluvia de Café es una historia sobre los amores que nunca terminan de irse.
+
+        Arthur Gallardo, un escritor exitoso y aparentemente feliz junto a su esposa Idara, vive dividido entre el presente que ama y el recuerdo de Anya, la mujer que marcó para siempre su corazón. Entre sueños, diarios, poemas y memorias, Arthur intenta entender si es posible amar plenamente a alguien mientras otra persona sigue habitando silenciosamente el alma.
+
+        La novela habla del amor maduro, de la nostalgia, de los sueños rotos y de esas personas que, aunque el tiempo pase, continúan viviendo dentro de nosotros como una lluvia suave: constante, melancólica e imposible de olvidar.
+
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance"],
+    subgenres: ["amorprohibido","erotico","friendstolovers"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },*/
+  {
+    slug: "la-firma-del-cisne",
+    title: "LA FIRMA DEL CISNE",
+    cover: "",
+    amazon: {
+      es: "B0F8RJXQ82",
+      mx: "B0F8RJXQ82",
+      us: "B0F8RJXQ82",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["juan-carlos-toral-dueñas"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `La ciudad de Veridia, joya tecnológica de la República de Kaledon, se hunde en el caos. Un devastador apagón es solo la primera señal de una guerra inminente que cambiará el mundo para siempre. Para Elena, a punto de ser madre, su brillante futuro se hace añicos y comienza una desesperada lucha por su vida y la de su hijo nonato, mientras las tensiones entre potencias rivales escalan hacia un conflicto abierto y aterrador, donde la ciberguerra paraliza infraestructuras críticas y enjambres de drones autónomos vigilan cada sombra.
+
+        Pero la guerra visible, con sus espectaculares batallas de drones y sus olas de ciberguerra, es solo la fachada de una lucha mucho más profunda y siniestra.
+
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","thriller","misterio"],
+    subgenres: ["distopia","technothriller","conspiracion","supervivencia","psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "la-llave-de-quimera",
+    title: "LA LLAVE DE QUIMERA",
+    cover: "",
+    amazon: {
+      es: "B0FS3CBNR2",
+      mx: "B0FS3CBNR2",
+      us: "B0FS3CBNR2",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["juan-carlos-toral-dueñas"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Secuela de La Firma del Cisne.
+        La guerra ha terminado, pero la paz es una ilusión. Dos años después de los devastadores eventos que sacudieron su vida, Elena Reyes lucha por construir una normalidad junto a su familia. Sin embargo, la calma es un velo frágil que oculta una verdad siniestra: el enemigo nunca se fue, solo aprendió a moverse en las sombras.
+
+        Una serie de "accidentes" inexplicables comienza a eliminar a figuras clave de la defensa de Kaledon, mientras una vigilancia tecnológica más asfixiante demuestra que una nueva conspiración, más sutil y letal, está en marcha. Cuando la amenaza golpea demasiado cerca de casa, Elena comprende que su intento de una vida tranquila ha terminado.
+
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","thriller","misterio"],
+    subgenres: ["distopia","supervivencia","psicologico","technothriller","conspiracion"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
   
 ]
