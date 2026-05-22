@@ -3175,7 +3175,7 @@ export const books: Book[] = [
 
 
 
-  /*{
+  {
     slug: "lluvia-de-cafe",
     title: "LLUVIA DE CAFÉ",
     cover: "",
@@ -3214,7 +3214,7 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },*/
+  },
   {
     slug: "la-firma-del-cisne",
     title: "LA FIRMA DEL CISNE",
