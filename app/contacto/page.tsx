@@ -11,9 +11,11 @@ export default function Page() {
   const [esAutor, setEsAutor] = useState("")
   const [registrante, setRegistrante] = useState("")
 
+  const [esSaga, setEsSaga] = useState(false)
+
   const [link, setLink] = useState("")
   const [resumen, setResumen] = useState("")
-  const [asin, setAsin] = useState("") // 👈 NUEVO
+  const [asin, setAsin] = useState("")
 
   const [selectedGenres, setSelectedGenres] = useState<string[]>([])
   const [selectedSubgenres, setSelectedSubgenres] = useState<string[]>([])
@@ -56,9 +58,10 @@ export default function Page() {
           autor,
           esAutor,
           registrante: esAutor === "no" ? registrante : null,
+          esSaga,
           link,
           resumen,
-          asin, // 👈 NUEVO
+          asin,
           generos: selectedGenres,
           subgeneros: selectedSubgenres
         })
@@ -79,9 +82,10 @@ export default function Page() {
       setAutor("")
       setEsAutor("")
       setRegistrante("")
+      setEsSaga(false)
       setLink("")
       setResumen("")
-      setAsin("") // 👈 RESET
+      setAsin("")
       setSelectedGenres([])
       setSelectedSubgenres([])
 
@@ -110,7 +114,7 @@ export default function Page() {
           placeholder="Título del libro (máx. 50 caracteres)"
           maxLength={50}
           value={titulo}
-          onChange={(e) => setTitulo(e.target.value)}
+          onChange={(e) => setTitulo(e.target.value.toUpperCase())}
           className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
         />
 
@@ -154,6 +158,23 @@ export default function Page() {
           </label>
         </div>
 
+        {/* SAGA */}
+        <div className="mb-4">
+          <p className="mb-2 text-sm text-zinc-300">
+            ¿Es parte de una saga?
+          </p>
+
+          <label className="flex items-center text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              checked={esSaga}
+              onChange={(e) => setEsSaga(e.target.checked)}
+              className="mr-2"
+            />
+            Sí
+          </label>
+        </div>
+
         {/* REGISTRANTE */}
         {esAutor === "no" && (
           <input
@@ -172,7 +193,7 @@ export default function Page() {
           value={link}
           onChange={(e) => setLink(e.target.value)}
           className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
-        />        
+        />
 
         {/* ASIN */}
         <input
@@ -235,8 +256,6 @@ export default function Page() {
         >
           {loading ? "Enviando..." : "Enviar"}
         </button>
-
-        
 
         <p className="text-zinc-400 text-sm sm:text-base mb-6 mt-6">
           Todos los libros pasarán por una verificación en la información. Solicitamos un poco de paciencia.

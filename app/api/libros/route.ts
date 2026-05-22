@@ -18,11 +18,12 @@ export async function POST(req: Request) {
       autor,
       esAutor,
       registrante,
+      esSaga,
       link,
       resumen,
       generos,
       subgeneros,
-      asin // 👈 NUEVO
+      asin
     } = body
 
     // Validación básica
@@ -41,7 +42,7 @@ export async function POST(req: Request) {
       )
     }
 
-    // Validación ASIN (si viene)
+    // Validación ASIN
     if (asin && !isValidASIN(asin)) {
       return NextResponse.json(
         { error: "ASIN inválido (debe tener 10 caracteres alfanuméricos)" },
@@ -65,12 +66,13 @@ export async function POST(req: Request) {
         titulo,
         autor,
         es_autor,
+        es_saga: esSaga,
         registrante: es_autor ? null : registrante,
         link,
         resumen,
         generos,
         subgeneros,
-        asin: asin || null // 👈 AQUÍ SE GUARDA
+        asin: asin || null
       }
     ])
 
