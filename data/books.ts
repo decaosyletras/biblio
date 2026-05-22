@@ -2919,7 +2919,7 @@ export const books: Book[] = [
   },
   {
     slug: "clasmathia",
-    title: "CLASMATHIA: UN LUGAR MEJOR",
+    title: "CLASMATHIA - UN LUGAR MEJOR",
     cover: "",
     amazon: {
       es: "B0CDVM4G3J",
@@ -2931,15 +2931,16 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Clasmathia es un mundo postnuclear en el que la humanidad ha sido reducida a unos poblados dispersos, obligados a retroceder a una estructura social y tecnológica equivalente a los cromañones o neandertales. Una historia emotiva que combina supervivencia con nostalgia humana y construcción familiar.`,
+        `Qué pasaría si destrozáramos tanto el mundo que la humanidad tuviera que volver a empezar desde cero?
+        Siglos tras la Última Guerra, los humanos se esfuerzan por sobrevivir en las resecas llanuras de Clasmathia. Entre las altas montañas y la Niebla que les separa del oscuro mar, sus leyendas hablan de otros seres, Extraños hijos de sus mismos antepasados, cuya prosperidad se alza amenazante sobre la frágil supervivencia humana.`,
     review: {
       title: "",
       excerpt: ``,
       content: "",
       metrics: [],
     },
-    genre: ["cienciaFiccion","aventura","misterio"],
-    subgenres: ["postapocaliptica","distopia","especulativo"],
+    genre: ["ficcion","cienciaFiccion"],
+    subgenres: ["emotiva","distopia","postapocaliptica","evolucionespeculativa"],
 
     tags: {
       ritmo: 0,
