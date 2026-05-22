@@ -3099,7 +3099,7 @@ export const books: Book[] = [
     },
     amazonLink: "https://amazon.com",
     authorSlug: ["mirim-ko"],
-    isSaga: false,
+    isSaga: true,
     categories: [0],
     summary:
         `Tras la Caída, el mundo conocido se fragmentó en clanes, ruinas y desiertos gobernados por la fe, la esclavitud y el miedo. El conocimiento está prohibido. La verdad, enterrada. Y una energía llamada Lumen sostiene un equilibrio que nadie se atreve a cuestionar.
@@ -3135,7 +3135,7 @@ export const books: Book[] = [
     },
     amazonLink: "https://amazon.com",
     authorSlug: ["mirim-ko"],
-    isSaga: false,
+    isSaga: true,
     categories: [0],
     summary:
         `El equilibrio del Yermo se rompe.
