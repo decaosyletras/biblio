@@ -1,8 +1,7 @@
 import { Book } from "@/types"
 
 export const books: Book[] = [
-  {
-    slug: "tras-el-caos-de-la-existencia-descubrimiento",
+  { slug: "tras-el-caos-de-la-existencia-descubrimiento",
     title: "TRAS EL CAOS DE LA EXISTENCIA: DESCUBRIMIENTO",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -46,8 +45,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "tras-el-caos-de-la-existencia-divisiones-y-conflictos",
+  { slug: "tras-el-caos-de-la-existencia-divisiones-y-conflictos",
     title: "TRAS EL CAOS DE LA EXISTENCIA: DIVISIONES Y CONFLICTOS",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -84,8 +82,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "tras-el-caos-de-la-existencia-designios-ancestrales",
+  { slug: "tras-el-caos-de-la-existencia-designios-ancestrales",
     title: "TRAS EL CAOS DE LA EXISTENCIA: DESIGNIOS ANCESTRALES",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -128,8 +125,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "jodidos-mas-no-vencidos",
+  { slug: "jodidos-mas-no-vencidos",
     title: "JODIDOS, MAS NO VENCIDOS",
     cover: "",
     amazon: {
@@ -174,8 +170,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "libertadores",
+  { slug: "libertadores",
     title: "LIBERTADORES",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -212,8 +207,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "rustic-metaverse-la-era-de-la-ascencion",
+  { slug: "rustic-metaverse-la-era-de-la-ascencion",
     title: "RUSTIC METAVERSE: LA ERA DE LA ASCENCIÓN",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -259,8 +253,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "planeta-misterio",
+  { slug: "planeta-misterio",
     title: "PLANETA MISTERIO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -303,8 +296,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "el-bucle",
+  { slug: "el-bucle",
     title: "EL BUCLE",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -349,8 +341,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "el-juego-de-la-realidad",
+  { slug: "el-juego-de-la-realidad",
     title: "EL JUEGO DE LA REALIDAD",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -392,54 +383,8 @@ export const books: Book[] = [
       accesibilidad: 1,
       profundidad: 3,
     }
-  },
-  /*{
-    slug: "los-trece-rostros-de-la-muerte",
-    title: "LOS TRECE ROSTROS DE LA MUERTE",
-    cover: "/covers/book2.jpg",
-    amazon: {
-      es: "B0F79XW9WZ",
-      mx: "B0F79HQK2B",
-      us: "B0F79XW9WZ",
-    },
-    asin: "",
-    amazonLink: "https://amazon.com",
-    authorSlug: ["noe-martin-salido"],
-    isSaga: false,
-    categories: [0, 3],
-    summary:
-      "En una taberna aislada al final de un camino, un grupo de viajeros de distintas regiones se resguarda de una tormenta implacable. Mientras esperan, comienzan a compartir relatos personales sobre la Muerte, cada uno desde su propia experiencia y creencias. Sin embargo, la conversación toma un tono inquietante cuando se insinúa que la Parca podría no ser solo una figura simbólica, sino una presencia consciente que escucha lo que se dice de ella.",
-    review: {
-      title: "La taberna donde la Muerte escucha",
-      excerpt: `Mundos con mitología profunda.
-  Narraciones enmarcadas (historias dentro de historias).
-  Atmósfera de suspenso constante.
-  Fantasía con tintes filosóficos.
-  Reflexión sobre la muerte, el destino y las fuerzas que rigen la vida.`,
-      content: "",
-      metrics: [
-        "relatos",
-        "reflexion",
-        "misticismo",
-        "villanocarismatico",
-        "misterioaresolver"
-      ],
-    },
-    genre: ["fantasia", "misterio", "terror"],
-    subgenres: ["oscura", "epica", "existencial"],
-
-    tags: {
-      ritmo: 2,
-      complejidad: 1,
-      cargaEmocional: 2,
-      conflicto: 1,
-      worldbuilding: 2,
-      accesibilidad: 1,
-      profundidad: 1,
-    }
-  },*/  
-  {
-    slug: "el-silencio-del-agua",
+  }, 
+  { slug: "el-silencio-del-agua",
     title: "EL SILENCIO DEL AGUA",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -481,8 +426,7 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  {
-    slug: "solo-quedaron-las-cascaras",
+  { slug: "solo-quedaron-las-cascaras",
     title: "SOLO QUEDARON LAS CÁSCARAS",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -526,8 +470,7 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  {
-    slug: "remnax",
+  { slug: "remnax",
     title: "REMNAX",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -571,8 +514,7 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  {
-    slug: "dones-mortales",
+  { slug: "dones-mortales",
     title: "DONES MORTALES",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -615,8 +557,7 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  {
-    slug: "draguenorux",
+  { slug: "draguenorux",
     title: "DRAGUENORUX: EL DRAGÓN FLUORESCENTE",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -661,8 +602,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "musi-regresa",
+  { slug: "musi-regresa",
     title: "MUSI REGRESA POR NAVIDAD",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -704,8 +644,7 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  {
-    slug: "el-himno-del-desierto-1",
+  { slug: "el-himno-del-desierto-1",
     title: "EL HIMNO DEL DESIERTO I: EL DESIERTO SIN FIN",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -750,8 +689,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "ozyux",
+  { slug: "ozyux",
     title: "OZYUX: EL VALOR DE UNA VIDA INTERGALÁCTICA",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -794,8 +732,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "el-himno-del-desierto-2",
+  { slug: "el-himno-del-desierto-2",
     title: "EL HIMNO DEL DESIERTO II: LA LEYENDA DEL VIENTO",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -840,8 +777,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "compilacion-de-relatos",
+  { slug: "compilacion-de-relatos",
     title: "COMPILACIÓN DE RELATOS: CINCO RELATOS DE EMOCIÓN, OSCURIDAD Y REFLEXIÓN",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -877,8 +813,7 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  {
-    slug: "cronicas-walker-destino",
+  { slug: "cronicas-walker-destino",
     title: "CRÓNICAS WALKER: DESTINO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -921,8 +856,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "cronicas-walker-discordia",
+  { slug: "cronicas-walker-discordia",
     title: "CRÓNICAS WALKER: DISCORDIA",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -967,8 +901,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "ovni-redencion",
+  { slug: "ovni-redencion",
     title: "OVNI: REDENCIÓN",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1015,8 +948,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "tablero-mortal",
+  { slug: "tablero-mortal",
     title: "TABLERO MORTAL",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1053,8 +985,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "proyecto-sombras",
+  { slug: "proyecto-sombras",
     title: "PROYECTO SOMBRAS",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1096,8 +1027,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "mutagenesis-convergente",
+  { slug: "mutagenesis-convergente",
     title: "MUTAGÉNESIS CONVERGENTE",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1140,8 +1070,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "cuando-te-lleve",
+  { slug: "cuando-te-lleve",
     title: "CUANDO TE LLEVE",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1184,8 +1113,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "cronicas-walker-oblivion",
+  { slug: "cronicas-walker-oblivion",
     title: "CRÓNICAS WALKER: OBLIVION",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1229,8 +1157,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "tormenta-de-azar",
+  { slug: "tormenta-de-azar",
     title: "TORMENTA DE AZAR",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1273,8 +1200,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "el-mundo-de-eterna-la-elegida",
+  { slug: "el-mundo-de-eterna-la-elegida",
     title: "EL MUNDO DE ETERNA: LA ELEGIDA",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1317,8 +1243,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "el-himno-del-desierto-la-cima-del-mundo",
+  { slug: "el-himno-del-desierto-la-cima-del-mundo",
     title: "EL HIMNO DEL DESIERTO III: LA CIMA DEL MUNDO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1362,8 +1287,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "el-ultimo-viaje",
+  { slug: "el-ultimo-viaje",
     title: "EL ÚLTIMO VIAJE",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1398,8 +1322,7 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  {
-    slug: "han-robado-el-infinito",
+  { slug: "han-robado-el-infinito",
     title: "HAN ROBADO EL INFINITO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1443,8 +1366,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "fisura-interdimensional",
+  { slug: "fisura-interdimensional",
     title: "FISURA INTERDIMENSIONAL",
     cover: "/covers/fisura.jpg",
     amazon: {
@@ -1491,8 +1413,7 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  {
-    slug: "el-sinsentido-de-las-cartas",
+  { slug: "el-sinsentido-de-las-cartas",
     title: "EL SINSENTIDO DE LAS CARTAS: DEL AMOR AL ODIO HAY UN UNIVERSO DE POR MEDIO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1534,8 +1455,7 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  {
-    slug: "el-himn-de-desierto-la-simiente-del-odio",
+  { slug: "el-himn-de-desierto-la-simiente-del-odio",
     title: "EL HIMNO DEL DESIERTO IV: LA SIMIENTE DEL ODIO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1577,12 +1497,8 @@ export const books: Book[] = [
 
 
 
-
-
-
   //NO LEÍDOS
-  {
-    slug: "frecuencia-zero",
+  { slug: "frecuencia-zero",
     title: "FRECUENCIA ZERO",
     cover: "",
     amazon: {
@@ -1615,8 +1531,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "apocalipsis-porcina",
+  { slug: "apocalipsis-porcina",
     title: "APOCALIPSIS PORCINA",
     cover: "",
     amazon: {
@@ -1649,8 +1564,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "el-gran-apagon",
+  { slug: "el-gran-apagon",
     title: "EL GRAN APAGÓN",
     cover: "",
     amazon: {
@@ -1683,8 +1597,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "contagio-silencioso",
+  { slug: "contagio-silencioso",
     title: "CONTAGIO SILENCIOSO",
     cover: "",
     amazon: {
@@ -1717,8 +1630,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "linea-muerta",
+  { slug: "linea-muerta",
     title: "LÍNEA MUERTA",
     cover: "",
     amazon: {
@@ -1751,8 +1663,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "ciudad-bajo-tierra",
+  { slug: "ciudad-bajo-tierra",
     title: "CIUDAD BAJO TIERRA",
     cover: "",
     amazon: {
@@ -1785,8 +1696,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "inhumana",
+  { slug: "inhumana",
     title: "INHUMANA",
     cover: "",
     amazon: {
@@ -1819,8 +1729,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "hija",
+  { slug: "hija",
     title: "HIJA",
     cover: "",
     amazon: {
@@ -1853,8 +1762,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "belo",
+  { slug: "belo",
     title: "BELO: UN HÉROE DEL CAMPO",
     cover: "",
     amazon: {
@@ -1887,8 +1795,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "la-maldicion-de-morsten",
+  { slug: "la-maldicion-de-morsten",
     title: "LA MALDICIÓN DE MORSTEN SEA: EL MAR GUARDA SECRETOS QUE SOLO EL AMOR ES CAPAZ DE DESPERTAR",
     cover: "",
     amazon: {
@@ -1921,8 +1828,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "hijos-de-las-tinieblas",
+  { slug: "hijos-de-las-tinieblas",
     title: "HIJOS DE LAS TINIEBLAS",
     cover: "",
     amazon: {
@@ -1955,8 +1861,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "metalipedics",
+  { slug: "metalipedics",
     title: "METALIPEDICS: G. KAJAL Y LA ENCICLOPEDIA DE ALIENÍGENAS SIMBIÓTICOS.",
     cover: "",
     amazon: {
@@ -1989,8 +1894,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "unitaria-astralis",
+  { slug: "unitaria-astralis",
     title: "UNITARIA ASTRALIS: YADRIN, EL NUEVO REY OSCURO",
     cover: "",
     amazon: {
@@ -2023,8 +1927,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "cronica-de-mi-viaje-a-mandavia",
+  { slug: "cronica-de-mi-viaje-a-mandavia",
     title: "CRÓNICA DE MI VIAJE A MANDAVIA: UN VIAJE IMAGINARIO AL MUNDO DE LOS LIBERTADORES",
     cover: "",
     amazon: {
@@ -2057,42 +1960,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  /*{
-    slug: "el-escriba-de-las-estrellas",
-    title: "EL ESCRIBA DE LAS ESTRELLAS",
-    cover: "",
-    amazon: {
-      es: "B0FVKNDPWK",
-      mx: "B0FVKNDPWK",
-      us: "B0FVKNDPWK",
-    },
-    amazonLink: "https://amazon.com",
-    authorSlug: ["juan-carlos-lopez-bayon"],
-    isSaga: false,
-    categories: [0, 2],
-    summary:
-      "Una colección de 17 relatos breves que combinan ciencia ficción, fantasía y emociones profundas. Cada historia propone viajes imaginativos que exploran mundos más allá de las estrellas, al mismo tiempo que conectan con sentimientos humanos como la empatía, la pérdida y el asombro.\n\nEl conjunto ofrece una experiencia variada donde lo fantástico y lo emocional se entrelazan en narraciones independientes que invitan a reflexionar y sentir.",
-    review: {
-      title: "",
-      excerpt: ``,
-      content: "",
-      metrics: [],
-    },
-    genre: ["cienciaFiccion", "fantasia", "ficcion"],
-    subgenres: ["exploracionespacial", "emotiva", "epica"],
-
-    tags: {
-      ritmo: 0,
-      complejidad: 0,
-      cargaEmocional: 0,
-      conflicto: 0,
-      worldbuilding: 0,
-      accesibilidad: 0,
-      profundidad: 0,
-    }
-  },*/
-  {
-    slug: "el-himno-del-desierto-cuentos-de-navidad",
+  { slug: "el-himno-del-desierto-cuentos-de-navidad",
     title: "EL HIMNO DEL DESIERTO: CUENTOS DE NAVIDAD",
     cover: "",
     amazon: {
@@ -2125,8 +1993,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "el-juramento-de-la-presencia-errante",
+  { slug: "el-juramento-de-la-presencia-errante",
     title: "EL JURAMENTO DE LA PRESENCIA ERRANTE",
     cover: "",
     amazon: {
@@ -2159,8 +2026,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "vestigio-remachado",
+  { slug: "vestigio-remachado",
     title: "VESTIGIO REMACHADO: INTRIGA DE ÉPOCA CON SECRETOS Y MANIPULACIÓN CIENTÍFICA",
     cover: "",
     amazon: {
@@ -2193,8 +2059,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "desde-mis-ojos-faraona-la-bailarina-sin-cabeza",
+  { slug: "desde-mis-ojos-faraona-la-bailarina-sin-cabeza",
     title: "DESDE MIS OJOS: FARAONA: LA BAILARINA SIN CABEZA",
     cover: "",
     amazon: {
@@ -2227,8 +2092,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "descenso-al-abismo",
+  { slug: "descenso-al-abismo",
     title: "DESCENSO AL ABISMO",
     cover: "",
     amazon: {
@@ -2261,8 +2125,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "enigmas-para-un-rey",
+  { slug: "enigmas-para-un-rey",
     title: "ENIGMAS PARA UN REY",
     cover: "",
     amazon: {
@@ -2295,8 +2158,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "desafio-59",
+  { slug: "desafio-59",
     title: "DESAFÍO 59´",
     cover: "",
     amazon: {
@@ -2329,8 +2191,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "a-anio-luz-de-ti",
+  { slug: "a-anio-luz-de-ti",
     title: "A AÑO LUZ DE TI",
     cover: "",
     amazon: {
@@ -2363,8 +2224,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "imitheos-ascenso",
+  { slug: "imitheos-ascenso",
     title: "IMITHEOS: ASCENSO",
     cover: "",
     amazon: {
@@ -2397,8 +2257,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "incendio-de-posibilidades",
+  { slug: "incendio-de-posibilidades",
     title: "INCENDIO DE POSIBILIDADES",
     cover: "",
     amazon: {
@@ -2431,8 +2290,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "danza-de-recuerdos",
+  { slug: "danza-de-recuerdos",
     title: "DANZA DE RECUERDOS",
     cover: "",
     amazon: {
@@ -2465,8 +2323,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "cenit-memorias-de-un-hada",
+  { slug: "cenit-memorias-de-un-hada",
     title: "CENIT: MEMORIAS DE UN HADA",
     cover: "",
     amazon: {
@@ -2499,8 +2356,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "el-mundo-de-eterna-la-guerrera-de-las-estrellas",
+  { slug: "el-mundo-de-eterna-la-guerrera-de-las-estrellas",
     title: "EL MUNDO DE ETERNA: LA GUERRERA DE LAS ESTRELLAS",
     cover: "",
     amazon: {
@@ -2533,8 +2389,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "el-mundo-de-eterna-el-rey-elfo",
+  { slug: "el-mundo-de-eterna-el-rey-elfo",
     title: "EL MUNDO DE ETERNA: EL REY ELFO",
     cover: "",
     amazon: {
@@ -2567,8 +2422,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "dejar-huella",
+  { slug: "dejar-huella",
     title: "DEJAR HUELLA",
     cover: "",
     amazon: {
@@ -2601,8 +2455,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "en-los-tejados",
+  { slug: "en-los-tejados",
     title: "EN LOS TEJADOS",
     cover: "",
     amazon: {
@@ -2635,8 +2488,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "heraldos-de-la-muerte",
+  { slug: "heraldos-de-la-muerte",
     title: "HERALDOS DE LA MUERTE",
     cover: "",
     amazon: {
@@ -2669,8 +2521,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "historias-de-boston",
+  { slug: "historias-de-boston",
     title: "HISTORIAS DE BOSTON: 21 RELATOS DE FANTASÍA, CIENCIA FICCIÓN Y TERROR",
     cover: "",
     amazon: {
@@ -2703,8 +2554,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "el-futuro-que-escribimos-juntos",
+  { slug: "el-futuro-que-escribimos-juntos",
     title: "EL FUTURO QUE ESCRIBIMOS JUNTOS: UNA COMEDIA ROMÁNTICA DONDE ARDER EN EL INFIERNO SERÁ EL MENOR DE SUS PROBLEMAS",
     cover: "",
     amazon: {
@@ -2737,8 +2587,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "guerras-lunares",
+  { slug: "guerras-lunares",
     title: "GUERRAS LUNARES",
     cover: "",
     amazon: {
@@ -2776,8 +2625,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "amanecer-relatos-de-ciencia-ficcion",
+  { slug: "amanecer-relatos-de-ciencia-ficcion",
     title: "AMANECER: RELATOS DE CIENCIA FICCIÓN",
     cover: "",
     amazon: {
@@ -2813,8 +2661,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "ha-caido-un-meteorito-en-el-pueblo",
+  { slug: "ha-caido-un-meteorito-en-el-pueblo",
     title: "HA CAÍDO UN METEORITO EN EL PUEBLO",
     cover: "",
     amazon: {
@@ -2849,8 +2696,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },  
-  {
-    slug: "el-renacer-de-alexa",
+  { slug: "el-renacer-de-alexa",
     title: "EL RENACER DE ALEXA",
     cover: "",
     amazon: {
@@ -2883,8 +2729,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "historias-de-arena-y-metal",
+  { slug: "historias-de-arena-y-metal",
     title: "HISTORIAS DE ARENA Y METAL (HIMNO DEL DESIERTO)",
     cover: "",
     amazon: {
@@ -2917,8 +2762,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "clasmathia",
+  { slug: "clasmathia",
     title: "CLASMATHIA - UN LUGAR MEJOR",
     cover: "",
     amazon: {
@@ -2952,8 +2796,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "todavia-novelette-de-clasmathia",
+  { slug: "todavia-novelette-de-clasmathia",
     title: "TODAVÍA (NOVELETTE DE CLASMATHIA)",
     cover: "",
     amazon: {
@@ -2986,8 +2829,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "la-geometria-del-sufrimiento",
+  { slug: "la-geometria-del-sufrimiento",
     title: "LA GEOMETRÍA DEL SUFRIMIENTO",
     cover: "",
     amazon: {
@@ -3021,8 +2863,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "la-ciudad-desollada",
+  { slug: "la-ciudad-desollada",
     title: "LA CIUDAD DESOLLADA",
     cover: "",
     amazon: {
@@ -3055,8 +2896,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "terminos-y-condiciones",
+  { slug: "terminos-y-condiciones",
     title: "TÉRMINOS Y CONDICIONES",
     cover: "",
     amazon: {
@@ -3089,8 +2929,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "hijos-del-yermo-libro-1",
+  { slug: "hijos-del-yermo-libro-1",
     title: "HIJOS DEL YERMO – LIBRO I: EL ESCLAVO Y LA LLAMA",
     cover: "",
     amazon: {
@@ -3125,8 +2964,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "hijos-del-yermo-libro-2",
+  { slug: "hijos-del-yermo-libro-2",
     title: "HIJOS DEL YERMO – LIBRO II: RENACER",
     cover: "",
     amazon: {
@@ -3172,11 +3010,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
-
-
-  {
-    slug: "lluvia-de-cafe",
+  { slug: "lluvia-de-cafe",
     title: "LLUVIA DE CAFÉ",
     cover: "",
     amazon: {
@@ -3215,8 +3049,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "la-firma-del-cisne",
+  { slug: "la-firma-del-cisne",
     title: "LA FIRMA DEL CISNE",
     cover: "",
     amazon: {
@@ -3253,8 +3086,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
-    slug: "la-llave-de-quimera",
+  { slug: "la-llave-de-quimera",
     title: "LA LLAVE DE QUIMERA",
     cover: "",
     amazon: {
