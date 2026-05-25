@@ -3124,8 +3124,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
-  
   { slug: "princesa",
     title: "PRINCESA",
     cover: "",
@@ -3408,6 +3406,254 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "el-zumbido",
+    title: "EL ZUMBIDO",
+    cover: "",
+    amazon: {
+      es: "B0G6MYWWFN",
+      mx: "B0G6MYWWFN",
+      us: "B0G6MYWWFN",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["lorena-a-marti"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Una noche de diciembre, un suceso inexplicable irrumpe en mitad del silencio. Un zumbido persistente recorre el mundo mientras una luz cegadora atraviesa el cielo, marcando el inicio de una pesadilla de la que no se puede despertar.
+        Diana, médico y madre de dos niñas, intenta mantener la normalidad y proteger lo único que le importa. En un entorno cada vez más extraño y hostil, avanzar significa convivir con el miedo, la incertidumbre y decisiones que no admiten marcha atrás.
+        El zumbido es una historia de ciencia ficción postapocalíptica, tensa e íntima, sobre la resiliencia humana y los lazos familiares cuando el mundo deja de ser un lugar seguro.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","misterio"],
+    subgenres: ["postapocaliptica","distopia"],
 
-  
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "umbral",
+    title: "UMBRAL",
+    cover: "",
+    amazon: {
+      es: "B0GYV1DR8Q",
+      mx: "B0GYV1DR8Q",
+      us: "B0GYV1DR8Q",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["mhz-baez"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `El año 2030, una pandemia silenciosa convierte a miles de personas en pacientes de coma. Sin cura. Sin explicación. Sin esperanza.
+        Tres años después, los pacientes despiertan. Sus cuerpos están perfectos. Renovados. Sanos. Pero sus ojos… sus ojos son diferentes. Y su sonrisa no se parece a ninguna sonrisa humana.
+        Noa regresó a su ciudad cargando una pérdida que nadie pudo evitar y una traición que no puede perdonar. En un mundo que intenta recuperarse, algo oscuro acecha en las calles. Y lo que parecía un milagro médico… podría ser la mayor amenaza que la humanidad haya enfrentado.
+        Porque hay cosas peores que morir. Como seguir vivo… pero ya no ser tú mismo.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["terror","misterio"],
+    subgenres: ["conspiracion"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "los-pajaros-de-isfahan",
+    title: "LOS PÁJAROS DE ISFAHÁN: UNA NOVELA DE AMOR, SILENCIO Y LIBERTAD",
+    cover: "",
+    amazon: {
+      es: "B0GRPTXD84",
+      mx: "B0GRPTXD84",
+      us: "B0GRPTXD84",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["pablo-kian"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Irán, 1979. Una revolución lo destruye todo. Shirin tiene diecisiete años, estudia literatura y sueña con un futuro libre. Cuando conoce a Alejandro, un ingeniero español, nace entre ellos algo que no necesita palabras. Pero la Revolución Islámica los separa. Él vuelve a España. Ella se queda. Lo que sigue son cuarenta y siete años de silencio, de un pañuelo de seda con pájaros bordados guardado cada noche en un cajón, de un libro de poemas persas abierto cada madrugada en Carmona. Cuarenta y siete años de un país que intentó borrarla. Pero Shirin no se rompió. Una historia de amor imposible, resistencia silenciosa y la lucha de las mujeres iraníes por su libertad. Basada en hechos reales.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion","romance"],
+    subgenres: ["emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "witchtober",
+    title: "WITCHTOBER",
+    cover: "",
+    amazon: {
+      es: "B0DKXZTLHZ",
+      mx: "B0DKXZTLHZ",
+      us: "B0DKXZTLHZ",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["patricia-pereira"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Treinta y un tipos de brujas, once reinos, dos ejércitos, una lucha por el mundo mágico.
+        Silas, el mago del Caos, busca venganza reuniendo a las sombras y a los seres oscuros más temibles y poderosos para reclamar su mayor tesoro. Solo las brujas elementales más poderosas serán capaces de detenerle, pero han desaparecido sin dejar rastro.
+        El ejército de Phelior se tambalea, y brujas, criaturas mágicas y humanos se unen para combatir a las fuerzas oscuras.
+        El deseo de vivir es lo único que puede apartarles del umbral de la muerte.
+        ¿Sucumbirán ante el poder del caos?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia"],
+    subgenres: ["oscura"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "formula-inesperada",
+    title: "FÓRMULA (IN)ESPERADA",
+    cover: "",
+    amazon: {
+      es: "B0FDRC6JKP",
+      mx: "B0FDRC6JKP",
+      us: "B0FDRC6JKP",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["siena-bastida"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Fórmula (in)esperada» es un sport romance ambientado en el vertiginoso mundo de la Fórmula 1 entre una ingeniera brillante, obsesionada con las telemetrías, y el piloto estrella del equipo, impulsivo y arrogante.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance"],
+    subgenres: ["enemiestolovers"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "por-mis-alas",
+    title: "POR MIS ALAS",
+    cover: "",
+    amazon: {
+      es: "B0G5PSPNY7",
+      mx: "B0G5PSPNY7",
+      us: "B0G5PSPNY7",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["ericam-h-sanchez"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Juanita murió, pero no se fue del todo. Desde su rincón del cielo observa a los suyos con amor, preocupación y una pizca de humor. Mientras unos intentan sobrevivir al vacío que la ausencia ha dejado, otros buscan la paz entre clases de yoga, incienso y consejos que no siempre funcionan. Y para rematar, aparece en el cielo una niña que no recuerda nada… pero cuya presencia lo pondrá todo patas arriba.
+        Entre los vivos y los que ya no lo están se teje una historia sobre un amor que no se rinde, un misterio que aún busca respuesta y esas almas que, por mucho que la vida termine, se niegan a marcharse del todo.
+        Por mis alas combina ternura, misterio, humor y de barrio.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["misterio","fantasia"],
+    subgenres: ["urbana"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "ignifugos",
+    title: "IGNÍFUGOS",
+    cover: "",
+    amazon: {
+      es: "B0FXL9KFSW",
+      mx: "B0FXL9KFSW",
+      us: "B0FXL9KFSW",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["sandra-ollero"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Cazadores de monstruos, romantasy, criaturas míticas, poderes antiguos, folklore y misterio.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","aventura"],
+    subgenres: ["epica","juvenil"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
 ]
