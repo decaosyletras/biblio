@@ -3655,5 +3655,537 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "la-espera",
+    title: "LA ESPERA",
+    cover: "",
+    amazon: {
+      es: "B0GYFLMBVT",
+      mx: "B0GYFLMBVT",
+      us: "B0GYFLMBVT",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["eleazar-diaz-chavero"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Un joven confunde a una chica con su mejor amiga, con quien había acordado reencontrarse después de un año de no verse. A partir de ese inesperado encuentro, comienza a acercarse a ella y a desarrollar sentimientos cada vez más profundos. Sin embargo, mientras su vínculo crece, también nace una duda que lo consume: ¿lo que siente por esa chica es real, o solo está proyectando en ella el amor y la nostalgia que aún guarda por su mejor amiga?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance"],
+    subgenres: ["friendstolovers"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "el-club-de-los-corazones-rotos",
+    title: "EL CLUB DE LOS CORAZONES ROTOS",
+    cover: "",
+    amazon: {
+      es: "B0GRWVPBSV",
+      mx: "B0GRWVPBSV",
+      us: "B0GRWVPBSV",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["sebastian-fuego"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Alguna vez has amado tanto que cuando se rompió, algo dentro de ti también se fue?
+        El Club de los Corazones Rotos es una colección de cuentos sobre el amor en todas sus formas: el que llega sin avisar, el que duele en silencio, el que termina sin despedida y el que, contra todo pronóstico, encuentra el camino de vuelta.
+        En estas páginas no encontrarás amores perfectos. Encontrarás amores reales: los que dejan cicatriz, los que te cambian sin pedirte permiso, los que te enseñan algo de ti mismo que preferirías no saber. Y también los que, desde los pedazos, construyen algo nuevo.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance"],
+    subgenres: ["amorprohibido","enemiestolovers","erotico","friendstolovers"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "astros",
+    title: "ASTROS",
+    cover: "",
+    amazon: {
+      es: "B0GSKBMH75",
+      mx: "B0GSKBMH75",
+      us: "B0GSKBMH75",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["antonio-g-cidoncha"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Luis lleva años viviendo detrás de un casco.
+          Respira a través de filtros.
+          Evita el contacto.
+          Se ha acostumbrado a sentirse a salvo.
+          En un Madrid reconocible y extraño al mismo tiempo, para Luis la distancia no es solo una norma, es una forma de vida.
+          Hasta que aparece María.
+          Y por primera vez, algo se resquebraja.
+          Porque, a veces, sentirse a salvo no es lo mismo que sentirse vivo.
+          Astros es una novela sencilla, íntima y sugerente que combina ciencia ficción emocional y vida cotidiana para explorar el miedo, la identidad y las protecciones invisibles con las que aprendemos a vivir.
+          Una historia sobre el aislamiento.
+          Sobre el amor cuando tocar no es posible.
+          Sobre la salud mental y lo difícil, y a veces necesario, que es cambiar.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion","cienciaFiccion"],
+    subgenres: ["psicologico","emotiva","distopia","evolucionespeculativa"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "todo-lo-que-nunca-te-dije",
+    title: "TODO LO QUE NUNCA TE DIJE",
+    cover: "",
+    amazon: {
+      es: "B0CZN687D8",
+      mx: "B0CZN687D8",
+      us: "B0CZN687D8",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["rocio-romero-garcia"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Tras la muerte de su abuela Valeria, Álex descubre un diario oculto que revela una parte de su vida que nadie conocía. A medida que descifra sus páginas, se adentra en los recuerdos de Valeria y en las distintas etapas de la intensa relación que compartió con su mejor amiga, Nina: un vínculo marcado por secretos, complicidad y sentimientos que iban mucho más allá de una simple amistad.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","cienciaFiccion"],
+    subgenres: ["amorprohibido","friendstolovers","emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "josele-y-la-espada-del-juicio",
+    title: "JOSELE Y LA ESPADA DEL JUICIO",
+    cover: "",
+    amazon: {
+      es: "B0GHYCKCBH",
+      mx: "B0GHYCKCBH",
+      us: "B0GHYCKCBH",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["jose-antonio-ruiz-ballesta"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Josele siempre creyó que su vida era normal… hasta la noche en que una extraña tormenta eléctrica abrió un portal imposible frente a él. Aquella noche no solo cambió su destino. Cambió el destino de todos los mundos. Elegido por una antigua arma conocida como la Espada del Juicio, Josele descubre que existen innumerables realidades conectadas entre sí: mundos devastados por guerras eternas, reinos gobernados por fuerzas oscuras y dimensiones donde la propia existencia comienza a romperse. Pero algo peor se está extendiendo por el multiverso. Una corrupción desconocida está consumiendo realidades enteras desde dentro.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","fantasia","aventura"],
+    subgenres: ["epica"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "josele-y-la-guerra-del-eco",
+    title: "JOSELE Y LA GUERRA DEL ECO",
+    cover: "",
+    amazon: {
+      es: "B0GPQ3QHQQ",
+      mx: "B0GPQ3QHQQ",
+      us: "B0GPQ3QHQQ",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["jose-antonio-ruiz-ballesta"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Durante incontables viajes a través del multiverso, Josele ha hecho lo único que siempre creyó correcto: restaurar. Con la Espada del Juicio en la mano, ha reparado realidades al borde del colapso, ha devuelto la esperanza a civilizaciones rotas y ha impedido que la oscuridad devore lo que aún late, salvar era simple o era justo, incluso salvar era suficiente. Hasta que un mundo pidió desaparecer, no hubo gritos, tampoco hubo cataclismos espectaculares, solo una ciudad en silencio, una fila ordenada de personas caminando hacia una torre luminosa y una decisión colectiva de rendirse, no por derrota, sino por agotamiento, ese día, algo cambió en Josele y la Guerra del Eco.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","cienciaFiccion","aventura"],
+    subgenres: ["epica","oscura"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "los-secretos-del-asesino",
+    title: "LOS SECRETOS DEL ASESINO",
+    cover: "",
+    amazon: {
+      es: "B0H21NR4DS",
+      mx: "B0H21NR4DS",
+      us: "B0H21NR4DS",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["carlos-gallego-paradeda"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Un asesino a sueldo recibe un encargo importante: eliminar a un político en alza que casualmente era un amigo de su infancia.
+        Desde entonces, se ve sumido en un mundo de corrupción y venganza donde nadie es lo que aparenta.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["aventura","ficcion","thriller","misterio"],
+    subgenres: ["conspiracion","asesinoenserie"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "las-pesadillas-son-de-paris",
+    title: "LAS PESADILLAS DE PARÍS",
+    cover: "",
+    amazon: {
+      es: "B0G4JWPYL2",
+      mx: "B0G4JWPYL2",
+      us: "B0G4JWPYL2",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["carlos-gallego-paradeda"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Unos crímenes rituales están sucediendo en París, dónde unos cadáveres aparecen sin sangre y con unas marcas extrañas en el cuerpo.
+        La policía no tiene ninguna pista, y el único testigo es un niño sordomudo que ha visto lo sucedido a través de pesadillas.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","thriller","ficcion","misterio"],
+    subgenres: ["oscura","policial","asesinoenserie"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "cronicas-elementales-1",
+    title: "CRÓNICAS ELEMENTALES 1 LOS MISTERIOS",
+    cover: "",
+    amazon: {
+      es: "B08358DNTW",
+      mx: "B08358DNTW",
+      us: "B08358DNTW",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["ramon-funuyet-segovia"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Jack tiene 13 años y ah desarrollado un don: ve fragmentos del pasado y presente. Su pueblo, Abandonado, esta repleto de leyendas urbanas. Un día, se topa por accidente con una de ellas con su hermano Rakon. A partir de ese momento, criaturas llamadas Inframundis empiezan a perseguirlo, guiados por un mago oscuro llamado Zodiac. Con la ayuda de sus amigas Lisa y Mery, Jack está decidido a entender porqué él es el objetivo, antes de que su pueblo sea devorado por la oscuridad.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","ficcion","misterio","romance"],
+    subgenres: ["epica","urbana"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "codigo-hipnosi-reclama-el-control",
+    title: "CÓDIGO HIPNOSI - RECLAMA EL CONTROL",
+    cover: "",
+    amazon: {
+      es: "B0GX377FRD",
+      mx: "B0GX377FRD",
+      us: "B0GX377FRD",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["jordi-lloberas"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Estás cansado de luchar contra ti mismo y perder siempre?
+        ¿Has intentado dejar de fumar, adelgazar o controlar la ansiedad solo con “fuerza de voluntad”? Si la respuesta es sí, ya sabes que la voluntad es una herramienta demasiado débil para un enemigo tan grande.
+        En CÓDIGO HIPNOSI, Jordi Lloberas —Cabo de Policía en los Mossos d'Esquadra y especialista en Hipnosis Ericksoniana— te revela por qué los métodos convencionales fallan: tu mente consciente (la lógica) es un pasajero, pero tu subconsciente (el elefante) es quien lleva el volante.
+        En este libro aprenderás a:
+        Traspasar tu “bloqueo” mental: Salta las excusas que te mantienen bloqueado.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["aventura"],
+    subgenres: ["juvenil"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "memorias-de-ravenhill",
+    title: "MEMORIAS DE RAVENHILL",
+    cover: "",
+    amazon: {
+      es: "B0CMD933HV",
+      mx: "B0CMD933HV",
+      us: "B0CMD933HV",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["a-pardo"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Ravenhill es un pueblo rodeado por la niebla y el misterio. Se dice que los de fuera no son bien recibidos, y que todo aquel que ose entrar no vuelve a salir. Tras la desaparición de su padre y su hermana, Shay decide adentrarse allí, donde no tarda en toparse con la realidad. Las miradas de los pueblerinos se dirigen hacia él, saben que es un extranjero y también lo que supone. El lugar oculta un secreto de lo más oscuro, y habrá personas que no permitirán que salga a la luz.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","misterio"],
+    subgenres: ["oscura"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "imparables-suficiente-para-no-soltar",
+    title: "IMPARABL3S: SUFICIENTE PARA (NO) SOLTAR",
+    cover: "",
+    amazon: {
+      es: "B0F6ZQFDW3",
+      mx: "B0F6ZQFDW3",
+      us: "B0F6ZQFDW3",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["david-valdivia-caballero"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `¿Qué harías si la amistad que consideras hogar empezara a dañarte la mente?
+        Inspirada en hechos reales y construida a través de conversaciones, audios y mensajes de WhatsApp.
+        IMPARABL3S es una novela psicológica, íntima y cotidiana sobre amistad, amor —entre amistades y parejas—, apego, dependencia emocional, manipulación silenciosa, terapia y segundas oportunidades; una historia que pasa de la complicidad y el humor al golpe que duele.
+        Sobre aprender cuando soltar, cuando luchar y cuánto puede romperte no saber distinguirlo.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","ficcion","thriller"],
+    subgenres: ["psicologico","friendstolovers","emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "los-guardianes-de-almas",
+    title: "LOS GUARDIANES DE ALMAS",
+    cover: "",
+    amazon: {
+      es: "B09C2PNRXV",
+      mx: "B09C2PNRXV",
+      us: "B09C2PNRXV",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["elena-siles"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Enric deberá llevar a su discípulo hasta Sipán en un viaje único por Perú. Por el camino descubrirá que la sonrisa de Gael hace que la obscuridad de su corazón desaparezca.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance"],
+    subgenres: [],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "pirtas-de-sagara",
+    title: "PIRATAS DE SAGARA",
+    cover: "",
+    amazon: {
+      es: "B084WGT7VS",
+      mx: "B084WGT7VS",
+      us: "B084WGT7VS",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["elena-siles"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `En Barbás están los últimos piratas revolucionarios que se preparan para la próxima revolución que intentará derrocar al Axis que gobierna el mundo de Naviantia; allí vive Sylah que en su búsqueda personal no solamente encontrará su propia identidad sino que además se embarcará en un viaje hacia su destino.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","aventura"],
+    subgenres: ["juvenil"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "seis-meses",
+    title: "SEIS MESES",
+    cover: "",
+    amazon: {
+      es: "B083XDW1GJ",
+      mx: "B083XDW1GJ",
+      us: "B083XDW1GJ",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["paloma-carnero"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Una animadora en la Costa del Sol despierta una mañana en el caribe ¡Pero en 1783!
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","fantasia","aventura"],
+    subgenres: ["historica","erotico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 ]
