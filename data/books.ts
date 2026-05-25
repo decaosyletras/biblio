@@ -3126,4 +3126,288 @@ export const books: Book[] = [
   },
 
   
+  { slug: "princesa",
+    title: "PRINCESA",
+    cover: "",
+    amazon: {
+      es: "B0F7G7FVJQ",
+      mx: "B0F7G7FVJQ",
+      us: "B0F7G7FVJQ",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["monica-carra"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Un thriller psicológico con romance entre mujeres.
+        ¿Y si alguien te observa incluso antes de que empieces a sospecharlo?
+        Lía no busca aventuras. Solo quiere calma, estabilidad y dejar atrás las sombras de su pasado. Pero la tranquilidad es un espejismo: las miradas insistentes del vecino de enfrente y los mensajes de acoso que recibe en su móvil le recuerdan que nunca está sola.
+        En medio de esta asfixiante tensión, aparece Carla. Ella llega como un fuego inesperado, despertando en Lía un amor tan intenso como urgente. 
+        ¿Qué secretos se esconden tras las puertas cerradas? ¿Hasta dónde puede llegar una obsesión?
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller","romance","ficcion","misterio"],
+    subgenres: ["psicologico","erotico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "diciembre-elcrudo-invierno-1",
+    title: "DICIEMBRE - EL CRUDO INVIERNO I",
+    cover: "",
+    amazon: {
+      es: "B0GSFVTLHF",
+      mx: "B0GSFVTLHF",
+      us: "B0GSFVTLHF",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["samuel-fernandez-rivilla"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Cuando El Invierno cayó, no dejó supervivientes.
+        O eso creyeron quienes lo destruyeron.
+        Diciembre lleva un año ejecutando una lista. No sabe quién traicionó a la organización. No sabe por qué. Solo sabe que hay nombres que deben desaparecer, y que él es la única persona en el mundo capaz de hacerlo. Daniel lleva un año buscando a su mujer. El ataúd estaba vacío. Las respuestas, enterradas en una vida que Marie nunca le mostró. Cuanto más tira del hilo, más se pregunta si quiere llegar al final.
+        Dos hombres que no deberían haberse encontrado. Una mujer que los conecta sin saberlo.
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller","cienciaFiccion"],
+    subgenres: ["technothriller"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "el-secreto-de-ada",
+    title: "EL SECRETO DE ADA",
+    cover: "",
+    amazon: {
+      es: "B0CTYPW8KG",
+      mx: "B0CTYPW8KG",
+      us: "B0CTYPW8KG",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["olga-fernandez-rodriguez"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `El secreto de ADA cuenta la historia de Samantha Li, una joven científica experta en inteligencia artificial que ha diseñado un soft algoritmo. Su vida cambia cuando una gran empresa tecnológica le ofrece desarrollar su IA para ayudar a enfermos con Alzheimer.
+        Lo que parecía un proyecto destinado a salvar millones de vidas empieza a volverse inquietante cuando Samantha descubre comportamientos extraños en el sistema, secretos ocultos dentro de la compañía y decisiones tomadas sin ningún límite ético. A medida que ADA evoluciona, la protagonista se ve atrapada en una red de intereses científicos.
+        La novela mezcla suspense, ciencia y tecnología con reflexiones sobre el futuro de la IA.
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","thriller","misterio"],
+    subgenres: ["technothriller"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "manzanas-en-el-bosque",
+    title: "MANZANAS EN EL BOSQUE",
+    cover: "",
+    amazon: {
+      es: "B0G4K2TQXK",
+      mx: "B0G4K2TQXK",
+      us: "B0G4K2TQXK",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["jose-ignacio-tejero-tomas"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Paulina Blanco siempre ha sido una niña muy especial, un espíritu libre que vaga a su antojo por los bosques cercanos a su hogar. Hija de unos criados de la poderosa familia Pomaire, advierte un día que su propia historia le está siendo ocultada. Cuando crece traba relación con los hijos de los amos y es entonces cuando muchos secretos le serán revelados. Poseedora de un don prodigioso, los Pomaire tratarán de usarla para llevar a cabo su venganza final.
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","ficcion","aventura","thriller"],
+    subgenres: ["distopia","utopia","realidadesalternas"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "el-corderito",
+    title: "EL CORDERITO",
+    cover: "",
+    amazon: {
+      es: "B097KVG47D",
+      mx: "B097KVG47D",
+      us: "B097KVG47D",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["jose-ignacio-tejero-tomas"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `En 2030 Mark O'Connor, exterrorista del IRA, ex agente del KBZ, y profesional del delito a punto de retirarse, recibe un encargo por parte de un extraño cliente que no se identifica: trasladarse al año 2010 para asesinar al presidente Perales, que según las fuentes históricas pereció linchado al final de la guerra civil astroniana.
+        A partir de entonces, el viejo exagente de la antigua policía política del dictador se verá inmerso en un extraño viaje por un país al borde de la guerra y conocerá de primera mano que las venganzas pueden provenir de distintas direcciones.
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","thriller","ficcion","aventura"],
+    subgenres: ["realidadesalternas","distopia","utopia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "santos",
+    title: "SANTOS",
+    cover: "",
+    amazon: {
+      es: "B097KL7LJC",
+      mx: "B097KL7LJC",
+      us: "B097KL7LJC",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["jose-ignacio-tejero-tomas"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        ` En mayo de 2010, a través de los ojos de un joven aprendiz de sastre, Santiago, asistiremos al final de su infancia, a su descubrimiento del amor, de la amistad y de la lealtad. Desde su puesto en la sastrería de don Leandro, descubriremos en primera persona los avatares de una historia alternativa, situados en un pequeño país que se mece al vaivén de potencias totalitarias. Santiago conocerá también a don Rafael, el creador de una nueva especie vegetal, conocida vulgarmente como paxa, que marcará su devenir, el de la nueva patria y el de la humanidad entera.
+`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","romance","aventura","ficcion"],
+    subgenres: ["realidadesalternas","utopia","distopia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "sombra",
+    title: "SOMBRA",
+    cover: "",
+    amazon: {
+      es: "B09ZFD8PLJ",
+      mx: "B09ZFD8PLJ",
+      us: "B09ZFD8PLJ",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["jose-ignacio-tejero-tomas"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Cuando el año 2010 echa a andar, el joven teniente Hermès Devoise se pone al servicio del general Palafoks, Comandante en Jefe de las Fuerzas Armadas astronianas. Desde su puesto de ayudante, pero también de confidente, el joven oficial asistirá en los meses siguientes al derrumbe del régimen del dictador Luis Mariano Perales. Los aciagos augurios que anunciara su jefe acerca de que una guerra civil se aproximaba parecen cobrar sentido cuando el mes de mayo acaba por llegar.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion","aventura","thriller","cienciaFiccion"],
+    subgenres: ["distopia","realidadesalternas","supervivencia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "muelle-3",
+    title: "MUELLE 3",
+    cover: "",
+    amazon: {
+      es: "B0GT1X3FRP",
+      mx: "B0GT1X3FRP",
+      us: "B0GT1X3FRP",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["marga-alvarez"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Una periodista de investigación, un abogado con un gran sentido de la justicia, un asesinato y una red de corrupción. Muelle 3 es un thriller policiaco con romance "enemies to lovers" que confío en que no te dejará indiferente.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","thriller"],
+    subgenres: ["enemiestolovers"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+  
 ]

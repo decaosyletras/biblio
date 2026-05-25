@@ -431,5 +431,50 @@ export const authors: Author[] = [
     description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
     style: "Ligero, emocional y fácil de leer.",
     similar: ["autor-x"]
+  },
+  {
+    slug: "monica-carra",
+    name: "Mónica Carra",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "samuel-fernandez-rivilla",
+    name: "Samuel Fernández Rivilla",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "olga-fernandez-rodriguez",
+    name: "Olga Fernández Rodríguez",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "jose-ignacio-tejero-tomas",
+    name: "José Ignacio Tejero Tomás",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "marga-alvarez",
+    name: "Marga Álvarez",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
   }
 ]
