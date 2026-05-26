@@ -1473,7 +1473,7 @@ export const books: Book[] = [
       title: "Más allá del odio y las murallas",
       excerpt: `Conflictos políticos que amenazan a la humanidad.
       Personajes valientes, alianzas inesperadas y enemigos peligrosos.
-      Criaturas, pueblos y culturas desconocidas..
+      Criaturas, pueblos y culturas desconocidas.
       Una historia de esperanza, destino y supervivencia.
       Alta construcción de mundo y tramas profundas.`,
       content: "",
