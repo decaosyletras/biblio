@@ -645,7 +645,7 @@ export const books: Book[] = [
     }
   },
   { slug: "el-himno-del-desierto-1",
-    title: "EL HIMNO DEL DESIERTO I: EL DESIERTO SIN FIN",
+    title: "EL HIMNO DEL DESIERTO 1: EL DESIERTO SIN FIN",
     cover: "/covers/book3.jpg",
     amazon: {
       es: "B0CJJZ3YMW",
@@ -657,7 +657,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0, 3, 5],
     summary:
-      "En una última ciudad del mundo, la humanidad sobrevive bajo el control de El Regente, un líder que mantiene un supuesto orden perfecto basado en el control y el miedo. Jon, (que ha perdido la memoria), se une a Helena para desafiar al sistema, iniciando un camino que los llevará más allá de los límites conocidos. Al descubrir un mundo exterior oculto, su lucha se convierte en una búsqueda por desvelar la verdad que sostiene su realidad y enfrentar las consecuencias de hacerlo.",
+      `Protegida de la devastación causada por el ser humano, la última ciudad del mundo es gobernada por El Regente, ser supremo que busca mantener el ideal de una sociedad utópica controlada bajo el terror y la mentira. Jon Keller y Helena Dawnson opondrán resistencia a su crueldad, e intentarán descubrir qué secretos se esconden en el exterior prohibido para los ciudadanos. El choque de dos mundos distintos, así como el "adentro" y el "afuera", dará inicio tras la rebeldía de Jon y de Helena, que lucharán hasta el extremo por cambiar la realidad. La verdad, su arma más poderosa, se encuentra más allá de las murallas que lo encierran todo: en el desierto sin fin.`,
     review: {
       title: "La verdad más allá de las murallas",
       excerpt: `Rebelión contra sistemas opresivos.
@@ -677,7 +677,7 @@ export const books: Book[] = [
       ],
     },
     genre: ["cienciaFiccion", "fantasia", "aventura"],
-    subgenres: ["distopia", "postapocaliptica", "epica"],
+    subgenres: ["epica","distopia","postapocaliptica","juvenil"],
 
     tags: {
       ritmo: 1,
@@ -733,7 +733,7 @@ export const books: Book[] = [
     }
   },
   { slug: "el-himno-del-desierto-2",
-    title: "EL HIMNO DEL DESIERTO II: LA LEYENDA DEL VIENTO",
+    title: "EL HIMNO DEL DESIERTO 2: LA LEYENDA DEL VIENTO",
     cover: "/covers/book2.jpg",
     amazon: {
       es: "B0CW1M28T2",
@@ -745,7 +745,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0, 3],
     summary:
-      "Una rebelión contra un sistema dominante se intensifica cuando salen a la luz secretos sobre el origen del mundo exterior y el plan que ha mantenido dividida a la humanidad. Jon se adentra en territorios desconocidos, enfrentando múltiples peligros en su búsqueda de respuestas. Al mismo tiempo, Helena lidera un levantamiento dentro de la ciudad, intentando evitar un conflicto mayor. Mientras ambos avanzan, comienzan a surgir antiguas historias que parecen conectar con los acontecimientos actuales, sugiriendo que el destino de todos podría estar ligado a algo mucho más antiguo de lo que creían.",
+      "La guerra contra el Odio está a punto de estallar. La verdad sobre la Gente del Desierto es mucho más cruel de lo que Jon imaginaba y tiene que ver con el Plan, la suma de ideales que hostigan y segregan a la humanidad sobreviviente. El momento de unir a la última ciudad del mundo con el exterior ha llegado: mientras Helena sienta las bases de la revolución y las fuerzas del Regente intentan arrasar con cualquier esperanza, Jon deberá enfrentar un camino repleto de peligros, donde será acechado por bestias espeluznantes, hostiles avanzadas de la Guardia, y misteriosos individuos expertos en tender despiadadas trampas.",
     review: {
       title: "Cuando la rebelión se convierte en leyenda",
       excerpt: `Alta construcción de mundo.
@@ -764,8 +764,8 @@ export const books: Book[] = [
         "misticismo"
       ],
     },
-    genre: ["fantasia", "cienciaFiccion", "aventura"],
-    subgenres: ["epica", "distopia", "postapocaliptica"],
+    genre: ["cienciaFiccion","fantasia","aventura"],
+    subgenres: ["distopia","postapocaliptica","juvenil","epica"],
 
     tags: {
       ritmo: 1,
@@ -1244,7 +1244,7 @@ export const books: Book[] = [
     }
   },
   { slug: "el-himno-del-desierto-la-cima-del-mundo",
-    title: "EL HIMNO DEL DESIERTO III: LA CIMA DEL MUNDO",
+    title: "EL HIMNO DEL DESIERTO 3: LA CIMA DEL MUNDO",
     cover: "/covers/book3.jpg",
     amazon: {
       es: "B0D5HWMMPY",
@@ -1256,7 +1256,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0, 3],
     summary:
-      "Helena, presionada por fuerzas de poder y por un plan que apenas comienza a comprender, impulsa los inicios de una rebelión en un mundo al borde del colapso, mientras intenta reencontrarse con Jon. Por su parte, Jon atraviesa un entorno devastado enfrentando peligros constantes con la esperanza de hallarla. Aunque los cambios ya han comenzado, la estabilidad sigue lejos, y ambos terminan descubriendo verdades que transforman su visión del mundo, manteniendo su vínculo como el eje de la historia.",
+      "Antes de la tormenta, Helena permanece bajo el hostigamiento de Benedict Coldveyn, consciente del mal secreto que se prepara, y del verdadero alcance y poder del Plan. Aun así, lo da todo por plantar la semilla de la revolución, a la vez que emprende la búsqueda de Jon. Después de la tormenta, Jon trata de dar con Helena en un desierto sumido en la destrucción, donde las esperanzas flaquean ante la promesa de un odio mayor, concebido por quienes esperan la oportunidad precisa para mostrarse, ya que la revolución logra la libertad, pero la paz, aún, está lejos de llegar.",
     review: {
       title: "La cima que solo se alcanza resistiendo",
       excerpt: `Fantasía o ciencia ficción distópica con fuerte carga emocional.
@@ -1275,7 +1275,7 @@ export const books: Book[] = [
       ],
     },
     genre: ["fantasia", "cienciaFiccion", "aventura"],
-    subgenres: ["distopia", "epica", "postapocaliptica"],
+    subgenres: ["distopia","epica","postapocaliptica","juvenil"],
 
     tags: {
       ritmo: 2,
@@ -1456,7 +1456,7 @@ export const books: Book[] = [
     }
   },
   { slug: "el-himn-de-desierto-la-simiente-del-odio",
-    title: "EL HIMNO DEL DESIERTO IV: LA SIMIENTE DEL ODIO",
+    title: "EL HIMNO DEL DESIERTO 4: LA SIMIENTE DEL ODIO",
     cover: "/covers/book3.jpg",
     amazon: {
       es: "B0F45Q873Y",
@@ -1465,10 +1465,10 @@ export const books: Book[] = [
     },
     amazonLink: "https://amazon.com",
     authorSlug: ["eduardo-d-allen"],
-    isSaga: false,
+    isSaga: true,
     categories: [0, 4],
     summary:
-      "",
+      `Mientras que la unión de Umbriland con Onnan se ve amenazada por los conflictos políticos que nacen ante la ausencia de Jon y Helena, el augurio de una cruenta batalla se hace cada vez más real cuando el pueblo de Valletrampa, liderado por el temible Gartaj, rechaza cualquier tratado de paz. Al mismo tiempo, en el sur, Helena descubre un nuevo mundo detrás de la Cordillera Inalcanzable, acompañada por Regine, la niña del Río Vivo. Por su parte, en el norte, Jon descubre el misterio de las "estrellas danzantes", y busca la manera de regresar, con la ayuda de su querido amigo Javier y una extraña joven llamada "Lyric".`,
     review: {
       title: "",
       excerpt: ``,
@@ -1481,8 +1481,8 @@ export const books: Book[] = [
         "misticismo"
       ],
     },
-    genre: ["fantasia", "romance", "ficcion"],
-    subgenres: ["amorprohibido", "enemiestolovers", "psicologico"],
+    genre: ["fantasia","cienciaFiccion","aventura"],
+    subgenres: ["epica","distopia","postapocaliptica","juvenil"],
 
     tags: {
       ritmo: 3,
