@@ -647,5 +647,50 @@ export const authors: Author[] = [
     description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
     style: "Ligero, emocional y fácil de leer.",
     similar: ["autor-x"]
+  },
+  {
+    slug: "elena-franrey",
+    name: "Elena Franrey",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "ezquiel-perez-anaya",
+    name: "Ezequiel Pérez Anaya",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "carlos-m-marquez",
+    name: "Carlos M. Márquez",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "alejandro-rojas-cruz",
+    name: "Alejandro Rojas Cruz",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "tivi-mizu",
+    name: "Tivi Mizu",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
   }
 ]

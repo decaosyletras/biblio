@@ -89,11 +89,11 @@ export function getRecommendedBooks(currentSlug: string) {
     .sort((a, b) => b.score - a.score)
 
   // 🔥 TOP 5 por relevancia
-  const top5 = ranked.slice(0, 5)
+  const top5 = ranked.slice(0, 7)
 
   // 🎲 shuffle SOLO de esos 5
   const shuffledTop5 = shuffleArray(top5)
 
   // 🎯 devolver 3 finales
-  return shuffledTop5.slice(0, 3)
+  return shuffledTop5.slice(0, 4)
 }

@@ -1876,27 +1876,37 @@ export const books: Book[] = [
     },
     amazonLink: "https://amazon.com",
     authorSlug: ["gabriel-vilches-barroso"],
-    isSaga: false,
+    isSaga: true,
     categories: [0],
     summary:
       "Gabriel Kajal, hijo de un prestigioso metabiólogo, emprende un viaje para completar la enciclopedia iniciada por su padre sobre los Metalien, unas criaturas cósmicas capaces de viajar por el universo, influir en la evolución y establecer vínculos simbióticos con otras formas de vida, especialmente los humanos.\n\nA lo largo de su aventura, Gabriel busca conocer y documentar estas entidades fascinantes, explorando distintos mundos y descubriendo los secretos de su origen, en una travesía llena de acción, humor y descubrimiento científico.",
     review: {
-      title: "",
-      excerpt: ``,
+      title: "¡Descúbrelos a todos!",
+      excerpt: `Aventuras enlazadas con criaturas cósmicas.
+            Especies fascinantes y vínculos entre humanos y seres extraterrestres.
+            Una enciclopedia galáctica que explora y documenta criaturas alienígenas.
+            Personajes con personalidades muy marcadas y bien trabajadas.
+            Alta construcción en la trama, las amenazas y las alianzas.`,
       content: "",
-      metrics: [],
+      metrics: [ "aventura",
+          "accion",
+          "humor",
+          "juvenil",
+          "razasalienigenas",
+          "pasadoorigenes",
+          "colonizacionexpansion"],
     },
     genre: ["cienciaFiccion", "aventura", "ficcion"],
     subgenres: ["exploracionespacial", "xenoficcion", "evolucionespeculativa"],
 
     tags: {
-      ritmo: 0,
-      complejidad: 0,
-      cargaEmocional: 0,
-      conflicto: 0,
-      worldbuilding: 0,
-      accesibilidad: 0,
-      profundidad: 0,
+      ritmo: 3,
+      complejidad: 1,
+      cargaEmocional: 2,
+      conflicto: 2,
+      worldbuilding: 3,
+      accesibilidad: 1,
+      profundidad: 2,
     }
   },
   { slug: "unitaria-astralis",
@@ -4181,6 +4191,231 @@ export const books: Book[] = [
     },
     genre: ["romance","fantasia","aventura"],
     subgenres: ["historica","erotico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
+
+
+  { slug: "hiraeth-vol-1",
+    title: "HIRAETH VOL.1: EL SUEÑO DEL MONSTRUO",
+    cover: "",
+    amazon: {
+      es: "B0DRCGBNSV",
+      mx: "B0DRCGBNSV",
+      us: "B0DRCGBNSV",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["elena-franrey"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Me llamo Shei y he nacido en una sociedad en la que estás obligado a sobrevivir y a pelear. Desde siempre he creído en los monstruos. No tengo dudas de que son reales porque yo misma pienso, a menudo, que podría ser una especie de monstruo.
+        Lucho todo el tiempo para conseguir algo de comida que llevarme a la boca, también para que nadie tenga la osadía de subestimarme y, sobre todo, lucho porque, cuando tan solo era una niña, un monstruo diferente a mí me lo arrebató todo tan rápido como el instante que dura un pestañeo.
+        Lo único que anhelo desde entonces es descubrir la verdad que oculta bajo llave ese monstruo, incluso si no estoy preparada para asimilarla y sea capaz de destrozarme por completo.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","ficcion","cienciaFiccion"],
+    subgenres: ["emotiva","distopia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "mirabi",
+    title: "MIRABI",
+    cover: "",
+    amazon: {
+      es: "B0BV33WC5Q",
+      mx: "B0BV33WC5Q",
+      us: "B0BV33WC5Q",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["ezquiel-perez-anaya"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `A grandes rasgos un mirabi es un objeto que tiene y/o confiere habilidades especiales a su portador.
+        Existe una compañía secreta encargada de regular el conocimiento y uso de dichos objetos. Y tras
+        la repentina desaparición de uno de sus agentes, la compañía iniciará la persecución del principal sospechoso, un tipo peculiar llamado Dante.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller","aventura","ficcion"],
+    subgenres: [],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "la-pagina-en-blanco",
+    title: "LA PÁGINA EN BLANCO",
+    cover: "",
+    amazon: {
+      es: "B0GSKXMF9L",
+      mx: "B0GSKXMF9L",
+      us: "B0GSKXMF9L",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["carlos-m-marquez"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Hay lugares a los que uno llega sin saber muy bien por qué.
+        Una carretera secundaria.
+        Un desvío que no estaba previsto.
+        Una cabaña en mitad del bosque.
+        A veces pensamos que la vida cambia en un instante concreto: una decisión, una palabra, un error.
+        Pero no siempre ocurre así.
+        Algunas historias no se rompen de golpe. Se van torciendo lentamente, casi sin que nadie lo note. Y cuando uno mira hacia atrás, descubre que el final llevaba mucho tiempo esperando.
+        La página en blanco es una novela breve e inquietante sobre el desgaste silencioso de una vida, las decisiones que parecen insignificantes y la extraña sensación de que algunas historias se encaminan hacia su final mucho antes de que podamos comprenderlo.
+        Un relato intenso, introspectivo y perturbador que acompaña al lector hasta una conclusión tan inevitable como inesperada.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller","ficcion"],
+    subgenres: ["psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "razones-para-amarte",
+    title: "RAZONES PARA AMARTE",
+    cover: "",
+    amazon: {
+      es: "B0H1SN2FPB",
+      mx: "B0H1SN2FPB",
+      us: "B0H1SN2FPB",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["alejandro-rojas-cruz"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Caitlyn se encuentra sumida en una profunda depresión que ha durado años tras recibir la peor traición de su vida.
+        Con un corazón roto y la creencia de que su hermana le había arrebatado al amor de su vida ella descubrirá que la vida a veces puede dar segundas oportunidades. Por mera suerte o por un acto del destino se encuentra con Hayden, un exfutbolista quien esconde las heridas de su pasado. juntos intentaran construir un futuro mientras Caitlyn se enfrenta a los fantasmas de su pasado, que la acechan como un cazador lo hace con su presa. ¡Deberá hacer frente a sus peores miedos para poder por fin sanar su vida! ¿podrá Caitlyn sanar sus heridas y encontrar la felicidad junto a Hayden?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","thriller"],
+    subgenres: ["psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "deva-el-secreto-del-agua",
+    title: "DEVA: EL SECRETO DEL AGUA",
+    cover: "",
+    amazon: {
+      es: "B0DR71PFT9",
+      mx: "B0DR71PFT9",
+      us: "B0DR71PFT9",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["tivi-mizu"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `¿Y si las respuestas que buscas solo existen en tus sueños?
+        Deva siempre ha sentido que es una pieza de un puzle que no encaja. La extraña desaparición de su padre dejó un vacío imposible de llenar, y ahora, unos sueños inquietantes y vívidos la persiguen cada noche, algo que ella no alcanza a comprender.
+        Pero la realidad está a punto de romperse. Algo antiguo y poderoso despertará en su interior.
+        Mientras intenta mantener la normalidad junto a Raquel y Amanda, sus leales amigas, Deva se verá arrastrada hacia Alex, su amor platónico. Él es enigmático y magnético. Juntos, destaparán un legado oculto que conecta el pasado de su familia con una fuerza mitológica olvidada.
+        El agua tiene memoria. Y ha llegado el momento de escucharla.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","misterio","romance"],
+    subgenres: ["oscura","especulativo"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "deva-el-origen",
+    title: "DEVA: EL ORIGEN",
+    cover: "",
+    amazon: {
+      es: "B0GD1GX7DL",
+      mx: "B0GD1GX7DL",
+      us: "B0GD1GX7DL",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["tivi-mizu"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Tras ser arrastrada a un mundo desconocido a través de un portal (en una aventura de pura fantasía épica estilo anime Isekai), Deva lo ha perdido todo: su hogar, sus amigas... y a Álex, su gran amor. Bajo la guía del enigmático dios Enki, descubrirá que la distancia no es su único enemigo. Este nuevo reino esconde secretos oscuros, peligros mortales y verdades mitológicas que podrían destruir la realidad tal y como la conoce.
+        Mientras lucha por sobrevivir en este mundo mágico, Deva enfrenta su mayor desafío: aceptar el destino que late en su interior.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","misterio","romance"],
+    subgenres: ["epica","oscura","especulativo"],
 
     tags: {
       ritmo: 0,
