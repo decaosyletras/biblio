@@ -1473,9 +1473,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: [
-        "",
-      ],
+      metrics: [],
     },
     genre: ["fantasia","cienciaFiccion","aventura"],
     subgenres: ["epica","distopia","postapocaliptica","juvenil"],
