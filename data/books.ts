@@ -1470,22 +1470,33 @@ export const books: Book[] = [
     summary:
       `Mientras que la unión de Umbriland con Onnan se ve amenazada por los conflictos políticos que nacen ante la ausencia de Jon y Helena, el augurio de una cruenta batalla se hace cada vez más real cuando el pueblo de Valletrampa, liderado por el temible Gartaj, rechaza cualquier tratado de paz. Al mismo tiempo, en el sur, Helena descubre un nuevo mundo detrás de la Cordillera Inalcanzable, acompañada por Regine, la niña del Río Vivo. Por su parte, en el norte, Jon descubre el misterio de las "estrellas danzantes", y busca la manera de regresar, con la ayuda de su querido amigo Javier y una extraña joven llamada "Lyric".`,
     review: {
-      title: "",
-      excerpt: ``,
+      title: "Más allá del odio y las murallas",
+      excerpt: `Conflictos políticos que amenazan a la humanidad.
+      Personajes valientes, alianzas inesperadas y enemigos peligrosos.
+      Criaturas, pueblos y culturas desconocidas..
+      Una historia de esperanza, destino y supervivencia.
+      Alta construcción de mundo y tramas profundas.`,
       content: "",
-      metrics: [],
+      metrics: [
+        "supervivencia",
+        "accion",
+        "viajedelheroe",
+        "historiasparalelas",
+        "militar",
+        "traicion",
+      ],
     },
     genre: ["fantasia","cienciaFiccion","aventura"],
     subgenres: ["epica","distopia","postapocaliptica","juvenil"],
 
     tags: {
-      ritmo: 0,
-      complejidad: 0,
-      cargaEmocional: 0,
-      conflicto: 0,
-      worldbuilding: 0,
-      accesibilidad: 0,
-      profundidad: 0,
+      ritmo: 3,
+      complejidad: 1,
+      cargaEmocional: 3,
+      conflicto: 3,
+      worldbuilding: 3,
+      accesibilidad: 2,
+      profundidad: 2,
     }
   },
 
