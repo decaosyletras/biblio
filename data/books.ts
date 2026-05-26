@@ -1474,24 +1474,20 @@ export const books: Book[] = [
       excerpt: ``,
       content: "",
       metrics: [
-        "reflexion",
-        "satira",
-        "adulta",
-        "humor",
-        "misticismo"
+        "",
       ],
     },
     genre: ["fantasia","cienciaFiccion","aventura"],
     subgenres: ["epica","distopia","postapocaliptica","juvenil"],
 
     tags: {
-      ritmo: 3,
-      complejidad: 1,
-      cargaEmocional: 3,
-      conflicto: 2,
-      worldbuilding: 2,
-      accesibilidad: 1,
-      profundidad: 2,
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
     }
   },
 
