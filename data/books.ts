@@ -4424,5 +4424,143 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "identicos",
+    title: "IDENTICOS",
+    cover: "",
+    amazon: {
+      es: "6289574892",
+      mx: "6289574892",
+      us: "6289574892",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["elena-gallardo"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Dos extraños. Un eclipse. Un sacrificio ancestral. Cuando la estudiante Fernanda es raptada en plena calle y el atormentado excantante José desaparece de su hotel, ninguno imagina el horror que los espera. Ambos son las piezas clave de un ritual sagrado perpetrado por una antigua cultura que lucha por no extinguirse. Atrapados en una pesadilla mística, esta pareja tan dispar deberá encontrar la fuerza para unirse. ¿Podrá el amor florecer en medio del cautiverio o serán consumidos por el ritual?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller","romance","ficcion"],
+    subgenres: ["supervivencia","psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "el-extasis-de-las-sombras",
+    title: "EL ÉXTASIS DE LAS SOMBRAS",
+    cover: "",
+    amazon: {
+      es: "B0FV7ZL1PF",
+      mx: "B0FV7ZL1PF",
+      us: "B0FV7ZL1PF",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["heriberto-jimenez-jimenez"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Relatos de terror/ terror elevado/ terror psicológico.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["terror"],
+    subgenres: ["psicologico","existencial","sobrenatural"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "rosae-secretos-de-mi-memoria",
+    title: "ROSAE: SECRETOS DE MI MEMORIA",
+    cover: "",
+    amazon: {
+      es: "B0DW18HRCP",
+      mx: "B0DW18HRCP",
+      us: "B0DW18HRCP",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["laura-s-leal"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `En 1965, Froylan fue ingresado en contra de su voluntad a un manicomio por un crimen que él asegura no haber cometido, ya que tiene una perspectiva diferente a lo que dicen los demás, por lo tanto, hará lo imposible para demostrar lo contrario. Constanza, una joven de 17 años, descubre secretos turbulentos que la institución resguarda para no dañar su reputación y hará lo que esté a su disposición para lograr un cambio hacia los internos.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller","misterio"],
+    subgenres: ["psicologico","supervivencia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "eres-especial-para-mi",
+    title: "ERES ESPECIAL PARA MÍ",
+    cover: "",
+    amazon: {
+      es: "B0DGB3WLWP",
+      mx: "B0DGB3WLWP",
+      us: "B0DGB3WLWP",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["laura-s-leal"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Tras varios desafortunados acontecimientos, Iryna se muda a Sabadell para independizarse y estar más cerca de la universidad. Sin embargo, se ve en aprietos cuando se entera que, en el departamento compartido donde vivirá, tiene cuatro compañeros y un reglamento estricto que todos deben cumplir.
+        El más importante es: "No hay romances entre los inquilinos."
+        La vida de Iryna era muy tranquila, creyó que nada en este mundo podría hacer que rompiera las reglas, pero al enfrentar este gran cambio tendrá que lidiar con un pequeñísimo gran detalle: Debe evitar a toda costa que sus compañeros se enteren que está enamorada de uno de ellos.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","aventura"],
+    subgenres: ["juvenil","amorprohibido"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 ]
