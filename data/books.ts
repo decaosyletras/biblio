@@ -4202,9 +4202,6 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-
-
-
   { slug: "hiraeth-vol-1",
     title: "HIRAETH VOL.1: EL SUEÑO DEL MONSTRUO",
     cover: "",

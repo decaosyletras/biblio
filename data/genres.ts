@@ -5,7 +5,7 @@ export const genresCatalog = [
     subgenres: [
       { id: "urbana", label: "Urbana" },
       { id: "epica", label: "Épica" },  
-      { id: "oscura", label: "Oscura" },  
+      { id: "oscura", label: "Oscura" },
       { id: "historica", label: "Histórica" },
     ],
   },
@@ -80,6 +80,15 @@ export const genresCatalog = [
     subgenres: [
       { id: "psicologico", label: "Psicológico" },
       { id: "emotiva", label: "Emotiva" },
+    ],
+  },
+  {
+    id: "noficcion",
+    label: "No ficción",
+    subgenres: [
+      { id: "biografia", label: "Biografía" },
+      { id: "autobiografia", label: "Autobiografía" },
+      { id: "historico", label: "Histórico" },
     ],
   },
 ]
