@@ -37,4 +37,5 @@ export const metricsCatalog = [
   { id: "redencion", label: "Redencion" },
   { id: "dragones", label: "Redencion" },
   { id: "pandemia", label: "Pandemia" },
+  { id: "lgbt", label: "LGBT" },
 ]

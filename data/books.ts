@@ -4562,6 +4562,117 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "serndol-el-savamyre-ocre",
+    title: "SERNDOL: EL SAVAMYRE OCRE",
+    cover: "",
+    amazon: {
+      es: "B0GX2ZWCXG",
+      mx: "B0GX2ZWCXG",
+      us: "B0GX2ZWCXG",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["eduardo-ulloa-rivera"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `¿Un granjero común en el continente de Serndol… o el comienzo de una leyenda?
+          Cayden Blir solo quería arrear gansos y disfrutar del festival con su mejor amiga Brie, su inseparable compañero Nebel y su bestia gigante Root.
+          Pero en su 17º cumpleaños, el viejo Harrison le entrega una antigua espada negra misteriosa que pertenecía a su padre.
+          De pronto, una persecución nocturna lo lleva hasta el excéntrico Ahrabhor Towerfly... y todo cambia para siempre.
+          SERNDOL: El Asvamyre Ocre. Fantasía Épica que te va a enganchar desde la primera página.
+          ¿Te atreves? 
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","aventura"],
+    subgenres: ["epica"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "andy-y-jack",
+    title: "ANDY & JACK",
+    cover: "",
+    amazon: {
+      es: "B0FLYQXKBG",
+      mx: "B0FLYQXKBG",
+      us: "B0FLYQXKBG",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["kat-vanroll"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `A veces amar es pelear, huir, mentir, sacrificar... hasta lo impensable. Porque cuando el amor es real, rendirse no es una opción.
+        ¿Hasta dónde serías capaz de llegar por amor?
+        Andy es un chico tímido y reservado. Creció en un orfanato, aprendió a ocultar lo que siente y teme que descubrir su homosexualidad lo haga perderlo todo.
+        Jack es impulsivo, rebelde y conflictivo. Hijo de un poderoso empresario, lo tiene todo... excepto el amor y la aceptación que tanto ansía.
+        En medio del caos, su amor se convierte en su refugio. Juntos defenderán su amor de los prejuicios sociales, diferencias de clases y las sombras de su propio pasado hasta que la verdad los alcance.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","ficcion"],
+    subgenres: ["amorprohibido","emotiva"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "hasta-donde-eres-capaz-de-llegar-ambito-labor",
+    title: "¿HASTA DONDE ERES CAPAZ DE LLEGAR?: 'AMBITO LABOR'",
+    cover: "",
+    amazon: {
+      es: "B0D72C5WXG",
+      mx: "B0D72C5WXG",
+      us: "B0D72C5WXG",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["anonimo-z-g"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `El libro trata sobre una pequeña oficina que, a primera vista, parece un lugar ideal. Las risas suenan sinceras, los saludos fluyen con naturalidad y el ambiente aparenta calma. Sin embargo, esa armonía es apenas una fachada; detrás de las sonrisas se esconde un sutil juego de poder, de silencios incómodos y palabras calculadas.
+        Estas historias están inspiradas en hechos reales ocurridos en Panamá. Sin embargo, para salvaguardar la identidad de los personajes y preservar la confidencialidad de los acontecimientos, se han modificado nombres, lugares y ciertos detalles de la trama donde convergen la envidia, la traición, la obsesión, el deseo y la ambición.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance"],
+    subgenres: ["amorprohibido"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
   { slug: "lagrimas-de-acero",
     title: "LÁGRIMAS DE ACERO",
     cover: "",
@@ -4590,7 +4701,6 @@ export const books: Book[] = [
     },
     genre: ["ficcion"],
     subgenres: ["emotiva","psicologico"],
-
     tags: {
       ritmo: 0,
       complejidad: 0,
