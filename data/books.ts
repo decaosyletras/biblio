@@ -4562,5 +4562,44 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "lagrimas-de-acero",
+    title: "LÁGRIMAS DE ACERO",
+    cover: "",
+    amazon: {
+      es: "B0G4N8XX56",
+      mx: "B0G4N8XX56",
+      us: "B0G4N8XX56",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["miss-dark"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Lara es una mujer independiente desde hace años; vive sola y tiene un trabajo estable, sin embargo nunca ha tenido suerte en el amor.
+        Un día, conoce a Lucas y cree que por fin su suerte va a cambiar.
+        Lucas es un lobo con piel de cordero, y bajo ese disfraz someterá a Lara en una espiral de dolor.
+        Dani nunca ha conocido el verdadero amor y lleva años viviendo en Estados Unidos por trabajo. Nunca pensó que un viaje de regreso a España para visitar a su hermana, le fuera a cambiar tanto la vida.
+        Dani y Lara se conocen en el peor momento de esta, sin embargo, la atracción que sienten es innegable. ¿Podrá Lara encontrar el verdadero amor con Dani? o ¿El pasado se interpondrá entre ellos?
+        El amor siempre aparece cuando menos lo esperas.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion"],
+    subgenres: ["emotiva","psicologico"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 ]
