@@ -4562,6 +4562,41 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "muchos-rostros-una-voz",
+    title: "MUCHOS ROSTROS EN UNA VOZ",
+    cover: "",
+    amazon: {
+      es: "B0FWQ2JY52",
+      mx: "B0FWQ2JY52",
+      us: "B0FWQ2JY52",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["bertha-camarena-heras"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Con diferentes relatos y personajes, pero todas atravesadas por la herida de la feminidad, la autora da cuenta de la complejidad de este universo a través de una óptica contemporánea. Mediante una voz cálida y sincera, Bertha
+          Camarena hace un mapeo sobre lo que significa ser mujer: desde la pérdida de un embarazo, pasando por invocaciones de seres mitológicos, espíritus y casas embrujadas, hasta los ideales de belleza y la violencia actual en México.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion"],
+    subgenres: [],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
   { slug: "serndol-el-savamyre-ocre",
     title: "SERNDOL: EL SAVAMYRE OCRE",
     cover: "",
