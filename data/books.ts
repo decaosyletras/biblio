@@ -4746,5 +4746,75 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "extincion-salvaje",
+    title: "EXTINCIÓN SALVAJE",
+    cover: "",
+    amazon: {
+      es: "B0F7M6CG5S",
+      mx: "B0F7M6CG5S",
+      us: "B0F7M6CG5S",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["john-bueno"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `En un mundo dividido por clanes y marcado por antiguas tradiciones, la supervivencia es una batalla constante. En la oscura tierra de Terión, el equilibrio entre la guerra y la paz pende de un hilo, mientras las alianzas se forjan y se rompen con la misma facilidad con la que se empuña un arma.
+        Luna, una joven marcada por su pasado, lucha por encontrar su lugar en una sociedad que no perdona la debilidad. Entre la astucia de los Zorros, la sabiduría de los Búhos y la brutalidad de los Cazadores, se esconde una verdad más peligrosa que cualquier enemigo: el poder de la venganza y el legado de la sangre.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","aventura"],
+    subgenres: ["oscura","epica","juvenil"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "te-odio",
+    title: "TE ODIO",
+    cover: "",
+    amazon: {
+      es: "B0GX2YC9Z8",
+      mx: "B0GX2YC9Z8",
+      us: "B0GX2YC9Z8",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["john-bueno"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Algunos amores nacen para salvarte. Otros para destruirlo todo.
+        Hugo Salamanca es un huérfano que aprendió demasiado pronto que el mundo pertenece a quienes se atreven a tomarlo. Tras escapar de la miseria de su infancia, llega al Londres victoriano bajo una nueva identidad y dispuesto a conquistar una ciudad donde el poder, el dinero y los secretos lo gobiernan todo.
+        En ese mundo conoce a Emma Remington, una joven aristócrata destinada a un futuro que no ha elegido. Entre ambos surge una atracción tan intensa como peligrosa, capaz de desafiar las normas sociales, las lealtades familiares y el propio pasado de Hugo.
+        Porque algunos amores no se viven… se conquistan.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","noficcion"],
+    subgenres: ["historico","amorprohibido"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 ]
