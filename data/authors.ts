@@ -836,5 +836,32 @@ export const authors: Author[] = [
     description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
     style: "Ligero, emocional y fácil de leer.",
     similar: ["autor-x"]
+  },
+  {
+    slug: "lara-munoz-higueras",
+    name: "Lara Muñoz Higueras",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "salva-lorenzo-garces",
+    name: "Salva Lorenzo Garcés",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "samanta-esperon",
+    name: "Samanta Esperón",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
   }
 ]

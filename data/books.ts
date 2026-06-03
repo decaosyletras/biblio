@@ -5054,5 +5054,144 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "nuestro-ultimo-anio",
+    title: "NUESTRO ÚLTIMO AÑO",
+    cover: "",
+    amazon: {
+      es: "B0FJZD88BS",
+      mx: "B0FJZD88BS",
+      us: "B0FJZD88BS",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["lara-munoz-higueras"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Abigail ha aprendido a respirar teniendo el corazón roto, construyendo muros tan altos que ni ella misma recuerda dónde dejó las llaves. Cada trazo de pintura, cada silencio en los pasillos del instituto, es un refugio contra el dolor de perderlo todo. Cuando Edan atraviesa su jardín y se convierte en su compañero de clase, las grietas que había cerrado comienzan a abrirse de nuevo.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance"],
+    subgenres: ["enemiestolovers"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "verano-maligno",
+    title: "VERANO MALIGNO",
+    cover: "",
+    amazon: {
+      es: "B0GX2ZTLQ1",
+      mx: "B0GX2ZTLQ1",
+      us: "B0GX2ZTLQ1",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["salva-lorenzo-garces"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Los veranos en el pueblo eran diferentes, especialmente para Chloe, Joel, Ivette y Carlota. Los cuatro primos disfrutaban de los juegos, las risas y la naturaleza durante sus semanas de vacaciones.
+        Pero ese verano encontraron algo antiguo y oscuro que no debieron despertar, algo que los marcaría hasta la edad adulta.
+        Lo que empezó como un juego convirtió aquel verano en una pesadilla.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["terror","misterio","aventura","thriller"],
+    subgenres: ["sobrenatural","supervivencia","psicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "bautismo-de-acero",
+    title: "BAUTISMO DE ACERO",
+    cover: "",
+    amazon: {
+      es: "B087ZMQ4LH",
+      mx: "B087ZMQ4LH",
+      us: "B087ZMQ4LH",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["samanta-esperon"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `En la Última Gran Guerra los magos arrasaron Thoria por completo y, por eso, se prohibió el uso de la magia. Los magos fueron cazados y ejecutados, sus nombres e historias fueron borradas, sus restos fueron quemados junto a todo lo que tocaron.
+        Los reyes de los cuatro países que componen Thoria creyeron que así estarían a salvo, pero se equivocaron.
+        Casi 300 años después, el rey de Pyebra decidió cambiar las reglas y empezar a entrenar magos para su ejército. Las consecuencias cayeron como una tormenta, de norte a sur.
+        Los magos volvieron. Algunos solo quieren sobrevivir, otros exigen venganza.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia"],
+    subgenres: ["oscura"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "los-colores-de-la-sangre",
+    title: "LOS COLORES DE LA SANGRE",
+    cover: "",
+    amazon: {
+      es: "B0CP2HSCL3",
+      mx: "B0CP2HSCL3",
+      us: "B0CP2HSCL3",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["samanta-esperon"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Si no se murió en 22 años, o los que sea que tenga, ¿por qué se iba a morir cuando se encontró al dragón?
+        Indra sobrevive como ladrona en un reino sumido en la esclavitud y la miseria, atrapada entre su adicción al polvo de estrellas y su anhelo de un mundo mejor, donde haya flores en los jardines, sonrisas en los niños y ancianos en las calles.
+        En un momento de increíble valentía, y falta de juicio, Indra roba unos libros importantes del palacio, pero no pasa mucho hasta que es encarcelada y torturada. Sin embargo, contará con un aliado inesperado para mantener la cordura y la esperanza en ese asqueroso lugar.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia"],
+    subgenres: ["oscura"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 ]
