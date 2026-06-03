@@ -812,7 +812,7 @@ export const authors: Author[] = [
   },
   {
     slug: "alicia-rocafull",
-    name: "ALICIA ROCAFULL",
+    name: "Alicia Rocafull",
     avatar: "/authors/autor2.jpg",
     bio: "Narrativa emocional contemporánea.",
     description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
