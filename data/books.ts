@@ -4816,5 +4816,243 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "besos-con-sabor-a-blues",
+    title: "BESOS CON SABOR A BLUES",
+    cover: "",
+    amazon: {
+      es: "B0FD93H8DC",
+      mx: "B0FD93H8DC",
+      us: "B0FD93H8DC",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["gemma-cañas-barnes"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Besos con sabor a blues, nos invita a adentrarnos en una historia donde el miedo a enamorarse, puede llegar a ser un problema genérico. Donde la falta de confianza, autoestima y malos entendidos, agrandan los conflictos mucho más allá de lo que realmente son.
+        Sin embargo el poder de cambiarlo y cambiarnos está en nuestras manos, por muchas zancadillas que otros nos quieran dar y aquellas trabas que por el camino nos lleguemos a encontrar.
+        Mara Páez y Xandro Galáns, son un claro ejemplo de ello en esta trepidante historia cargada de miedos, inseguridades, celos, traición, pero ante todo de amor, mucho amor y una gran superación.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion","romance"],
+    subgenres: ["enemiestolovers","emotiva","erotico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "amor-croquetas-y-un-cadaver",
+    title: "AMOR, CROQUETAS Y UN CADÁVER",
+    cover: "",
+    amazon: {
+      es: "B0GXGRR31C",
+      mx: "B0GXGRR31C",
+      us: "B0GXGRR31C",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["angel-marcias-sanchez"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Jaime fue actor, cómico y ahora anima fiestas infantiles vestido de unicornio o payaso triste. Lo último que esperaba era acabar en la pedida de mano de su ex, rodeado de croquetas secas, niños hiperactivos y familiares con secretos más oscuros que el traje del prometido. Lo segundo que menos esperaba era verse metido en medio de un embrollo donde las copas vuelan, los recuerdos duelen y alguien no está tan vivo como debiera.
+        Entre una camarera que sabe más de lo que aparenta, un ex-suegro con teorías alienígenas y una event planner que parece capaz de asesinar por una servilleta mal doblada, Jaime tendrá que sobrevivir a una fiesta que se irá de las manos... y quizás de la moral.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller"],
+    subgenres: ["policial"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "dias-olvidados",
+    title: "DÍAS OLVIDADOS",
+    cover: "",
+    amazon: {
+      es: "B0G2788FMY",
+      mx: "B0G2788FMY",
+      us: "B0G2788FMY",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["alicia-moreno-enriquez"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `La protagonista toma una decisión trascendental, deja todo atrás e intenta un nuevo comienzo. La historia transcurre en diversos países donde viaja y va conociendo a personas que se unen a la trama, destacando entre ellas a un hombre que la marcará para el resto de su existencia.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance"],
+    subgenres: ["amorprohibido"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "la-arquitectura-del-olvido",
+    title: "LA ARQUITECTURA DEL OLVIDO",
+    cover: "",
+    amazon: {
+      es: "",
+      mx: "",
+      us: "",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["cons-espher"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Eva y Uriel lo tenían todo: poder, prestigio y un matrimonio sólido en la despiadada industria de la construcción. Pero tras una traición laboral y conyugal, Eva queda destrozada. Dos años después, un Uriel amnésico despierta de un coma creyendo que siguen felizmente casados. Ahora, Eva debe guiar al hombre que destruyó su vida a través de los escombros de su pasado para descubrir por qué lo hizo, poniendo en riesgo su corazón una vez más.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","ficcion"],
+    subgenres: ["emotiva","enemiestolovers","erotico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "cuando-dolia-memorias-de-una-mente-fragmentada",
+    title: "CUANDO DOLÍA: MEMORIAS DE UNA MENTE FRAGMENTADA",
+    cover: "",
+    amazon: {
+      es: "B0GJLZN8HZ",
+      mx: "B0GJLZN8HZ",
+      us: "B0GJLZN8HZ",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["alicia-rocafull"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `CUANDO DOLÍA no es solo un libro de memorias; es un viaje honesto y sin filtros a través de la fragmentación emocional, el dolor invisible y la búsqueda desesperada de la propia identidad tras el diagnóstico. En estas páginas, Alicia Rocafull abre las puertas de su vulnerabilidad para narrar lo que muchos callan: el proceso de romperse y el arduo camino de recoger los pedazos conviviendo con un trastorno que lo cambia todo.
+        A través de una prosa directa y profundamente evocadora, esta obra nos sumerge en las sombras de la salud mental, no desde la teoría, sino desde la piel. 
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["noficcion"],
+    subgenres: ["autobiografia"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "bajo-la-sombra-de-sisifo",
+    title: "BAJO LA SOMBRA DE SÍSIFO",
+    cover: "",
+    amazon: {
+      es: "B0GTNB56X3",
+      mx: "B0GTNB56X3",
+      us: "B0GTNB56X3",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["francisco-rojas-claros"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `En la implacable Edad del Bronce, Belerofonte, joven príncipe de Corinto, carga con el peor de los crímenes: haber derramado la sangre de su propio hermano. Desterrado, se convierte en la pieza de un tablero donde reinas despechadas, monarcas astutos y alianzas frágiles juegan con destinos ajenos.
+        Su única senda de redención exige domar a Pegaso y cazar a la Quimera, una abominación de fuego, relámpagos y humo negro del Caos que amenaza con devorar el mundo conocido.
+        Mientras, en los muros de Corinto, su prima Corinna libra otra batalla. Deberá proteger el legado de su estirpe, descifrar profecías olvidadas y decidir si el destino de los héroes se escribe con lanza o con memoria. 
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia"],
+    subgenres: ["epica","oscura","historica"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "eternida",
+    title: "ETÉRNIDA",
+    cover: "",
+    amazon: {
+      es: "B0FBTJRZ5K",
+      mx: "B0FBTJRZ5K",
+      us: "B0FBTJRZ5K",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["sergio-valencia-diaz"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `El reino de Dobrodosla se encuentra sumido en el caos tras haber sido conquistado por un ejército invasor. En medio de un régimen de terror, Karbar sólo quiere seguir los pasos de su padre en el mundo de la caballería, pero pronto descubrirá que las tropas del rey usurpador Lazni le buscan para eliminarle.
+        Viendo su vida en peligro, Karbar deberá huir de ellos, desconociendo que es una fuerza oscura y desconocida quien está realmente detrás de todo. En su camino deberá descubrir quién es él y el por qué de su importancia, aunque para ello necesitará la ayuda de cierta hechicera legendaria, desaparecida hace más de cien años y que ha regresado para guiar sus pasos en tan peligroso viaje. 
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia"],
+    subgenres: ["epica"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 ]
