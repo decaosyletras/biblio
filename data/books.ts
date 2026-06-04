@@ -5193,5 +5193,106 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "sombra-lo-que-desconozco-de-ti",
+    title: "SOMBRA, LO QUE DESCONOZCO DE TI",
+    cover: "",
+    amazon: {
+      es: "B0GMKJH9GY",
+      mx: "B0GMKJH9GY",
+      us: "B0GMKJH9GY",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["luz-vazquez-vicente"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Hace dos años que Raquel se trasladó a Madrid para trabajar en el departamento de publicidad en la empresa propiedad de Enrique y Carlos, pero ¿es esto verdad?
+        Un viaje de negocios a Londres cambiará el curso de su hasta ahora apaciguada vida. El amor, el miedo, las dudas y un terrible crimen inquietarán a Raquel, que, desesperada, intentará aferrarse, a ciegas, a la protección de una persona totalmente desconocida. Sombra, nombre con el que ella apoda a este hombre misterioso, tras negarse a revelarle ni tan siquiera su identidad, intentará convencerla del peligro que corre. Pero, ¿puede realmente confiar en un extraño?
+        Una historia de ficción que te atrapará hasta el final.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance","thriller"],
+    subgenres: [],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "Lorynor-el-despertar-de-la-luz",
+    title: "LORYNOR: EL DESPERTAR DE LA LUZ ETERNA",
+    cover: "",
+    amazon: {
+      es: "B0GSBLLXJP",
+      mx: "B0GSBLLXJP",
+      us: "B0GSBLLXJP",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["a-valstrae"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Isil, una joven marcada por la pérdida y el misterio de una reliquia familiar, es arrastrada a un destino que la conduce más allá de su realidad, hacia una profecía nacida en otro mundo. Mientras las sombras resurgen y el equilibrio del mundo se resquebraja, El colgante olvidado, - Lúmen Astraë - despertará en sus manos, abriendo un portal entre dos mundos: El suyo y Aeloria.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","romance","aventura"],
+    subgenres: ["epica"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "misterio-en-villa-grande",
+    title: "MISTERIO EN VILLA GRANDE",
+    cover: "",
+    amazon: {
+      es: "B0D5W7WGL6",
+      mx: "B0D5W7WGL6",
+      us: "B0D5W7WGL6",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["daniel-i-sanchez"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `A inicios de 1995, los periódicos informan las extrañas desapariciones de niños en la Unidad Habitacional Villa Grande, al sur de la Ciudad de México. Es por eso que Cecilia y Ricardo, un par de chicos de la secundaria, buscan a su ser querido que ha desaparecido sin dejar rastro. Mientras que un grupo de niños de la Primaria “Villa Grande” también están en busca de su compañero de clase desaparecido, pero se encuentran con un escalofriante hallazgo; el cadáver de uno de los desaparecidos en lo alto de una montaña de piedras volcánicas. Ambos grupos agotan sus recursos para encontrar al responsable y, aunque parece una terrible pesadilla, estos personajes tendrán sus momentos agradables en los que reforzarán sus lazos de amistad y recuperarán la esperanza gracias a su valentía e inocencia.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["misterio","thriller","ficcion"],
+    subgenres: ["policial","psicologico","asesinoenserie"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 ]
