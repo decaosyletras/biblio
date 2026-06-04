@@ -55,7 +55,7 @@ export default function ConocemePage() {
       </h1>
 
       <p className="text-zinc-300 leading-relaxed mb-6">
-        Soy un escritor independiente y un lector enfocado en descubrir libros poco conocidos, pero de gran valor. Consciente del esfuerzo que implica escribir, editar y autopublicar, he creado este proyecto para dar visibilidad a obras de autores independientes.
+        Soy Marcos Jiménez, un escritor independiente y un lector enfocado en descubrir libros poco conocidos, pero de gran valor. Consciente del esfuerzo que implica escribir, editar y autopublicar, he creado este proyecto para dar visibilidad a obras de autores independientes.
       </p>
 
       <p className="text-zinc-300 leading-relaxed mb-6">
