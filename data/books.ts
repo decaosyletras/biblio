@@ -5294,5 +5294,249 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "del-campo-a-la-ciudad",
+    title: "DEL CAMPO A LA CIUDAD",
+    cover: "",
+    amazon: {
+      es: "B0G54HFWTC",
+      mx: "B0G54HFWTC",
+      us: "B0G54HFWTC",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["ana-francisco"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `"Del campo a la ciudad" es una historia autobiográfica de superación que relata el camino de una joven originaria de una comunidad rural que enfrenta dificultades económicas, incertidumbre y múltiples obstáculos para continuar estudiando. A través de experiencias reales, la autora comparte los retos de dejar su entorno para buscar mejores oportunidades, así como los aprendizajes, sacrificios y logros que marcaron su vida. Este libro busca inspirar a estudiantes, jóvenes y a cualquier persona que persiga un sueño, demostrando que el origen no define el destino y que la educación puede transformar vidas.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["noficcion"],
+    subgenres: ["autobiografia"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "biogenesis-el-secreto-de-ada-2",
+    title: "BIOGÉNESIS: EL SECRETO DE ADA II",
+    cover: "",
+    amazon: {
+      es: "B0GSDP1NH7",
+      mx: "B0GSDP1NH7",
+      us: "B0GSDP1NH7",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["olga-fernandez-rodriguez"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `La historia de El secreto de ADA continúa.
+        Samantha necesita alejarse, lo ocurrido con ADA la ha superado. Busca un paréntesis en su vida, un lugar donde el silencio y la tranquilidad le permita recomponerse. Un tranquilo pueblo, donde quizá la distancia sea suficiente para dejar atrás la pesadilla.
+        Lo que ignora es que aún quedan demasiados interrogantes sin resolver, demasiados cabos sueltos que ni siquiera alcanza a imaginar. La pesadilla, lejos de haber terminado, no ha hecho más que empezar.
+        Todo está conectado por un delicado engranaje. Samantha tendrá que unir las piezas para descubrir cómo encaja todo en un frágil equilibrio.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","misterio","thriller","aventura"],
+    subgenres: ["technothriller","supervivencia"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "eres-idiota-o-solo-piensas-demasiado",
+    title: "¿ERES IDIOTA O SOLO PIENSAS DEMASIADO?",
+    cover: "",
+    amazon: {
+      es: "B0GX6R3NNJ",
+      mx: "B0GX6R3NNJ",
+      us: "B0GX6R3NNJ",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["carlos-viamberg"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `¿Te han vendido que eres un «ser de luz»? Te han estafado.
+        No eres un ser de luz; eres un sistema biológico con un programa defectuoso que no deja de enviar notificaciones de error. Llevas años siendo rehén de un parásito alojado en tu cráneo: tu propia mente. Ella te ha convencido de que analizar tus fracasos, rumiar tus deudas y preocuparte por el futuro «solucionará» algo. Mentira. Pensar en la mierd* solo sirve para salpicarte más.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["noficcion"],
+    subgenres: [],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "perdoname-pero-disculpame",
+    title: "PERDÓNAME, PERO DISCÚLPAME",
+    cover: "",
+    amazon: {
+      es: "B0GX31XGBN",
+      mx: "B0GX31XGBN",
+      us: "B0GX31XGBN",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["carlos-viamberg"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Este no es el típico libro de autoayuda con nubes en la portada y frases motivacionales de galleta de la fortuna. Aquí no vas a encontrar validación para tus berrinches ni consuelo para tu mediocridad. Carlos Vaimberg llega con un espejo incómodo, ácido y brutalmente honesto para desinfectar con alcohol puro las heridas de una sociedad que se ha vuelto experta en ofenderse por todo, pero en no hacerse cargo de nada.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["noficcion"],
+    subgenres: [],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "perdoname-pero-disculpame-edicion-parejas",
+    title: "PERDÓNAME, PERO DISCÚLPAME (EDICIÓN PAREJAS)",
+    cover: "",
+    amazon: {
+      es: "B0GYN4ZMCP",
+      mx: "B0GYN4ZMCP",
+      us: "B0GYN4ZMCP",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["carlos-viamberg"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Si creías que el amor se trataba de compartir puestas de sol, prepárate para compartir bacterias, facturas y un resentimiento creciente por ese calcetín que lleva tres días saludándote desde el suelo. Perdóname, pero discúlpame no es el típico libro de autoayuda con nubes en la portada; es un espejo ácido, brutal y honesto que te obligará a reírte de tu propia miseria antes de que termines en un juzgado de familia.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["noficcion"],
+    subgenres: [],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "s73-archivos-del-experimento-nunca-debio-existir",
+    title: "S73: ARCHIVOS DEL EXPERIMENTO: NUNCA DEBIÓ EXISTIR",
+    cover: "",
+    amazon: {
+      es: "B0GWWCCFXL",
+      mx: "B0GWWCCFXL",
+      us: "B0GWWCCFXL",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["gustavo-podeley"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Nacido en 1973 para un experimento secreto en Argentina. Gabriel descubre que lo observaron toda su vida. Sus recuerdos no son suyos. Su pasado fue diseñado.
+        Este archivo nunca debió existir.
+        Gabriel siempre creyó que su vida era normal. Hasta que descubre algo imposible de ignorar: Alguien lo estuvo observando desde que era un niño... Cada movimiento. Cada decisión. Cada error.
+        No es paranoia. Es evidencia.
+        Nacido en 1973, Gabriel forma parte de un experimento secreto que nunca fue cancelado… solo ocultado. Pero hay algo peor que ser observado.
+        Que tus recuerdos no sean tuyos. Que tu pasado haya sido diseñado. Que alguien te haya estado esperando… desde antes de que nacieras.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller"],
+    subgenres: ["psicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "espadas-y-demonios",
+    title: "ESPADAS Y DEMONIOS",
+    cover: "",
+    amazon: {
+      es: "B0GXGP2ZTV",
+      mx: "B0GXGP2ZTV",
+      us: "B0GXGP2ZTV",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["jmc-diaz"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Relatos de un escritor diletante a propósito del Multiverso.
+        En este personal homenaje a Michael Moorcock, uno de los padres del género de espadas y brujería, el autor reinterpreta el mundo que este concibió a través de cinco relatos, independientes pero a su vez interconectados.
+        La puga entre el orden omnipotente y un caos en decadencia es el leitmotiv de este libro, donde los combates, las invocaciones y la inexorable sensación de que todo tiene su fin queda patente.
+        Abigarradas fortificaciones, selváticos continentes, navíos malditos, ejércitos hereticos e ingenios consagrados confluyen en sus líneas, creando una atmósfera decadente que evoca los clásicos del género.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","aventura","ficcion"],
+    subgenres: ["oscura","epica"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
 
 ]
