@@ -60,7 +60,6 @@ export const genresCatalog = [
     subgenres: [
       { id: "conspiracion", label: "Conspiración" },
       { id: "especulativo", label: "Especulativo" },
-      { id: "conspiracion", label: "Conspiración" },
       { id: "detectivesco", label: "Detectivesco" },
     ],
   },
