@@ -11,7 +11,7 @@ export default function Page() {
 
         <p>
           {/*Última actualización: 11 de mayo de 2026.*/}
-          Última actualización: 08 de junio de 2026. {/*v 1.1*/}
+          {/*Última actualización: 08 de junio de 2026. {/*v 1.1*/}
         </p>
 
         <p>
