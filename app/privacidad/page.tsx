@@ -75,14 +75,8 @@ export default function Page() {
         </p>
 
 
-
-
-
-
-
-        <p>
-          {/*Última actualización: 11 de mayo de 2026.*/}
-          Última actualización: 08 de junio de 2026. {/*v 1.1*/}
+        {/*<p>
+          Última actualización: 11 de mayo de 2026.
         </p>
 
         <p>
@@ -131,7 +125,7 @@ export default function Page() {
 
         <p className="text-zinc-300 font-medium">
           Si tienes dudas, puedes contactarnos a través de los medios disponibles en la plataforma.
-        </p>
+        </p>*/}
 
       </div>
 
