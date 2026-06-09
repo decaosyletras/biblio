@@ -22,6 +22,7 @@ export default function Page() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [sent, setSent] = useState(false)
+  const [aceptaTerminos, setAceptaTerminos] = useState(false)
 
   const isValidASIN = (value: string) =>
     /^[a-zA-Z0-9]{10}$/.test(value)
@@ -39,9 +40,10 @@ export default function Page() {
       !resumen ||
       !asin ||
       !isValidASIN(asin) ||
-      selectedGenres.length === 0
+      selectedGenres.length === 0 ||
+      !aceptaTerminos
     ) {
-      setError("Completa todos los campos obligatorios (ASIN debe tener 10 caracteres alfanuméricos)")
+      setError("Completa todos los campos obligatorios.")
       return
     }
 
@@ -63,7 +65,8 @@ export default function Page() {
           resumen,
           asin,
           generos: selectedGenres,
-          subgeneros: selectedSubgenres
+          subgeneros: selectedSubgenres,
+          aceptaTerminos
         })
       })
 
@@ -88,6 +91,7 @@ export default function Page() {
       setAsin("")
       setSelectedGenres([])
       setSelectedSubgenres([])
+      setAceptaTerminos(false)
 
     } catch (err) {
       setError("Error de conexión 😢")
@@ -233,6 +237,32 @@ export default function Page() {
             setSelectedSubgenres={setSelectedSubgenres}
           />
         </div>
+
+        {/* CONSENTIMIENTO */}
+          <div className="mb-6">
+            <label className="flex items-start gap-3 text-sm text-zinc-300">
+              <input
+                type="checkbox"
+                checked={aceptaTerminos}
+                onChange={(e) => setAceptaTerminos(e.target.checked)}
+                className="mt-1"
+              />
+
+              <span>
+                He leído y acepto la{" "}
+                <a
+                  href="/privacidad"
+                  target="_blank"
+                  className="text-yellow-400 hover:underline"
+                >
+                  Política de Privacidad
+                </a>
+                , y autorizo el uso del título, nombre del autor, portada, descripción,
+                géneros y demás información proporcionada para fines de promoción,
+                difusión y publicidad de la plataforma y del catálogo de libros.
+              </span>
+            </label>
+          </div>
 
         {/* ERROR */}
         {error && (

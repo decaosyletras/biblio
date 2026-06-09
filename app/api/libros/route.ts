@@ -12,6 +12,12 @@ const isValidASIN = (value: string) =>
 export async function POST(req: Request) {
   try {
     const body = await req.json()
+    
+    const forwarded = req.headers.get("x-forwarded-for")
+
+    const ip = forwarded
+      ? forwarded.split(",")[0].trim()
+      : null
 
     const {
       titulo,
@@ -23,7 +29,8 @@ export async function POST(req: Request) {
       resumen,
       generos,
       subgeneros,
-      asin
+      asin,
+      aceptaTerminos
     } = body
 
     // Validación básica
@@ -61,6 +68,13 @@ export async function POST(req: Request) {
       )
     }
 
+    if (!aceptaTerminos) {
+      return NextResponse.json(
+        { error: "Debes aceptar la Política de Privacidad" },
+        { status: 400 }
+      )
+    }
+
     const { error } = await supabase.from("libros").insert([
       {
         titulo,
@@ -72,7 +86,12 @@ export async function POST(req: Request) {
         resumen,
         generos,
         subgeneros,
-        asin: asin || null
+        asin: asin || null,
+
+        acepta_terminos: true,
+        fecha_aceptacion: new Date().toISOString(),
+        version_politica: "1.1",
+        ip_registro: ip
       }
     ])
 
