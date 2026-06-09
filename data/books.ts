@@ -5537,6 +5537,123 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "hasta-que-nos-enamoremos",
+    title: "HASTA QUE NOS ENAMOREMOS",
+    cover: "",
+    amazon: {
+      es: "B0GYZMSGCJ",
+      mx: "B0GYZMSGCJ",
+      us: "B0GYZMSGCJ",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["gabriel-lopez-molina"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Hay libros que se leen y hay libros...
+          que te invitan a vivir cada una de sus historias.
+          Hasta que nos enamoremos es exactamente eso.
+          Una historia que te invita a vivirla desde adentro.
+          Gabriel Bechirah es un hombre que lo tiene todo: poder, dinero y una IA diseñada para mantener el mundo afuera.
+          Lo que no tiene -y nunca supo que le faltaba- es a Nova Wexler.
+          Ella llegó a Buenos Aires con su valija, una Biblia y una fe que no pedía permiso.
+          Él llevaba años construyendo muros.
+          Ninguno de los dos sabía que estaban a punto de perder el control de sus propias historias.
+          Esto no es un romance común.
+          Es la historia de lo que le pasa a un hombre cuando recibe algo demasiado grande para el, y no sabe cómo sostenerlo. Cuando llegues a la última página, vas a entender que esta historia... siempre fue la tuya.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["romance"],
+    subgenres: [],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "drake-valkas-el-rey-dragon",
+    title: "DRAKE VALAKAS EL REY DRAGÓN",
+    cover: "",
+    amazon: {
+      es: "B0GR1S1QFH",
+      mx: "B0GR1S1QFH",
+      us: "B0GR1S1QFH",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["j-f-vega"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Una novela donde la épica más brutal se funde con la ternura de una voz frente al fuego.
+          En estas páginas conviven dos realidades unidas por una misma hoguera. Una es la leyenda de Drake Valakas, el Rey Dragón: un relato de sangre, magia y un amor tan puro como letal. La otra es la de un padre que, noche tras noche, regala esta historia a sus hijos como una herencia sagrada; un refugio contra el paso del tiempo.
+          Pero cuidado: las historias peligrosas no solo se escuchan, se habitan. A medida que el rastro de Drake avanza, la línea entre el narrador y la leyenda se difumina.
+          Advertencia: El Alfa y el Omega no es un libro común. No abras este libro si buscas finales amables.
+          ¿Por donde íbamos?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["fantasia","ficcion","aventura","cienciaFiccion"],
+    subgenres: ["emotiva","epica","oscura"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "ser",
+    title: "SER",
+    cover: "",
+    amazon: {
+      es: "B0H4DKCKCF",
+      mx: "B0H4DKCKCF",
+      us: "B0H4DKCKCF",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["jose-antonio-pozo-rodriguez"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `UNA NOVELA QUE DEVUELVE EL TERROR A LA CIENCIA FICCIÓN
+          El espacio es implacable. No perdona. No escucha. No responde.
+          La Endeavor se desliza en la oscuridad, arrastrando una carga peligrosa y una tripulación cuidadosamente seleccionada: personas sin vínculos, sin raíces, sin nadie que los extrañe. Todo es parte del plan. Hasta que algo falla.
+          En medio del hipersueño, una anomalía. Silencio. No hay alarmas, no hay avisos, solo una presencia que no debería estar ahí. Una criatura. Un ente nacido del más puro horror, capaz no solo de matar, sino de someter.
+          La amenaza es física, sí, pero también mental. Invade, absorbe, transforma. Lo que era una simple misión rutinaria se convierte en una 
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["cienciaFiccion","terror","ficcion","thriller"],
+    subgenres: ["exploracionespacial","cosmico","Tpsicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 
 ]
