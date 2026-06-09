@@ -27,23 +27,37 @@ export default function Page() {
   const isValidASIN = (value: string) =>
     /^[a-zA-Z0-9]{10}$/.test(value)
 
+  const validateForm = () => {
+    if (!titulo) return "El título es obligatorio."
+    if (!autor) return "El autor es obligatorio."
+    if (!esAutor) return "Debes indicar si eres el autor."
+
+    if (esAutor === "no" && !registrante)
+      return "Debes indicar quién registra el libro."
+
+    if (!link) return "El link de Amazon es obligatorio."
+    if (!resumen) return "El resumen es obligatorio."
+
+    if (!asin) return "El ASIN es obligatorio."
+    if (!isValidASIN(asin))
+      return "El ASIN debe tener 10 caracteres alfanuméricos."
+
+    if (selectedGenres.length === 0)
+      return "Selecciona al menos un género."
+
+    if (!aceptaTerminos)
+      return "Debes aceptar la política de privacidad."
+
+    return null
+  }
+
   const handleSubmit = async () => {
     setError("")
     setSent(false)
 
-    if (
-      !titulo ||
-      !autor ||
-      !esAutor ||
-      (esAutor === "no" && !registrante) ||
-      !link ||
-      !resumen ||
-      !asin ||
-      !isValidASIN(asin) ||
-      selectedGenres.length === 0 ||
-      !aceptaTerminos
-    ) {
-      setError("Completa todos los campos obligatorios.")
+    const validationError = validateForm()
+    if (validationError) {
+      setError(validationError)
       return
     }
 

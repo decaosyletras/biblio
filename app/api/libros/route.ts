@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       !generos?.length
     ) {
       return NextResponse.json(
-        { error: "Faltan datos obligatorios o inválidos" },
+        { error: "Faltan datos obligatorios" },
         { status: 400 }
       )
     }
