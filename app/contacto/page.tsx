@@ -257,9 +257,6 @@ export default function Page() {
                 >
                   Política de Privacidad
                 </a>
-                , y autorizo el uso del título, nombre del autor, portada, descripción,
-                géneros y demás información proporcionada para fines de promoción,
-                difusión y publicidad de la plataforma y del catálogo de libros.
               </span>
             </label>
           </div>
