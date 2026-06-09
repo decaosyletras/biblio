@@ -103,4 +103,15 @@ export const genresCatalog = [
       { id: "crimenreal", label: "Crimen Real" },
     ],
   },
+  {
+    id: "poesia",
+    label: "Poesía",
+    subgenres: [
+      { id: "amor", label: "Amor" },
+      { id: "reflexiva", label: "Reflexiva" },
+      { id: "melancolica", label: "Melancólica" },
+      { id: "naturaleza", label: "Naturaleza" },
+      { id: "social", label: "Social" },
+    ],
+  }
 ]
