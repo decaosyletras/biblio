@@ -973,7 +973,7 @@ export const books: Book[] = [
       metrics: ["misterioaresolver", "accion", "cuentaregresiva", "traicion"],
     },
     genre: ["thriller", "misterio", "ficcion"],
-    subgenres: ["policial", "asesinoenserie", "psicologico", "conspiracion"],
+    subgenres: ["policial", "asesinoenserie", "THpsicologico", "conspiracion"],
 
     tags: {
       ritmo: 3,
@@ -1524,7 +1524,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["cienciaFiccion", "thriller", "misterio"],
-    subgenres: ["technothriller", "conspiracion", "especulativo", "psicologico"],
+    subgenres: ["technothriller", "conspiracion", "especulativo", "THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -1557,7 +1557,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["terror", "cienciaFiccion", "thriller", "aventura"],
-    subgenres: ["postapocaliptica", "supervivencia", "psicologico"],
+    subgenres: ["postapocaliptica", "supervivencia", "THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -1623,7 +1623,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["terror", "thriller", "cienciaFiccion"],
-    subgenres: ["psicologico", "existencial", "supervivencia"],
+    subgenres: ["THpsicologico", "existencial", "supervivencia"],
 
     tags: {
       ritmo: 0,
@@ -1656,7 +1656,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["cienciaFiccion", "thriller", "misterio"],
-    subgenres: ["cyberpunk", "technothriller", "conspiracion", "psicologico"],
+    subgenres: ["cyberpunk", "technothriller", "conspiracion", "THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -1755,7 +1755,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["terror", "thriller", "misterio"],
-    subgenres: ["psicologico", "sobrenatural", "existencial", "conspiracion", "asesinoenserie"],
+    subgenres: ["Tpsicologico", "sobrenatural", "existencial", "conspiracion", "asesinoenserie"],
 
     tags: {
       ritmo: 0,
@@ -1821,7 +1821,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["romance", "misterio", "fantasia"],
-    subgenres: ["amorprohibido", "psicologico", "sobrenatural", "emotiva"],
+    subgenres: ["amorprohibido", "sobrenatural", "emotiva"],
 
     tags: {
       ritmo: 0,
@@ -1854,7 +1854,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["terror", "misterio", "thriller"],
-    subgenres: ["sobrenatural", "psicologico", "conspiracion"],
+    subgenres: ["sobrenatural", "Tpsicologico", "conspiracion"],
 
     tags: {
       ritmo: 0,
@@ -2029,7 +2029,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["fantasia", "terror", "ficcion"],
-    subgenres: ["oscura", "epica", "sobrenatural", "psicologico"],
+    subgenres: ["oscura", "epica", "sobrenatural", "Tpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -2095,7 +2095,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["terror", "misterio", "thriller"],
-    subgenres: ["sobrenatural", "conspiracion", "psicologico"],
+    subgenres: ["sobrenatural", "conspiracion", "Tpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -2128,7 +2128,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["thriller", "misterio", "terror"],
-    subgenres: ["policial", "asesinoenserie", "psicologico"],
+    subgenres: ["policial", "asesinoenserie", "THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -2161,7 +2161,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["thriller", "misterio", "terror"],
-    subgenres: ["asesinoenserie", "policial", "supervivencia", "psicologico"],
+    subgenres: ["asesinoenserie", "policial", "supervivencia", "THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -2194,7 +2194,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["thriller", "misterio", "terror"],
-    subgenres: ["policial", "conspiracion", "supervivencia", "psicologico"],
+    subgenres: ["policial", "conspiracion", "supervivencia", "THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -2326,7 +2326,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["cienciaFiccion", "thriller", "misterio"],
-    subgenres: ["realidadesalternas", "psicologico", "conspiracion"],
+    subgenres: ["realidadesalternas", "THpsicologico", "conspiracion"],
 
     tags: {
       ritmo: 0,
@@ -2590,7 +2590,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["fantasia", "romance", "thriller"],
-    subgenres: ["magia", "amorprohibido", "psicologico"],
+    subgenres: ["magia", "amorprohibido", "THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -2866,7 +2866,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["terror"],
-    subgenres: ["psicologico","sobrenatural"],
+    subgenres: ["Tpsicologico","sobrenatural"],
 
     tags: {
       ritmo: 0,
@@ -3089,7 +3089,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["cienciaFiccion","thriller","misterio"],
-    subgenres: ["distopia","technothriller","conspiracion","supervivencia","psicologico"],
+    subgenres: ["distopia","technothriller","conspiracion","supervivencia","THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -3127,7 +3127,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["cienciaFiccion","thriller","misterio"],
-    subgenres: ["distopia","supervivencia","psicologico","technothriller","conspiracion"],
+    subgenres: ["distopia","supervivencia","THpsicologico","technothriller","conspiracion"],
 
     tags: {
       ritmo: 0,
@@ -3165,7 +3165,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["thriller","romance","ficcion","misterio"],
-    subgenres: ["psicologico","erotico"],
+    subgenres: ["THpsicologico","erotico"],
 
     tags: {
       ritmo: 0,
@@ -4339,7 +4339,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["romance","thriller"],
-    subgenres: ["psicologico"],
+    subgenres: ["THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -4480,7 +4480,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["terror"],
-    subgenres: ["psicologico","existencial","sobrenatural"],
+    subgenres: ["Tpsicologico","existencial","sobrenatural"],
 
     tags: {
       ritmo: 0,
@@ -4514,7 +4514,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["thriller","misterio"],
-    subgenres: ["psicologico","supervivencia"],
+    subgenres: ["THpsicologico","supervivencia"],
 
     tags: {
       ritmo: 0,
@@ -5111,7 +5111,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["terror","misterio","aventura","thriller"],
-    subgenres: ["sobrenatural","supervivencia","psicologico"],
+    subgenres: ["sobrenatural","supervivencia","Tpsicologico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5283,7 +5283,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["misterio","thriller","ficcion"],
-    subgenres: ["policial","psicologico","asesinoenserie"],
+    subgenres: ["policial","THpsicologico","asesinoenserie"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5490,7 +5490,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["thriller"],
-    subgenres: ["psicologico"],
+    subgenres: ["THpsicologico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
