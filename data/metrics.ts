@@ -11,6 +11,7 @@ export const metricsCatalog = [
   { id: "juvenil", label: "Juvenil" },
   { id: "militar", label: "Militar" },
   { id: "rebelion", label: "Rebelión" },
+
   { id: "satira", label: "Sátira" },
   { id: "adulta", label: "Adulta" },
   { id: "reflexion", label: "Reflexión" },
@@ -22,6 +23,7 @@ export const metricsCatalog = [
   { id: "espiritualidad", label: "Espiritualidad" },
   { id: "historiasparalelas", label: "Historias paralelas" },
   { id: "traicion", label: "Traición" },
+
   { id: "colonizacionexpansion", label: "Colonización / expansión" },
   { id: "conspiracion", label: "Conspiración" },
   { id: "villanocarismatico", label: "Villano carismático" },
@@ -35,7 +37,8 @@ export const metricsCatalog = [
   { id: "inmortalidad", label: "Inmortalidad" },
   { id: "soledad", label: "Soledad" },
   { id: "redencion", label: "Redencion" },
-  { id: "dragones", label: "Redencion" },
+  { id: "dragones", label: "Dragones" },
   { id: "pandemia", label: "Pandemia" },
+  { id: "panzootia", label: "Panzootia" },
   { id: "lgbt", label: "LGBT" },
 ]

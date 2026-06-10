@@ -29,6 +29,7 @@ export async function POST(req: Request) {
       resumen,
       generos,
       subgeneros,
+      tags,
       asin,
       aceptaTerminos
     } = body
@@ -86,6 +87,7 @@ export async function POST(req: Request) {
         resumen,
         generos,
         subgeneros,
+        tags,
         asin: asin || null,
 
         acepta_terminos: true,

@@ -148,7 +148,7 @@ export default async function Page({ params }: any) {
 
           </div>
 
-          {book.review.metrics?.length > 0 && (
+          {book.review.metrics?.length > 0 && book.review.title !== "" && (
             <div className="mt-4">
               <h3 className="text-lg font-semibold text-zinc-200 mb-3">
                 ¿Qué encontrarás?

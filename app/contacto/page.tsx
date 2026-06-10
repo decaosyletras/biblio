@@ -4,6 +4,8 @@ import { useState } from "react"
 import GenreSelector from "@/components/GenreSelector"
 import SubgenreSelector from "@/components/SubgenreSelector"
 import { genresCatalog } from "@/data/genres"
+import TagSelector from "@/components/TagSelector"
+import { metricsCatalog } from "@/data/metrics"
 
 export default function Page() {
   const [titulo, setTitulo] = useState("")
@@ -23,6 +25,7 @@ export default function Page() {
   const [error, setError] = useState("")
   const [sent, setSent] = useState(false)
   const [aceptaTerminos, setAceptaTerminos] = useState(false)
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
 
   const isValidASIN = (value: string) =>
     /^[a-zA-Z0-9]{10}$/.test(value)
@@ -44,6 +47,9 @@ export default function Page() {
 
     if (selectedGenres.length === 0)
       return "Selecciona al menos un género."
+    
+    if (selectedTags.length === 0)
+      return "Selecciona al menos una etiqueta."
 
     if (!aceptaTerminos)
       return "Debes aceptar la política de privacidad."
@@ -80,6 +86,7 @@ export default function Page() {
           asin,
           generos: selectedGenres,
           subgeneros: selectedSubgenres,
+          tags: selectedTags,
           aceptaTerminos
         })
       })
@@ -249,6 +256,12 @@ export default function Page() {
             selectedGenres={selectedGenres}
             selectedSubgenres={selectedSubgenres}
             setSelectedSubgenres={setSelectedSubgenres}
+          />
+
+          <TagSelector
+            tagsCatalog={metricsCatalog}
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
           />
         </div>
 
