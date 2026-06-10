@@ -5634,7 +5634,7 @@ export const books: Book[] = [
           El espacio es implacable. No perdona. No escucha. No responde.
           La Endeavor se desliza en la oscuridad, arrastrando una carga peligrosa y una tripulación cuidadosamente seleccionada: personas sin vínculos, sin raíces, sin nadie que los extrañe. Todo es parte del plan. Hasta que algo falla.
           En medio del hipersueño, una anomalía. Silencio. No hay alarmas, no hay avisos, solo una presencia que no debería estar ahí. Una criatura. Un ente nacido del más puro horror, capaz no solo de matar, sino de someter.
-          La amenaza es física, sí, pero también mental. Invade, absorbe, transforma. Lo que era una simple misión rutinaria se convierte en una 
+          La amenaza es física, sí, pero también mental. Invade, absorbe, transforma. Lo que era una simple misión rutinaria se convierte en una pesadilla progresiva.
         `,
     review: {
       title: "",
@@ -5644,6 +5644,107 @@ export const books: Book[] = [
     },
     genre: ["cienciaFiccion","terror","ficcion","thriller"],
     subgenres: ["exploracionespacial","cosmico","Tpsicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "mas-que-yo",
+    title: "MÁS QUE YO",
+    cover: "",
+    amazon: {
+      es: "B0D8661PCT",
+      mx: "B0D8661PCT",
+      us: "B0D8661PCT",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["carla-alvarez-guzman"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Aria es una chica que vive atrapada en su mundo, entre las cadenas de su cabeza y las reglas que le han marcado toda su vida, encerrándola en jaulas autoimpuestas por ella misma. Su libertad ha sido casi anulada y los monstruos se acercan cada vez más deseosos de poder, destrucción y control. Axel, un chico solitario, atrevido y misterioso, tratará de romper cada una de las cadenas de Aria, desafiando las leyes impuestas por el propio autosabotaje de ella y enseñándole la palabra "libertad". Un relato sobrecogedor sobre dos almas rotas que intentan repararse entre ellos mismos y enfrentar una vida llena de decisiones, miedos e incertidumbres. ¿Podrá Axel liberar a Aria de su prisión?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion","romance"],
+    subgenres: ["psicologico","emotiva"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "la-forma-exacta-de-la-culoa",
+    title: "LA FORMA EXACTA DE LA CULPA",
+    cover: "",
+    amazon: {
+      es: "B0GYQ9STWJ",
+      mx: "B0GYQ9STWJ",
+      us: "B0GYQ9STWJ",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["nerea-gorjon-torres"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Thriller psicológico y criminal intenso, elegante y adictivo, sobre las mentiras que sobreviven al tiempo, las lealtades equivocadas y el instante exacto en que dejar de mirar atrás ya no es una opción.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["thriller"],
+    subgenres: ["THpsicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "una-chica-del-este",
+    title: "UNA CHICA DEL ESTE",
+    cover: "",
+    amazon: {
+      es: "B0DC5RSMXB",
+      mx: "B0DC5RSMXB",
+      us: "B0DC5RSMXB",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["marlena-agata-trelka"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Una chica del Este es una novela basada en hechos reales, escrita desde una doble distancia: geográfica y lingüística. La autora vive en Andalucía desde hace años. Desde allí, en español, retrató a una familia dispersada por la guerra, los desplazamientos y el comunismo.
+        La protagonista intenta reconstruir el pasado familiar a partir de fragmentos de memoria, silencios y relatos que nadie quiso terminar nunca. Lo mira desde lejos, porque solo desde lejos se ve el conjunto.
+        Una historia sobre la memoria, las raíces y la herencia.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: [],
+    },
+    genre: ["ficcion"],
+    subgenres: ["psicologico","emotiva"],
     tags: {
       ritmo: 0,
       complejidad: 0,
