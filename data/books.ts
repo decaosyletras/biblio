@@ -2776,7 +2776,6 @@ export const books: Book[] = [
       content: "",
       metrics: [ "aventura",
         "supervivencia",
-        "ia",
         "misterioaresolver"],
     },
     genre: ["cienciaFiccion","thriller","aventura","misterio"],
