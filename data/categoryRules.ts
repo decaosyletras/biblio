@@ -38,6 +38,11 @@ const categoryMetricsMap: Record<string, string[]> = {
     "pandemia",
     "traicion",
   ],
+  
+  relatos_y_cuentos: [
+    "relatos",
+    "cuentos",
+  ],
 
   mente_realidad: [
     "existencial",
@@ -45,6 +50,7 @@ const categoryMetricsMap: Record<string, string[]> = {
     "espiritualidad",
     "misticismo",
     "soledad",
+    "inmortalidad",
   ],
 
   thriller_conspiracion: [
@@ -60,6 +66,7 @@ const categoryMetricsMap: Record<string, string[]> = {
     "viajestiempo",
     "colonizacionexpansion",
     "razasalienigenas",
+    "cienciadura",
   ],
 
   grandes_mundos: [
@@ -80,6 +87,7 @@ const categoryMetricsMap: Record<string, string[]> = {
     "misticismo",
     "pandemia",
     "soledad",
+    "panzootia",
   ],
 
   adrenalina_supervivencia: [
@@ -130,6 +138,27 @@ const createMatch = (
 // --------------------
 
 export const categoryRules: CategoryRule[] = [
+
+  // 🌑 RELATOS Y CUENTOS
+  {
+    id: "relatos_y_cuentos",
+    name: "Relatos y Cuentos",
+    description: "Relatos y cuentos cortos para disfrutar una tarde completa",
+    threshold: 2,
+
+    score: (b) => {
+  console.log("DEBUG metrics:", b.metrics)
+
+  let s = 0
+  s += countMetrics(b.metrics, categoryMetricsMap.relatos_y_cuentos) * 2
+  return s
+},
+
+    match: (b) =>
+      categoryRules.find((r) => r.id === "relatos_y_cuentos")!.score(b) >= 2,
+  },
+
+
   // 🌑 MUNDOS OSCUROS Y DISTÓPICOS
   {
     id: "mundos_oscuros",
@@ -408,7 +437,7 @@ export const categoryRules: CategoryRule[] = [
   },
 
   // 🌱 ESPERANZA
-  {
+  /*{
     id: "futuros_esperanzadores",
     name: "Futuros esperanzadores",
     description: "Utopía, redención y esperanza",
@@ -433,5 +462,5 @@ export const categoryRules: CategoryRule[] = [
 
     match: (b) =>
       categoryRules.find((r) => r.id === "futuros_esperanzadores")!.score(b) >= 4,
-  },
+  },*/
 ]

@@ -9,6 +9,8 @@ import SearchSimple from "@/components/SearchSimple"
 
 import { getCategoriesForBook } from "@/data/categoryEngine"
 
+import { thematicCollections } from "@/data/thematicCollections"
+
 export default function Page() {
   return (
     <div className="relative">
@@ -81,12 +83,11 @@ export default function Page() {
             .filter((category) => category.id !== "todos")
             .map((category) => {
 
-              const filteredBooks = books.filter((book) => {
-                const rule = categoryRules.find((r) => r.id === category.id)
-                if (!rule) return false
-
-                return rule.match(book)
-              })
+              const filteredBooks = books.filter((book) =>
+                getCategoriesForBook(book).some(
+                  (c) => c.id === category.id
+                )
+              )
 
               if (filteredBooks.length === 0) return null
 
@@ -131,6 +132,47 @@ export default function Page() {
             })}
 
         </div>
+
+
+        {/* ========================= */}
+        {/* TEMAS DESTACADOS */}
+        {/* ========================= */}
+
+        <div className="mt-24 space-y-14">
+
+          <div className="px-6">
+
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-100">
+              Temas destacados
+            </h2>
+
+            <p className="mt-2 text-sm text-zinc-400 max-w-2xl">
+              Explora historias agrupadas por temas, ideas y elementos narrativos.
+            </p>
+
+          </div>
+
+          {thematicCollections.map((theme) => {
+
+            const filteredBooks = books.filter((book) =>
+              (book.review?.metrics ?? []).includes(theme.id)
+            )
+            console.log("THEME DEBUG:", theme.id, filteredBooks.length)
+            if (filteredBooks.length === 0) return null
+
+            return (
+              <BookRow
+                key={theme.id}
+                title={theme.name}
+                books={filteredBooks}
+                noShuffle={false}
+              />
+            )
+          })}
+
+        </div>
+
+
 
         {/* ========================= */}
         {/* ✨ COLECCIONES ESPECIALES */}
