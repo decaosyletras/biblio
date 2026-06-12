@@ -11,6 +11,7 @@ export const metricsCatalog = [
   { id: "humor", label: "Humor" },
   { id: "satira", label: "Sátira" },
   { id: "juvenil", label: "Juvenil" },
+  { id: "magia", label: "Magia" },
 
   { id: "cienciadura", label: "Ciencia Dura" },
   { id: "viajestiempo", label: "Viajes en el Tiempo" },
