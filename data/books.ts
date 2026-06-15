@@ -1310,7 +1310,7 @@ export const books: Book[] = [
       metrics: ["reflexion", "misticismo", "relatocorto"],
     },
     genre: ["ficcion", "fantasia"],
-    subgenres: ["emotiva", "existencial"],
+    subgenres: ["emotiva"],
 
     tags: {
       ritmo: 3,

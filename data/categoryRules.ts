@@ -147,23 +147,23 @@ export const categoryRules: CategoryRule[] = [
     threshold: 2,
 
     score: (b) => {
-  console.log("DEBUG metrics:", b.metrics)
+      //console.log("DEBUG metrics:", b.metrics)
 
-  let s = 0
-  s += countMetrics(b.metrics, categoryMetricsMap.relatos_y_cuentos) * 2
-  return s
-},
+      let s = 0
+      s += countMetrics(b.metrics, categoryMetricsMap.relatos_y_cuentos) * 2
+      return s
+    },
 
     match: (b) =>
       categoryRules.find((r) => r.id === "relatos_y_cuentos")!.score(b) >= 2,
-  },
+    },
 
 
   // 🌑 MUNDOS OSCUROS Y DISTÓPICOS
   {
     id: "mundos_oscuros",
     name: "Mundos oscuros y distópicos",
-    description: "Sociedades rotas, decadentes y moralmente grises",
+    description: "Sociedades rotas, decadentes o moralmente grises",
     threshold: 4,
 
     score: (b) => {
