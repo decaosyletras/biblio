@@ -5993,6 +5993,112 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "sin-tierra-la-decision",
+    title: "SIN TIERRA - LA DECISIÓN",
+    cover: "",
+    amazon: {
+      es: "B0H3J4L1GC",
+      mx: "B0H3J4L1GC",
+      us: "B0H3J4L1GC",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["barbagris-scifi-books"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Ambientada en un Santiago del futuro que se ha ido apagando lentamente, Sin Tierra — Libro I: La Decisión sigue a José, un ingeniero que lleva más de una década trabajando en el diseño de una nave generacional destinada a abandonar la Tierra.
+        Mientras los inviernos llegan antes de tiempo, la cordillera arde y las ciudades sobreviven apenas como fragmentos dispersos de luz, el proyecto avanza entre apagones, escasez de recursos y equipos cada vez más reducidos. Sin embargo, la novela no trata de la aventura de viajar a las estrellas, sino de la decisión de partir.
+        ¿Qué se lleva una civilización cuando debe abandonar su mundo? ¿Qué recuerdos, especies, conocimientos y estructuras merecen sobrevivir?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["colonizacionexpansion","pasadoorigenes"],
+    },
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "metodo-sentir",
+    title: "MÉTODO S.E.N.T.I.R",
+    cover: "",
+    amazon: {
+      es: "B0H1NJ26JL",
+      mx: "B0H1NJ26JL",
+      us: "B0H1NJ26JL",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["alexis-avedanio-raggi"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `¿Cuándo fue la última vez que sentiste algo de verdad?
+          No la emoción fugaz de un like. No la alegría de una foto que ya olvidaste. Hablo de esa sensación antigua, casi olvidada, de estar completamente vivo por dentro. De sentir el peso de una taza entre las manos y que eso bastara. De mirar al espejo y reconocer a quien te mira.
+          Yo también aprendí a sobrevivir antes que a vivir. Aprendí a sonreír cuando tenía miedo, a callar cuando quería llorar, a ser útil para merecer estar. Durante años busqué respuestas en los libros, en la teoría, en la mente. Creí que entender bastaba. Pero un día comprendí que la mente, por sí sola, no puede sanar lo que el cuerpo aún recuerda.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["reflexion"],
+    },
+    genre: ["noficcion"],
+    subgenres: ["desarrollopersonal"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "el-caso-del-coach-asesinadico",
+    title: "EL CASO DEL COACH ASESINADICO",
+    cover: "",
+    amazon: {
+      es: "B0GZLKY556",
+      mx: "B0GZLKY556",
+      us: "B0GZLKY556",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["javier-luque"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Si buscas una novela policíaca satírica, rebosante de humor negro y con una ácida parodia del mundo editorial, este misterio de enredos costumbristas te atrapará desde la primera página.
+        Un coach literario muerto, un escritor en el punto de mira y el caso más sarcásticamente real de la serie Xeijo & Pierangeli.
+        Rogelio Diumenge, el gurú de los escritores, ha aparecido muerto en el Mar Menor. Y para la Guardia Civil, el culpable es el propio autor de esta novela.
+        Álvaro Xeijo y Ana María Pierangeli se enfrentan a su caso más personal: salvar a su amigo Javier de una detención inminente. Para lograrlo, contarán con la ayuda de la «chupipandi» de Punta Brava, un grupo de amigos reales que saltan de la playa a la investigación criminal para infiltrarse en el egocéntrico mundo de los coaches literarios.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver","humor"],
+    },
+    genre: ["thriller","misterio","ficcion"],
+    subgenres: ["detectivesco","policial","conspiracion"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 
 ]
