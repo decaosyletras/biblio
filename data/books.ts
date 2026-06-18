@@ -6099,6 +6099,107 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "el-trazo-que-lo-invoca",
+    title: "EL TRAZO QUE LO INVOCA",
+    cover: "",
+    amazon: {
+      es: "B0GHMGWZK3",
+      mx: "B0GHMGWZK3",
+      us: "B0GHMGWZK3",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["mariela-pachinik"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Eleonora vive atrapada en un matrimonio abusivo. Tras la muerte de sus padres, viaja a su antiguo hogar para hacer los arreglos necesarios. Hurgando en su habitación de la infancia, encuentra una vieja carpeta escolar con dibujos cubiertos de pétalos y una carta dirigida al sujeto retratado. Al volver a su casa matrimonial, el perfume de las rosas allí guardadas parece negarse a abandonarla. Pero aquello es solo el principio de los sucesos inexplicables que empezarán a perseguirla, afectando no solo su vida, sino la de todos a su alrededor.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver","drama","misticismo","villanocarismatico","redencion","realidadesalternas"],
+    },
+    genre: ["fantasia","romance","terror","misterio"],
+    subgenres: ["romanceparanormal","urbana","Tpsicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "sabores-envinados-de-nostalgia",
+    title: "SABORES ENVINADOS DE NOSTALGIA",
+    cover: "",
+    amazon: {
+      es: "B0CW1HJN2W",
+      mx: "B0CW1HJN2W",
+      us: "B0CW1HJN2W",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["myrna-del-carmen-flores"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `La muerte de la abuela trae consigo secretos que tendrán que ser revelados. ¿Será la búsqueda de esa verdad la que cambie por completo sus vidas?
+        La nostalgia está presente en la vida de estos personajes, con ese sabor agridulce que oscila entre el recuerdo de los momentos felices y la tristeza de la pérdida. Ellos se enfrentan al duelo y a las disyuntivas con la única certeza del amor que los une.
+        La abuela ya no está de manera física; sin embargo, la fuerza de su espíritu continúa tocando sus vidas. Les dejó una herencia de sabores y aromas dulces mezclados con misterios.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["drama"],
+    },
+    genre: ["ficcion"],
+    subgenres: ["emotiva"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "cronicas-del-planeta-azul-mathenna",
+    title: "CRÓNICAS DEL PLANETA AZUL - MATHENNA",
+    cover: "",
+    amazon: {
+      es: "B0H4CB6T6F",
+      mx: "B0H4CB6T6F",
+      us: "B0H4CB6T6F",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["emmanuel-vega"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Una saga mexicana de ciencia ficción y fantasía sobre una princesa nacida en el océano, un rey destruido por la memoria y un planeta donde recordar puede salvar o condenar una civilización.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["accion"],
+    },
+    genre: ["cienciaFiccion","fantasia","romance","aventura"],
+    subgenres: ["epica","juvenil","postapocaliptica"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 
 ]
