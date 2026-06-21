@@ -4005,7 +4005,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "los-secretos-del-asesino",
+  /*{ slug: "los-secretos-del-asesino",
     title: "LOS SECRETOS DEL ASESINO",
     cover: "",
     amazon: {
@@ -4042,7 +4042,7 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
+  },*/
   { slug: "las-pesadillas-son-de-paris",
     title: "LAS PESADILLAS DE PARÍS",
     cover: "",
@@ -6190,6 +6190,47 @@ export const books: Book[] = [
     },
     genre: ["cienciaFiccion","fantasia","romance","aventura"],
     subgenres: ["epica","juvenil","postapocaliptica"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "los-secretos-del-asesino",
+    title: "LOS SECRETOS DEL ASESINO",
+    cover: "",
+    amazon: {
+      es: "B0H21NR4DS",
+      mx: "B0H21NR4DS",
+      us: "B0H21NR4DS",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["carlos-gallego-paradeda"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `En las sombras de una ciudad donde el poder se compra y las vidas no valen nada, hay secretos que nunca deberían salir a la luz.
+        Richard Terrayo lo sabe.
+        Exmilitar. Sicario. Verdugo de hombres que creen estar por encima de todo.
+        No mata por dinero. No mata por placer. Mata porque alguien tiene que hacerlo.
+        Cuando una red de corrupción política, abusos y crimen organizado comienza a desmoronarse, Richard se adentra en un mundo donde cada paso lo acerca más a la verdad... y a su propia condena.
+        Clubes clandestinos. Policías corruptos. Niñas desaparecidas.
+        Y un enemigo que no duda en utilizar el sistema para seguir impune.
+        Pero esta vez han cruzado la línea equivocada.
+        Porque Richard no perdona.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["accion","aventura","militar","traicion","conspiracion"],
+    },
+    genre: ["thriller","misterio","aventura","noficcion"],
+    subgenres: ["conspiracion","policial","crimenreal"],
     tags: {
       ritmo: 0,
       complejidad: 0,
