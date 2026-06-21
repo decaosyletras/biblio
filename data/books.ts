@@ -6241,6 +6241,148 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "el-juego-prohibido",
+    title: "EL JUEGO PROHIBIDO",
+    cover: "",
+    amazon: {
+      es: "B0D6SJ55GG",
+      mx: "B0D6SJ55GG",
+      us: "B0D6SJ55GG",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["itzel-briseno"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `“Te dije que te protegería. Mientras esté en mis manos, estarás a salvo”.
+          En un mundo donde los vampiros existen, las desapariciones de personas inocentes cada vez son mayores. Diego, un cazador de vampiros, es llamado para la búsqueda de una joven. Anabell, una chica aparentemente común, se une a él en este viaje para encontrar a su hermana. Sin embargo, en el camino van descubriendo cosas que no creían posibles. El regreso del mayor enemigo de los cazadores parece inminente. Los secretos están a la orden del día, al igual que la traición parece ser el final del camino. Mientras Diego se deja envolver por los sentimientos inesperados hacia Anabell, a la vez tiene que hacer frente a verdades sorpresivas. Pero, ¿podrán encontrar a quien buscan antes de que sus creencias terminen por romperse?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver","accion","juvenil","inmortalidad","traicion"],
+    },
+    genre: ["fantasia","romance","ficcion"],
+    subgenres: ["urbana"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "el-juego-del-destino",
+    title: "EL JUEGO DEL DESTINO",
+    cover: "",
+    amazon: {
+      es: "B0H51QLBF8",
+      mx: "B0H51QLBF8",
+      us: "B0H51QLBF8",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["itzel-briseno"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `"¿Qué estás dispuesto a hacer por alguien a quien amas?"
+        Después de descubrir la traición de Anabell, ella y Diego se ven obligados a separarse. El regreso de Endimión ahora es un hecho que se cierne sobre el grupo de cazadores, quienes se tienen que enfrentar a su venganza, y para ello necesitarán toda la ayuda posible, aun si eso significa acudir a los mismos vampiros.
+        Por su parte, Anabell, con la ayuda de un nuevo aliado, intentará sobrevivir dentro del grupo enemigo, mientras busca respuestas sobre el paradero de Jeremy.
+
+        El juego ha comenzado, las piezas están en el tablero y tanto Diego como Anabell deben de encontrar la forma de sobrevivir entre batallas y verdades. ¿Podrán hallar un equilibrio o colapsarán ante el peso de la traición?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["accion","juvenil","inmortalidad","traicion"],
+    },
+    genre: ["fantasia","ficcion"],
+    subgenres: ["urbana"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "la-estrella-de-los-cuatro-elementos",
+    title: "LA ESTRELLA DE LOS CUATRO ELEMENTOS",
+    cover: "",
+    amazon: {
+      es: "B0F7Y7X4TB",
+      mx: "B0F7Y7X4TB",
+      us: "B0F7Y7X4TB",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["itzel-briseno"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Un Reino oculto...
+          Un heredero escondido...
+          Una piedra que otorga poder.
+
+          En las profundidades del Bosque Oscuro nació una piedra como muestra de paz entre los Cuatro Reinos. Llamada la Estrella de los Cuatro Elementos, fue dotada con poderes que ningún mortal pudo haber soñado, provocando que reyes y reinas pelearan a muerte para obtener dichos poderes. Sin embargo, un mensajero es enviado a tomarla con el propósito de salvarle la vida a un monarca moribundo, y la Estrella es absorbida por el corazón del infante, logrando así sobrevivir para después verse obligado a huir. Años después, rumores de dicha piedra vuelven a circular y los cuatro reyes actuales la buscarán con desesperación en su deseo por controlar los cuatro elementos y erigirse como único gobernante.
+¿Qué conllevará esta búsqueda incesante? ¿Lograrán sobrevivir los custodios de la Estrella ante la avaricia de los reyes que están dispuestos a todo con tal de obtener el poder absoluto?
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["supervivencia","accion","juvenil","magia","mentoraprendiz","misticismo"],
+    },
+    genre: ["fantasia","ficcion"],
+    subgenres: ["epica","medieval"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "el-arte-de-amar",
+    title: "EL ARTE DE AMAR",
+    cover: "",
+    amazon: {
+      es: "B0FFJLQ6GP",
+      mx: "B0FFJLQ6GP",
+      us: "B0FFJLQ6GP",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["itzel-briseno"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `«Te amo, Dios, cómo te amo…» son palabras que Esteban (un artista de 26 años) le dice a Allison, el amor de su vida, antes de que ella desaparezca de una manera abrupta. Sin saber qué ha provocado estos hechos, Esteban se enfrasca en la búsqueda de respuestas, que termina cuando descubre que tanto Allison como su amigo Lázaro, fallecieron en un accidente. Ante tales acontecimientos, Esteban se refugia en su arte y en su mejor amiga Chinami, pero es cuando viajan a Nueva York para una exposición, que él podrá encontrar razones para sentirse vivo otra vez, y una verdad que cambiará todo lo que creía.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver","adulta","drama"],
+    },
+    genre: ["romance","misterio","ficcion"],
+    subgenres: ["emotiva"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 
 ]
