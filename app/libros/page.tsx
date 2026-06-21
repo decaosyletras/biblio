@@ -29,8 +29,7 @@ export default function Page() {
 
           <p className="text-sm text-zinc-400 mt-2">
             Algunos enlaces son de afiliado: si compras a través de ellos,
-            puedo recibir una comisión sin costo extra para ti y ayudas a
-            sostener este proyecto.{" "}
+            puedo recibir una comisión sin costo extra para ti. Esto no afecta las ganancias del autor y contribuye al mantenimiento y crecimiento de este proyecto.{" "}
             <Link
               href="/afiliados"
               className="text-yellow-400 hover:underline"

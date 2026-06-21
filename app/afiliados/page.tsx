@@ -13,11 +13,11 @@ export default function Page() {
         </p>
 
         <p>
-          Algunos de los enlaces que encontrarás aquí son enlaces de afiliado. Esto significa que, si decides comprar a través de ellos, puedo recibir una pequeña comisión sin ningún coste adicional para ti.
+          Algunos de los enlaces que encontrarás aquí son enlaces de afiliado. Esto significa que, si decides comprar a través de ellos, puedo recibir una pequeña comisión sin ningún coste adicional para ti, ni afectando las ganancias del autor.
         </p>
 
         <p>
-          Participo en el programa de afiliados de Amazon, lo que me permite generar ingresos a través de enlaces a sus productos, sin perjudicar al comprador.
+          Participo en el programa de afiliados de Amazon, lo que me permite generar ingresos a través de enlaces a sus productos, sin perjudicar al comprador ni al vendedor.
         </p>
 
         <p>
