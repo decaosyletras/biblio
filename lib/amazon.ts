@@ -13,6 +13,13 @@ export function getAmazonStore(country: string = "US") {
         tag: affiliateTags.ES,
         asinKey: "es",
       }
+      
+    case "MX":
+      return {
+        domain: "amazon.com.mx",
+        tag: null,
+        asinKey: "mx",
+      }
 
     default:
       return {
