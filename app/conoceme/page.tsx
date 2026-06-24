@@ -101,7 +101,7 @@ export default function ConocemePage() {
 
       <p className="text-zinc-400 mb-6">
         Si quieres apoyar este proyecto, puedes hacerlo comprando a través de los enlaces de mi web. 
-        ¡No tiene costo extra para ti y sí ayudas a mantenerlo vivo! 💛
+        ¡No tiene costo extra para ti, tampoco afecta las ganancias del autor, y sí ayudas a mantener vivo el proyecto! 💛
       </p>
 
       {/* BLOQUE FUTURO */}

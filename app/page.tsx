@@ -86,7 +86,7 @@ export default function Home() {
           </Link>
         </div>
         <p className="text-sm text-zinc-400 mt-2">
-          Algunos enlaces son de afiliado y pueden generar comisión sin costo extra para ti. {" "}
+          Algunos enlaces son de afiliado y pueden generar comisión sin costo extra para ti ni para el autor. {" "}
           <Link
             href="/afiliados"
             className="text-yellow-400 hover:underline"
