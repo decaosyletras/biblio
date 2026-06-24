@@ -1052,5 +1052,32 @@ export const authors: Author[] = [
     description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
     style: "Ligero, emocional y fácil de leer.",
     similar: ["autor-x"]
+  },
+  {
+    slug: "jesus-e-gomez",
+    name: "Jesús E. Gómez",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "cristina-mayor-hurtado",
+    name: "Cristina Mayor Hurtado",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
+  },
+  {
+    slug: "regina-eznael",
+    name: "Regina Eznael",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
   }
 ]

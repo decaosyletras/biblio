@@ -6383,6 +6383,113 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "todo-el-mundo-merece-un-alma",
+    title: "TODO EL MUNDO MERECE UN ALMA",
+    cover: "",
+    amazon: {
+      es: "B0H37HSWZ4",
+      mx: "B0H37HSWZ4",
+      us: "B0H37HSWZ4",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["jesus-e-gomez"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Mateo sabía lo que era el amor. O eso creía.
+        Tres años con alguien que le enseñó a hacerse pequeño, a calcular cada palabra, a vivir en el borde de su propia vida sin atreverse a entrar del todo. Tres años convenciéndose de que eso era lo que había para él.
+        Entonces apareció Alma.
+        Sin aviso. Sin plan. En una noche de diciembre que no tenía nada de extraordinario, excepto que cambió todo.
+        Ella no lo rescató. No lo intentó. Simplemente fue ella: con sus lentes grandes, su risa sin administrar, su forma de colorear fuera de las líneas. Y eso fue suficiente para que Mateo recordara algo que había olvidado que sabía.
+        Que el amor puede ser recíproco. Que puedes amar y ser amado. Que puedes jugar, bailar, cantar, colorear. Que mereces estar entero.
+        Todo el mundo merece un Alma es una novela sobre lo que queda cuando alguien te recuerda quién eras antes de que el mundo te enseñara a desaparecer.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["drama","soledad","redencion","saludmental","juvenil"],
+    },
+    genre: ["romance"],
+    subgenres: ["friendstolovers"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "la-noche-que-desaparecio-alba",
+    title: "LA NOCHE QUE DESAPARECIÓ ALBA",
+    cover: "",
+    amazon: {
+      es: "B0H61LKNGN",
+      mx: "B0H61LKNGN",
+      us: "B0H61LKNGN",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["cristina-mayor-hurtado"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Cuando la periodista Alba Navarro desaparece mientras investiga una serie de antiguos casos sin resolver, todo apunta a un accidente. Años después, nuevas pistas obligan al inspector Daniel Salas a reabrir una investigación que lo conducirá hasta Valdemora, un pueblo envuelto en secretos, desapariciones y mentiras enterradas durante generaciones.
+        Cuanto más se acerca a la verdad, más evidente resulta que alguien ha estado dispuesto a matar para protegerla. Porque algunos secretos pueden ocultarse durante años... pero nunca para siempre.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver"],
+    },
+    genre: ["thriller","misterio"],
+    subgenres: ["THpsicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "sin-duenos-ni-senores-parte-1",
+    title: "SIN DUEÑOS NI SEÑORES: PARTE 1: SIN CONTROL",
+    cover: "",
+    amazon: {
+      es: "B0GS9R6RW2",
+      mx: "B0GS9R6RW2",
+      us: "B0GS9R6RW2",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["regina-eznael"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Cuando las élites se marcharon al espacio tras la sobreexplotación de recursos naturales, afirmando que lo que quedaba era imposible de salvar, quienes sobrevivieron al caos aprendieron a sobrevivir con lo quedaba.
+        Cuando Evan encuentra zonas donde la naturaleza parece regenerarse por sí sola, decide buscar a Lena, una ingeniera agrónoma acostumbrada a mantener en funcionamiento sistemas que otros consideran irrecuperables. Juntos emprenden un viaje para descubrir qué está ocurriendo realmente... antes de que todo termine de deteriorarse.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["supervivencia","reflexion","misterioaresolver","aventura","adulta"],
+    },
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 
 ]
