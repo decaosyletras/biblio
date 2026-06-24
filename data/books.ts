@@ -6490,6 +6490,283 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "la-ultima-confesion",
+    title: "LA ÚLTIMA CONFESIÓN",
+    cover: "",
+    amazon: {
+      es: "B0GX52KBKG",
+      mx: "B0GX52KBKG",
+      us: "B0GX52KBKG",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["lucian-thornveil"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `La aparición de una monja muerta en un convento de clausura donde nadie puede entrar ni salir.
+        Un secreto que se lleva ocultando hace años.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver"],
+    },
+    genre: ["misterio","thriller"],
+    subgenres: ["THpsicologico","detectivesco","conspiracion"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "el-secreto-del-hilo-rojo",
+    title: "EL SECRETO DEL HILO ROJO",
+    cover: "",
+    amazon: {
+      es: "B0FDLFT9R2",
+      mx: "B0FDLFT9R2",
+      us: "B0FDLFT9R2",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["lucian-thornveil"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Una Joven costurera recibe un encargo.
+        Encuentra una nota cosida con hilo rojo en la doblez de los bajos y a raíz de eso, descubre que su madre está involucrada en la desaparición de una joven del pueblo.
+        Ella investigará para conocer toda la verdad.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver"],
+    },
+    genre: ["misterio","thriller"],
+    subgenres: ["detectivesco","THpsicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "la-marca-del-silencio",
+    title: "LA MARCA DEL SILENCIO",
+    cover: "",
+    amazon: {
+      es: "B0F29YDGW5",
+      mx: "B0F29YDGW5",
+      us: "B0F29YDGW5",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["lucian-thornveil"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Narra la aventura de Elliot Graves, un joven detective aficionado que a través de una muerte descubre toda la historia, secretos, y conspiración que oculta su familia.
+        Además la persona que aparece muerte tiene una marca que sólo tienen los varones de la familia Graves, aunque Elliot, desconoce de quién se trata.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver","aventura","supervivencia","accion"],
+    },
+    genre: ["thriller","misterio","aventura"],
+    subgenres: ["supervivencia","conspiracion","detectivesco","THpsicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "aranda-contra-el-silencio",
+    title: "ARANDA CONTRA EL SILENCIO",
+    cover: "",
+    amazon: {
+      es: "B0GMD8MQSB",
+      mx: "B0GMD8MQSB",
+      us: "B0GMD8MQSB",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["lucian-thornveil"],
+    isSaga: true,
+    categories: [0],
+    summary:
+        `Aranda es expolicía y detective venido a menos.
+        Deberá investigar la muerte de Lucia Vidal.
+        Principio de los años 80 en Madrid, la transición es relativamente joven y en el caso descubrirá la implicación de políticos, jueces y altos directivos de empresa.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver","aventura","supervivencia","accion"],
+    },
+    genre: ["misterio","aventura","thriller"],
+    subgenres: ["conspiracion","detectivesco","policial"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "la-variable-invisible",
+    title: "LA VARIABLE INVISIBLE",
+    cover: "",
+    amazon: {
+      es: "B0FD49CTDK",
+      mx: "B0FD49CTDK",
+      us: "B0FD49CTDK",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["jesus-paterna-paterna"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Un complejo subterráneo oculto en el desierto, un grupo de científicos trabaja en la ecuación más prometedora —y peligrosa— jamás concebida. Aislados del mundo se enfrentan a una cuenta atrás invisible: la que separa el descubrimiento del desastre.
+        En el centro de todo, Olivia y Therence intentan descifrar los límites de la física... y los de su propia conciencia. Pero hay códigos que no solo esconden respuestas. También cargan con el precio de la verdad.
+        La variable invisible es un thriller científico de alta tensión, donde cada decisión puede alterar el curso de lo que entendemos por realidad. Y donde no todas las ecuaciones quieren ser resueltas.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["accion","misterioaresolver"],
+    },
+    genre: ["misterio","thriller","ficcion","cienciaFiccion"],
+    subgenres: ["technothriller","conspiracion"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "tras-la-oscuridad",
+    title: "TRAS LA OSCURIDAD",
+    cover: "",
+    amazon: {
+      es: "B016UF4HQ6",
+      mx: "B016UF4HQ6",
+      us: "B016UF4HQ6",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["jesus-paterna-paterna"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `En una pequeña villa francesa empiezan a ocurrir muertes extrañas, que desconciertan a sus habitantes, para los que la única explicación es la intervención del diablo. Nuestro protagonista recién llegado a la villa, vivirá fuertes cambios en su vida personal y descubrirá su madurez mientras intenta averiguar quien esta realmente detrás de todas esas espantosas muertes de cariz satánico.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["misterioaresolver","accion"],
+    },
+    genre: ["terror","misterio","thriller","ficcion"],
+    subgenres: ["sobrenatural","detectivesco","asesinoenserie"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "elizard-y-la-herencia-de-umbra",
+    title: "ELIZARD Y LA HERENCIA DE UMBRA",
+    cover: "",
+    amazon: {
+      es: "B0FBMWBGC5",
+      mx: "B0FBMWBGC5",
+      us: "B0FBMWBGC5",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["jesus-paterna-paterna"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `Despertó sin nombre. Sin recuerdos. Con una daga ensangrentada en una mano y marcas de un poder ancestral en la piel, inicia un viaje para recuperar su memoria... y contener lo que late en su interior.
+        En un mundo donde las sombras se alzan y los secretos del pasado regresan con fuerza, nuestro protagonista viaja acompañado por un zorro que no es lo que parece y una princesa que desafía su destino. Mientras el equilibrio del reino de Elyonia se tambalea, antiguos poderes olvidados comienzan a agitarse.
+        Místicos, batallas épicas y decisiones imposibles se entrelazan en su camino, mientras el fuego de su herencia amenaza con consumirlo. En un viaje marcado por magia primitiva, descubrirá que el mayor enemigo... a veces, nace en el corazón.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["aventura","accion"],
+    },
+    genre: ["fantasia","misterio","aventura","ficcion"],
+    subgenres: ["epica","oscura","juvenil"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  { slug: "cuando-los-suenos-hablan",
+    title: "CUANDO LOS SUEÑOS HABLAN",
+    cover: "",
+    amazon: {
+      es: "B0FYY6FQ6X",
+      mx: "B0FYY6FQ6X",
+      us: "B0FYY6FQ6X",
+    },
+    amazonLink: "https://social.novelplatform.vip/s/aYjPju",
+    authorSlug: ["asier-fraga"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `En un futuro donde los sueños pueden grabarse y estudiarse, la empresa Synapse Dreams promete revolucionar la mente humana. Pero cuando Adri, un empleado, descubre archivos secretos con los sueños de políticos, artistas y líderes de poder, su vida se convierte en una pesadilla de la que no puede despertar.
+        Atrapado entre la verdad y el miedo, Adri se enfrenta a una conspiración donde los sueños se usan para manipular, chantajear y controlar. Cuanto más se adentra en ese universo onírico, más se acerca a secretos que quizá no debería conocer.
+        Un thriller psicológico y tecnológico sobre el poder, la ética y la pérdida de la privacidad en un mundo que no distingue entre dormir y ser observado.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["reflexion","ia","misterioaresolver","supervivencia","conspiracion"],
+    },
+    genre: ["thriller","misterio","cienciaFiccion","ficcion"],
+    subgenres: ["distopia","conspiracion","THpsicologico"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+
 
 
 ]
