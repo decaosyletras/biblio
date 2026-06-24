@@ -2830,7 +2830,7 @@ export const books: Book[] = [
     cover: "",
     amazon: {
       es: "B0GQ582XNM",
-      mx: "B0GQ582XNM",
+      mx: "B0CJJZ3YMW",
       us: "B0GQ582XNM",
     },
     amazonLink: "https://amazon.com",
