@@ -15,14 +15,14 @@ export default function Navbar() {
         {/* LOGO + NOMBRE */}
         <Link href="/" className="flex items-center">
           <div className="relative w-40 h-16 md:w-54 md:h-20 overflow-hidden rounded-lg">
-  <Image
-    src="/logo/casadelibros4.png"
-    alt="Casa Indie Logo"
-    fill
-    priority
-    className="object-cover object-center"
-  />
-</div>
+            <Image
+              src="/logo/casadelibros4.png"
+              alt="Casa Indie Logo"
+              fill
+              priority
+              className="object-cover object-center"
+            />
+          </div>
 
           {/*<span className="flex items-center gap-2">
             <FaHome />
@@ -42,7 +42,7 @@ export default function Navbar() {
         <div className="hidden md:flex gap-4 text-sm">
           <Link href="/">Inicio</Link>
           <Link href="/conoceme">Conóceme</Link>
-          <Link href="/contacto">Recomendar</Link>
+          <Link href="/contacto2">Recomendar</Link>
           {/*<Link href="/afiliados">Transparencia</Link>
           <Link href="/privacidad">Privacidad</Link>*/}
         </div>
@@ -53,7 +53,7 @@ export default function Navbar() {
         <div className="md:hidden mt-4 bg-zinc-800 rounded-xl p-4 flex flex-col gap-3 text-sm shadow-lg">
           <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
           <Link href="/conoceme" onClick={() => setOpen(false)}>Conóceme</Link>
-          <Link href="/contacto" onClick={() => setOpen(false)}>Recomendar</Link>
+          <Link href="/contacto2" onClick={() => setOpen(false)}>Recomendar</Link>
           {/*<Link href="/afiliados" onClick={() => setOpen(false)}>Transparencia</Link>
           <Link href="/privacidad" onClick={() => setOpen(false)}>Privacidad</Link>*/}
         </div>

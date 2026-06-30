@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 const books = await getBooks()
 
 export default function Home() {
-  
+
   const randomBooks = shuffleArray(books).slice(0, 4)
   const randomAuthors = shuffleArray(authors).slice(0, 4)
   const randomReviews = shuffleArray(
@@ -36,7 +36,7 @@ export default function Home() {
 
       {/* HERO */}
       <section className="py-10 text-center relative overflow-hidden">
-        
+
         {/* glow / ambient background */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-black to-black opacity-80" />
 
@@ -59,7 +59,7 @@ export default function Home() {
           >
             Catálogo
           </Link>
-          
+
           <Link
             href="/resenas"
             className="border border-zinc-400 px-7 py-3 rounded-full hover:bg-zinc-800 hover:scale-105 transition"
@@ -125,7 +125,7 @@ export default function Home() {
             Ver todas →
           </Link>
         </div>
-        
+
 
         <p className="text-sm text-zinc-400 mt-2">
           Opiniones personales sin influencia externa.
@@ -133,8 +133,8 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {randomReviews.map(book => (
-              <CardReview key={book.slug} book={book} />
-            ))}
+            <CardReview key={book.slug} book={book} />
+          ))}
         </div>
       </section>
 
@@ -149,7 +149,7 @@ export default function Home() {
         </p>
 
         <Link
-          href="/contacto"
+          href="/contacto2"
           className="inline-block mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full"
         >
           Recomendar

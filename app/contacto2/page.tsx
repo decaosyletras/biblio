@@ -13,82 +13,82 @@ import { metricsCatalog } from "@/data/metrics"
 export default function Page() {
 
 
-  const [titulo,setTitulo] = useState("")
-  const [autor,setAutor] = useState("")
+  const [titulo, setTitulo] = useState("")
+  const [autor, setAutor] = useState("")
 
-  const [esSaga,setEsSaga] = useState(false)
+  const [esSaga, setEsSaga] = useState(false)
 
-  const [link,setLink] = useState("")
-  const [resumen,setResumen] = useState("")
-  const [asin,setAsin] = useState("")
-
-
-  const [selectedGenres,setSelectedGenres] =
-  useState<string[]>([])
-
-  const [selectedSubgenres,setSelectedSubgenres] =
-  useState<string[]>([])
-
-  const [selectedTags,setSelectedTags] =
-  useState<string[]>([])
+  const [link, setLink] = useState("")
+  const [resumen, setResumen] = useState("")
+  const [asin, setAsin] = useState("")
 
 
-  const [aceptaTerminos,setAceptaTerminos] =
-  useState(false)
+  const [selectedGenres, setSelectedGenres] =
+    useState<string[]>([])
+
+  const [selectedSubgenres, setSelectedSubgenres] =
+    useState<string[]>([])
+
+  const [selectedTags, setSelectedTags] =
+    useState<string[]>([])
 
 
-  const [loading,setLoading] =
-  useState(false)
-
-  const [error,setError] =
-  useState("")
-
-  const [sent,setSent] =
-  useState(false)
+  const [aceptaTerminos, setAceptaTerminos] =
+    useState(false)
 
 
+  const [loading, setLoading] =
+    useState(false)
 
-  const isValidASIN = (value:string)=>
+  const [error, setError] =
+    useState("")
+
+  const [sent, setSent] =
+    useState(false)
+
+
+
+  const isValidASIN = (value: string) =>
     /^[a-zA-Z0-9]{10}$/.test(value)
 
 
 
-  const validateForm =()=>{
+  const validateForm = () => {
 
 
-    if(!titulo)
+    if (!titulo)
       return "El título es obligatorio."
 
 
-    if(!autor)
+    if (!autor)
       return "El autor es obligatorio."
 
 
-    if(!asin)
+    if (!asin)
       return "El ASIN es obligatorio."
 
 
-    if(!isValidASIN(asin))
+    if (!isValidASIN(asin))
       return "El ASIN debe tener 10 caracteres alfanuméricos."
 
 
-    if(!link)
+    if (!link)
       return "El link de Amazon es obligatorio."
 
 
-    if(!resumen)
+    if (!resumen)
       return "El resumen es obligatorio."
 
 
-    if(selectedGenres.length===0)
+    if (selectedGenres.length === 0)
       return "Selecciona al menos un género."
 
 
-    if(selectedTags.length===0)
+    if (selectedTags.length === 0)
       return "Selecciona al menos una etiqueta."
 
 
-    if(!aceptaTerminos)
+    if (!aceptaTerminos)
       return "Debes aceptar la política de privacidad."
 
 
@@ -100,7 +100,7 @@ export default function Page() {
 
 
 
-  async function handleSubmit(){
+  async function handleSubmit() {
 
 
     setError("")
@@ -111,7 +111,7 @@ export default function Page() {
       validateForm()
 
 
-    if(validationError){
+    if (validationError) {
 
       setError(validationError)
       return
@@ -123,58 +123,58 @@ export default function Page() {
 
 
 
-    try{
+    try {
 
 
       const res =
-      await fetch("/api/libro-nuevo",{
+        await fetch("/api/libro-nuevo", {
 
 
-        method:"POST",
+          method: "POST",
 
 
-        headers:{
-          "Content-Type":"application/json"
-        },
+          headers: {
+            "Content-Type": "application/json"
+          },
 
 
-        body:JSON.stringify({
+          body: JSON.stringify({
 
-          titulo,
+            titulo,
 
-          autor,
+            autor,
 
-          esSaga,
+            esSaga,
 
-          link,
+            link,
 
-          resumen,
+            resumen,
 
-          asin,
+            asin,
 
 
-          generos:selectedGenres,
+            generos: selectedGenres,
 
-          subgeneros:selectedSubgenres,
+            subgeneros: selectedSubgenres,
 
-          tags:selectedTags,
+            tags: selectedTags,
 
-          aceptaTerminos
+            aceptaTerminos
+
+          })
+
 
         })
-
-
-      })
 
 
 
 
       const data =
-      await res.json()
+        await res.json()
 
 
 
-      if(!res.ok){
+      if (!res.ok) {
 
         setError(
           data.error ||
@@ -209,7 +209,7 @@ export default function Page() {
 
 
     }
-    catch(error){
+    catch (error) {
 
       setError(
         "Error de conexión 😢"
@@ -229,11 +229,11 @@ export default function Page() {
 
 
 
-return (
+  return (
 
 
-<section
-className="
+    <section
+      className="
 min-h-screen
 bg-black
 px-4
@@ -242,11 +242,11 @@ flex
 items-start
 justify-center
 "
->
+    >
 
 
-<div
-className="
+      <div
+        className="
 w-full
 max-w-xl
 bg-zinc-900
@@ -255,55 +255,55 @@ p-5
 sm:p-8
 shadow-xl
 "
->
+      >
 
 
 
-<h1
-className="
+        <h1
+          className="
 text-2xl
 sm:text-3xl
 font-bold
 mb-2
 "
->
-Registrar libro nuevo
-</h1>
+        >
+          Registrar libro nuevo
+        </h1>
 
 
 
-<p
-className="
+        <p
+          className="
 text-zinc-400
 text-sm
 sm:text-base
 mb-6
 "
->
-Recomienda tu libro o uno que te haya gustado. Llena los datos tal como quieres que se muestren en la página.
-</p>
+        >
+          Recomienda tu libro o uno que te haya gustado. Llena los datos tal como quieres que se muestren en la página.
+        </p>
 
 
 
 
 
-<input
+        <input
 
-type="text"
+          type="text"
 
-placeholder="Título del libro (máx. 50 caracteres)"
+          placeholder="Título del libro (máx. 50 caracteres)"
 
-maxLength={50}
+          maxLength={50}
 
-value={titulo}
+          value={titulo}
 
-onChange={
-e=>setTitulo(
-e.target.value.toUpperCase()
-)
-}
+          onChange={
+            e => setTitulo(
+              e.target.value.toUpperCase()
+            )
+          }
 
-className="
+          className="
 w-full
 p-4
 mb-4
@@ -314,25 +314,25 @@ focus:ring-2
 focus:ring-yellow-500
 "
 
-/>
+        />
 
 
 
 
 
-<input
+        <input
 
-type="text"
+          type="text"
 
-placeholder="Nombre del autor (como aparece en Amazon)"
+          placeholder="Nombre del autor (como aparece en Amazon)"
 
-value={autor}
+          value={autor}
 
-onChange={
-e=>setAutor(e.target.value)
-}
+          onChange={
+            e => setAutor(e.target.value)
+          }
 
-className="
+          className="
 w-full
 p-4
 mb-4
@@ -343,72 +343,72 @@ focus:ring-2
 focus:ring-yellow-500
 "
 
-/>
+        />
 
 
 
 
 
 
-<div className="mb-4">
+        <div className="mb-4">
 
 
-<p className="mb-2 text-sm text-zinc-300">
+          <p className="mb-2 text-sm text-zinc-300">
 
-¿Es parte de una saga?
+            ¿Es parte de una saga?
 
-</p>
-
-
-<label
-className="flex items-center text-sm cursor-pointer"
->
+          </p>
 
 
-<input
-
-type="checkbox"
-
-checked={esSaga}
-
-onChange={
-e=>setEsSaga(
-e.target.checked
-)
-}
-
-className="mr-2"
-
-/>
+          <label
+            className="flex items-center text-sm cursor-pointer"
+          >
 
 
-Sí
+            <input
+
+              type="checkbox"
+
+              checked={esSaga}
+
+              onChange={
+                e => setEsSaga(
+                  e.target.checked
+                )
+              }
+
+              className="mr-2"
+
+            />
 
 
-</label>
+            Sí
 
 
-</div>
+          </label>
 
 
-
+        </div>
 
 
 
 
-<input
 
-type="text"
 
-placeholder="Link de Amazon"
 
-value={link}
+        <input
 
-onChange={
-e=>setLink(e.target.value)
-}
+          type="text"
 
-className="
+          placeholder="Link de Amazon"
+
+          value={link}
+
+          onChange={
+            e => setLink(e.target.value)
+          }
+
+          className="
 w-full
 p-4
 mb-4
@@ -419,28 +419,28 @@ focus:ring-2
 focus:ring-yellow-500
 "
 
-/>
+        />
 
 
 
 
 
 
-<input
+        <input
 
-type="text"
+          type="text"
 
-placeholder="ASIN del ebook (versión digital)"
+          placeholder="ASIN del ebook (versión digital)"
 
-maxLength={10}
+          maxLength={10}
 
-value={asin}
+          value={asin}
 
-onChange={
-e=>setAsin(e.target.value)
-}
+          onChange={
+            e => setAsin(e.target.value)
+          }
 
-className="
+          className="
 w-full
 p-4
 mb-4
@@ -451,7 +451,7 @@ focus:ring-2
 focus:ring-yellow-500
 "
 
-/>
+        />
 
 
 
@@ -459,19 +459,19 @@ focus:ring-yellow-500
 
 
 
-<textarea
+        <textarea
 
-placeholder="¿De qué trata el libro?"
+          placeholder="¿De qué trata el libro?"
 
-maxLength={999}
+          maxLength={999}
 
-value={resumen}
+          value={resumen}
 
-onChange={
-e=>setResumen(e.target.value)
-}
+          onChange={
+            e => setResumen(e.target.value)
+          }
 
-className="
+          className="
 w-full
 p-4
 mb-2
@@ -484,21 +484,21 @@ focus:ring-2
 focus:ring-yellow-500
 "
 
-/>
+        />
 
 
 
 
-<p
-className="
+        <p
+          className="
 text-xs
 text-zinc-500
 mb-6
 text-right
 "
->
-{resumen.length}/999
-</p>
+        >
+          {resumen.length}/999
+        </p>
 
 
 
@@ -506,129 +506,129 @@ text-right
 
 
 
-<div className="mb-6 space-y-4">
+        <div className="mb-6 space-y-4">
 
 
-<GenreSelector
+          <GenreSelector
 
-genresCatalog={genresCatalog}
+            genresCatalog={genresCatalog}
 
-selectedGenres={selectedGenres}
+            selectedGenres={selectedGenres}
 
-setSelectedGenres={setSelectedGenres}
+            setSelectedGenres={setSelectedGenres}
 
-/>
-
-
-
-<SubgenreSelector
-
-genresCatalog={genresCatalog}
-
-selectedGenres={selectedGenres}
-
-selectedSubgenres={selectedSubgenres}
-
-setSelectedSubgenres={setSelectedSubgenres}
-
-/>
+          />
 
 
 
-<TagSelector
+          <SubgenreSelector
 
-tagsCatalog={metricsCatalog}
+            genresCatalog={genresCatalog}
 
-selectedTags={selectedTags}
+            selectedGenres={selectedGenres}
 
-setSelectedTags={setSelectedTags}
+            selectedSubgenres={selectedSubgenres}
 
-/>
+            setSelectedSubgenres={setSelectedSubgenres}
 
-
-</div>
-
+          />
 
 
+
+          <TagSelector
+
+            tagsCatalog={metricsCatalog}
+
+            selectedTags={selectedTags}
+
+            setSelectedTags={setSelectedTags}
+
+          />
+
+
+        </div>
 
 
 
 
-{/* PRIVACIDAD */}
-
-<div className="mb-6">
 
 
-<label
-className="
+
+        {/* PRIVACIDAD */}
+
+        <div className="mb-6">
+
+
+          <label
+            className="
 flex
 items-start
 gap-3
 text-sm
 text-zinc-300
 "
->
+          >
 
 
-<input
+            <input
 
-type="checkbox"
+              type="checkbox"
 
-checked={aceptaTerminos}
+              checked={aceptaTerminos}
 
-onChange={
-e=>setAceptaTerminos(
-e.target.checked
-)
-}
+              onChange={
+                e => setAceptaTerminos(
+                  e.target.checked
+                )
+              }
 
-className="mt-1"
+              className="mt-1"
 
-/>
+            />
 
 
-<span>
+            <span>
 
-He leído y acepto la{" "}
+              He leído y acepto la{" "}
 
-<a
+              <a
 
-href="/privacidad"
+                href="/privacidad"
 
-target="_blank"
+                target="_blank"
 
-className="
+                className="
 text-yellow-400
 hover:underline
 "
 
->
+              >
 
-Política de Privacidad
+                Política de Privacidad
 
-</a>
-
-
-</span>
+              </a>
 
 
-</label>
+            </span>
 
 
-</div>
+          </label>
 
 
+        </div>
 
 
 
 
 
 
-{
-error &&
 
-<div
-className="
+
+        {
+          error &&
+
+          <div
+            className="
 bg-red-500/10
 border
 border-red-500/30
@@ -638,25 +638,25 @@ rounded-lg
 mb-4
 text-sm
 "
->
+          >
 
-{error}
+            {error}
 
-</div>
+          </div>
 
-}
-
-
+        }
 
 
 
 
 
-{
-sent &&
 
-<div
-className="
+
+        {
+          sent &&
+
+          <div
+            className="
 bg-green-500/10
 border
 border-green-500/30
@@ -666,28 +666,28 @@ rounded-lg
 mb-4
 text-sm
 "
->
+          >
 
-¡Libro guardado correctamente! Si crees que hubo un error puedes contactarnos a través de nuestras redes sociales: @decaosyletras
+            ¡Libro guardado correctamente! Si crees que hubo un error puedes contactarnos a través de nuestras redes sociales: @decaosyletras
 
-</div>
+          </div>
 
-}
-
-
+        }
 
 
 
 
 
 
-<button
 
-onClick={handleSubmit}
 
-disabled={loading}
+        <button
 
-className="
+          onClick={handleSubmit}
+
+          disabled={loading}
+
+          className="
 w-full
 sm:w-auto
 px-8
@@ -701,29 +701,29 @@ transition
 disabled:opacity-50
 "
 
->
+        >
 
-{
-loading
-?
-"Guardando..."
-:
-"Enviar libro"
-}
-
-
-</button>
+          {
+            loading
+              ?
+              "Guardando..."
+              :
+              "Enviar libro"
+          }
 
 
+        </button>
 
 
 
-</div>
 
 
-</section>
+      </div>
 
 
-)
+    </section>
+
+
+  )
 
 }
