@@ -19,6 +19,7 @@ export type Book = {
   },
   amazonLink: string
   authorSlug: string[]
+  authorNames?: string[]
   isSaga: boolean
   categories: number[]
   summary: string
@@ -28,7 +29,7 @@ export type Book = {
     content: string
     metrics: string[]
   }
-  
+
   genre: string[]
   subgenres: string[]
 

@@ -657,18 +657,17 @@ text-sm
 
           <div
             className="
-bg-green-500/10
-border
-border-green-500/30
-text-green-400
-p-3
-rounded-lg
-mb-4
-text-sm
-"
+              bg-green-500/10
+              border
+              border-green-500/30
+              text-green-400
+              p-3
+              rounded-lg
+              mb-4
+              text-sm
+              "
           >
-
-            ¡Libro guardado correctamente! Puede tardad unos minutos para que aparezca en el catálogo. Si crees que hubo un error puedes contactarnos a través de la sección: conóceme.
+            ¡Libro guardado correctamente! Puede tardar unos minutos para que aparezca en el catálogo. Si crees que hubo un error puedes contactarnos a través de la sección: conóceme.
 
           </div>
 
