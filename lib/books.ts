@@ -2,23 +2,25 @@ import { Book } from "@/types"
 import { books as staticBooks } from "@/data/books"
 import { supabase } from "@/lib/supabase"
 import { connection } from "next/server"
+import { unstable_noStore as noStore } from "next/cache";
 
+
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 
 export async function getBooks(): Promise<Book[]> {
-
-  await connection()
-
+  noStore();
 
   const { data, error } = await supabase
     .from("books")
     .select(`
-      *,
-      authors(
-        slug
-      )
-    `)
+    *,
+    authors(slug)
+  `)
     .eq("approved", true)
+    .throwOnError()
 
 
 
