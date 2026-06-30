@@ -1115,5 +1115,14 @@ export const authors: Author[] = [
     description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
     style: "Ligero, emocional y fácil de leer.",
     similar: ["autor-x"]
+  },
+  {
+    slug: "angel-diabolico-is-back",
+    name: "Ángel Diabólico Is Back",
+    avatar: "/authors/autor2.jpg",
+    bio: "Narrativa emocional contemporánea.",
+    description: "Sus historias conectan con experiencias cotidianas y emociones reales.",
+    style: "Ligero, emocional y fácil de leer.",
+    similar: ["autor-x"]
   }
 ]

@@ -6801,6 +6801,40 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
+  { slug: "la-vida-es-como-una-playlist",
+    title: "LA VIDA ES COMO UNA PLAYLIST",
+    cover: "",
+    amazon: {
+      es: "B0H2QTJ6RM",
+      mx: "B0H2QTJ6RM",
+      us: "B0H2QTJ6RM",
+    },
+    amazonLink: "",
+    authorSlug: ["angel-diabolico-is-back"],
+    isSaga: false,
+    categories: [0],
+    summary:
+        `¿Alguna vez te quedaste con una canción en loop porque describía exactamente lo que no podías poner en palabras?
+        Este libro es un manual de supervivencia emocional organizado como un vinilo de seis caras: desde los primeros acordes de la infancia hasta el fin de fiesta de quien aprendió a bailar sola. 57 relatos independientes —sin orden obligatorio, sin capítulos que se encadenen— que atraviesan el amor que nunca llegó a tiempo, la amistad que se fue sin despedirse, el deseo que te dejó sin palabras, la ruptura que sobreviviste con helado y pijama de ositos, y la mañana en que te levantaste y por fin eras tú.
+        `,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["relatos","relatocorto","supervivencia","humor","reflexion"],
+    },
+    genre: ["ficcion"],
+    subgenres: ["psicologico","emotiva"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
 
 
 
