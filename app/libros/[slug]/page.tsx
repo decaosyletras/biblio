@@ -15,6 +15,7 @@ import { div } from "framer-motion/client"
 import CoverImage from "@/components/CoverImage"
 import AmazonButton from "@/components/AmazonButton"
 import { getBookCover } from "@/lib/amazon"
+export const dynamic = "force-dynamic"
 
 export default async function Page({ params }: any) {
   const { slug } = await params

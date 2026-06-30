@@ -6,6 +6,7 @@ import { genresCatalog } from "@/data/genres"
 import { getBooks } from "@/lib/books"
 import BookRow from "@/components/BookRow"
 
+export const dynamic = "force-dynamic"
 const books = await getBooks()
 
 export default function GenreFilter() {

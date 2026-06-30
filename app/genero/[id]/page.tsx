@@ -2,6 +2,7 @@ import { getBooks } from "@/lib/books"
 import { genresCatalog } from "@/data/genres"
 import Link from "next/link"
 
+export const dynamic = "force-dynamic"
 const books = await getBooks()
 
 export default function Page({ params }: any) {

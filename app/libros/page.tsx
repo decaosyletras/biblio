@@ -10,7 +10,7 @@ import SearchSimple from "@/components/SearchSimple"
 import { getCategoriesForBook } from "@/data/categoryEngine"
 
 import { thematicCollections } from "@/data/thematicCollections"
-
+export const dynamic = "force-dynamic"
 export default async function Page() {
   const books = await getBooks()
   return (
@@ -38,7 +38,7 @@ export default async function Page() {
               Más información.
             </Link>
           </p>
-          
+
         </div>
 
         {/* ========================= */}

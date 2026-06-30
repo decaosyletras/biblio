@@ -4,6 +4,7 @@ import BookRow from "@/components/BookRow"
 import { getRecommendedAuthors } from "@/lib/recommendAuthors"
 import CardAuthor from "@/components/CardAuthor"
 
+export const dynamic = "force-dynamic"
 const books = await getBooks()
 
 export default async function Page({

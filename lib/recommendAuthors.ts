@@ -2,6 +2,7 @@ import { authors } from "@/data/authors"
 import { getBooks } from "@/lib/books"
 import { Book } from "@/types"
 
+export const dynamic = "force-dynamic"
 const books = await getBooks()
 
 function getScore(a: Book, b: Book) {

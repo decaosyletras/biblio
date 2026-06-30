@@ -3,6 +3,7 @@ import { genresCatalog } from "@/data/genres"
 import Link from "next/link"
 import { getBookCover } from "@/lib/amazon"
 
+export const dynamic = "force-dynamic"
 const books = await getBooks()
 
 export default function Page({ params }: any) {
