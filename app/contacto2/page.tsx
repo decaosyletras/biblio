@@ -668,7 +668,7 @@ text-sm
 "
           >
 
-            ¡Libro guardado correctamente! Si crees que hubo un error puedes contactarnos a través de nuestras redes sociales: @decaosyletras
+            ¡Libro guardado correctamente! Puede tardad unos minutos para que aparezca en el catálogo. Si crees que hubo un error puedes contactarnos a través de la sección: conóceme.
 
           </div>
 

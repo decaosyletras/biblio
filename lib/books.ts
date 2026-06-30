@@ -1,10 +1,13 @@
 import { Book } from "@/types"
 import { books as staticBooks } from "@/data/books"
 import { supabase } from "@/lib/supabase"
+import { connection } from "next/server"
 
 
 
 export async function getBooks(): Promise<Book[]> {
+
+  await connection()
 
 
   const { data, error } = await supabase
@@ -135,9 +138,6 @@ export async function getBooks(): Promise<Book[]> {
 
     }))
 
-
-  console.log("Libros encontrados:", data?.length)
-  console.log(data)
   return [
 
     ...staticBooks,
