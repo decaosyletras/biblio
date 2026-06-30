@@ -25,7 +25,7 @@ export async function getBooks(): Promise<Book[]> {
       "Error cargando libros:",
       error
     )
-    
+
     return staticBooks
 
   }
@@ -33,7 +33,7 @@ export async function getBooks(): Promise<Book[]> {
 
 
   const dynamicBooks: Book[] =
-    (data || []).map((book:any)=>({
+    (data || []).map((book: any) => ({
 
 
       slug:
@@ -122,13 +122,13 @@ export async function getBooks(): Promise<Book[]> {
       tags:
         book.tags || {
 
-          ritmo:0,
-          complejidad:0,
-          cargaEmocional:0,
-          conflicto:0,
-          worldbuilding:0,
-          accesibilidad:0,
-          profundidad:0
+          ritmo: 0,
+          complejidad: 0,
+          cargaEmocional: 0,
+          conflicto: 0,
+          worldbuilding: 0,
+          accesibilidad: 0,
+          profundidad: 0
 
         }
 
@@ -136,7 +136,8 @@ export async function getBooks(): Promise<Book[]> {
     }))
 
 
-
+  console.log("Libros encontrados:", data?.length)
+  console.log(data)
   return [
 
     ...staticBooks,
