@@ -1,4 +1,4 @@
-import { books } from "@/data/books"
+import { getBooks } from "@/lib/books"
 import { authors } from "@/data/authors"
 
 import { getRecommendedBooks } from "@/lib/recommendations"
@@ -18,6 +18,7 @@ import { getBookCover } from "@/lib/amazon"
 
 export default async function Page({ params }: any) {
   const { slug } = await params
+  const books = await getBooks()
   const book = books.find(b => b.slug === slug)
 
   if (!book) return <div>No encontrado</div>
@@ -27,7 +28,7 @@ export default async function Page({ params }: any) {
     book.authorSlug.includes(a.slug)
   )
 
-  const recommended = getRecommendedBooks(book.slug)
+  const recommended = await getRecommendedBooks(book.slug)
 
   const sameAuthorBooks = books.filter(
     b =>

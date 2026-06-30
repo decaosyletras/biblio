@@ -1,6 +1,8 @@
-import { books } from "@/data/books"
+import { getBooks } from "@/lib/books"
 import { genresCatalog } from "@/data/genres"
 import Link from "next/link"
+
+const books = await getBooks()
 
 export default function Page({ params }: any) {
   const { id } = params

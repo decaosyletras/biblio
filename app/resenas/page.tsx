@@ -1,9 +1,11 @@
-import { books } from "@/data/books"
+import { getBooks } from "@/lib/books"
 import CardReview from "@/components/CardReview"
 import SearchSimple from "@/components/SearchSimple"
 import { shuffleArray } from "@/lib/shuffle"
 
 export const dynamic = "force-dynamic";
+
+const books = await getBooks()
 
 export default function Page() {
   const randomReview = shuffleArray(books)

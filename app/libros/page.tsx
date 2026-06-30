@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { books } from "@/data/books"
+import { getBooks } from "@/lib/books"
 import { categories } from "@/data/categories"
 import { categoryRules } from "@/data/categoryRules"
 
@@ -11,7 +11,8 @@ import { getCategoriesForBook } from "@/data/categoryEngine"
 
 import { thematicCollections } from "@/data/thematicCollections"
 
-export default function Page() {
+export default async function Page() {
+  const books = await getBooks()
   return (
     <div className="relative">
 

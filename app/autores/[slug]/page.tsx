@@ -1,8 +1,10 @@
 import { authors } from "@/data/authors"
-import { books } from "@/data/books"
+import { getBooks } from "@/lib/books"
 import BookRow from "@/components/BookRow"
 import { getRecommendedAuthors } from "@/lib/recommendAuthors"
 import CardAuthor from "@/components/CardAuthor"
+
+const books = await getBooks()
 
 export default async function Page({
   params,

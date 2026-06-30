@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { books } from "@/data/books"
+import { getBooks } from "@/lib/books"
 import { authors } from "@/data/authors"
 import CardBook from "@/components/CardBook"
 import { shuffleArray } from "@/lib/shuffle"
@@ -10,6 +10,7 @@ import BookRow from "@/components/BookRow"
 import { useMemo } from "react";
 
 export const dynamic = "force-dynamic";
+const books = await getBooks()
 
 export default function Home() {
   

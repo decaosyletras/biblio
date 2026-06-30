@@ -3,8 +3,10 @@
 import Link from "next/link"
 import { useState } from "react"
 import { genresCatalog } from "@/data/genres"
-import { books } from "@/data/books"
+import { getBooks } from "@/lib/books"
 import BookRow from "@/components/BookRow"
+
+const books = await getBooks()
 
 export default function GenreFilter() {
   const [selected, setSelected] = useState("")

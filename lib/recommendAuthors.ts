@@ -1,6 +1,8 @@
 import { authors } from "@/data/authors"
-import { books } from "@/data/books"
+import { getBooks } from "@/lib/books"
 import { Book } from "@/types"
+
+const books = await getBooks()
 
 function getScore(a: Book, b: Book) {
   let score = 0

@@ -1,4 +1,4 @@
-import { books } from "@/data/books"
+import { getBooks } from "@/lib/books"
 import { Book } from "@/types"
 
 // 🔧 helper
@@ -64,7 +64,8 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 // 🚀 MAIN
-export function getRecommendedBooks(currentSlug: string) {
+export async function getRecommendedBooks(currentSlug: string) {
+  const books = await getBooks()
   const current = books.find(b => b.slug === currentSlug)
   if (!current) return []
 
