@@ -20,6 +20,7 @@ export type Book = {
   amazonLink: string
   authorSlug: string[]
   authorNames?: string[]
+  authorId?: string
   isSaga: boolean
   categories: number[]
   summary: string

@@ -1,224 +1,209 @@
 import { createClient } from "@supabase/supabase-js"
 import { NextResponse } from "next/server"
 
-
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-
-
-function normalizeName(name:string){
-
+function normalizeName(name: string) {
   return name
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g,"")
-    .replace(/[^a-z0-9]/g,"")
-
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]/g, "")
 }
 
-
-
-function createSlug(name:string){
-
+function createSlug(name: string) {
   return name
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g,"")
-    .replace(/[^a-z0-9]+/g,"-")
-    .replace(/^-|-$/g,"")
-
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
 }
 
+async function createUniqueSlug(name: string) {
+  const base = createSlug(name)
 
+  let slug = base
+  let count = 1
 
-export async function POST(req:Request){
+  while (true) {
+    const { data } = await supabase
+      .from("authors")
+      .select("id")
+      .eq("slug", slug)
+      .maybeSingle()
 
-try{
+    if (!data) {
+      return slug
+    }
 
-
-const body = await req.json()
-
-
-const {
-titulo,
-autor,
-esSaga,
-link,
-resumen,
-asin,
-generos,
-subgeneros,
-tags
-
-}=body
-
-
-
-if(!titulo || !autor){
-
-return NextResponse.json(
-{
-error:"Faltan título o autor"
-},
-{
-status:400
-}
-)
-
+    count++
+    slug = `${base}-${count}`
+  }
 }
 
+async function createUniqueBookSlug(title: string) {
+  const base = createSlug(title)
 
+  let slug = base
+  let count = 1
 
+  while (true) {
+    const { data } = await supabase
+      .from("books")
+      .select("id")
+      .eq("slug", slug)
+      .maybeSingle()
 
-// ==========================
-// 1. BUSCAR AUTOR
-// ==========================
+    if (!data) {
+      return slug
+    }
 
-
-const normalized =
-normalizeName(autor)
-
-
-let authorId:string | null = null
-
-
-
-const {data:foundAuthor}=await supabase
-
-.from("authors")
-
-.select("id")
-
-.eq(
-"normalized_name",
-normalized
-)
-
-.maybeSingle()
-
-
-
-if(foundAuthor){
-
-authorId = foundAuthor.id
-
+    count++
+    slug = `${base}-${count}`
+  }
 }
 
+export async function POST(req: Request) {
+  try {
+    const body = await req.json()
 
+    const {
+      titulo,
+      autor,
+      esSaga,
+      link,
+      resumen,
+      asin,
+      generos,
+      subgeneros,
+      tags,
+      useExistingAuthor
+    } = body
 
+    if (!titulo || !autor) {
+      return NextResponse.json(
+        {
+          error: "Faltan título o autor"
+        },
+        {
+          status: 400
+        }
+      )
+    }
 
-// ==========================
-// 2. CREAR AUTOR SI NO EXISTE
-// ==========================
+    const normalized = normalizeName(autor)
 
+    const { data: foundAuthor } = await supabase
+      .from("authors")
+      .select("id,name,slug")
+      .eq("normalized_name", normalized)
+      .maybeSingle()
 
-if(!authorId){
+    let authorId: string
 
+    // Existe el autor y el usuario confirma que es él
+    if (foundAuthor && useExistingAuthor) {
+      authorId = foundAuthor.id
+    }
 
-const {data:newAuthor,error}=await supabase
+    // Existe el autor pero el usuario dice que NO es él
+    else if (foundAuthor && useExistingAuthor === false) {
+      return NextResponse.json(
+        {
+          error:
+            "Ya existe un autor con ese nombre. Si realmente se trata de otra persona con el mismo nombre, ponte en contacto con nosotros para que podamos diferenciar ambos perfiles."
+        },
+        {
+          status: 400
+        }
+      )
+    }
 
-.from("authors")
+    // No existe ningún autor: crear uno nuevo
+    else {
+      const slug = await createUniqueSlug(autor)
 
-.insert({
-name:autor,
-slug:createSlug(autor),
-normalized_name:normalized
-})
-.select("id")
-.single()
+      const { data: newAuthor, error } = await supabase
+        .from("authors")
+        .insert({
+          name: autor,
+          slug,
+          normalized_name: normalized
+        })
+        .select("id")
+        .single()
 
+      if (error) {
+        return NextResponse.json(
+          {
+            error: error.message
+          },
+          {
+            status: 400
+          }
+        )
+      }
 
-if(error){
-return NextResponse.json(
-{
-error:error.message
-},
-{
-status:400
-}
-)
-}
-authorId=newAuthor.id
-}
+      authorId = newAuthor.id
+    }
 
+    const bookSlug = await createUniqueBookSlug(titulo)
 
-// ==========================
-// 3. CREAR LIBRO
-// ==========================
+    const { error: bookError } = await supabase
+      .from("books")
+      .insert({
+        title: titulo,
+        slug: bookSlug,
 
+        asin_es: asin,
+        asin_mx: asin,
+        asin_us: asin,
 
-const {error:bookError}=await supabase
+        amazon_link: link,
 
-.from("books")
+        author_id: authorId,
 
-.insert({
+        is_saga: esSaga,
 
-title:titulo,
+        summary: resumen,
 
-slug:createSlug(titulo),
+        genres: generos,
 
-asin_es:asin,
-asin_mx:asin,
-asin_us:asin,
+        subgenres: subgeneros,
 
-amazon_link:link,
+        review_metrics: tags,
 
-author_id:authorId,
+        approved: true
+      })
 
-is_saga:esSaga,
+    if (bookError) {
+      return NextResponse.json(
+        {
+          error: bookError.message
+        },
+        {
+          status: 400
+        }
+      )
+    }
 
-summary:resumen,
+    return NextResponse.json({
+      success: true
+    })
+  } catch (error) {
+    console.error(error)
 
-genres:generos,
-
-subgenres:subgeneros,
-
-review_metrics:tags,
-
-approved:true
-
-})
-
-
-
-if(bookError){
-
-return NextResponse.json(
-{
-error:bookError.message
-},
-{
-status:400
-}
-)
-
-}
-
-
-
-return NextResponse.json({
-success:true
-})
-
-
-
-}
-catch(error){
-
-return NextResponse.json(
-{
-error:"Error interno"
-},
-{
-status:500
-}
-)
-
-}
-
-
-
+    return NextResponse.json(
+      {
+        error: "Error interno"
+      },
+      {
+        status: 500
+      }
+    )
+  }
 }

@@ -18,6 +18,7 @@ export async function getBooks(): Promise<Book[]> {
     .select(`
       *,
       authors(
+        id,
         slug,
         name
       )
