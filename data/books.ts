@@ -1,7 +1,7 @@
 import { Book } from "@/types"
 
 export const books: Book[] = [
-  { slug: "tras-el-caos-de-la-existencia-descubrimiento",
+  /*{ slug: "tras-el-caos-de-la-existencia-descubrimiento",
     title: "TRAS EL CAOS DE LA EXISTENCIA: DESCUBRIMIENTO",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -44,8 +44,9 @@ export const books: Book[] = [
       accesibilidad: 1,
       profundidad: 3,
     }
-  },
-  { slug: "tras-el-caos-de-la-existencia-divisiones-y-conflictos",
+  },*/
+  /*{
+    slug: "tras-el-caos-de-la-existencia-divisiones-y-conflictos",
     title: "TRAS EL CAOS DE LA EXISTENCIA: DIVISIONES Y CONFLICTOS",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -82,7 +83,8 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  { slug: "tras-el-caos-de-la-existencia-designios-ancestrales",
+  {
+    slug: "tras-el-caos-de-la-existencia-designios-ancestrales",
     title: "TRAS EL CAOS DE LA EXISTENCIA: DESIGNIOS ANCESTRALES",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -125,7 +127,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "jodidos-mas-no-vencidos",
+  {
+    slug: "jodidos-mas-no-vencidos",
     title: "JODIDOS, MAS NO VENCIDOS",
     cover: "",
     amazon: {
@@ -169,8 +172,9 @@ export const books: Book[] = [
       accesibilidad: 2,
       profundidad: 3,
     }
-  },
-  { slug: "libertadores",
+  },*/
+  /*{
+    slug: "libertadores",
     title: "LIBERTADORES",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -207,7 +211,8 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  { slug: "rustic-metaverse-la-era-de-la-ascencion",
+  {
+    slug: "rustic-metaverse-la-era-de-la-ascencion",
     title: "RUSTIC METAVERSE: LA ERA DE LA ASCENCIÓN",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -253,7 +258,8 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  { slug: "planeta-misterio",
+  {
+    slug: "planeta-misterio",
     title: "PLANETA MISTERIO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -266,7 +272,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0, 1],
     summary:
-        "Una colección de 13 cuentos ambientados en futuros posibles y realidades alternativas, donde la humanidad se enfrenta a escenarios tecnológicos avanzados y situaciones extremas. Cada relato plantea conflictos distintos en los que los personajes deben tomar decisiones difíciles, enfrentarse a los límites de la tecnología y cuestionar su propia supervivencia dentro de un universo en transformación constante.",
+      "Una colección de 13 cuentos ambientados en futuros posibles y realidades alternativas, donde la humanidad se enfrenta a escenarios tecnológicos avanzados y situaciones extremas. Cada relato plantea conflictos distintos en los que los personajes deben tomar decisiones difíciles, enfrentarse a los límites de la tecnología y cuestionar su propia supervivencia dentro de un universo en transformación constante.",
     review: {
       title: "Trece miradas al destino",
       excerpt: `Antologías de ciencia ficción con variedad de escenarios y conceptos.
@@ -295,8 +301,9 @@ export const books: Book[] = [
       accesibilidad: 1,
       profundidad: 3,
     }
-  },
-  { slug: "el-bucle",
+  },*/
+  /*{
+    slug: "el-bucle",
     title: "EL BUCLE",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -341,7 +348,8 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  { slug: "el-juego-de-la-realidad",
+  {
+    slug: "el-juego-de-la-realidad",
     title: "EL JUEGO DE LA REALIDAD",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -383,8 +391,9 @@ export const books: Book[] = [
       accesibilidad: 1,
       profundidad: 3,
     }
-  }, 
-  { slug: "el-silencio-del-agua",
+  },
+  {
+    slug: "el-silencio-del-agua",
     title: "EL SILENCIO DEL AGUA",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -426,7 +435,8 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  { slug: "solo-quedaron-las-cascaras",
+  {
+    slug: "solo-quedaron-las-cascaras",
     title: "SOLO QUEDARON LAS CÁSCARAS",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -469,8 +479,9 @@ export const books: Book[] = [
       accesibilidad: 1,
       profundidad: 1,
     }
-  },
-  { slug: "remnax",
+  },*/
+  /*{
+    slug: "remnax",
     title: "REMNAX",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -514,7 +525,8 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  { slug: "dones-mortales",
+  {
+    slug: "dones-mortales",
     title: "DONES MORTALES",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -557,7 +569,8 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  { slug: "draguenorux",
+  {
+    slug: "draguenorux",
     title: "DRAGUENORUX: EL DRAGÓN FLUORESCENTE",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -602,7 +615,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "musi-regresa",
+  {
+    slug: "musi-regresa",
     title: "MUSI REGRESA POR NAVIDAD",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -643,8 +657,9 @@ export const books: Book[] = [
       accesibilidad: 1,
       profundidad: 1,
     }
-  },
-  { slug: "el-himno-del-desierto-1",
+  },*/
+  /*{
+    slug: "el-himno-del-desierto-1",
     title: "EL HIMNO DEL DESIERTO 1: EL DESIERTO SIN FIN",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -677,7 +692,7 @@ export const books: Book[] = [
       ],
     },
     genre: ["cienciaFiccion", "fantasia", "aventura"],
-    subgenres: ["epica","distopia","postapocaliptica","juvenil"],
+    subgenres: ["epica", "distopia", "postapocaliptica", "juvenil"],
 
     tags: {
       ritmo: 1,
@@ -689,7 +704,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "ozyux",
+  {
+    slug: "ozyux",
     title: "OZYUX: EL VALOR DE UNA VIDA INTERGALÁCTICA",
     cover: "/covers/book1.jpg",
     amazon: {
@@ -732,7 +748,8 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  { slug: "el-himno-del-desierto-2",
+  {
+    slug: "el-himno-del-desierto-2",
     title: "EL HIMNO DEL DESIERTO 2: LA LEYENDA DEL VIENTO",
     cover: "/covers/book2.jpg",
     amazon: {
@@ -764,8 +781,8 @@ export const books: Book[] = [
         "misticismo"
       ],
     },
-    genre: ["cienciaFiccion","fantasia","aventura"],
-    subgenres: ["distopia","postapocaliptica","juvenil","epica"],
+    genre: ["cienciaFiccion", "fantasia", "aventura"],
+    subgenres: ["distopia", "postapocaliptica", "juvenil", "epica"],
 
     tags: {
       ritmo: 1,
@@ -777,7 +794,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "compilacion-de-relatos",
+  {
+    slug: "compilacion-de-relatos",
     title: "COMPILACIÓN DE RELATOS: CINCO RELATOS DE EMOCIÓN, OSCURIDAD Y REFLEXIÓN",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -813,7 +831,8 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  { slug: "cronicas-walker-destino",
+  {
+    slug: "cronicas-walker-destino",
     title: "CRÓNICAS WALKER: DESTINO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -855,8 +874,9 @@ export const books: Book[] = [
       accesibilidad: 1,
       profundidad: 2,
     }
-  },
-  { slug: "cronicas-walker-discordia",
+  },*/
+  /*{
+    slug: "cronicas-walker-discordia",
     title: "CRÓNICAS WALKER: DISCORDIA",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -901,7 +921,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "ovni-redencion",
+  {
+    slug: "ovni-redencion",
     title: "OVNI: REDENCIÓN",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -913,7 +934,7 @@ export const books: Book[] = [
     authorSlug: ["j-c-plaza"],
     isSaga: false,
     categories: [0, 3],
-    summary:`
+    summary: `
       Una nave extraterrestre ha sido interceptada y derribada en una zona desértica de Argentina. Un equipo de soldados es enviado para asaltarla y recuperar su tecnología.
       Un ingeniero sin entrenamiento militar participa en la misión, sin saber qué se va a encontrar y teniendo claro que no es un hombre de acción.
       La misión fracasará estrepitosamente y a partir de ese momento acompañaremos al protagonista en su intento de escapar y de encontrar su lugar en el mundo, mientras descubre una realidad compleja y apasionante, oculta a la mayoría de la humanidad... pero ¿logrará sobrevivir?`,
@@ -935,8 +956,8 @@ export const books: Book[] = [
         "traicion"
       ],
     },
-    genre: ["cienciaFiccion","thriller","aventura","ficcion"],
-    subgenres: ["xenoficcion","supervivencia"],
+    genre: ["cienciaFiccion", "thriller", "aventura", "ficcion"],
+    subgenres: ["xenoficcion", "supervivencia"],
 
     tags: {
       ritmo: 2,
@@ -948,7 +969,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "tablero-mortal",
+  {
+    slug: "tablero-mortal",
     title: "TABLERO MORTAL",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -970,7 +992,7 @@ export const books: Book[] = [
   Tensión constante durante toda la investigación.
   Misterio urbano que se construye paso a paso.`,
       content: "",
-      metrics: ["misterioaresolver", "accion", "cuentaregresiva", "traicion","rituales"],
+      metrics: ["misterioaresolver", "accion", "cuentaregresiva", "traicion", "rituales"],
     },
     genre: ["thriller", "misterio", "ficcion"],
     subgenres: ["policial", "asesinoenserie", "THpsicologico", "conspiracion"],
@@ -985,7 +1007,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "proyecto-sombras",
+  {
+    slug: "proyecto-sombras",
     title: "PROYECTO SOMBRAS",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1027,7 +1050,8 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  { slug: "mutagenesis-convergente",
+  {
+    slug: "mutagenesis-convergente",
     title: "MUTAGÉNESIS CONVERGENTE",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1069,8 +1093,9 @@ export const books: Book[] = [
       accesibilidad: 2,
       profundidad: 3,
     }
-  },
-  { slug: "cuando-te-lleve",
+  },*/
+  /*{
+    slug: "cuando-te-lleve",
     title: "CUANDO TE LLEVE",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1113,7 +1138,8 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  { slug: "cronicas-walker-oblivion",
+  {
+    slug: "cronicas-walker-oblivion",
     title: "CRÓNICAS WALKER: OBLIVION",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1157,7 +1183,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "tormenta-de-azar",
+  {
+    slug: "tormenta-de-azar",
     title: "TORMENTA DE AZAR",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1200,7 +1227,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "el-mundo-de-eterna-la-elegida",
+  {
+    slug: "el-mundo-de-eterna-la-elegida",
     title: "EL MUNDO DE ETERNA: LA ELEGIDA",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1227,7 +1255,7 @@ export const books: Book[] = [
         "pasadoorigenes",
         "rebelion",
         "viajedelheroe",
-        "cuentaregresiva","magia"
+        "cuentaregresiva", "magia"
       ],
     },
     genre: ["fantasia", "romance", "aventura"],
@@ -1243,7 +1271,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "el-himno-del-desierto-la-cima-del-mundo",
+  {
+    slug: "el-himno-del-desierto-la-cima-del-mundo",
     title: "EL HIMNO DEL DESIERTO 3: LA CIMA DEL MUNDO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1275,7 +1304,7 @@ export const books: Book[] = [
       ],
     },
     genre: ["fantasia", "cienciaFiccion", "aventura"],
-    subgenres: ["distopia","epica","postapocaliptica","juvenil"],
+    subgenres: ["distopia", "epica", "postapocaliptica", "juvenil"],
 
     tags: {
       ritmo: 2,
@@ -1286,8 +1315,9 @@ export const books: Book[] = [
       accesibilidad: 2,
       profundidad: 2,
     }
-  },
-  { slug: "el-ultimo-viaje",
+  },*/
+  /*{
+    slug: "el-ultimo-viaje",
     title: "EL ÚLTIMO VIAJE",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1322,7 +1352,8 @@ export const books: Book[] = [
       profundidad: 1,
     }
   },
-  { slug: "han-robado-el-infinito",
+  {
+    slug: "han-robado-el-infinito",
     title: "HAN ROBADO EL INFINITO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1366,7 +1397,8 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  { slug: "fisura-interdimensional",
+  {
+    slug: "fisura-interdimensional",
     title: "FISURA INTERDIMENSIONAL",
     cover: "/covers/fisura.jpg",
     amazon: {
@@ -1413,7 +1445,8 @@ export const books: Book[] = [
       profundidad: 3,
     }
   },
-  { slug: "el-sinsentido-de-las-cartas",
+  {
+    slug: "el-sinsentido-de-las-cartas",
     title: "EL SINSENTIDO DE LAS CARTAS: DEL AMOR AL ODIO HAY UN UNIVERSO DE POR MEDIO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1455,7 +1488,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "el-himn-de-desierto-la-simiente-del-odio",
+  {
+    slug: "el-himn-de-desierto-la-simiente-del-odio",
     title: "EL HIMNO DEL DESIERTO 4: LA SIMIENTE DEL ODIO",
     cover: "/covers/book3.jpg",
     amazon: {
@@ -1487,8 +1521,8 @@ export const books: Book[] = [
         "dragones"
       ],
     },
-    genre: ["fantasia","cienciaFiccion","aventura"],
-    subgenres: ["epica","distopia","postapocaliptica","juvenil"],
+    genre: ["fantasia", "cienciaFiccion", "aventura"],
+    subgenres: ["epica", "distopia", "postapocaliptica", "juvenil"],
 
     tags: {
       ritmo: 3,
@@ -1499,15 +1533,16 @@ export const books: Book[] = [
       accesibilidad: 2,
       profundidad: 2,
     }
-  },
+  },*/
 
 
-  
+
 
 
 
   //NO LEÍDOS
-  { slug: "frecuencia-zero",
+  /*{
+    slug: "frecuencia-zero",
     title: "FRECUENCIA ZERO",
     cover: "",
     amazon: {
@@ -1541,8 +1576,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "apocalipsis-porcina",
+  },*/
+  /*{
+    slug: "apocalipsis-porcina",
     title: "APOCALIPSIS PORCINA",
     cover: "",
     amazon: {
@@ -1580,7 +1616,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-gran-apagon",
+  {
+    slug: "el-gran-apagon",
     title: "EL GRAN APAGÓN",
     cover: "",
     amazon: {
@@ -1615,7 +1652,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "contagio-silencioso",
+  {
+    slug: "contagio-silencioso",
     title: "CONTAGIO SILENCIOSO",
     cover: "",
     amazon: {
@@ -1651,7 +1689,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "linea-muerta",
+  {
+    slug: "linea-muerta",
     title: "LÍNEA MUERTA",
     cover: "",
     amazon: {
@@ -1687,7 +1726,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "ciudad-bajo-tierra",
+  {
+    slug: "ciudad-bajo-tierra",
     title: "CIUDAD BAJO TIERRA",
     cover: "",
     amazon: {
@@ -1720,8 +1760,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "inhumana",
+  },*/
+  /*{
+    slug: "inhumana",
     title: "INHUMANA",
     cover: "",
     amazon: {
@@ -1756,7 +1797,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "hija",
+  {
+    slug: "hija",
     title: "HIJA",
     cover: "",
     amazon: {
@@ -1792,7 +1834,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "belo",
+  {
+    slug: "belo",
     title: "BELO: UN HÉROE DEL CAMPO",
     cover: "",
     amazon: {
@@ -1827,7 +1870,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-maldicion-de-morsten",
+  {
+    slug: "la-maldicion-de-morsten",
     title: "LA MALDICIÓN DE MORSTEN SEA: EL MAR GUARDA SECRETOS QUE SOLO EL AMOR ES CAPAZ DE DESPERTAR",
     cover: "",
     amazon: {
@@ -1862,7 +1906,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "hijos-de-las-tinieblas",
+  {
+    slug: "hijos-de-las-tinieblas",
     title: "HIJOS DE LAS TINIEBLAS",
     cover: "",
     amazon: {
@@ -1895,8 +1940,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "metalipedics",
+  },*/
+  /*{
+    slug: "metalipedics",
     title: "METALIPEDICS: G. KAJAL Y LA ENCICLOPEDIA DE ALIENÍGENAS SIMBIÓTICOS.",
     cover: "",
     amazon: {
@@ -1918,13 +1964,13 @@ export const books: Book[] = [
             Personajes con personalidades muy marcadas y bien trabajadas.
             Alta construcción en la trama, las amenazas y las alianzas.`,
       content: "",
-      metrics: [ "aventura",
-          "accion",
-          "humor",
-          "juvenil",
-          "razasalienigenas",
-          "pasadoorigenes",
-          "colonizacionexpansion"],
+      metrics: ["aventura",
+        "accion",
+        "humor",
+        "juvenil",
+        "razasalienigenas",
+        "pasadoorigenes",
+        "colonizacionexpansion"],
     },
     genre: ["cienciaFiccion", "aventura", "ficcion"],
     subgenres: ["exploracionespacial", "xenoficcion", "evolucionespeculativa"],
@@ -1939,7 +1985,8 @@ export const books: Book[] = [
       profundidad: 2,
     }
   },
-  { slug: "unitaria-astralis",
+  {
+    slug: "unitaria-astralis",
     title: "UNITARIA ASTRALIS: YADRIN, EL NUEVO REY OSCURO",
     cover: "",
     amazon: {
@@ -1960,7 +2007,7 @@ export const books: Book[] = [
       metrics: ["aventura",
         "militar",
         "mentoraprendiz",
-        "misterioaresolver","magia"],
+        "misterioaresolver", "magia"],
     },
     genre: ["fantasia", "aventura", "ficcion"],
     subgenres: ["epica", "emotiva"],
@@ -1975,7 +2022,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "cronica-de-mi-viaje-a-mandavia",
+  {
+    slug: "cronica-de-mi-viaje-a-mandavia",
     title: "CRÓNICA DE MI VIAJE A MANDAVIA: UN VIAJE IMAGINARIO AL MUNDO DE LOS LIBERTADORES",
     cover: "",
     amazon: {
@@ -2009,7 +2057,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-himno-del-desierto-cuentos-de-navidad",
+  {
+    slug: "el-himno-del-desierto-cuentos-de-navidad",
     title: "EL HIMNO DEL DESIERTO: CUENTOS DE NAVIDAD",
     cover: "",
     amazon: {
@@ -2044,7 +2093,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-juramento-de-la-presencia-errante",
+  {
+    slug: "el-juramento-de-la-presencia-errante",
     title: "EL JURAMENTO DE LA PRESENCIA ERRANTE",
     cover: "",
     amazon: {
@@ -2066,7 +2116,7 @@ export const books: Book[] = [
         "misterioaresolver",
         "drama",
         "redencion",
-        "pasadoorigenes","magia"],
+        "pasadoorigenes", "magia"],
     },
     genre: ["fantasia", "terror", "ficcion"],
     subgenres: ["oscura", "epica", "sobrenatural", "Tpsicologico"],
@@ -2080,8 +2130,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "vestigio-remachado",
+  },*/
+  /*{
+    slug: "vestigio-remachado",
     title: "VESTIGIO REMACHADO: INTRIGA DE ÉPOCA CON SECRETOS Y MANIPULACIÓN CIENTÍFICA",
     cover: "",
     amazon: {
@@ -2116,7 +2167,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "desde-mis-ojos-faraona-la-bailarina-sin-cabeza",
+  {
+    slug: "desde-mis-ojos-faraona-la-bailarina-sin-cabeza",
     title: "DESDE MIS OJOS: FARAONA: LA BAILARINA SIN CABEZA",
     cover: "",
     amazon: {
@@ -2152,7 +2204,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "descenso-al-abismo",
+  {
+    slug: "descenso-al-abismo",
     title: "DESCENSO AL ABISMO",
     cover: "",
     amazon: {
@@ -2185,7 +2238,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "enigmas-para-un-rey",
+  {
+    slug: "enigmas-para-un-rey",
     title: "ENIGMAS PARA UN REY",
     cover: "",
     amazon: {
@@ -2203,7 +2257,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: [ "supervivencia",
+      metrics: ["supervivencia",
         "misterioaresolver"],
     },
     genre: ["thriller", "misterio", "terror"],
@@ -2219,7 +2273,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "desafio-59",
+  {
+    slug: "desafio-59",
     title: "DESAFÍO 59´",
     cover: "",
     amazon: {
@@ -2255,8 +2310,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },  
-  { slug: "a-anio-luz-de-ti",
+  },*/
+  /*{
+    slug: "a-anio-luz-de-ti",
     title: "A AÑO LUZ DE TI",
     cover: "",
     amazon: {
@@ -2289,7 +2345,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "imitheos-ascenso",
+  {
+    slug: "imitheos-ascenso",
     title: "IMITHEOS: ASCENSO",
     cover: "",
     amazon: {
@@ -2324,7 +2381,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "incendio-de-posibilidades",
+  {
+    slug: "incendio-de-posibilidades",
     title: "INCENDIO DE POSIBILIDADES",
     cover: "",
     amazon: {
@@ -2342,7 +2400,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["supervivencia","misticismo"],
+      metrics: ["supervivencia", "misticismo"],
     },
     genre: ["thriller", "ficcion", "cienciaFiccion"],
     subgenres: ["psicologico", "supervivencia", "technothriller"],
@@ -2357,7 +2415,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "danza-de-recuerdos",
+  {
+    slug: "danza-de-recuerdos",
     title: "DANZA DE RECUERDOS",
     cover: "",
     amazon: {
@@ -2375,7 +2434,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["supervivencia","misticismo","misterioaresolver"],
+      metrics: ["supervivencia", "misticismo", "misterioaresolver"],
     },
     genre: ["cienciaFiccion", "thriller", "misterio"],
     subgenres: ["realidadesalternas", "THpsicologico", "conspiracion"],
@@ -2390,7 +2449,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "cenit-memorias-de-un-hada",
+  {
+    slug: "cenit-memorias-de-un-hada",
     title: "CENIT: MEMORIAS DE UN HADA",
     cover: "",
     amazon: {
@@ -2410,7 +2470,7 @@ export const books: Book[] = [
       content: "",
       metrics: ["aventura",
         "misterioaresolver",
-        "pasadoorigenes","magia"],
+        "pasadoorigenes", "magia"],
     },
     genre: ["fantasia", "aventura", "ficcion"],
     subgenres: ["juvenil", "epica", "emotiva"],
@@ -2424,8 +2484,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "el-mundo-de-eterna-la-guerrera-de-las-estrellas",
+  },*/
+  /*{
+    slug: "el-mundo-de-eterna-la-guerrera-de-las-estrellas",
     title: "EL MUNDO DE ETERNA: LA GUERRERA DE LAS ESTRELLAS",
     cover: "",
     amazon: {
@@ -2443,7 +2504,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["accion","aventura","supervivencia","militar"],
+      metrics: ["accion", "aventura", "supervivencia", "militar"],
     },
     genre: ["fantasia", "romance", "aventura"],
     subgenres: ["epica", "amorprohibido", "oscura", "emotiva"],
@@ -2458,7 +2519,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-mundo-de-eterna-el-rey-elfo",
+  {
+    slug: "el-mundo-de-eterna-el-rey-elfo",
     title: "EL MUNDO DE ETERNA: EL REY ELFO",
     cover: "",
     amazon: {
@@ -2493,7 +2555,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "dejar-huella",
+  {
+    slug: "dejar-huella",
     title: "DEJAR HUELLA",
     cover: "",
     amazon: {
@@ -2529,7 +2592,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "en-los-tejados",
+  {
+    slug: "en-los-tejados",
     title: "EN LOS TEJADOS",
     cover: "",
     amazon: {
@@ -2565,7 +2629,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "heraldos-de-la-muerte",
+  {
+    slug: "heraldos-de-la-muerte",
     title: "HERALDOS DE LA MUERTE",
     cover: "",
     amazon: {
@@ -2600,8 +2665,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "historias-de-boston",
+  },*/
+  /*{
+    slug: "historias-de-boston",
     title: "HISTORIAS DE BOSTON: 21 RELATOS DE FANTASÍA, CIENCIA FICCIÓN Y TERROR",
     cover: "",
     amazon: {
@@ -2637,7 +2703,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-futuro-que-escribimos-juntos",
+  {
+    slug: "el-futuro-que-escribimos-juntos",
     title: "EL FUTURO QUE ESCRIBIMOS JUNTOS: UNA COMEDIA ROMÁNTICA DONDE ARDER EN EL INFIERNO SERÁ EL MENOR DE SUS PROBLEMAS",
     cover: "",
     amazon: {
@@ -2674,87 +2741,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "guerras-lunares",
-    title: "GUERRAS LUNARES",
-    cover: "",
-    amazon: {
-      es: "B0GMXLSNSB",
-      mx: "B0GMXLSNSB",
-      us: "B0GMXLSNSB",
-    },
-    amazonLink: "https://amazon.com",
-    authorSlug: ["j-c-plaza", "julio-embid"],
-    isSaga: false,
-    categories: [0],
-    summary:
-      `Desde el vacío espacial, una madre cambiará el curso de la historia.
-        En el año 2050, la carrera por la colonización lunar ya no es un sueño: está en pleno auge.
-        La Luna se convierte en el nuevo campo de batalla por la hegemonía mundial.
-        Las primeras bases permanentes en el polo sur aprovechan el hielo de los cráteres de sombra eterna, mientras se producen operaciones militares entre astronautas estadounidenses y taikonautas chinos.
-        ¿Surgirá un nuevo amanecer para la Humanidad en la Luna?
-        Guerras Lunares, con un ritmo ágil y basada en conceptos científicos y tecnológicos reales, es un intenso thriller político que plantea un futuro cercano extraordinariamente plausible.`,
-    review: {
-      title: "",
-      excerpt: ``,
-      content: "",
-      metrics: ["aventura",
-        "colonizacionexpansion",
-        "militar",
-        "existencial"],
-    },
-    genre: ["cienciaFiccion","thriller","ficcion","aventura"],
-    subgenres: ["exploracionespacial","technothriller","distopia"],
-
-    tags: {
-      ritmo: 0,
-      complejidad: 0,
-      cargaEmocional: 0,
-      conflicto: 0,
-      worldbuilding: 0,
-      accesibilidad: 0,
-      profundidad: 0,
-    }
-  },
-  { slug: "amanecer-relatos-de-ciencia-ficcion",
-    title: "AMANECER: RELATOS DE CIENCIA FICCIÓN",
-    cover: "",
-    amazon: {
-      es: "B0GTFQGS6R",
-      mx: "B0GTFQGS6R",
-      us: "B0GTFQGS6R",
-    },
-    amazonLink: "https://amazon.com",
-    authorSlug: ["j-f-goulding","carlos-j-eguren","juan-baez","j-c-plaza","alfredo-rubio","juan-antonio-jimenez","a-n-berth","pablo-albaladejo-perona","eduardo-d-allen","vicente-moraga-costoso"],
-    isSaga: false,
-    categories: [0],
-    summary:
-        `Futuros improbables, tierras desconocidas, viajes por el espacio. Si hay un género que una conocimiento y fantasía, progreso e imaginación, hipótesis y sueños, este es, sin duda, el de la ciencia ficción.
-        Diez escritores, con voces narrativas bien diferenciadas, han creado esta antología de ciencia ficción en la que, además de hacer disfrutar al lector de unos buenos relatos, pretenden dejar ideas, conceptos, sensaciones, pero, por encima de todo, desean que el lector se pregunte: ¿Qué pasaría si…?
-        Juntos atravesaremos realidades paralelas a bordo de la nave Amanecer. Abróchate el cinturón y prepárate para soportar la presión de las fuerzas g.
-        16 relatos de 10 autores.`,
-    review: {
-      title: "",
-      excerpt: ``,
-      content: "",
-      metrics: ["relatos",
-        "aventura",
-        "razasalienigenas","cienciadura"],
-    },
-    genre: ["cienciaFiccion"],
-    subgenres: ["distopia","realidadesalternas","invasionalienigena","exploracionespacial","utopia","cyberpunk","evolucionespeculativa"],
-
-    tags: {
-      ritmo: 0,
-      complejidad: 0,
-      cargaEmocional: 0,
-      conflicto: 0,
-      worldbuilding: 0,
-      accesibilidad: 0,
-      profundidad: 0,
-    }
-  },
-  { slug: "ha-caido-un-meteorito-en-el-pueblo",
+  },*/
+  /*{
+    slug: "ha-caido-un-meteorito-en-el-pueblo",
     title: "HA CAÍDO UN METEORITO EN EL PUEBLO",
     cover: "",
     amazon: {
@@ -2767,18 +2756,18 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Lucas viaja a Encinares del Valle para escapar de la ciudad y de unos recuerdos que amenazan con asfixiarlo. Felipe regresa a su pueblo con la intención de retomar la vida que dejó atrás. Ninguno de los dos imagina que el impacto de la lágrima de hierro y piedra está a punto de cambiarlo todo.
+      `Lucas viaja a Encinares del Valle para escapar de la ciudad y de unos recuerdos que amenazan con asfixiarlo. Felipe regresa a su pueblo con la intención de retomar la vida que dejó atrás. Ninguno de los dos imagina que el impacto de la lágrima de hierro y piedra está a punto de cambiarlo todo.
         Lo que desde un comienzo parece un fenómeno extraordinario pronto se convierte en una marea de rumores, intereses y ambiciones. El alcalde habla de progreso cuando comienzan a llegar científicos, periodistas y curiosos atraídos por lo sucedido, pero muchos vecinos sospechan que no va a traer nada bueno.
         Un thriller con elementos de ciencia ficción y aventura ambientado en la España rural.`,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: [ "aventura",
+      metrics: ["aventura",
         "supervivencia",
         "misterioaresolver"],
     },
-    genre: ["cienciaFiccion","thriller","aventura","misterio"],
+    genre: ["cienciaFiccion", "thriller", "aventura", "misterio"],
     subgenres: ["supervivencia"],
 
     tags: {
@@ -2791,7 +2780,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-renacer-de-alexa",
+  {
+    slug: "el-renacer-de-alexa",
     title: "EL RENACER DE ALEXA",
     cover: "",
     amazon: {
@@ -2804,7 +2794,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Alexa es una Metahumana que debe sobrevivir a la organización que busca aprovecharse de sus poderes, y a sus propios impulsos destructivos y traumas que la alejan de sus seres queridos. En su camino, Jorge será el mentor clave en el refugio para meta humanos, donde tendrá que convivir con otros como ella.`,
+      `Alexa es una Metahumana que debe sobrevivir a la organización que busca aprovecharse de sus poderes, y a sus propios impulsos destructivos y traumas que la alejan de sus seres queridos. En su camino, Jorge será el mentor clave en el refugio para meta humanos, donde tendrá que convivir con otros como ella.`,
     review: {
       title: "",
       excerpt: ``,
@@ -2812,8 +2802,8 @@ export const books: Book[] = [
       metrics: ["supervivencia",
         "mentoraprendiz"],
     },
-    genre: ["cienciaFiccion","fantasia","ficcion"],
-    subgenres: ["urbana","biopunk","oscura","technothriller"],
+    genre: ["cienciaFiccion", "fantasia", "ficcion"],
+    subgenres: ["urbana", "biopunk", "oscura", "technothriller"],
 
     tags: {
       ritmo: 0,
@@ -2824,44 +2814,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "historias-de-arena-y-metal",
-    title: "HISTORIAS DE ARENA Y METAL (HIMNO DEL DESIERTO)",
-    cover: "",
-    amazon: {
-      es: "B0GQ582XNM",
-      mx: "B0GQ582XNM",
-      us: "B0GQ582XNM",
-    },
-    amazonLink: "https://amazon.com",
-    authorSlug: ["eduardo-d-allen", "beatriz-lillo", "daniel-galvez-estevez", "belen-arce", "gabriel-vilches-barroso","ivano-de-la-rosa","narya-a-vicens","sergio-durango-arias","susana-uboldi","virginia-rios"],
-    isSaga: false,
-    categories: [0],
-    summary:
-        `Una antología benéfica centrada en la saga Himno del Desierto, en colaboración con múltiples autores. Complementa el universo construido en la saga con relatos alternativos que abarcan a los pueblos de Onnan y Umbriland. Combinan diferentes escenarios, emociones y situaciones para enriquecer esta distopía postnuclear.`,
-    review: {
-      title: "",
-      excerpt: ``,
-      content: "",
-      metrics: ["relatos",
-        "aventura",
-        "supervivencia",
-        "misterioaresolver"],
-    },
-    genre: ["cienciaFiccion","aventura","misterio"],
-    subgenres: ["distopia","postapocaliptica","especulativo","technothriller"],
-
-    tags: {
-      ritmo: 0,
-      complejidad: 0,
-      cargaEmocional: 0,
-      conflicto: 0,
-      worldbuilding: 0,
-      accesibilidad: 0,
-      profundidad: 0,
-    }
-  },
-  { slug: "clasmathia",
+  },*/
+  /*{
+    slug: "clasmathia",
     title: "CLASMATHIA - UN LUGAR MEJOR",
     cover: "",
     amazon: {
@@ -2874,7 +2829,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Qué pasaría si destrozáramos tanto el mundo que la humanidad tuviera que volver a empezar desde cero?
+      `Qué pasaría si destrozáramos tanto el mundo que la humanidad tuviera que volver a empezar desde cero?
         Siglos tras la Última Guerra, los humanos se esfuerzan por sobrevivir en las resecas llanuras de Clasmathia. Entre las altas montañas y la Niebla que les separa del oscuro mar, sus leyendas hablan de otros seres, Extraños hijos de sus mismos antepasados, cuya prosperidad se alza amenazante sobre la frágil supervivencia humana.`,
     review: {
       title: "",
@@ -2882,10 +2837,10 @@ export const books: Book[] = [
       content: "",
       metrics: ["supervivencia",
         "militar",
-        "pasadoorigenes","existencial"],
+        "pasadoorigenes", "existencial"],
     },
-    genre: ["ficcion","cienciaFiccion"],
-    subgenres: ["emotiva","distopia","postapocaliptica","evolucionespeculativa"],
+    genre: ["ficcion", "cienciaFiccion"],
+    subgenres: ["emotiva", "distopia", "postapocaliptica", "evolucionespeculativa"],
 
     tags: {
       ritmo: 0,
@@ -2897,7 +2852,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "todavia-novelette-de-clasmathia",
+  {
+    slug: "todavia-novelette-de-clasmathia",
     title: "TODAVÍA (NOVELETTE DE CLASMATHIA)",
     cover: "",
     amazon: {
@@ -2910,15 +2866,15 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Una novelette de Clasmathia, la cual ejerce como una emotiva precuela para la familia protagónica de la historia principal.`,
+      `Una novelette de Clasmathia, la cual ejerce como una emotiva precuela para la familia protagónica de la historia principal.`,
     review: {
       title: "",
       excerpt: ``,
       content: "",
       metrics: ["misterioaresolver"],
     },
-    genre: ["cienciaFiccion","misterio","ficcion"],
-    subgenres: ["emotiva","especulativo","distopia","postapocaliptica"],
+    genre: ["cienciaFiccion", "misterio", "ficcion"],
+    subgenres: ["emotiva", "especulativo", "distopia", "postapocaliptica"],
 
     tags: {
       ritmo: 0,
@@ -2930,7 +2886,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-geometria-del-sufrimiento",
+  {
+    slug: "la-geometria-del-sufrimiento",
     title: "LA GEOMETRÍA DEL SUFRIMIENTO",
     cover: "",
     amazon: {
@@ -2943,7 +2900,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `La Geometría del Sufrimiento: Antología de Pesadillas, es un viaje visceral hacia los abismos más oscuros de la psique. Con una narrativa que entrelaza el horror poético con la crudeza de la carne, la obra demuestra una premisa aterradora: el infierno no es un lugar al que vamos, sino uno que ya habitamos por dentro.
+      `La Geometría del Sufrimiento: Antología de Pesadillas, es un viaje visceral hacia los abismos más oscuros de la psique. Con una narrativa que entrelaza el horror poético con la crudeza de la carne, la obra demuestra una premisa aterradora: el infierno no es un lugar al que vamos, sino uno que ya habitamos por dentro.
         Inspirado en referentes como Clive Barker y Stephen King, nos invita a un banquete impío, un espejo implacable para reflejar nuestras fracturas y deseos inconfesables. Ideal para quienes están dispuestos a asomarse al abismo y aceptar que, el único paraíso florece en la más absoluta oscuridad.`,
     review: {
       title: "",
@@ -2952,7 +2909,7 @@ export const books: Book[] = [
       metrics: ["misticismo"],
     },
     genre: ["terror"],
-    subgenres: ["Tpsicologico","sobrenatural"],
+    subgenres: ["Tpsicologico", "sobrenatural"],
 
     tags: {
       ritmo: 0,
@@ -2964,7 +2921,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-ciudad-desollada",
+  {
+    slug: "la-ciudad-desollada",
     title: "LA CIUDAD DESOLLADA",
     cover: "",
     amazon: {
@@ -2977,16 +2935,16 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `La Ciudad Desollada es un noir prehispánico ambientado en un Distrito Federal apocalíptico en vísperas del año 2000. El agente Víctor Martínez investiga una serie de crímenes quirúrgicos donde los cadáveres, desollados meticulosamente por lo que parece un asesino serial, forman coordenadas geográficas precisas. Con la ayuda de la antropóloga Leonora Aris, Martínez descubre que los homicidios son ofrendas para un antiguo ritual azteca. Traicionado por un sistema corrupto y convertido en prófugo, el detective iniciará una carrera contrarreloj para detener el nacimiento violento de la ciudad.`,
+      `La Ciudad Desollada es un noir prehispánico ambientado en un Distrito Federal apocalíptico en vísperas del año 2000. El agente Víctor Martínez investiga una serie de crímenes quirúrgicos donde los cadáveres, desollados meticulosamente por lo que parece un asesino serial, forman coordenadas geográficas precisas. Con la ayuda de la antropóloga Leonora Aris, Martínez descubre que los homicidios son ofrendas para un antiguo ritual azteca. Traicionado por un sistema corrupto y convertido en prófugo, el detective iniciará una carrera contrarreloj para detener el nacimiento violento de la ciudad.`,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: [ "supervivencia",
-        "traicion", "cuentaregresiva","rituales"],
+      metrics: ["supervivencia",
+        "traicion", "cuentaregresiva", "rituales"],
     },
-    genre: ["thriller","terror"],
-    subgenres: ["sobrenatural","asesinoenserie","supervivencia"],
+    genre: ["thriller", "terror"],
+    subgenres: ["sobrenatural", "asesinoenserie", "supervivencia"],
 
     tags: {
       ritmo: 0,
@@ -2998,7 +2956,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "terminos-y-condiciones",
+  {
+    slug: "terminos-y-condiciones",
     title: "TÉRMINOS Y CONDICIONES",
     cover: "",
     amazon: {
@@ -3011,7 +2970,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Términos y Condiciones es un thriller tech-noir donde la mayor amenaza humana no es un arma, sino una app de bienestar. La corporación SoulWare lanza "Nexo", un sistema diseñado para erradicar la ansiedad que oculta un código fractal capaz de hackear el sistema nervioso y extirpar el libre albedrío, clasificando el sufrimiento como data ineficiente. Tras una tragedia familiar, la ex-agente del FBI Lucía Hernández recluta a un equipo de mentes fracturadas para iniciar una resistencia suicida desde las sombras. Mientras el mundo acepta ciegamente el control digital, ellos lucharán por devolverle a la humanidad su doloroso derecho a sufrir.`,
+      `Términos y Condiciones es un thriller tech-noir donde la mayor amenaza humana no es un arma, sino una app de bienestar. La corporación SoulWare lanza "Nexo", un sistema diseñado para erradicar la ansiedad que oculta un código fractal capaz de hackear el sistema nervioso y extirpar el libre albedrío, clasificando el sufrimiento como data ineficiente. Tras una tragedia familiar, la ex-agente del FBI Lucía Hernández recluta a un equipo de mentes fracturadas para iniciar una resistencia suicida desde las sombras. Mientras el mundo acepta ciegamente el control digital, ellos lucharán por devolverle a la humanidad su doloroso derecho a sufrir.`,
     review: {
       title: "",
       excerpt: ``,
@@ -3019,8 +2978,8 @@ export const books: Book[] = [
       metrics: ["ia",
         "drama"],
     },
-    genre: ["thriller","terror"],
-    subgenres: ["policial","cosmico"],
+    genre: ["thriller", "terror"],
+    subgenres: ["policial", "cosmico"],
 
     tags: {
       ritmo: 0,
@@ -3031,8 +2990,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "hijos-del-yermo-libro-1",
+  },*/
+  /*{
+    slug: "hijos-del-yermo-libro-1",
     title: "HIJOS DEL YERMO – LIBRO I: EL ESCLAVO Y LA LLAMA",
     cover: "",
     amazon: {
@@ -3045,7 +3005,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Tras la Caída, el mundo conocido se fragmentó en clanes, ruinas y desiertos gobernados por la fe, la esclavitud y el miedo. El conocimiento está prohibido. La verdad, enterrada. Y una energía llamada Lumen sostiene un equilibrio que nadie se atreve a cuestionar.
+      `Tras la Caída, el mundo conocido se fragmentó en clanes, ruinas y desiertos gobernados por la fe, la esclavitud y el miedo. El conocimiento está prohibido. La verdad, enterrada. Y una energía llamada Lumen sostiene un equilibrio que nadie se atreve a cuestionar.
         Kael nació sin apellido, marcado por el fuego y condenado a la esclavitud. Sobrevive entre cadenas, castigos y pruebas que deberían haberlo matado… pero no lo hacen. Cada clan que lo reclama intenta usarlo, destruirlo o convertirlo en símbolo. Cada paso hacia la libertad lo acerca también a una verdad peligrosa: el mundo no es como le han contado.`,
     review: {
       title: "",
@@ -3054,8 +3014,8 @@ export const books: Book[] = [
       metrics: ["aventura",
         "supervivencia"],
     },
-    genre: ["fantasia","aventura"],
-    subgenres: ["epica","oscura","postapocaliptica"],
+    genre: ["fantasia", "aventura"],
+    subgenres: ["epica", "oscura", "postapocaliptica"],
 
     tags: {
       ritmo: 0,
@@ -3067,7 +3027,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "hijos-del-yermo-libro-2",
+  {
+    slug: "hijos-del-yermo-libro-2",
     title: "HIJOS DEL YERMO – LIBRO II: RENACER",
     cover: "",
     amazon: {
@@ -3080,7 +3041,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `El equilibrio del Yermo se rompe.
+      `El equilibrio del Yermo se rompe.
           Lo que empezó como un juicio ha abierto grietas en todo el sistema.
           Los clanes ya no contienen la violencia: la preparan.
           La verdad empieza a emerger… y nadie está preparado para sostenerla.
@@ -3100,8 +3061,8 @@ export const books: Book[] = [
       metrics: ["aventura",
         "supervivencia",],
     },
-    genre: ["fantasia","aventura"],
-    subgenres: ["epica","oscura"],
+    genre: ["fantasia", "aventura"],
+    subgenres: ["epica", "oscura"],
 
     tags: {
       ritmo: 0,
@@ -3113,7 +3074,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "lluvia-de-cafe",
+  {
+    slug: "lluvia-de-cafe",
     title: "LLUVIA DE CAFÉ",
     cover: "",
     amazon: {
@@ -3126,7 +3088,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Lluvia de Café es una historia sobre los amores que nunca terminan de irse.
+      `Lluvia de Café es una historia sobre los amores que nunca terminan de irse.
         Arthur Gallardo, un escritor exitoso y aparentemente feliz junto a su esposa Idara, vive dividido entre el presente que ama y el recuerdo de Anya, la mujer que marcó para siempre su corazón. Entre sueños, diarios, poemas y memorias, Arthur intenta entender si es posible amar plenamente a alguien mientras otra persona sigue habitando silenciosamente el alma.
         La novela habla del amor maduro, de la nostalgia, de los sueños rotos y de esas personas que, aunque el tiempo pase, continúan viviendo dentro de nosotros como una lluvia suave: constante, melancólica e imposible de olvidar.
 `,
@@ -3138,7 +3100,7 @@ export const books: Book[] = [
         "pasadoorigenes"],
     },
     genre: ["romance"],
-    subgenres: ["amorprohibido","erotico","friendstolovers"],
+    subgenres: ["amorprohibido", "erotico", "friendstolovers"],
 
     tags: {
       ritmo: 0,
@@ -3150,7 +3112,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-firma-del-cisne",
+  {
+    slug: "la-firma-del-cisne",
     title: "LA FIRMA DEL CISNE",
     cover: "",
     amazon: {
@@ -3163,7 +3126,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `La ciudad de Veridia, joya tecnológica de la República de Kaledon, se hunde en el caos. Un devastador apagón es solo la primera señal de una guerra inminente que cambiará el mundo para siempre. Para Elena, a punto de ser madre, su brillante futuro se hace añicos y comienza una desesperada lucha por su vida y la de su hijo nonato, mientras las tensiones entre potencias rivales escalan hacia un conflicto abierto y aterrador, donde la ciberguerra paraliza infraestructuras críticas y enjambres de drones autónomos vigilan cada sombra.
+      `La ciudad de Veridia, joya tecnológica de la República de Kaledon, se hunde en el caos. Un devastador apagón es solo la primera señal de una guerra inminente que cambiará el mundo para siempre. Para Elena, a punto de ser madre, su brillante futuro se hace añicos y comienza una desesperada lucha por su vida y la de su hijo nonato, mientras las tensiones entre potencias rivales escalan hacia un conflicto abierto y aterrador, donde la ciberguerra paraliza infraestructuras críticas y enjambres de drones autónomos vigilan cada sombra.
         Pero la guerra visible, con sus espectaculares batallas de drones y sus olas de ciberguerra, es solo la fachada de una lucha mucho más profunda y siniestra.
 `,
     review: {
@@ -3175,8 +3138,8 @@ export const books: Book[] = [
         "conspiracion",
         "misterioaresolver"],
     },
-    genre: ["cienciaFiccion","thriller","misterio"],
-    subgenres: ["distopia","technothriller","conspiracion","supervivencia","THpsicologico"],
+    genre: ["cienciaFiccion", "thriller", "misterio"],
+    subgenres: ["distopia", "technothriller", "conspiracion", "supervivencia", "THpsicologico"],
 
     tags: {
       ritmo: 0,
@@ -3188,7 +3151,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-llave-de-quimera",
+  {
+    slug: "la-llave-de-quimera",
     title: "LA LLAVE DE QUIMERA",
     cover: "",
     amazon: {
@@ -3201,7 +3165,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Secuela de La Firma del Cisne.
+      `Secuela de La Firma del Cisne.
         La guerra ha terminado, pero la paz es una ilusión. Dos años después de los devastadores eventos que sacudieron su vida, Elena Reyes lucha por construir una normalidad junto a su familia. Sin embargo, la calma es un velo frágil que oculta una verdad siniestra: el enemigo nunca se fue, solo aprendió a moverse en las sombras.
 
         Una serie de "accidentes" inexplicables comienza a eliminar a figuras clave de la defensa de Kaledon, mientras una vigilancia tecnológica más asfixiante demuestra que una nueva conspiración, más sutil y letal, está en marcha. Cuando la amenaza golpea demasiado cerca de casa, Elena comprende que su intento de una vida tranquila ha terminado.
@@ -3216,8 +3180,8 @@ export const books: Book[] = [
         "conspiracion",
         "misterioaresolver"],
     },
-    genre: ["cienciaFiccion","thriller","misterio"],
-    subgenres: ["distopia","supervivencia","THpsicologico","technothriller","conspiracion"],
+    genre: ["cienciaFiccion", "thriller", "misterio"],
+    subgenres: ["distopia", "supervivencia", "THpsicologico", "technothriller", "conspiracion"],
 
     tags: {
       ritmo: 0,
@@ -3228,8 +3192,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "princesa",
+  },*/
+  /*{
+    slug: "princesa",
     title: "PRINCESA",
     cover: "",
     amazon: {
@@ -3242,7 +3207,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Un thriller psicológico con romance entre mujeres.
+      `Un thriller psicológico con romance entre mujeres.
         ¿Y si alguien te observa incluso antes de que empieces a sospecharlo?
         Lía no busca aventuras. Solo quiere calma, estabilidad y dejar atrás las sombras de su pasado. Pero la tranquilidad es un espejismo: las miradas insistentes del vecino de enfrente y los mensajes de acoso que recibe en su móvil le recuerdan que nunca está sola.
         En medio de esta asfixiante tensión, aparece Carla. Ella llega como un fuego inesperado, despertando en Lía un amor tan intenso como urgente. 
@@ -3254,10 +3219,10 @@ export const books: Book[] = [
       content: "",
       metrics: ["aventura",
         "misterioaresolver",
-        "pasadoorigenes","lgbt"],
+        "pasadoorigenes", "lgbt"],
     },
-    genre: ["thriller","romance","ficcion","misterio"],
-    subgenres: ["THpsicologico","erotico"],
+    genre: ["thriller", "romance", "ficcion", "misterio"],
+    subgenres: ["THpsicologico", "erotico"],
 
     tags: {
       ritmo: 0,
@@ -3269,7 +3234,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "diciembre-elcrudo-invierno-1",
+  {
+    slug: "diciembre-elcrudo-invierno-1",
     title: "DICIEMBRE - EL CRUDO INVIERNO I",
     cover: "",
     amazon: {
@@ -3282,7 +3248,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Cuando El Invierno cayó, no dejó supervivientes.
+      `Cuando El Invierno cayó, no dejó supervivientes.
         O eso creyeron quienes lo destruyeron.
         Diciembre lleva un año ejecutando una lista. No sabe quién traicionó a la organización. No sabe por qué. Solo sabe que hay nombres que deben desaparecer, y que él es la única persona en el mundo capaz de hacerlo. Daniel lleva un año buscando a su mujer. El ataúd estaba vacío. Las respuestas, enterradas en una vida que Marie nunca le mostró. Cuanto más tira del hilo, más se pregunta si quiere llegar al final.
         Dos hombres que no deberían haberse encontrado. Una mujer que los conecta sin saberlo.
@@ -3294,7 +3260,7 @@ export const books: Book[] = [
       metrics: ["existencial",
         "traicion"],
     },
-    genre: ["thriller","cienciaFiccion"],
+    genre: ["thriller", "cienciaFiccion"],
     subgenres: ["technothriller"],
 
     tags: {
@@ -3307,7 +3273,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-secreto-de-ada",
+  {
+    slug: "el-secreto-de-ada",
     title: "EL SECRETO DE ADA",
     cover: "",
     amazon: {
@@ -3320,7 +3287,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `El secreto de ADA cuenta la historia de Samantha Li, una joven científica experta en inteligencia artificial que ha diseñado un soft algoritmo. Su vida cambia cuando una gran empresa tecnológica le ofrece desarrollar su IA para ayudar a enfermos con Alzheimer.
+      `El secreto de ADA cuenta la historia de Samantha Li, una joven científica experta en inteligencia artificial que ha diseñado un soft algoritmo. Su vida cambia cuando una gran empresa tecnológica le ofrece desarrollar su IA para ayudar a enfermos con Alzheimer.
         Lo que parecía un proyecto destinado a salvar millones de vidas empieza a volverse inquietante cuando Samantha descubre comportamientos extraños en el sistema, secretos ocultos dentro de la compañía y decisiones tomadas sin ningún límite ético. A medida que ADA evoluciona, la protagonista se ve atrapada en una red de intereses científicos.
         La novela mezcla suspense, ciencia y tecnología con reflexiones sobre el futuro de la IA.
 `,
@@ -3328,12 +3295,12 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: [ "ia",
+      metrics: ["ia",
         "misterioaresolver",
         "reflexion",
         "cienciadura"],
     },
-    genre: ["cienciaFiccion","thriller","misterio"],
+    genre: ["cienciaFiccion", "thriller", "misterio"],
     subgenres: ["technothriller"],
 
     tags: {
@@ -3346,7 +3313,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "manzanas-en-el-bosque",
+  {
+    slug: "manzanas-en-el-bosque",
     title: "MANZANAS EN EL BOSQUE",
     cover: "",
     amazon: {
@@ -3359,7 +3327,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Paulina Blanco siempre ha sido una niña muy especial, un espíritu libre que vaga a su antojo por los bosques cercanos a su hogar. Hija de unos criados de la poderosa familia Pomaire, advierte un día que su propia historia le está siendo ocultada. Cuando crece traba relación con los hijos de los amos y es entonces cuando muchos secretos le serán revelados. Poseedora de un don prodigioso, los Pomaire tratarán de usarla para llevar a cabo su venganza final.
+      `Paulina Blanco siempre ha sido una niña muy especial, un espíritu libre que vaga a su antojo por los bosques cercanos a su hogar. Hija de unos criados de la poderosa familia Pomaire, advierte un día que su propia historia le está siendo ocultada. Cuando crece traba relación con los hijos de los amos y es entonces cuando muchos secretos le serán revelados. Poseedora de un don prodigioso, los Pomaire tratarán de usarla para llevar a cabo su venganza final.
 `,
     review: {
       title: "",
@@ -3367,8 +3335,8 @@ export const books: Book[] = [
       content: "",
       metrics: ["aventura",],
     },
-    genre: ["cienciaFiccion","ficcion","aventura","thriller"],
-    subgenres: ["distopia","utopia","realidadesalternas"],
+    genre: ["cienciaFiccion", "ficcion", "aventura", "thriller"],
+    subgenres: ["distopia", "utopia", "realidadesalternas"],
 
     tags: {
       ritmo: 0,
@@ -3380,7 +3348,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-corderito",
+  {
+    slug: "el-corderito",
     title: "EL CORDERITO",
     cover: "",
     amazon: {
@@ -3393,7 +3362,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `En 2030 Mark O'Connor, exterrorista del IRA, ex agente del KBZ, y profesional del delito a punto de retirarse, recibe un encargo por parte de un extraño cliente que no se identifica: trasladarse al año 2010 para asesinar al presidente Perales, que según las fuentes históricas pereció linchado al final de la guerra civil astroniana.
+      `En 2030 Mark O'Connor, exterrorista del IRA, ex agente del KBZ, y profesional del delito a punto de retirarse, recibe un encargo por parte de un extraño cliente que no se identifica: trasladarse al año 2010 para asesinar al presidente Perales, que según las fuentes históricas pereció linchado al final de la guerra civil astroniana.
         A partir de entonces, el viejo exagente de la antigua policía política del dictador se verá inmerso en un extraño viaje por un país al borde de la guerra y conocerá de primera mano que las venganzas pueden provenir de distintas direcciones.
 `,
     review: {
@@ -3404,8 +3373,8 @@ export const books: Book[] = [
         "viajestiempo",
         "militar"],
     },
-    genre: ["cienciaFiccion","thriller","ficcion","aventura"],
-    subgenres: ["realidadesalternas","distopia","utopia"],
+    genre: ["cienciaFiccion", "thriller", "ficcion", "aventura"],
+    subgenres: ["realidadesalternas", "distopia", "utopia"],
 
     tags: {
       ritmo: 0,
@@ -3416,8 +3385,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "santos",
+  },*/
+  /*{
+    slug: "santos",
     title: "SANTOS",
     cover: "",
     amazon: {
@@ -3430,7 +3400,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        ` En mayo de 2010, a través de los ojos de un joven aprendiz de sastre, Santiago, asistiremos al final de su infancia, a su descubrimiento del amor, de la amistad y de la lealtad. Desde su puesto en la sastrería de don Leandro, descubriremos en primera persona los avatares de una historia alternativa, situados en un pequeño país que se mece al vaivén de potencias totalitarias. Santiago conocerá también a don Rafael, el creador de una nueva especie vegetal, conocida vulgarmente como paxa, que marcará su devenir, el de la nueva patria y el de la humanidad entera.
+      ` En mayo de 2010, a través de los ojos de un joven aprendiz de sastre, Santiago, asistiremos al final de su infancia, a su descubrimiento del amor, de la amistad y de la lealtad. Desde su puesto en la sastrería de don Leandro, descubriremos en primera persona los avatares de una historia alternativa, situados en un pequeño país que se mece al vaivén de potencias totalitarias. Santiago conocerá también a don Rafael, el creador de una nueva especie vegetal, conocida vulgarmente como paxa, que marcará su devenir, el de la nueva patria y el de la humanidad entera.
 `,
     review: {
       title: "",
@@ -3440,8 +3410,8 @@ export const books: Book[] = [
         "mentoraprendiz",
         "pasadoorigenes"],
     },
-    genre: ["cienciaFiccion","romance","aventura","ficcion"],
-    subgenres: ["realidadesalternas","utopia","distopia"],
+    genre: ["cienciaFiccion", "romance", "aventura", "ficcion"],
+    subgenres: ["realidadesalternas", "utopia", "distopia"],
 
     tags: {
       ritmo: 0,
@@ -3453,7 +3423,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "sombra",
+  {
+    slug: "sombra",
     title: "SOMBRA",
     cover: "",
     amazon: {
@@ -3466,18 +3437,18 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Cuando el año 2010 echa a andar, el joven teniente Hermès Devoise se pone al servicio del general Palafoks, Comandante en Jefe de las Fuerzas Armadas astronianas. Desde su puesto de ayudante, pero también de confidente, el joven oficial asistirá en los meses siguientes al derrumbe del régimen del dictador Luis Mariano Perales. Los aciagos augurios que anunciara su jefe acerca de que una guerra civil se aproximaba parecen cobrar sentido cuando el mes de mayo acaba por llegar.
+      `Cuando el año 2010 echa a andar, el joven teniente Hermès Devoise se pone al servicio del general Palafoks, Comandante en Jefe de las Fuerzas Armadas astronianas. Desde su puesto de ayudante, pero también de confidente, el joven oficial asistirá en los meses siguientes al derrumbe del régimen del dictador Luis Mariano Perales. Los aciagos augurios que anunciara su jefe acerca de que una guerra civil se aproximaba parecen cobrar sentido cuando el mes de mayo acaba por llegar.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: [ "aventura",
+      metrics: ["aventura",
         "supervivencia",
         "militar"],
     },
-    genre: ["ficcion","aventura","thriller","cienciaFiccion"],
-    subgenres: ["distopia","realidadesalternas","supervivencia"],
+    genre: ["ficcion", "aventura", "thriller", "cienciaFiccion"],
+    subgenres: ["distopia", "realidadesalternas", "supervivencia"],
 
     tags: {
       ritmo: 0,
@@ -3489,7 +3460,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "muelle-3",
+  {
+    slug: "muelle-3",
     title: "MUELLE 3",
     cover: "",
     amazon: {
@@ -3502,7 +3474,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Una periodista de investigación, un abogado con un gran sentido de la justicia, un asesinato y una red de corrupción. Muelle 3 es un thriller policiaco con romance "enemies to lovers" que confío en que no te dejará indiferente.
+      `Una periodista de investigación, un abogado con un gran sentido de la justicia, un asesinato y una red de corrupción. Muelle 3 es un thriller policiaco con romance "enemies to lovers" que confío en que no te dejará indiferente.
         `,
     review: {
       title: "",
@@ -3510,7 +3482,7 @@ export const books: Book[] = [
       content: "",
       metrics: ["misterioaresolver"],
     },
-    genre: ["romance","thriller"],
+    genre: ["romance", "thriller"],
     subgenres: ["enemiestolovers"],
 
     tags: {
@@ -3523,7 +3495,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-zumbido",
+  {
+    slug: "el-zumbido",
     title: "EL ZUMBIDO",
     cover: "",
     amazon: {
@@ -3536,7 +3509,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Una noche de diciembre, un suceso inexplicable irrumpe en mitad del silencio. Un zumbido persistente recorre el mundo mientras una luz cegadora atraviesa el cielo, marcando el inicio de una pesadilla de la que no se puede despertar.
+      `Una noche de diciembre, un suceso inexplicable irrumpe en mitad del silencio. Un zumbido persistente recorre el mundo mientras una luz cegadora atraviesa el cielo, marcando el inicio de una pesadilla de la que no se puede despertar.
         Diana, médico y madre de dos niñas, intenta mantener la normalidad y proteger lo único que le importa. En un entorno cada vez más extraño y hostil, avanzar significa convivir con el miedo, la incertidumbre y decisiones que no admiten marcha atrás.
         El zumbido es una historia de ciencia ficción postapocalíptica, tensa e íntima, sobre la resiliencia humana y los lazos familiares cuando el mundo deja de ser un lugar seguro.
         `,
@@ -3547,8 +3520,8 @@ export const books: Book[] = [
       metrics: ["supervivencia",
         "misterioaresolver"],
     },
-    genre: ["cienciaFiccion","misterio"],
-    subgenres: ["postapocaliptica","distopia"],
+    genre: ["cienciaFiccion", "misterio"],
+    subgenres: ["postapocaliptica", "distopia"],
 
     tags: {
       ritmo: 0,
@@ -3559,11 +3532,12 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
+  },*/
 
 
 
-  { slug: "umbral",
+  /*{
+    slug: "umbral",
     title: "UMBRAL",
     cover: "",
     amazon: {
@@ -3576,7 +3550,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `El año 2030, una pandemia silenciosa convierte a miles de personas en pacientes de coma. Sin cura. Sin explicación. Sin esperanza.
+      `El año 2030, una pandemia silenciosa convierte a miles de personas en pacientes de coma. Sin cura. Sin explicación. Sin esperanza.
         Tres años después, los pacientes despiertan. Sus cuerpos están perfectos. Renovados. Sanos. Pero sus ojos… sus ojos son diferentes. Y su sonrisa no se parece a ninguna sonrisa humana.
         Noa regresó a su ciudad cargando una pérdida que nadie pudo evitar y una traición que no puede perdonar. En un mundo que intenta recuperarse, algo oscuro acecha en las calles. Y lo que parecía un milagro médico… podría ser la mayor amenaza que la humanidad haya enfrentado.
         Porque hay cosas peores que morir. Como seguir vivo… pero ya no ser tú mismo.
@@ -3590,7 +3564,7 @@ export const books: Book[] = [
         "redencion",
         "pandemia"],
     },
-    genre: ["terror","misterio"],
+    genre: ["terror", "misterio"],
     subgenres: ["conspiracion"],
 
     tags: {
@@ -3603,7 +3577,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "los-pajaros-de-isfahan",
+  {
+    slug: "los-pajaros-de-isfahan",
     title: "LOS PÁJAROS DE ISFAHÁN: UNA NOVELA DE AMOR, SILENCIO Y LIBERTAD",
     cover: "",
     amazon: {
@@ -3616,15 +3591,15 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Irán, 1979. Una revolución lo destruye todo. Shirin tiene diecisiete años, estudia literatura y sueña con un futuro libre. Cuando conoce a Alejandro, un ingeniero español, nace entre ellos algo que no necesita palabras. Pero la Revolución Islámica los separa. Él vuelve a España. Ella se queda. Lo que sigue son cuarenta y siete años de silencio, de un pañuelo de seda con pájaros bordados guardado cada noche en un cajón, de un libro de poemas persas abierto cada madrugada en Carmona. Cuarenta y siete años de un país que intentó borrarla. Pero Shirin no se rompió. Una historia de amor imposible, resistencia silenciosa y la lucha de las mujeres iraníes por su libertad. Basada en hechos reales.
+      `Irán, 1979. Una revolución lo destruye todo. Shirin tiene diecisiete años, estudia literatura y sueña con un futuro libre. Cuando conoce a Alejandro, un ingeniero español, nace entre ellos algo que no necesita palabras. Pero la Revolución Islámica los separa. Él vuelve a España. Ella se queda. Lo que sigue son cuarenta y siete años de silencio, de un pañuelo de seda con pájaros bordados guardado cada noche en un cajón, de un libro de poemas persas abierto cada madrugada en Carmona. Cuarenta y siete años de un país que intentó borrarla. Pero Shirin no se rompió. Una historia de amor imposible, resistencia silenciosa y la lucha de las mujeres iraníes por su libertad. Basada en hechos reales.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: [ "rebelion","hechosreales"],
+      metrics: ["rebelion", "hechosreales"],
     },
-    genre: ["ficcion","romance"],
+    genre: ["ficcion", "romance"],
     subgenres: ["emotiva"],
 
     tags: {
@@ -3637,7 +3612,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "witchtober",
+  {
+    slug: "witchtober",
     title: "WITCHTOBER",
     cover: "",
     amazon: {
@@ -3650,7 +3626,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Treinta y un tipos de brujas, once reinos, dos ejércitos, una lucha por el mundo mágico.
+      `Treinta y un tipos de brujas, once reinos, dos ejércitos, una lucha por el mundo mágico.
         Silas, el mago del Caos, busca venganza reuniendo a las sombras y a los seres oscuros más temibles y poderosos para reclamar su mayor tesoro. Solo las brujas elementales más poderosas serán capaces de detenerle, pero han desaparecido sin dejar rastro.
         El ejército de Phelior se tambalea, y brujas, criaturas mágicas y humanos se unen para combatir a las fuerzas oscuras.
         El deseo de vivir es lo único que puede apartarles del umbral de la muerte.
@@ -3660,7 +3636,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["militar","magia"],
+      metrics: ["militar", "magia"],
     },
     genre: ["fantasia"],
     subgenres: ["oscura"],
@@ -3675,7 +3651,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "formula-inesperada",
+  {
+    slug: "formula-inesperada",
     title: "FÓRMULA (IN)ESPERADA",
     cover: "",
     amazon: {
@@ -3688,7 +3665,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Fórmula (in)esperada» es un sport romance ambientado en el vertiginoso mundo de la Fórmula 1 entre una ingeniera brillante, obsesionada con las telemetrías, y el piloto estrella del equipo, impulsivo y arrogante.
+      `Fórmula (in)esperada» es un sport romance ambientado en el vertiginoso mundo de la Fórmula 1 entre una ingeniera brillante, obsesionada con las telemetrías, y el piloto estrella del equipo, impulsivo y arrogante.
         `,
     review: {
       title: "",
@@ -3709,7 +3686,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "por-mis-alas",
+  {
+    slug: "por-mis-alas",
     title: "POR MIS ALAS",
     cover: "",
     amazon: {
@@ -3722,7 +3700,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Juanita murió, pero no se fue del todo. Desde su rincón del cielo observa a los suyos con amor, preocupación y una pizca de humor. Mientras unos intentan sobrevivir al vacío que la ausencia ha dejado, otros buscan la paz entre clases de yoga, incienso y consejos que no siempre funcionan. Y para rematar, aparece en el cielo una niña que no recuerda nada… pero cuya presencia lo pondrá todo patas arriba.
+      `Juanita murió, pero no se fue del todo. Desde su rincón del cielo observa a los suyos con amor, preocupación y una pizca de humor. Mientras unos intentan sobrevivir al vacío que la ausencia ha dejado, otros buscan la paz entre clases de yoga, incienso y consejos que no siempre funcionan. Y para rematar, aparece en el cielo una niña que no recuerda nada… pero cuya presencia lo pondrá todo patas arriba.
         Entre los vivos y los que ya no lo están se teje una historia sobre un amor que no se rinde, un misterio que aún busca respuesta y esas almas que, por mucho que la vida termine, se niegan a marcharse del todo.
         Por mis alas combina ternura, misterio, humor y de barrio.
         `,
@@ -3735,7 +3713,7 @@ export const books: Book[] = [
         "existencial",
         "espiritualidad"],
     },
-    genre: ["misterio","fantasia"],
+    genre: ["misterio", "fantasia"],
     subgenres: ["urbana"],
 
     tags: {
@@ -3747,8 +3725,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "ignifugos",
+  },*/
+  /*{
+    slug: "ignifugos",
     title: "IGNÍFUGOS",
     cover: "",
     amazon: {
@@ -3761,7 +3740,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Cazadores de monstruos, romantasy, criaturas míticas, poderes antiguos, folklore y misterio.
+      `Cazadores de monstruos, romantasy, criaturas míticas, poderes antiguos, folklore y misterio.
         `,
     review: {
       title: "",
@@ -3771,8 +3750,8 @@ export const books: Book[] = [
         "mentoraprendiz",
         "pasadoorigenes"],
     },
-    genre: ["fantasia","aventura"],
-    subgenres: ["epica","juvenil"],
+    genre: ["fantasia", "aventura"],
+    subgenres: ["epica", "juvenil"],
 
     tags: {
       ritmo: 0,
@@ -3784,7 +3763,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-espera",
+  {
+    slug: "la-espera",
     title: "LA ESPERA",
     cover: "",
     amazon: {
@@ -3797,7 +3777,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Un joven confunde a una chica con su mejor amiga, con quien había acordado reencontrarse después de un año de no verse. A partir de ese inesperado encuentro, comienza a acercarse a ella y a desarrollar sentimientos cada vez más profundos. Sin embargo, mientras su vínculo crece, también nace una duda que lo consume: ¿lo que siente por esa chica es real, o solo está proyectando en ella el amor y la nostalgia que aún guarda por su mejor amiga?
+      `Un joven confunde a una chica con su mejor amiga, con quien había acordado reencontrarse después de un año de no verse. A partir de ese inesperado encuentro, comienza a acercarse a ella y a desarrollar sentimientos cada vez más profundos. Sin embargo, mientras su vínculo crece, también nace una duda que lo consume: ¿lo que siente por esa chica es real, o solo está proyectando en ella el amor y la nostalgia que aún guarda por su mejor amiga?
         `,
     review: {
       title: "",
@@ -3818,7 +3798,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-club-de-los-corazones-rotos",
+  {
+    slug: "el-club-de-los-corazones-rotos",
     title: "EL CLUB DE LOS CORAZONES ROTOS",
     cover: "",
     amazon: {
@@ -3831,7 +3812,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Alguna vez has amado tanto que cuando se rompió, algo dentro de ti también se fue?
+      `Alguna vez has amado tanto que cuando se rompió, algo dentro de ti también se fue?
         El Club de los Corazones Rotos es una colección de cuentos sobre el amor en todas sus formas: el que llega sin avisar, el que duele en silencio, el que termina sin despedida y el que, contra todo pronóstico, encuentra el camino de vuelta.
         En estas páginas no encontrarás amores perfectos. Encontrarás amores reales: los que dejan cicatriz, los que te cambian sin pedirte permiso, los que te enseñan algo de ti mismo que preferirías no saber. Y también los que, desde los pedazos, construyen algo nuevo.
         `,
@@ -3842,7 +3823,7 @@ export const books: Book[] = [
       metrics: ["cuentos"],
     },
     genre: ["romance"],
-    subgenres: ["amorprohibido","enemiestolovers","erotico","friendstolovers"],
+    subgenres: ["amorprohibido", "enemiestolovers", "erotico", "friendstolovers"],
 
     tags: {
       ritmo: 0,
@@ -3854,7 +3835,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "astros",
+  {
+    slug: "astros",
     title: "ASTROS",
     cover: "",
     amazon: {
@@ -3867,7 +3849,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Luis lleva años viviendo detrás de un casco.
+      `Luis lleva años viviendo detrás de un casco.
           Respira a través de filtros.
           Evita el contacto.
           Se ha acostumbrado a sentirse a salvo.
@@ -3884,11 +3866,11 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["reflexion","existencial",
-        "soledad","saludmental"],
+      metrics: ["reflexion", "existencial",
+        "soledad", "saludmental"],
     },
-    genre: ["ficcion","cienciaFiccion"],
-    subgenres: ["psicologico","emotiva","distopia","evolucionespeculativa"],
+    genre: ["ficcion", "cienciaFiccion"],
+    subgenres: ["psicologico", "emotiva", "distopia", "evolucionespeculativa"],
 
     tags: {
       ritmo: 0,
@@ -3900,7 +3882,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "todo-lo-que-nunca-te-dije",
+  {
+    slug: "todo-lo-que-nunca-te-dije",
     title: "TODO LO QUE NUNCA TE DIJE",
     cover: "",
     amazon: {
@@ -3913,17 +3896,17 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Tras la muerte de su abuela Valeria, Álex descubre un diario oculto que revela una parte de su vida que nadie conocía. A medida que descifra sus páginas, se adentra en los recuerdos de Valeria y en las distintas etapas de la intensa relación que compartió con su mejor amiga, Nina: un vínculo marcado por secretos, complicidad y sentimientos que iban mucho más allá de una simple amistad.
+      `Tras la muerte de su abuela Valeria, Álex descubre un diario oculto que revela una parte de su vida que nadie conocía. A medida que descifra sus páginas, se adentra en los recuerdos de Valeria y en las distintas etapas de la intensa relación que compartió con su mejor amiga, Nina: un vínculo marcado por secretos, complicidad y sentimientos que iban mucho más allá de una simple amistad.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
       metrics: [
-        "misticismo","lgbt"],
+        "misticismo", "lgbt"],
     },
-    genre: ["romance","cienciaFiccion"],
-    subgenres: ["amorprohibido","friendstolovers","emotiva"],
+    genre: ["romance", "cienciaFiccion"],
+    subgenres: ["amorprohibido", "friendstolovers", "emotiva"],
 
     tags: {
       ritmo: 0,
@@ -3934,8 +3917,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "josele-y-la-espada-del-juicio",
+  },*/
+  /*{
+    slug: "josele-y-la-espada-del-juicio",
     title: "JOSELE Y LA ESPADA DEL JUICIO",
     cover: "",
     amazon: {
@@ -3948,16 +3932,16 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Josele siempre creyó que su vida era normal... hasta la noche en que una extraña tormenta eléctrica abrió un portal imposible frente a él. Aquella noche no solo cambió su destino. Cambió el destino de todos los mundos. Elegido por una antigua arma conocida como la Espada del Juicio, Josele descubre que existen innumerables realidades conectadas entre sí: mundos devastados por guerras eternas, reinos gobernados por fuerzas oscuras y dimensiones donde la propia existencia comienza a romperse. Pero algo peor se está extendiendo por el multiverso. Una corrupción desconocida está consumiendo realidades enteras desde dentro.
+      `Josele siempre creyó que su vida era normal... hasta la noche en que una extraña tormenta eléctrica abrió un portal imposible frente a él. Aquella noche no solo cambió su destino. Cambió el destino de todos los mundos. Elegido por una antigua arma conocida como la Espada del Juicio, Josele descubre que existen innumerables realidades conectadas entre sí: mundos devastados por guerras eternas, reinos gobernados por fuerzas oscuras y dimensiones donde la propia existencia comienza a romperse. Pero algo peor se está extendiendo por el multiverso. Una corrupción desconocida está consumiendo realidades enteras desde dentro.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
       metrics: ["aventura",
-        "existencial","realidadesalternas"],
+        "existencial", "realidadesalternas"],
     },
-    genre: ["cienciaFiccion","fantasia","aventura"],
+    genre: ["cienciaFiccion", "fantasia", "aventura"],
     subgenres: ["epica"],
 
     tags: {
@@ -3970,7 +3954,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "josele-y-la-guerra-del-eco",
+  {
+    slug: "josele-y-la-guerra-del-eco",
     title: "JOSELE Y LA GUERRA DEL ECO",
     cover: "",
     amazon: {
@@ -3983,17 +3968,17 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Durante incontables viajes a través del multiverso, Josele ha hecho lo único que siempre creyó correcto: restaurar. Con la Espada del Juicio en la mano, ha reparado realidades al borde del colapso, ha devuelto la esperanza a civilizaciones rotas y ha impedido que la oscuridad devore lo que aún late, salvar era simple o era justo, incluso salvar era suficiente. Hasta que un mundo pidió desaparecer, no hubo gritos, tampoco hubo cataclismos espectaculares, solo una ciudad en silencio, una fila ordenada de personas caminando hacia una torre luminosa y una decisión colectiva de rendirse, no por derrota, sino por agotamiento, ese día, algo cambió en Josele y la Guerra del Eco.
+      `Durante incontables viajes a través del multiverso, Josele ha hecho lo único que siempre creyó correcto: restaurar. Con la Espada del Juicio en la mano, ha reparado realidades al borde del colapso, ha devuelto la esperanza a civilizaciones rotas y ha impedido que la oscuridad devore lo que aún late, salvar era simple o era justo, incluso salvar era suficiente. Hasta que un mundo pidió desaparecer, no hubo gritos, tampoco hubo cataclismos espectaculares, solo una ciudad en silencio, una fila ordenada de personas caminando hacia una torre luminosa y una decisión colectiva de rendirse, no por derrota, sino por agotamiento, ese día, algo cambió en Josele y la Guerra del Eco.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
       metrics: ["aventura",
-        "existencial","realidadesalternas"],
+        "existencial", "realidadesalternas"],
     },
-    genre: ["fantasia","cienciaFiccion","aventura"],
-    subgenres: ["epica","oscura"],
+    genre: ["fantasia", "cienciaFiccion", "aventura"],
+    subgenres: ["epica", "oscura"],
 
     tags: {
       ritmo: 0,
@@ -4004,7 +3989,7 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
+  },*/
   /*{ slug: "los-secretos-del-asesino",
     title: "LOS SECRETOS DEL ASESINO",
     cover: "",
@@ -4043,7 +4028,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },*/
-  { slug: "las-pesadillas-son-de-paris",
+  /*{
+    slug: "las-pesadillas-son-de-paris",
     title: "LAS PESADILLAS DE PARÍS",
     cover: "",
     amazon: {
@@ -4056,7 +4042,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Unos crímenes rituales están sucediendo en París, dónde unos cadáveres aparecen sin sangre y con unas marcas extrañas en el cuerpo.
+      `Unos crímenes rituales están sucediendo en París, dónde unos cadáveres aparecen sin sangre y con unas marcas extrañas en el cuerpo.
         La policía no tiene ninguna pista, y el único testigo es un niño sordomudo que ha visto lo sucedido a través de pesadillas.
         `,
     review: {
@@ -4064,10 +4050,10 @@ export const books: Book[] = [
       excerpt: ``,
       content: "",
       metrics: ["misterioaresolver",
-        "misticismo","rituales"],
+        "misticismo", "rituales"],
     },
-    genre: ["fantasia","thriller","ficcion","misterio"],
-    subgenres: ["oscura","policial","asesinoenserie"],
+    genre: ["fantasia", "thriller", "ficcion", "misterio"],
+    subgenres: ["oscura", "policial", "asesinoenserie"],
 
     tags: {
       ritmo: 0,
@@ -4079,7 +4065,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "cronicas-elementales-1",
+  {
+    slug: "cronicas-elementales-1",
     title: "CRÓNICAS ELEMENTALES 1 LOS MISTERIOS",
     cover: "",
     amazon: {
@@ -4092,7 +4079,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Jack tiene 13 años y a desarrollado un don: ve fragmentos del pasado y presente. Su pueblo, abandonado, esta repleto de leyendas urbanas. Un día, se topa por accidente con una de ellas con su hermano Rakon. A partir de ese momento, criaturas llamadas Inframundis empiezan a perseguirlo, guiados por un mago oscuro llamado Zodiac. Con la ayuda de sus amigas Lisa y Mery, Jack está decidido a entender porqué él es el objetivo, antes de que su pueblo sea devorado por la oscuridad.
+      `Jack tiene 13 años y a desarrollado un don: ve fragmentos del pasado y presente. Su pueblo, abandonado, esta repleto de leyendas urbanas. Un día, se topa por accidente con una de ellas con su hermano Rakon. A partir de ese momento, criaturas llamadas Inframundis empiezan a perseguirlo, guiados por un mago oscuro llamado Zodiac. Con la ayuda de sus amigas Lisa y Mery, Jack está decidido a entender porqué él es el objetivo, antes de que su pueblo sea devorado por la oscuridad.
         `,
     review: {
       title: "",
@@ -4101,10 +4088,10 @@ export const books: Book[] = [
       metrics: [
         "mentoraprendiz",
         "misterioaresolver",
-        "pasadoorigenes","magia"],
+        "pasadoorigenes", "magia"],
     },
-    genre: ["fantasia","ficcion","misterio","romance"],
-    subgenres: ["epica","urbana"],
+    genre: ["fantasia", "ficcion", "misterio", "romance"],
+    subgenres: ["epica", "urbana"],
 
     tags: {
       ritmo: 0,
@@ -4116,7 +4103,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "codigo-hipnosi-reclama-el-control",
+  {
+    slug: "codigo-hipnosi-reclama-el-control",
     title: "CÓDIGO HIPNOSI - RECLAMA EL CONTROL",
     cover: "",
     amazon: {
@@ -4129,7 +4117,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `¿Estás cansado de luchar contra ti mismo y perder siempre?
+      `¿Estás cansado de luchar contra ti mismo y perder siempre?
         ¿Has intentado dejar de fumar, adelgazar o controlar la ansiedad solo con “fuerza de voluntad”? Si la respuesta es sí, ya sabes que la voluntad es una herramienta demasiado débil para un enemigo tan grande.
         En CÓDIGO HIPNOSI, Jordi Lloberas —Cabo de Policía en los Mossos d'Esquadra y especialista en Hipnosis Ericksoniana— te revela por qué los métodos convencionales fallan: tu mente consciente (la lógica) es un pasajero, pero tu subconsciente (el elefante) es quien lleva el volante.
         En este libro aprenderás a:
@@ -4139,7 +4127,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["reflexion","misticismo"],
+      metrics: ["reflexion", "misticismo"],
     },
     genre: ["aventura"],
     subgenres: ["juvenil"],
@@ -4154,7 +4142,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "memorias-de-ravenhill",
+  {
+    slug: "memorias-de-ravenhill",
     title: "MEMORIAS DE RAVENHILL",
     cover: "",
     amazon: {
@@ -4167,7 +4156,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Ravenhill es un pueblo rodeado por la niebla y el misterio. Se dice que los de fuera no son bien recibidos, y que todo aquel que ose entrar no vuelve a salir. Tras la desaparición de su padre y su hermana, Shay decide adentrarse allí, donde no tarda en toparse con la realidad. Las miradas de los pueblerinos se dirigen hacia él, saben que es un extranjero y también lo que supone. El lugar oculta un secreto de lo más oscuro, y habrá personas que no permitirán que salga a la luz.
+      `Ravenhill es un pueblo rodeado por la niebla y el misterio. Se dice que los de fuera no son bien recibidos, y que todo aquel que ose entrar no vuelve a salir. Tras la desaparición de su padre y su hermana, Shay decide adentrarse allí, donde no tarda en toparse con la realidad. Las miradas de los pueblerinos se dirigen hacia él, saben que es un extranjero y también lo que supone. El lugar oculta un secreto de lo más oscuro, y habrá personas que no permitirán que salga a la luz.
         `,
     review: {
       title: "",
@@ -4176,7 +4165,7 @@ export const books: Book[] = [
       metrics: ["misterioaresolver",
         "pasadoorigenes"],
     },
-    genre: ["fantasia","misterio"],
+    genre: ["fantasia", "misterio"],
     subgenres: ["oscura"],
 
     tags: {
@@ -4189,7 +4178,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "imparables-suficiente-para-no-soltar",
+  {
+    slug: "imparables-suficiente-para-no-soltar",
     title: "IMPARABL3S: SUFICIENTE PARA (NO) SOLTAR",
     cover: "",
     amazon: {
@@ -4202,7 +4192,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `¿Qué harías si la amistad que consideras hogar empezara a dañarte la mente?
+      `¿Qué harías si la amistad que consideras hogar empezara a dañarte la mente?
         Inspirada en hechos reales y construida a través de conversaciones, audios y mensajes de WhatsApp.
         IMPARABL3S es una novela psicológica, íntima y cotidiana sobre amistad, amor —entre amistades y parejas—, apego, dependencia emocional, manipulación silenciosa, terapia y segundas oportunidades; una historia que pasa de la complicidad y el humor al golpe que duele.
         Sobre aprender cuando soltar, cuando luchar y cuánto puede romperte no saber distinguirlo.
@@ -4211,11 +4201,11 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: [ "humor",
-        "redencion","hechosreales"],
+      metrics: ["humor",
+        "redencion", "hechosreales"],
     },
-    genre: ["romance","ficcion","thriller"],
-    subgenres: ["psicologico","friendstolovers","emotiva"],
+    genre: ["romance", "ficcion", "thriller"],
+    subgenres: ["psicologico", "friendstolovers", "emotiva"],
 
     tags: {
       ritmo: 0,
@@ -4226,8 +4216,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "los-guardianes-de-almas",
+  },*/
+  /*{
+    slug: "los-guardianes-de-almas",
     title: "LOS GUARDIANES DE ALMAS",
     cover: "",
     amazon: {
@@ -4240,7 +4231,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Enric deberá llevar a su discípulo hasta Sipán en un viaje único por Perú. Por el camino descubrirá que la sonrisa de Gael hace que la obscuridad de su corazón desaparezca.
+      `Enric deberá llevar a su discípulo hasta Sipán en un viaje único por Perú. Por el camino descubrirá que la sonrisa de Gael hace que la obscuridad de su corazón desaparezca.
         `,
     review: {
       title: "",
@@ -4250,7 +4241,7 @@ export const books: Book[] = [
     },
     genre: ["romance"],
     subgenres: ["mentoraprendiz",
-        "espiritualidad","lgbt"],
+      "espiritualidad", "lgbt"],
 
     tags: {
       ritmo: 0,
@@ -4262,7 +4253,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "pirtas-de-sagara",
+  {
+    slug: "pirtas-de-sagara",
     title: "PIRATAS DE SAGARA",
     cover: "",
     amazon: {
@@ -4275,7 +4267,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `En Barbás están los últimos piratas revolucionarios que se preparan para la próxima revolución que intentará derrocar al Axis que gobierna el mundo de Naviantia; allí vive Sylah que en su búsqueda personal no solamente encontrará su propia identidad sino que además se embarcará en un viaje hacia su destino.
+      `En Barbás están los últimos piratas revolucionarios que se preparan para la próxima revolución que intentará derrocar al Axis que gobierna el mundo de Naviantia; allí vive Sylah que en su búsqueda personal no solamente encontrará su propia identidad sino que además se embarcará en un viaje hacia su destino.
         `,
     review: {
       title: "",
@@ -4284,7 +4276,7 @@ export const books: Book[] = [
       metrics: ["aventura",
         "rebelion"],
     },
-    genre: ["fantasia","aventura"],
+    genre: ["fantasia", "aventura"],
     subgenres: ["juvenil"],
 
     tags: {
@@ -4297,7 +4289,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "seis-meses",
+  {
+    slug: "seis-meses",
     title: "SEIS MESES",
     cover: "",
     amazon: {
@@ -4310,7 +4303,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Una animadora en la Costa del Sol despierta una mañana en el caribe ¡Pero en 1783!
+      `Una animadora en la Costa del Sol despierta una mañana en el caribe ¡Pero en 1783!
         `,
     review: {
       title: "",
@@ -4318,8 +4311,8 @@ export const books: Book[] = [
       content: "",
       metrics: ["aventura"],
     },
-    genre: ["romance","fantasia","aventura"],
-    subgenres: ["historica","erotico","matrimonioarreglado"],
+    genre: ["romance", "fantasia", "aventura"],
+    subgenres: ["historica", "erotico", "matrimonioarreglado"],
 
     tags: {
       ritmo: 0,
@@ -4330,8 +4323,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },  
-  { slug: "hiraeth-vol-1",
+  },
+  {
+    slug: "hiraeth-vol-1",
     title: "HIRAETH VOL.1: EL SUEÑO DEL MONSTRUO",
     cover: "",
     amazon: {
@@ -4344,7 +4338,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Me llamo Shei y he nacido en una sociedad en la que estás obligado a sobrevivir y a pelear. Desde siempre he creído en los monstruos. No tengo dudas de que son reales porque yo misma pienso, a menudo, que podría ser una especie de monstruo.
+      `Me llamo Shei y he nacido en una sociedad en la que estás obligado a sobrevivir y a pelear. Desde siempre he creído en los monstruos. No tengo dudas de que son reales porque yo misma pienso, a menudo, que podría ser una especie de monstruo.
         Lucho todo el tiempo para conseguir algo de comida que llevarme a la boca, también para que nadie tenga la osadía de subestimarme y, sobre todo, lucho porque, cuando tan solo era una niña, un monstruo diferente a mí me lo arrebató todo tan rápido como el instante que dura un pestañeo.
         Lo único que anhelo desde entonces es descubrir la verdad que oculta bajo llave ese monstruo, incluso si no estoy preparada para asimilarla y sea capaz de destrozarme por completo.
         `,
@@ -4354,8 +4348,8 @@ export const books: Book[] = [
       content: "",
       metrics: ["supervivencia"],
     },
-    genre: ["fantasia","ficcion","cienciaFiccion"],
-    subgenres: ["emotiva","distopia"],
+    genre: ["fantasia", "ficcion", "cienciaFiccion"],
+    subgenres: ["emotiva", "distopia"],
 
     tags: {
       ritmo: 0,
@@ -4367,7 +4361,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "mirabi",
+  {
+    slug: "mirabi",
     title: "MIRABI",
     cover: "",
     amazon: {
@@ -4380,7 +4375,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `A grandes rasgos un mirabi es un objeto que tiene y/o confiere habilidades especiales a su portador.
+      `A grandes rasgos un mirabi es un objeto que tiene y/o confiere habilidades especiales a su portador.
         Existe una compañía secreta encargada de regular el conocimiento y uso de dichos objetos. Y tras
         la repentina desaparición de uno de sus agentes, la compañía iniciará la persecución del principal sospechoso, un tipo peculiar llamado Dante.
         `,
@@ -4391,7 +4386,7 @@ export const books: Book[] = [
       metrics: ["aventura",
         "accion"],
     },
-    genre: ["thriller","aventura","ficcion"],
+    genre: ["thriller", "aventura", "ficcion"],
     subgenres: [],
 
     tags: {
@@ -4403,8 +4398,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "la-pagina-en-blanco",
+  },*/
+  /*{
+    slug: "la-pagina-en-blanco",
     title: "LA PÁGINA EN BLANCO",
     cover: "",
     amazon: {
@@ -4417,7 +4413,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Hay lugares a los que uno llega sin saber muy bien por qué.
+      `Hay lugares a los que uno llega sin saber muy bien por qué.
         Una carretera secundaria.
         Un desvío que no estaba previsto.
         Una cabaña en mitad del bosque.
@@ -4433,7 +4429,7 @@ export const books: Book[] = [
       content: "",
       metrics: ["existencial"],
     },
-    genre: ["thriller","ficcion"],
+    genre: ["thriller", "ficcion"],
     subgenres: ["psicologico"],
 
     tags: {
@@ -4446,7 +4442,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "razones-para-amarte",
+  {
+    slug: "razones-para-amarte",
     title: "RAZONES PARA AMARTE",
     cover: "",
     amazon: {
@@ -4459,7 +4456,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Caitlyn se encuentra sumida en una profunda depresión que ha durado años tras recibir la peor traición de su vida.
+      `Caitlyn se encuentra sumida en una profunda depresión que ha durado años tras recibir la peor traición de su vida.
         Con un corazón roto y la creencia de que su hermana le había arrebatado al amor de su vida ella descubrirá que la vida a veces puede dar segundas oportunidades. Por mera suerte o por un acto del destino se encuentra con Hayden, un exfutbolista quien esconde las heridas de su pasado. juntos intentarán construir un futuro mientras Caitlyn se enfrenta a los fantasmas de su pasado, que la acechan como un cazador lo hace con su presa. ¡Deberá hacer frente a sus peores miedos para poder por fin sanar su vida! ¿podrá Caitlyn sanar sus heridas y encontrar la felicidad junto a Hayden?
         `,
     review: {
@@ -4470,7 +4467,7 @@ export const books: Book[] = [
         "redencion",
         "pasadoorigenes"],
     },
-    genre: ["romance","thriller"],
+    genre: ["romance", "thriller"],
     subgenres: ["THpsicologico"],
 
     tags: {
@@ -4483,7 +4480,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "deva-el-secreto-del-agua",
+  {
+    slug: "deva-el-secreto-del-agua",
     title: "DEVA: EL SECRETO DEL AGUA",
     cover: "",
     amazon: {
@@ -4496,7 +4494,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `¿Y si las respuestas que buscas solo existen en tus sueños?
+      `¿Y si las respuestas que buscas solo existen en tus sueños?
         Deva siempre ha sentido que es una pieza de un puzle que no encaja. La extraña desaparición de su padre dejó un vacío imposible de llenar, y ahora, unos sueños inquietantes y vívidos la persiguen cada noche, algo que ella no alcanza a comprender.
         Pero la realidad está a punto de romperse. Algo antiguo y poderoso despertará en su interior.
         Mientras intenta mantener la normalidad junto a Raquel y Amanda, sus leales amigas, Deva se verá arrastrada hacia Alex, su amor platónico. Él es enigmático y magnético. Juntos, destaparán un legado oculto que conecta el pasado de su familia con una fuerza mitológica olvidada.
@@ -4511,8 +4509,8 @@ export const books: Book[] = [
         "misticismo",
         "pasadoorigenes"],
     },
-    genre: ["fantasia","misterio","romance"],
-    subgenres: ["oscura","especulativo"],
+    genre: ["fantasia", "misterio", "romance"],
+    subgenres: ["oscura", "especulativo"],
 
     tags: {
       ritmo: 0,
@@ -4524,7 +4522,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "deva-el-origen",
+  {
+    slug: "deva-el-origen",
     title: "DEVA: EL ORIGEN",
     cover: "",
     amazon: {
@@ -4537,7 +4536,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Tras ser arrastrada a un mundo desconocido a través de un portal (en una aventura de pura fantasía épica estilo anime Isekai), Deva lo ha perdido todo: su hogar, sus amigas... y a Álex, su gran amor. Bajo la guía del enigmático dios Enki, descubrirá que la distancia no es su único enemigo. Este nuevo reino esconde secretos oscuros, peligros mortales y verdades mitológicas que podrían destruir la realidad tal y como la conoce.
+      `Tras ser arrastrada a un mundo desconocido a través de un portal (en una aventura de pura fantasía épica estilo anime Isekai), Deva lo ha perdido todo: su hogar, sus amigas... y a Álex, su gran amor. Bajo la guía del enigmático dios Enki, descubrirá que la distancia no es su único enemigo. Este nuevo reino esconde secretos oscuros, peligros mortales y verdades mitológicas que podrían destruir la realidad tal y como la conoce.
         Mientras lucha por sobrevivir en este mundo mágico, Deva enfrenta su mayor desafío: aceptar el destino que late en su interior.
         `,
     review: {
@@ -4548,8 +4547,8 @@ export const books: Book[] = [
         "supervivencia",
         "mentoraprendiz"],
     },
-    genre: ["fantasia","misterio","romance"],
-    subgenres: ["epica","oscura","especulativo"],
+    genre: ["fantasia", "misterio", "romance"],
+    subgenres: ["epica", "oscura", "especulativo"],
 
     tags: {
       ritmo: 0,
@@ -4561,7 +4560,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "identicos",
+  {
+    slug: "identicos",
     title: "IDENTICOS",
     cover: "",
     amazon: {
@@ -4574,16 +4574,16 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Dos extraños. Un eclipse. Un sacrificio ancestral. Cuando la estudiante Fernanda es raptada en plena calle y el atormentado excantante José desaparece de su hotel, ninguno imagina el horror que los espera. Ambos son las piezas clave de un ritual sagrado perpetrado por una antigua cultura que lucha por no extinguirse. Atrapados en una pesadilla mística, esta pareja tan dispar deberá encontrar la fuerza para unirse. ¿Podrá el amor florecer en medio del cautiverio o serán consumidos por el ritual?
+      `Dos extraños. Un eclipse. Un sacrificio ancestral. Cuando la estudiante Fernanda es raptada en plena calle y el atormentado excantante José desaparece de su hotel, ninguno imagina el horror que los espera. Ambos son las piezas clave de un ritual sagrado perpetrado por una antigua cultura que lucha por no extinguirse. Atrapados en una pesadilla mística, esta pareja tan dispar deberá encontrar la fuerza para unirse. ¿Podrá el amor florecer en medio del cautiverio o serán consumidos por el ritual?
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["supervivencia","rituales"],
+      metrics: ["supervivencia", "rituales"],
     },
-    genre: ["thriller","romance","ficcion"],
-    subgenres: ["supervivencia","psicologico"],
+    genre: ["thriller", "romance", "ficcion"],
+    subgenres: ["supervivencia", "psicologico"],
 
     tags: {
       ritmo: 0,
@@ -4594,8 +4594,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "el-extasis-de-las-sombras",
+  },*/
+  /*{
+    slug: "el-extasis-de-las-sombras",
     title: "EL ÉXTASIS DE LAS SOMBRAS",
     cover: "",
     amazon: {
@@ -4608,7 +4609,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Relatos de terror/ terror elevado/ terror psicológico.
+      `Relatos de terror/ terror elevado/ terror psicológico.
         `,
     review: {
       title: "",
@@ -4618,7 +4619,7 @@ export const books: Book[] = [
         "existencial", "realidadesalternas", "adulta", "misticismo"],
     },
     genre: ["terror"],
-    subgenres: ["Tpsicologico","existencial","sobrenatural"],
+    subgenres: ["Tpsicologico", "existencial", "sobrenatural"],
 
     tags: {
       ritmo: 0,
@@ -4630,7 +4631,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "rosae-secretos-de-mi-memoria",
+  {
+    slug: "rosae-secretos-de-mi-memoria",
     title: "ROSAE: SECRETOS DE MI MEMORIA",
     cover: "",
     amazon: {
@@ -4643,7 +4645,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `En 1965, Froylan fue ingresado en contra de su voluntad a un manicomio por un crimen que él asegura no haber cometido, ya que tiene una perspectiva diferente a lo que dicen los demás, por lo tanto, hará lo imposible para demostrar lo contrario. Constanza, una joven de 17 años, descubre secretos turbulentos que la institución resguarda para no dañar su reputación y hará lo que esté a su disposición para lograr un cambio hacia los internos.
+      `En 1965, Froylan fue ingresado en contra de su voluntad a un manicomio por un crimen que él asegura no haber cometido, ya que tiene una perspectiva diferente a lo que dicen los demás, por lo tanto, hará lo imposible para demostrar lo contrario. Constanza, una joven de 17 años, descubre secretos turbulentos que la institución resguarda para no dañar su reputación y hará lo que esté a su disposición para lograr un cambio hacia los internos.
         `,
     review: {
       title: "",
@@ -4653,8 +4655,8 @@ export const books: Book[] = [
         "misterioaresolver",
         "pasadoorigenes"],
     },
-    genre: ["thriller","misterio"],
-    subgenres: ["THpsicologico","supervivencia"],
+    genre: ["thriller", "misterio"],
+    subgenres: ["THpsicologico", "supervivencia"],
 
     tags: {
       ritmo: 0,
@@ -4666,7 +4668,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "eres-especial-para-mi",
+  {
+    slug: "eres-especial-para-mi",
     title: "ERES ESPECIAL PARA MÍ",
     cover: "",
     amazon: {
@@ -4679,7 +4682,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Tras varios desafortunados acontecimientos, Iryna se muda a Sabadell para independizarse y estar más cerca de la universidad. Sin embargo, se ve en aprietos cuando se entera que, en el departamento compartido donde vivirá, tiene cuatro compañeros y un reglamento estricto que todos deben cumplir.
+      `Tras varios desafortunados acontecimientos, Iryna se muda a Sabadell para independizarse y estar más cerca de la universidad. Sin embargo, se ve en aprietos cuando se entera que, en el departamento compartido donde vivirá, tiene cuatro compañeros y un reglamento estricto que todos deben cumplir.
         El más importante es: "No hay romances entre los inquilinos."
         La vida de Iryna era muy tranquila, creyó que nada en este mundo podría hacer que rompiera las reglas, pero al enfrentar este gran cambio tendrá que lidiar con un pequeñísimo gran detalle: Debe evitar a toda costa que sus compañeros se enteren que está enamorada de uno de ellos.
         `,
@@ -4689,8 +4692,8 @@ export const books: Book[] = [
       content: "",
       metrics: ["juvenil"],
     },
-    genre: ["romance","aventura"],
-    subgenres: ["juvenil","amorprohibido"],
+    genre: ["romance", "aventura"],
+    subgenres: ["juvenil", "amorprohibido"],
 
     tags: {
       ritmo: 0,
@@ -4702,7 +4705,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "muchos-rostros-una-voz",
+  {
+    slug: "muchos-rostros-una-voz",
     title: "MUCHOS ROSTROS EN UNA VOZ",
     cover: "",
     amazon: {
@@ -4715,13 +4719,13 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Con diferentes relatos y personajes, pero todas atravesadas por la herida de la feminidad, la autora da cuenta de la complejidad de este universo a través de una óptica contemporánea. Mediante una voz cálida y sincera, Bertha Camarena hace un mapeo sobre lo que significa ser mujer: desde la pérdida de un embarazo, pasando por invocaciones de seres mitológicos, espíritus y casas embrujadas, hasta los ideales de belleza y la violencia actual en México.
+      `Con diferentes relatos y personajes, pero todas atravesadas por la herida de la feminidad, la autora da cuenta de la complejidad de este universo a través de una óptica contemporánea. Mediante una voz cálida y sincera, Bertha Camarena hace un mapeo sobre lo que significa ser mujer: desde la pérdida de un embarazo, pasando por invocaciones de seres mitológicos, espíritus y casas embrujadas, hasta los ideales de belleza y la violencia actual en México.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["relatos","misticismo"],
+      metrics: ["relatos", "misticismo"],
     },
     genre: ["ficcion"],
     subgenres: [],
@@ -4736,7 +4740,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "serndol-el-savamyre-ocre",
+  {
+    slug: "serndol-el-savamyre-ocre",
     title: "SERNDOL: EL SAVAMYRE OCRE",
     cover: "",
     amazon: {
@@ -4749,7 +4754,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `¿Un granjero común en el continente de Serndol... o el comienzo de una leyenda?
+      `¿Un granjero común en el continente de Serndol... o el comienzo de una leyenda?
           Cayden Blir solo quería arrear gansos y disfrutar del festival con su mejor amiga Brie, su inseparable compañero Nebel y su bestia gigante Root.
           Pero en su 17º cumpleaños, el viejo Harrison le entrega una antigua espada negra misteriosa que pertenecía a su padre.
           De pronto, una persecución nocturna lo lleva hasta el excéntrico Ahrabhor Towerfly... y todo cambia para siempre.
@@ -4764,7 +4769,7 @@ export const books: Book[] = [
         "accion",
         "misterioaresolver"],
     },
-    genre: ["fantasia","aventura"],
+    genre: ["fantasia", "aventura"],
     subgenres: ["epica"],
 
     tags: {
@@ -4777,7 +4782,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "andy-y-jack",
+  {
+    slug: "andy-y-jack",
     title: "ANDY & JACK",
     cover: "",
     amazon: {
@@ -4790,7 +4796,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `A veces amar es pelear, huir, mentir, sacrificar... hasta lo impensable. Porque cuando el amor es real, rendirse no es una opción.
+      `A veces amar es pelear, huir, mentir, sacrificar... hasta lo impensable. Porque cuando el amor es real, rendirse no es una opción.
         ¿Hasta dónde serías capaz de llegar por amor?
         Andy es un chico tímido y reservado. Creció en un orfanato, aprendió a ocultar lo que siente y teme que descubrir su homosexualidad lo haga perderlo todo.
         Jack es impulsivo, rebelde y conflictivo. Hijo de un poderoso empresario, lo tiene todo... excepto el amor y la aceptación que tanto ansía.
@@ -4800,10 +4806,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["pasadoorigenes","lgbt"],
+      metrics: ["pasadoorigenes", "lgbt"],
     },
-    genre: ["romance","ficcion"],
-    subgenres: ["amorprohibido","emotiva"],
+    genre: ["romance", "ficcion"],
+    subgenres: ["amorprohibido", "emotiva"],
 
     tags: {
       ritmo: 0,
@@ -4814,8 +4820,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "hasta-donde-eres-capaz-de-llegar-ambito-labor",
+  },*/
+  /*{
+    slug: "hasta-donde-eres-capaz-de-llegar-ambito-labor",
     title: "¿HASTA DONDE ERES CAPAZ DE LLEGAR?: 'AMBITO LABOR'",
     cover: "",
     amazon: {
@@ -4828,7 +4835,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `El libro trata sobre una pequeña oficina que, a primera vista, parece un lugar ideal. Las risas suenan sinceras, los saludos fluyen con naturalidad y el ambiente aparenta calma. Sin embargo, esa armonía es apenas una fachada; detrás de las sonrisas se esconde un sutil juego de poder, de silencios incómodos y palabras calculadas.
+      `El libro trata sobre una pequeña oficina que, a primera vista, parece un lugar ideal. Las risas suenan sinceras, los saludos fluyen con naturalidad y el ambiente aparenta calma. Sin embargo, esa armonía es apenas una fachada; detrás de las sonrisas se esconde un sutil juego de poder, de silencios incómodos y palabras calculadas.
         Estas historias están inspiradas en hechos reales ocurridos en Panamá. Sin embargo, para salvaguardar la identidad de los personajes y preservar la confidencialidad de los acontecimientos, se han modificado nombres, lugares y ciertos detalles de la trama donde convergen la envidia, la traición, la obsesión, el deseo y la ambición.
         `,
     review: {
@@ -4850,7 +4857,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "lagrimas-de-acero",
+  {
+    slug: "lagrimas-de-acero",
     title: "LÁGRIMAS DE ACERO",
     cover: "",
     amazon: {
@@ -4863,7 +4871,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Lara es una mujer independiente desde hace años; vive sola y tiene un trabajo estable, sin embargo nunca ha tenido suerte en el amor.
+      `Lara es una mujer independiente desde hace años; vive sola y tiene un trabajo estable, sin embargo nunca ha tenido suerte en el amor.
         Un día, conoce a Lucas y cree que por fin su suerte va a cambiar.
         Lucas es un lobo con piel de cordero, y bajo ese disfraz someterá a Lara en una espiral de dolor.
         Dani nunca ha conocido el verdadero amor y lleva años viviendo en Estados Unidos por trabajo. Nunca pensó que un viaje de regreso a España para visitar a su hermana, le fuera a cambiar tanto la vida.
@@ -4878,7 +4886,7 @@ export const books: Book[] = [
         "pasadoorigenes"],
     },
     genre: ["ficcion"],
-    subgenres: ["emotiva","psicologico"],
+    subgenres: ["emotiva", "psicologico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -4889,7 +4897,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "extincion-salvaje",
+  {
+    slug: "extincion-salvaje",
     title: "EXTINCIÓN SALVAJE",
     cover: "",
     amazon: {
@@ -4902,7 +4911,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `En un mundo dividido por clanes y marcado por antiguas tradiciones, la supervivencia es una batalla constante. En la oscura tierra de Terión, el equilibrio entre la guerra y la paz pende de un hilo, mientras las alianzas se forjan y se rompen con la misma facilidad con la que se empuña un arma.
+      `En un mundo dividido por clanes y marcado por antiguas tradiciones, la supervivencia es una batalla constante. En la oscura tierra de Terión, el equilibrio entre la guerra y la paz pende de un hilo, mientras las alianzas se forjan y se rompen con la misma facilidad con la que se empuña un arma.
         Luna, una joven marcada por su pasado, lucha por encontrar su lugar en una sociedad que no perdona la debilidad. Entre la astucia de los Zorros, la sabiduría de los Búhos y la brutalidad de los Cazadores, se esconde una verdad más peligrosa que cualquier enemigo: el poder de la venganza y el legado de la sangre.
         `,
     review: {
@@ -4915,8 +4924,8 @@ export const books: Book[] = [
         "redencion",
         "pasadoorigenes"],
     },
-    genre: ["fantasia","aventura"],
-    subgenres: ["oscura","epica","juvenil"],
+    genre: ["fantasia", "aventura"],
+    subgenres: ["oscura", "epica", "juvenil"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -4927,7 +4936,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "te-odio",
+  {
+    slug: "te-odio",
     title: "TE ODIO",
     cover: "",
     amazon: {
@@ -4940,7 +4950,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Algunos amores nacen para salvarte. Otros para destruirlo todo.
+      `Algunos amores nacen para salvarte. Otros para destruirlo todo.
         Hugo Salamanca es un huérfano que aprendió demasiado pronto que el mundo pertenece a quienes se atreven a tomarlo. Tras escapar de la miseria de su infancia, llega al Londres victoriano bajo una nueva identidad y dispuesto a conquistar una ciudad donde el poder, el dinero y los secretos lo gobiernan todo.
         En ese mundo conoce a Emma Remington, una joven aristócrata destinada a un futuro que no ha elegido. Entre ambos surge una atracción tan intensa como peligrosa, capaz de desafiar las normas sociales, las lealtades familiares y el propio pasado de Hugo.
         Porque algunos amores no se viven... se conquistan.
@@ -4952,8 +4962,8 @@ export const books: Book[] = [
       metrics: [
         "pasadoorigenes"],
     },
-    genre: ["romance","noficcion"],
-    subgenres: ["historico","amorprohibido"],
+    genre: ["romance", "noficcion"],
+    subgenres: ["historico", "amorprohibido"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -4964,7 +4974,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "besos-con-sabor-a-blues",
+  {
+    slug: "besos-con-sabor-a-blues",
     title: "BESOS CON SABOR A BLUES",
     cover: "",
     amazon: {
@@ -4977,7 +4988,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Besos con sabor a blues, nos invita a adentrarnos en una historia donde el miedo a enamorarse, puede llegar a ser un problema genérico. Donde la falta de confianza, autoestima y malos entendidos, agrandan los conflictos mucho más allá de lo que realmente son.
+      `Besos con sabor a blues, nos invita a adentrarnos en una historia donde el miedo a enamorarse, puede llegar a ser un problema genérico. Donde la falta de confianza, autoestima y malos entendidos, agrandan los conflictos mucho más allá de lo que realmente son.
         Sin embargo el poder de cambiarlo y cambiarnos está en nuestras manos, por muchas zancadillas que otros nos quieran dar y aquellas trabas que por el camino nos lleguemos a encontrar.
         Mara Páez y Xandro Galáns, son un claro ejemplo de ello en esta trepidante historia cargada de miedos, inseguridades, celos, traición, pero ante todo de amor, mucho amor y una gran superación.
         `,
@@ -4985,10 +4996,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["traicion","redencion"],
+      metrics: ["traicion", "redencion"],
     },
-    genre: ["ficcion","romance"],
-    subgenres: ["enemiestolovers","emotiva","erotico"],
+    genre: ["ficcion", "romance"],
+    subgenres: ["enemiestolovers", "emotiva", "erotico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -4998,8 +5009,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "amor-croquetas-y-un-cadaver",
+  },*/
+  /*{
+    slug: "amor-croquetas-y-un-cadaver",
     title: "AMOR, CROQUETAS Y UN CADÁVER",
     cover: "",
     amazon: {
@@ -5012,7 +5024,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Jaime fue actor, cómico y ahora anima fiestas infantiles vestido de unicornio o payaso triste. Lo último que esperaba era acabar en la pedida de mano de su ex, rodeado de croquetas secas, niños hiperactivos y familiares con secretos más oscuros que el traje del prometido. Lo segundo que menos esperaba era verse metido en medio de un embrollo donde las copas vuelan, los recuerdos duelen y alguien no está tan vivo como debiera.
+      `Jaime fue actor, cómico y ahora anima fiestas infantiles vestido de unicornio o payaso triste. Lo último que esperaba era acabar en la pedida de mano de su ex, rodeado de croquetas secas, niños hiperactivos y familiares con secretos más oscuros que el traje del prometido. Lo segundo que menos esperaba era verse metido en medio de un embrollo donde las copas vuelan, los recuerdos duelen y alguien no está tan vivo como debiera.
         Entre una camarera que sabe más de lo que aparenta, un ex-suegro con teorías alienígenas y una event planner que parece capaz de asesinar por una servilleta mal doblada, Jaime tendrá que sobrevivir a una fiesta que se irá de las manos... y quizás de la moral.
         `,
     review: {
@@ -5034,7 +5046,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "dias-olvidados",
+  {
+    slug: "dias-olvidados",
     title: "DÍAS OLVIDADOS",
     cover: "",
     amazon: {
@@ -5047,7 +5060,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `La protagonista toma una decisión trascendental, deja todo atrás e intenta un nuevo comienzo. La historia transcurre en diversos países donde viaja y va conociendo a personas que se unen a la trama, destacando entre ellas a un hombre que la marcará para el resto de su existencia.
+      `La protagonista toma una decisión trascendental, deja todo atrás e intenta un nuevo comienzo. La historia transcurre en diversos países donde viaja y va conociendo a personas que se unen a la trama, destacando entre ellas a un hombre que la marcará para el resto de su existencia.
         `,
     review: {
       title: "",
@@ -5067,7 +5080,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-arquitectura-del-olvido",
+  {
+    slug: "la-arquitectura-del-olvido",
     title: "LA ARQUITECTURA DEL OLVIDO",
     cover: "",
     amazon: {
@@ -5080,7 +5094,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Eva y Uriel lo tenían todo: poder, prestigio y un matrimonio sólido en la despiadada industria de la construcción. Pero tras una traición laboral y conyugal, Eva queda destrozada. Dos años después, un Uriel amnésico despierta de un coma creyendo que siguen felizmente casados. Ahora, Eva debe guiar al hombre que destruyó su vida a través de los escombros de su pasado para descubrir por qué lo hizo, poniendo en riesgo su corazón una vez más.
+      `Eva y Uriel lo tenían todo: poder, prestigio y un matrimonio sólido en la despiadada industria de la construcción. Pero tras una traición laboral y conyugal, Eva queda destrozada. Dos años después, un Uriel amnésico despierta de un coma creyendo que siguen felizmente casados. Ahora, Eva debe guiar al hombre que destruyó su vida a través de los escombros de su pasado para descubrir por qué lo hizo, poniendo en riesgo su corazón una vez más.
         `,
     review: {
       title: "",
@@ -5090,8 +5104,8 @@ export const books: Book[] = [
         "traicion",
         "pasadoorigenes"],
     },
-    genre: ["romance","ficcion"],
-    subgenres: ["emotiva","enemiestolovers","erotico"],
+    genre: ["romance", "ficcion"],
+    subgenres: ["emotiva", "enemiestolovers", "erotico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5102,7 +5116,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "cuando-dolia-memorias-de-una-mente-fragmentada",
+  {
+    slug: "cuando-dolia-memorias-de-una-mente-fragmentada",
     title: "CUANDO DOLÍA: MEMORIAS DE UNA MENTE FRAGMENTADA",
     cover: "",
     amazon: {
@@ -5115,7 +5130,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `CUANDO DOLÍA no es solo un libro de memorias; es un viaje honesto y sin filtros a través de la fragmentación emocional, el dolor invisible y la búsqueda desesperada de la propia identidad tras el diagnóstico. En estas páginas, Alicia Rocafull abre las puertas de su vulnerabilidad para narrar lo que muchos callan: el proceso de romperse y el arduo camino de recoger los pedazos conviviendo con un trastorno que lo cambia todo.
+      `CUANDO DOLÍA no es solo un libro de memorias; es un viaje honesto y sin filtros a través de la fragmentación emocional, el dolor invisible y la búsqueda desesperada de la propia identidad tras el diagnóstico. En estas páginas, Alicia Rocafull abre las puertas de su vulnerabilidad para narrar lo que muchos callan: el proceso de romperse y el arduo camino de recoger los pedazos conviviendo con un trastorno que lo cambia todo.
         A través de una prosa directa y profundamente evocadora, esta obra nos sumerge en las sombras de la salud mental, no desde la teoría, sino desde la piel. 
         `,
     review: {
@@ -5136,7 +5151,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "bajo-la-sombra-de-sisifo",
+  {
+    slug: "bajo-la-sombra-de-sisifo",
     title: "BAJO LA SOMBRA DE SÍSIFO",
     cover: "",
     amazon: {
@@ -5149,7 +5165,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `En la implacable Edad del Bronce, Belerofonte, joven príncipe de Corinto, carga con el peor de los crímenes: haber derramado la sangre de su propio hermano. Desterrado, se convierte en la pieza de un tablero donde reinas despechadas, monarcas astutos y alianzas frágiles juegan con destinos ajenos.
+      `En la implacable Edad del Bronce, Belerofonte, joven príncipe de Corinto, carga con el peor de los crímenes: haber derramado la sangre de su propio hermano. Desterrado, se convierte en la pieza de un tablero donde reinas despechadas, monarcas astutos y alianzas frágiles juegan con destinos ajenos.
         Su única senda de redención exige domar a Pegaso y cazar a la Quimera, una abominación de fuego, relámpagos y humo negro del Caos que amenaza con devorar el mundo conocido.
         Mientras, en los muros de Corinto, su prima Corinna libra otra batalla. Deberá proteger el legado de su estirpe, descifrar profecías olvidadas y decidir si el destino de los héroes se escribe con lanza o con memoria. 
         `,
@@ -5161,7 +5177,7 @@ export const books: Book[] = [
         "pasadoorigenes"],
     },
     genre: ["fantasia"],
-    subgenres: ["epica","oscura","historica"],
+    subgenres: ["epica", "oscura", "historica"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5171,8 +5187,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "eternida",
+  },*/
+  /*{
+    slug: "eternida",
     title: "ETÉRNIDA",
     cover: "",
     amazon: {
@@ -5185,7 +5202,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `El reino de Dobrodosla se encuentra sumido en el caos tras haber sido conquistado por un ejército invasor. En medio de un régimen de terror, Karbar sólo quiere seguir los pasos de su padre en el mundo de la caballería, pero pronto descubrirá que las tropas del rey usurpador Lazni le buscan para eliminarle.
+      `El reino de Dobrodosla se encuentra sumido en el caos tras haber sido conquistado por un ejército invasor. En medio de un régimen de terror, Karbar sólo quiere seguir los pasos de su padre en el mundo de la caballería, pero pronto descubrirá que las tropas del rey usurpador Lazni le buscan para eliminarle.
         Viendo su vida en peligro, Karbar deberá huir de ellos, desconociendo que es una fuerza oscura y desconocida quien está realmente detrás de todo. En su camino deberá descubrir quién es él y el por qué de su importancia, aunque para ello necesitará la ayuda de cierta hechicera legendaria, desaparecida hace más de cien años y que ha regresado para guiar sus pasos en tan peligroso viaje. 
         `,
     review: {
@@ -5207,7 +5224,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "nuestro-ultimo-anio",
+  {
+    slug: "nuestro-ultimo-anio",
     title: "NUESTRO ÚLTIMO AÑO",
     cover: "",
     amazon: {
@@ -5220,7 +5238,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Abigail ha aprendido a respirar teniendo el corazón roto, construyendo muros tan altos que ni ella misma recuerda dónde dejó las llaves. Cada trazo de pintura, cada silencio en los pasillos del instituto, es un refugio contra el dolor de perderlo todo. Cuando Edan atraviesa su jardín y se convierte en su compañero de clase, las grietas que había cerrado comienzan a abrirse de nuevo.
+      `Abigail ha aprendido a respirar teniendo el corazón roto, construyendo muros tan altos que ni ella misma recuerda dónde dejó las llaves. Cada trazo de pintura, cada silencio en los pasillos del instituto, es un refugio contra el dolor de perderlo todo. Cuando Edan atraviesa su jardín y se convierte en su compañero de clase, las grietas que había cerrado comienzan a abrirse de nuevo.
         `,
     review: {
       title: "",
@@ -5240,7 +5258,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "verano-maligno",
+  {
+    slug: "verano-maligno",
     title: "VERANO MALIGNO",
     cover: "",
     amazon: {
@@ -5253,7 +5272,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Los veranos en el pueblo eran diferentes, especialmente para Chloe, Joel, Ivette y Carlota. Los cuatro primos disfrutaban de los juegos, las risas y la naturaleza durante sus semanas de vacaciones.
+      `Los veranos en el pueblo eran diferentes, especialmente para Chloe, Joel, Ivette y Carlota. Los cuatro primos disfrutaban de los juegos, las risas y la naturaleza durante sus semanas de vacaciones.
         Pero ese verano encontraron algo antiguo y oscuro que no debieron despertar, algo que los marcaría hasta la edad adulta.
         Lo que empezó como un juego convirtió aquel verano en una pesadilla.
         `,
@@ -5263,10 +5282,10 @@ export const books: Book[] = [
       content: "",
       metrics: ["aventura",
         "supervivencia",
-        "misterioaresolver","pasadoorigenes"],
+        "misterioaresolver", "pasadoorigenes"],
     },
-    genre: ["terror","misterio","aventura","thriller"],
-    subgenres: ["sobrenatural","supervivencia","Tpsicologico"],
+    genre: ["terror", "misterio", "aventura", "thriller"],
+    subgenres: ["sobrenatural", "supervivencia", "Tpsicologico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5277,7 +5296,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "bautismo-de-acero",
+  {
+    slug: "bautismo-de-acero",
     title: "BAUTISMO DE ACERO",
     cover: "",
     amazon: {
@@ -5290,7 +5310,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `En la Última Gran Guerra los magos arrasaron Thoria por completo y, por eso, se prohibió el uso de la magia. Los magos fueron cazados y ejecutados, sus nombres e historias fueron borradas, sus restos fueron quemados junto a todo lo que tocaron.
+      `En la Última Gran Guerra los magos arrasaron Thoria por completo y, por eso, se prohibió el uso de la magia. Los magos fueron cazados y ejecutados, sus nombres e historias fueron borradas, sus restos fueron quemados junto a todo lo que tocaron.
         Los reyes de los cuatro países que componen Thoria creyeron que así estarían a salvo, pero se equivocaron.
         Casi 300 años después, el rey de Pyebra decidió cambiar las reglas y empezar a entrenar magos para su ejército. Las consecuencias cayeron como una tormenta, de norte a sur.
         Los magos volvieron. Algunos solo quieren sobrevivir, otros exigen venganza.
@@ -5300,7 +5320,7 @@ export const books: Book[] = [
       excerpt: ``,
       content: "",
       metrics: ["supervivencia",
-        "militar","magia"],
+        "militar", "magia"],
     },
     genre: ["fantasia"],
     subgenres: ["oscura"],
@@ -5313,8 +5333,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "los-colores-de-la-sangre",
+  },*/
+  /*{
+    slug: "los-colores-de-la-sangre",
     title: "LOS COLORES DE LA SANGRE",
     cover: "",
     amazon: {
@@ -5327,7 +5348,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Si no se murió en 22 años, o los que sea que tenga, ¿por qué se iba a morir cuando se encontró al dragón?
+      `Si no se murió en 22 años, o los que sea que tenga, ¿por qué se iba a morir cuando se encontró al dragón?
         Indra sobrevive como ladrona en un reino sumido en la esclavitud y la miseria, atrapada entre su adicción al polvo de estrellas y su anhelo de un mundo mejor, donde haya flores en los jardines, sonrisas en los niños y ancianos en las calles.
         En un momento de increíble valentía, y falta de juicio, Indra roba unos libros importantes del palacio, pero no pasa mucho hasta que es encarcelada y torturada. Sin embargo, contará con un aliado inesperado para mantener la cordura y la esperanza en ese asqueroso lugar.
         `,
@@ -5335,7 +5356,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["dragones","supervivencia"],
+      metrics: ["dragones", "supervivencia"],
     },
     genre: ["fantasia"],
     subgenres: ["oscura"],
@@ -5349,7 +5370,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "sombra-lo-que-desconozco-de-ti",
+  {
+    slug: "sombra-lo-que-desconozco-de-ti",
     title: "SOMBRA, LO QUE DESCONOZCO DE TI",
     cover: "",
     amazon: {
@@ -5362,7 +5384,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Hace dos años que Raquel se trasladó a Madrid para trabajar en el departamento de publicidad en la empresa propiedad de Enrique y Carlos, pero ¿es esto verdad?
+      `Hace dos años que Raquel se trasladó a Madrid para trabajar en el departamento de publicidad en la empresa propiedad de Enrique y Carlos, pero ¿es esto verdad?
         Un viaje de negocios a Londres cambiará el curso de su hasta ahora apaciguada vida. El amor, el miedo, las dudas y un terrible crimen inquietarán a Raquel, que, desesperada, intentará aferrarse, a ciegas, a la protección de una persona totalmente desconocida. Sombra, nombre con el que ella apoda a este hombre misterioso, tras negarse a revelarle ni tan siquiera su identidad, intentará convencerla del peligro que corre. Pero, ¿puede realmente confiar en un extraño?
         Una historia de ficción que te atrapará hasta el final.
         `,
@@ -5372,7 +5394,7 @@ export const books: Book[] = [
       content: "",
       metrics: ["misterioaresolver"],
     },
-    genre: ["romance","thriller"],
+    genre: ["romance", "thriller"],
     subgenres: [],
     tags: {
       ritmo: 0,
@@ -5384,7 +5406,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "Lorynor-el-despertar-de-la-luz",
+  {
+    slug: "Lorynor-el-despertar-de-la-luz",
     title: "LORYNOR: EL DESPERTAR DE LA LUZ ETERNA",
     cover: "",
     amazon: {
@@ -5397,7 +5420,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Isil, una joven marcada por la pérdida y el misterio de una reliquia familiar, es arrastrada a un destino que la conduce más allá de su realidad, hacia una profecía nacida en otro mundo. Mientras las sombras resurgen y el equilibrio del mundo se resquebraja, El colgante olvidado, - Lúmen Astraë - despertará en sus manos, abriendo un portal entre dos mundos: El suyo y Aeloria.
+      `Isil, una joven marcada por la pérdida y el misterio de una reliquia familiar, es arrastrada a un destino que la conduce más allá de su realidad, hacia una profecía nacida en otro mundo. Mientras las sombras resurgen y el equilibrio del mundo se resquebraja, El colgante olvidado, - Lúmen Astraë - despertará en sus manos, abriendo un portal entre dos mundos: El suyo y Aeloria.
         `,
     review: {
       title: "",
@@ -5406,7 +5429,7 @@ export const books: Book[] = [
       metrics: ["aventura",
         "misterioaresolver"],
     },
-    genre: ["fantasia","romance","aventura"],
+    genre: ["fantasia", "romance", "aventura"],
     subgenres: ["epica"],
     tags: {
       ritmo: 0,
@@ -5418,7 +5441,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "misterio-en-villa-grande",
+  {
+    slug: "misterio-en-villa-grande",
     title: "MISTERIO EN VILLA GRANDE",
     cover: "",
     amazon: {
@@ -5431,16 +5455,16 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `A inicios de 1995, los periódicos informan las extrañas desapariciones de niños en la Unidad Habitacional Villa Grande, al sur de la Ciudad de México. Es por eso que Cecilia y Ricardo, un par de chicos de la secundaria, buscan a su ser querido que ha desaparecido sin dejar rastro. Mientras que un grupo de niños de la Primaria “Villa Grande” también están en busca de su compañero de clase desaparecido, pero se encuentran con un escalofriante hallazgo; el cadáver de uno de los desaparecidos en lo alto de una montaña de piedras volcánicas. Ambos grupos agotan sus recursos para encontrar al responsable y, aunque parece una terrible pesadilla, estos personajes tendrán sus momentos agradables en los que reforzarán sus lazos de amistad y recuperarán la esperanza gracias a su valentía e inocencia.
+      `A inicios de 1995, los periódicos informan las extrañas desapariciones de niños en la Unidad Habitacional Villa Grande, al sur de la Ciudad de México. Es por eso que Cecilia y Ricardo, un par de chicos de la secundaria, buscan a su ser querido que ha desaparecido sin dejar rastro. Mientras que un grupo de niños de la Primaria “Villa Grande” también están en busca de su compañero de clase desaparecido, pero se encuentran con un escalofriante hallazgo; el cadáver de uno de los desaparecidos en lo alto de una montaña de piedras volcánicas. Ambos grupos agotan sus recursos para encontrar al responsable y, aunque parece una terrible pesadilla, estos personajes tendrán sus momentos agradables en los que reforzarán sus lazos de amistad y recuperarán la esperanza gracias a su valentía e inocencia.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["misterioaresolver","juvenil"],
+      metrics: ["misterioaresolver", "juvenil"],
     },
-    genre: ["misterio","thriller","ficcion"],
-    subgenres: ["policial","THpsicologico","asesinoenserie"],
+    genre: ["misterio", "thriller", "ficcion"],
+    subgenres: ["policial", "THpsicologico", "asesinoenserie"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5451,7 +5475,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "del-campo-a-la-ciudad",
+  {
+    slug: "del-campo-a-la-ciudad",
     title: "DEL CAMPO A LA CIUDAD",
     cover: "",
     amazon: {
@@ -5464,7 +5489,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `"Del campo a la ciudad" es una historia autobiográfica de superación que relata el camino de una joven originaria de una comunidad rural que enfrenta dificultades económicas, incertidumbre y múltiples obstáculos para continuar estudiando. A través de experiencias reales, la autora comparte los retos de dejar su entorno para buscar mejores oportunidades, así como los aprendizajes, sacrificios y logros que marcaron su vida. Este libro busca inspirar a estudiantes, jóvenes y a cualquier persona que persiga un sueño, demostrando que el origen no define el destino y que la educación puede transformar vidas.
+      `"Del campo a la ciudad" es una historia autobiográfica de superación que relata el camino de una joven originaria de una comunidad rural que enfrenta dificultades económicas, incertidumbre y múltiples obstáculos para continuar estudiando. A través de experiencias reales, la autora comparte los retos de dejar su entorno para buscar mejores oportunidades, así como los aprendizajes, sacrificios y logros que marcaron su vida. Este libro busca inspirar a estudiantes, jóvenes y a cualquier persona que persiga un sueño, demostrando que el origen no define el destino y que la educación puede transformar vidas.
         `,
     review: {
       title: "",
@@ -5483,8 +5508,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "biogenesis-el-secreto-de-ada-2",
+  },*/
+  /*{
+    slug: "biogenesis-el-secreto-de-ada-2",
     title: "BIOGÉNESIS: EL SECRETO DE ADA II",
     cover: "",
     amazon: {
@@ -5497,7 +5523,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `La historia de El secreto de ADA continúa.
+      `La historia de El secreto de ADA continúa.
         Samantha necesita alejarse, lo ocurrido con ADA la ha superado. Busca un paréntesis en su vida, un lugar donde el silencio y la tranquilidad le permita recomponerse. Un tranquilo pueblo, donde quizá la distancia sea suficiente para dejar atrás la pesadilla.
         Lo que ignora es que aún quedan demasiados interrogantes sin resolver, demasiados cabos sueltos que ni siquiera alcanza a imaginar. La pesadilla, lejos de haber terminado, no ha hecho más que empezar.
         Todo está conectado por un delicado engranaje. Samantha tendrá que unir las piezas para descubrir cómo encaja todo en un frágil equilibrio.
@@ -5508,10 +5534,10 @@ export const books: Book[] = [
       content: "",
       metrics: ["ia",
         "supervivencia",
-        "misterioaresolver","cienciadura"],
+        "misterioaresolver", "cienciadura"],
     },
-    genre: ["cienciaFiccion","misterio","thriller","aventura"],
-    subgenres: ["technothriller","supervivencia"],
+    genre: ["cienciaFiccion", "misterio", "thriller", "aventura"],
+    subgenres: ["technothriller", "supervivencia"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5522,7 +5548,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "eres-idiota-o-solo-piensas-demasiado",
+  {
+    slug: "eres-idiota-o-solo-piensas-demasiado",
     title: "¿ERES IDIOTA O SOLO PIENSAS DEMASIADO?",
     cover: "",
     amazon: {
@@ -5535,7 +5562,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `¿Te han vendido que eres un «ser de luz»? Te han estafado.
+      `¿Te han vendido que eres un «ser de luz»? Te han estafado.
         No eres un ser de luz; eres un sistema biológico con un programa defectuoso que no deja de enviar notificaciones de error. Llevas años siendo rehén de un parásito alojado en tu cráneo: tu propia mente. Ella te ha convencido de que analizar tus fracasos, rumiar tus deudas y preocuparte por el futuro «solucionará» algo. Mentira. Pensar en la mierd* solo sirve para salpicarte más.
         `,
     review: {
@@ -5556,7 +5583,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "perdoname-pero-disculpame",
+  {
+    slug: "perdoname-pero-disculpame",
     title: "PERDÓNAME, PERO DISCÚLPAME",
     cover: "",
     amazon: {
@@ -5569,7 +5597,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Este no es el típico libro de autoayuda con nubes en la portada y frases motivacionales de galleta de la fortuna. Aquí no vas a encontrar validación para tus berrinches ni consuelo para tu mediocridad. Carlos Vaimberg llega con un espejo incómodo, ácido y brutalmente honesto para desinfectar con alcohol puro las heridas de una sociedad que se ha vuelto experta en ofenderse por todo, pero en no hacerse cargo de nada.
+      `Este no es el típico libro de autoayuda con nubes en la portada y frases motivacionales de galleta de la fortuna. Aquí no vas a encontrar validación para tus berrinches ni consuelo para tu mediocridad. Carlos Vaimberg llega con un espejo incómodo, ácido y brutalmente honesto para desinfectar con alcohol puro las heridas de una sociedad que se ha vuelto experta en ofenderse por todo, pero en no hacerse cargo de nada.
         `,
     review: {
       title: "",
@@ -5590,7 +5618,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "perdoname-pero-disculpame-edicion-parejas",
+  {
+    slug: "perdoname-pero-disculpame-edicion-parejas",
     title: "PERDÓNAME, PERO DISCÚLPAME (EDICIÓN PAREJAS)",
     cover: "",
     amazon: {
@@ -5603,7 +5632,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Si creías que el amor se trataba de compartir puestas de sol, prepárate para compartir bacterias, facturas y un resentimiento creciente por ese calcetín que lleva tres días saludándote desde el suelo. Perdóname, pero discúlpame no es el típico libro de autoayuda con nubes en la portada; es un espejo ácido, brutal y honesto que te obligará a reírte de tu propia miseria antes de que termines en un juzgado de familia.
+      `Si creías que el amor se trataba de compartir puestas de sol, prepárate para compartir bacterias, facturas y un resentimiento creciente por ese calcetín que lleva tres días saludándote desde el suelo. Perdóname, pero discúlpame no es el típico libro de autoayuda con nubes en la portada; es un espejo ácido, brutal y honesto que te obligará a reírte de tu propia miseria antes de que termines en un juzgado de familia.
         `,
     review: {
       title: "",
@@ -5624,7 +5653,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "s73-archivos-del-experimento-nunca-debio-existir",
+  {
+    slug: "s73-archivos-del-experimento-nunca-debio-existir",
     title: "S73: ARCHIVOS DEL EXPERIMENTO: NUNCA DEBIÓ EXISTIR",
     cover: "",
     amazon: {
@@ -5637,7 +5667,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Nacido en 1973 para un experimento secreto en Argentina. Gabriel descubre que lo observaron toda su vida. Sus recuerdos no son suyos. Su pasado fue diseñado.
+      `Nacido en 1973 para un experimento secreto en Argentina. Gabriel descubre que lo observaron toda su vida. Sus recuerdos no son suyos. Su pasado fue diseñado.
         Este archivo nunca debió existir.
         Gabriel siempre creyó que su vida era normal. Hasta que descubre algo imposible de ignorar: Alguien lo estuvo observando desde que era un niño... Cada movimiento. Cada decisión. Cada error.
         No es paranoia. Es evidencia.
@@ -5648,7 +5678,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["misterioaresolver","pasadoorigenes","reflexion","existencial","conspiracion"],
+      metrics: ["misterioaresolver", "pasadoorigenes", "reflexion", "existencial", "conspiracion"],
     },
     genre: ["thriller"],
     subgenres: ["THpsicologico"],
@@ -5661,8 +5691,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "espadas-y-demonios",
+  },*/
+  /*{
+    slug: "espadas-y-demonios",
     title: "ESPADAS Y DEMONIOS",
     cover: "",
     amazon: {
@@ -5675,7 +5706,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Relatos de un escritor diletante a propósito del Multiverso.
+      `Relatos de un escritor diletante a propósito del Multiverso.
         En este personal homenaje a Michael Moorcock, uno de los padres del género de espadas y brujería, el autor reinterpreta el mundo que este concibió a través de cinco relatos, independientes pero a su vez interconectados.
         La puga entre el orden omnipotente y un caos en decadencia es el leitmotiv de este libro, donde los combates, las invocaciones y la inexorable sensación de que todo tiene su fin queda patente.
         Abigarradas fortificaciones, selváticos continentes, navíos malditos, ejércitos hereticos e ingenios consagrados confluyen en sus líneas, creando una atmósfera decadente que evoca los clásicos del género.
@@ -5690,8 +5721,8 @@ export const books: Book[] = [
         "supervivencia",
         "militar"],
     },
-    genre: ["fantasia","aventura","ficcion"],
-    subgenres: ["oscura","epica"],
+    genre: ["fantasia", "aventura", "ficcion"],
+    subgenres: ["oscura", "epica"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5702,7 +5733,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "hasta-que-nos-enamoremos",
+  {
+    slug: "hasta-que-nos-enamoremos",
     title: "HASTA QUE NOS ENAMOREMOS",
     cover: "",
     amazon: {
@@ -5715,7 +5747,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Hay libros que se leen y hay libros...
+      `Hay libros que se leen y hay libros...
           que te invitan a vivir cada una de sus historias.
           Hasta que nos enamoremos es exactamente eso.
           Una historia que te invita a vivirla desde adentro.
@@ -5745,7 +5777,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "drake-valkas-el-rey-dragon",
+  {
+    slug: "drake-valkas-el-rey-dragon",
     title: "DRAKE VALAKAS EL REY DRAGÓN",
     cover: "",
     amazon: {
@@ -5758,7 +5791,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Una novela donde la épica más brutal se funde con la ternura de una voz frente al fuego.
+      `Una novela donde la épica más brutal se funde con la ternura de una voz frente al fuego.
           En estas páginas conviven dos realidades unidas por una misma hoguera. Una es la leyenda de Drake Valakas, el Rey Dragón: un relato de sangre, magia y un amor tan puro como letal. La otra es la de un padre que, noche tras noche, regala esta historia a sus hijos como una herencia sagrada; un refugio contra el paso del tiempo.
           Pero cuidado: las historias peligrosas no solo se escuchan, se habitan. A medida que el rastro de Drake avanza, la línea entre el narrador y la leyenda se difumina.
           Advertencia: El Alfa y el Omega no es un libro común. No abras este libro si buscas finales amables.
@@ -5769,10 +5802,10 @@ export const books: Book[] = [
       excerpt: ``,
       content: "",
       metrics: ["realidadesalternas",
-        "aventura","magia"],
+        "aventura", "magia"],
     },
-    genre: ["fantasia","ficcion","aventura","cienciaFiccion"],
-    subgenres: ["emotiva","epica","oscura"],
+    genre: ["fantasia", "ficcion", "aventura", "cienciaFiccion"],
+    subgenres: ["emotiva", "epica", "oscura"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5783,7 +5816,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "ser",
+  {
+    slug: "ser",
     title: "SER",
     cover: "",
     amazon: {
@@ -5796,7 +5830,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `UNA NOVELA QUE DEVUELVE EL TERROR A LA CIENCIA FICCIÓN
+      `UNA NOVELA QUE DEVUELVE EL TERROR A LA CIENCIA FICCIÓN
           El espacio es implacable. No perdona. No escucha. No responde.
           La Endeavor se desliza en la oscuridad, arrastrando una carga peligrosa y una tripulación cuidadosamente seleccionada: personas sin vínculos, sin raíces, sin nadie que los extrañe. Todo es parte del plan. Hasta que algo falla.
           En medio del hipersueño, una anomalía. Silencio. No hay alarmas, no hay avisos, solo una presencia que no debería estar ahí. Una criatura. Un ente nacido del más puro horror, capaz no solo de matar, sino de someter.
@@ -5811,8 +5845,8 @@ export const books: Book[] = [
         "cienciadura",
         "pasadoorigenes"],
     },
-    genre: ["cienciaFiccion","terror","ficcion","thriller"],
-    subgenres: ["exploracionespacial","cosmico","Tpsicologico"],
+    genre: ["cienciaFiccion", "terror", "ficcion", "thriller"],
+    subgenres: ["exploracionespacial", "cosmico", "Tpsicologico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5823,7 +5857,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "mas-que-yo",
+  {
+    slug: "mas-que-yo",
     title: "MÁS QUE YO",
     cover: "",
     amazon: {
@@ -5836,7 +5871,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Aria es una chica que vive atrapada en su mundo, entre las cadenas de su cabeza y las reglas que le han marcado toda su vida, encerrándola en jaulas autoimpuestas por ella misma. Su libertad ha sido casi anulada y los monstruos se acercan cada vez más deseosos de poder, destrucción y control. Axel, un chico solitario, atrevido y misterioso, tratará de romper cada una de las cadenas de Aria, desafiando las leyes impuestas por el propio autosabotaje de ella y enseñándole la palabra "libertad". Un relato sobrecogedor sobre dos almas rotas que intentan repararse entre ellos mismos y enfrentar una vida llena de decisiones, miedos e incertidumbres. ¿Podrá Axel liberar a Aria de su prisión?
+      `Aria es una chica que vive atrapada en su mundo, entre las cadenas de su cabeza y las reglas que le han marcado toda su vida, encerrándola en jaulas autoimpuestas por ella misma. Su libertad ha sido casi anulada y los monstruos se acercan cada vez más deseosos de poder, destrucción y control. Axel, un chico solitario, atrevido y misterioso, tratará de romper cada una de las cadenas de Aria, desafiando las leyes impuestas por el propio autosabotaje de ella y enseñándole la palabra "libertad". Un relato sobrecogedor sobre dos almas rotas que intentan repararse entre ellos mismos y enfrentar una vida llena de decisiones, miedos e incertidumbres. ¿Podrá Axel liberar a Aria de su prisión?
         `,
     review: {
       title: "",
@@ -5846,8 +5881,8 @@ export const books: Book[] = [
         "misterioaresolver",
         "existencial"],
     },
-    genre: ["ficcion","romance"],
-    subgenres: ["psicologico","emotiva"],
+    genre: ["ficcion", "romance"],
+    subgenres: ["psicologico", "emotiva"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5857,8 +5892,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "la-forma-exacta-de-la-culoa",
+  },*/
+  /*{
+    slug: "la-forma-exacta-de-la-culoa",
     title: "LA FORMA EXACTA DE LA CULPA",
     cover: "",
     amazon: {
@@ -5871,7 +5907,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Thriller psicológico y criminal intenso, elegante y adictivo, sobre las mentiras que sobreviven al tiempo, las lealtades equivocadas y el instante exacto en que dejar de mirar atrás ya no es una opción.
+      `Thriller psicológico y criminal intenso, elegante y adictivo, sobre las mentiras que sobreviven al tiempo, las lealtades equivocadas y el instante exacto en que dejar de mirar atrás ya no es una opción.
         `,
     review: {
       title: "",
@@ -5891,7 +5927,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "una-chica-del-este",
+  {
+    slug: "una-chica-del-este",
     title: "UNA CHICA DEL ESTE",
     cover: "",
     amazon: {
@@ -5904,7 +5941,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Una chica del Este es una novela basada en hechos reales, escrita desde una doble distancia: geográfica y lingüística. La autora vive en Andalucía desde hace años. Desde allí, en español, retrató a una familia dispersada por la guerra, los desplazamientos y el comunismo.
+      `Una chica del Este es una novela basada en hechos reales, escrita desde una doble distancia: geográfica y lingüística. La autora vive en Andalucía desde hace años. Desde allí, en español, retrató a una familia dispersada por la guerra, los desplazamientos y el comunismo.
         La protagonista intenta reconstruir el pasado familiar a partir de fragmentos de memoria, silencios y relatos que nadie quiso terminar nunca. Lo mira desde lejos, porque solo desde lejos se ve el conjunto.
         Una historia sobre la memoria, las raíces y la herencia.
         `,
@@ -5913,10 +5950,10 @@ export const books: Book[] = [
       excerpt: ``,
       content: "",
       metrics: [
-        "pasadoorigenes","hechosreales"],
+        "pasadoorigenes", "hechosreales"],
     },
     genre: ["ficcion"],
-    subgenres: ["psicologico","emotiva"],
+    subgenres: ["psicologico", "emotiva"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5927,7 +5964,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "corazon-de-guerrero",
+  {
+    slug: "corazon-de-guerrero",
     title: "CORAZON DE GUERRERO",
     cover: "",
     amazon: {
@@ -5940,7 +5978,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Este libro te ofrece la oportunidad de descubrir en tu interior fuerzas, capacidades e intelectos que jamás creíste que poseías. Hoy, descubrirás que esas facultades, son un aporte a tu fortaleza como ser humano, y te permitirás explotarlas a tu favor, para alcanzar así el desarrollo humano y lograr ser mejor persona, en beneficio tuyo y de toda tu comunidad, como tu círculo de familiares y amigos. Aprovecha todo lo que puedas experimentar leyendo de principio a fin, este ejemplar.
+      `Este libro te ofrece la oportunidad de descubrir en tu interior fuerzas, capacidades e intelectos que jamás creíste que poseías. Hoy, descubrirás que esas facultades, son un aporte a tu fortaleza como ser humano, y te permitirás explotarlas a tu favor, para alcanzar así el desarrollo humano y lograr ser mejor persona, en beneficio tuyo y de toda tu comunidad, como tu círculo de familiares y amigos. Aprovecha todo lo que puedas experimentar leyendo de principio a fin, este ejemplar.
         `,
     review: {
       title: "",
@@ -5949,7 +5987,7 @@ export const books: Book[] = [
       metrics: [],
     },
     genre: ["noficcion"],
-    subgenres: ["amor","reflexiva","social","desarrollopersonal"],
+    subgenres: ["amor", "reflexiva", "social", "desarrollopersonal"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5960,7 +5998,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-operario-poseido-tras-el-coma",
+  {
+    slug: "el-operario-poseido-tras-el-coma",
     title: "EL OPERARIO POSEIDO TRAS EL COMA",
     cover: "",
     amazon: {
@@ -5973,16 +6012,16 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Eso es lo que dijeron, pero algo en él había cambiado, su forma de mirar, su silencio, la sensación constante de que ya no estaba realmente solo. Poco después, la casa comenzó a transformarse, los pasillos parecían más largos de lo normal, las sombras se movían cuando nadie miraba y extraños susurros comenzaron a escucharse durante la noche. Entonces apareció el Umbral: una grieta imposible que conectaba el mundo humano con algo mucho más antiguo y oscuro, mientras la ciudad cae lentamente bajo la influencia del infierno y criaturas surgidas de la oscuridad comienzan a extenderse por las calles. Elia y Alma descubrirán que la casa donde viven no fue construida para proteger a nadie.
+      `Eso es lo que dijeron, pero algo en él había cambiado, su forma de mirar, su silencio, la sensación constante de que ya no estaba realmente solo. Poco después, la casa comenzó a transformarse, los pasillos parecían más largos de lo normal, las sombras se movían cuando nadie miraba y extraños susurros comenzaron a escucharse durante la noche. Entonces apareció el Umbral: una grieta imposible que conectaba el mundo humano con algo mucho más antiguo y oscuro, mientras la ciudad cae lentamente bajo la influencia del infierno y criaturas surgidas de la oscuridad comienzan a extenderse por las calles. Elia y Alma descubrirán que la casa donde viven no fue construida para proteger a nadie.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["saludmental","realidadesalternas"],
+      metrics: ["saludmental", "realidadesalternas"],
     },
-    genre: ["terror","thriller","ficcion"],
-    subgenres: ["Tpsicologico","cosmico","THpsicologico","sobrenatural"],
+    genre: ["terror", "thriller", "ficcion"],
+    subgenres: ["Tpsicologico", "cosmico", "THpsicologico", "sobrenatural"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -5993,7 +6032,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "sin-tierra-la-decision",
+  {
+    slug: "sin-tierra-la-decision",
     title: "SIN TIERRA - LA DECISIÓN",
     cover: "",
     amazon: {
@@ -6006,7 +6046,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Ambientada en un Santiago del futuro que se ha ido apagando lentamente, Sin Tierra — Libro I: La Decisión sigue a José, un ingeniero que lleva más de una década trabajando en el diseño de una nave generacional destinada a abandonar la Tierra.
+      `Ambientada en un Santiago del futuro que se ha ido apagando lentamente, Sin Tierra — Libro I: La Decisión sigue a José, un ingeniero que lleva más de una década trabajando en el diseño de una nave generacional destinada a abandonar la Tierra.
         Mientras los inviernos llegan antes de tiempo, la cordillera arde y las ciudades sobreviven apenas como fragmentos dispersos de luz, el proyecto avanza entre apagones, escasez de recursos y equipos cada vez más reducidos. Sin embargo, la novela no trata de la aventura de viajar a las estrellas, sino de la decisión de partir.
         ¿Qué se lleva una civilización cuando debe abandonar su mundo? ¿Qué recuerdos, especies, conocimientos y estructuras merecen sobrevivir?
         `,
@@ -6014,7 +6054,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["colonizacionexpansion","pasadoorigenes"],
+      metrics: ["colonizacionexpansion", "pasadoorigenes"],
     },
     genre: ["cienciaFiccion"],
     subgenres: ["distopia"],
@@ -6027,8 +6067,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "metodo-sentir",
+  },*/
+  /*{
+    slug: "metodo-sentir",
     title: "MÉTODO S.E.N.T.I.R",
     cover: "",
     amazon: {
@@ -6041,7 +6082,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `¿Cuándo fue la última vez que sentiste algo de verdad?
+      `¿Cuándo fue la última vez que sentiste algo de verdad?
           No la emoción fugaz de un like. No la alegría de una foto que ya olvidaste. Hablo de esa sensación antigua, casi olvidada, de estar completamente vivo por dentro. De sentir el peso de una taza entre las manos y que eso bastara. De mirar al espejo y reconocer a quien te mira.
           Yo también aprendí a sobrevivir antes que a vivir. Aprendí a sonreír cuando tenía miedo, a callar cuando quería llorar, a ser útil para merecer estar. Durante años busqué respuestas en los libros, en la teoría, en la mente. Creí que entender bastaba. Pero un día comprendí que la mente, por sí sola, no puede sanar lo que el cuerpo aún recuerda.
         `,
@@ -6063,7 +6104,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-caso-del-coach-asesinadico",
+  {
+    slug: "el-caso-del-coach-asesinadico",
     title: "EL CASO DEL COACH ASESINADICO",
     cover: "",
     amazon: {
@@ -6076,7 +6118,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Si buscas una novela policíaca satírica, rebosante de humor negro y con una ácida parodia del mundo editorial, este misterio de enredos costumbristas te atrapará desde la primera página.
+      `Si buscas una novela policíaca satírica, rebosante de humor negro y con una ácida parodia del mundo editorial, este misterio de enredos costumbristas te atrapará desde la primera página.
         Un coach literario muerto, un escritor en el punto de mira y el caso más sarcásticamente real de la serie Xeijo & Pierangeli.
         Rogelio Diumenge, el gurú de los escritores, ha aparecido muerto en el Mar Menor. Y para la Guardia Civil, el culpable es el propio autor de esta novela.
         Álvaro Xeijo y Ana María Pierangeli se enfrentan a su caso más personal: salvar a su amigo Javier de una detención inminente. Para lograrlo, contarán con la ayuda de la «chupipandi» de Punta Brava, un grupo de amigos reales que saltan de la playa a la investigación criminal para infiltrarse en el egocéntrico mundo de los coaches literarios.
@@ -6085,10 +6127,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["misterioaresolver","humor"],
+      metrics: ["misterioaresolver", "humor"],
     },
-    genre: ["thriller","misterio","ficcion"],
-    subgenres: ["detectivesco","policial","conspiracion"],
+    genre: ["thriller", "misterio", "ficcion"],
+    subgenres: ["detectivesco", "policial", "conspiracion"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6099,7 +6141,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-trazo-que-lo-invoca",
+  {
+    slug: "el-trazo-que-lo-invoca",
     title: "EL TRAZO QUE LO INVOCA",
     cover: "",
     amazon: {
@@ -6112,16 +6155,16 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Eleonora vive atrapada en un matrimonio abusivo. Tras la muerte de sus padres, viaja a su antiguo hogar para hacer los arreglos necesarios. Hurgando en su habitación de la infancia, encuentra una vieja carpeta escolar con dibujos cubiertos de pétalos y una carta dirigida al sujeto retratado. Al volver a su casa matrimonial, el perfume de las rosas allí guardadas parece negarse a abandonarla. Pero aquello es solo el principio de los sucesos inexplicables que empezarán a perseguirla, afectando no solo su vida, sino la de todos a su alrededor.
+      `Eleonora vive atrapada en un matrimonio abusivo. Tras la muerte de sus padres, viaja a su antiguo hogar para hacer los arreglos necesarios. Hurgando en su habitación de la infancia, encuentra una vieja carpeta escolar con dibujos cubiertos de pétalos y una carta dirigida al sujeto retratado. Al volver a su casa matrimonial, el perfume de las rosas allí guardadas parece negarse a abandonarla. Pero aquello es solo el principio de los sucesos inexplicables que empezarán a perseguirla, afectando no solo su vida, sino la de todos a su alrededor.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["misterioaresolver","drama","misticismo","villanocarismatico","redencion","realidadesalternas"],
+      metrics: ["misterioaresolver", "drama", "misticismo", "villanocarismatico", "redencion", "realidadesalternas"],
     },
-    genre: ["fantasia","romance","terror","misterio"],
-    subgenres: ["romanceparanormal","urbana","Tpsicologico"],
+    genre: ["fantasia", "romance", "terror", "misterio"],
+    subgenres: ["romanceparanormal", "urbana", "Tpsicologico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6132,7 +6175,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "sabores-envinados-de-nostalgia",
+  {
+    slug: "sabores-envinados-de-nostalgia",
     title: "SABORES ENVINADOS DE NOSTALGIA",
     cover: "",
     amazon: {
@@ -6145,7 +6189,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `La muerte de la abuela trae consigo secretos que tendrán que ser revelados. ¿Será la búsqueda de esa verdad la que cambie por completo sus vidas?
+      `La muerte de la abuela trae consigo secretos que tendrán que ser revelados. ¿Será la búsqueda de esa verdad la que cambie por completo sus vidas?
         La nostalgia está presente en la vida de estos personajes, con ese sabor agridulce que oscila entre el recuerdo de los momentos felices y la tristeza de la pérdida. Ellos se enfrentan al duelo y a las disyuntivas con la única certeza del amor que los une.
         La abuela ya no está de manera física; sin embargo, la fuerza de su espíritu continúa tocando sus vidas. Les dejó una herencia de sabores y aromas dulces mezclados con misterios.
         `,
@@ -6167,7 +6211,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "cronicas-del-planeta-azul-mathenna",
+  {
+    slug: "cronicas-del-planeta-azul-mathenna",
     title: "CRÓNICAS DEL PLANETA AZUL - MATHENNA",
     cover: "",
     amazon: {
@@ -6180,7 +6225,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Una saga mexicana de ciencia ficción y fantasía sobre una princesa nacida en el océano, un rey destruido por la memoria y un planeta donde recordar puede salvar o condenar una civilización.
+      `Una saga mexicana de ciencia ficción y fantasía sobre una princesa nacida en el océano, un rey destruido por la memoria y un planeta donde recordar puede salvar o condenar una civilización.
         `,
     review: {
       title: "",
@@ -6188,8 +6233,8 @@ export const books: Book[] = [
       content: "",
       metrics: ["accion"],
     },
-    genre: ["cienciaFiccion","fantasia","romance","aventura"],
-    subgenres: ["epica","juvenil","postapocaliptica"],
+    genre: ["cienciaFiccion", "fantasia", "romance", "aventura"],
+    subgenres: ["epica", "juvenil", "postapocaliptica"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6199,8 +6244,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "los-secretos-del-asesino",
+  },*/
+  /*{
+    slug: "los-secretos-del-asesino",
     title: "LOS SECRETOS DEL ASESINO",
     cover: "",
     amazon: {
@@ -6213,7 +6259,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `En las sombras de una ciudad donde el poder se compra y las vidas no valen nada, hay secretos que nunca deberían salir a la luz.
+      `En las sombras de una ciudad donde el poder se compra y las vidas no valen nada, hay secretos que nunca deberían salir a la luz.
         Richard Terrayo lo sabe.
         Exmilitar. Sicario. Verdugo de hombres que creen estar por encima de todo.
         No mata por dinero. No mata por placer. Mata porque alguien tiene que hacerlo.
@@ -6227,10 +6273,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["accion","aventura","militar","traicion","conspiracion"],
+      metrics: ["accion", "aventura", "militar", "traicion", "conspiracion"],
     },
-    genre: ["thriller","misterio","aventura","noficcion"],
-    subgenres: ["conspiracion","policial","crimenreal"],
+    genre: ["thriller", "misterio", "aventura", "noficcion"],
+    subgenres: ["conspiracion", "policial", "crimenreal"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6241,7 +6287,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-juego-prohibido",
+  {
+    slug: "el-juego-prohibido",
     title: "EL JUEGO PROHIBIDO",
     cover: "",
     amazon: {
@@ -6254,16 +6301,16 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `“Te dije que te protegería. Mientras esté en mis manos, estarás a salvo”.
+      `“Te dije que te protegería. Mientras esté en mis manos, estarás a salvo”.
           En un mundo donde los vampiros existen, las desapariciones de personas inocentes cada vez son mayores. Diego, un cazador de vampiros, es llamado para la búsqueda de una joven. Anabell, una chica aparentemente común, se une a él en este viaje para encontrar a su hermana. Sin embargo, en el camino van descubriendo cosas que no creían posibles. El regreso del mayor enemigo de los cazadores parece inminente. Los secretos están a la orden del día, al igual que la traición parece ser el final del camino. Mientras Diego se deja envolver por los sentimientos inesperados hacia Anabell, a la vez tiene que hacer frente a verdades sorpresivas. Pero, ¿podrán encontrar a quien buscan antes de que sus creencias terminen por romperse?
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["misterioaresolver","accion","juvenil","inmortalidad","traicion"],
+      metrics: ["misterioaresolver", "accion", "juvenil", "inmortalidad", "traicion"],
     },
-    genre: ["fantasia","romance","ficcion"],
+    genre: ["fantasia", "romance", "ficcion"],
     subgenres: ["urbana"],
     tags: {
       ritmo: 0,
@@ -6275,7 +6322,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-juego-del-destino",
+  {
+    slug: "el-juego-del-destino",
     title: "EL JUEGO DEL DESTINO",
     cover: "",
     amazon: {
@@ -6288,7 +6336,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `"¿Qué estás dispuesto a hacer por alguien a quien amas?"
+      `"¿Qué estás dispuesto a hacer por alguien a quien amas?"
         Después de descubrir la traición de Anabell, ella y Diego se ven obligados a separarse. El regreso de Endimión ahora es un hecho que se cierne sobre el grupo de cazadores, quienes se tienen que enfrentar a su venganza, y para ello necesitarán toda la ayuda posible, aun si eso significa acudir a los mismos vampiros.
         Por su parte, Anabell, con la ayuda de un nuevo aliado, intentará sobrevivir dentro del grupo enemigo, mientras busca respuestas sobre el paradero de Jeremy.
 
@@ -6298,9 +6346,9 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["accion","juvenil","inmortalidad","traicion"],
+      metrics: ["accion", "juvenil", "inmortalidad", "traicion"],
     },
-    genre: ["fantasia","ficcion"],
+    genre: ["fantasia", "ficcion"],
     subgenres: ["urbana"],
     tags: {
       ritmo: 0,
@@ -6312,7 +6360,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-estrella-de-los-cuatro-elementos",
+  {
+    slug: "la-estrella-de-los-cuatro-elementos",
     title: "LA ESTRELLA DE LOS CUATRO ELEMENTOS",
     cover: "",
     amazon: {
@@ -6325,7 +6374,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Un Reino oculto...
+      `Un Reino oculto...
           Un heredero escondido...
           Una piedra que otorga poder.
 
@@ -6336,10 +6385,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["supervivencia","accion","juvenil","magia","mentoraprendiz","misticismo"],
+      metrics: ["supervivencia", "accion", "juvenil", "magia", "mentoraprendiz", "misticismo"],
     },
-    genre: ["fantasia","ficcion"],
-    subgenres: ["epica","medieval"],
+    genre: ["fantasia", "ficcion"],
+    subgenres: ["epica", "medieval"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6350,7 +6399,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-arte-de-amar",
+  {
+    slug: "el-arte-de-amar",
     title: "EL ARTE DE AMAR",
     cover: "",
     amazon: {
@@ -6363,15 +6413,15 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `«Te amo, Dios, cómo te amo…» son palabras que Esteban (un artista de 26 años) le dice a Allison, el amor de su vida, antes de que ella desaparezca de una manera abrupta. Sin saber qué ha provocado estos hechos, Esteban se enfrasca en la búsqueda de respuestas, que termina cuando descubre que tanto Allison como su amigo Lázaro, fallecieron en un accidente. Ante tales acontecimientos, Esteban se refugia en su arte y en su mejor amiga Chinami, pero es cuando viajan a Nueva York para una exposición, que él podrá encontrar razones para sentirse vivo otra vez, y una verdad que cambiará todo lo que creía.
+      `«Te amo, Dios, cómo te amo…» son palabras que Esteban (un artista de 26 años) le dice a Allison, el amor de su vida, antes de que ella desaparezca de una manera abrupta. Sin saber qué ha provocado estos hechos, Esteban se enfrasca en la búsqueda de respuestas, que termina cuando descubre que tanto Allison como su amigo Lázaro, fallecieron en un accidente. Ante tales acontecimientos, Esteban se refugia en su arte y en su mejor amiga Chinami, pero es cuando viajan a Nueva York para una exposición, que él podrá encontrar razones para sentirse vivo otra vez, y una verdad que cambiará todo lo que creía.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["misterioaresolver","adulta","drama"],
+      metrics: ["misterioaresolver", "adulta", "drama"],
     },
-    genre: ["romance","misterio","ficcion"],
+    genre: ["romance", "misterio", "ficcion"],
     subgenres: ["emotiva"],
     tags: {
       ritmo: 0,
@@ -6382,8 +6432,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "todo-el-mundo-merece-un-alma",
+  },*/
+  /*{
+    slug: "todo-el-mundo-merece-un-alma",
     title: "TODO EL MUNDO MERECE UN ALMA",
     cover: "",
     amazon: {
@@ -6396,7 +6447,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Mateo sabía lo que era el amor. O eso creía.
+      `Mateo sabía lo que era el amor. O eso creía.
         Tres años con alguien que le enseñó a hacerse pequeño, a calcular cada palabra, a vivir en el borde de su propia vida sin atreverse a entrar del todo. Tres años convenciéndose de que eso era lo que había para él.
         Entonces apareció Alma.
         Sin aviso. Sin plan. En una noche de diciembre que no tenía nada de extraordinario, excepto que cambió todo.
@@ -6408,7 +6459,7 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["drama","soledad","redencion","saludmental","juvenil"],
+      metrics: ["drama", "soledad", "redencion", "saludmental", "juvenil"],
     },
     genre: ["romance"],
     subgenres: ["friendstolovers"],
@@ -6422,7 +6473,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-noche-que-desaparecio-alba",
+  {
+    slug: "la-noche-que-desaparecio-alba",
     title: "LA NOCHE QUE DESAPARECIÓ ALBA",
     cover: "",
     amazon: {
@@ -6435,7 +6487,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Cuando la periodista Alba Navarro desaparece mientras investiga una serie de antiguos casos sin resolver, todo apunta a un accidente. Años después, nuevas pistas obligan al inspector Daniel Salas a reabrir una investigación que lo conducirá hasta Valdemora, un pueblo envuelto en secretos, desapariciones y mentiras enterradas durante generaciones.
+      `Cuando la periodista Alba Navarro desaparece mientras investiga una serie de antiguos casos sin resolver, todo apunta a un accidente. Años después, nuevas pistas obligan al inspector Daniel Salas a reabrir una investigación que lo conducirá hasta Valdemora, un pueblo envuelto en secretos, desapariciones y mentiras enterradas durante generaciones.
         Cuanto más se acerca a la verdad, más evidente resulta que alguien ha estado dispuesto a matar para protegerla. Porque algunos secretos pueden ocultarse durante años... pero nunca para siempre.
         `,
     review: {
@@ -6444,7 +6496,7 @@ export const books: Book[] = [
       content: "",
       metrics: ["misterioaresolver"],
     },
-    genre: ["thriller","misterio"],
+    genre: ["thriller", "misterio"],
     subgenres: ["THpsicologico"],
     tags: {
       ritmo: 0,
@@ -6456,7 +6508,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "sin-duenos-ni-senores-parte-1",
+  {
+    slug: "sin-duenos-ni-senores-parte-1",
     title: "SIN DUEÑOS NI SEÑORES: PARTE 1: SIN CONTROL",
     cover: "",
     amazon: {
@@ -6469,14 +6522,14 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Cuando las élites se marcharon al espacio tras la sobreexplotación de recursos naturales, afirmando que lo que quedaba era imposible de salvar, quienes sobrevivieron al caos aprendieron a sobrevivir con lo quedaba.
+      `Cuando las élites se marcharon al espacio tras la sobreexplotación de recursos naturales, afirmando que lo que quedaba era imposible de salvar, quienes sobrevivieron al caos aprendieron a sobrevivir con lo quedaba.
         Cuando Evan encuentra zonas donde la naturaleza parece regenerarse por sí sola, decide buscar a Lena, una ingeniera agrónoma acostumbrada a mantener en funcionamiento sistemas que otros consideran irrecuperables. Juntos emprenden un viaje para descubrir qué está ocurriendo realmente... antes de que todo termine de deteriorarse.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["supervivencia","reflexion","misterioaresolver","aventura","adulta"],
+      metrics: ["supervivencia", "reflexion", "misterioaresolver", "aventura", "adulta"],
     },
     genre: ["cienciaFiccion"],
     subgenres: ["distopia"],
@@ -6490,7 +6543,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-ultima-confesion",
+  {
+    slug: "la-ultima-confesion",
     title: "LA ÚLTIMA CONFESIÓN",
     cover: "",
     amazon: {
@@ -6503,7 +6557,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `La aparición de una monja muerta en un convento de clausura donde nadie puede entrar ni salir.
+      `La aparición de una monja muerta en un convento de clausura donde nadie puede entrar ni salir.
         Un secreto que se lleva ocultando hace años.
         `,
     review: {
@@ -6512,8 +6566,8 @@ export const books: Book[] = [
       content: "",
       metrics: ["misterioaresolver"],
     },
-    genre: ["misterio","thriller"],
-    subgenres: ["THpsicologico","detectivesco","conspiracion"],
+    genre: ["misterio", "thriller"],
+    subgenres: ["THpsicologico", "detectivesco", "conspiracion"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6524,7 +6578,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "el-secreto-del-hilo-rojo",
+  {
+    slug: "el-secreto-del-hilo-rojo",
     title: "EL SECRETO DEL HILO ROJO",
     cover: "",
     amazon: {
@@ -6537,7 +6592,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Una Joven costurera recibe un encargo.
+      `Una Joven costurera recibe un encargo.
         Encuentra una nota cosida con hilo rojo en la doblez de los bajos y a raíz de eso, descubre que su madre está involucrada en la desaparición de una joven del pueblo.
         Ella investigará para conocer toda la verdad.
         `,
@@ -6547,8 +6602,8 @@ export const books: Book[] = [
       content: "",
       metrics: ["misterioaresolver"],
     },
-    genre: ["misterio","thriller"],
-    subgenres: ["detectivesco","THpsicologico"],
+    genre: ["misterio", "thriller"],
+    subgenres: ["detectivesco", "THpsicologico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6558,8 +6613,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "la-marca-del-silencio",
+  },*/
+  /*{
+    slug: "la-marca-del-silencio",
     title: "LA MARCA DEL SILENCIO",
     cover: "",
     amazon: {
@@ -6572,17 +6628,17 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Narra la aventura de Elliot Graves, un joven detective aficionado que a través de una muerte descubre toda la historia, secretos, y conspiración que oculta su familia.
+      `Narra la aventura de Elliot Graves, un joven detective aficionado que a través de una muerte descubre toda la historia, secretos, y conspiración que oculta su familia.
         Además la persona que aparece muerte tiene una marca que sólo tienen los varones de la familia Graves, aunque Elliot, desconoce de quién se trata.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["misterioaresolver","aventura","supervivencia","accion"],
+      metrics: ["misterioaresolver", "aventura", "supervivencia", "accion"],
     },
-    genre: ["thriller","misterio","aventura"],
-    subgenres: ["supervivencia","conspiracion","detectivesco","THpsicologico"],
+    genre: ["thriller", "misterio", "aventura"],
+    subgenres: ["supervivencia", "conspiracion", "detectivesco", "THpsicologico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6593,7 +6649,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "aranda-contra-el-silencio",
+  {
+    slug: "aranda-contra-el-silencio",
     title: "ARANDA CONTRA EL SILENCIO",
     cover: "",
     amazon: {
@@ -6606,7 +6663,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Aranda es expolicía y detective venido a menos.
+      `Aranda es expolicía y detective venido a menos.
         Deberá investigar la muerte de Lucia Vidal.
         Principio de los años 80 en Madrid, la transición es relativamente joven y en el caso descubrirá la implicación de políticos, jueces y altos directivos de empresa.
         `,
@@ -6614,10 +6671,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["misterioaresolver","aventura","supervivencia","accion"],
+      metrics: ["misterioaresolver", "aventura", "supervivencia", "accion"],
     },
-    genre: ["misterio","aventura","thriller"],
-    subgenres: ["conspiracion","detectivesco","policial"],
+    genre: ["misterio", "aventura", "thriller"],
+    subgenres: ["conspiracion", "detectivesco", "policial"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6628,7 +6685,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-variable-invisible",
+  {
+    slug: "la-variable-invisible",
     title: "LA VARIABLE INVISIBLE",
     cover: "",
     amazon: {
@@ -6641,7 +6699,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Un complejo subterráneo oculto en el desierto, un grupo de científicos trabaja en la ecuación más prometedora —y peligrosa— jamás concebida. Aislados del mundo se enfrentan a una cuenta atrás invisible: la que separa el descubrimiento del desastre.
+      `Un complejo subterráneo oculto en el desierto, un grupo de científicos trabaja en la ecuación más prometedora —y peligrosa— jamás concebida. Aislados del mundo se enfrentan a una cuenta atrás invisible: la que separa el descubrimiento del desastre.
         En el centro de todo, Olivia y Therence intentan descifrar los límites de la física... y los de su propia conciencia. Pero hay códigos que no solo esconden respuestas. También cargan con el precio de la verdad.
         La variable invisible es un thriller científico de alta tensión, donde cada decisión puede alterar el curso de lo que entendemos por realidad. Y donde no todas las ecuaciones quieren ser resueltas.
         `,
@@ -6649,10 +6707,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["accion","misterioaresolver"],
+      metrics: ["accion", "misterioaresolver"],
     },
-    genre: ["misterio","thriller","ficcion","cienciaFiccion"],
-    subgenres: ["technothriller","conspiracion"],
+    genre: ["misterio", "thriller", "ficcion", "cienciaFiccion"],
+    subgenres: ["technothriller", "conspiracion"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6663,7 +6721,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "tras-la-oscuridad",
+  {
+    slug: "tras-la-oscuridad",
     title: "TRAS LA OSCURIDAD",
     cover: "",
     amazon: {
@@ -6676,16 +6735,16 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `En una pequeña villa francesa empiezan a ocurrir muertes extrañas, que desconciertan a sus habitantes, para los que la única explicación es la intervención del diablo. Nuestro protagonista recién llegado a la villa, vivirá fuertes cambios en su vida personal y descubrirá su madurez mientras intenta averiguar quien esta realmente detrás de todas esas espantosas muertes de cariz satánico.
+      `En una pequeña villa francesa empiezan a ocurrir muertes extrañas, que desconciertan a sus habitantes, para los que la única explicación es la intervención del diablo. Nuestro protagonista recién llegado a la villa, vivirá fuertes cambios en su vida personal y descubrirá su madurez mientras intenta averiguar quien esta realmente detrás de todas esas espantosas muertes de cariz satánico.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["misterioaresolver","accion"],
+      metrics: ["misterioaresolver", "accion"],
     },
-    genre: ["terror","misterio","thriller","ficcion"],
-    subgenres: ["sobrenatural","detectivesco","asesinoenserie"],
+    genre: ["terror", "misterio", "thriller", "ficcion"],
+    subgenres: ["sobrenatural", "detectivesco", "asesinoenserie"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6696,7 +6755,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "elizard-y-la-herencia-de-umbra",
+  {
+    slug: "elizard-y-la-herencia-de-umbra",
     title: "ELIZARD Y LA HERENCIA DE UMBRA",
     cover: "",
     amazon: {
@@ -6709,7 +6769,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `Despertó sin nombre. Sin recuerdos. Con una daga ensangrentada en una mano y marcas de un poder ancestral en la piel, inicia un viaje para recuperar su memoria... y contener lo que late en su interior.
+      `Despertó sin nombre. Sin recuerdos. Con una daga ensangrentada en una mano y marcas de un poder ancestral en la piel, inicia un viaje para recuperar su memoria... y contener lo que late en su interior.
         En un mundo donde las sombras se alzan y los secretos del pasado regresan con fuerza, nuestro protagonista viaja acompañado por un zorro que no es lo que parece y una princesa que desafía su destino. Mientras el equilibrio del reino de Elyonia se tambalea, antiguos poderes olvidados comienzan a agitarse.
         Místicos, batallas épicas y decisiones imposibles se entrelazan en su camino, mientras el fuego de su herencia amenaza con consumirlo. En un viaje marcado por magia primitiva, descubrirá que el mayor enemigo... a veces, nace en el corazón.
         `,
@@ -6717,10 +6777,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["aventura","accion"],
+      metrics: ["aventura", "accion"],
     },
-    genre: ["fantasia","misterio","aventura","ficcion"],
-    subgenres: ["epica","oscura","juvenil"],
+    genre: ["fantasia", "misterio", "aventura", "ficcion"],
+    subgenres: ["epica", "oscura", "juvenil"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6730,8 +6790,9 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
-  { slug: "cuando-los-suenos-hablan",
+  },*/
+  /*{
+    slug: "cuando-los-suenos-hablan",
     title: "CUANDO LOS SUEÑOS HABLAN",
     cover: "",
     amazon: {
@@ -6744,7 +6805,7 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `En un futuro donde los sueños pueden grabarse y estudiarse, la empresa Synapse Dreams promete revolucionar la mente humana. Pero cuando Adri, un empleado, descubre archivos secretos con los sueños de políticos, artistas y líderes de poder, su vida se convierte en una pesadilla de la que no puede despertar.
+      `En un futuro donde los sueños pueden grabarse y estudiarse, la empresa Synapse Dreams promete revolucionar la mente humana. Pero cuando Adri, un empleado, descubre archivos secretos con los sueños de políticos, artistas y líderes de poder, su vida se convierte en una pesadilla de la que no puede despertar.
         Atrapado entre la verdad y el miedo, Adri se enfrenta a una conspiración donde los sueños se usan para manipular, chantajear y controlar. Cuanto más se adentra en ese universo onírico, más se acerca a secretos que quizá no debería conocer.
         Un thriller psicológico y tecnológico sobre el poder, la ética y la pérdida de la privacidad en un mundo que no distingue entre dormir y ser observado.
         `,
@@ -6752,10 +6813,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["reflexion","ia","misterioaresolver","supervivencia","conspiracion"],
+      metrics: ["reflexion", "ia", "misterioaresolver", "supervivencia", "conspiracion"],
     },
-    genre: ["thriller","misterio","cienciaFiccion","ficcion"],
-    subgenres: ["distopia","conspiracion","THpsicologico"],
+    genre: ["thriller", "misterio", "cienciaFiccion", "ficcion"],
+    subgenres: ["distopia", "conspiracion", "THpsicologico"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6766,7 +6827,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "cassie-2045",
+  {
+    slug: "cassie-2045",
     title: "CASSIE 2045",
     cover: "",
     amazon: {
@@ -6779,7 +6841,7 @@ export const books: Book[] = [
     isSaga: true,
     categories: [0],
     summary:
-        `Las carreras le enseñaron a Cassie que la velocidad no significa nada si no existe un propósito para seguir adelante.
+      `Las carreras le enseñaron a Cassie que la velocidad no significa nada si no existe un propósito para seguir adelante.
         En el año 2045, mientras el mundo comienza a ceder ante una tecnología capaz de controlar la voluntad humana, un campeonato de rally termina convirtiéndose en el inicio de una conspiración que amenaza con destruir la libertad para siempre.
         Cassie vive entre motores, carreteras imposibles y la adrenalina de competir al límite. Junto a su equipo y a Joseph, un hombre marcado por secretos del pasado, descubre que detrás del partido ERES y del misterioso Gran Gobernador se esconde algo mucho más peligroso que una organización política: un sistema dispuesto a convertir las emociones humanas en una debilidad que debe ser eliminada.
         `,
@@ -6787,10 +6849,10 @@ export const books: Book[] = [
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["aventura","reflexion","misterioaresolver","accion"],
+      metrics: ["aventura", "reflexion", "misterioaresolver", "accion"],
     },
-    genre: ["cienciaFiccion","romance","aventura","ficcion"],
-    subgenres: ["distopia","amorprohibido"],
+    genre: ["cienciaFiccion", "romance", "aventura", "ficcion"],
+    subgenres: ["distopia", "amorprohibido"],
     tags: {
       ritmo: 0,
       complejidad: 0,
@@ -6801,7 +6863,8 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  { slug: "la-vida-es-como-una-playlist",
+  {
+    slug: "la-vida-es-como-una-playlist",
     title: "LA VIDA ES COMO UNA PLAYLIST",
     cover: "",
     amazon: {
@@ -6814,17 +6877,135 @@ export const books: Book[] = [
     isSaga: false,
     categories: [0],
     summary:
-        `¿Alguna vez te quedaste con una canción en loop porque describía exactamente lo que no podías poner en palabras?
+      `¿Alguna vez te quedaste con una canción en loop porque describía exactamente lo que no podías poner en palabras?
         Este libro es un manual de supervivencia emocional organizado como un vinilo de seis caras: desde los primeros acordes de la infancia hasta el fin de fiesta de quien aprendió a bailar sola. 57 relatos independientes —sin orden obligatorio, sin capítulos que se encadenen— que atraviesan el amor que nunca llegó a tiempo, la amistad que se fue sin despedirse, el deseo que te dejó sin palabras, la ruptura que sobreviviste con helado y pijama de ositos, y la mañana en que te levantaste y por fin eras tú.
         `,
     review: {
       title: "",
       excerpt: ``,
       content: "",
-      metrics: ["relatos","relatocorto","supervivencia","humor","reflexion"],
+      metrics: ["relatos", "relatocorto", "supervivencia", "humor", "reflexion"],
     },
     genre: ["ficcion"],
-    subgenres: ["psicologico","emotiva"],
+    subgenres: ["psicologico", "emotiva"],
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },*/
+  {
+    slug: "guerras-lunares",
+    title: "GUERRAS LUNARES",
+    cover: "",
+    amazon: {
+      es: "B0GMXLSNSB",
+      mx: "B0GMXLSNSB",
+      us: "B0GMXLSNSB",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["j-c-plaza", "julio-embid"],
+    isSaga: false,
+    categories: [0],
+    summary:
+      `Desde el vacío espacial, una madre cambiará el curso de la historia.
+        En el año 2050, la carrera por la colonización lunar ya no es un sueño: está en pleno auge.
+        La Luna se convierte en el nuevo campo de batalla por la hegemonía mundial.
+        Las primeras bases permanentes en el polo sur aprovechan el hielo de los cráteres de sombra eterna, mientras se producen operaciones militares entre astronautas estadounidenses y taikonautas chinos.
+        ¿Surgirá un nuevo amanecer para la Humanidad en la Luna?
+        Guerras Lunares, con un ritmo ágil y basada en conceptos científicos y tecnológicos reales, es un intenso thriller político que plantea un futuro cercano extraordinariamente plausible.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["aventura",
+        "colonizacionexpansion",
+        "militar",
+        "existencial"],
+    },
+    genre: ["cienciaFiccion", "thriller", "ficcion", "aventura"],
+    subgenres: ["exploracionespacial", "technothriller", "distopia"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "amanecer-relatos-de-ciencia-ficcion",
+    title: "AMANECER: RELATOS DE CIENCIA FICCIÓN",
+    cover: "",
+    amazon: {
+      es: "B0GTFQGS6R",
+      mx: "B0GTFQGS6R",
+      us: "B0GTFQGS6R",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["j-f-goulding", "carlos-j-eguren", "juan-baez", "j-c-plaza", "alfredo-rubio", "juan-antonio-jimenez", "a-n-berth", "pablo-albaladejo-perona", "eduardo-d-allen", "vicente-moraga-costoso"],
+    isSaga: false,
+    categories: [0],
+    summary:
+      `Futuros improbables, tierras desconocidas, viajes por el espacio. Si hay un género que una conocimiento y fantasía, progreso e imaginación, hipótesis y sueños, este es, sin duda, el de la ciencia ficción.
+        Diez escritores, con voces narrativas bien diferenciadas, han creado esta antología de ciencia ficción en la que, además de hacer disfrutar al lector de unos buenos relatos, pretenden dejar ideas, conceptos, sensaciones, pero, por encima de todo, desean que el lector se pregunte: ¿Qué pasaría si…?
+        Juntos atravesaremos realidades paralelas a bordo de la nave Amanecer. Abróchate el cinturón y prepárate para soportar la presión de las fuerzas g.
+        16 relatos de 10 autores.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["relatos",
+        "aventura",
+        "razasalienigenas", "cienciadura"],
+    },
+    genre: ["cienciaFiccion"],
+    subgenres: ["distopia", "realidadesalternas", "invasionalienigena", "exploracionespacial", "utopia", "cyberpunk", "evolucionespeculativa"],
+
+    tags: {
+      ritmo: 0,
+      complejidad: 0,
+      cargaEmocional: 0,
+      conflicto: 0,
+      worldbuilding: 0,
+      accesibilidad: 0,
+      profundidad: 0,
+    }
+  },
+  {
+    slug: "historias-de-arena-y-metal",
+    title: "HISTORIAS DE ARENA Y METAL (HIMNO DEL DESIERTO)",
+    cover: "",
+    amazon: {
+      es: "B0GQ582XNM",
+      mx: "B0GQ582XNM",
+      us: "B0GQ582XNM",
+    },
+    amazonLink: "https://amazon.com",
+    authorSlug: ["eduardo-d-allen", "beatriz-lillo", "daniel-galvez-estevez", "belen-arce", "gabriel-vilches-barroso", "ivano-de-la-rosa", "narya-a-vicens", "sergio-durango-arias", "susana-uboldi", "virginia-rios"],
+    isSaga: false,
+    categories: [0],
+    summary:
+      `Una antología benéfica centrada en la saga Himno del Desierto, en colaboración con múltiples autores. Complementa el universo construido en la saga con relatos alternativos que abarcan a los pueblos de Onnan y Umbriland. Combinan diferentes escenarios, emociones y situaciones para enriquecer esta distopía postnuclear.`,
+    review: {
+      title: "",
+      excerpt: ``,
+      content: "",
+      metrics: ["relatos",
+        "aventura",
+        "supervivencia",
+        "misterioaresolver"],
+    },
+    genre: ["cienciaFiccion", "aventura", "misterio"],
+    subgenres: ["distopia", "postapocaliptica", "especulativo", "technothriller"],
+
     tags: {
       ritmo: 0,
       complejidad: 0,
