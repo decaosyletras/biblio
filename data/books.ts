@@ -3122,7 +3122,7 @@ export const books: Book[] = [
       us: "B0F8RJXQ82",
     },
     amazonLink: "https://amazon.com",
-    authorSlug: ["juan-carlos-toral-dueñas"],
+    authorSlug: ["juan-carlos-toral-duenas"],
     isSaga: true,
     categories: [0],
     summary:
