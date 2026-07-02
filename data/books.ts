@@ -6979,7 +6979,7 @@ export const books: Book[] = [
       profundidad: 0,
     }
   },
-  {
+  /*{
     slug: "historias-de-arena-y-metal",
     title: "HISTORIAS DE ARENA Y METAL (HIMNO DEL DESIERTO)",
     cover: "",
@@ -7015,7 +7015,7 @@ export const books: Book[] = [
       accesibilidad: 0,
       profundidad: 0,
     }
-  },
+  },*/
 
 
 
