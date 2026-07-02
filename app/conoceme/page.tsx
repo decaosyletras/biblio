@@ -10,7 +10,7 @@ export default function ConocemePage() {
   const [apellido, setApellido] = useState("")
   const [email, setEmail] = useState("")
   const [sent, setSent] = useState(false)
-  
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -68,25 +68,85 @@ export default function ConocemePage() {
         <a
           href="https://www.instagram.com/decaosyletras?igsh=dXpxNzU3eWhsYmo1"
           target="_blank"
-          className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
+          className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-xl
+                    border border-zinc-800
+                    bg-zinc-900/40
+                    p-4
+                    flex items-center gap-3
+                    transition-all duration-300
+                    hover:border-pink-500/40
+                    hover:shadow-[0_0_25px_rgba(236,72,153,0.15)]
+                    hover:-translate-y-1
+                  "
         >
-          <FaInstagram /> Instagram
+          <div className="text-pink-400 text-xl group-hover:scale-110 transition">
+            <FaInstagram />
+          </div>
+
+          <div>
+            <p className="text-sm text-zinc-400">Instagram</p>
+            <p className="text-xs text-zinc-500">@decaosyletras</p>
+          </div>
         </a>
 
         <a
           href="https://www.tiktok.com/@decaosyletras?_r=1&_t=ZS-96CxbSs4gvI"
           target="_blank"
-          className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
+          className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-xl
+                    border border-zinc-800
+                    bg-zinc-900/40
+                    p-4
+                    flex items-center gap-3
+                    transition-all duration-300
+                    hover:border-white/30
+                    hover:shadow-[0_0_25px_rgba(255,255,255,0.12)]
+                    hover:-translate-y-1
+                  "
         >
-          <SiTiktok /> TikTok
+          <div className="text-white text-xl group-hover:scale-110 transition">
+            <SiTiktok />
+          </div>
+
+          <div>
+            <p className="text-sm text-zinc-400">TikTok</p>
+            <p className="text-xs text-zinc-500">@decaosyletras</p>
+          </div>
         </a>
 
         <a
           href="https://www.threads.com/@decaosyletras"
           target="_blank"
-          className="flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-lg hover:bg-zinc-700 transition"
+          className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-xl
+                    border border-zinc-800
+                    bg-zinc-900/40
+                    p-4
+                    flex items-center gap-3
+                    transition-all duration-300
+                    hover:border-cyan-400/40
+                    hover:shadow-[0_0_25px_rgba(34,211,238,0.15)]
+                    hover:-translate-y-1
+                  "
         >
-          <SiThreads /> Threads
+          <div className="text-cyan-400 text-xl group-hover:scale-110 transition">
+            <SiThreads />
+          </div>
+
+          <div>
+            <p className="text-sm text-zinc-400">Threads</p>
+            <p className="text-xs text-zinc-500">@decaosyletras</p>
+          </div>
         </a>
 
         <a
@@ -100,7 +160,7 @@ export default function ConocemePage() {
       </div>
 
       <p className="text-zinc-400 mb-6">
-        Si quieres apoyar este proyecto, puedes hacerlo comprando a través de los enlaces de mi web. 
+        Si quieres apoyar este proyecto, puedes hacerlo comprando a través de los enlaces de mi web.
         ¡No tiene costo extra para ti, tampoco afecta las ganancias del autor, y sí ayudas a mantener vivo el proyecto! 💛
       </p>
 
