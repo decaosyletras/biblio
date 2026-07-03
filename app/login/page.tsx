@@ -1,110 +1,60 @@
 "use client"
 
 import { useState } from "react"
+import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
-import { createClient } from "@supabase/supabase-js"
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+import Link from "next/link"
 
 export default function LoginPage() {
-  const router = useRouter()
-
-  const [isLogin, setIsLogin] = useState(true)
-  const [loading, setLoading] = useState(false)
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [name, setName] = useState("")
+  const router = useRouter()
 
-  const handleAuth = async () => {
-    setLoading(true)
+  const login = async (e: React.FormEvent) => {
+    e.preventDefault()
 
-    if (isLogin) {
-      // 🔐 LOGIN
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    })
 
-      if (error) {
-        alert(error.message)
-      } else {
-        router.push("/")
-      }
-    } else {
-      // 🧑‍💻 REGISTRO
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            name,
-          },
-        },
-      })
+    if (error) return alert(error.message)
 
-      if (error) {
-        alert(error.message)
-      } else {
-        alert("Cuenta creada. Revisa tu correo si activaste confirmación.")
-        setIsLogin(true)
-      }
-    }
-
-    setLoading(false)
+    router.push("/me")
+    router.refresh()
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-900 text-white px-4">
-      <div className="w-full max-w-md bg-zinc-800 p-6 rounded-xl space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-white px-4">
+      <div className="w-full max-w-md bg-zinc-900 p-8 rounded-2xl border border-zinc-800">
+        <h1 className="text-2xl font-bold mb-6">Iniciar sesión</h1>
 
-        <h1 className="text-2xl font-semibold text-center">
-          {isLogin ? "Iniciar sesión" : "Crear cuenta"}
-        </h1>
-
-        {!isLogin && (
+        <form onSubmit={login} className="space-y-4">
           <input
-            className="w-full p-3 rounded bg-zinc-700 text-white"
-            placeholder="Nombre"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            className="w-full p-3 rounded bg-zinc-800 border border-zinc-700"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-        )}
 
-        <input
-          className="w-full p-3 rounded bg-zinc-700 text-white"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <input
+            className="w-full p-3 rounded bg-zinc-800 border border-zinc-700"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <input
-          className="w-full p-3 rounded bg-zinc-700 text-white"
-          placeholder="Contraseña"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button
-          onClick={handleAuth}
-          disabled={loading}
-          className="w-full bg-white text-black py-3 rounded font-medium hover:opacity-80 transition"
-        >
-          {loading ? "Cargando..." : isLogin ? "Entrar" : "Crear cuenta"}
-        </button>
-
-        <p className="text-sm text-center text-zinc-400">
-          {isLogin ? "¿No tienes cuenta?" : "¿Ya tienes cuenta?"}{" "}
-          <button
-            onClick={() => setIsLogin(!isLogin)}
-            className="text-yellow-400 hover:underline"
-          >
-            {isLogin ? "Crear cuenta" : "Iniciar sesión"}
+          <button className="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded font-semibold">
+            Entrar
           </button>
+        </form>
+
+        <p className="text-sm text-zinc-400 mt-4">
+          ¿No tienes cuenta?{" "}
+          <Link href="/register" className="text-blue-400">
+            Regístrate
+          </Link>
         </p>
       </div>
     </div>

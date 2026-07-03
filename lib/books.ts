@@ -134,5 +134,5 @@ export async function getBooks(): Promise<Book[]> {
     }
   })
 
-  return [...staticBooks, ...dynamicBooks]
+  return [...dynamicBooks, ...staticBooks]
 }
