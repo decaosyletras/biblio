@@ -42,7 +42,7 @@ export default function Navbar() {
         <div className="hidden md:flex gap-4 text-sm">
           <Link href="/">Inicio</Link>
           <Link href="/conoceme">Conóceme</Link>
-          <Link href="/contacto2">Recomendar</Link>
+          <Link href="/contact">Recomendar</Link>
           {/*<Link href="/afiliados">Transparencia</Link>
           <Link href="/privacidad">Privacidad</Link>*/}
         </div>
@@ -53,7 +53,7 @@ export default function Navbar() {
         <div className="md:hidden mt-4 bg-zinc-800 rounded-xl p-4 flex flex-col gap-3 text-sm shadow-lg">
           <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
           <Link href="/conoceme" onClick={() => setOpen(false)}>Conóceme</Link>
-          <Link href="/contacto2" onClick={() => setOpen(false)}>Recomendar</Link>
+          <Link href="/contact" onClick={() => setOpen(false)}>Recomendar</Link>
           {/*<Link href="/afiliados" onClick={() => setOpen(false)}>Transparencia</Link>
           <Link href="/privacidad" onClick={() => setOpen(false)}>Privacidad</Link>*/}
         </div>

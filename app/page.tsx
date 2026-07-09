@@ -149,7 +149,7 @@ export default function Home() {
         </p>
 
         <Link
-          href="/contacto2"
+          href="/contact"
           className="inline-block mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full"
         >
           Recomendar
