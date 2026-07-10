@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
-export default function RegisterSuccessPage() {
+function SuccessContent() {
     const searchParams = useSearchParams()
 
     const email = searchParams.get("email")
@@ -38,18 +39,24 @@ export default function RegisterSuccessPage() {
                 </div>
 
                 <div className="mt-8">
-
                     <Link
                         href="/login"
                         className="block w-full rounded-xl bg-blue-600 py-3 text-center font-semibold hover:bg-blue-500 transition"
                     >
                         Ir al inicio de sesión
                     </Link>
-
                 </div>
 
             </div>
 
         </div>
+    )
+}
+
+export default function RegisterSuccessPage() {
+    return (
+        <Suspense>
+            <SuccessContent />
+        </Suspense>
     )
 }
