@@ -1,11 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { supabase } from "@/lib/supabase"
 
 export default function LoginPage() {
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const router = useRouter()
@@ -13,12 +14,17 @@ export default function LoginPage() {
   const login = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password
     })
 
-    if (error) return alert(error.message)
+    const { data: sessionTest } = await supabase.auth.getSession()
+
+    if (error) {
+      alert(error.message)
+      return
+    }
 
     router.push("/me")
     router.refresh()
@@ -26,10 +32,15 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-white px-4">
+
       <div className="w-full max-w-md bg-zinc-900 p-8 rounded-2xl border border-zinc-800">
-        <h1 className="text-2xl font-bold mb-6">Iniciar sesión</h1>
+
+        <h1 className="text-2xl font-bold mb-6">
+          Iniciar sesión
+        </h1>
 
         <form onSubmit={login} className="space-y-4">
+
           <input
             className="w-full p-3 rounded bg-zinc-800 border border-zinc-700"
             placeholder="Email"
@@ -48,6 +59,7 @@ export default function LoginPage() {
           <button className="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded font-semibold">
             Entrar
           </button>
+
         </form>
 
         <p className="text-sm text-zinc-400 mt-4">
@@ -56,7 +68,9 @@ export default function LoginPage() {
             Regístrate
           </Link>
         </p>
+
       </div>
+
     </div>
   )
 }

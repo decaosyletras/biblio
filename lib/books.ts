@@ -12,10 +12,10 @@ export async function getBooks(): Promise<Book[]> {
   const { data: booksData, error: booksError } = await supabase
     .from("books")
     .select("*")
-    .eq("approved", true)
+    .eq("approved", true).order("created_at", { ascending: true })
 
   if (booksError) {
-    console.error("booksError:", booksError)
+    console.error("booksError")
     return staticBooks
   }
 
@@ -25,7 +25,7 @@ export async function getBooks(): Promise<Book[]> {
     .select("id, slug, name")
 
   if (authorsError) {
-    console.error("authorsError:", authorsError)
+    console.error("authorsError")
     return staticBooks
   }
 
@@ -35,7 +35,7 @@ export async function getBooks(): Promise<Book[]> {
     .select("book_id, author_id")
 
   if (bookAuthorsError) {
-    console.error("bookAuthorsError:", bookAuthorsError)
+    console.error("bookAuthorsError")
   }
 
   // Map autores por id
@@ -49,7 +49,14 @@ export async function getBooks(): Promise<Book[]> {
   )
 
   // Agrupar autores por book_id
-  const authorsByBook = new Map<string, { slug: string; name: string }[]>()
+  const authorsByBook = new Map<
+    string,
+    {
+      id: string
+      slug: string
+      name: string
+    }[]
+  >()
 
   for (const rel of bookAuthorsData || []) {
     const author = authorsMap.get(rel.author_id)
@@ -60,9 +67,10 @@ export async function getBooks(): Promise<Book[]> {
     authorsByBook.set(rel.book_id, [
       ...list,
       {
+        id: author.id,
         slug: author.slug,
         name: author.name,
-      },
+      }
     ])
   }
 
@@ -106,6 +114,18 @@ export async function getBooks(): Promise<Book[]> {
         ? multiAuthors!.map(a => a.name)
         : singleAuthor
           ? [singleAuthor.name]
+          : [],
+
+      authors: hasMulti
+        ? multiAuthors!
+        : singleAuthor
+          ? [
+            {
+              id: singleAuthor.id,
+              slug: singleAuthor.slug,
+              name: singleAuthor.name,
+            },
+          ]
           : [],
 
       isSaga: book.is_saga ?? false,

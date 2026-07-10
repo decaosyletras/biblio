@@ -14,14 +14,27 @@ const genreColors: Record<string, string> = {
 export default function GenreBadge({
   label,
   type,
+  theme,
 }: {
   label: string
   type: string
+  theme?: any
 }) {
   const color = genreColors[type] || "bg-zinc-700 text-zinc-300"
 
   return (
-    <span className={`text-xs px-3 py-1 rounded-full border ${color}`}>
+    <span
+      className={`text-xs px-3 py-1 rounded-full border ${!theme ? color : ""}`}
+      style={
+        theme
+          ? {
+            backgroundColor: `${theme.primary}20`,
+            color: theme.primary,
+            borderColor: `${theme.primary}60`,
+          }
+          : undefined
+      }
+    >
       {label}
     </span>
   )

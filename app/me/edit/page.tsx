@@ -44,13 +44,14 @@ export default function EditProfilePage() {
 
         if (!user) return
 
-        const { error } = await supabase
+        const { data: updated, error } = await supabase
             .from("profiles")
             .update({
                 username,
                 bio
             })
             .eq("id", user.id)
+            .select()
 
         setSaving(false)
 
@@ -75,22 +76,21 @@ export default function EditProfilePage() {
         <div className="min-h-screen bg-zinc-950 text-white px-6 py-10">
             <div className="max-w-xl mx-auto space-y-6">
 
-                <h1 className="text-3xl font-bold">Editar perfil</h1>
+                <h1 className="text-3xl font-bold">Editar nombre de usuario</h1>
 
                 {/* INPUTS */}
                 <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl space-y-4">
 
                     <div>
-                        <label className="text-sm text-zinc-400">Username</label>
                         <input
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             className="w-full mt-1 bg-zinc-800 border border-zinc-700 p-3 rounded-xl outline-none"
-                            placeholder="Tu username"
+                            placeholder="Tu nombre de usuario"
                         />
                     </div>
 
-                    <div>
+                    {/*<div>
                         <label className="text-sm text-zinc-400">Bio</label>
                         <textarea
                             value={bio}
@@ -98,7 +98,7 @@ export default function EditProfilePage() {
                             className="w-full mt-1 bg-zinc-800 border border-zinc-700 p-3 rounded-xl outline-none min-h-[120px]"
                             placeholder="Cuéntanos sobre ti"
                         />
-                    </div>
+                    </div>*/}
 
                 </div>
 

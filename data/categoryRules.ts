@@ -38,7 +38,7 @@ const categoryMetricsMap: Record<string, string[]> = {
     "pandemia",
     "traicion",
   ],
-  
+
   relatos_y_cuentos: [
     "relatos",
     "cuentos",
@@ -147,7 +147,6 @@ export const categoryRules: CategoryRule[] = [
     threshold: 2,
 
     score: (b) => {
-      //console.log("DEBUG metrics:", b.metrics)
 
       let s = 0
       s += countMetrics(b.metrics, categoryMetricsMap.relatos_y_cuentos) * 2
@@ -156,7 +155,7 @@ export const categoryRules: CategoryRule[] = [
 
     match: (b) =>
       categoryRules.find((r) => r.id === "relatos_y_cuentos")!.score(b) >= 2,
-    },
+  },
 
 
   // 🌑 MUNDOS OSCUROS Y DISTÓPICOS
@@ -407,7 +406,7 @@ export const categoryRules: CategoryRule[] = [
     },
 
     match: (b) =>
-      categoryRules.find((r) => r.id === "adrenalina_supervivencia" )!.score(b) >= 4,
+      categoryRules.find((r) => r.id === "adrenalina_supervivencia")!.score(b) >= 4,
   },
 
   // 🧭 PARANOIA Y TENSIÓN MENTAL

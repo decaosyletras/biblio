@@ -157,7 +157,6 @@ export default async function Page() {
             const filteredBooks = books.filter((book) =>
               (book.review?.metrics ?? []).includes(theme.id)
             )
-            //console.log("THEME DEBUG:", theme.id, filteredBooks.length)
             if (filteredBooks.length === 0) return null
 
             return (
