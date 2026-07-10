@@ -3,6 +3,8 @@ import Link from "next/link"
 import GenreBadge from "@/components/GenreBadge"
 import { genresCatalog } from "@/data/genres"
 import { getBookCover } from "@/lib/amazon"
+import CoverImage from "@/components/CoverImage"
+import AmazonButton from "@/components/AmazonButton"
 import { FaCrown } from "react-icons/fa"
 import ProCheckoutButton from "@/components/ProCheckoutButton"
 import { cookies } from "next/headers"
@@ -180,15 +182,12 @@ export default async function AuthorPage({
         border: author.theme?.border ?? "#27272a",
     }
 
-
     /*onsole.log({
         user: user?.id,
         author: author.id,
         pro: author.pro,
         canEdit
     })*/
-
-
 
     return (
         <div
@@ -537,22 +536,28 @@ export default async function AuthorPage({
                         </h2>
 
 
-                        <Link
-                            href={`/libros/${featuredBook.slug}`}
-                            className="flex flex-col sm:flex-row gap-6 items-center group">
-
+                        <div className="flex flex-col sm:flex-row gap-6 items-center group" >
                             <>
-                                <img
-                                    src={getBookCover(
-                                        {
-                                            es: featuredBook.asin_es,
-                                            mx: featuredBook.asin_mx,
-                                            us: featuredBook.asin_us
-                                        },
-                                        featuredBook.cover
-                                    )}
-                                    className="w-40 rounded-2xl shadow-2xl transition duration-500 group-hover:scale-105"
-                                />
+                                <div className="w-40 aspect-[2/3] overflow-hidden rounded-2xl shadow-2xl">
+                                    <CoverImage
+                                        src={getBookCover(
+                                            {
+                                                es: featuredBook.asin_es,
+                                                mx: featuredBook.asin_mx,
+                                                us: featuredBook.asin_us
+                                            },
+                                            featuredBook.cover
+                                        )}
+                                        alt={featuredBook.title}
+                                        className="
+                                            w-full
+                                            h-full
+                                            object-cover
+                                            transition
+                                            duration-500
+                                        "
+                                    />
+                                </div>
 
                                 <div className="flex-1">
 
@@ -605,20 +610,46 @@ export default async function AuthorPage({
 
                                     )}
 
-                                    <div
-                                        className="mt-6 inline-flex items-center gap-2 font-semibold"
-                                        style={{
-                                            color: authorTheme.primary
-                                        }}
-                                    >
-                                        Ver libro
-                                        <span className="transition-transform group-hover:translate-x-1">
-                                            →
-                                        </span>
+                                    <div className="mt-2 flex flex-wrap gap-3 items-center">
+
+                                        <AmazonButton
+                                            amazon={{
+                                                es: featuredBook.asin_es,
+                                                mx: featuredBook.asin_mx,
+                                                us: featuredBook.asin_us
+                                            }}
+                                            amazonLink={featuredBook.amazonLink}
+                                            color={authorTheme.primary}
+                                            textColor={authorTheme.text}
+                                        />
+
+                                        <Link
+                                            href={`/libros/${featuredBook.slug}`}
+                                            className="
+            mt-4
+            px-5 py-2
+            rounded-xl
+            font-semibold
+            border
+            inline-flex
+            items-center
+            justify-center
+            transition
+            hover:opacity-80
+        "
+                                            style={{
+                                                color: authorTheme.text,
+                                                backgroundColor: authorTheme.surface,
+                                                borderColor: authorTheme.border
+                                            }}
+                                        >
+                                            Ver detalles
+                                        </Link>
+
                                     </div>
                                 </div>
                             </>
-                        </Link>
+                        </div>
                     </section>
                 )}
 
@@ -675,26 +706,37 @@ export default async function AuthorPage({
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
 
                         {books.map(book => (
-                            <Link
+
+                            <article
                                 key={book.id}
-                                href={`/libros/${book.slug}`}
-                                className="group block"
+                                className="
+            group
+            overflow-hidden
+            rounded-3xl
+            transition-all
+            duration-500
+            hover:-translate-y-2
+        "
+                                style={{
+                                    backgroundColor: authorTheme.bg,
+                                    border: `1px solid ${authorTheme.border}`
+                                }}
                             >
 
-                                <article
-                                    className="overflow-hidden rounded-3xl transition-all duration-500 hover:-translate-y-2"
-                                    style={{
-                                        backgroundColor: authorTheme.bg,
-                                        border: `1px solid ${authorTheme.border}`
-                                    }}
-                                >
+                                {/* PORTADA */}
+                                <div className="p-2">
 
-                                    {/* PORTADA */}
                                     <div
-                                        className="relative overflow-hidden aspect-[2/3] bg-zinc-950"
+                                        className="
+                    relative
+                    overflow-hidden
+                    aspect-[2/3]
+                    bg-zinc-950
+                    rounded-2xl
+                "
                                     >
 
-                                        <img
+                                        <CoverImage
                                             src={getBookCover(
                                                 {
                                                     es: book.asin_es,
@@ -703,88 +745,131 @@ export default async function AuthorPage({
                                                 },
                                                 book.cover
                                             )}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            alt={book.title}
+                                            className="
+                        w-full
+                        h-full
+                        object-cover
+                        transition-transform
+                        duration-700
+                        group-hover:scale-105
+                    "
                                         />
 
-                                        {/* Overlay */}
                                         <div
-                                            className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition"
+                                            className="
+                        absolute
+                        inset-0
+                        bg-gradient-to-t
+                        from-black/50
+                        via-transparent
+                        opacity-0
+                        group-hover:opacity-100
+                        transition
+                    "
                                         />
+
                                     </div>
 
-                                    {/* INFORMACIÓN */}
+                                </div>
 
-                                    <div className="p-4">
-                                        <h3
-                                            className="font-bold text-sm md:text-base line-clamp-2 transition-colors"
-                                            style={{
-                                                color: authorTheme.text
-                                            }}
-                                        >
-                                            {book.title}
-                                        </h3>
 
-                                        <div className="mt-3 flex flex-wrap gap-1.5">
+                                {/* INFORMACIÓN */}
 
-                                            {(book.genres ?? [])
-                                                .slice(0, 2)
-                                                .map((id: string) => {
+                                <div className="px-4 pb-4">
 
-                                                    const genre =
-                                                        genresCatalog.find(
-                                                            g => g.id === id
-                                                        )
+                                    <h3
+                                        className="
+                    font-bold
+                    text-sm
+                    md:text-base
+                    line-clamp-2
+                    transition-colors
+                "
+                                        style={{
+                                            color: authorTheme.text
+                                        }}
+                                    >
+                                        {book.title}
+                                    </h3>
 
-                                                    if (!genre)
-                                                        return null
 
-                                                    return (
+                                    <div className="mt-3 flex flex-wrap gap-1.5">
 
-                                                        <GenreBadge
-                                                            key={genre.id}
-                                                            label={genre.label}
-                                                            type={genre.id}
-                                                            theme={authorTheme}
-                                                        />
+                                        {(book.genres ?? [])
+                                            .slice(0, 2)
+                                            .map((id: string) => {
 
+                                                const genre =
+                                                    genresCatalog.find(
+                                                        g => g.id === id
                                                     )
 
-                                                })
-                                            }
+                                                if (!genre)
+                                                    return null
 
-                                        </div>
-                                        {/*<div className="mt-3 flex flex-wrap gap-1.5">
-                                            <span
-                                                className={book.is_saga ? " text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30"
-                                                    : "text-[10px] px-2 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700 "
-                                                }
-                                            >
+                                                return (
 
-                                                {book.is_saga
-                                                    ? "📚 Saga"
-                                                    : "📖 Autoconclusivo"
-                                                }
+                                                    <GenreBadge
+                                                        key={genre.id}
+                                                        label={genre.label}
+                                                        type={genre.id}
+                                                        theme={authorTheme}
+                                                    />
 
-                                            </span>
+                                                )
 
-                                        </div>*/}
-
-                                        <p
-                                            className="mt-4 text-xs transition"
-                                            style={{
-                                                color: authorTheme.primary
-                                            }}
-                                        >
-                                            Ver libro →
-                                        </p>
+                                            })
+                                        }
 
                                     </div>
 
-                                </article>
 
-                            </Link>
+                                    <div className="mt-5 space-y-3">
+
+                                        <AmazonButton
+                                            amazon={{
+                                                es: book.asin_es,
+                                                mx: book.asin_mx,
+                                                us: book.asin_us
+                                            }}
+                                            amazonLink={book.amazonLink}
+                                            color={authorTheme.primary}
+                                            textColor={authorTheme.text}
+                                        />
+
+
+                                        <Link
+                                            href={`/libros/${book.slug}`}
+                                            className="
+                                                block
+                                                text-center
+                                                text-xs
+                                                font-semibold
+                                                py-2
+                                                rounded-xl
+                                                border
+                                                transition
+                                                hover:opacity-80
+                                            "
+                                            style={{
+                                                color: authorTheme.primary,
+                                                borderColor: authorTheme.border
+                                            }}
+                                        >
+                                            Ver detalles
+                                        </Link>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </article>
 
                         ))}
+
 
                     </div>
 

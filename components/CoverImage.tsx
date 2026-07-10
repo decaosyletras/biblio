@@ -18,6 +18,7 @@ export default function CoverImage({
       className={className}
       style={{
         objectPosition: "right",
+        transform: "scale(1.02)",
       }}
     />
   );

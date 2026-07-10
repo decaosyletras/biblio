@@ -7,10 +7,14 @@ import {
 
 export default function AmazonButton({
   amazon,
-  amazonLink
+  amazonLink,
+  color,
+  textColor
 }: {
   amazon: Record<string, string>
   amazonLink?: string
+  color?: string,
+  textColor?: string
 }) {
 
   const handleClick = async () => {
@@ -32,16 +36,18 @@ export default function AmazonButton({
       onClick={handleClick}
       className="
         mt-4
-        bg-yellow-500
-        hover:bg-yellow-400
-        text-black
-        px-3 py-1.5
-        rounded-full
-        font-medium
+        px-4 py-2
+        rounded-xl
+        font-semibold
         text-sm
         transition
         whitespace-nowrap
+        hover:opacity-90
       "
+      style={{
+        backgroundColor: color ?? "#eab308",
+        color: textColor ?? "#000000"
+      }}
     >
       Ver en Amazon
     </button>
