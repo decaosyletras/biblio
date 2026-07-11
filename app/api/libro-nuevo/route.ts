@@ -1,5 +1,7 @@
 import { createClient } from "@supabase/supabase-js"
 import { NextResponse } from "next/server"
+import { createClient as createServerClient } from "@/lib/supabase-server"
+
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -71,6 +73,16 @@ export async function POST(req: Request) {
   try {
     const body = await req.json()
 
+
+    const authClient = await createServerClient()
+
+    const {
+      data: {
+        user
+      }
+    } = await authClient.auth.getUser()
+
+
     const {
       titulo,
       autor,
@@ -101,6 +113,7 @@ export async function POST(req: Request) {
       .from("authors")
       .select("id,name,slug")
       .eq("normalized_name", normalized)
+      .limit(1)
       .maybeSingle()
 
     let authorId: string
@@ -112,16 +125,33 @@ export async function POST(req: Request) {
 
     // Existe el autor pero el usuario dice que NO es él
     else if (foundAuthor && useExistingAuthor === false) {
-      return NextResponse.json(
-        {
-          error:
-            "Ya existe un autor con ese nombre. Si realmente se trata de otra persona con el mismo nombre, ponte en contacto con nosotros para que podamos diferenciar ambos perfiles."
-        },
-        {
-          status: 400
-        }
-      )
+
+      const slug = await createUniqueSlug(autor)
+
+      const { data: newAuthor, error } = await supabase
+        .from("authors")
+        .insert({
+          name: autor,
+          slug,
+          normalized_name: normalized
+        })
+        .select("id")
+        .single()
+
+      if (error) {
+        return NextResponse.json(
+          {
+            error: error.message
+          },
+          {
+            status: 400
+          }
+        )
+      }
+
+      authorId = newAuthor.id
     }
+    
 
     // No existe ningún autor: crear uno nuevo
     else {
@@ -190,6 +220,48 @@ export async function POST(req: Request) {
         }
       )
     }
+
+
+    // Asociar automáticamente el autor al usuario solo cuando corresponde
+    //
+    // - Autor nuevo: sí
+    // - Autor existente donde confirmó "Sí, soy yo": sí
+    // - Autor existente sin confirmación: no
+
+    if (user) {
+
+      const { data: existingClaim } = await supabase
+        .from("author_claims")
+        .select("id")
+        .eq("user_id", user.id)
+        .eq("author_id", authorId)
+        .maybeSingle()
+
+
+      if (!existingClaim) {
+
+        const { error: claimError } = await supabase
+          .from("author_claims")
+          .insert({
+            user_id: user.id,
+            author_id: authorId,
+            status: "approved"
+          })
+
+
+        if (claimError) {
+
+          console.error(
+            "Error creando author claim:",
+            claimError
+          )
+
+        }
+
+      }
+
+    }
+
 
     return NextResponse.json({
       success: true

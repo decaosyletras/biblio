@@ -383,6 +383,20 @@ export default async function AuthorPage({
                                 )}
 
                                 <Link
+                                    href="/me"
+                                    className="
+                                        px-5 py-3 rounded-xl
+                                        border border-zinc-700
+                                        bg-zinc-900/70
+                                        hover:bg-zinc-800
+                                        transition
+                                        whitespace-nowrap
+                                    "
+                                >
+                                    Mi perfil
+                                </Link>
+
+                                <Link
                                     href={`/authors/${author.slug}/edit`}
                                     className="
                                         px-5 py-3 rounded-xl
@@ -394,7 +408,7 @@ export default async function AuthorPage({
                                         backgroundColor: author.theme?.primary ?? "#2563eb"
                                     }}
                                 >
-                                    Editar perfil
+                                    Editar página
                                 </Link>
 
                             </div>

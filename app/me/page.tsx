@@ -173,6 +173,15 @@ export default function MePage() {
         )
     }
 
+    const hasPendingClaim = claims.some(
+        claim => claim.status === "pending"
+    )
+
+    const showAuthorCTA =
+        !loadingClaims &&
+        !author &&
+        !hasPendingClaim
+
     return (
         <div className="min-h-screen bg-zinc-950 text-white">
 
@@ -242,9 +251,56 @@ export default function MePage() {
                     )}
 
                     {!loadingClaims && claims.length === 0 && (
-                        <p className="text-zinc-400">
-                            Todavía no has reclamado ningún autor. Si ya has registrado tus libros en la Casa de Libros Indie, puedes bucarlo en el catálogo y reclamarlo como tuyo para armar tu página web.
-                        </p>
+                        <div className="space-y-5">
+
+                            <p className="text-zinc-400">
+                                Todavía no has reclamado ningún autor. Si ya has registrado tus libros
+                                en la Casa de Libros Indie, búscalos en el catálogo y reclama tu perfil
+                                para empezar a gestionar tu página de autor.
+                            </p>
+
+                            <Link
+                                href="/libros"
+                                className="
+                                    inline-flex
+                                    items-center
+                                    px-5
+                                    py-3
+                                    rounded-xl
+                                    bg-blue-600
+                                    hover:bg-blue-500
+                                    transition
+                                    font-medium
+                                "
+                            >
+                                Buscar en el catálogo →
+                            </Link>
+
+                            <div className="border-t border-zinc-800 pt-5">
+                                <p className="text-zinc-400">
+                                    ¿Aún no tienes ningún libro registrado en la Casa de Libros Indie?
+                                </p>
+
+                                <Link
+                                    href="/contact"
+                                    className="
+                                        inline-flex
+                                        mt-3
+                                        px-5
+                                        py-3
+                                        rounded-xl
+                                        bg-yellow-500
+                                        text-black
+                                        font-medium
+                                        hover:bg-yellow-400
+                                        transition
+                                    "
+                                >
+                                    Registrar mi libro
+                                </Link>
+                            </div>
+
+                        </div>
                     )}
 
                     <div className="space-y-4">
@@ -321,6 +377,7 @@ export default function MePage() {
                             </div>
                         ))}
                     </div>
+
                 </div>
 
 
