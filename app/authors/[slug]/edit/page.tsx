@@ -559,14 +559,14 @@ export default function EditAuthorPage() {
                                                 ...prev.theme,
                                                 bg: "#09090b",
                                                 surface: "#18181b",
-                                                primary: "#2563eb",
+                                                primary: "#aba3a3",
                                                 text: "#ffffff",
-                                                muted: "#a1a1aa",
+                                                muted: "#888890",
                                                 border: "#27272a"
                                             }
                                         }))
                                     }
-                                    className="p-4 rounded-xl bg-zinc-950 border border-zinc-700 hover:border-blue-500"
+                                    className="p-4 rounded-xl bg-zinc-950 text-white border border-zinc-700 hover:bg-zinc-900 hover:border-blue-500 hover:shadow-lg transition-all duration-200"
                                 >
                                     Oscuro
                                 </button>
@@ -581,14 +581,14 @@ export default function EditAuthorPage() {
                                                 ...prev.theme,
                                                 bg: "#faf7f0",
                                                 surface: "#ffffff",
-                                                primary: "#92400e",
-                                                text: "#292524",
+                                                primary: "#b6622d",
+                                                text: "#373230",
                                                 muted: "#78716c",
                                                 border: "#d6d3d1"
                                             }
                                         }))
                                     }
-                                    className="p-4 rounded-xl bg-white text-black border border-zinc-300 hover:border-amber-500"
+                                    className="p-4 rounded-xl bg-amber-50 text-black border border-zinc-300 hover:bg-amber-100 hover:border-amber-500 hover:shadow-lg transition-all duration-200"
                                 >
                                     Crema
                                 </button>
@@ -603,14 +603,14 @@ export default function EditAuthorPage() {
                                                 ...prev.theme,
                                                 bg: "#071a12",
                                                 surface: "#143b2b",
-                                                primary: "#61dfb5",
+                                                primary: "#157b59",
                                                 text: "#ecfdf5",
-                                                muted: "#a7f3d0",
+                                                muted: "#ccf9e4",
                                                 border: "#065f46"
                                             }
                                         }))
                                     }
-                                    className="p-4 rounded-xl bg-emerald-950 border border-emerald-700 hover:border-emerald-400"
+                                    className="p-4 rounded-xl bg-emerald-950 text-emerald-50 border border-emerald-700 hover:bg-emerald-900 hover:border-emerald-400 hover:shadow-lg transition-all duration-200"
                                 >
                                     Fantasía
                                 </button>
@@ -623,16 +623,16 @@ export default function EditAuthorPage() {
                                             ...prev,
                                             theme: {
                                                 ...prev.theme,
-                                                bg: "#2a1020",
-                                                surface: "#4b1c37",
-                                                primary: "#da639e",
+                                                bg: "#f5b9de",
+                                                surface: "#e0409a",
+                                                primary: "#b53c79",
                                                 text: "#fff1f2",
                                                 muted: "#fda4af",
                                                 border: "#a81e45"
                                             }
                                         }))
                                     }
-                                    className="p-4 rounded-xl bg-rose-950 border border-rose-700 hover:border-rose-400"
+                                    className="p-4 rounded-xl bg-rose-400 text-white border border-rose-700 hover:bg-rose-500 hover:border-rose-200 hover:shadow-lg transition-all duration-200"
                                 >
                                     Romántico
                                 </button>
@@ -894,7 +894,11 @@ export default function EditAuthorPage() {
                         save()
                     }}
                     disabled={saving}
-                    className="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 font-semibold transition disabled:opacity-50"
+                    className="w-full py-4 rounded-xl bg-stone-100
+                                text-stone-900
+                                hover:bg-stone-200
+                                transition
+                                whitespace-nowrap"
                 >
                     {saving ? "Guardando..." : "Guardar cambios"}
                 </button>
