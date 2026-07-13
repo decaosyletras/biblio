@@ -270,13 +270,9 @@ export default async function AuthorPage({
                         <img
                             src={author.banner}
                             className="
-                                absolute
-                                inset-0
                                 w-full
-                                h-[320px]
-                                sm:h-[420px]
+                                aspect-[16/5]
                                 object-cover
-                                opacity-25
                             "
                         />
 
@@ -832,7 +828,7 @@ export default async function AuthorPage({
                             </div>
                         )}
 
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
 
                             {books.map(book => (
 
