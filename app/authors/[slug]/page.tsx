@@ -8,6 +8,7 @@ import AmazonButton from "@/components/AmazonButton"
 import { FaCrown } from "react-icons/fa"
 import ProCheckoutButton from "@/components/ProCheckoutButton"
 import { cookies } from "next/headers"
+import { SiWattpad } from "react-icons/si"
 
 import {
     FaInstagram,
@@ -20,6 +21,50 @@ import {
     SiThreads
 } from "react-icons/si"
 export const dynamic = "force-dynamic"
+
+const socialConfig = {
+    website: {
+        icon: FaGlobe,
+        color: "text-blue-400",
+        hover: "hover:border-blue-400 hover:bg-blue-500/10"
+    },
+
+    instagram: {
+        icon: FaInstagram,
+        color: "text-pink-400",
+        hover: "hover:border-pink-500 hover:bg-pink-500/10"
+    },
+
+    wattpad: {
+        icon: SiWattpad,
+        color: "text-orange-500",
+        hover: "hover:border-orange-500 hover:bg-orange-500/10"
+    },
+
+    threads: {
+        icon: SiThreads,
+        color: "text-cyan-400",
+        hover: "hover:border-cyan-400 hover:bg-cyan-500/10"
+    },
+
+    facebook: {
+        icon: FaFacebook,
+        color: "text-blue-500",
+        hover: "hover:border-blue-500"
+    },
+
+    tiktok: {
+        icon: SiTiktok,
+        color: "text-white",
+        hover: "hover:border-white"
+    },
+
+    youtube: {
+        icon: FaYoutube,
+        color: "text-red-500",
+        hover: "hover:border-red-500 hover:bg-red-500/10"
+    }
+}
 
 const themes = {
     zinc: {
@@ -308,65 +353,54 @@ export default async function AuthorPage({
                             {isPro && (
                                 <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-8">
 
-                                    {author.instagram && (
-                                        <a
-                                            href={author.instagram}
-                                            target="_blank"
-                                            className="w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center hover:border-pink-500 hover:bg-pink-500/10 transition-all"
-                                        >
-                                            <FaInstagram className="text-pink-400" />
-                                        </a>
-                                    )}
+                                    {(author.social_order ?? [
+                                        "website",
+                                        "instagram",
+                                        "wattpad",
+                                        "threads",
+                                        "facebook",
+                                        "tiktok",
+                                        "youtube"
+                                    ]).map((social: string) => {
 
-                                    {author.tiktok && (
-                                        <a
-                                            href={author.tiktok}
-                                            target="_blank"
-                                            className="w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center hover:border-white transition-all"
-                                        >
-                                            <SiTiktok />
-                                        </a>
-                                    )}
+                                        const value = author[social]
 
-                                    {author.threads && (
-                                        <a
-                                            href={author.threads}
-                                            target="_blank"
-                                            className="w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center hover:border-cyan-400 hover:bg-cyan-500/10 transition-all"
-                                        >
-                                            <SiThreads className="text-cyan-400" />
-                                        </a>
-                                    )}
+                                        if (!value) return null
 
-                                    {author.facebook && (
-                                        <a
-                                            href={author.facebook}
-                                            target="_blank"
-                                            className="w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center hover:border-blue-500 transition-all"
-                                        >
-                                            <FaFacebook className="text-blue-500" />
-                                        </a>
-                                    )}
+                                        const config =
+                                            socialConfig[
+                                            social as keyof typeof socialConfig
+                                            ]
 
-                                    {author.youtube && (
-                                        <a
-                                            href={author.youtube}
-                                            target="_blank"
-                                            className="w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center hover:border-red-500 hover:bg-red-500/10 transition-all"
-                                        >
-                                            <FaYoutube className="text-red-500" />
-                                        </a>
-                                    )}
+                                        if (!config) return null
 
-                                    {author.website && (
-                                        <a
-                                            href={author.website}
-                                            target="_blank"
-                                            className="w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center hover:border-blue-400 hover:bg-blue-500/10 transition-all"
-                                        >
-                                            <FaGlobe className="text-blue-400" />
-                                        </a>
-                                    )}
+                                        const Icon = config.icon
+
+                                        return (
+                                            <a
+                                                key={social}
+                                                href={value}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={`
+                                                    w-11
+                                                    h-11
+                                                    rounded-xl
+                                                    border
+                                                    border-zinc-700
+                                                    bg-zinc-900/60
+                                                    flex
+                                                    items-center
+                                                    justify-center
+                                                    transition-all
+                                                    ${config.hover}
+                                                `}
+                                            >
+                                                <Icon className={config.color} />
+                                            </a>
+                                        )
+
+                                    })}
 
                                 </div>
                             )}
@@ -419,7 +453,7 @@ export default async function AuthorPage({
                 </div>
 
             </section>
-            <main className="max-w-5xl mx-auto px-6 pb-16 space-y-8">
+            <main className="max-w-5xl mx-auto px-3 sm:px-6 pb-16 space-y-8">
 
                 {/*(author.description || author.bio) && (
                     <section className={`

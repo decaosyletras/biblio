@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
+import { SiWattpad } from "react-icons/si"
 
 export default function EditAuthorPage() {
     const params = useParams()
@@ -13,6 +14,7 @@ export default function EditAuthorPage() {
     const [isPro, setIsPro] = useState(false)
     const [author, setAuthor] = useState<any>(null)
     const [books, setBooks] = useState<any[]>([])
+    const [socialOrder, setSocialOrder] = useState<string[]>([])
 
     const [avatarFile, setAvatarFile] = useState<File | null>(null)
     const [bannerFile, setBannerFile] = useState<File | null>(null)
@@ -60,6 +62,23 @@ export default function EditAuthorPage() {
             avatar: authorData.avatar ?? "",
             banner: authorData.banner ?? ""
         })
+
+        const defaultOrder = [
+            "website",
+            "instagram",
+            "wattpad",
+            "threads",
+            "facebook",
+            "tiktok",
+            "youtube"
+        ]
+
+        setSocialOrder(
+            authorData.social_order?.length
+                ? authorData.social_order
+                : defaultOrder
+        )
+
         setOriginalBanner(authorData.banner)
         setOriginalAvatar(authorData.avatar)
         if (authorData.pro === true) {
@@ -113,6 +132,23 @@ export default function EditAuthorPage() {
         setBooks(copy)
     }
 
+    function moveSocial(index: number, direction: number) {
+
+        const copy = [...socialOrder]
+
+        const target = index + direction
+
+        if (target < 0 || target >= copy.length) return
+
+        const temp = copy[index]
+
+        copy[index] = copy[target]
+
+        copy[target] = temp
+
+        setSocialOrder(copy)
+    }
+
     async function save() {
         if (!author) return
         setSaving(true)
@@ -149,8 +185,10 @@ export default function EditAuthorPage() {
             data.facebook = author.facebook ?? ""
             data.tiktok = author.tiktok ?? ""
             data.youtube = author.youtube ?? ""
+            data.wattpad = author.wattpad ?? ""
             data.current_news = author.current_news ?? ""
             data.featured_book_id = author.featured_book_id ?? null
+            data.social_order = socialOrder
             data.theme = author.theme ?? {
                 mode: "dark",
                 preset: "dark-blue",
@@ -478,53 +516,83 @@ export default function EditAuthorPage() {
                             )}
                         </div>
 
-                        <div className="space-y-3">
+                        <div className="space-y-4">
 
                             <label className="text-sm text-zinc-400 block">
                                 Redes sociales
                             </label>
 
-                            <input
-                                value={author.website ?? ""}
-                                onChange={e => updateField("website", e.target.value)}
-                                placeholder="Sitio web"
-                                className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3"
-                            />
+                            {socialOrder.map((social, index) => (
 
-                            <input
-                                value={author.instagram ?? ""}
-                                onChange={e => updateField("instagram", e.target.value)}
-                                placeholder="Instagram"
-                                className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3"
-                            />
+                                <div
+                                    key={social}
+                                    className="
+                                        bg-zinc-950
+                                        border border-zinc-800
+                                        rounded-xl
+                                        p-3
+                                        space-y-3
+                                    ">
 
-                            <input
-                                value={author.threads ?? ""}
-                                onChange={e => updateField("threads", e.target.value)}
-                                placeholder="Threads"
-                                className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3"
-                            />
+                                    <div className="flex justify-between items-center">
 
-                            <input
-                                value={author.facebook ?? ""}
-                                onChange={e => updateField("facebook", e.target.value)}
-                                placeholder="Facebook"
-                                className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3"
-                            />
+                                        <p className="font-medium capitalize">
+                                            {social}
+                                        </p>
 
-                            <input
-                                value={author.tiktok ?? ""}
-                                onChange={e => updateField("tiktok", e.target.value)}
-                                placeholder="TikTok"
-                                className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3"
-                            />
+                                        <div className="flex gap-2">
 
-                            <input
-                                value={author.youtube ?? ""}
-                                onChange={e => updateField("youtube", e.target.value)}
-                                placeholder="YouTube"
-                                className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3"
-                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => moveSocial(index, -1)}
+                                                className="
+                                                    w-10
+                                                    h-10
+                                                    rounded-lg
+                                                    bg-zinc-800
+                                                    hover:bg-zinc-700
+                                                ">
+                                                ↑
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                onClick={() => moveSocial(index, 1)}
+                                                className="
+                                                    w-10
+                                                    h-10
+                                                    rounded-lg
+                                                    bg-zinc-800
+                                                    hover:bg-zinc-700
+                                                ">
+                                                ↓
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <input
+                                        value={author[social] ?? ""}
+                                        onChange={e =>
+                                            updateField(
+                                                social,
+                                                e.target.value
+                                            )
+                                        }
+                                        placeholder={social}
+                                        className="
+                                            w-full
+                                            bg-zinc-900
+                                            border border-zinc-700
+                                            rounded-xl
+                                            p-3
+                                        "/>
+
+                                </div>
+
+                            ))}
 
                         </div>
 
