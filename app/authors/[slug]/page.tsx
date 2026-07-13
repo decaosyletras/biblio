@@ -702,7 +702,7 @@ export default async function AuthorPage({
                 )}
 
                 <section
-                    className="rounded-3xl p-6 md:p-8"
+                    className="rounded-3xl p-4 md:p-6"
                     style={{
                         backgroundColor: authorTheme.surface,
                         border: `1px solid ${authorTheme.border}`
