@@ -234,6 +234,21 @@ export default async function AuthorPage({
         canEdit
     })*/
 
+    const fontStyles = {
+        sans: "Arial, sans-serif",
+        serif: "Georgia, serif",
+        mono: "ui-monospace, monospace",
+        times: "Times New Roman, serif",
+        garamond: "Garamond, serif",
+        cursive: "cursive",
+        dark: "Palatino Linotype, Book Antiqua, serif",
+        old: "Baskerville, serif",
+        typewriter: "Courier New, monospace",
+        fantasy: "Papyrus, fantasy",
+        horror: "Chiller, Impact, fantasy",
+        minimal: "Helvetica, Arial, sans-serif"
+    }
+
     return (
         <div
             className="min-h-screen"
@@ -241,11 +256,9 @@ export default async function AuthorPage({
                 backgroundColor: author.theme?.bg ?? "#09090b",
                 color: author.theme?.text ?? "#ffffff",
                 fontFamily:
-                    author.theme?.font === "serif"
-                        ? "Georgia, serif"
-                        : author.theme?.font === "mono"
-                            ? "ui-monospace, monospace"
-                            : "ui-sans-serif, sans-serif"
+                    fontStyles[
+                    author.theme?.font as keyof typeof fontStyles
+                    ] ?? fontStyles.sans
             }}
         >
 
@@ -256,7 +269,15 @@ export default async function AuthorPage({
                     <>
                         <img
                             src={author.banner}
-                            className="absolute inset-0 w-full h-[420px] object-cover opacity-25"
+                            className="
+                                absolute
+                                inset-0
+                                w-full
+                                h-[320px]
+                                sm:h-[420px]
+                                object-cover
+                                opacity-25
+                            "
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-zinc-950/60 to-zinc-950" />
@@ -264,11 +285,11 @@ export default async function AuthorPage({
                 ) : (
                     <>
                         <div
-                            className={`
-                    absolute inset-0 h-[420px]
-                    bg-gradient-to-br ${theme.background}
-                `}
-                        />
+                            className="absolute inset-0 h-[420px]"
+                            style={{
+                                background: authorTheme.surface
+                            }}
+                        ></div>
 
                         <div className="absolute -top-28 -left-24 w-72 h-72 rounded-full bg-white/5 blur-3xl" />
                         <div className="absolute top-10 right-0 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl" />
@@ -420,12 +441,13 @@ export default async function AuthorPage({
                                     href="/me"
                                     className="
                                         px-5 py-3 rounded-xl
-                                        border border-zinc-700
-                                        bg-zinc-900/70
-                                        hover:bg-zinc-800
+                                        text-white
                                         transition
                                         whitespace-nowrap
                                     "
+                                    style={{
+                                        backgroundColor: author.theme?.primary ?? "#2563eb"
+                                    }}
                                 >
                                     Mi perfil
                                 </Link>
@@ -453,7 +475,7 @@ export default async function AuthorPage({
                 </div>
 
             </section>
-            <main className="max-w-5xl mx-auto px-3 sm:px-6 pb-16 space-y-8">
+            <main className="max-w-5xl mx-auto px-3 sm:px-6 pt-6 pb-16 space-y-8">
 
                 {/*(author.description || author.bio) && (
                     <section className={`
@@ -486,12 +508,13 @@ export default async function AuthorPage({
                     >
                         <div className="flex items-center gap-3 mb-6">
                             <div
-                                className="w-1.5 h-8 rounded-full"
+                                className="w-1.5 h-13 rounded-full"
                                 style={{
                                     backgroundColor: authorTheme.primary
                                 }}
                             />
                             <div>
+
                                 <p
                                     className="text-xs uppercase tracking-[0.35em]"
                                     style={{
@@ -501,14 +524,21 @@ export default async function AuthorPage({
                                     Autor
                                 </p>
 
-                                <h2
-                                    className="text-2xl font-bold"
-                                    style={{
-                                        color: authorTheme.text
-                                    }}
-                                >
-                                    Biografía
-                                </h2>
+                                <div className="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                                    <div>
+
+                                        <h2
+                                            className="text-2xl font-bold"
+                                            style={{
+                                                color: authorTheme.text
+                                            }}
+                                        >
+                                            Biografía
+                                        </h2>
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                         <p
@@ -522,15 +552,32 @@ export default async function AuthorPage({
                     </section>
                 )}
 
-                {isPro && author.current_news && (
+                {isPro && author.news?.type && (
                     <section
-                        className="rounded-3xl p-7 md:p-8"
+                        className="rounded-3xl p-7 md:p-8 overflow-hidden"
                         style={{
                             backgroundColor: authorTheme.surface,
                             border: `1px solid ${authorTheme.border}`
                         }}
                     >
+
+                        {author.news.image && (
+                            <div className="mb-6 overflow-hidden rounded-2xl">
+                                <img
+                                    src={author.news.image}
+                                    alt={author.news.title ?? "Novedad"}
+                                    className="
+                        w-full
+                        aspect-[1200/630]
+                        object-cover
+                    "
+                                />
+                            </div>
+                        )}
+
+
                         <div className="flex items-center gap-3">
+
                             <div
                                 className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
                                 style={{
@@ -539,28 +586,60 @@ export default async function AuthorPage({
                             >
                                 📰
                             </div>
+
+
                             <div>
-                                <p className="text-xs uppercase tracking-[0.35em] text-yellow-300/70">
-                                    Actualidad
+
+                                <p
+                                    className="text-xs uppercase tracking-[0.35em]"
+                                    style={{
+                                        color: authorTheme.muted
+                                    }}
+                                >
+                                    {author.news.type}
                                 </p>
+
+
                                 <h2
                                     className="text-2xl font-bold"
                                     style={{
                                         color: authorTheme.primary
                                     }}
                                 >
-                                    Últimas noticias
+                                    Novedades
                                 </h2>
+
                             </div>
+
                         </div>
-                        <div
-                            className="mt-6 whitespace-pre-line leading-8"
-                            style={{
-                                color: authorTheme.text
-                            }}
-                        >
-                            {author.current_news}
-                        </div>
+
+
+                        {author.news.title && (
+                            <h3
+                                className="mt-6 text-xl md:text-2xl font-bold"
+                                style={{
+                                    color: authorTheme.text
+                                }}
+                            >
+                                {author.news.title}
+                            </h3>
+                        )}
+
+
+                        {author.news.content && (
+                            <div
+                                className="
+                    mt-4
+                    whitespace-pre-line
+                    leading-8
+                "
+                                style={{
+                                    color: authorTheme.text
+                                }}
+                            >
+                                {author.news.content}
+                            </div>
+                        )}
 
                     </section>
                 )}
@@ -701,195 +780,184 @@ export default async function AuthorPage({
                     </section>
                 )}
 
-                <section
-                    className="rounded-3xl p-4 md:p-6"
-                    style={{
-                        backgroundColor: authorTheme.surface,
-                        border: `1px solid ${authorTheme.border}`
-                    }}
-                >
-                    <div className="mb-10">
-                        <p
-                            className="text-xs uppercase tracking-[0.35em]"
-                            style={{
-                                color: authorTheme.muted
-                            }}
-                        >
-                            Bibliografía
-                        </p>
+                {author.show_bibliography !== false && (
 
-                        <div className="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-                            <div>
+                    <section
+                        className="rounded-3xl p-4 md:p-6"
+                        style={{
+                            backgroundColor: authorTheme.surface,
+                            border: `1px solid ${authorTheme.border}`
+                        }}
+                    >
+                        <div className="mb-10">
+                            <p
+                                className="text-xs uppercase tracking-[0.35em]"
+                                style={{
+                                    color: authorTheme.muted
+                                }}
+                            >
+                                Bibliografía
+                            </p>
 
-                                <h2
-                                    className="text-2xl font-bold"
-                                    style={{
-                                        color: authorTheme.text
-                                    }}
-                                >
-                                    Libros publicados
-                                </h2>
+                            <div className="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                                <div>
 
-                                <p
-                                    className="mt-3"
-                                    style={{
-                                        color: authorTheme.muted
-                                    }}
-                                >
-                                    Todas las obras de {author.name}
-                                </p>
+                                    <h2
+                                        className="text-2xl font-bold"
+                                        style={{
+                                            color: authorTheme.text
+                                        }}
+                                    >
+                                        Libros publicados
+                                    </h2>
+
+                                    <p
+                                        className="mt-3"
+                                        style={{
+                                            color: authorTheme.muted
+                                        }}
+                                    >
+                                        Todas las obras de {author.name}
+                                    </p>
+
+                                </div>
 
                             </div>
 
                         </div>
 
-                    </div>
+                        {books.length === 0 && (
+                            <div className="py-12 text-center text-zinc-500">
+                                Este autor todavía no tiene libros publicados.
+                            </div>
+                        )}
 
-                    {books.length === 0 && (
-                        <div className="py-12 text-center text-zinc-500">
-                            Este autor todavía no tiene libros publicados.
-                        </div>
-                    )}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 sm:gap-6">
+                            {books.map(book => (
 
-                        {books.map(book => (
+                                <article
+                                    key={book.id}
+                                    className="group overflow-hidden rounded-3xl transition-all duration-500 hover:-translate-y-2"
+                                    style={{
+                                        backgroundColor: authorTheme.bg,
+                                        border: `1px solid ${authorTheme.border}`
+                                    }}
+                                >
 
-                            <article
-                                key={book.id}
-                                className="
-            group
-            overflow-hidden
-            rounded-3xl
-            transition-all
-            duration-500
-            hover:-translate-y-2
-        "
-                                style={{
-                                    backgroundColor: authorTheme.bg,
-                                    border: `1px solid ${authorTheme.border}`
-                                }}
-                            >
+                                    {/* PORTADA */}
+                                    <div className="p-2">
 
-                                {/* PORTADA */}
-                                <div className="p-2">
+                                        <div
+                                            className="relative overflow-hidden aspect-[2/3] bg-zinc-950 rounded-2xl"
+                                        >
 
-                                    <div
-                                        className="
-                    relative
-                    overflow-hidden
-                    aspect-[2/3]
-                    bg-zinc-950
-                    rounded-2xl
-                "
-                                    >
+                                            <CoverImage
+                                                src={getBookCover(
+                                                    {
+                                                        es: book.asin_es,
+                                                        mx: book.asin_mx,
+                                                        us: book.asin_us
+                                                    },
+                                                    book.cover
+                                                )}
+                                                alt={book.title}
+                                                className="
+                                                    w-full
+                                                    h-full
+                                                    object-cover
+                                                    transition-transform
+                                                    duration-700
+                                                    group-hover:scale-105
+                                                "
+                                            />
 
-                                        <CoverImage
-                                            src={getBookCover(
-                                                {
+                                            <div
+                                                className="
+                                                    absolute
+                                                    inset-0
+                                                    bg-gradient-to-t
+                                                    from-black/50
+                                                    via-transparent
+                                                    opacity-0
+                                                    group-hover:opacity-100
+                                                    transition
+                                                "
+                                            />
+
+                                        </div>
+
+                                    </div>
+
+
+                                    {/* INFORMACIÓN */}
+
+                                    <div className="px-2 pb-4">
+
+                                        <h3
+                                            className="
+                                                font-bold
+                                                text-xs
+                                                md:text-sm
+                                                line-clamp-2
+                                                transition-colors
+                                            "
+                                            style={{
+                                                color: authorTheme.text
+                                            }}
+                                        >
+                                            {book.title}
+                                        </h3>
+
+
+                                        <div className="mt-3 flex flex-wrap gap-1.5">
+
+                                            {(book.genres ?? [])
+                                                .slice(0, 2)
+                                                .map((id: string) => {
+
+                                                    const genre =
+                                                        genresCatalog.find(
+                                                            g => g.id === id
+                                                        )
+
+                                                    if (!genre)
+                                                        return null
+
+                                                    return (
+
+                                                        <GenreBadge
+                                                            key={genre.id}
+                                                            label={genre.label}
+                                                            type={genre.id}
+                                                            theme={authorTheme}
+                                                        />
+
+                                                    )
+
+                                                })
+                                            }
+
+                                        </div>
+
+
+                                        <div className="mt-5 space-y-3">
+
+                                            <AmazonButton
+                                                amazon={{
                                                     es: book.asin_es,
                                                     mx: book.asin_mx,
                                                     us: book.asin_us
-                                                },
-                                                book.cover
-                                            )}
-                                            alt={book.title}
-                                            className="
-                        w-full
-                        h-full
-                        object-cover
-                        transition-transform
-                        duration-700
-                        group-hover:scale-105
-                    "
-                                        />
-
-                                        <div
-                                            className="
-                        absolute
-                        inset-0
-                        bg-gradient-to-t
-                        from-black/50
-                        via-transparent
-                        opacity-0
-                        group-hover:opacity-100
-                        transition
-                    "
-                                        />
-
-                                    </div>
-
-                                </div>
+                                                }}
+                                                amazonLink={book.amazonLink}
+                                                color={authorTheme.primary}
+                                                textColor={authorTheme.text}
+                                            />
 
 
-                                {/* INFORMACIÓN */}
-
-                                <div className="px-2 pb-4">
-
-                                    <h3
-                                        className="
-                    font-bold
-                    text-sm
-                    md:text-base
-                    line-clamp-2
-                    transition-colors
-                "
-                                        style={{
-                                            color: authorTheme.text
-                                        }}
-                                    >
-                                        {book.title}
-                                    </h3>
-
-
-                                    <div className="mt-3 flex flex-wrap gap-1.5">
-
-                                        {(book.genres ?? [])
-                                            .slice(0, 2)
-                                            .map((id: string) => {
-
-                                                const genre =
-                                                    genresCatalog.find(
-                                                        g => g.id === id
-                                                    )
-
-                                                if (!genre)
-                                                    return null
-
-                                                return (
-
-                                                    <GenreBadge
-                                                        key={genre.id}
-                                                        label={genre.label}
-                                                        type={genre.id}
-                                                        theme={authorTheme}
-                                                    />
-
-                                                )
-
-                                            })
-                                        }
-
-                                    </div>
-
-
-                                    <div className="mt-5 space-y-3">
-
-                                        <AmazonButton
-                                            amazon={{
-                                                es: book.asin_es,
-                                                mx: book.asin_mx,
-                                                us: book.asin_us
-                                            }}
-                                            amazonLink={book.amazonLink}
-                                            color={authorTheme.primary}
-                                            textColor={authorTheme.text}
-                                        />
-
-
-                                        <Link
-                                            href={`/libros/${book.slug}`}
-                                            className="
+                                            <Link
+                                                href={`/libros/${book.slug}`}
+                                                className="
                                                 block
                                                 text-center
                                                 text-xs
@@ -900,28 +968,30 @@ export default async function AuthorPage({
                                                 transition
                                                 hover:opacity-80
                                             "
-                                            style={{
-                                                color: authorTheme.primary,
-                                                borderColor: authorTheme.border
-                                            }}
-                                        >
-                                            Ver detalles
-                                        </Link>
+                                                style={{
+                                                    color: authorTheme.primary,
+                                                    borderColor: authorTheme.border
+                                                }}
+                                            >
+                                                Ver detalles
+                                            </Link>
+
+                                        </div>
+
 
                                     </div>
 
 
-                                </div>
+                                </article>
+
+                            ))}
 
 
-                            </article>
+                        </div>
 
-                        ))}
+                    </section>
 
-
-                    </div>
-
-                </section>
+                )}
 
             </main>
 

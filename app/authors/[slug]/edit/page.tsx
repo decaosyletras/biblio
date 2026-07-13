@@ -3,6 +3,13 @@ import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { SiWattpad } from "react-icons/si"
+import imageCompression from "browser-image-compression"
+import AuthorBasicSection from "@/components/authors/edit/AuthorBasicSection"
+import AuthorSocialSection from "@/components/authors/edit/AuthorSocialSection"
+import AuthorBannerSection from "@/components/authors/edit/AuthorBannerSection"
+import AuthorNewsSection from "@/components/authors/edit/AuthorNewsSection"
+import AuthorThemeSection from "@/components/authors/edit/AuthorThemeSection"
+import AuthorBooksSection from "@/components/authors/edit/AuthorBooksSection"
 
 export default function EditAuthorPage() {
     const params = useParams()
@@ -18,11 +25,12 @@ export default function EditAuthorPage() {
 
     const [avatarFile, setAvatarFile] = useState<File | null>(null)
     const [bannerFile, setBannerFile] = useState<File | null>(null)
+    const [newsImageFile, setNewsImageFile] = useState<File | null>(null)
 
     const [deletedBanner, setDeletedBanner] = useState<string | null>(null)
     const [originalBanner, setOriginalBanner] = useState("")
-
     const [originalAvatar, setOriginalAvatar] = useState("")
+    const [originalNewsImage, setOriginalNewsImage] = useState("")
 
     useEffect(() => {
         load()
@@ -60,7 +68,11 @@ export default function EditAuthorPage() {
         setAuthor({
             ...authorData,
             avatar: authorData.avatar ?? "",
-            banner: authorData.banner ?? ""
+            banner: authorData.banner ?? "",
+            news: {
+                ...(authorData.news ?? {}),
+                image: authorData.news?.image ?? null
+            }
         })
 
         const defaultOrder = [
@@ -81,6 +93,9 @@ export default function EditAuthorPage() {
 
         setOriginalBanner(authorData.banner)
         setOriginalAvatar(authorData.avatar)
+        setOriginalNewsImage(
+            authorData.news?.image ?? ""
+        )
         if (authorData.pro === true) {
             const { data: directBooks } = await supabase
                 .from("books")
@@ -151,7 +166,22 @@ export default function EditAuthorPage() {
 
     async function save() {
         if (!author) return
+
+        if (
+            author.show_bibliography === false &&
+            !author.featured_book_id
+        ) {
+            alert(
+                "Debes tener un libro destacado o activar la bibliografía."
+            )
+            return
+        }
+
+
         setSaving(true)
+
+        let newsImageUrl = author.news?.image ?? null
+
         const data: any = {
             avatar: author.avatar ?? "",
             bio: author.bio ?? "",
@@ -189,6 +219,19 @@ export default function EditAuthorPage() {
             data.current_news = author.current_news ?? ""
             data.featured_book_id = author.featured_book_id ?? null
             data.social_order = socialOrder
+            data.show_bibliography = author.show_bibliography ?? true
+            if (newsImageFile) {
+                newsImageUrl = await uploadImage(
+                    newsImageFile,
+                    "news"
+                )
+            }
+            data.news = author.news
+                ? {
+                    ...author.news,
+                    image: newsImageUrl
+                }
+                : null
             data.theme = author.theme ?? {
                 mode: "dark",
                 preset: "dark-blue",
@@ -206,6 +249,13 @@ export default function EditAuthorPage() {
             .update(data)
             .eq("id", author.id)
             .select()
+
+        if (
+            originalNewsImage &&
+            originalNewsImage !== newsImageUrl
+        ) {
+            await deleteImage(originalNewsImage)
+        }
 
         if (
             originalAvatar &&
@@ -252,28 +302,56 @@ export default function EditAuthorPage() {
         file: File,
         folder: string
     ) {
+
+        const sizes: Record<string, number> = {
+            avatars: 600,
+            banners: 1600,
+            news: 1200
+        }
+
+
+        const compressedFile = await imageCompression(
+            file,
+            {
+                maxWidthOrHeight: sizes[folder] ?? 1200,
+                maxSizeMB: 0.5,
+                useWebWorker: true,
+                fileType: "image/webp"
+            }
+        )
+
+
         const fileName =
-            `${crypto.randomUUID()}-${file.name}`
+            `${crypto.randomUUID()}.webp`
+
 
         const path =
             `${folder}/${fileName}`
+
 
         const { error } =
             await supabase.storage
                 .from("authors")
                 .upload(
                     path,
-                    file
+                    compressedFile,
+                    {
+                        contentType: "image/webp"
+                    }
                 )
 
+
         if (error) {
+            console.error(error)
             return ""
         }
+
 
         const { data } =
             supabase.storage
                 .from("authors")
                 .getPublicUrl(path)
+
 
         return data.publicUrl
     }
@@ -322,105 +400,11 @@ export default function EditAuthorPage() {
                     </p>
                 </div>
 
-                <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 space-y-5">
-
-                    <h2 className="text-xl font-semibold">
-                        Información básica
-                    </h2>
-
-                    <div>
-
-                        <label className="text-sm text-zinc-300 block mb-3 font-medium">
-                            Foto de perfil
-                        </label>
-
-                        <label
-                            className="group relative flex items-center gap-5 p-4 rounded-2xl border-2 border-dashed border-zinc-700 bg-zinc-900/40 hover:border-blue-500 hover:bg-zinc-900/70 transition cursor-pointer"
-                        >
-                            <div className="relative shrink-0">
-                                <img
-                                    src={author.avatar || "/avatars/default.jpg"}
-                                    className="w-28 h-28 rounded-2xl object-cover border border-zinc-700 shadow-xl"
-                                />
-
-                                <div
-                                    className="absolute inset-0 rounded-2xl bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
-                                >
-                                    <span
-                                        className="text-xs font-medium text-white bg-white/10 backdrop-blur px-3 py-2 rounded-xl border border-white/20"
-                                    >
-                                        Cambiar
-                                    </span>
-                                </div>
-
-                            </div>
-
-                            <div className="flex-1">
-
-                                <p className="text-white font-medium">
-                                    Sube tu foto de perfil
-                                </p>
-
-                                <p className="text-sm text-zinc-500 mt-1">
-                                    Recomendado: imagen cuadrada 500×500 px
-                                </p>
-
-                                <p className="text-xs text-zinc-600 mt-2">
-                                    PNG, JPG o WEBP
-                                </p>
-
-                            </div>
-
-                            <input
-                                type="file"
-                                accept="image/*"
-                                className="hidden"
-                                onChange={e => {
-
-                                    const file = e.target.files?.[0]
-
-                                    if (!file) return
-
-                                    setAvatarFile(file)
-
-                                    updateField(
-                                        "avatar",
-                                        URL.createObjectURL(file)
-                                    )
-
-                                }}
-                            />
-
-                        </label>
-
-                    </div>
-
-                    <div>
-                        <label className="text-sm text-zinc-400 block mb-2">
-                            Biografía
-                        </label>
-                        <textarea
-                            value={author.bio ?? ""}
-                            onChange={e => updateField("bio", e.target.value)}
-                            rows={6}
-                            placeholder="Cuéntale a los lectores quién eres"
-                            className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3 resize-none"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="text-sm text-zinc-400 block mb-2">
-                            Estilo
-                        </label>
-                        <input
-                            value={author.style ?? ""}
-                            onChange={e => updateField("style", e.target.value)}
-                            placeholder="Ej: fantasía oscura, thriller..."
-                            className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3"
-                        />
-                    </div>
-
-                </div>
+                <AuthorBasicSection
+                    author={author}
+                    updateField={updateField}
+                    setAvatarFile={setAvatarFile}
+                />
 
                 {isPro && (
                     <div className="bg-zinc-900 border border-yellow-500/30 rounded-3xl p-5 space-y-5">
@@ -442,517 +426,37 @@ export default function EditAuthorPage() {
                             className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3 resize-none"
                         />*/}
 
-                        <div>
-                            <label className="text-sm text-zinc-300 block mb-2 font-medium">
-                                Banner
-                            </label>
-
-                            <p className="text-xs text-zinc-500 mb-4">
-                                Recomendado: imagen horizontal 1600×500 px (relación 3:1).
-                            </p>
-
-                            <label
-                                className="group relative block w-full overflow-hidden rounded-2xl border-2 border-dashed border-zinc-700 bg-zinc-900/40 hover:border-violet-500 hover:bg-zinc-900/70 transition cursor-pointer"
-                            >
-                                {author.banner ? (
-                                    <>
-                                        <img
-                                            src={author.banner}
-                                            className="w-full h-44 object-cover"
-                                        />
-
-                                        <div
-                                            className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
-                                        >
-                                            <div
-                                                className="px-5 py-2 rounded-xl bg-white/10 backdrop-blur text-white font-medium border border-white/20"
-                                            >
-                                                Cambiar banner
-                                            </div>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <div
-                                        className="h-44 flex flex-col items-center justify-center gap-3 text-center px-6"
-                                    >
-                                        <div>
-                                            <p className="font-medium text-white">
-                                                Haz clic para subir un banner
-                                            </p>
-
-                                            <p className="text-sm text-zinc-500 mt-1">
-                                                PNG, JPG o WEBP
-                                            </p>
-                                        </div>
-                                    </div>
-                                )}
-
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    className="hidden"
-                                    onChange={e => {
-                                        const file = e.target.files?.[0]
-                                        if (!file) return
-
-                                        setBannerFile(file)
-
-                                        updateField(
-                                            "banner",
-                                            URL.createObjectURL(file)
-                                        )
-                                    }}
-                                />
-                            </label>
-
-                            {author.banner && (
-                                <button
-                                    type="button"
-                                    onClick={() => updateField("banner", null)}
-                                    className="mt-4 w-full py-3 rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/20 transition"
-                                >
-                                    Eliminar banner
-                                </button>
-                            )}
-                        </div>
-
-                        <div className="space-y-4">
-
-                            <label className="text-sm text-zinc-400 block">
-                                Redes sociales
-                            </label>
-
-                            {socialOrder.map((social, index) => (
-
-                                <div
-                                    key={social}
-                                    className="
-                                        bg-zinc-950
-                                        border border-zinc-800
-                                        rounded-xl
-                                        p-3
-                                        space-y-3
-                                    ">
-
-                                    <div className="flex justify-between items-center">
-
-                                        <p className="font-medium capitalize">
-                                            {social}
-                                        </p>
-
-                                        <div className="flex gap-2">
-
-                                            <button
-                                                type="button"
-                                                onClick={() => moveSocial(index, -1)}
-                                                className="
-                                                    w-10
-                                                    h-10
-                                                    rounded-lg
-                                                    bg-zinc-800
-                                                    hover:bg-zinc-700
-                                                ">
-                                                ↑
-                                            </button>
-
-                                            <button
-                                                type="button"
-                                                onClick={() => moveSocial(index, 1)}
-                                                className="
-                                                    w-10
-                                                    h-10
-                                                    rounded-lg
-                                                    bg-zinc-800
-                                                    hover:bg-zinc-700
-                                                ">
-                                                ↓
-                                            </button>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <input
-                                        value={author[social] ?? ""}
-                                        onChange={e =>
-                                            updateField(
-                                                social,
-                                                e.target.value
-                                            )
-                                        }
-                                        placeholder={social}
-                                        className="
-                                            w-full
-                                            bg-zinc-900
-                                            border border-zinc-700
-                                            rounded-xl
-                                            p-3
-                                        "/>
-
-                                </div>
-
-                            ))}
-
-                        </div>
-
-                        <div>
-                            <label className="text-sm text-zinc-400 block mb-2">
-                                Noticia actual
-                            </label>
-
-                            <textarea
-                                value={author.current_news ?? ""}
-                                onChange={e => updateField("current_news", e.target.value)}
-                                rows={4}
-                                placeholder="Ej: Nuevo libro disponible..."
-                                className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3 resize-none"
-                            />
-
-                        </div>
-
-                        <div>
-                            <label className="text-sm text-zinc-400 block mb-2">
-                                Estilo rápido
-                            </label>
-
-                            <div className="grid grid-cols-2 gap-3">
-
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setAuthor((prev: any) => ({
-                                            ...prev,
-                                            theme: {
-                                                ...prev.theme,
-                                                bg: "#09090b",
-                                                surface: "#18181b",
-                                                primary: "#aba3a3",
-                                                text: "#ffffff",
-                                                muted: "#888890",
-                                                border: "#27272a"
-                                            }
-                                        }))
-                                    }
-                                    className="p-4 rounded-xl bg-zinc-950 text-white border border-zinc-700 hover:bg-zinc-900 hover:border-blue-500 hover:shadow-lg transition-all duration-200"
-                                >
-                                    Oscuro
-                                </button>
-
-
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setAuthor((prev: any) => ({
-                                            ...prev,
-                                            theme: {
-                                                ...prev.theme,
-                                                bg: "#faf7f0",
-                                                surface: "#ffffff",
-                                                primary: "#b6622d",
-                                                text: "#373230",
-                                                muted: "#78716c",
-                                                border: "#d6d3d1"
-                                            }
-                                        }))
-                                    }
-                                    className="p-4 rounded-xl bg-amber-50 text-black border border-zinc-300 hover:bg-amber-100 hover:border-amber-500 hover:shadow-lg transition-all duration-200"
-                                >
-                                    Crema
-                                </button>
-
-
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setAuthor((prev: any) => ({
-                                            ...prev,
-                                            theme: {
-                                                ...prev.theme,
-                                                bg: "#071a12",
-                                                surface: "#143b2b",
-                                                primary: "#157b59",
-                                                text: "#ecfdf5",
-                                                muted: "#ccf9e4",
-                                                border: "#065f46"
-                                            }
-                                        }))
-                                    }
-                                    className="p-4 rounded-xl bg-emerald-950 text-emerald-50 border border-emerald-700 hover:bg-emerald-900 hover:border-emerald-400 hover:shadow-lg transition-all duration-200"
-                                >
-                                    Fantasía
-                                </button>
-
-
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setAuthor((prev: any) => ({
-                                            ...prev,
-                                            theme: {
-                                                ...prev.theme,
-                                                bg: "#f5b9de",
-                                                surface: "#e0409a",
-                                                primary: "#b53c79",
-                                                text: "#fff1f2",
-                                                muted: "#fda4af",
-                                                border: "#a81e45"
-                                            }
-                                        }))
-                                    }
-                                    className="p-4 rounded-xl bg-rose-400 text-white border border-rose-700 hover:bg-rose-500 hover:border-rose-200 hover:shadow-lg transition-all duration-200"
-                                >
-                                    Romántico
-                                </button>
-
-                            </div>
-                        </div>
-
-                        <div className="space-y-6">
-
-                            <div>
-                                <h3 className="font-semibold text-lg">
-                                    Personalización visual
-                                </h3>
-
-                                <p className="text-sm text-zinc-500 mt-1">
-                                    Ajusta la identidad visual de tu página de autor.
-                                </p>
-                            </div>
-
-
-                            <div className="grid sm:grid-cols-2 gap-4">
-
-                                {[
-                                    {
-                                        key: "bg",
-                                        label: "Fondo de página",
-                                        value: author.theme?.bg ?? "#09090b"
-                                    },
-                                    {
-                                        key: "surface",
-                                        label: "Tarjetas",
-                                        value: author.theme?.surface ?? "#18181b"
-                                    },
-                                    {
-                                        key: "primary",
-                                        label: "Color principal",
-                                        value: author.theme?.primary ?? "#2563eb"
-                                    },
-                                    {
-                                        key: "text",
-                                        label: "Texto principal",
-                                        value: author.theme?.text ?? "#ffffff"
-                                    },
-                                    {
-                                        key: "muted",
-                                        label: "Texto secundario",
-                                        value: author.theme?.muted ?? "#a1a1aa"
-                                    },
-                                    {
-                                        key: "border",
-                                        label: "Bordes",
-                                        value: author.theme?.border ?? "#27272a"
-                                    }
-
-                                ].map(color => (
-
-                                    <div
-                                        key={color.key}
-                                        className="
-                    flex items-center justify-between
-                    gap-4
-                    p-4
-                    rounded-2xl
-                    bg-zinc-950
-                    border border-zinc-800
-                "
-                                    >
-
-                                        <div>
-                                            <p className="font-medium">
-                                                {color.label}
-                                            </p>
-
-                                            <p className="text-xs text-zinc-500 uppercase mt-1">
-                                                {color.value}
-                                            </p>
-                                        </div>
-
-
-                                        <input
-                                            type="color"
-                                            value={color.value}
-                                            onChange={e =>
-                                                setAuthor((prev: any) => ({
-                                                    ...prev,
-                                                    theme: {
-                                                        ...(prev.theme ?? {}),
-                                                        [color.key]: e.target.value
-                                                    }
-                                                }))
-                                            }
-                                            className="
-                        w-12
-                        h-12
-                        rounded-xl
-                        overflow-hidden
-                        cursor-pointer
-                        border
-                        border-zinc-700
-                    "
-                                        />
-
-                                    </div>
-
-                                ))}
-
-                            </div>
-
-
-                            <div
-                                className="
-            p-4
-            rounded-2xl
-            bg-zinc-950
-            border border-zinc-800
-        "
-                            >
-
-                                <label className="font-medium block mb-3">
-                                    Estilo de letra
-                                </label>
-
-
-                                <select
-                                    value={author.theme?.font ?? "sans"}
-                                    onChange={e =>
-                                        setAuthor((prev: any) => ({
-                                            ...prev,
-                                            theme: {
-                                                ...(prev.theme ?? {}),
-                                                font: e.target.value
-                                            }
-                                        }))
-                                    }
-                                    className="
-                w-full
-                bg-zinc-900
-                border border-zinc-700
-                rounded-xl
-                p-3
-            "
-                                >
-
-                                    <option value="sans">
-                                        Moderna
-                                    </option>
-
-                                    <option value="serif">
-                                        Clásica
-                                    </option>
-
-                                    <option value="mono">
-                                        Editorial
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-                        </div>
-
-                        <div>
-
-                            <h3 className="font-semibold mb-3">
-                                Libro destacado
-                            </h3>
-
-                            <select
-                                value={
-                                    author.featured_book_id ?? ""
-                                }
-
-                                onChange={e =>
-                                    updateField(
-                                        "featured_book_id",
-                                        e.target.value || null
-                                    )
-                                }
-
-                                className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3"
-                            >
-
-                                <option value="">
-                                    Sin libro destacado
-                                </option>
-
-                                {books.map(book => (
-
-                                    <option
-                                        key={book.id}
-                                        value={book.id}
-                                    >
-                                        {book.title}
-                                    </option>
-
-                                ))}
-
-                            </select>
-
-                        </div>
-
-                        <div>
-
-                            <h3 className="font-semibold mb-3">
-                                Orden de libros
-                            </h3>
-
-                            <div className="space-y-3">
-
-                                {books.map((book, index) => (
-
-                                    <div
-                                        key={book.id}
-                                        className="flex items-center justify-between gap-3 bg-zinc-950 border border-zinc-800 rounded-xl p-3"
-                                    >
-
-                                        <p className="text-sm flex-1 line-clamp-2">
-                                            {index + 1}. {book.title}
-                                        </p>
-
-                                        <div className="flex gap-2">
-
-                                            <button
-                                                onClick={() => moveBook(index, -1)}
-                                                className="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-zinc-700"
-                                            >
-                                                ↑
-                                            </button>
-
-                                            <button
-                                                onClick={() => moveBook(index, 1)}
-                                                className="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-zinc-700"
-                                            >
-                                                ↓
-                                            </button>
-
-                                        </div>
-
-                                    </div>
-
-                                ))}
-
-                                {books.length === 0 && (
-                                    <p className="text-zinc-500 text-sm">
-                                        No hay libros para ordenar.
-                                    </p>
-                                )}
-
-                            </div>
-
-                        </div>
+                        <AuthorBannerSection
+                            author={author}
+                            updateField={updateField}
+                            setBannerFile={setBannerFile}
+                        />
+
+                        <AuthorSocialSection
+                            author={author}
+                            socialOrder={socialOrder}
+                            moveSocial={moveSocial}
+                            updateField={updateField}
+                        />
+
+                        <AuthorNewsSection
+                            author={author}
+                            setAuthor={setAuthor}
+                            newsImageFile={newsImageFile}
+                            setNewsImageFile={setNewsImageFile}
+                        />
+
+                        <AuthorThemeSection
+                            author={author}
+                            setAuthor={setAuthor}
+                        />
+
+                        <AuthorBooksSection
+                            author={author}
+                            updateField={updateField}
+                            books={books}
+                            moveBook={moveBook}
+                        />
 
                     </div>
                 )}
