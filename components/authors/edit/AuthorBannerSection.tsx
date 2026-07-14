@@ -60,13 +60,13 @@ export default function AuthorBannerSection({
                     <p className="text-xs text-zinc-600">
                         📱 En dispositivos móviles la imagen se recorta desde el centro.
                         Coloca los elementos importantes de la imagen en la zona central
-                        para evitar que se pierdan.
+                        para evitar que se pierdan. La zona amarilla puede mostrar información errónea si la imagen no coincide con las dimensiones sugeridas.
                     </p>
 
                 </div>
 
                 <p className="text-sm text-zinc-500">
-                    Opcional. Puedes publicar la novedad sin una imagen.
+                    Opcional. Puedes o no utilizar un banner.
                 </p>
 
 
@@ -144,7 +144,7 @@ export default function AuthorBannerSection({
                                     inset-y-0
                                     left-1/2
                                     -translate-x-1/2
-                                    w-[35%]
+                                    w-[29%]
                                     border-x-2
                                     border-yellow-400
                                     bg-yellow-400/25

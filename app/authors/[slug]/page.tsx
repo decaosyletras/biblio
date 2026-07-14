@@ -10,6 +10,7 @@ import ProCheckoutButton from "@/components/ProCheckoutButton"
 import { cookies } from "next/headers"
 import { SiWattpad } from "react-icons/si"
 import { Cinzel_Decorative } from "next/font/google";
+import { UserRound } from "lucide-react";
 
 import {
     inter,
@@ -317,7 +318,7 @@ export default async function AuthorPage({
 
                 <div className="relative max-w-5xl mx-auto px-6 pt-12 pb-10">
 
-                    <div className="flex flex-col lg:flex-row gap-10 items-center lg:items-end">
+                    <div className="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
 
                         {/* Avatar */}
 
@@ -325,10 +326,52 @@ export default async function AuthorPage({
 
                             <div className="absolute inset-0 rounded-[30px] bg-gradient-to-br from-white/30 to-transparent blur-xl opacity-70" />
 
-                            <img
-                                src={author.avatar}
-                                className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] object-cover border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]"
-                            />
+                            {author.avatar ? (
+
+                                <img
+                                    src={author.avatar}
+                                    className="
+                                        relative
+                                        w-28
+                                        h-28
+                                        md:w-40
+                                        md:h-40
+                                        rounded-[28px]
+                                        object-cover
+                                        border
+                                        border-white/10
+                                        shadow-[0_20px_60px_rgba(0,0,0,.45)]
+                                    "
+                                />
+
+                            ) : (
+
+                                <div
+                                    className="
+                                        relative
+                                        w-28
+                                        h-28
+                                        md:w-40
+                                        md:h-40
+                                        rounded-[28px]
+                                        flex
+                                        items-center
+                                        justify-center
+                                        bg-zinc-800
+                                        border
+                                        border-white/10
+                                        shadow-[0_20px_60px_rgba(0,0,0,.45)]
+                                    "
+                                >
+                                    <UserRound
+                                        className="w-14 h-14"
+                                        style={{
+                                            color: authorTheme.primary
+                                        }}
+                                    />
+                                </div>
+
+                            )}
 
                         </div>
 
@@ -340,12 +383,12 @@ export default async function AuthorPage({
 
                                 <h1
                                     className="
-        text-3xl
-        md:text-4xl
-        font-bold
-        tracking-tight
-        drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]
-    "
+                                        text-3xl
+                                        md:text-4xl
+                                        font-bold
+                                        tracking-tight
+                                        drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]
+                                    "
                                     style={{
                                         color: heroTextColor
                                     }}
@@ -367,9 +410,9 @@ export default async function AuthorPage({
                                     <>
                                         <span
                                             className="
-        font-medium
-        drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]
-    "
+                                                font-medium
+                                                drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]
+                                            "
                                             style={{
                                                 color: heroTextColor
                                             }}
@@ -463,49 +506,59 @@ export default async function AuthorPage({
 
                         </div>
 
-                        {canEdit && (
-                            <div className="flex flex-col sm:flex-row gap-3">
-
-                                {!author.pro && (
-                                    <ProCheckoutButton
-                                        authorId={author.id}
-                                    />
-                                )}
-
-                                <Link
-                                    href="/me"
-                                    className="
-                                        flex items-center justify-center px-5 py-3 rounded-xl
-                                        text-white
-                                        transition
-                                        whitespace-nowrap
-                                    "
-                                    style={{
-                                        backgroundColor: author.theme?.primary ?? "#2563eb"
-                                    }}
-                                >
-                                    Mi perfil
-                                </Link>
-
-                                <Link
-                                    href={`/authors/${author.slug}/edit`}
-                                    className="
-                                        flex items-center justify-center px-5 py-3 rounded-xl
-                                        text-white
-                                        transition
-                                        whitespace-nowrap
-                                    "
-                                    style={{
-                                        backgroundColor: author.theme?.primary ?? "#2563eb"
-                                    }}
-                                >
-                                    Editar página
-                                </Link>
-
-                            </div>
-                        )}
-
                     </div>
+
+                    {canEdit && (
+                        <div className="
+        flex
+        flex-col
+        sm:flex-row
+        justify-center
+        lg:justify-end
+        gap-3
+        mt-8
+        pr-0
+        lg:pr-2
+    ">
+
+                            {!author.pro && (
+                                <ProCheckoutButton
+                                    authorId={author.id}
+                                />
+                            )}
+
+                            <Link
+                                href="/me"
+                                className="
+                                        flex items-center justify-center px-4 py-2.5 rounded-lg text-sm
+                                        text-white
+                                        transition
+                                        whitespace-nowrap
+                                    "
+                                style={{
+                                    backgroundColor: author.theme?.primary ?? "#2563eb"
+                                }}
+                            >
+                                Mi perfil
+                            </Link>
+
+                            <Link
+                                href={`/authors/${author.slug}/edit`}
+                                className="
+                                        flex items-center justify-center px-4 py-2.5 rounded-lg text-sm
+                                        text-white
+                                        transition
+                                        whitespace-nowrap
+                                    "
+                                style={{
+                                    backgroundColor: author.theme?.primary ?? "#2563eb"
+                                }}
+                            >
+                                Editar página
+                            </Link>
+
+                        </div>
+                    )}
 
                 </div>
 

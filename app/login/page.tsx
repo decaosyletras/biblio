@@ -4,12 +4,14 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
+import { Eye, EyeOff } from "lucide-react"
 
 export default function LoginPage() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const router = useRouter()
+  const [showPassword, setShowPassword] = useState(false)
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -48,13 +50,46 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <input
-            className="w-full p-3 rounded bg-zinc-800 border border-zinc-700"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="relative">
+
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="
+            w-full
+            bg-zinc-900
+            border
+            border-zinc-700
+            p-3
+            pr-12
+            rounded-xl
+            outline-none
+        "
+              placeholder="Contraseña"
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="
+            absolute
+            right-3
+            top-1/2
+            -translate-y-1/2
+            text-zinc-400
+            hover:text-white
+            transition
+        "
+            >
+              {showPassword ? (
+                <EyeOff size={20} />
+              ) : (
+                <Eye size={20} />
+              )}
+            </button>
+
+          </div>
 
           <button className="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded font-semibold">
             Entrar

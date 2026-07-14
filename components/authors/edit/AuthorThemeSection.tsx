@@ -166,7 +166,7 @@ export default function AuthorThemeSection({
     ]
 
     const [activeColor, setActiveColor] = useState<string | null>(null);
-
+    const [selectedPreset, setSelectedPreset] = useState<string | null>(null)
 
     return (
         <section>
@@ -218,11 +218,11 @@ export default function AuthorThemeSection({
                             key={preset.id}
                             type="button"
 
-                            onClick={() =>
-                                updateTheme(
-                                    preset.theme
-                                )
-                            }
+                            onClick={() => {
+                                updateTheme(preset.theme)
+                                setSelectedPreset(preset.id)
+                            }}
+
                             className={`
                                 p-3
                                 rounded-2xl
@@ -230,9 +230,11 @@ export default function AuthorThemeSection({
                                 transition
                                 text-left
                                 ${preset.preview}
-                                border-zinc-700
-                                hover:border-blue-500
-                                hover:scale-[1.02]
+
+                                ${selectedPreset === preset.id
+                                    ? "border-blue-500 ring-2 ring-blue-500/40 scale-[1.02]"
+                                    : "border-zinc-700 hover:border-blue-500 hover:scale-[1.02]"
+                                }
                             `}
                         >
                             <p

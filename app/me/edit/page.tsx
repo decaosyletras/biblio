@@ -37,6 +37,12 @@ export default function EditProfilePage() {
     }, [router])
 
     const save = async () => {
+
+        if (username.length > 30) {
+            alert("El nombre de usuario no puede superar los 30 caracteres")
+            return
+        }
+
         setSaving(true)
 
         const { data } = await supabase.auth.getUser()
@@ -84,10 +90,15 @@ export default function EditProfilePage() {
                     <div>
                         <input
                             value={username}
+                            maxLength={30}
                             onChange={(e) => setUsername(e.target.value)}
                             className="w-full mt-1 bg-zinc-800 border border-zinc-700 p-3 rounded-xl outline-none"
                             placeholder="Tu nombre de usuario"
                         />
+
+                        <p className="text-xs text-zinc-500 mt-2">
+                            {username.length}/30 caracteres
+                        </p>
                     </div>
 
                     {/*<div>
@@ -107,7 +118,16 @@ export default function EditProfilePage() {
                     <button
                         onClick={save}
                         disabled={saving}
-                        className="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-xl font-semibold disabled:opacity-50"
+                        className="
+                            w-full sm:w-auto
+                            px-5 py-3
+                            rounded-xl
+                            bg-stone-100
+                            text-stone-900
+                            hover:bg-stone-200
+                            transition
+                            disabled:opacity-50
+                        "
                     >
                         {saving ? "Guardando..." : "Guardar cambios"}
                     </button>
