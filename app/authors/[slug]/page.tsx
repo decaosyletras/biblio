@@ -265,6 +265,12 @@ export default async function AuthorPage({
         minimal: manrope.className
     }
 
+    const heroHasBanner = isPro && author.banner;
+
+    const heroTextColor = heroHasBanner
+        ? "#ffffff"
+        : authorTheme.text;
+
     return (
         <div
             className={`
@@ -333,9 +339,15 @@ export default async function AuthorPage({
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
 
                                 <h1
-                                    className="text-3xl md:text-4xl font-bold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]"
+                                    className="
+        text-3xl
+        md:text-4xl
+        font-bold
+        tracking-tight
+        drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]
+    "
                                     style={{
-                                        color: authorTheme.text
+                                        color: heroTextColor
                                     }}
                                 >
                                     {author.name}
@@ -356,9 +368,11 @@ export default async function AuthorPage({
                                         <span
                                             className="
         font-medium
-        text-white
         drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]
     "
+                                            style={{
+                                                color: heroTextColor
+                                            }}
                                         >
                                             @{username}
                                         </span>
@@ -367,9 +381,12 @@ export default async function AuthorPage({
                                     </>
                                 )}
 
-                                <span className="drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
+                                <span
+                                    className="drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
                                     style={{
-                                        color: authorTheme.primary
+                                        color: heroHasBanner
+                                            ? "#facc15"
+                                            : authorTheme.primary
                                     }}
                                 >
                                     {author.style || "Autor independiente"}
