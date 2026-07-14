@@ -267,6 +267,7 @@ export default async function AuthorPage({
     }
 
     const heroHasBanner = isPro && author.banner;
+    const bannerHeight = "h-[180px] sm:h-[240px] md:h-[320px] lg:h-[400px]"
 
     const heroTextColor = heroHasBanner
         ? "#ffffff"
@@ -287,12 +288,12 @@ export default async function AuthorPage({
             }}
         >
 
-            <section className="relative overflow-hidden">
+            <section className={`relative overflow-hidden ${bannerHeight}`}>
 
                 {/* Fondo */}
                 {isPro && author.banner ? (
                     <>
-                        <div className="absolute top-0 left-0 w-full h-[400px]">
+                        <div className={`absolute inset-x-0 top-0 ${bannerHeight}`}>
                             <img
                                 src={author.banner}
                                 className="w-full h-full object-cover"
@@ -313,13 +314,11 @@ export default async function AuthorPage({
                                 "
                             />
                         </div>
-
-                        <div className="h-[80px]" />
                     </>
                 ) : (
                     <>
                         <div
-                            className="absolute inset-0 h-[400px]"
+                            className={`absolute inset-x-0 top-0 ${bannerHeight}`}
                             style={{
                                 background: authorTheme.surface
                             }}
@@ -331,181 +330,184 @@ export default async function AuthorPage({
                     </>
                 )}
 
-                <div className="relative max-w-5xl mx-auto px-6 pt-12 pb-10">
+                <div className="absolute inset-x-0 bottom-0 z-10">
+                    <div className="max-w-5xl mx-auto px-6 pb-10">
 
-                    <div className="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+                        <div className="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
 
-                        {/* Avatar */}
+                            {/* Avatar */}
 
-                        <div className="relative shrink-0">
+                            <div className="relative shrink-0">
 
-                            <div className="absolute inset-0 rounded-[30px] bg-gradient-to-br from-white/30 to-transparent blur-xl opacity-70" />
+                                <div className="absolute inset-0 rounded-[30px] bg-gradient-to-br from-white/30 to-transparent blur-xl opacity-70" />
 
-                            {author.avatar ? (
+                                {author.avatar ? (
 
-                                <img
-                                    src={author.avatar}
-                                    className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] object-cover border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]"
-                                />
-
-                            ) : (
-
-                                <div className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] flex items-center justify-center bg-zinc-800 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]">
-                                    <UserRound
-                                        className="w-14 h-14"
-                                        style={{
-                                            color: authorTheme.primary
-                                        }}
+                                    <img
+                                        src={author.avatar}
+                                        className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] object-cover border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]"
                                     />
+
+                                ) : (
+
+                                    <div className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] flex items-center justify-center bg-zinc-800 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]">
+                                        <UserRound
+                                            className="w-14 h-14"
+                                            style={{
+                                                color: authorTheme.primary
+                                            }}
+                                        />
+                                    </div>
+
+                                )}
+
+                            </div>
+
+                            {/* Información */}
+
+                            <div className="flex-1 text-center lg:text-left lg:pb-2">
+
+                                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+
+                                    <h1
+                                        className="text-3xl md:text-4xl font-bold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]"
+                                        style={{
+                                            color: heroTextColor
+                                        }}
+                                    >
+                                        {author.name}
+                                    </h1>
+
+                                    {isPro && (
+                                        <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-400/20 via-yellow-500/20 to-orange-500/20 border border-yellow-500/30 text-yellow-300 text-xs font-bold">
+                                            PRO
+                                        </span>
+                                    )}
+
                                 </div>
 
-                            )}
+                                <div className="mt-5 flex flex-wrap justify-center lg:justify-start items-center gap-x-3 gap-y-2 text-sm">
 
-                        </div>
+                                    {username && (
+                                        <>
+                                            <span
+                                                className="font-medium drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
+                                                style={{
+                                                    color: heroTextColor
+                                                }}
+                                            >
+                                                @{username}
+                                            </span>
 
-                        {/* Información */}
+                                            <span className="w-1 h-1 rounded-full bg-zinc-600" />
+                                        </>
+                                    )}
 
-                        <div className="flex-1 text-center lg:text-left lg:pb-2">
+                                    <span
+                                        className="drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
+                                        style={{
+                                            color: heroHasBanner
+                                                ? "#facc15"
+                                                : authorTheme.primary
+                                        }}
+                                    >
+                                        {author.style || "Autor independiente"}
+                                    </span>
 
-                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                                    <span className="w-1 h-1 rounded-full bg-zinc-600" />
 
-                                <h1
-                                    className="text-3xl md:text-4xl font-bold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]"
-                                    style={{
-                                        color: heroTextColor
-                                    }}
-                                >
-                                    {author.name}
-                                </h1>
+                                    <span
+                                        style={{
+                                            color: authorTheme.muted
+                                        }}
+                                    >
+                                        {books.length} {books.length === 1 ? "libro publicado" : "libros publicados"}
+                                    </span>
+
+                                </div>
+
+                                {/* Redes */}
 
                                 {isPro && (
-                                    <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-400/20 via-yellow-500/20 to-orange-500/20 border border-yellow-500/30 text-yellow-300 text-xs font-bold">
-                                        PRO
-                                    </span>
+                                    <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-8">
+
+                                        {(author.social_order ?? [
+                                            "website",
+                                            "instagram",
+                                            "wattpad",
+                                            "threads",
+                                            "facebook",
+                                            "tiktok",
+                                            "youtube"
+                                        ]).map((social: string) => {
+
+                                            const value = author[social]
+
+                                            if (!value) return null
+
+                                            const config =
+                                                socialConfig[
+                                                social as keyof typeof socialConfig
+                                                ]
+
+                                            if (!config) return null
+
+                                            const Icon = config.icon
+
+                                            return (
+                                                <a
+                                                    key={social}
+                                                    href={value}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={`w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center transition-all ${config.hover}`}
+                                                >
+                                                    <Icon className={config.color} />
+                                                </a>
+                                            )
+
+                                        })}
+
+                                    </div>
                                 )}
 
                             </div>
-
-                            <div className="mt-5 flex flex-wrap justify-center lg:justify-start items-center gap-x-3 gap-y-2 text-sm">
-
-                                {username && (
-                                    <>
-                                        <span
-                                            className="font-medium drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
-                                            style={{
-                                                color: heroTextColor
-                                            }}
-                                        >
-                                            @{username}
-                                        </span>
-
-                                        <span className="w-1 h-1 rounded-full bg-zinc-600" />
-                                    </>
-                                )}
-
-                                <span
-                                    className="drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
-                                    style={{
-                                        color: heroHasBanner
-                                            ? "#facc15"
-                                            : authorTheme.primary
-                                    }}
-                                >
-                                    {author.style || "Autor independiente"}
-                                </span>
-
-                                <span className="w-1 h-1 rounded-full bg-zinc-600" />
-
-                                <span
-                                    style={{
-                                        color: authorTheme.muted
-                                    }}
-                                >
-                                    {books.length} {books.length === 1 ? "libro publicado" : "libros publicados"}
-                                </span>
-
-                            </div>
-
-                            {/* Redes */}
-
-                            {isPro && (
-                                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-8">
-
-                                    {(author.social_order ?? [
-                                        "website",
-                                        "instagram",
-                                        "wattpad",
-                                        "threads",
-                                        "facebook",
-                                        "tiktok",
-                                        "youtube"
-                                    ]).map((social: string) => {
-
-                                        const value = author[social]
-
-                                        if (!value) return null
-
-                                        const config =
-                                            socialConfig[
-                                            social as keyof typeof socialConfig
-                                            ]
-
-                                        if (!config) return null
-
-                                        const Icon = config.icon
-
-                                        return (
-                                            <a
-                                                key={social}
-                                                href={value}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={`w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center transition-all ${config.hover}`}
-                                            >
-                                                <Icon className={config.color} />
-                                            </a>
-                                        )
-
-                                    })}
-
-                                </div>
-                            )}
 
                         </div>
+
+                        {canEdit && (
+                            <div className="flex flex-col sm:flex-row justify-center lg:justify-end gap-3 mt-8 pr-0 lg:pr-2">
+
+                                {!author.pro && (
+                                    <ProCheckoutButton
+                                        authorId={author.id}
+                                    />
+                                )}
+
+                                <Link
+                                    href="/me"
+                                    className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                                    style={{
+                                        backgroundColor: author.theme?.primary ?? "#2563eb"
+                                    }}
+                                >
+                                    Mi perfil
+                                </Link>
+
+                                <Link
+                                    href={`/authors/${author.slug}/edit`}
+                                    className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                                    style={{
+                                        backgroundColor: author.theme?.primary ?? "#2563eb"
+                                    }}
+                                >
+                                    Editar página
+                                </Link>
+
+                            </div>
+                        )}
 
                     </div>
-
-                    {canEdit && (
-                        <div className="flex flex-col sm:flex-row justify-center lg:justify-end gap-3 mt-8 pr-0 lg:pr-2">
-
-                            {!author.pro && (
-                                <ProCheckoutButton
-                                    authorId={author.id}
-                                />
-                            )}
-
-                            <Link
-                                href="/me"
-                                className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
-                                style={{
-                                    backgroundColor: author.theme?.primary ?? "#2563eb"
-                                }}
-                            >
-                                Mi perfil
-                            </Link>
-
-                            <Link
-                                href={`/authors/${author.slug}/edit`}
-                                className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
-                                style={{
-                                    backgroundColor: author.theme?.primary ?? "#2563eb"
-                                }}
-                            >
-                                Editar página
-                            </Link>
-
-                        </div>
-                    )}
 
                 </div>
 
