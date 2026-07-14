@@ -283,7 +283,7 @@ export default async function AuthorPage({
                 }
     `}
             style={{
-                backgroundColor: author.theme?.surface ?? "#09090b",
+                backgroundColor: author.theme?.bg ?? "#09090b",
                 color: author.theme?.text ?? "#ffffff"
             }}
         >
@@ -320,13 +320,10 @@ export default async function AuthorPage({
                         <div
                             className={`absolute inset-x-0 top-0 ${bannerHeight}`}
                             style={{
-                                background: authorTheme.surface
+                                background: authorTheme.bg
                             }}
                         ></div>
 
-                        <div className="absolute -top-28 -left-24 w-72 h-72 rounded-full bg-white/5 blur-3xl" />
-                        <div className="absolute top-10 right-0 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl" />
-                        <div className="absolute bottom-0 left-1/3 w-72 h-72 rounded-full bg-purple-500/10 blur-3xl" />
                     </>
                 )}
 
