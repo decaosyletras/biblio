@@ -287,14 +287,12 @@ export default async function AuthorPage({
                     <>
                         <img
                             src={author.banner}
-                            className="
-                                w-full
-                                aspect-[16/5]
-                                object-cover
-                            "
+                            className="absolute top-0 left-0 w-full h-[420px] object-cover"
                         />
 
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-zinc-950/60 to-zinc-950" />
+                        <div
+                            className="absolute inset-0 h-[420px] bg-gradient-to-b from-black/40 via-zinc-950/75 to-zinc-950"
+                        />
                     </>
                 ) : (
                     <>
@@ -323,7 +321,7 @@ export default async function AuthorPage({
 
                             <img
                                 src={author.avatar}
-                                className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] object-cover border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)] "
+                                className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] object-cover border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]"
                             />
 
                         </div>
@@ -335,7 +333,7 @@ export default async function AuthorPage({
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
 
                                 <h1
-                                    className="text-3xl md:text-4xl font-bold tracking-tight"
+                                    className="text-3xl md:text-4xl font-bold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]"
                                     style={{
                                         color: authorTheme.text
                                     }}
@@ -355,7 +353,13 @@ export default async function AuthorPage({
 
                                 {username && (
                                     <>
-                                        <span className="font-medium text-zinc-200">
+                                        <span
+                                            className="
+        font-medium
+        text-white
+        drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]
+    "
+                                        >
                                             @{username}
                                         </span>
 
@@ -363,7 +367,7 @@ export default async function AuthorPage({
                                     </>
                                 )}
 
-                                <span
+                                <span className="drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
                                     style={{
                                         color: authorTheme.primary
                                     }}
