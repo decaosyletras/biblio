@@ -482,7 +482,18 @@ export default async function AuthorPage({
             </section>
 
             {canEdit && (
-                <div className="flex flex-col sm:flex-row justify-center lg:justify-end gap-3 mt-8 pr-0 lg:pr-2">
+                <div className="
+        flex
+        flex-col
+        sm:flex-row
+        items-center
+        justify-center
+        lg:justify-end
+        gap-3
+        mt-8
+        pr-0
+        lg:pr-2
+    ">
 
                     {!author.pro && (
                         <ProCheckoutButton
@@ -492,7 +503,19 @@ export default async function AuthorPage({
 
                     <Link
                         href="/me"
-                        className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                        className="
+                inline-flex
+                items-center
+                justify-center
+                w-fit
+                px-4
+                py-2.5
+                rounded-lg
+                text-sm
+                text-white
+                transition
+                whitespace-nowrap
+            "
                         style={{
                             backgroundColor: author.theme?.primary ?? "#2563eb"
                         }}
@@ -502,7 +525,19 @@ export default async function AuthorPage({
 
                     <Link
                         href={`/authors/${author.slug}/edit`}
-                        className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                        className="
+                inline-flex
+                items-center
+                justify-center
+                w-fit
+                px-4
+                py-2.5
+                rounded-lg
+                text-sm
+                text-white
+                transition
+                whitespace-nowrap
+            "
                         style={{
                             backgroundColor: author.theme?.primary ?? "#2563eb"
                         }}
