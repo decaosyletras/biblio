@@ -292,19 +292,34 @@ export default async function AuthorPage({
                 {/* Fondo */}
                 {isPro && author.banner ? (
                     <>
-                        <img
-                            src={author.banner}
-                            className="absolute top-0 left-0 w-full h-[420px] object-cover"
-                        />
+                        <div className="absolute top-0 left-0 w-full h-[400px]">
+                            <img
+                                src={author.banner}
+                                className="w-full h-full object-cover"
+                                style={{
+                                    objectPosition:
+                                        author.banner_position ?? "center"
+                                }}
+                            />
 
-                        <div
-                            className="absolute inset-0 h-[420px] bg-gradient-to-b from-black/40 via-zinc-950/60 to-zinc-950"
-                        />
+                            <div
+                                className="
+                                    absolute
+                                    inset-0
+                                    bg-gradient-to-b
+                                    from-black/40
+                                    via-zinc-950/60
+                                    to-zinc-950
+                                "
+                            />
+                        </div>
+
+                        <div className="h-[80px]" />
                     </>
                 ) : (
                     <>
                         <div
-                            className="absolute inset-0 h-[420px]"
+                            className="absolute inset-0 h-[400px]"
                             style={{
                                 background: authorTheme.surface
                             }}
@@ -330,39 +345,12 @@ export default async function AuthorPage({
 
                                 <img
                                     src={author.avatar}
-                                    className="
-                                        relative
-                                        w-28
-                                        h-28
-                                        md:w-40
-                                        md:h-40
-                                        rounded-[28px]
-                                        object-cover
-                                        border
-                                        border-white/10
-                                        shadow-[0_20px_60px_rgba(0,0,0,.45)]
-                                    "
+                                    className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] object-cover border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]"
                                 />
 
                             ) : (
 
-                                <div
-                                    className="
-                                        relative
-                                        w-28
-                                        h-28
-                                        md:w-40
-                                        md:h-40
-                                        rounded-[28px]
-                                        flex
-                                        items-center
-                                        justify-center
-                                        bg-zinc-800
-                                        border
-                                        border-white/10
-                                        shadow-[0_20px_60px_rgba(0,0,0,.45)]
-                                    "
-                                >
+                                <div className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] flex items-center justify-center bg-zinc-800 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]">
                                     <UserRound
                                         className="w-14 h-14"
                                         style={{
@@ -382,13 +370,7 @@ export default async function AuthorPage({
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
 
                                 <h1
-                                    className="
-                                        text-3xl
-                                        md:text-4xl
-                                        font-bold
-                                        tracking-tight
-                                        drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]
-                                    "
+                                    className="text-3xl md:text-4xl font-bold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]"
                                     style={{
                                         color: heroTextColor
                                     }}
@@ -409,10 +391,7 @@ export default async function AuthorPage({
                                 {username && (
                                     <>
                                         <span
-                                            className="
-                                                font-medium
-                                                drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]
-                                            "
+                                            className="font-medium drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
                                             style={{
                                                 color: heroTextColor
                                             }}
@@ -481,19 +460,7 @@ export default async function AuthorPage({
                                                 href={value}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className={`
-                                                    w-11
-                                                    h-11
-                                                    rounded-xl
-                                                    border
-                                                    border-zinc-700
-                                                    bg-zinc-900/60
-                                                    flex
-                                                    items-center
-                                                    justify-center
-                                                    transition-all
-                                                    ${config.hover}
-                                                `}
+                                                className={`w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center transition-all ${config.hover}`}
                                             >
                                                 <Icon className={config.color} />
                                             </a>
@@ -509,17 +476,7 @@ export default async function AuthorPage({
                     </div>
 
                     {canEdit && (
-                        <div className="
-        flex
-        flex-col
-        sm:flex-row
-        justify-center
-        lg:justify-end
-        gap-3
-        mt-8
-        pr-0
-        lg:pr-2
-    ">
+                        <div className="flex flex-col sm:flex-row justify-center lg:justify-end gap-3 mt-8 pr-0 lg:pr-2">
 
                             {!author.pro && (
                                 <ProCheckoutButton
@@ -529,12 +486,7 @@ export default async function AuthorPage({
 
                             <Link
                                 href="/me"
-                                className="
-                                        flex items-center justify-center px-4 py-2.5 rounded-lg text-sm
-                                        text-white
-                                        transition
-                                        whitespace-nowrap
-                                    "
+                                className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
                                 style={{
                                     backgroundColor: author.theme?.primary ?? "#2563eb"
                                 }}
@@ -544,12 +496,7 @@ export default async function AuthorPage({
 
                             <Link
                                 href={`/authors/${author.slug}/edit`}
-                                className="
-                                        flex items-center justify-center px-4 py-2.5 rounded-lg text-sm
-                                        text-white
-                                        transition
-                                        whitespace-nowrap
-                                    "
+                                className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
                                 style={{
                                     backgroundColor: author.theme?.primary ?? "#2563eb"
                                 }}
@@ -654,15 +601,10 @@ export default async function AuthorPage({
                                 <img
                                     src={author.news.image}
                                     alt={author.news.title ?? "Novedad"}
-                                    className="
-                        w-full
-                        aspect-[1200/630]
-                        object-cover
-                    "
+                                    className="w-full aspect-[1200/630] object-cover"
                                 />
                             </div>
                         )}
-
 
                         <div className="flex items-center gap-3">
 
@@ -675,9 +617,7 @@ export default async function AuthorPage({
                                 📰
                             </div>
 
-
                             <div>
-
                                 <p
                                     className="text-xs uppercase tracking-[0.35em]"
                                     style={{
@@ -687,7 +627,6 @@ export default async function AuthorPage({
                                     {author.news.type}
                                 </p>
 
-
                                 <h2
                                     className="text-2xl font-bold"
                                     style={{
@@ -696,11 +635,9 @@ export default async function AuthorPage({
                                 >
                                     Novedades
                                 </h2>
-
                             </div>
 
                         </div>
-
 
                         {author.news.title && (
                             <h3
@@ -713,14 +650,9 @@ export default async function AuthorPage({
                             </h3>
                         )}
 
-
                         {author.news.content && (
                             <div
-                                className="
-                    mt-4
-                    whitespace-pre-line
-                    leading-8
-                "
+                                className="mt-4 whitespace-pre-line leading-8"
                                 style={{
                                     color: authorTheme.text
                                 }}
@@ -750,7 +682,6 @@ export default async function AuthorPage({
                             Libro destacado
                         </h2>
 
-
                         <div className="flex flex-col sm:flex-row gap-6 items-center group" >
                             <>
                                 <div className="w-40 aspect-[2/3] overflow-hidden rounded-2xl shadow-2xl">
@@ -764,13 +695,7 @@ export default async function AuthorPage({
                                             featuredBook.cover
                                         )}
                                         alt={featuredBook.title}
-                                        className="
-                                            w-full
-                                            h-full
-                                            object-cover
-                                            transition
-                                            duration-500
-                                        "
+                                        className="w-full h-full object-cover transition duration-500"
                                     />
                                 </div>
 
@@ -840,18 +765,7 @@ export default async function AuthorPage({
 
                                         <Link
                                             href={`/libros/${featuredBook.slug}`}
-                                            className="
-            mt-4
-            px-5 py-2
-            rounded-xl
-            font-semibold
-            border
-            inline-flex
-            items-center
-            justify-center
-            transition
-            hover:opacity-80
-        "
+                                            className="mt-4 px-5 py-2 rounded-xl font-semibold border inline-flex items-center justify-center transition hover:opacity-80"
                                             style={{
                                                 color: authorTheme.text,
                                                 backgroundColor: authorTheme.surface,
@@ -950,53 +864,27 @@ export default async function AuthorPage({
                                                     book.cover
                                                 )}
                                                 alt={book.title}
-                                                className="
-                                                    w-full
-                                                    h-full
-                                                    object-cover
-                                                    transition-transform
-                                                    duration-700
-                                                    group-hover:scale-105
-                                                "
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                             />
 
-                                            <div
-                                                className="
-                                                    absolute
-                                                    inset-0
-                                                    bg-gradient-to-t
-                                                    from-black/50
-                                                    via-transparent
-                                                    opacity-0
-                                                    group-hover:opacity-100
-                                                    transition
-                                                "
-                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition" />
 
                                         </div>
 
                                     </div>
-
 
                                     {/* INFORMACIÓN */}
 
                                     <div className="px-2 pb-4">
 
                                         <h3
-                                            className="
-                                                font-bold
-                                                text-xs
-                                                md:text-sm
-                                                line-clamp-2
-                                                transition-colors
-                                            "
+                                            className="font-bold text-xs md:text-sm line-clamp-2 transition-colors"
                                             style={{
                                                 color: authorTheme.text
                                             }}
                                         >
                                             {book.title}
                                         </h3>
-
 
                                         <div className="mt-3 flex flex-wrap gap-1.5">
 
@@ -1028,7 +916,6 @@ export default async function AuthorPage({
 
                                         </div>
 
-
                                         <div className="mt-5 space-y-3">
 
                                             <AmazonButton
@@ -1042,20 +929,9 @@ export default async function AuthorPage({
                                                 textColor={authorTheme.text}
                                             />
 
-
                                             <Link
                                                 href={`/libros/${book.slug}`}
-                                                className="
-                                                block
-                                                text-center
-                                                text-xs
-                                                font-semibold
-                                                py-2
-                                                rounded-xl
-                                                border
-                                                transition
-                                                hover:opacity-80
-                                            "
+                                                className="block text-center text-xs font-semibold py-2 rounded-xl border transition hover:opacity-80"
                                                 style={{
                                                     color: authorTheme.primary,
                                                     borderColor: authorTheme.border
@@ -1066,14 +942,11 @@ export default async function AuthorPage({
 
                                         </div>
 
-
                                     </div>
-
 
                                 </article>
 
                             ))}
-
 
                         </div>
 
