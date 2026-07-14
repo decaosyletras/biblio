@@ -107,7 +107,7 @@ export default function AuthorBasicSection({
 
                     <textarea
                         rows={7}
-                        maxLength={800}
+                        maxLength={900}
                         value={author.bio ?? ""}
                         onChange={e =>
                             updateField("bio", e.target.value)

@@ -303,16 +303,7 @@ export default async function AuthorPage({
                                 }}
                             />
 
-                            <div
-                                className="
-                                    absolute
-                                    inset-0
-                                    bg-gradient-to-b
-                                    from-black/40
-                                    via-zinc-950/60
-                                    to-zinc-950
-                                "
-                            />
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-zinc-950/60 to-zinc-950" />
                         </div>
                     </>
                 ) : (
@@ -479,18 +470,7 @@ export default async function AuthorPage({
             </section>
 
             {canEdit && (
-                <div className="
-        flex
-        flex-col
-        sm:flex-row
-        items-center
-        justify-center
-        lg:justify-end
-        gap-3
-        mt-8
-        pr-0
-        lg:pr-2
-    ">
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3 mt-8 pr-0 lg:pr-2">
 
                     {!author.pro && (
                         <ProCheckoutButton
@@ -500,19 +480,7 @@ export default async function AuthorPage({
 
                     <Link
                         href="/me"
-                        className="
-                inline-flex
-                items-center
-                justify-center
-                w-fit
-                px-4
-                py-2.5
-                rounded-lg
-                text-sm
-                text-white
-                transition
-                whitespace-nowrap
-            "
+                        className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
                         style={{
                             backgroundColor: author.theme?.primary ?? "#2563eb"
                         }}
@@ -522,19 +490,7 @@ export default async function AuthorPage({
 
                     <Link
                         href={`/authors/${author.slug}/edit`}
-                        className="
-                inline-flex
-                items-center
-                justify-center
-                w-fit
-                px-4
-                py-2.5
-                rounded-lg
-                text-sm
-                text-white
-                transition
-                whitespace-nowrap
-            "
+                        className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
                         style={{
                             backgroundColor: author.theme?.primary ?? "#2563eb"
                         }}
@@ -578,22 +534,12 @@ export default async function AuthorPage({
                     >
                         <div className="flex items-center gap-3 mb-6">
                             <div
-                                className="w-1.5 h-13 rounded-full"
+                                className="w-1.5 h-10 rounded-full"
                                 style={{
                                     backgroundColor: authorTheme.primary
                                 }}
                             />
                             <div>
-
-                                <p
-                                    className="text-xs uppercase tracking-[0.35em]"
-                                    style={{
-                                        color: authorTheme.muted
-                                    }}
-                                >
-                                    Autor
-                                </p>
-
                                 <div className="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
                                     <div>
 
@@ -611,14 +557,16 @@ export default async function AuthorPage({
                                 </div>
                             </div>
                         </div>
-                        <p
-                            className="whitespace-pre-line leading-8 text-[15px]"
-                            style={{
-                                color: author.theme?.text ?? "#ffffff"
-                            }}
-                        >
-                            {author.bio}
-                        </p>
+                        {author.news.content && (
+                            <div
+                                className="mt-4 whitespace-pre-line leading-8"
+                                style={{
+                                    color: authorTheme.text
+                                }}
+                            >
+                                {author.news.content}
+                            </div>
+                        )}
                     </section>
                 )}
 
@@ -643,14 +591,6 @@ export default async function AuthorPage({
 
                         <div className="flex items-center gap-3">
 
-                            <div
-                                className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
-                                style={{
-                                    backgroundColor: `${authorTheme.primary}20`
-                                }}
-                            >
-                                📰
-                            </div>
 
                             <div>
                                 <p
@@ -774,14 +714,14 @@ export default async function AuthorPage({
                                     </div>
                                     {featuredBook.summary && (
 
-                                        <p
-                                            className="mt-5 leading-7 line-clamp-4"
+                                        <div
+                                            className="mt-4 whitespace-pre-line leading-8"
                                             style={{
-                                                color: authorTheme.muted
+                                                color: authorTheme.text
                                             }}
                                         >
                                             {featuredBook.summary}
-                                        </p>
+                                        </div>
 
                                     )}
 
