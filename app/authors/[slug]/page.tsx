@@ -267,7 +267,7 @@ export default async function AuthorPage({
     }
 
     const heroHasBanner = isPro && author.banner;
-    const bannerHeight = "h-[320px] md:h-[420px]"
+    const bannerHeight = "h-[420px] md:h-[420px]"
 
     const heroTextColor = heroHasBanner
         ? "#ffffff"
