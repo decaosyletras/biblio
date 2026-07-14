@@ -107,6 +107,7 @@ export default function AuthorBasicSection({
 
                     <textarea
                         rows={7}
+                        maxLength={800}
                         value={author.bio ?? ""}
                         onChange={e =>
                             updateField("bio", e.target.value)
@@ -127,6 +128,7 @@ export default function AuthorBasicSection({
 
                     <input
                         value={author.style ?? ""}
+                        maxLength={70}
                         onChange={e =>
                             updateField("style", e.target.value)
                         }

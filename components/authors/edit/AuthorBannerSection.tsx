@@ -53,7 +53,7 @@ export default function AuthorBannerSection({
                     <p className="text-sm text-zinc-500">
                         Recomendado: imagen horizontal de{" "}
                         <strong className="text-zinc-300">
-                            1600 × 500 px
+                            1600 × 400 px
                         </strong>.
                     </p>
 
