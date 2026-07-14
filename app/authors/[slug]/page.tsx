@@ -9,6 +9,22 @@ import { FaCrown } from "react-icons/fa"
 import ProCheckoutButton from "@/components/ProCheckoutButton"
 import { cookies } from "next/headers"
 import { SiWattpad } from "react-icons/si"
+import { Cinzel_Decorative } from "next/font/google";
+
+import {
+    inter,
+    merriweather,
+    ibmMono,
+    lora,
+    cormorant,
+    caveat,
+    cinzel,
+    ebGaramond,
+    courierPrime,
+    manrope,
+    creepster,
+    cinzelDecorative
+} from "@/lib/fonts";
 
 import {
     FaInstagram,
@@ -235,30 +251,32 @@ export default async function AuthorPage({
     })*/
 
     const fontStyles = {
-        sans: "Arial, sans-serif",
-        serif: "Georgia, serif",
-        mono: "ui-monospace, monospace",
-        times: "Times New Roman, serif",
-        garamond: "Garamond, serif",
-        cursive: "cursive",
-        dark: "Palatino Linotype, Book Antiqua, serif",
-        old: "Baskerville, serif",
-        typewriter: "Courier New, monospace",
-        fantasy: "Papyrus, fantasy",
-        horror: "Chiller, Impact, fantasy",
-        minimal: "Helvetica, Arial, sans-serif"
+        sans: inter.className,
+        serif: merriweather.className,
+        mono: ibmMono.className,
+        times: lora.className,
+        garamond: cormorant.className,
+        cursive: caveat.className,
+        dark: cinzel.className,
+        old: ebGaramond.className,
+        typewriter: courierPrime.className,
+        fantasy: cinzelDecorative.className,
+        horror: creepster.className,
+        minimal: manrope.className
     }
 
     return (
         <div
-            className="min-h-screen"
+            className={`
+        min-h-screen
+        ${fontStyles[
+                author.theme?.font as keyof typeof fontStyles
+                ] ?? fontStyles.sans
+                }
+    `}
             style={{
                 backgroundColor: author.theme?.surface ?? "#09090b",
-                color: author.theme?.text ?? "#ffffff",
-                fontFamily:
-                    fontStyles[
-                    author.theme?.font as keyof typeof fontStyles
-                    ] ?? fontStyles.sans
+                color: author.theme?.text ?? "#ffffff"
             }}
         >
 

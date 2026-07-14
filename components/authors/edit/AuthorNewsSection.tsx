@@ -284,132 +284,127 @@ export default function AuthorNewsSection({
                         Recomendado: imagen horizontal 1200×630 px.
                     </p>
 
+                    <p className="text-sm text-zinc-500">
+                        Opcional. Puedes publicar la novedad sin una imagen.
+                    </p>
+
                 </div>
 
 
                 <label
                     className="
-                        relative
-                        block
-                        overflow-hidden
-                        rounded-2xl
-                        border-2
-                        border-dashed
-                        border-zinc-700
-                        hover:border-blue-500
-                        transition
-                        cursor-pointer
-                        bg-zinc-900
-                    "
+        group
+        relative
+        block
+        overflow-hidden
+        rounded-3xl
+        border-2
+        border-dashed
+        border-zinc-700
+        bg-zinc-950
+        cursor-pointer
+        transition
+        hover:border-yellow-500/50
+    "
                 >
 
                     {author.news?.image ? (
 
-                        <img
-                            src={author.news.image}
-                            className="
-                                w-full
-                                aspect-[1200/630]
-                                object-cover
-                            "
-                        />
+                        <>
+
+                            <img
+                                src={author.news.image}
+                                className="
+                    w-full
+                    aspect-[1200/630]
+                    object-cover
+                    transition
+                    duration-500
+                    group-hover:scale-[1.02]
+                "
+                            />
+
+                            <div
+                                className="
+                    absolute
+                    inset-0
+                    bg-black/50
+                    opacity-0
+                    group-hover:opacity-100
+                    transition
+                    flex
+                    items-center
+                    justify-center
+                "
+                            >
+
+                                <div
+                                    className="
+                        px-5
+                        py-3
+                        rounded-2xl
+                        bg-yellow-500/10
+                        backdrop-blur
+                        border
+                        border-yellow-500/30
+                        text-yellow-300
+                        font-medium
+                    "
+                                >
+                                    Cambiar imagen
+                                </div>
+
+                            </div>
+
+                        </>
 
                     ) : (
 
                         <div
                             className="
-                                aspect-[1200/630]
-                                flex
-                                flex-col
-                                items-center
-                                justify-center
-                                gap-3
-                                text-zinc-500
-                            "
+                aspect-[1200/630]
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-center
+                px-8
+            "
                         >
 
-
-                            <p className="text-sm">
+                            <p className="font-semibold text-white">
                                 Haz clic para subir una imagen
                             </p>
 
+                            <p className="text-sm text-zinc-500 mt-2">
+                                PNG, JPG o WEBP
+                            </p>
 
                         </div>
 
                     )}
-
-
-
-                    {author.news?.image && (
-
-                        <div
-                            className="
-                                absolute
-                                inset-0
-                                bg-black/50
-                                opacity-0
-                                hover:opacity-100
-                                transition
-                                flex
-                                items-center
-                                justify-center
-                            "
-                        >
-
-                            <span
-                                className="
-                                    px-4
-                                    py-2
-                                    rounded-xl
-                                    bg-white/10
-                                    backdrop-blur
-                                    border
-                                    border-white/20
-                                "
-                            >
-                                Cambiar imagen
-                            </span>
-
-
-                        </div>
-
-                    )}
-
-
 
                     <input
-
                         type="file"
-
                         accept="image/*"
-
                         className="hidden"
-
                         onChange={e => {
 
-                            const file =
-                                e.target.files?.[0]
+                            const file = e.target.files?.[0]
 
-                            if (!file)
-                                return
-
+                            if (!file) return
 
                             setNewsImageFile(file)
 
-
                             setAuthor((prev: any) => ({
                                 ...prev,
-
                                 news: {
                                     ...(prev.news ?? {}),
-                                    image:
-                                        URL.createObjectURL(file)
+                                    image: URL.createObjectURL(file)
                                 }
-
                             }))
 
                         }}
-
                     />
 
                 </label>

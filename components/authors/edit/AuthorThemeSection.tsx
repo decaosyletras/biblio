@@ -1,5 +1,19 @@
 "use client"
 
+import {
+    inter,
+    merriweather,
+    ibmMono,
+    lora,
+    cormorant,
+    caveat,
+    cinzel,
+    ebGaramond,
+    courierPrime,
+    manrope,
+    creepster
+} from "@/lib/fonts";
+
 interface Props {
     author: any
     setAuthor: any
@@ -392,79 +406,66 @@ export default function AuthorThemeSection({
                 >
 
                     {[
-
                         {
                             id: "sans",
                             name: "Moderna",
-                            font: "Arial, sans-serif"
+                            className: inter.className
                         },
-
                         {
                             id: "serif",
                             name: "Clásica",
-                            font: "Georgia, serif"
+                            className: merriweather.className
                         },
-
                         {
                             id: "mono",
                             name: "Editorial",
-                            font: "ui-monospace, monospace"
+                            className: ibmMono.className
                         },
-
                         {
                             id: "times",
                             name: "Novela",
-                            font: "Times New Roman, serif"
+                            className: lora.className
                         },
-
                         {
                             id: "garamond",
                             name: "Elegante",
-                            font: "Garamond, serif"
+                            className: cormorant.className
                         },
-
                         {
                             id: "cursive",
                             name: "Creativa",
-                            font: "cursive"
+                            className: caveat.className
                         },
-
                         {
                             id: "dark",
                             name: "Oscura",
-                            font: "Palatino Linotype, Book Antiqua, serif"
+                            className: cinzel.className
                         },
-
                         {
                             id: "old",
                             name: "Antigua",
-                            font: "Baskerville, serif"
+                            className: ebGaramond.className
                         },
-
                         {
                             id: "typewriter",
                             name: "Máquina",
-                            font: "Courier New, monospace"
+                            className: courierPrime.className
                         },
-
                         {
                             id: "fantasy",
                             name: "Fantasía",
-                            font: "Papyrus, fantasy"
+                            className: cinzel.className
                         },
-
                         {
                             id: "horror",
                             name: "Terror",
-                            font: "Chiller, Impact, fantasy"
+                            className: creepster.className
                         },
-
                         {
                             id: "minimal",
                             name: "Minimal",
-                            font: "Helvetica, Arial, sans-serif"
+                            className: manrope.className
                         }
-
                     ].map(font => (
 
                         <button
@@ -501,13 +502,7 @@ export default function AuthorThemeSection({
                         >
 
                             <p
-                                className="
-                                    text-lg
-                                "
-                                style={{
-                                    fontFamily:
-                                        font.font
-                                }}
+                                className={`text-lg ${font.className}`}
                             >
                                 Aa Escritura
                             </p>

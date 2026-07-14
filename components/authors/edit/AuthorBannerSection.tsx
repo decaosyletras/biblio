@@ -55,6 +55,10 @@ export default function AuthorBannerSection({
                     </strong>.
                 </p>
 
+                <p className="text-sm text-zinc-500">
+                    Opcional. Puedes publicar la novedad sin una imagen.
+                </p>
+
 
                 <label
                     className="
