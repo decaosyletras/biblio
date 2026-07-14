@@ -91,7 +91,9 @@ export default function LoginPage() {
 
           </div>
 
-          <button className="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded font-semibold">
+          <button
+            className="w-full px-5 py-3 rounded-xl bg-stone-100 text-stone-900 hover:bg-stone-200 transition font-semibold"
+          >
             Entrar
           </button>
 
