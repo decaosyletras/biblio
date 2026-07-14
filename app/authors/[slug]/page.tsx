@@ -275,7 +275,7 @@ export default async function AuthorPage({
                 }
     `}
             style={{
-                backgroundColor: author.theme?.surface ?? "#09090b",
+                backgroundColor: author.theme?.bg ?? "#09090b",
                 color: author.theme?.text ?? "#ffffff"
             }}
         >
