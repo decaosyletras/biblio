@@ -12,19 +12,23 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
+  const [errorMsg, setErrorMsg] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    setLoading(true)
+    setErrorMsg("")
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password
     })
 
-    const { data: sessionTest } = await supabase.auth.getSession()
-
     if (error) {
-      alert(error.message)
+      setErrorMsg("Correo o contraseña incorrectos")
+      setLoading(false)
       return
     }
 
@@ -92,12 +96,28 @@ export default function LoginPage() {
           </div>
 
           <button
-            className="w-full px-5 py-3 rounded-xl bg-stone-100 text-stone-900 hover:bg-stone-200 transition font-semibold"
-          >
-            Entrar
+            disabled={loading}
+            className="w-full px-5 py-3 rounded-xl bg-stone-100 text-stone-900 hover:bg-stone-200 transition font-semibold disabled:opacity-50">
+            {loading ? "Entrando..." : "Entrar"}
           </button>
 
         </form>
+
+        {errorMsg && (
+          <div className="
+            mt-4
+            p-3
+            rounded-xl
+            bg-red-500/10
+            border
+            border-red-500/30
+            text-red-400
+            text-sm
+            text-center
+          ">
+            {errorMsg}
+          </div>
+        )}
 
         <p className="text-sm text-zinc-400 mt-4">
           ¿No tienes cuenta?{" "}
