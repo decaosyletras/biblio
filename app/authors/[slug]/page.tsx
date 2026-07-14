@@ -253,7 +253,7 @@ export default async function AuthorPage({
         <div
             className="min-h-screen"
             style={{
-                backgroundColor: author.theme?.bg ?? "#09090b",
+                backgroundColor: author.theme?.surface ?? "#09090b",
                 color: author.theme?.text ?? "#ffffff",
                 fontFamily:
                     fontStyles[
@@ -436,7 +436,7 @@ export default async function AuthorPage({
                                 <Link
                                     href="/me"
                                     className="
-                                        px-5 py-3 rounded-xl
+                                        flex items-center justify-center px-5 py-3 rounded-xl
                                         text-white
                                         transition
                                         whitespace-nowrap
@@ -451,7 +451,7 @@ export default async function AuthorPage({
                                 <Link
                                     href={`/authors/${author.slug}/edit`}
                                     className="
-                                        px-5 py-3 rounded-xl
+                                        flex items-center justify-center px-5 py-3 rounded-xl
                                         text-white
                                         transition
                                         whitespace-nowrap

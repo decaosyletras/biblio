@@ -229,7 +229,7 @@ export default function AuthorThemeSection({
                             }
 
                             className={`
-                                p-4
+                                p-3
                                 rounded-2xl
                                 border
                                 transition
@@ -243,10 +243,10 @@ export default function AuthorThemeSection({
                         >
 
                             <p
-                                className={`
-                                font-semibold
-                                ${preset.theme?.text}
-                            `}
+                                className="font-semibold"
+                                style={{
+                                    color: preset.theme?.text
+                                }}
                             >
                                 {preset.name}
                             </p>
@@ -295,7 +295,7 @@ export default function AuthorThemeSection({
                                 items-center
                                 justify-between
                                 gap-4
-                                p-4
+                                p-2
                                 rounded-2xl
                                 bg-zinc-900
                                 border
@@ -480,7 +480,7 @@ export default function AuthorThemeSection({
                             }
 
                             className={`
-                                p-4
+                                p-2
                                 rounded-xl
                                 border
                                 text-left

@@ -185,20 +185,20 @@ export default function MePage() {
     return (
         <div className="min-h-screen bg-zinc-950 text-white">
 
-            <div className="max-w-4xl mx-auto px-6 py-12 space-y-8">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-6 sm:space-y-8">
 
 
                 {/* HEADER */}
                 <div>
-                    <h1 className="text-4xl font-bold">
+                    <h1 className="text-3xl sm:text-4xl font-bold">
                         Mi cuenta
                     </h1>
                 </div>
 
                 {/* PERFIL */}
-                <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-8">
+                <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-8">
 
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
 
                         <div>
                             <p className="text-sm uppercase tracking-wider text-zinc-500 mb-0">
@@ -209,7 +209,7 @@ export default function MePage() {
                                 {profile?.username}
                             </p>
 
-                            <p className="text-zinc-400 mt-2">
+                            <p className="text-zinc-400 mt-2 break-all">
                                 {user.email}
                             </p>
                         </div>
@@ -218,14 +218,14 @@ export default function MePage() {
                         <button
                             onClick={() => router.push("/me/edit")}
                             className="
+                                w-full sm:w-auto
                                 px-5 py-3
                                 rounded-xl
                                 bg-stone-100
                                 text-stone-900
                                 hover:bg-stone-200
                                 transition
-                                whitespace-nowrap
-                            "
+                                "
                         >
                             Editar nombre
                         </button>
@@ -238,7 +238,7 @@ export default function MePage() {
 
                 <div
                     id="mis-solicitudes"
-                    className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6"
+                    className="rounded-3xl border border-zinc-800 bg-zinc-900 p-4 sm:p-6"
                 >
                     <h2 className="text-xl font-bold mb-5">
                         Mi estado de autor
@@ -307,15 +307,15 @@ export default function MePage() {
                         {claims.map((claim) => (
                             <div
                                 key={claim.id}
-                                className={`
-                                    p-5 rounded-2xl border flex justify-between items-center
-                                    ${claim.status === "approved"
-                                        ? "bg-green-500/10 border-green-500/30"
-                                        : "bg-zinc-950 border-zinc-800"
-                                    }
-                                `}
+                                className="
+                                    p-5 rounded-2xl border
+                                    flex flex-col sm:flex-row
+                                    gap-5
+                                    sm:items-center
+                                    sm:justify-between
+                                    "
                             >
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-start gap-4">
 
                                     {claim.authors?.avatar && (
 
@@ -363,13 +363,16 @@ export default function MePage() {
                                     <Link
                                         href={`/authors/${claim.authors.slug}`}
                                         className="
-                            px-5 py-3 rounded-xl
-                            bg-green-600
-                            hover:bg-green-500
-                            font-semibold
-                            transition
-                            shadow-lg shadow-green-900/30
-                        "
+                                            w-full sm:w-auto
+                                            text-center
+                                            px-5 py-3
+                                            rounded-xl
+                                            bg-green-600
+                                            hover:bg-green-500
+                                            font-semibold
+                                            transition
+                                            shadow-lg shadow-green-900/30
+                                            "
                                     >
                                         Ver página de autor →
                                     </Link>
@@ -411,9 +414,9 @@ export default function MePage() {
                 )*/}
 
                 {/* ACTIONS */}
-                <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6">
+                <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-4 sm:p-6">
 
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                         {/*<button
                             onClick={() =>
                                 document
@@ -436,7 +439,7 @@ export default function MePage() {
                                 router.push("/login")
 
                             }}
-                            className="px-5 py-3 rounded-xl bg-red-600"
+                            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-red-600"
                         >
                             Cerrar sesión
                         </button>
@@ -457,7 +460,7 @@ export default function MePage() {
 
                 {/* ADMIN USERS */}
                 {isAdmin && (
-                    <div className="rounded-3xl border border-red-500/30 bg-red-500/5 p-6">
+                    <div className="rounded-3xl border border-red-500/30 bg-red-500/5 p-4 sm:p-6">
                         <h2 className="text-xl font-bold text-red-400">
                             Admin - Usuarios
                         </h2>
@@ -479,7 +482,7 @@ export default function MePage() {
 
                                 <div
                                     key={u.id}
-                                    className="flex justify-between bg-zinc-900 p-3 rounded-xl"
+                                    className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between bg-zinc-900 p-3 rounded-xl"
                                 >
                                     <div>
                                         <p className="text-sm">
@@ -496,7 +499,7 @@ export default function MePage() {
                                         onClick={() =>
                                             deleteUser(u.id)
                                         }
-                                        className="px-3 py-1 bg-red-600 rounded-lg"
+                                        className="w-full sm:w-auto px-3 py-2 bg-red-600 rounded-lg"
                                     >
                                         Borrar
                                     </button>
