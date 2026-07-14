@@ -1,5 +1,8 @@
 "use client"
 
+import { HexColorPicker } from "react-colorful";
+import { useState } from "react";
+
 import {
     inter,
     merriweather,
@@ -44,7 +47,6 @@ export default function AuthorThemeSection({
 
 
     const presets = [
-
         {
             id: "dark",
 
@@ -63,7 +65,6 @@ export default function AuthorThemeSection({
             }
 
         },
-
 
         {
             id: "cream",
@@ -84,7 +85,6 @@ export default function AuthorThemeSection({
 
         },
 
-
         {
             id: "fantasy",
 
@@ -103,7 +103,6 @@ export default function AuthorThemeSection({
             }
 
         },
-
 
         {
             id: "romantic",
@@ -126,8 +125,6 @@ export default function AuthorThemeSection({
 
     ]
 
-
-
     const colors = [
 
         {
@@ -136,52 +133,44 @@ export default function AuthorThemeSection({
             value:
                 author.theme?.bg ?? "#09090b"
         },
-
         {
             key: "surface",
             label: "Tarjetas",
             value:
                 author.theme?.surface ?? "#18181b"
         },
-
         {
             key: "primary",
             label: "Color principal",
             value:
                 author.theme?.primary ?? "#2563eb"
         },
-
         {
             key: "text",
             label: "Texto principal",
             value:
                 author.theme?.text ?? "#ffffff"
         },
-
         {
             key: "muted",
             label: "Texto secundario",
             value:
                 author.theme?.muted ?? "#a1a1aa"
         },
-
         {
             key: "border",
             label: "Bordes",
             value:
                 author.theme?.border ?? "#27272a"
         }
-
     ]
 
+    const [activeColor, setActiveColor] = useState<string | null>(null);
 
 
     return (
-
         <section>
-
             <div>
-
                 <h2
                     className="
                         text-xl
@@ -193,14 +182,10 @@ export default function AuthorThemeSection({
                     🎨 Personalización visual
                 </h2>
 
-
                 <p className="text-sm text-zinc-400 mt-2">
                     Ajusta la identidad visual de tu página de autor.
                 </p>
-
             </div>
-
-
 
             {/* PRESETS */}
 
@@ -219,7 +204,6 @@ export default function AuthorThemeSection({
                     Estilos rápidos
                 </h3>
 
-
                 <div
                     className="
                         grid
@@ -231,9 +215,7 @@ export default function AuthorThemeSection({
                     {presets.map(preset => (
 
                         <button
-
                             key={preset.id}
-
                             type="button"
 
                             onClick={() =>
@@ -241,7 +223,6 @@ export default function AuthorThemeSection({
                                     preset.theme
                                 )
                             }
-
                             className={`
                                 p-3
                                 rounded-2xl
@@ -253,9 +234,7 @@ export default function AuthorThemeSection({
                                 hover:border-blue-500
                                 hover:scale-[1.02]
                             `}
-
                         >
-
                             <p
                                 className="font-semibold"
                                 style={{
@@ -264,14 +243,9 @@ export default function AuthorThemeSection({
                             >
                                 {preset.name}
                             </p>
-
                         </button>
-
                     ))}
-
                 </div>
-
-
             </div>
 
             {/* COLORES */}
@@ -291,7 +265,6 @@ export default function AuthorThemeSection({
                     Colores personalizados
                 </h3>
 
-
                 <div
                     className="
                         grid
@@ -301,7 +274,6 @@ export default function AuthorThemeSection({
                 >
 
                     {colors.map(color => (
-
                         <div
                             key={color.key}
                             className="
@@ -316,14 +288,10 @@ export default function AuthorThemeSection({
                                 border-zinc-800
                             "
                         >
-
                             <div>
-
                                 <p className="font-medium">
                                     {color.label}
                                 </p>
-
-
                                 <p
                                     className="
                                         text-xs
@@ -334,52 +302,69 @@ export default function AuthorThemeSection({
                                 >
                                     {color.value}
                                 </p>
+                            </div>
+                            <div className="relative">
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setActiveColor(
+                                            activeColor === color.key
+                                                ? null
+                                                : color.key
+                                        )
+                                    }
+                                    className="
+            w-12
+            h-12
+            rounded-xl
+            border
+            border-zinc-700
+            overflow-hidden
+        "
+                                    style={{
+                                        backgroundColor: color.value
+                                    }}
+                                />
+
+
+                                {activeColor === color.key && (
+
+                                    <div
+                                        className="
+                absolute
+                right-0
+                top-14
+                z-50
+                p-3
+                rounded-2xl
+                bg-zinc-900
+                border
+                border-zinc-700
+                shadow-xl
+            "
+                                    >
+
+                                        <HexColorPicker
+                                            color={color.value}
+                                            onChange={value =>
+                                                updateTheme({
+                                                    [color.key]: value
+                                                })
+                                            }
+                                        />
+
+                                    </div>
+
+                                )}
 
                             </div>
-
-
-                            <input
-
-                                type="color"
-
-                                value={color.value}
-
-                                onChange={e =>
-                                    updateTheme({
-
-                                        [color.key]:
-                                            e.target.value
-
-                                    })
-                                }
-
-                                className="
-                                    w-12
-                                    h-12
-                                    rounded-xl
-                                    cursor-pointer
-                                    border
-                                    border-zinc-700
-                                    overflow-hidden
-                                "
-
-                            />
-
-
                         </div>
-
                     ))}
-
-
                 </div>
-
-
             </div>
 
-
-
             {/* TIPOGRAFÍAS */}
-
 
             <div
                 className="
