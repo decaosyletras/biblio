@@ -48,12 +48,22 @@ export default function AuthorBannerSection({
 
             <div className="space-y-6">
 
-                <p className="text-sm text-zinc-500">
-                    Recomendado: imagen horizontal de{" "}
-                    <strong className="text-zinc-300">
-                        1600 × 500 px
-                    </strong>.
-                </p>
+                <div className="space-y-2">
+
+                    <p className="text-sm text-zinc-500">
+                        Recomendado: imagen horizontal de{" "}
+                        <strong className="text-zinc-300">
+                            1600 × 500 px
+                        </strong>.
+                    </p>
+
+                    <p className="text-xs text-zinc-600">
+                        📱 En dispositivos móviles la imagen se recorta desde el centro.
+                        Coloca los elementos importantes de la imagen en la zona central
+                        para evitar que se pierdan.
+                    </p>
+
+                </div>
 
                 <p className="text-sm text-zinc-500">
                     Opcional. Puedes publicar la novedad sin una imagen.
@@ -84,13 +94,14 @@ export default function AuthorBannerSection({
                             <img
                                 src={author.banner}
                                 className="
-                                w-full
-                                aspect-[16/5]
-                                object-cover
-                                transition
-                                duration-500
-                                group-hover:scale-[1.02]
-                            "
+                                    w-full
+                                    aspect-[16/5]
+                                    object-cover
+                                    object-center
+                                    transition
+                                    duration-500
+                                    group-hover:scale-[1.02]
+                                    "
                             />
 
 
@@ -124,6 +135,40 @@ export default function AuthorBannerSection({
                                     Cambiar banner
                                 </div>
 
+                            </div>
+
+
+                            <div
+                                className="
+        absolute
+        inset-y-0
+        left-1/2
+        -translate-x-1/2
+        w-[35%]
+        border-x-2
+        border-yellow-400/70
+        bg-yellow-400/10
+        pointer-events-none
+    "
+                            >
+                                <div
+                                    className="
+            absolute
+            bottom-3
+            left-1/2
+            -translate-x-1/2
+            whitespace-nowrap
+            px-3
+            py-1.5
+            rounded-full
+            bg-black/60
+            backdrop-blur
+            text-xs
+            text-yellow-300
+        "
+                                >
+                                    📱 Zona visible (aproximada) en móvil
+                                </div>
                             </div>
 
                         </>
