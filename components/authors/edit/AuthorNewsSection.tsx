@@ -35,17 +35,7 @@ export default function AuthorNewsSection({
 
     return (
 
-        <section
-            className="
-                rounded-3xl
-                border
-                border-yellow-500/20
-                bg-zinc-900
-                p-5
-                md:p-7
-                space-y-8
-            "
-        >
+        <section>
 
             {/* CABECERA */}
 

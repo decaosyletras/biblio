@@ -426,37 +426,47 @@ export default function EditAuthorPage() {
                             className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3 resize-none"
                         />*/}
 
-                        <AuthorBannerSection
-                            author={author}
-                            updateField={updateField}
-                            setBannerFile={setBannerFile}
-                        />
+                        <div className="border-t border-yellow-500/70 pt-5">
+                            <AuthorBannerSection
+                                author={author}
+                                updateField={updateField}
+                                setBannerFile={setBannerFile}
+                            />
+                        </div>
 
-                        <AuthorSocialSection
-                            author={author}
-                            socialOrder={socialOrder}
-                            moveSocial={moveSocial}
-                            updateField={updateField}
-                        />
+                        <div className="border-t border-yellow-500/70 pt-5">
+                            <AuthorSocialSection
+                                author={author}
+                                socialOrder={socialOrder}
+                                moveSocial={moveSocial}
+                                updateField={updateField}
+                            />
+                        </div>
 
-                        <AuthorNewsSection
-                            author={author}
-                            setAuthor={setAuthor}
-                            newsImageFile={newsImageFile}
-                            setNewsImageFile={setNewsImageFile}
+                        <div className="border-t border-yellow-500/70 pt-5">
+                            <AuthorNewsSection
+                                author={author}
+                                setAuthor={setAuthor}
+                                newsImageFile={newsImageFile}
+                                setNewsImageFile={setNewsImageFile}
                         />
+                        </div>
 
-                        <AuthorThemeSection
-                            author={author}
-                            setAuthor={setAuthor}
-                        />
+                        <div className="border-t border-yellow-500/70 pt-5">
+                            <AuthorThemeSection
+                                author={author}
+                                setAuthor={setAuthor}
+                            />
+                        </div>
 
-                        <AuthorBooksSection
-                            author={author}
-                            updateField={updateField}
-                            books={books}
-                            moveBook={moveBook}
-                        />
+                        <div className="border-t border-yellow-500/70 pt-5">
+                            <AuthorBooksSection
+                                author={author}
+                                updateField={updateField}
+                                books={books}
+                                moveBook={moveBook}
+                            />
+                        </div>
 
                     </div>
                 )}
