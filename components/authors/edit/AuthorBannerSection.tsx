@@ -140,34 +140,37 @@ export default function AuthorBannerSection({
 
                             <div
                                 className="
-        absolute
-        inset-y-0
-        left-1/2
-        -translate-x-1/2
-        w-[35%]
-        border-x-2
-        border-yellow-400/70
-        bg-yellow-400/10
-        pointer-events-none
-    "
+                                    absolute
+                                    inset-y-0
+                                    left-1/2
+                                    -translate-x-1/2
+                                    w-[35%]
+                                    border-x-2
+                                    border-yellow-400
+                                    bg-yellow-400/25
+                                    pointer-events-none
+                                "
                             >
                                 <div
                                     className="
-            absolute
-            bottom-3
-            left-1/2
-            -translate-x-1/2
-            whitespace-nowrap
-            px-3
-            py-1.5
-            rounded-full
-            bg-black/60
-            backdrop-blur
-            text-xs
-            text-yellow-300
-        "
+                                        absolute
+                                        bottom-3
+                                        left-1/2
+                                        -translate-x-1/2
+                                        whitespace-nowrap
+                                        px-3
+                                        py-1.5
+                                        rounded-full
+                                        bg-black/70
+                                        backdrop-blur
+                                        text-xs
+                                        font-semibold
+                                        text-yellow-300
+                                        border
+                                        border-yellow-400/30
+                                    "
                                 >
-                                    📱 Zona visible (aproximada) en móvil
+                                    📱 Zona visible en móvil
                                 </div>
                             </div>
 
