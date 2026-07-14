@@ -297,7 +297,7 @@ export default async function AuthorPage({
                         />
 
                         <div
-                            className="absolute inset-0 h-[420px] bg-gradient-to-b from-black/40 via-zinc-950/75 to-zinc-950"
+                            className="absolute inset-0 h-[420px] bg-gradient-to-b from-black/30 via-zinc-950/60 to-zinc-950"
                         />
                     </>
                 ) : (
