@@ -267,7 +267,7 @@ export default async function AuthorPage({
     }
 
     const heroHasBanner = isPro && author.banner;
-    const bannerHeight = "h-[180px] sm:h-[240px] md:h-[320px] lg:h-[400px]"
+    const bannerHeight = "h-[320px] md:h-[420px]"
 
     const heroTextColor = heroHasBanner
         ? "#ffffff"
@@ -475,43 +475,44 @@ export default async function AuthorPage({
 
                         </div>
 
-                        {canEdit && (
-                            <div className="flex flex-col sm:flex-row justify-center lg:justify-end gap-3 mt-8 pr-0 lg:pr-2">
-
-                                {!author.pro && (
-                                    <ProCheckoutButton
-                                        authorId={author.id}
-                                    />
-                                )}
-
-                                <Link
-                                    href="/me"
-                                    className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
-                                    style={{
-                                        backgroundColor: author.theme?.primary ?? "#2563eb"
-                                    }}
-                                >
-                                    Mi perfil
-                                </Link>
-
-                                <Link
-                                    href={`/authors/${author.slug}/edit`}
-                                    className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
-                                    style={{
-                                        backgroundColor: author.theme?.primary ?? "#2563eb"
-                                    }}
-                                >
-                                    Editar página
-                                </Link>
-
-                            </div>
-                        )}
-
                     </div>
 
                 </div>
 
             </section>
+
+            {canEdit && (
+                <div className="flex flex-col sm:flex-row justify-center lg:justify-end gap-3 mt-8 pr-0 lg:pr-2">
+
+                    {!author.pro && (
+                        <ProCheckoutButton
+                            authorId={author.id}
+                        />
+                    )}
+
+                    <Link
+                        href="/me"
+                        className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                        style={{
+                            backgroundColor: author.theme?.primary ?? "#2563eb"
+                        }}
+                    >
+                        Mi perfil
+                    </Link>
+
+                    <Link
+                        href={`/authors/${author.slug}/edit`}
+                        className="flex items-center justify-center px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                        style={{
+                            backgroundColor: author.theme?.primary ?? "#2563eb"
+                        }}
+                    >
+                        Editar página
+                    </Link>
+
+                </div>
+            )}
+
             <main className="max-w-5xl mx-auto px-3 sm:px-6 pt-6 pb-16 space-y-8">
 
                 {/*(author.description || author.bio) && (
