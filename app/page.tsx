@@ -82,7 +82,8 @@ export default function Home() {
       <section className="py-6 px-4">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">Libros</h2>
-          <Link href="/libros" className="text-zinc-400 hover:text-white">
+          <Link href="/libros" className="hover:text-white"
+            style={{ color: "#eab308" }}>
             Ver todos →
           </Link>
         </div>
@@ -121,7 +122,8 @@ export default function Home() {
             Lectómetro
           </h2>
 
-          <Link href="/resenas" className="text-zinc-400 hover:text-white">
+          <Link href="/resenas" className="hover:text-white"
+            style={{ color: "#eab308" }}>
             Ver todas →
           </Link>
         </div>

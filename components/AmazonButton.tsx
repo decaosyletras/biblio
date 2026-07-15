@@ -35,8 +35,8 @@ export default function AmazonButton({
     <button
       onClick={handleClick}
       className="
-        mt-4
-        px-4 py-2
+        mt-2
+        px-2 py-1
         rounded-xl
         font-semibold
         text-sm
