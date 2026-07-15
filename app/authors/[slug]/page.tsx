@@ -782,11 +782,11 @@ export default async function AuthorPage({
 
                                         <Link
                                             href={`/libros/${featuredBook.slug}`}
-                                            className="mt-2 px-5 py-2 rounded-xl font-semibold border inline-flex items-center justify-center transition hover:opacity-80"
+                                            className="mt-4 px-5 py-2 block text-center text-sm font-semibold rounded-xl border transition hover:opacity-80"
                                             style={{
-                                                color: authorTheme.text,
+                                                color: authorTheme.primary,
                                                 backgroundColor: authorTheme.surface,
-                                                borderColor: authorTheme.border
+                                                borderColor: authorTheme.border,
                                             }}
                                         >
                                             Ver detalles
@@ -948,7 +948,7 @@ export default async function AuthorPage({
 
                                             <Link
                                                 href={`/libros/${book.slug}`}
-                                                className="block text-center text-xs font-semibold py-2 rounded-xl border transition hover:opacity-80"
+                                                className="block text-center text-sm font-semibold py-2 rounded-xl border transition hover:opacity-80"
                                                 style={{
                                                     color: authorTheme.primary,
                                                     borderColor: authorTheme.border
