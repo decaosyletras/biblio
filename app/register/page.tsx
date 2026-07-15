@@ -8,6 +8,7 @@ import Link from "next/link"
 export default function RegisterPage() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [aceptaTerminos, setAceptaTerminos] = useState(false)
     const [loading, setLoading] = useState(false)
 
     const router = useRouter()
@@ -15,9 +16,14 @@ export default function RegisterPage() {
     const register = async (e: React.FormEvent) => {
         e.preventDefault()
 
+        if (!aceptaTerminos) {
+            alert("Debes aceptar la Política de Privacidad y los Términos de Uso")
+            return
+        }
+
         setLoading(true)
 
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
             email,
             password,
         })
@@ -26,6 +32,26 @@ export default function RegisterPage() {
 
         if (error) {
             alert(error.message)
+            return
+        }
+
+        const response = await fetch("/api/user-consents", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user_id: data.user?.id,
+                aceptaTerminos
+            })
+        })
+
+
+        const result = await response.json()
+
+
+        if (!response.ok) {
+            alert(result.error)
             return
         }
 
@@ -65,6 +91,47 @@ export default function RegisterPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+
+                    <label className="
+                        flex
+                        items-start
+                        gap-3
+                        text-sm
+                        text-zinc-300
+                    ">
+
+                        <input
+                            type="checkbox"
+                            checked={aceptaTerminos}
+                            onChange={(e) => setAceptaTerminos(e.target.checked)}
+                            className="mt-1"
+                        />
+
+                        <span>
+                            He leído y acepto la{" "}
+
+                            <Link
+                                href="/privacidad"
+                                target="_blank"
+                                className="text-yellow-400 hover:underline"
+                            >
+                                Política de Privacidad
+                            </Link>
+
+                            {" "}y los{" "}
+
+                            <Link
+                                href="/uso"
+                                target="_blank"
+                                className="text-yellow-400 hover:underline"
+                            >
+                                Términos de Uso
+                            </Link>
+
+                        </span>
+
+                    </label>
+
 
                     <button
                         disabled={loading}

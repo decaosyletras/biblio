@@ -8,124 +8,197 @@ export default function Page() {
 
       <div className="space-y-4 text-zinc-400 leading-relaxed">
 
-
         <p>
-          {/*Última actualización: 11 de mayo de 2026.*/}
-          Versión 1.1 · junio 2026
+          Versión 2.0 · julio 2026
         </p>
 
         <p>
-          Esta plataforma está dedicada a la recomendación, descubrimiento y promoción de libros. Esta Política de Privacidad explica cómo se recopila, utiliza y protege la información de los usuarios.
+          Esta plataforma está dedicada al descubrimiento, recomendación,
+          promoción y organización de información relacionada con libros y autores.
+          Esta Política de Privacidad explica cómo recopilamos, utilizamos,
+          almacenamos y protegemos la información de los usuarios.
+        </p>
+
+
+        <h2 className="text-xl text-zinc-200 font-semibold pt-4">
+          1. Información que recopilamos
+        </h2>
+
+        <p>
+          Cuando creas una cuenta, podemos recopilar información como nombre,
+          correo electrónico, identificadores de usuario, información del perfil,
+          fecha de creación de la cuenta, actividad realizada dentro de la
+          plataforma y cualquier información proporcionada voluntariamente.
         </p>
 
         <p>
-          Cuando utilizas el formulario de recomendación o registro, podemos recopilar información como tu nombre, datos del libro (título, autor, descripción, portada, enlace), géneros seleccionados, ASIN y la fecha del registro.
+          Cuando registras un libro podemos recopilar información relacionada con
+          la obra, incluyendo título, autor, descripción, portada, enlace,
+          géneros, ASIN, editorial u otros datos proporcionados, así como la fecha
+          del registro.
         </p>
 
         <p>
-          La dirección IP, la fecha de registro y la aceptación de la Política de Privacidad pueden conservarse con fines de seguridad, prevención de abusos, auditoría y acreditación del consentimiento otorgado en relación con los términos y condiciones vigentes en el momento del registro.
+          Cuando solicitas reclamar un perfil de autor o asociarte con una página
+          de autor, podemos recopilar la información necesaria para gestionar la
+          solicitud, incluyendo la relación declarada con el autor, información
+          proporcionada para acreditar dicha relación y comunicaciones relacionadas
+          con la revisión de la solicitud.
         </p>
 
         <p>
-          Esta información se utiliza para publicar, organizar y mostrar las recomendaciones dentro de la plataforma, mejorar la calidad del contenido mostrado y realizar acciones de promoción, difusión y publicidad de la plataforma y de los libros registrados, incluyendo el uso del título, nombre del autor, portada, descripción, géneros y demás información proporcionada, a través del sitio web, redes sociales, campañas publicitarias, boletines informativos y otros canales de comunicación relacionados con la actividad de la plataforma.
+          También podemos conservar información técnica como dirección IP,
+          registros de actividad, fecha de acciones realizadas y aceptación de
+          políticas vigentes, con fines de seguridad, prevención de abusos,
+          auditoría y acreditación del consentimiento otorgado.
+        </p>
+
+
+        <h2 className="text-xl text-zinc-200 font-semibold pt-4">
+          2. Uso de la información
+        </h2>
+
+        <p>
+          Utilizamos la información recopilada para operar y mejorar la
+          plataforma, permitir la creación de perfiles, gestionar cuentas de
+          usuario, organizar el catálogo de libros, mostrar información pública
+          sobre libros y autores y proporcionar funcionalidades relacionadas con
+          la administración de perfiles de autor.
         </p>
 
         <p>
-          Al registrar un libro, ya sea como autor o como recomendador, declaras que la información proporcionada es veraz según tu conocimiento y que cuentas con las autorizaciones necesarias cuando corresponda, y que no infringe derechos de terceros. El usuario es el único responsable del contenido que publica en la plataforma, incluyendo cualquier reclamación de terceros relacionada con derechos de autor, marcas o propiedad intelectual.
+          La información pública de libros y autores podrá utilizarse para
+          mostrar, promocionar y difundir el catálogo de la plataforma mediante el
+          sitio web, redes sociales, campañas publicitarias, boletines informativos
+          u otros canales relacionados con la actividad de la plataforma.
+        </p>
+
+
+        <h2 className="text-xl text-zinc-200 font-semibold pt-4">
+          3. Registro y administración de autores
+        </h2>
+
+        <p>
+          Los usuarios pueden solicitar la asociación con un perfil de autor
+          existente o crear un perfil relacionado con un libro registrado.
         </p>
 
         <p>
-          Asimismo, otorgas a la plataforma una autorización no exclusiva, gratuita y revocable para utilizar, reproducir, mostrar y difundir el título del libro, nombre del autor, descripción, portada, géneros y demás información proporcionada, exclusivamente con fines de promoción, difusión y publicidad de la plataforma y del catálogo de libros publicado en ella.
+          Al solicitar la administración de un perfil de autor, el usuario declara
+          que es el autor, representante autorizado o persona con autorización
+          suficiente para gestionar dicho perfil.
         </p>
 
         <p>
-          La plataforma no verifica de forma sistemática la titularidad de los derechos sobre los contenidos publicados por los usuarios, aunque podrá eliminar o bloquear contenido ante reclamaciones o sospechas razonables de infracción.
+          La plataforma podrá revisar, aprobar, rechazar o retirar solicitudes de
+          asociación cuando considere necesario para proteger la integridad del
+          catálogo, evitar suplantaciones o prevenir usos indebidos.
         </p>
 
         <p>
-          Si eres titular de derechos y consideras que algún contenido ha sido publicado sin autorización, puedes solicitar su revisión o eliminación contactando con la plataforma. Los contenidos podrán ser retirados de forma preventiva mientras se revisa el caso.
+          La plataforma no garantiza la veracidad de las declaraciones realizadas
+          por los usuarios ni asume responsabilidad por reclamaciones falsas,
+          disputas entre autores, representantes, editoriales u otros titulares de
+          derechos.
         </p>
 
         <p>
-          No vendemos ni compartimos tus datos personales con terceros. Sin embargo, utilizamos servicios tecnológicos como bases de datos y proveedores de infraestructura (por ejemplo, Supabase) para el funcionamiento de la plataforma.
+          El usuario que solicita una vinculación es responsable de la exactitud
+          de la información proporcionada y de contar con las autorizaciones
+          necesarias.
+        </p>
+
+
+        <h2 className="text-xl text-zinc-200 font-semibold pt-4">
+          4. Publicación de información y contenido
+        </h2>
+
+        <p>
+          Al registrar libros o administrar perfiles de autor, autorizas a la
+          plataforma a utilizar, mostrar, reproducir y distribuir la información
+          proporcionada, incluyendo títulos, nombres de autores, descripciones,
+          imágenes de portada, géneros y otros datos relacionados, exclusivamente
+          para el funcionamiento, promoción y difusión del catálogo de la
+          plataforma.
         </p>
 
         <p>
-          Estos proveedores únicamente procesan los datos necesarios para el funcionamiento del sistema y bajo estándares de seguridad adecuados.
+          Esta autorización es no exclusiva, gratuita y revocable, sin perjuicio
+          de los usos necesarios realizados mientras la información haya estado
+          publicada legítimamente dentro de la plataforma.
+        </p>
+
+
+        <h2 className="text-xl text-zinc-200 font-semibold pt-4">
+          5. Proveedores tecnológicos
+        </h2>
+
+        <p>
+          Para prestar el servicio utilizamos proveedores tecnológicos externos,
+          incluyendo servicios de infraestructura, alojamiento, bases de datos,
+          autenticación y almacenamiento.
         </p>
 
         <p>
-          Los datos se almacenan de forma segura y se conservan mientras sean necesarios para los fines de la plataforma. Puedes solicitar la eliminación de tus datos en cualquier momento.
+          Estos proveedores procesan únicamente la información necesaria para el
+          funcionamiento técnico de la plataforma conforme a sus propios términos,
+          medidas de seguridad y políticas aplicables.
+        </p>
+
+
+        <h2 className="text-xl text-zinc-200 font-semibold pt-4">
+          6. Conservación y eliminación de datos
+        </h2>
+
+        <p>
+          Conservamos la información mientras sea necesaria para proporcionar el
+          servicio, cumplir obligaciones legales, resolver conflictos, mantener la
+          seguridad de la plataforma y proteger nuestros derechos.
         </p>
 
         <p>
-          Tienes derecho a acceder, corregir o eliminar tu información personal, así como a limitar su uso cuando corresponda.
+          Puedes solicitar la eliminación de tu cuenta o información personal
+          mediante los canales de contacto disponibles.
         </p>
 
-        <p>
-          Esta plataforma puede utilizar cookies o tecnologías similares para mejorar la experiencia del usuario y el rendimiento del sitio.
-        </p>
+
+        <h2 className="text-xl text-zinc-200 font-semibold pt-4">
+          7. Derechos del usuario
+        </h2>
 
         <p>
-          Al utilizar esta plataforma, aceptas esta Política de Privacidad y los términos de uso asociados.
+          Puedes solicitar acceso, modificación o eliminación de tus datos
+          personales, así como ejercer otros derechos que puedan corresponderte
+          según la legislación aplicable.
         </p>
+
+
+        <h2 className="text-xl text-zinc-200 font-semibold pt-4">
+          8. Cookies y tecnologías similares
+        </h2>
+
+        <p>
+          La plataforma puede utilizar cookies o tecnologías similares necesarias
+          para autenticación, seguridad, funcionamiento y mejora de la experiencia
+          del usuario.
+        </p>
+
+
+        <h2 className="text-xl text-zinc-200 font-semibold pt-4">
+          9. Aceptación de esta política
+        </h2>
+
+        <p>
+          Al crear una cuenta, registrar contenido, solicitar la administración de
+          un perfil de autor o utilizar la plataforma, aceptas esta Política de
+          Privacidad y los términos asociados al uso del servicio.
+        </p>
+
 
         <p className="text-zinc-300 font-medium">
-          Si tienes dudas, puedes contactarnos a través de los medios disponibles en la plataforma.
+          Si tienes dudas relacionadas con privacidad o tratamiento de datos,
+          puedes contactar mediante los medios disponibles en la plataforma.
         </p>
-
-
-        {/*<p>
-          Última actualización: 11 de mayo de 2026.
-        </p>
-
-        <p>
-          Esta plataforma está dedicada a la recomendación y descubrimiento de libros. Esta Política de Privacidad explica cómo se recopila, utiliza y protege la información de los usuarios.
-        </p>
-
-        <p>
-          Cuando utilizas el formulario de recomendación, podemos recopilar información como tu nombre, datos del libro (título, autor, descripción, enlace), géneros seleccionados, ASIN y la fecha del registro.
-        </p>
-
-        <p>
-          La dirección IP, la fecha de registro y la aceptación de la Política de Privacidad pueden conservarse con fines de seguridad, prevención de abusos, auditoría y acreditación de la aceptación de los términos y condiciones vigentes en el momento del registro.
-        </p>
-
-        <p>
-          Esta información se utiliza para publicar, organizar y mostrar las recomendaciones dentro de la plataforma, mejorar la calidad del contenido mostrado y realizar acciones de promoción, difusión y publicidad de la plataforma y de los libros registrados, incluyendo el uso del título, nombre del autor, portada, descripción, géneros y demás información proporcionada en el sitio web, redes sociales, campañas publicitarias, boletines informativos y otros canales de comunicación relacionados con la actividad de la plataforma.
-        </p>
-
-        <p>
-          Al registrar un libro, declaras que cuentas con los derechos o autorizaciones necesarias para proporcionar la información, imágenes y demás materiales asociados a la obra, y otorgas a la plataforma una autorización no exclusiva, gratuita y revocable para utilizar dichos materiales exclusivamente con fines de promoción, difusión y publicidad de la plataforma y del catálogo de libros publicado en ella.
-        </p>
-
-        <p>
-          No vendemos ni compartimos tus datos personales con terceros. Sin embargo, utilizamos servicios tecnológicos como bases de datos y proveedores de infraestructura (por ejemplo, Supabase) para el funcionamiento de la plataforma.
-        </p>
-
-        <p>
-          Estos proveedores únicamente procesan los datos necesarios para el funcionamiento del sistema y bajo estándares de seguridad adecuados.
-        </p>
-
-        <p>
-          Los datos se almacenan de forma segura y se conservan mientras sean necesarios para los fines de la plataforma. Puedes solicitar la eliminación de tus datos en cualquier momento.
-        </p>
-
-        <p>
-          Tienes derecho a acceder, corregir o eliminar tu información personal, así como a limitar su uso cuando corresponda.
-        </p>
-
-        <p>
-          Esta plataforma puede utilizar cookies o tecnologías similares para mejorar la experiencia del usuario y el rendimiento del sitio.
-        </p>
-
-        <p>
-          Al utilizar esta plataforma, aceptas esta Política de Privacidad.
-        </p>
-
-        <p className="text-zinc-300 font-medium">
-          Si tienes dudas, puedes contactarnos a través de los medios disponibles en la plataforma.
-        </p>*/}
 
       </div>
 

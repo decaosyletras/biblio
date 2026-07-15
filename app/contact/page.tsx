@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { supabase } from "@/lib/supabase"
 
 import GenreSelector from "@/components/GenreSelector"
 import SubgenreSelector from "@/components/SubgenreSelector"
@@ -31,6 +32,43 @@ export default function Page() {
 
   const [foundAuthor, setFoundAuthor] = useState<any>(null)
   const [useExistingAuthor, setUseExistingAuthor] = useState<boolean | null>(null)
+
+  const [userAuthor, setUserAuthor] = useState<any>(null)
+  const [loadingAuthor, setLoadingAuthor] = useState(true)
+
+
+  useEffect(() => {
+
+    async function loadUserAuthor() {
+
+      const res = await fetch("/api/my-author")
+
+      if (!res.ok) {
+        setLoadingAuthor(false)
+        return
+      }
+
+      const data = await res.json()
+
+      if (data.author) {
+
+        setUserAuthor(data.author)
+
+        setAutor(data.author.name)
+
+        setFoundAuthor(data.author)
+
+        setUseExistingAuthor(true)
+
+      }
+
+      setLoadingAuthor(false)
+
+    }
+
+    loadUserAuthor()
+
+  }, [])
 
 
   const isValidASIN = (value: string) =>
@@ -149,9 +187,13 @@ export default function Page() {
           aceptaTerminos,
 
           authorId:
-            useExistingAuthor && foundAuthor
-              ? foundAuthor.id
-              : null,
+            userAuthor
+              ? userAuthor.id
+              : (
+                useExistingAuthor && foundAuthor
+                  ? foundAuthor.id
+                  : null
+              ),
 
           useExistingAuthor
 
@@ -260,17 +302,19 @@ export default function Page() {
           type="text"
           placeholder="Nombre del autor (como aparece en Amazon)"
           value={autor}
+          disabled={!!userAuthor}
           onChange={e => {
             setAutor(e.target.value)
             setFoundAuthor(null)
             setUseExistingAuthor(null)
           }}
-          onBlur={checkAuthor}
-          className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          onBlur={!userAuthor ? checkAuthor : undefined}
+          className={`w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 ${userAuthor ? "opacity-60 cursor-not-allowed" : ""
+            }`}
         />
 
 
-        {foundAuthor && (
+        {foundAuthor && !userAuthor && (
 
           <div className="
             mb-4

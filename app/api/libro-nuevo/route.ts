@@ -73,6 +73,12 @@ export async function POST(req: Request) {
   try {
     const body = await req.json()
 
+    const forwarded = req.headers.get("x-forwarded-for")
+
+    const ip = forwarded
+      ? forwarded.split(",")[0].trim()
+      : null
+
 
     const authClient = await createServerClient()
 
@@ -93,13 +99,25 @@ export async function POST(req: Request) {
       generos,
       subgeneros,
       tags,
-      useExistingAuthor
+      useExistingAuthor,
+      aceptaTerminos
     } = body
 
     if (!titulo || !autor) {
       return NextResponse.json(
         {
           error: "Faltan título o autor"
+        },
+        {
+          status: 400
+        }
+      )
+    }
+
+    if (!aceptaTerminos) {
+      return NextResponse.json(
+        {
+          error: "Debes aceptar la Política de Privacidad"
         },
         {
           status: 400
@@ -151,7 +169,7 @@ export async function POST(req: Request) {
 
       authorId = newAuthor.id
     }
-    
+
 
     // No existe ningún autor: crear uno nuevo
     else {
@@ -207,7 +225,13 @@ export async function POST(req: Request) {
 
         review_metrics: tags,
 
-        approved: true
+        approved: true,
+
+        accepted_privacy: aceptaTerminos,
+        privacy_version: "2.0",
+        accepted_at: new Date().toISOString(),
+        accepted_ip: ip,
+        submitted_by: user?.id ?? null
       })
 
     if (bookError) {

@@ -3,33 +3,55 @@ export default function Page() {
     <section className="max-w-3xl mx-auto text-zinc-200 py-16 px-6">
 
       <h1 className="text-3xl font-bold mb-6">
-        Información sobre enlaces de afiliado
+        Transparencia y enlaces de afiliado
       </h1>
 
       <div className="space-y-4 text-zinc-400 leading-relaxed">
 
         <p>
-          Este sitio está dedicado a descubrir y dar visibilidad a libros de autores independientes.
+          Esta plataforma está dedicada a descubrir, organizar y dar visibilidad
+          a libros y autores, especialmente dentro del ámbito independiente.
         </p>
 
         <p>
-          Algunos de los enlaces que encontrarás aquí son enlaces de afiliado. Esto significa que, si decides comprar a través de ellos, puedo recibir una pequeña comisión sin ningún coste adicional para ti, ni afectando las ganancias del autor.
+          Algunos enlaces disponibles en la plataforma pueden ser enlaces de
+          afiliado. Esto significa que si realizas una compra a través de ellos,
+          la plataforma puede recibir una comisión sin ningún coste adicional para
+          ti.
         </p>
 
         <p>
-          Participo en el programa de afiliados de Amazon, lo que me permite generar ingresos a través de enlaces a sus productos, sin perjudicar al comprador ni al vendedor.
+          La participación en programas de afiliados, incluyendo programas como
+          Amazon Afiliados, permite financiar el mantenimiento y desarrollo de la
+          plataforma.
         </p>
 
         <p>
-          Quiero ser transparente: las recomendaciones y selecciones de esta web se basan en criterios propios. No acepto pagos, regalos ni ningún tipo de compensación a cambio de calificaciones, comentarios positivos o influencia en el contenido.
+          Las comisiones obtenidas no modifican el precio de compra, ni reducen
+          los ingresos que correspondan al autor, vendedor o editor.
         </p>
 
         <p>
-          Si decides comprar a través de estos enlaces, estarás apoyando directamente este proyecto y ayudando a que pueda seguir creciendo.
+          La inclusión de un libro dentro de la plataforma no significa que exista
+          un acuerdo comercial con el autor, que la obra haya sido certificada por
+          la plataforma o que se garantice su calidad, éxito o resultados
+          comerciales.
+        </p>
+
+        <p>
+          Las recomendaciones, organización y presentación del contenido se basan
+          en criterios propios de la plataforma y no en pagos, regalos o
+          compensaciones recibidas a cambio de opiniones positivas o posiciones
+          destacadas.
+        </p>
+
+        <p>
+          Los usuarios pueden decidir libremente si desean utilizar los enlaces
+          disponibles o realizar sus compras por otros medios.
         </p>
 
         <p className="text-zinc-300 font-medium">
-          ¡Gracias por tu apoyo!
+          Gracias por apoyar este proyecto y ayudar a que pueda seguir creciendo.
         </p>
 
       </div>

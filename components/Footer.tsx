@@ -11,12 +11,20 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <p className="text-zinc-500 text-xs mb-1">Legal</p>
 
-            <Link href="/afiliados" className="hover:text-zinc-200 transition">
-              Transparencia
+            <Link href="/privacidad" className="hover:text-zinc-200 transition">
+              Política de privacidad
             </Link>
 
-            <Link href="/privacidad" className="hover:text-zinc-200 transition">
-              Privacidad
+            <Link href="/uso" className="hover:text-zinc-200 transition">
+              Términos de uso
+            </Link>
+
+            <Link href="/afiliados" className="hover:text-zinc-200 transition">
+              Transparencia y afiliados
+            </Link>
+
+            <Link href="/politica" className="hover:text-zinc-200 transition">
+              Política de reclamación de autores
             </Link>
           </div>
 

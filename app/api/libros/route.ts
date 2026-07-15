@@ -12,7 +12,7 @@ const isValidASIN = (value: string) =>
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    
+
     const forwarded = req.headers.get("x-forwarded-for")
 
     const ip = forwarded

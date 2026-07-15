@@ -34,6 +34,8 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
   const [loading, setLoading] = useState(true)
   const [sending, setSending] = useState(false)
 
+  const [acceptedClaimPolicy, setAcceptedClaimPolicy] = useState(false)
+
   useEffect(() => {
     if (safeAuthors.length > 0 && !selectedAuthor) {
       setSelectedAuthor(safeAuthors[0].id)
@@ -102,6 +104,7 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
     )
 
   const canClaim =
+    acceptedClaimPolicy &&
     !authorAlreadyOwned &&
     !globalBlock &&
     !hasPendingOther &&
@@ -110,18 +113,31 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
   const claimAuthor = async () => {
     setSending(true)
 
-    const { error } = await supabase.from("author_claims").insert({
-      user_id: user.id,
-      author_id: currentAuthorId,
-      status: "pending",
+    const response = await fetch("/api/author-claims", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user.id,
+        author_id: currentAuthorId,
+        aceptaPolitica: acceptedClaimPolicy
+      })
     })
 
-    setSending(false)
 
-    if (error) {
-      alert(error.message)
+    const result = await response.json()
+
+    console.log("RESPUESTA CLAIM:", result)
+
+
+    if (!response.ok) {
+      alert(result.error)
+      setSending(false)
       return
     }
+
+    setSending(false)
 
     setClaims(prev => [
       ...prev.filter(c => c.author_id !== currentAuthorId),
@@ -136,12 +152,8 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
       {!hasApprovedAny && claims.length === 0 && (
         <>
           <h3 className="text-lg font-semibold text-zinc-100 mb-2">
-            ✍️ Reclamar autor
+            ✍️ Solicita la gestión de este autor.
           </h3>
-
-          <p className="text-sm text-zinc-400 mb-4">
-            Solicita la gestión de este autor.
-          </p>
         </>
       )}
 
@@ -184,6 +196,42 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
         <p className="text-red-400 text-sm">
           ❌ Rechazado — puedes intentarlo otra vez o contactarnos por redes sociales.
         </p>
+      )}
+
+      {!isApproved && !isPending && (
+        <label className="
+    flex
+    items-start
+    gap-3
+    text-sm
+    text-zinc-300
+    mt-4
+  ">
+
+          <input
+            type="checkbox"
+            checked={acceptedClaimPolicy}
+            onChange={(e) => setAcceptedClaimPolicy(e.target.checked)}
+            className="mt-1"
+          />
+
+          <span>
+            Declaro que soy el autor, representante autorizado
+            o tengo autorización suficiente para solicitar este perfil.
+
+            {" "}
+
+            <a
+              href="/politica"
+              target="_blank"
+              className="text-yellow-400 hover:underline"
+            >
+              Ver política de reclamación de autores
+            </a>
+
+          </span>
+
+        </label>
       )}
 
       {/* BOTÓN */}
