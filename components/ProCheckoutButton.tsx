@@ -45,7 +45,10 @@ export default function ProCheckoutButton({
                 bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500
                 text-black font-bold
                 hover:brightness-110
-                transition
+                active:scale-95
+                active:brightness-90
+                transition-all
+                duration-150
                 whitespace-nowrap
                 shadow-lg shadow-yellow-500/20
             "

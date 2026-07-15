@@ -134,7 +134,10 @@ export default function EditProfilePage() {
 
                     <button
                         onClick={() => router.push("/me")}
-                        className="bg-zinc-800 hover:bg-zinc-700 px-5 py-2 rounded-xl"
+                        className="bg-zinc-800 hover:bg-zinc-700 px-5 py-2 rounded-xl active:bg-stone-500
+                            active:scale-95
+                            transition-all
+                            duration-150"
                     >
                         Cancelar
                     </button>

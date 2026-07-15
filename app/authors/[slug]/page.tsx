@@ -495,7 +495,7 @@ export default async function AuthorPage({
 
                         <Link
                             href="/me"
-                            className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                            className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition-all duration-150 active:scale-95 whitespace-nowrap"
                             style={{
                                 backgroundColor: author.theme?.primary ?? "#2563eb"
                             }}
@@ -505,7 +505,7 @@ export default async function AuthorPage({
 
                         <Link
                             href={`/authors/${author.slug}/edit`}
-                            className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                            className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition-all duration-150 active:scale-95 whitespace-nowrap"
                             style={{
                                 backgroundColor: author.theme?.primary ?? "#2563eb"
                             }}

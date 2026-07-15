@@ -372,8 +372,11 @@ export default function MePage() {
                                             rounded-xl
                                             bg-green-600
                                             hover:bg-green-500
+                                            active:bg-green-700
+                                            active:scale-95
                                             font-semibold
-                                            transition
+                                            transition-all
+                                            duration-150
                                             shadow-lg shadow-green-900/30
                                             "
                                     >
