@@ -376,7 +376,7 @@ export default async function AuthorPage({
 
                                 </div>
 
-                                <div className="mt-5">
+                                <div className="mt-3">
                                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                                         {username && (
                                             <span
@@ -388,7 +388,7 @@ export default async function AuthorPage({
                                         )}
                                     </div>
 
-                                    <div className="mt-2 flex items-center justify-center lg:justify-start">
+                                    <div className="mt-1 flex items-center justify-center lg:justify-start">
                                         <span
                                             className="text-base font-medium"
                                             style={{
