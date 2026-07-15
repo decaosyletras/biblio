@@ -782,7 +782,7 @@ export default async function AuthorPage({
 
                                         <Link
                                             href={`/libros/${featuredBook.slug}`}
-                                            className="mt-4 px-5 py-2 rounded-xl font-semibold border inline-flex items-center justify-center transition hover:opacity-80"
+                                            className="mt-2 px-5 py-2 rounded-xl font-semibold border inline-flex items-center justify-center transition hover:opacity-80"
                                             style={{
                                                 color: authorTheme.text,
                                                 backgroundColor: authorTheme.surface,
