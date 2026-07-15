@@ -684,7 +684,7 @@ export default async function AuthorPage({
                                 <div>
 
                                     <h2
-                                        className="text-xl md:text-2xl font-bold mb-8 md:mb-6"
+                                        className="text-2xl font-bold mb-6 md:mb-4"
                                         style={{
                                             color: authorTheme.text
                                         }}
