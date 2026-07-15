@@ -151,6 +151,10 @@ export default function AuthorNewsSection({
                         </option>
 
                         <option>
+                            Oferta
+                        </option>
+
+                        <option>
                             Evento
                         </option>
 
