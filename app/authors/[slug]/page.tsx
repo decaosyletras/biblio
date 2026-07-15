@@ -322,7 +322,7 @@ export default async function AuthorPage({
                 <div className="absolute inset-x-0 bottom-0 z-10">
                     <div className="max-w-5xl mx-auto px-6 pb-10">
 
-                        <div className="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+                        <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 items-center lg:items-start">
 
                             {/* Avatar */}
 
