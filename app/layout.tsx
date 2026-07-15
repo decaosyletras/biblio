@@ -1,7 +1,5 @@
 import "./globals.css"
-import Navbar from "@/components/Navbar"
-import Footer from "@/components/Footer"
-import FloatingBack from "@/components/FloatingBack"
+import LayoutShell from "@/components/LayoutShell"
 
 export default function RootLayout({
   children,
@@ -11,12 +9,9 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body>
-        <div className="bg-gradient-to-b from-zinc-900 via-zinc-900 to-black text-zinc-100 min-h-screen">
-          <Navbar />
-            <FloatingBack />
-            {children}
-          <Footer />
-        </div>
+        <LayoutShell>
+          {children}
+        </LayoutShell>
       </body>
     </html>
   )

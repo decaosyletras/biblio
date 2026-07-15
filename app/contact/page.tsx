@@ -417,14 +417,25 @@ export default function Page() {
         />
 
 
-        <input
-          type="text"
-          placeholder="ASIN del ebook (versión digital)"
-          maxLength={10}
-          value={asin}
-          onChange={e => setAsin(e.target.value)}
-          className="w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-        />
+        <div className="mb-4">
+
+          <p className="mb-2 text-sm text-zinc-300">
+            ASIN de la versión Ebook
+            <span className="block text-yellow-400 text-sm mt-1">
+              (recomendamos copiar y pegar directamente desde Amazon para evitar errores)
+            </span>
+          </p>
+
+          <input
+            type="text"
+            placeholder="ASIN del ebook"
+            maxLength={10}
+            value={asin}
+            onChange={e => setAsin(e.target.value)}
+            className="w-full p-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          />
+
+        </div>
 
 
         <textarea
