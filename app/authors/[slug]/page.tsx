@@ -679,14 +679,23 @@ export default async function AuthorPage({
                         }}
                     >
 
-                        <h2
-                            className="text-xl md:text-2xl font-bold mb-6"
-                            style={{
-                                color: authorTheme.text
-                            }}
-                        >
-                            Libro destacado
-                        </h2>
+                        <div>
+                            <div className="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                                <div>
+
+                                    <h2
+                                        className="text-2xl font-bold"
+                                        style={{
+                                            color: authorTheme.text
+                                        }}
+                                    >
+                                        Libro destacado
+                                    </h2>
+
+                                </div>
+
+                            </div>
+                        </div>
 
                         <div className="flex flex-col sm:flex-row gap-6 items-center group" >
                             <>
