@@ -274,6 +274,10 @@ export default async function AuthorPage({
         ? "#ffffff"
         : authorTheme.text;
 
+    const heroSecondaryText = heroHasBanner
+        ? "rgba(255,255,255,0.65)"
+        : authorTheme.muted;
+
     return (
         <div
             className={`
@@ -349,6 +353,12 @@ export default async function AuthorPage({
                                     </div>
 
                                 )}
+                                {isPro && (
+                                    <div className="absolute -top-2 -right-3 z-20 flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-3 py-1 text-[10px] font-black tracking-wider text-black shadow-lg shadow-yellow-500/20">
+                                        <Crown className="w-3 h-3" />
+                                        PRO
+                                    </div>
+                                )}
 
                             </div>
 
@@ -367,13 +377,6 @@ export default async function AuthorPage({
                                         {author.name}
                                     </h1>
 
-                                    {isPro && (
-                                        <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-2.5 py-1 text-[11px] font-black tracking-wider text-black shadow-lg shadow-yellow-500/30">
-                                            <Crown className="h-3.5 w-3.5" />
-                                            PRO
-                                        </span>
-                                    )}
-
                                 </div>
 
                                 <div className="mt-2">
@@ -381,7 +384,7 @@ export default async function AuthorPage({
                                         {username && (
                                             <span
                                                 className="text-lg font-bold tracking-tight"
-                                                style={{ color: heroTextColor }}
+                                                style={{ color: heroSecondaryText }}
                                             >
                                                 @{username}
                                             </span>
