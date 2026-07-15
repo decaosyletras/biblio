@@ -461,7 +461,7 @@ export default function AuthorNewsSection({
             {/* PREVIEW */}
 
 
-            <div
+            {/*<div
                 className="
                     rounded-3xl
                     bg-zinc-950
@@ -560,7 +560,7 @@ export default function AuthorNewsSection({
                 </div>
 
 
-            </div>
+            </div>*/}
 
 
         </section>

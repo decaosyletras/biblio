@@ -11,6 +11,7 @@ import { cookies } from "next/headers"
 import { SiWattpad } from "react-icons/si"
 import { Cinzel_Decorative } from "next/font/google";
 import { UserRound } from "lucide-react";
+import { Crown } from "lucide-react";
 
 import {
     inter,
@@ -72,7 +73,7 @@ const socialConfig = {
 
     tiktok: {
         icon: SiTiktok,
-        color: "text-white",
+        color: null,
         hover: "hover:border-white"
     },
 
@@ -338,7 +339,7 @@ export default async function AuthorPage({
 
                                 ) : (
 
-                                    <div className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] flex items-center justify-center bg-zinc-800 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]">
+                                    <div className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] flex items-center justify-center bg-zinc-800 border border-white/10 shadow-[0_0px_60px_rgba(0,0,0,.15)]">
                                         <UserRound
                                             className="w-14 h-14"
                                             style={{
@@ -358,7 +359,7 @@ export default async function AuthorPage({
                                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
 
                                     <h1
-                                        className="text-3xl md:text-4xl font-bold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,.8)]"
+                                        className="text-3xl md:text-4xl font-bold tracking-tight "
                                         style={{
                                             color: heroTextColor
                                         }}
@@ -367,51 +368,47 @@ export default async function AuthorPage({
                                     </h1>
 
                                     {isPro && (
-                                        <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-400/20 via-yellow-500/20 to-orange-500/20 border border-yellow-500/30 text-yellow-300 text-xs font-bold">
+                                        <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 px-2.5 py-1 text-[11px] font-black tracking-wider text-black shadow-lg shadow-yellow-500/30">
+                                            <Crown className="h-3.5 w-3.5" />
                                             PRO
                                         </span>
                                     )}
 
                                 </div>
 
-                                <div className="mt-5 flex flex-wrap justify-center lg:justify-start items-center gap-x-3 gap-y-2 text-sm">
-
-                                    {username && (
-                                        <>
+                                <div className="mt-5">
+                                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                                        {username && (
                                             <span
-                                                className="font-medium drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
-                                                style={{
-                                                    color: heroTextColor
-                                                }}
+                                                className="text-lg font-bold tracking-tight"
+                                                style={{ color: heroTextColor }}
                                             >
                                                 @{username}
                                             </span>
+                                        )}
+                                    </div>
 
-                                            <span className="w-1 h-1 rounded-full bg-zinc-600" />
-                                        </>
-                                    )}
+                                    <div className="mt-2 flex items-center justify-center lg:justify-start">
+                                        <span
+                                            className="text-base font-medium"
+                                            style={{
+                                                color: heroHasBanner
+                                                    ? "#facc15"
+                                                    : authorTheme.primary
+                                            }}
+                                        >
+                                            {author.style || "Autor independiente"}
+                                        </span>
+                                    </div>
 
-                                    <span
-                                        className="drop-shadow-[0_3px_8px_rgba(0,0,0,.8)]"
-                                        style={{
-                                            color: heroHasBanner
-                                                ? "#facc15"
-                                                : authorTheme.primary
-                                        }}
-                                    >
-                                        {author.style || "Autor independiente"}
-                                    </span>
-
-                                    <span className="w-1 h-1 rounded-full bg-zinc-600" />
-
-                                    <span
-                                        style={{
-                                            color: authorTheme.muted
-                                        }}
-                                    >
-                                        {books.length} {books.length === 1 ? "libro publicado" : "libros publicados"}
-                                    </span>
-
+                                    {/*<div className="mt-3 flex items-center justify-center lg:justify-start">
+                                        <span
+                                            className="text-sm"
+                                            style={{ color: authorTheme.muted }}
+                                        >
+                                            {books.length} {books.length === 1 ? "libro publicado" : "libros publicados"}
+                                        </span>
+                                    </div>*/}
                                 </div>
 
                                 {/* Redes */}
@@ -448,9 +445,22 @@ export default async function AuthorPage({
                                                     href={value}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className={`w-11 h-11 rounded-xl border border-zinc-700 bg-zinc-900/60 flex items-center justify-center transition-all ${config.hover}`}
+                                                    className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200 ${config.hover}`}
+                                                    style={{
+                                                        backgroundColor: authorTheme.surface,
+                                                        border: `1px solid ${authorTheme.border}`
+                                                    }}
                                                 >
-                                                    <Icon className={config.color} />
+                                                    <Icon
+                                                        className={config.color ?? ""}
+                                                        style={{
+                                                            filter: "drop-shadow(0 0 1px rgba(0,0,0,.3))",
+                                                            color:
+                                                                social === "tiktok"
+                                                                    ? authorTheme.text
+                                                                    : undefined
+                                                        }}
+                                                    />
                                                 </a>
                                             )
 
@@ -470,33 +480,37 @@ export default async function AuthorPage({
             </section>
 
             {canEdit && (
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3 mt-8 pr-0 lg:pr-2">
+                <div className="max-w-5xl mx-auto px-3 sm:px-6">
 
-                    {!author.pro && (
-                        <ProCheckoutButton
-                            authorId={author.id}
-                        />
-                    )}
+                    <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3 mt-8">
 
-                    <Link
-                        href="/me"
-                        className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
-                        style={{
-                            backgroundColor: author.theme?.primary ?? "#2563eb"
-                        }}
-                    >
-                        Mi perfil
-                    </Link>
+                        {!author.pro && (
+                            <ProCheckoutButton
+                                authorId={author.id}
+                            />
+                        )}
 
-                    <Link
-                        href={`/authors/${author.slug}/edit`}
-                        className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
-                        style={{
-                            backgroundColor: author.theme?.primary ?? "#2563eb"
-                        }}
-                    >
-                        Editar página
-                    </Link>
+                        <Link
+                            href="/me"
+                            className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                            style={{
+                                backgroundColor: author.theme?.primary ?? "#2563eb"
+                            }}
+                        >
+                            Mi perfil
+                        </Link>
+
+                        <Link
+                            href={`/authors/${author.slug}/edit`}
+                            className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition whitespace-nowrap"
+                            style={{
+                                backgroundColor: author.theme?.primary ?? "#2563eb"
+                            }}
+                        >
+                            Editar página
+                        </Link>
+
+                    </div>
 
                 </div>
             )}
@@ -570,14 +584,49 @@ export default async function AuthorPage({
                     </section>
                 )}
 
-                {isPro && author.news?.type && (
+                {isPro && author.news && (
                     <section
-                        className="rounded-3xl p-7 md:p-8 overflow-hidden"
+                        className="rounded-3xl p-7 md:p-10 backdrop-blur-sm"
                         style={{
                             backgroundColor: authorTheme.surface,
                             border: `1px solid ${authorTheme.border}`
                         }}
                     >
+
+                        <div className="mb-6">
+
+                            <div className="flex flex-wrap items-center gap-3">
+
+                                <h2
+                                    className="text-2xl font-bold"
+                                    style={{
+                                        color: authorTheme.text
+                                    }}
+                                >
+                                    Novedades
+                                </h2>
+
+
+                                {author.news.type &&
+                                    author.news.type.trim().toUpperCase() !== "OTRO" &&
+                                    author.news.type.trim().toUpperCase() !== "OTROS" && (
+                                        <span
+                                            className="text-xs uppercase tracking-[0.25em] px-3 py-1 rounded-full font-semibold"
+                                            style={{
+                                                color: authorTheme.primary,
+                                                border: `1px solid ${authorTheme.primary}40`,
+                                                backgroundColor: `${authorTheme.primary}15`
+                                            }}
+                                        >
+                                            {author.news.type}
+                                        </span>
+                                    )
+                                }
+
+                            </div>
+
+                        </div>
+
 
                         {author.news.image && (
                             <div className="mb-6 overflow-hidden rounded-2xl">
@@ -589,34 +638,10 @@ export default async function AuthorPage({
                             </div>
                         )}
 
-                        <div className="flex items-center gap-3">
-
-
-                            <div>
-                                <p
-                                    className="text-xs uppercase tracking-[0.35em]"
-                                    style={{
-                                        color: authorTheme.muted
-                                    }}
-                                >
-                                    {author.news.type}
-                                </p>
-
-                                <h2
-                                    className="text-2xl font-bold"
-                                    style={{
-                                        color: authorTheme.primary
-                                    }}
-                                >
-                                    Novedades
-                                </h2>
-                            </div>
-
-                        </div>
 
                         {author.news.title && (
                             <h3
-                                className="mt-6 text-xl md:text-2xl font-bold"
+                                className="text-xl md:text-2xl font-bold mb-4"
                                 style={{
                                     color: authorTheme.text
                                 }}
@@ -625,9 +650,10 @@ export default async function AuthorPage({
                             </h3>
                         )}
 
+
                         {author.news.content && (
                             <div
-                                className="mt-4 whitespace-pre-line leading-8"
+                                className="whitespace-pre-line leading-8"
                                 style={{
                                     color: authorTheme.text
                                 }}
@@ -638,6 +664,8 @@ export default async function AuthorPage({
 
                     </section>
                 )}
+
+
 
                 {featuredBook && (
                     <section
@@ -767,14 +795,14 @@ export default async function AuthorPage({
                         }}
                     >
                         <div className="mb-10">
-                            <p
+                            {/*<p
                                 className="text-xs uppercase tracking-[0.35em]"
                                 style={{
                                     color: authorTheme.muted
                                 }}
                             >
                                 Bibliografía
-                            </p>
+                            </p>*/}
 
                             <div className="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
                                 <div>
