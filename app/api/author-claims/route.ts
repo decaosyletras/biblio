@@ -73,7 +73,7 @@ export async function POST(req: Request) {
           author_id,
           status: "pending",
 
-          accepted_policy_version: "1.0",
+          accepted_policy_version: "1.1",
           accepted_at: new Date().toISOString(),
           accepted_ip: ip
         }
