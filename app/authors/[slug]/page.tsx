@@ -697,7 +697,7 @@ export default async function AuthorPage({
                             </div>
                         </div>
 
-                        <div className="flex flex-col sm:flex-row gap-6 items-center group" >
+                        <div className="flex flex-col sm:flex-row gap-12 items-center group" >
                             <>
                                 <div className="w-40 aspect-[2/3] overflow-hidden rounded-2xl shadow-2xl">
                                     <CoverImage
