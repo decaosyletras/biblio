@@ -264,17 +264,7 @@ export default function MePage() {
 
                             <Link
                                 href="/libros"
-                                className="
-                                    inline-flex
-                                    items-center
-                                    px-5
-                                    py-3
-                                    rounded-xl
-                                    bg-blue-600
-                                    hover:bg-blue-500
-                                    transition
-                                    font-medium
-                                "
+                                className="inline-flex items-center px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 active:scale-95 active:bg-blue-700 transition-all duration-150 font-medium"
                             >
                                 Buscar en el catálogo →
                             </Link>
@@ -286,18 +276,7 @@ export default function MePage() {
 
                                 <Link
                                     href="/contact"
-                                    className="
-                                        inline-flex
-                                        mt-3
-                                        px-5
-                                        py-3
-                                        rounded-xl
-                                        bg-yellow-500
-                                        text-black
-                                        font-medium
-                                        hover:bg-yellow-400
-                                        transition
-                                    "
+                                    className="inline-flex mt-3 px-5 py-3 rounded-xl bg-yellow-500 text-black font-medium hover:bg-yellow-400 active:scale-95 active:bg-yellow-600 transition-all duration-150"
                                 >
                                     Registrar mi libro
                                 </Link>
@@ -310,13 +289,7 @@ export default function MePage() {
                         {claims.map((claim) => (
                             <div
                                 key={claim.id}
-                                className="
-                                    p-5 rounded-2xl border
-                                    flex flex-col sm:flex-row
-                                    gap-5
-                                    sm:items-center
-                                    sm:justify-between
-                                    "
+                                className="p-5 rounded-2xl border flex flex-col sm:flex-row gap-5 sm:items-center sm:justify-between"
                             >
                                 <div className="flex items-start gap-4">
 
@@ -365,20 +338,7 @@ export default function MePage() {
 
                                     <Link
                                         href={`/authors/${claim.authors.slug}`}
-                                        className="
-                                            w-full sm:w-auto
-                                            text-center
-                                            px-5 py-3
-                                            rounded-xl
-                                            bg-green-600
-                                            hover:bg-green-500
-                                            active:bg-green-700
-                                            active:scale-95
-                                            font-semibold
-                                            transition-all
-                                            duration-150
-                                            shadow-lg shadow-green-900/30
-                                            "
+                                        className="w-full sm:w-auto text-center px-5 py-3 rounded-xl bg-green-600 hover:bg-green-500 active:bg-green-700 active:scale-95 font-semibold transition-all duration-150 shadow-lg shadow-green-900/30"
                                     >
                                         Ver página de autor →
                                     </Link>
@@ -445,8 +405,7 @@ export default function MePage() {
                                 router.push("/login")
 
                             }}
-                            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-red-600"
-                        >
+                            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-red-600 hover:bg-red-500 active:bg-red-700 active:scale-95 transition-all duration-150">
                             Cerrar sesión
                         </button>
 
@@ -456,8 +415,7 @@ export default function MePage() {
                                 onClick={() =>
                                     router.push("/admin/author-claims")
                                 }
-                                className="px-5 py-3 rounded-xl bg-green-600"
-                            >
+                                className="px-5 py-3 rounded-xl bg-green-600 hover:bg-green-500 active:bg-green-700 active:scale-95 transition-all duration-150">
                                 Panel admin
                             </button>
                         )}

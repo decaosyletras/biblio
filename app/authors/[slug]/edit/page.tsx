@@ -449,7 +449,7 @@ export default function EditAuthorPage() {
                                 setAuthor={setAuthor}
                                 newsImageFile={newsImageFile}
                                 setNewsImageFile={setNewsImageFile}
-                        />
+                            />
                         </div>
 
                         <div className="border-t border-yellow-500/70 pt-5">
@@ -476,12 +476,8 @@ export default function EditAuthorPage() {
                         save()
                     }}
                     disabled={saving}
-                    className="w-full py-4 rounded-xl bg-stone-100
-                                text-stone-900
-                                hover:bg-stone-200
-                                transition
-                                whitespace-nowrap"
-                >
+                    className="w-full py-4 rounded-xl bg-stone-100 text-stone-900 hover:bg-stone-200 whitespace-nowrap active:scale-95
+                                active:bg-stone-300 transition-all duration-150">
                     {saving ? "Guardando..." : "Guardar cambios"}
                 </button>
 

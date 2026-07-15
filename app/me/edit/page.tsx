@@ -118,26 +118,14 @@ export default function EditProfilePage() {
                     <button
                         onClick={save}
                         disabled={saving}
-                        className="
-                            w-full sm:w-auto
-                            px-5 py-3
-                            rounded-xl
-                            bg-stone-100
-                            text-stone-900
-                            hover:bg-stone-200
-                            transition
-                            disabled:opacity-50
-                        "
+                        className="w-full sm:w-auto px-5 py-3 rounded-xl bg-stone-100 text-stone-900 hover:bg-stone-200 transition disabled:opacity-50"
                     >
                         {saving ? "Guardando..." : "Guardar cambios"}
                     </button>
 
                     <button
                         onClick={() => router.push("/me")}
-                        className="bg-zinc-800 hover:bg-zinc-700 px-5 py-2 rounded-xl active:bg-stone-500
-                            active:scale-95
-                            transition-all
-                            duration-150"
+                        className="bg-zinc-800 hover:bg-zinc-700 px-5 py-2 rounded-xl active:bg-stone-500 active:scale-95 transition-all duration-150"
                     >
                         Cancelar
                     </button>
