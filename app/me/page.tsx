@@ -224,7 +224,10 @@ export default function MePage() {
                                 bg-stone-100
                                 text-stone-900
                                 hover:bg-stone-200
-                                transition
+                                active:scale-95
+                                active:bg-stone-300
+                                transition-all
+                                duration-150
                                 "
                         >
                             Editar nombre
