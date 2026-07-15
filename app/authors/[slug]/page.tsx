@@ -614,7 +614,7 @@ export default async function AuthorPage({
                                     author.news.type.trim().toUpperCase() !== "OTRO" &&
                                     author.news.type.trim().toUpperCase() !== "OTROS" && (
                                         <span
-                                            className="text-xs uppercase tracking-[0.25em] px-3 py-1 rounded-full font-semibold"
+                                            className="text-xs uppercase tracking-[0.25em] px-4 py-1.5 rounded-full font-semibold"
                                             style={{
                                                 color: authorTheme.primary,
                                                 border: `1px solid ${authorTheme.primary}40`,
