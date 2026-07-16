@@ -177,6 +177,9 @@ export default async function AuthorPage({
 
     const isPro = author.pro === true
 
+    const themeConfig = isPro ? author.theme : null;
+    const currentFont = isPro ? author.theme?.font : "sans";
+
     let featuredBook = null
 
     if (author.featured_book_id) {
@@ -237,12 +240,12 @@ export default async function AuthorPage({
         author.theme?.surface ?? "#18181b"
 
     const authorTheme = {
-        bg: author.theme?.bg ?? "#09090b",
-        surface: author.theme?.surface ?? "#18181b",
-        primary: author.theme?.primary ?? "#2563eb",
-        text: author.theme?.text ?? "#ffffff",
-        muted: author.theme?.muted ?? "#a1a1aa",
-        border: author.theme?.border ?? "#27272a",
+        bg: themeConfig?.bg ?? "#151518",
+        surface: themeConfig?.surface ?? "#505061",
+        primary: themeConfig?.primary ?? "#5d83d3",
+        text: themeConfig?.text ?? "#ffffff",
+        muted: themeConfig?.muted ?? "#a1a1aa",
+        border: themeConfig?.border ?? "#818198",
     }
 
     /*onsole.log({
@@ -283,12 +286,12 @@ export default async function AuthorPage({
             className={`
         min-h-screen
         ${fontStyles[
-                author.theme?.font as keyof typeof fontStyles
+                currentFont as keyof typeof fontStyles
                 ] ?? fontStyles.sans
                 }
     `}
             style={{
-                backgroundColor: author.theme?.bg ?? "#09090b",
+                backgroundColor: authorTheme.bg,
                 color: author.theme?.text ?? "#ffffff"
             }}
         >
@@ -497,7 +500,7 @@ export default async function AuthorPage({
                             href="/me"
                             className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition-all duration-150 active:scale-95 whitespace-nowrap"
                             style={{
-                                backgroundColor: author.theme?.primary ?? "#2563eb"
+                                backgroundColor: authorTheme.primary
                             }}
                         >
                             Mi perfil
@@ -507,7 +510,7 @@ export default async function AuthorPage({
                             href={`/authors/${author.slug}/edit`}
                             className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition-all duration-150 active:scale-95 whitespace-nowrap"
                             style={{
-                                backgroundColor: author.theme?.primary ?? "#2563eb"
+                                backgroundColor: authorTheme.primary ?? "#2563eb"
                             }}
                         >
                             Editar página
