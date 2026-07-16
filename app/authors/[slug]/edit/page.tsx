@@ -96,7 +96,7 @@ export default function EditAuthorPage() {
         setOriginalNewsImage(
             authorData.news?.image ?? ""
         )
-        if (authorData.pro === true) {
+        /*if (authorData.pro === true) {*/
             const { data: directBooks } = await supabase
                 .from("books")
                 .select("*")
@@ -116,7 +116,7 @@ export default function EditAuthorPage() {
                     (a, b) => (a.author_order ?? 0) - (b.author_order ?? 0)
                 )
             )
-        }
+        //}
         setLoading(false)
     }
 
@@ -186,7 +186,9 @@ export default function EditAuthorPage() {
             avatar: author.avatar ?? "",
             bio: author.bio ?? "",
             description: author.description ?? "",
-            style: author.style ?? ""
+            style: author.style ?? "",
+            featured_book_id: author.featured_book_id ?? null,
+            show_bibliography: author.show_bibliography ?? true
         }
         if (isPro) {
             let avatarUrl = author.avatar
@@ -217,9 +219,8 @@ export default function EditAuthorPage() {
             data.youtube = author.youtube ?? ""
             data.wattpad = author.wattpad ?? ""
             data.current_news = author.current_news ?? ""
-            data.featured_book_id = author.featured_book_id ?? null
+            
             data.social_order = socialOrder
-            data.show_bibliography = author.show_bibliography ?? true
             if (newsImageFile) {
                 newsImageUrl = await uploadImage(
                     newsImageFile,
@@ -274,7 +275,7 @@ export default function EditAuthorPage() {
                 .eq("id", books[i].id)
         }
 
-        if (isPro) {
+        /*if (isPro) {
             for (let i = 0; i < books.length; i++) {
                 await supabase
                     .from("books")
@@ -283,7 +284,7 @@ export default function EditAuthorPage() {
                     })
                     .eq("id", books[i].id)
             }
-        }
+        }*/
         if (deletedBanner) {
 
             await deleteImage(
@@ -406,6 +407,16 @@ export default function EditAuthorPage() {
                     setAvatarFile={setAvatarFile}
                 />
 
+
+                <div className="border-t border-yellow-500/70 pt-5">
+                    <AuthorBooksSection
+                        author={author}
+                        updateField={updateField}
+                        books={books}
+                        moveBook={moveBook}
+                    />
+                </div>
+
                 {isPro && (
                     <div className="bg-zinc-900 border border-yellow-500/30 rounded-3xl p-5 space-y-5">
 
@@ -456,15 +467,6 @@ export default function EditAuthorPage() {
                             <AuthorThemeSection
                                 author={author}
                                 setAuthor={setAuthor}
-                            />
-                        </div>
-
-                        <div className="border-t border-yellow-500/70 pt-5">
-                            <AuthorBooksSection
-                                author={author}
-                                updateField={updateField}
-                                books={books}
-                                moveBook={moveBook}
                             />
                         </div>
 
