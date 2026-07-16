@@ -6,10 +6,16 @@ const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY!
 )
 
-export async function POST(
-  request: Request
-) {
+const PRICE_IDS = {
+  monthly: process.env.STRIPE_PRICE_MONTHLY!,
+  quarterly: process.env.STRIPE_PRICE_QUARTERLY!,
+  semiannual: process.env.STRIPE_PRICE_SEMIANNUAL!
+}
+
+export async function POST(request: Request) {
+
   try {
+
     const supabase = await createClient()
 
     const {
@@ -29,63 +35,164 @@ export async function POST(
       )
     }
 
+
     const body = await request.json()
 
-    const authorId = body.authorId
+    const {
+      authorId,
+      plan
+    } = body
 
-    if (!authorId) {
+
+    if (!authorId || !plan) {
+
       return NextResponse.json(
         {
-          error: "Falta authorId"
+          error: "Faltan datos"
         },
         {
           status: 400
         }
       )
+
     }
 
-    const { data: claim } = await supabase
+
+    const priceId =
+      PRICE_IDS[
+      plan as keyof typeof PRICE_IDS
+      ]
+
+
+    if (!priceId) {
+
+      return NextResponse.json(
+        {
+          error: "Plan inválido"
+        },
+        {
+          status: 400
+        }
+      )
+
+    }
+
+
+    const {
+      data: claim
+    } = await supabase
       .from("author_claims")
       .select(`
         id,
-        authors (
-            slug
+        authors(
+          slug
         )
-    `)
-      .eq("author_id", authorId)
-      .eq("user_id", user.id)
-      .eq("status", "approved")
+      `)
+      .eq(
+        "author_id",
+        authorId
+      )
+      .eq(
+        "user_id",
+        user.id
+      )
+      .eq(
+        "status",
+        "approved"
+      )
       .maybeSingle()
 
+
     if (!claim) {
+
       return NextResponse.json(
         {
-          error: "No tienes permiso sobre este autor"
+          error:
+            "No tienes permiso sobre este autor"
         },
         {
           status: 403
         }
       )
+
     }
+
+    const { data: existingPayment } =
+      await supabase
+        .from("author_payments")
+        .select(
+          "stripe_subscription_id"
+        )
+        .eq(
+          "author_id",
+          authorId
+        )
+        .not(
+          "stripe_subscription_id",
+          "is",
+          null
+        )
+        .maybeSingle()
+
+
+    if (existingPayment?.stripe_subscription_id) {
+
+      const subscription =
+        await stripe.subscriptions.retrieve(
+          existingPayment.stripe_subscription_id
+        )
+
+
+      const activeStatuses = [
+        "active",
+        "trialing",
+        "past_due"
+      ]
+
+
+      if (
+        activeStatuses.includes(
+          subscription.status
+        )
+      ) {
+
+        return NextResponse.json(
+          {
+            error:
+              "Este autor ya tiene una suscripción PRO activa"
+          },
+          {
+            status: 400
+          }
+        )
+
+      }
+
+    }
+
 
     const authorSlug =
       (claim.authors as any)?.slug
 
+
     if (!authorSlug) {
+
       return NextResponse.json(
         {
-          error: "No se encontró slug del autor"
+          error: "Autor inválido"
         },
         {
           status: 400
         }
       )
+
     }
+
 
     const session =
       await stripe.checkout.sessions.create({
 
-        mode: "payment",
+        mode: "subscription",
 
         payment_method_types: [
           "card"
@@ -93,27 +200,36 @@ export async function POST(
 
         line_items: [
           {
-            price_data: {
-              currency: "usd",
-              product_data: {
-                name: "Página PRO de autor"
-              },
-              unit_amount: 299,
-            },
+            price: priceId,
             quantity: 1
           }
         ],
 
-        success_url:
-          `${process.env.NEXT_PUBLIC_SITE_URL}/authors/${authorSlug}?payment=success&t=${Date.now()}`,
+        customer_email:
+          user.email ?? undefined,
 
-        cancel_url:
-          `${process.env.NEXT_PUBLIC_SITE_URL}/authors/${authorSlug}?payment=cancelled`,
 
         metadata: {
           author_id: authorId,
-          user_id: user.id
-        }
+          user_id: user.id,
+          plan
+        },
+
+
+        subscription_data: {
+          metadata: {
+            author_id: authorId,
+            user_id: user.id
+          }
+        },
+
+
+        success_url:
+          `${process.env.NEXT_PUBLIC_SITE_URL}/authors/${authorSlug}?payment=success`,
+
+        cancel_url:
+          `${process.env.NEXT_PUBLIC_SITE_URL}/authors/${authorSlug}?payment=cancelled`
+
       })
 
 
@@ -121,15 +237,24 @@ export async function POST(
       url: session.url
     })
 
+
   } catch (error: any) {
+
+    console.error(
+      "Stripe checkout error:",
+      error
+    )
 
     return NextResponse.json(
       {
-        error: error.message
+        error: error.message ??
+          "Error creando checkout"
       },
       {
         status: 500
       }
     )
+
   }
+
 }

@@ -12,6 +12,7 @@ import { SiWattpad } from "react-icons/si"
 import { Cinzel_Decorative } from "next/font/google";
 import { UserRound } from "lucide-react";
 import { Crown } from "lucide-react";
+import ManageProButton from "@/components/ManageProButton"
 
 import {
     inter,
@@ -498,11 +499,22 @@ export default async function AuthorPage({
 
                     <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3 mt-8">
 
-                        {!author.pro && (
+                        {!author.pro ? (
                             <ProCheckoutButton
                                 authorId={author.id}
                             />
+                        ) : (
+                            <ManageProButton
+                                authorId={author.id}
+                            />
                         )}
+                        <p className="max-w-xs text-center text-sm text-white/60 leading-relaxed"
+                            style={{
+                                color: authorTheme.text
+                            }}>
+                            Los cambios a un plan superior se aplican al instante.
+                            Los cambios a un plan inferior se aplican al finalizar tu periodo actual.
+                        </p>
 
                         <Link
                             href="/me"
