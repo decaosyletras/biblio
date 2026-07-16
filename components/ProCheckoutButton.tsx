@@ -54,7 +54,7 @@ export default function ProCheckoutButton({
             "
     >
       <FaCrown />
-      Activar PRO · $4
+      Activar PRO · $2.99 USD
     </button>
   )
 }
