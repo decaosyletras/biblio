@@ -100,6 +100,17 @@ export default function AdminAuthorClaimsPage() {
             })
             .eq("id", claim.id)
 
+        await fetch("/api/send-claim-email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                claimId: claim.id,
+                status: "approved",
+            }),
+        })
+
         await supabase
             .from("author_claims")
             .update({
@@ -122,17 +133,31 @@ export default function AdminAuthorClaimsPage() {
         )
     }
 
-    const rejectClaim = async (id: string) => {
+    const rejectClaim = async (claim: Claim) => {
+
         await supabase
             .from("author_claims")
             .update({
                 status: "rejected",
             })
-            .eq("id", id)
+            .eq("id", claim.id)
+
+
+        await fetch("/api/send-claim-email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                claimId: claim.id,
+                status: "rejected",
+            }),
+        })
+
 
         setClaims((prev) =>
             prev.map((c) =>
-                c.id === id
+                c.id === claim.id
                     ? {
                         ...c,
                         status: "rejected",
@@ -199,7 +224,7 @@ export default function AdminAuthorClaimsPage() {
                                         </button>
 
                                         <button
-                                            onClick={() => rejectClaim(claim.id)}
+                                            onClick={() => rejectClaim(claim)}
                                             className="rounded-xl bg-red-600 px-4 py-2 hover:bg-red-500"
                                         >
                                             Rechazar
