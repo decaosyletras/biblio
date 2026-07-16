@@ -98,7 +98,7 @@ export async function POST(
               product_data: {
                 name: "Página PRO de autor"
               },
-              unit_amount: 400,
+              unit_amount: 299,
             },
             quantity: 1
           }
