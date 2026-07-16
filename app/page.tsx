@@ -16,11 +16,12 @@ import {
 
 
 export const dynamic = "force-dynamic";
-const books = await getBooks()
-const authors = await getAuthors()
-const latestNews = await getLatestAuthorNews()
 
-export default function Home() {
+export default async function Home() {
+
+  const authors = await getAuthors()
+  const books = await getBooks()
+  const latestNews = await getLatestAuthorNews()
 
   const randomBooks = shuffleArray(books).slice(0, 4)
   const randomAuthors = shuffleArray(authors).slice(0, 6)

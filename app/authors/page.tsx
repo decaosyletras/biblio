@@ -3,9 +3,9 @@ import CardAuthor from "@/components/CardAuthor"
 
 export const dynamic = "force-dynamic"
 
-const authors = await getAuthors()
+export default async function AuthorsPage() {
 
-export default function AuthorsPage() {
+    const authors = await getAuthors()
 
     return (
 
