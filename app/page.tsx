@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { getBooks } from "@/lib/books"
-import { authors } from "@/data/authors"
 import CardBook from "@/components/CardBook"
 import { shuffleArray } from "@/lib/shuffle"
 import CardReview from "@/components/CardReview"
@@ -8,14 +7,23 @@ import CardAuthor from "@/components/CardAuthor"
 import GenreFilter from "@/components/GenreFilter"
 import BookRow from "@/components/BookRow"
 import { useMemo } from "react";
+import AuthorNewsCard from "@/components/AuthorNewsCard"
+
+import {
+  getAuthors,
+  getLatestAuthorNews
+} from "@/lib/authors"
+
 
 export const dynamic = "force-dynamic";
 const books = await getBooks()
+const authors = await getAuthors()
+const latestNews = await getLatestAuthorNews()
 
 export default function Home() {
 
   const randomBooks = shuffleArray(books).slice(0, 4)
-  const randomAuthors = shuffleArray(authors).slice(0, 4)
+  const randomAuthors = shuffleArray(authors).slice(0, 6)
   const randomReviews = shuffleArray(
     books.filter(book => book.review?.title)
   ).slice(0, 3)
@@ -78,6 +86,58 @@ export default function Home() {
 
       <GenreFilter />
 
+      {/* NOVEDADES AUTORES */}
+      {/*<section className="pt-12 pb-6 px-6 border-t border-zinc-900">
+
+        <div className="flex justify-between items-center mb-6">
+
+          <h2 className="text-2xl font-semibold">
+            Novedades de autores
+          </h2>
+          <p className="text-sm text-zinc-400 mt-2">
+            Nuevas noticias y anuncios de autores independientes.
+          </p>
+
+        </div>
+
+
+        <div
+          className="
+            h-[420px]
+            overflow-y-auto
+            pr-2
+            space-y-3
+            rounded-2xl
+            border
+            border-zinc-800
+            bg-zinc-950/40
+            p-3
+        "
+        >
+
+          {latestNews.length === 0 ? (
+
+            <p className="text-zinc-500 text-sm">
+              No hay novedades recientes.
+            </p>
+
+          ) : (
+
+            latestNews.map(item => (
+
+              <AuthorNewsCard
+                key={item.id}
+                item={item}
+              />
+
+            ))
+
+          )}
+
+        </div>
+
+      </section>*7}
+
       {/* LIBROS */}
       <section className="py-6 px-4">
         <div className="flex justify-between items-center mb-6">
@@ -99,24 +159,38 @@ export default function Home() {
         <BookRow title="" books={books} />
       </section>
 
+
       {/* AUTORES */}
-      {/*<section className="py-16 px-6">
+      {/*<section className="py-6 px-6">
+
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold">Autores</h2>
-          <Link href="/autores" className="text-zinc-400 hover:text-white">
+          <h2 className="text-2xl font-semibold">
+            Autores
+          </h2>
+          <Link
+            href="/authors"
+            className="hover:text-white"
+            style={{ color: "#eab308" }}
+          >
             Ver todos →
           </Link>
         </div>
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {randomAuthors.map(author => (
-            <CardAuthor key={author.slug} author={author} />
+            <CardAuthor
+              key={author.id}
+              author={author}
+            />
           ))}
+
         </div>
-      </section>/*}
+
+      </section>*/}
+
 
       {/* RESEÑAS */}
-      <section className="py-6 px-6">
+      <section className="pt-18 pb-6 px-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">
             Lectómetro

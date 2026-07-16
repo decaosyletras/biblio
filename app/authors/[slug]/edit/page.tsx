@@ -97,25 +97,25 @@ export default function EditAuthorPage() {
             authorData.news?.image ?? ""
         )
         /*if (authorData.pro === true) {*/
-            const { data: directBooks } = await supabase
-                .from("books")
-                .select("*")
-                .eq("author_id", authorData.id)
-                .eq("approved", true)
-            const { data: relationBooks } = await supabase
-                .from("book_authors")
-                .select(`books(*)`)
-                .eq("author_id", authorData.id)
-            const multiBooks = relationBooks?.map(item => item.books).filter(Boolean) ?? []
-            const map = new Map()
-                ;[...(directBooks ?? []), ...multiBooks].forEach(book => {
-                    map.set(book.id, book)
-                })
-            setBooks(
-                Array.from(map.values()).sort(
-                    (a, b) => (a.author_order ?? 0) - (b.author_order ?? 0)
-                )
+        const { data: directBooks } = await supabase
+            .from("books")
+            .select("*")
+            .eq("author_id", authorData.id)
+            .eq("approved", true)
+        const { data: relationBooks } = await supabase
+            .from("book_authors")
+            .select(`books(*)`)
+            .eq("author_id", authorData.id)
+        const multiBooks = relationBooks?.map(item => item.books).filter(Boolean) ?? []
+        const map = new Map()
+            ;[...(directBooks ?? []), ...multiBooks].forEach(book => {
+                map.set(book.id, book)
+            })
+        setBooks(
+            Array.from(map.values()).sort(
+                (a, b) => (a.author_order ?? 0) - (b.author_order ?? 0)
             )
+        )
         //}
         setLoading(false)
     }
@@ -219,7 +219,7 @@ export default function EditAuthorPage() {
             data.youtube = author.youtube ?? ""
             data.wattpad = author.wattpad ?? ""
             data.current_news = author.current_news ?? ""
-            
+
             data.social_order = socialOrder
             if (newsImageFile) {
                 newsImageUrl = await uploadImage(
@@ -233,6 +233,8 @@ export default function EditAuthorPage() {
                     image: newsImageUrl
                 }
                 : null
+            data.news_updated_at = new Date().toISOString()
+
             data.theme = author.theme ?? {
                 mode: "dark",
                 preset: "dark-blue",

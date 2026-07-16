@@ -341,12 +341,20 @@ export default async function AuthorPage({
 
                                     <img
                                         src={author.avatar}
-                                        className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] object-cover border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.45)]"
+                                        className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] object-cover border shadow-[0_20px_60px_rgba(0,0,0,.45)]"
+                                        style={{
+                                            borderColor: authorTheme.primary
+                                        }}
                                     />
 
                                 ) : (
 
-                                    <div className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] flex items-center justify-center bg-zinc-800 border border-white/10 shadow-[0_0px_60px_rgba(0,0,0,.15)]">
+                                    <div
+                                        className="relative w-28 h-28 md:w-40 md:h-40 rounded-[28px] flex items-center justify-center bg-zinc-800 border shadow-[0_0px_60px_rgba(0,0,0,.15)]"
+                                        style={{
+                                            borderColor: authorTheme.primary
+                                        }}
+                                    >
                                         <UserRound
                                             className="w-14 h-14"
                                             style={{
