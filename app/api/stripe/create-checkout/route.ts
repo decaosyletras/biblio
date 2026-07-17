@@ -35,14 +35,12 @@ export async function POST(request: Request) {
       )
     }
 
-
     const body = await request.json()
 
     const {
       authorId,
       plan
     } = body
-
 
     if (!authorId || !plan) {
 
@@ -57,12 +55,10 @@ export async function POST(request: Request) {
 
     }
 
-
     const priceId =
       PRICE_IDS[
       plan as keyof typeof PRICE_IDS
       ]
-
 
     if (!priceId) {
 
@@ -76,7 +72,6 @@ export async function POST(request: Request) {
       )
 
     }
-
 
     const {
       data: claim
@@ -101,7 +96,6 @@ export async function POST(request: Request) {
         "approved"
       )
       .maybeSingle()
-
 
     if (!claim) {
 
@@ -134,7 +128,6 @@ export async function POST(request: Request) {
         )
         .maybeSingle()
 
-
     if (existingPayment?.stripe_subscription_id) {
 
       const subscription =
@@ -142,13 +135,11 @@ export async function POST(request: Request) {
           existingPayment.stripe_subscription_id
         )
 
-
       const activeStatuses = [
         "active",
         "trialing",
         "past_due"
       ]
-
 
       if (
         activeStatuses.includes(
@@ -170,7 +161,6 @@ export async function POST(request: Request) {
 
     }
 
-
     const authorSlug =
       (claim.authors as any)?.slug
 
@@ -188,7 +178,6 @@ export async function POST(request: Request) {
 
     }
 
-
     const session =
       await stripe.checkout.sessions.create({
 
@@ -204,6 +193,8 @@ export async function POST(request: Request) {
             quantity: 1
           }
         ],
+
+        allow_promotion_codes: true,
 
         customer_email:
           user.email ?? undefined,

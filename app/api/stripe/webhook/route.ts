@@ -28,7 +28,6 @@ function getPeriodEnd(
 
 }
 
-
 export async function POST(
   request: Request
 ) {
@@ -41,7 +40,6 @@ export async function POST(
       "stripe-signature"
     )
 
-
   if (!signature) {
 
     return new NextResponse(
@@ -53,9 +51,7 @@ export async function POST(
 
   }
 
-
   let event: Stripe.Event
-
 
   try {
 
@@ -77,8 +73,6 @@ export async function POST(
 
   }
 
-
-
   if (
     event.type ===
     "checkout.session.completed"
@@ -96,7 +90,6 @@ export async function POST(
     const plan =
       session.metadata?.plan
 
-
     if (
       !authorId ||
       !userId ||
@@ -108,7 +101,6 @@ export async function POST(
       })
 
     }
-
 
     const subscription =
       await stripe.subscriptions.retrieve(
@@ -144,7 +136,6 @@ export async function POST(
         }
       )
 
-
     await supabaseAdmin
       .from("authors")
       .update({
@@ -158,8 +149,6 @@ export async function POST(
 
   }
 
-
-
   if (
     event.type ===
     "invoice.payment_succeeded"
@@ -167,12 +156,10 @@ export async function POST(
 
     const invoice = event.data.object
 
-
     const subscriptionId =
       typeof invoice.parent?.subscription_details?.subscription === "string"
         ? invoice.parent.subscription_details.subscription
         : null
-
 
     if (subscriptionId) {
 
@@ -181,10 +168,8 @@ export async function POST(
           subscriptionId
         )
 
-
       const authorId =
         subscription.metadata.author_id
-
 
       if (authorId) {
 
@@ -204,7 +189,6 @@ export async function POST(
             subscription.id
           )
 
-
         await supabaseAdmin
           .from("authors")
           .update({
@@ -222,8 +206,6 @@ export async function POST(
 
   }
 
-
-
   if (
     event.type ===
     "invoice.payment_failed"
@@ -231,12 +213,10 @@ export async function POST(
 
     const invoice = event.data.object
 
-
     const subscriptionId =
       typeof invoice.parent?.subscription_details?.subscription === "string"
         ? invoice.parent.subscription_details.subscription
         : null
-
 
     if (subscriptionId) {
 
@@ -254,8 +234,6 @@ export async function POST(
 
   }
 
-
-
   if (
     event.type === "customer.subscription.updated"
   ) {
@@ -271,7 +249,6 @@ export async function POST(
       const priceId =
         subscription.items.data[0]?.price.id
 
-
       let plan = null
 
       if (priceId === process.env.STRIPE_PRICE_MONTHLY) {
@@ -286,10 +263,8 @@ export async function POST(
         plan = "semiannual"
       }
 
-
       const currentPeriodEnd =
         subscription.items.data[0]?.current_period_end
-
 
       await supabaseAdmin
         .from("author_payments")
@@ -318,7 +293,6 @@ export async function POST(
         subscription.status === "active" ||
         subscription.status === "trialing"
 
-
       await supabaseAdmin
         .from("authors")
         .update({
@@ -343,8 +317,6 @@ export async function POST(
 
   }
 
-
-
   if (
     event.type ===
     "customer.subscription.deleted"
@@ -354,7 +326,6 @@ export async function POST(
 
     const authorId =
       subscription.metadata.author_id
-
 
     if (authorId) {
 
@@ -367,7 +338,6 @@ export async function POST(
           "stripe_subscription_id",
           subscription.id
         )
-
 
       await supabaseAdmin
         .from("authors")
@@ -383,7 +353,6 @@ export async function POST(
     }
 
   }
-
 
   return NextResponse.json({
     received: true
