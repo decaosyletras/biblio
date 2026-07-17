@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { getAmazonCover } from "@/lib/amazon"
 import { getBookCover } from "@/lib/amazon"
+import { UserRound } from "lucide-react"
 
 export default function SearchSimple({
   data,
@@ -74,44 +75,58 @@ export default function SearchSimple({
 
             {filtered.map((item: any) => {
 
-              if (
-                type === "reviews" ||
-                type === "books"
-              ) {
+            if (type === "reviews" || type === "books") {
+              return (
+                <Link
+                  href={`/libros/${item.slug}`}
+                  key={item.slug}
+                >
+                  <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
+                    <img
+                      src={getBookCover(item.amazon, item.cover)}
+                      alt={item.title}
+                      className="w-12 h-24 object-cover"
+                    />
+                    <p>{item.title}</p>
+                  </div>
+                </Link>
+              )
+            }
 
-                return (
-                  <Link
-                    href={`/libros/${item.slug}`}
-                    key={item.slug}
-                  >
-                    <div className="
-                      bg-zinc-800 
-                      p-4 
-                      rounded-xl 
-                      flex 
-                      items-center 
-                      gap-4
-                    ">
+            if (type === "authors") {
+              return (
+                <Link
+                  href={`/authors/${item.slug}`}
+                  key={item.id}
+                >
+                  <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
 
+                    {item.avatar ? (
                       <img
-                        src={getBookCover(item.amazon, item.cover)}
-                        alt={item.title}
-                        className="
-                          w-12 
-                          h-24 
-                          object-cover
-                        "
+                        src={item.avatar}
+                        alt={item.name}
+                        className="w-14 h-14 rounded-full object-cover"
                       />
+                    ) : (
+                      <div className="w-14 h-14 rounded-full bg-zinc-700 flex items-center justify-center">
+                        <UserRound className="text-zinc-400" size={24} />
+                      </div>
+                    )}
 
-                      <p>{item.title}</p>
-
+                    <div className="min-w-0">
+                      <p className="font-medium text-zinc-100 truncate">
+                        {item.name}
+                      </p>
+                      
                     </div>
-                  </Link>
-                )
-              }
 
-              return null
-            })}
+                  </div>
+                </Link>
+              )
+            }
+
+            return null
+          })}
 
           </div>
 

@@ -1,5 +1,6 @@
 import { getAuthors } from "@/lib/authors"
 import CardAuthor from "@/components/CardAuthor"
+import SearchSimple from "@/components/SearchSimple"
 
 export const dynamic = "force-dynamic"
 
@@ -18,6 +19,11 @@ export default async function AuthorsPage() {
             <p className="text-zinc-400 mb-6 sm:mb-10">
                 Descubre escritores independientes y conoce sus obras.
             </p>
+
+            <SearchSimple
+                data={authors}
+                type="authors"
+            />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
 
