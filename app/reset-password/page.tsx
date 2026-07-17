@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
+import { Eye, EyeOff } from "lucide-react"
 
 export default function ResetPasswordPage() {
 
@@ -10,6 +11,7 @@ export default function ResetPasswordPage() {
 
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -46,15 +48,47 @@ export default function ResetPasswordPage() {
           className="space-y-4"
         >
 
-          <input
-            type="password"
-            minLength={6}
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Nueva contraseña"
-            className="w-full p-3 rounded bg-zinc-800 border border-zinc-700"
-          />
+          <div className="relative">
+
+            <input
+              type={showPassword ? "text" : "password"}
+              minLength={6}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Nueva contraseña"
+              className="
+                w-full
+                bg-zinc-900
+                border
+                border-zinc-700
+                p-3
+                pr-12
+                rounded-xl
+                outline-none
+              "
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="
+                absolute
+                right-3
+                top-1/2
+                -translate-y-1/2
+                text-zinc-400
+                hover:text-white
+              "
+            >
+              {showPassword ? (
+                <EyeOff size={20} />
+              ) : (
+                <Eye size={20} />
+              )}
+            </button>
+
+          </div>
 
           <button
             disabled={loading}
