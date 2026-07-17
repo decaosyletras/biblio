@@ -95,6 +95,15 @@ export default function LoginPage() {
 
           </div>
 
+          <div className="text-right">
+            <Link
+              href="/forgot-password"
+              className="text-sm text-blue-400 hover:underline"
+            >
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </div>
+
           <button
             disabled={loading}
             className="w-full px-5 py-3 rounded-xl bg-stone-100 text-stone-900 hover:bg-stone-200 transition font-semibold disabled:opacity-50">
