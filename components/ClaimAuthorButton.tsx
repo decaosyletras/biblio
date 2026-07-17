@@ -36,6 +36,9 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
 
   const [acceptedClaimPolicy, setAcceptedClaimPolicy] = useState(false)
 
+  const [proofNotes, setProofNotes] = useState("")
+  const [proofUrl, setProofUrl] = useState("")
+
   useEffect(() => {
     if (safeAuthors.length > 0 && !selectedAuthor) {
       setSelectedAuthor(safeAuthors[0].id)
@@ -111,6 +114,12 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
     (!currentClaim || currentClaim.status === "rejected")
 
   const claimAuthor = async () => {
+
+    if (!proofNotes.trim() || !proofUrl.trim()) {
+      alert("Debes añadir una explicación y un enlace de verificación")
+      return
+    }
+
     setSending(true)
 
     const response = await fetch("/api/author-claims", {
@@ -121,7 +130,9 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
       body: JSON.stringify({
         user_id: user.id,
         author_id: currentAuthorId,
-        aceptaPolitica: acceptedClaimPolicy
+        aceptaPolitica: acceptedClaimPolicy,
+        proof_notes: proofNotes,
+        proof_url: proofUrl
       })
     })
 
@@ -232,6 +243,44 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
           </span>
 
         </label>
+      )}
+
+      {canClaim && (
+        <div className="mt-4 space-y-3">
+
+          <textarea
+            value={proofNotes}
+            onChange={(e) => setProofNotes(e.target.value)}
+            placeholder="Cuéntanos por qué eres el autor o representante autorizado..."
+            maxLength={500}
+            rows={3}
+            className="
+        w-full
+        rounded-xl
+        bg-zinc-800
+        border
+        border-zinc-700
+        p-3
+        text-sm
+      "
+          />
+
+          <input
+            value={proofUrl}
+            onChange={(e) => setProofUrl(e.target.value)}
+            placeholder="Link de verificación (web, red social, editorial...)"
+            className="
+        w-full
+        rounded-xl
+        bg-zinc-800
+        border
+        border-zinc-700
+        p-3
+        text-sm
+      "
+          />
+
+        </div>
       )}
 
       {/* BOTÓN */}

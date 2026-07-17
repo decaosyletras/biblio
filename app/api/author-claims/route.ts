@@ -22,7 +22,9 @@ export async function POST(req: Request) {
     const {
       user_id,
       author_id,
-      aceptaPolitica
+      aceptaPolitica,
+      proof_notes,
+      proof_url
     } = body
 
 
@@ -42,6 +44,13 @@ export async function POST(req: Request) {
     if (!aceptaPolitica) {
       return NextResponse.json(
         { error: "Debes aceptar la política de reclamación de autores" },
+        { status: 400 }
+      )
+    }
+
+    if (!proof_notes?.trim() || !proof_url?.trim()) {
+      return NextResponse.json(
+        { error: "Debes aportar una explicación y un enlace de verificación" },
         { status: 400 }
       )
     }
@@ -71,7 +80,10 @@ export async function POST(req: Request) {
         {
           user_id,
           author_id,
-          status: "pending",
+          status: "approved",
+
+          proof_notes: proof_notes || null,
+          proof_url: proof_url || null,
 
           accepted_policy_version: "1.1",
           accepted_at: new Date().toISOString(),

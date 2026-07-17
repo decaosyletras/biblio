@@ -10,6 +10,8 @@ type Claim = {
     created_at: string
     user_id: string
     author_id: string
+    proof_url?: string | null
+    proof_notes?: string | null
     authors: {
         name: string
         slug: string
@@ -55,16 +57,18 @@ export default function AdminAuthorClaimsPage() {
             const { data: claimsData, error } = await supabase
                 .from("author_claims")
                 .select(`
-          id,
-          status,
-          created_at,
-          user_id,
-          author_id,
-          authors (
-            name,
-            slug
-          )
-        `)
+                        id,
+                        status,
+                        created_at,
+                        user_id,
+                        author_id,
+                        proof_url,
+                        proof_notes,
+                        authors (
+                        name,
+                        slug
+                    )
+                    `)
                 .order("created_at", { ascending: false })
 
             if (error) {
@@ -210,6 +214,22 @@ export default function AdminAuthorClaimsPage() {
                                 <p className="text-xs text-zinc-500 mt-1">
                                     {new Date(claim.created_at).toLocaleString("es-ES")}
                                 </p>
+
+                                {claim.proof_notes && (
+                                    <p className="text-zinc-300 mt-3 text-sm max-w-xl">
+                                        📝 {claim.proof_notes}
+                                    </p>
+                                )}
+
+                                {claim.proof_url && (
+                                    <a
+                                        href={claim.proof_url}
+                                        target="_blank"
+                                        className="text-blue-400 hover:underline text-sm"
+                                    >
+                                        🔗 Ver evidencia
+                                    </a>
+                                )}
                             </div>
 
                             <div className="flex items-center gap-3">
