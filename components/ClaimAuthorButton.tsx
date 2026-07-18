@@ -163,7 +163,7 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
       {!hasApprovedAny && claims.length === 0 && (
         <>
           <h3 className="text-lg font-semibold text-zinc-100 mb-2">
-            ✍️ Solicita la gestión de este autor.
+            ✍️ Solicita la gestión de este autor:
           </h3>
         </>
       )}
