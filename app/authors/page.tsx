@@ -13,7 +13,7 @@ export default async function AuthorsPage() {
         <section className="py-10 sm:py-16 px-4 sm:px-6">
 
             <h1 className="text-2xl sm:text-3xl font-semibold text-zinc-100 mb-6 sm:mb-10">
-                Autores
+                Autores Indie
             </h1>
 
             <p className="text-zinc-400 mb-6 sm:mb-10">
