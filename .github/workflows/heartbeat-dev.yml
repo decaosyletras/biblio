@@ -1,0 +1,15 @@
+name: heartbeat-cron-test
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call heartbeat endpoint
+        run: |
+          curl -X GET https://casaindie-test.vercel.app/api/heartbeat-cron
