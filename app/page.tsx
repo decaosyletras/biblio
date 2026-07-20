@@ -88,7 +88,7 @@ export default async function Home() {
       <GenreFilter />
 
       {/* NOVEDADES AUTORES */}
-      {/*<section className="pt-12 pb-6 px-6 border-t border-zinc-900">
+      {<section className="pt-12 pb-6 px-6 border-t border-zinc-900">
 
         <div className="flex justify-between items-center mb-6">
 
@@ -101,43 +101,23 @@ export default async function Home() {
 
         </div>
 
-
-        <div
-          className="
-            h-[420px]
-            overflow-y-auto
-            pr-2
-            space-y-3
-            rounded-2xl
-            border
-            border-zinc-800
-            bg-zinc-950/40
-            p-3
-        "
-        >
-
+        <div className="h-[420px] overflow-y-auto pr-2 space-y-3 rounded-2xl border border-zinc-800 bg-zinc-950/40 p-3">
           {latestNews.length === 0 ? (
-
             <p className="text-zinc-500 text-sm">
               No hay novedades recientes.
             </p>
-
           ) : (
-
             latestNews.map(item => (
-
               <AuthorNewsCard
                 key={item.id}
                 item={item}
               />
-
             ))
-
           )}
 
         </div>
 
-      </section>*7}
+      </section>}
 
       {/* LIBROS */}
       <section className="py-6 px-4">

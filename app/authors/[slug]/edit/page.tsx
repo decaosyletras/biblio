@@ -10,6 +10,9 @@ import AuthorBannerSection from "@/components/authors/edit/AuthorBannerSection"
 import AuthorNewsSection from "@/components/authors/edit/AuthorNewsSection"
 import AuthorThemeSection from "@/components/authors/edit/AuthorThemeSection"
 import AuthorBooksSection from "@/components/authors/edit/AuthorBooksSection"
+import AuthorContactSection from "@/components/authors/edit/AuthorContactSection"
+import AuthorBookSettingsSection from "@/components/authors/edit/AuthorBookSettingsSection"
+import ProCheckoutButton from "@/components/ProCheckoutButton"
 
 export default function EditAuthorPage() {
     const params = useParams()
@@ -22,6 +25,8 @@ export default function EditAuthorPage() {
     const [author, setAuthor] = useState<any>(null)
     const [books, setBooks] = useState<any[]>([])
     const [socialOrder, setSocialOrder] = useState<string[]>([])
+    const [accountEmail, setAccountEmail] = useState("")
+
 
     const [avatarFile, setAvatarFile] = useState<File | null>(null)
     const [bannerFile, setBannerFile] = useState<File | null>(null)
@@ -38,6 +43,9 @@ export default function EditAuthorPage() {
 
     async function load() {
         const { data: { user } } = await supabase.auth.getUser()
+
+        setAccountEmail(user?.email ?? "")
+
         if (!user) {
             router.push("/login")
             return
@@ -209,6 +217,9 @@ export default function EditAuthorPage() {
                     "banners"
                 )
             }
+
+            data.contact_email = author.contact_email ?? ""
+            data.show_book_details = author.show_book_details ?? true
 
             data.banner = bannerUrl === "" ? null : bannerUrl
             data.website = author.website ?? ""
@@ -410,7 +421,7 @@ export default function EditAuthorPage() {
                 />
 
 
-                <div className="border-t border-yellow-500/70 pt-5">
+                <div className="border-t border-zinc-500/70 pt-5">
                     <AuthorBooksSection
                         author={author}
                         updateField={updateField}
@@ -418,6 +429,82 @@ export default function EditAuthorPage() {
                         moveBook={moveBook}
                     />
                 </div>
+
+
+                {!isPro && (
+                    <div className="rounded-3xl bg-zinc-900 border border-yellow-500/30 p-5 space-y-5">
+
+                        <div className="flex items-center gap-3">
+
+                            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl bg-yellow-500/10 border border-yellow-500/20">
+                                👑
+                            </div>
+
+                            <div>
+                                <h2 className="text-xl md:text-2xl font-bold text-yellow-400">
+                                    Desbloquea PRO
+                                </h2>
+
+                                <p className="text-sm text-zinc-400 mt-1">
+                                    Lleva tu página de autor al siguiente nivel.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div className="space-y-3 text-sm text-zinc-300">
+
+                            <p>
+                                Con PRO podrás personalizar tu página y añadir:
+                            </p>
+
+                            <ul className="space-y-2 text-zinc-400">
+
+                                <li>
+                                    🖼️ Banner personalizado de autor
+                                </li>
+
+                                <li>
+                                    🔗 Redes sociales y enlace a tu web
+                                </li>
+
+                                <li>
+                                    ✉️ Correo de contacto para lectores
+                                </li>
+
+                                <li>
+                                    📢 Sección de novedades
+                                </li>
+
+                                <li>
+                                    🎨 Personalización de colores de la página
+                                </li>
+
+                                <li>
+                                    ✍️ Elección de fuente de texto
+                                </li>
+
+                                <li>
+                                    📚 Control del botón "Ver detalles" de tus libros
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <p className="text-xs text-zinc-500">
+                            Estas herramientas están disponibles para autores PRO.
+                        </p>
+
+                        <ProCheckoutButton
+                            authorId={author.id}
+                        />
+
+                    </div>
+                )}
+
+
 
                 {isPro && (
                     <div className="bg-zinc-900 border border-yellow-500/30 rounded-3xl p-5 space-y-5">
@@ -440,6 +527,14 @@ export default function EditAuthorPage() {
                         />*/}
 
                         <div className="border-t border-yellow-500/70 pt-5">
+                            <AuthorBookSettingsSection
+                                author={author}
+                                updateField={updateField}
+                            />
+                        </div>
+
+
+                        <div className="border-t border-yellow-500/70 pt-5">
                             <AuthorBannerSection
                                 author={author}
                                 updateField={updateField}
@@ -455,6 +550,15 @@ export default function EditAuthorPage() {
                                 updateField={updateField}
                             />
                         </div>
+
+                        <div className="border-t border-yellow-500/70 pt-5">
+                            <AuthorContactSection
+                                author={author}
+                                accountEmail={accountEmail}
+                                updateField={updateField}
+                            />
+                        </div>
+
 
                         <div className="border-t border-yellow-500/70 pt-5">
                             <AuthorNewsSection

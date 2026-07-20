@@ -416,6 +416,20 @@ export default async function AuthorPage({
                                         </span>
                                     </div>
 
+                                    {isPro && author.contact_email && (
+                                        <div className="mt-2 flex items-center justify-center lg:justify-start">
+                                            <a
+                                                href={`mailto:${author.contact_email}`}
+                                                className="text-sm hover:underline break-all"
+                                                style={{
+                                                    color: heroSecondaryText
+                                                }}
+                                            >
+                                                ✉️ Contacto: {author.contact_email}
+                                            </a>
+                                        </div>
+                                    )}
+
                                     {/*<div className="mt-3 flex items-center justify-center lg:justify-start">
                                         <span
                                             className="text-sm"
@@ -429,7 +443,7 @@ export default async function AuthorPage({
                                 {/* Redes */}
 
                                 {isPro && (
-                                    <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-8">
+                                    <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-3">
 
                                         {(author.social_order ?? [
                                             "website",
@@ -497,24 +511,25 @@ export default async function AuthorPage({
             {canEdit && (
                 <div className="max-w-5xl mx-auto px-3 sm:px-6">
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3 mt-8">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-center justify-center lg:justify-end gap-3 mt-8">
 
-                        {!author.pro ? (
-                            <ProCheckoutButton
-                                authorId={author.id}
-                            />
-                        ) : (
-                            <ManageProButton
-                                authorId={author.id}
-                            />
+                        {author.pro && (
+                            <div className="flex flex-col items-center justify-center gap-3">
+
+                                <ManageProButton
+                                    authorId={author.id}
+                                />
+
+                                <p className="max-w-xs text-center text-sm leading-relaxed"
+                                    style={{
+                                        color: authorTheme.muted
+                                    }}>
+                                    Los cambios a un plan superior se aplican al instante.
+                                    Los cambios a un plan inferior se aplican al finalizar tu periodo actual.
+                                </p>
+
+                            </div>
                         )}
-                        <p className="max-w-xs text-center text-sm text-white/60 leading-relaxed"
-                            style={{
-                                color: authorTheme.text
-                            }}>
-                            Los cambios a un plan superior se aplican al instante.
-                            Los cambios a un plan inferior se aplican al finalizar tu periodo actual.
-                        </p>
 
                         <Link
                             href="/me"
@@ -803,17 +818,19 @@ export default async function AuthorPage({
                                             textColor={authorTheme.text}
                                         />
 
-                                        <Link
-                                            href={`/libros/${featuredBook.slug}`}
-                                            className="mt-4 px-5 py-2 block text-center text-sm font-semibold rounded-xl border transition hover:opacity-80"
-                                            style={{
-                                                color: authorTheme.primary,
-                                                backgroundColor: authorTheme.surface,
-                                                borderColor: authorTheme.border,
-                                            }}
-                                        >
-                                            Ver detalles
-                                        </Link>
+                                        {(!isPro || author.show_book_details !== false) && (
+                                            <Link
+                                                href={`/libros/${featuredBook.slug}`}
+                                                className="mt-4 px-5 py-2 block text-center text-sm font-semibold rounded-xl border transition hover:opacity-80"
+                                                style={{
+                                                    color: authorTheme.primary,
+                                                    backgroundColor: authorTheme.surface,
+                                                    borderColor: authorTheme.border,
+                                                }}
+                                            >
+                                                Ver detalles
+                                            </Link>
+                                        )}
 
                                     </div>
                                 </div>
@@ -969,16 +986,22 @@ export default async function AuthorPage({
                                                 textColor={authorTheme.text}
                                             />
 
-                                            <Link
-                                                href={`/libros/${book.slug}`}
-                                                className="block text-center text-sm font-semibold py-2 rounded-xl border transition hover:opacity-80"
-                                                style={{
-                                                    color: authorTheme.primary,
-                                                    borderColor: authorTheme.border
-                                                }}
-                                            >
-                                                Ver detalles
-                                            </Link>
+
+                                            {(!isPro || author.show_book_details !== false) && (
+                                                <Link
+                                                    href={`/libros/${book.slug}`}
+                                                    className="block text-center text-sm font-semibold py-2 rounded-xl border transition hover:opacity-80"
+                                                    style={{
+                                                        color: authorTheme.primary,
+                                                        borderColor: authorTheme.border
+                                                    }}
+                                                >
+                                                    Ver detalles
+                                                </Link>
+                                            )}
+
+
+
 
                                         </div>
 

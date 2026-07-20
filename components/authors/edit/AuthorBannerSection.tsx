@@ -71,20 +71,8 @@ export default function AuthorBannerSection({
 
 
                 <label
-                    className="
-                    group
-                    relative
-                    block
-                    overflow-hidden
-                    rounded-3xl
-                    border-2
-                    border-dashed
-                    border-zinc-700
-                    bg-zinc-950
-                    cursor-pointer
-                    transition
-                    hover:border-yellow-500/50
-                "
+                    className="group relative block overflow-hidden rounded-3xl border-2 border-dashed border-zinc-700 bg-zinc-950 cursor-pointer
+                    transition hover:border-yellow-500/50"
                 >
 
                     {author.banner ? (
@@ -93,44 +81,16 @@ export default function AuthorBannerSection({
 
                             <img
                                 src={author.banner}
-                                className="
-                                    w-full
-                                    aspect-[16/5]
-                                    object-cover
-                                    object-center
-                                    transition
-                                    duration-500
-                                    group-hover:scale-[1.02]
-                                    "
+                                className="w-full aspect-[16/5] object-cover object-center transition duration-500 group-hover:scale-[1.02]"
                             />
 
 
                             <div
-                                className="
-                                absolute
-                                inset-0
-                                bg-black/50
-                                opacity-0
-                                group-hover:opacity-100
-                                transition
-                                flex
-                                items-center
-                                justify-center
-                            "
+                                className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
                             >
 
                                 <div
-                                    className="
-                                    px-5
-                                    py-3
-                                    rounded-2xl
-                                    bg-yellow-500/10
-                                    backdrop-blur
-                                    border
-                                    border-yellow-500/30
-                                    text-yellow-300
-                                    font-medium
-                                "
+                                    className="px-5 py-3 rounded-2xl bg-yellow-500/10 backdrop-blur border border-yellow-500/30 text-yellow-300 font-medium"
                                 >
                                     Cambiar banner
                                 </div>
@@ -139,36 +99,11 @@ export default function AuthorBannerSection({
 
 
                             <div
-                                className="
-                                    absolute
-                                    inset-y-0
-                                    left-1/2
-                                    -translate-x-1/2
-                                    w-[29%]
-                                    border-x-2
-                                    border-yellow-400
-                                    bg-yellow-400/25
-                                    pointer-events-none
-                                "
+                                className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[29%] border-x-2 border-yellow-400 bg-yellow-400/25 pointer-events-none"
                             >
                                 <div
-                                    className="
-                                        absolute
-                                        bottom-3
-                                        left-1/2
-                                        -translate-x-1/2
-                                        whitespace-nowrap
-                                        px-3
-                                        py-1.5
-                                        rounded-full
-                                        bg-black/70
-                                        backdrop-blur
-                                        text-xs
-                                        font-semibold
-                                        text-yellow-300
-                                        border
-                                        border-yellow-400/30
-                                    "
+                                    className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 rounded-full
+                                        bg-black/70 backdrop-blur text-xs font-semibold text-yellow-300 border border-yellow-400/30"
                                 >
                                     📱 Zona visible en móvil
                                 </div>
@@ -179,15 +114,7 @@ export default function AuthorBannerSection({
                     ) : (
 
                         <div
-                            className="
-                            aspect-[16/5]
-                            flex
-                            flex-col
-                            items-center
-                            justify-center
-                            text-center
-                            px-8
-                        "
+                            className="aspect-[16/5] flex flex-col items-center justify-center text-center px-8"
                         >
 
                             <p className="font-semibold text-white">
@@ -236,17 +163,7 @@ export default function AuthorBannerSection({
                                 null
                             )
                         }
-                        className="
-                        w-full
-                        py-3
-                        rounded-2xl
-                        border
-                        border-red-500/30
-                        bg-red-500/10
-                        text-red-400
-                        hover:bg-red-500/20
-                        transition
-                    "
+                        className="w-full py-3 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/20 transition"
                     >
                         Eliminar banner
                     </button>
