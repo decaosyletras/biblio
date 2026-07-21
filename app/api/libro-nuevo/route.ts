@@ -88,6 +88,20 @@ export async function POST(req: Request) {
       }
     } = await authClient.auth.getUser()
 
+    // CAMBIO: solo un usuario con sesión activa puede registrar un libro.
+    // Esto evita publicaciones anónimas y garantiza que submitted_by procede
+    // de una sesión validada, no de datos enviados por el navegador.
+    if (!user) {
+      return NextResponse.json(
+        {
+          error: "No autenticado"
+        },
+        {
+          status: 401
+        }
+      )
+    }
+
 
     const {
       titulo,
@@ -231,7 +245,8 @@ export async function POST(req: Request) {
         privacy_version: "2.0",
         accepted_at: new Date().toISOString(),
         accepted_ip: ip,
-        submitted_by: user?.id ?? null
+        // user ya se validó arriba; no se admiten publicaciones anónimas.
+        submitted_by: user.id
       })
 
     if (bookError) {
@@ -246,45 +261,45 @@ export async function POST(req: Request) {
     }
 
 
-    // Asociar automáticamente el autor al usuario solo cuando corresponde
+    // Ya no se asocia automáticamente el autor al usuario desde esta ruta.
+    // El bloque anterior creaba una reclamación con status: "approved" al
+    // registrar un libro, permitiendo eludir la revisión de author-claims.
+    // Registrar un libro sigue permitido para un autor existente; reclamarlo
+    // se realiza exclusivamente en author-claims como solicitud "pending".
     //
-    // - Autor nuevo: sí
-    // - Autor existente donde confirmó "Sí, soy yo": sí
-    // - Autor existente sin confirmación: no
-
-    if (user) {
-
-      const { data: existingClaim } = await supabase
-        .from("author_claims")
-        .select("id")
-        .eq("user_id", user.id)
-        .eq("author_id", authorId)
-        .maybeSingle()
-
-
-      if (!existingClaim) {
-
-        const { error: claimError } = await supabase
-          .from("author_claims")
-          .insert({
-            user_id: user.id,
-            author_id: authorId,
-            status: "approved"
-          })
-
-
-        if (claimError) {
-
-          console.error(
-            "Error creando author claim:",
-            claimError
-          )
-
-        }
-
-      }
-
-    }
+    // if (user) {
+    //
+    //   const { data: existingClaim } = await supabase
+    //     .from("author_claims")
+    //     .select("id")
+    //     .eq("user_id", user.id)
+    //     .eq("author_id", authorId)
+    //     .maybeSingle()
+    //
+    //
+    //   if (!existingClaim) {
+    //
+    //     const { error: claimError } = await supabase
+    //       .from("author_claims")
+    //       .insert({
+    //         user_id: user.id,
+    //         author_id: authorId,
+    //         status: "approved"
+    //       })
+    //
+    //
+    //     if (claimError) {
+    //
+    //       console.error(
+    //         "Error creando author claim:",
+    //         claimError
+    //       )
+    //
+    //     }
+    //
+    //   }
+    //
+    // }
 
 
     return NextResponse.json({
