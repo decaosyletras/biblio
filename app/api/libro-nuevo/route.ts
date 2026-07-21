@@ -88,18 +88,46 @@ export async function POST(req: Request) {
       }
     } = await authClient.auth.getUser()
 
-    // CAMBIO: solo un usuario con sesión activa puede registrar un libro.
-    // Esto evita publicaciones anónimas y garantiza que submitted_by procede
-    // de una sesión validada, no de datos enviados por el navegador.
-    if (!user) {
-      return NextResponse.json(
-        {
-          error: "No autenticado"
-        },
-        {
-          status: 401
-        }
-      )
+    // CAMBIO: este endpoint vuelve a permitir registro anónimo porque el flujo
+    // del proyecto lo necesita. La restricción real ahora es otra: si existe
+    // sesión y ya hay una reclamación aprobada, el autor se fija en servidor y
+    // no se puede eludir desde el formulario.
+    //
+    // if (!user) {
+    //   return NextResponse.json(
+    //     {
+    //       error: "No autenticado"
+    //     },
+    //     {
+    //       status: 401
+    //     }
+    //   )
+    // }
+
+    // CAMBIO: si hay sesión, buscamos si ese perfil ya tiene un autor aprobado.
+    // Eso sustituye la confianza en el formulario y evita que un usuario con
+    // autor activo registre un libro para otro autor distinto.
+    let ownedAuthorId: string | null = null
+    if (user) {
+      const { data: ownedClaim, error: ownedClaimError } = await supabase
+        .from("author_claims")
+        .select("author_id")
+        .eq("user_id", user.id)
+        .eq("status", "approved")
+        .maybeSingle()
+
+      if (ownedClaimError) {
+        return NextResponse.json(
+          {
+            error: "No se pudo verificar el autor asociado a la cuenta"
+          },
+          {
+            status: 500
+          }
+        )
+      }
+
+      ownedAuthorId = ownedClaim?.author_id ?? null
     }
 
 
@@ -120,7 +148,7 @@ export async function POST(req: Request) {
     if (!titulo || !autor) {
       return NextResponse.json(
         {
-          error: "Faltan título o autor"
+          error: "Faltan tÃ­tulo o autor"
         },
         {
           status: 400
@@ -131,7 +159,7 @@ export async function POST(req: Request) {
     if (!aceptaTerminos) {
       return NextResponse.json(
         {
-          error: "Debes aceptar la Política de Privacidad"
+          error: "Debes aceptar la PolÃ­tica de Privacidad"
         },
         {
           status: 400
@@ -150,12 +178,18 @@ export async function POST(req: Request) {
 
     let authorId: string
 
-    // Existe el autor y el usuario confirma que es él
-    if (foundAuthor && useExistingAuthor) {
+    // CAMBIO: si la cuenta ya tiene un autor aprobado, ese autor manda.
+    // El formulario puede seguir enviando cualquier valor, pero ya no decide.
+    if (ownedAuthorId) {
+      authorId = ownedAuthorId
+    }
+
+    // Existe el autor y el usuario confirma que es Ã©l
+    else if (foundAuthor && useExistingAuthor) {
       authorId = foundAuthor.id
     }
 
-    // Existe el autor pero el usuario dice que NO es él
+    // Existe el autor pero el usuario dice que NO es Ã©l
     else if (foundAuthor && useExistingAuthor === false) {
 
       const slug = await createUniqueSlug(autor)
@@ -185,7 +219,7 @@ export async function POST(req: Request) {
     }
 
 
-    // No existe ningún autor: crear uno nuevo
+    // No existe ningÃºn autor: crear uno nuevo
     else {
       const slug = await createUniqueSlug(autor)
 
@@ -245,8 +279,9 @@ export async function POST(req: Request) {
         privacy_version: "2.0",
         accepted_at: new Date().toISOString(),
         accepted_ip: ip,
-        // user ya se validó arriba; no se admiten publicaciones anónimas.
-        submitted_by: user.id
+        // CAMBIO: si no hay sesión, submitted_by queda nulo. Si la hay, se
+        // guarda el id real sin asumir que el formulario lo definió.
+        submitted_by: user?.id ?? null
       })
 
     if (bookError) {
@@ -261,9 +296,9 @@ export async function POST(req: Request) {
     }
 
 
-    // Ya no se asocia automáticamente el autor al usuario desde esta ruta.
-    // El bloque anterior creaba una reclamación con status: "approved" al
-    // registrar un libro, permitiendo eludir la revisión de author-claims.
+    // Ya no se asocia automÃ¡ticamente el autor al usuario desde esta ruta.
+    // El bloque anterior creaba una reclamaciÃ³n con status: "approved" al
+    // registrar un libro, permitiendo eludir la revisiÃ³n de author-claims.
     // Registrar un libro sigue permitido para un autor existente; reclamarlo
     // se realiza exclusivamente en author-claims como solicitud "pending".
     //
