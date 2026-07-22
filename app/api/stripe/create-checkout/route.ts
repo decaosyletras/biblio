@@ -22,6 +22,145 @@ type AuthorRelation =
   }>
   | null
 
+type CheckoutAttempt = {
+  author_id: string
+  user_id: string
+  plan: string
+  idempotency_key: string
+  stripe_session_id: string | null
+  status: string
+  expires_at: string
+}
+
+class CheckoutInProgressError extends Error {}
+
+async function prepareCheckoutAttempt(
+  authorId: string,
+  userId: string,
+  plan: string,
+  retryCount = 0
+): Promise<{
+  idempotencyKey: string
+  existingUrl?: string
+}> {
+  if (retryCount > 3) {
+    throw new Error("checkout_attempt_conflict")
+  }
+
+  const { data: existing, error: lookupError } = await supabaseAdmin
+    .from("stripe_checkout_attempts")
+    .select(
+      "author_id,user_id,plan,idempotency_key,stripe_session_id,status,expires_at"
+    )
+    .eq("author_id", authorId)
+    .maybeSingle()
+
+  if (lookupError) {
+    throw new Error("checkout_attempt_lookup_failed")
+  }
+
+  if (existing) {
+    const attempt = existing as CheckoutAttempt
+
+    if (attempt.stripe_session_id) {
+      const previousSession = await stripe.checkout.sessions.retrieve(
+        attempt.stripe_session_id
+      )
+
+      if (previousSession.status === "open" && previousSession.url) {
+        if (attempt.user_id !== userId || attempt.plan !== plan) {
+          throw new CheckoutInProgressError()
+        }
+
+        return {
+          idempotencyKey: attempt.idempotency_key,
+          existingUrl: previousSession.url,
+        }
+      }
+
+      if (previousSession.status === "complete") {
+        throw new CheckoutInProgressError()
+      }
+    }
+
+    const pendingAttemptIsCurrent =
+      !attempt.stripe_session_id &&
+      attempt.status === "pending" &&
+      new Date(attempt.expires_at).getTime() > Date.now()
+
+    if (pendingAttemptIsCurrent) {
+      if (attempt.user_id !== userId || attempt.plan !== plan) {
+        throw new CheckoutInProgressError()
+      }
+
+      return {
+        idempotencyKey: attempt.idempotency_key,
+      }
+    }
+
+    const newIdempotencyKey = crypto.randomUUID()
+    const { data: rotatedAttempt, error: rotateError } = await supabaseAdmin
+      .from("stripe_checkout_attempts")
+      .update({
+        user_id: userId,
+        plan,
+        idempotency_key: newIdempotencyKey,
+        stripe_session_id: null,
+        status: "pending",
+        expires_at: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .eq("author_id", authorId)
+      .eq("idempotency_key", attempt.idempotency_key)
+      .select("idempotency_key")
+      .maybeSingle()
+
+    if (rotateError) {
+      throw new Error("checkout_attempt_rotation_failed")
+    }
+
+    if (!rotatedAttempt) {
+      return prepareCheckoutAttempt(
+        authorId,
+        userId,
+        plan,
+        retryCount + 1
+      )
+    }
+
+    return {
+      idempotencyKey: rotatedAttempt.idempotency_key,
+    }
+  }
+
+  const idempotencyKey = crypto.randomUUID()
+  const { error: insertError } = await supabaseAdmin
+    .from("stripe_checkout_attempts")
+    .insert({
+      author_id: authorId,
+      user_id: userId,
+      plan,
+      idempotency_key: idempotencyKey,
+      status: "pending",
+      expires_at: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
+    })
+
+  if (insertError?.code === "23505") {
+    return prepareCheckoutAttempt(
+      authorId,
+      userId,
+      plan,
+      retryCount + 1
+    )
+  }
+
+  if (insertError) {
+    throw new Error("checkout_attempt_creation_failed")
+  }
+
+  return { idempotencyKey }
+}
+
 export async function POST(request: Request) {
 
   try {
@@ -214,6 +353,35 @@ export async function POST(request: Request) {
 
     }
 
+    const attempt = await prepareCheckoutAttempt(
+      authorId,
+      user.id,
+      plan
+    )
+
+    if (attempt.existingUrl) {
+      return NextResponse.json({
+        url: attempt.existingUrl
+      })
+    }
+
+    const {
+      data: customerPayments,
+      error: customerLookupError
+    } = await supabaseAdmin
+      .from("author_payments")
+      .select("stripe_customer_id")
+      .eq("author_id", authorId)
+      .not("stripe_customer_id", "is", null)
+      .limit(1)
+
+    if (customerLookupError) {
+      throw new Error("stripe_customer_lookup_failed")
+    }
+
+    const customerId =
+      customerPayments?.[0]?.stripe_customer_id ?? null
+
     const session =
       await stripe.checkout.sessions.create({
 
@@ -232,8 +400,16 @@ export async function POST(request: Request) {
 
         allow_promotion_codes: true,
 
-        customer_email:
-          user.email ?? undefined,
+        // Se comento porque crear un cliente nuevo en cada intento fragmentaba
+        // el historial y el portal de facturacion.
+        // customer_email: user.email ?? undefined,
+        ...(customerId
+          ? {
+            customer: customerId
+          }
+          : {
+            customer_email: user.email ?? undefined
+          }),
 
 
         metadata: {
@@ -257,7 +433,39 @@ export async function POST(request: Request) {
         cancel_url:
           `${process.env.NEXT_PUBLIC_SITE_URL}/authors/${authorSlug}?payment=cancelled`
 
+      }, {
+        idempotencyKey: attempt.idempotencyKey
       })
+
+    if (!session.url) {
+      throw new Error("checkout_url_missing")
+    }
+
+    const {
+      data: updatedAttempt,
+      error: attemptUpdateError
+    } = await supabaseAdmin
+      .from("stripe_checkout_attempts")
+      .update({
+        stripe_session_id: session.id,
+        status: "created",
+        expires_at: new Date(session.expires_at * 1000).toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .eq("author_id", authorId)
+      .eq("idempotency_key", attempt.idempotencyKey)
+      .select("author_id")
+      .maybeSingle()
+
+    if (attemptUpdateError || !updatedAttempt) {
+      try {
+        await stripe.checkout.sessions.expire(session.id)
+      } catch {
+        // Stripe will still reuse the same idempotency key for this attempt.
+      }
+
+      throw new Error("checkout_attempt_update_failed")
+    }
 
 
     return NextResponse.json({
@@ -268,6 +476,17 @@ export async function POST(request: Request) {
   // Se comento el tipo any porque el error no debe confiarse ni exponerse.
   // } catch (error: any) {
   } catch (error: unknown) {
+
+    if (error instanceof CheckoutInProgressError) {
+      return NextResponse.json(
+        {
+          error: "Ya existe un pago en proceso para este autor"
+        },
+        {
+          status: 409
+        }
+      )
+    }
 
     console.error(
       "Stripe checkout error:",
