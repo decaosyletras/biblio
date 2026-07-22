@@ -59,7 +59,7 @@ export async function POST(req: Request) {
                     <h2>Solicitud aprobada</h2>
 
                     <p>
-                        Tu solicitud para representar a ${authorName} en la Casa de Libros Indie ha sido aprobada.
+                        Tu solicitud para representar a ${authorName} en la Cas(z)a de Libros Indie ha sido aprobada.
                     </p>
 
                     <p>
