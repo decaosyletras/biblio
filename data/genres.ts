@@ -113,5 +113,14 @@ export const genresCatalog = [
       { id: "naturaleza", label: "Naturaleza" },
       { id: "social", label: "Social" },
     ],
+  },
+  {
+    id: "infantil",
+    label: "Infantil",
+    subgenres: [
+      { id: "cuento", label: "Cuento" },
+      { id: "fabula", label: "Fábula" },
+      { id: "educativo", label: "Educativo" },
+    ],
   }
 ]
