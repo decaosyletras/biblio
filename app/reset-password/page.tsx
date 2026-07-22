@@ -6,6 +6,31 @@ import Link from "next/link"
 import { supabase } from "@/lib/supabase"
 import { Eye, EyeOff } from "lucide-react"
 
+function getPasswordUpdateError(error: {
+  code?: string
+  name?: string
+}) {
+  switch (error.code) {
+    case "same_password":
+      return "La contrasena nueva debe ser diferente de la anterior."
+    case "weak_password":
+      return "La contrasena no cumple los requisitos de seguridad. Usa una combinacion mas larga con letras, numeros y simbolos."
+    case "reauthentication_needed":
+      return "Debes volver a verificar tu identidad antes de cambiar la contrasena."
+    case "session_not_found":
+    case "refresh_token_not_found":
+    case "refresh_token_already_used":
+      return "La sesion de recuperacion ya no es valida. Solicita un enlace nuevo."
+    default:
+      // AuthSessionMissingError puede originarse en el cliente sin codigo API.
+      if (error.name === "AuthSessionMissingError") {
+        return "La sesion de recuperacion ya no es valida. Solicita un enlace nuevo."
+      }
+
+      return "No se pudo actualizar la contrasena. Intentalo de nuevo."
+  }
+}
+
 export default function ResetPasswordPage() {
 
   const router = useRouter()
@@ -92,9 +117,12 @@ export default function ResetPasswordPage() {
     if (error) {
       // Se comento para no mostrar directamente errores internos de Supabase.
       // alert(error.message)
-      setFormError(
-        "No se pudo actualizar la contrasena. Solicita un enlace nuevo."
-      )
+      // Se comento porque trataba errores de fortaleza o reutilizacion como si
+      // el enlace de recuperacion hubiera expirado.
+      // setFormError(
+      //   "No se pudo actualizar la contrasena. Solicita un enlace nuevo."
+      // )
+      setFormError(getPasswordUpdateError(error))
       return
     }
 
@@ -155,10 +183,11 @@ export default function ResetPasswordPage() {
 
             <input
               type={showPassword ? "text" : "password"}
-              minLength={6}
+              minLength={8}
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              aria-describedby="password-help"
               placeholder="Nueva contraseña"
               className="
                 w-full
@@ -193,6 +222,14 @@ export default function ResetPasswordPage() {
             </button>
 
           </div>
+
+          <p
+            id="password-help"
+            className="text-xs leading-relaxed text-zinc-400"
+          >
+            Usa al menos 8 caracteres. Para mayor seguridad combina letras,
+            numeros y simbolos, y no reutilices tu contrasena anterior.
+          </p>
 
           <button
             disabled={loading}
