@@ -5,6 +5,33 @@ import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
+function getRegistrationError(error: {
+    code?: string
+    status?: number
+}) {
+    if (
+        error.status === 429 ||
+        error.code === "over_email_send_rate_limit" ||
+        error.code === "over_request_rate_limit"
+    ) {
+        return "Se han realizado demasiados intentos. Espera unos minutos e intentalo de nuevo."
+    }
+
+    switch (error.code) {
+        case "weak_password":
+            return "La contrasena no cumple los requisitos de seguridad. Usa una combinacion mas larga con letras, numeros y simbolos."
+        case "email_address_invalid":
+            return "El correo electronico no tiene un formato valido."
+        case "signup_disabled":
+            return "El registro de nuevas cuentas no esta disponible en este momento."
+        case "user_already_exists":
+            // Se mantiene generico para no revelar si un correo ya tiene cuenta.
+            return "No se pudo completar el registro. Revisa los datos e intentalo de nuevo."
+        default:
+            return "No se pudo completar el registro. Revisa los datos e intentalo de nuevo."
+    }
+}
+
 export default function RegisterPage() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -50,11 +77,14 @@ export default function RegisterPage() {
                     : "No se pudo completar el registro. Revisa los datos e intÃ©ntalo de nuevo."
             )
             */
-            setErrorMsg(
-                error.status === 429
-                    ? "Se han realizado demasiados intentos. Espera unos minutos e int\u00e9ntalo de nuevo."
-                    : "No se pudo completar el registro. Revisa los datos e int\u00e9ntalo de nuevo."
-            )
+            // Se comento porque solo distinguia el limite de intentos y ocultaba
+            // avisos utiles como contrasena debil o correo invalido.
+            // setErrorMsg(
+            //     error.status === 429
+            //         ? "Se han realizado demasiados intentos. Espera unos minutos e int\u00e9ntalo de nuevo."
+            //         : "No se pudo completar el registro. Revisa los datos e int\u00e9ntalo de nuevo."
+            // )
+            setErrorMsg(getRegistrationError(error))
             return
         }
 
@@ -124,11 +154,20 @@ export default function RegisterPage() {
                         className="w-full p-3 rounded bg-zinc-800 border border-zinc-700"
                         type="password"
                         required
-                        minLength={6}
+                        minLength={8}
                         placeholder="Contraseña"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        aria-describedby="register-password-help"
                     />
+
+                    <p
+                        id="register-password-help"
+                        className="text-xs leading-relaxed text-zinc-400"
+                    >
+                        Usa al menos 8 caracteres. Para mayor seguridad combina
+                        letras, numeros y simbolos.
+                    </p>
 
                     <label className="
                         flex
