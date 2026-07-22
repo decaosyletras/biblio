@@ -1,3 +1,11 @@
+/*
+ * Implementacion anterior conservada como referencia.
+ *
+ * Se comento completa porque este endpoint permitia consultar datos con el
+ * cliente administrativo y enviar correos sin validar sesion ni rol. El flujo
+ * seguro ahora vive en /api/admin/author-claims y este archivo solo responde
+ * que la ruta anterior fue retirada.
+ *
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
@@ -47,7 +55,7 @@ export async function POST(req: Request) {
 
     const emailResult = await resend.emails.send({
       from: "onboarding@resend.dev",
-      /*to: userData.user.email,*/
+      // to: userData.user.email,
       to: "marcos48151@gmail.com",
       subject:
         status === "approved"
@@ -104,4 +112,21 @@ export async function POST(req: Request) {
       { status: 500 }
     )
   }
+}
+*/
+
+import { NextResponse } from "next/server"
+
+export async function POST() {
+  return NextResponse.json(
+    {
+      error: "Este endpoint fue retirado"
+    },
+    {
+      status: 410,
+      headers: {
+        "Cache-Control": "no-store"
+      }
+    }
+  )
 }

@@ -4,6 +4,11 @@ import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 
+type ClaimAuthor = {
+    name: string
+    slug: string
+}
+
 type Claim = {
     id: string
     status: string
@@ -12,14 +17,26 @@ type Claim = {
     author_id: string
     proof_url?: string | null
     proof_notes?: string | null
+    /*
+     * Se comento porque Supabase puede devolver esta relacion como arreglo.
     authors: {
         name: string
         slug: string
     }
+    */
+    authors: ClaimAuthor | ClaimAuthor[]
     profile?: {
         username: string
         full_name: string | null
     }
+}
+
+type ClaimDecision = "approved" | "rejected"
+
+function getClaimAuthor(claim: Claim) {
+    return Array.isArray(claim.authors)
+        ? claim.authors[0]
+        : claim.authors
 }
 
 export default function AdminAuthorClaimsPage() {
@@ -27,6 +44,8 @@ export default function AdminAuthorClaimsPage() {
 
     const [claims, setClaims] = useState<Claim[]>([])
     const [loading, setLoading] = useState(true)
+    const [updatingClaimId, setUpdatingClaimId] = useState<string | null>(null)
+    const [actionError, setActionError] = useState("")
 
     useEffect(() => {
         const load = async () => {
@@ -77,14 +96,20 @@ export default function AdminAuthorClaimsPage() {
             }
 
             // Perfiles
-            const userIds = [...new Set(claimsData.map((c: any) => c.user_id))]
+            const safeClaims = (claimsData ?? []) as Claim[]
+
+            // Se comento porque any impedia validar el panel con ESLint.
+            // const userIds = [...new Set(claimsData.map((c: any) => c.user_id))]
+            const userIds = [...new Set(safeClaims.map((claim) => claim.user_id))]
 
             const { data: profiles } = await supabase
                 .from("profiles")
                 .select("id, username, full_name")
                 .in("id", userIds)
 
-            const enriched = claimsData.map((claim: any) => ({
+            // Se comento por la misma razon: safeClaims ya aporta el tipo Claim.
+            // const enriched = claimsData.map((claim: any) => ({
+            const enriched = safeClaims.map((claim) => ({
                 ...claim,
                 profile: profiles?.find((p) => p.id === claim.user_id),
             }))
@@ -96,6 +121,10 @@ export default function AdminAuthorClaimsPage() {
         load()
     }, [router])
 
+    /*
+     * Implementacion anterior conservada como referencia.
+     * Se comento porque modificaba reclamaciones y disparaba el correo
+     * directamente desde el navegador, sin una autorizacion de servidor.
     const approveClaim = async (claim: Claim) => {
         await supabase
             .from("author_claims")
@@ -170,6 +199,91 @@ export default function AdminAuthorClaimsPage() {
             )
         )
     }
+    */
+
+    const updateClaimStatus = async (
+        claim: Claim,
+        status: ClaimDecision
+    ) => {
+        setUpdatingClaimId(claim.id)
+        setActionError("")
+
+        try {
+            const response = await fetch("/api/admin/author-claims", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    claimId: claim.id,
+                    status,
+                }),
+            })
+
+            const result = await response
+                .json()
+                .catch(() => null) as {
+                    error?: string
+                    warning?: string
+                    emailSent?: boolean
+                } | null
+
+            if (!response.ok) {
+                throw new Error(
+                    result?.error ?? "No se pudo actualizar la solicitud"
+                )
+            }
+
+            setClaims((prev) =>
+                prev.map((currentClaim) => {
+                    if (
+                        status === "approved" &&
+                        currentClaim.author_id === claim.author_id
+                    ) {
+                        return {
+                            ...currentClaim,
+                            status:
+                                currentClaim.id === claim.id
+                                    ? "approved"
+                                    : "rejected",
+                        }
+                    }
+
+                    if (currentClaim.id === claim.id) {
+                        return {
+                            ...currentClaim,
+                            status,
+                        }
+                    }
+
+                    return currentClaim
+                })
+            )
+
+            if (result?.emailSent === false) {
+                setActionError(
+                    result.warning ??
+                    "La decision se guardo, pero no se pudo enviar la notificacion."
+                )
+            }
+        } catch (error) {
+            setActionError(
+                error instanceof Error
+                    ? error.message
+                    : "No se pudo actualizar la solicitud"
+            )
+        } finally {
+            setUpdatingClaimId(null)
+        }
+    }
+
+    const approveClaim = async (claim: Claim) => {
+        await updateClaimStatus(claim, "approved")
+    }
+
+    const rejectClaim = async (claim: Claim) => {
+        await updateClaimStatus(claim, "rejected")
+    }
 
     if (loading) {
         return (
@@ -187,6 +301,16 @@ export default function AdminAuthorClaimsPage() {
                     Panel de solicitudes de autores
                 </h1>
 
+                {actionError && (
+                    <div
+                        role="alert"
+                        aria-live="polite"
+                        className="mb-6 rounded-xl border border-yellow-500/30 bg-yellow-500/10 p-4 text-sm text-yellow-300"
+                    >
+                        {actionError}
+                    </div>
+                )}
+
                 <div className="space-y-4">
 
                     {claims.length === 0 && (
@@ -202,7 +326,10 @@ export default function AdminAuthorClaimsPage() {
                         >
                             <div>
                                 <p className="font-semibold text-lg">
-                                    {claim.authors?.name}
+                                    {/* Se comento porque la relacion tambien puede
+                                        llegar como arreglo desde Supabase. */}
+                                    {/* {claim.authors?.name} */}
+                                    {getClaimAuthor(claim)?.name}
                                 </p>
 
                                 <p className="text-zinc-400">
@@ -238,16 +365,22 @@ export default function AdminAuthorClaimsPage() {
                                     <>
                                         <button
                                             onClick={() => approveClaim(claim)}
-                                            className="rounded-xl bg-green-600 px-4 py-2 hover:bg-green-500"
+                                            disabled={updatingClaimId !== null}
+                                            className="rounded-xl bg-green-600 px-4 py-2 hover:bg-green-500 disabled:cursor-not-allowed disabled:opacity-50"
                                         >
-                                            Aprobar
+                                            {updatingClaimId === claim.id
+                                                ? "Guardando..."
+                                                : "Aprobar"}
                                         </button>
 
                                         <button
                                             onClick={() => rejectClaim(claim)}
-                                            className="rounded-xl bg-red-600 px-4 py-2 hover:bg-red-500"
+                                            disabled={updatingClaimId !== null}
+                                            className="rounded-xl bg-red-600 px-4 py-2 hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-50"
                                         >
-                                            Rechazar
+                                            {updatingClaimId === claim.id
+                                                ? "Guardando..."
+                                                : "Rechazar"}
                                         </button>
                                     </>
                                 )}
