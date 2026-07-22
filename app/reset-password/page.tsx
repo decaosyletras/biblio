@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { supabase } from "@/lib/supabase"
 import { Eye, EyeOff } from "lucide-react"
 
@@ -13,7 +14,13 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [ready, setReady] = useState(false)
+  const [sessionError, setSessionError] = useState("")
+  const [formError, setFormError] = useState("")
 
+  /*
+   * Flujo anterior conservado como referencia.
+   * Se comento porque buscaba tokens del flujo implicito en el hash. El nuevo
+   * callback verifica TokenHash en servidor y guarda la sesion en cookies.
   useEffect(() => {
     async function createSession() {
       const hash = window.location.hash
@@ -40,12 +47,41 @@ export default function ResetPasswordPage() {
 
     createSession()
   }, [])
+  */
+
+  useEffect(() => {
+    let active = true
+
+    async function verifyRecoverySession() {
+      const {
+        data: { user },
+        error
+      } = await supabase.auth.getUser()
+
+      if (!active) return
+
+      if (error || !user) {
+        setSessionError(
+          "El enlace de recuperacion no es valido, ha expirado o ya fue utilizado."
+        )
+      }
+
+      setReady(true)
+    }
+
+    verifyRecoverySession()
+
+    return () => {
+      active = false
+    }
+  }, [])
 
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
     setLoading(true)
+    setFormError("")
 
     const { error } = await supabase.auth.updateUser({
       password,
@@ -54,12 +90,20 @@ export default function ResetPasswordPage() {
     setLoading(false)
 
     if (error) {
-      alert(error.message)
+      // Se comento para no mostrar directamente errores internos de Supabase.
+      // alert(error.message)
+      setFormError(
+        "No se pudo actualizar la contrasena. Solicita un enlace nuevo."
+      )
       return
     }
 
     alert("Contraseña actualizada")
-    router.push("/login")
+    // Se comento porque router.push conservaba la sesion de recuperacion.
+    // router.push("/login")
+    await supabase.auth.signOut({ scope: "local" })
+    router.replace("/login")
+    router.refresh()
   }
 
 
@@ -67,6 +111,27 @@ export default function ResetPasswordPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-white">
         Cargando...
+      </div>
+    )
+  }
+
+  if (sessionError) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-white px-4">
+        <div className="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-900 p-8 text-center">
+          <h1 className="text-2xl font-bold">
+            Enlace no valido
+          </h1>
+          <p className="mt-4 text-zinc-400">
+            {sessionError}
+          </p>
+          <Link
+            href="/forgot-password"
+            className="mt-6 block text-blue-400 hover:underline"
+          >
+            Solicitar otro enlace
+          </Link>
+        </div>
       </div>
     )
   }
@@ -139,6 +204,16 @@ export default function ResetPasswordPage() {
           </button>
 
         </form>
+
+        {formError && (
+          <p
+            role="alert"
+            aria-live="polite"
+            className="mt-4 text-sm text-red-400"
+          >
+            {formError}
+          </p>
+        )}
 
       </div>
 

@@ -8,20 +8,36 @@ export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
+  const [errorMsg, setErrorMsg] = useState("")
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
     setLoading(true)
+    setErrorMsg("")
 
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/reset-password`
+    const normalizedEmail = email.trim().toLowerCase()
+
+    const { error } = await supabase.auth.resetPasswordForEmail(normalizedEmail, {
+      // Se comento porque el flujo anterior llevaba directamente al formulario
+      // y dependia de que el navegador recibiera una sesion implicita.
+      // redirectTo: `${window.location.origin}/reset-password`
+      //
+      // La plantilla de recuperacion usa este origen para construir el enlace
+      // hacia /auth/confirm con TokenHash y type=recovery.
+      redirectTo: window.location.origin
     })
 
     setLoading(false)
 
     if (error) {
-      alert(error.message)
+      // Se comento para no exponer mensajes internos del proveedor.
+      // alert(error.message)
+      setErrorMsg(
+        error.status === 429
+          ? "Se han realizado demasiados intentos. Espera unos minutos."
+          : "No se pudo enviar el enlace. Intentalo de nuevo."
+      )
       return
     }
 
@@ -76,6 +92,16 @@ export default function ForgotPasswordPage() {
             </button>
 
           </form>
+        )}
+
+        {errorMsg && (
+          <p
+            role="alert"
+            aria-live="polite"
+            className="mt-4 text-sm text-red-400"
+          >
+            {errorMsg}
+          </p>
         )}
 
       </div>
