@@ -126,10 +126,26 @@ export default function ResetPasswordPage() {
       return
     }
 
-    alert("Contraseña actualizada")
+    // Se comento para mostrar el exito solo despues de confirmar que todas las
+    // sesiones renovables quedaron revocadas.
+    // alert("Contraseña actualizada")
     // Se comento porque router.push conservaba la sesion de recuperacion.
     // router.push("/login")
-    await supabase.auth.signOut({ scope: "local" })
+    // Se comento porque "local" mantenia activas las sesiones abiertas en
+    // otros dispositivos o navegadores despues de recuperar la cuenta.
+    // await supabase.auth.signOut({ scope: "local" })
+    const { error: signOutError } = await supabase.auth.signOut({
+      scope: "global",
+    })
+
+    if (signOutError) {
+      setFormError(
+        "La contraseña se actualizó, pero no fue posible cerrar todas las sesiones. Intenta cerrar sesión nuevamente."
+      )
+      return
+    }
+
+    alert("Contraseña actualizada")
     router.replace("/login")
     router.refresh()
   }

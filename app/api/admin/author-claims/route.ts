@@ -23,6 +23,113 @@ function isClaimStatus(value: unknown): value is ClaimStatus {
   return value === "approved" || value === "rejected"
 }
 
+export async function GET() {
+  try {
+    const authClient = await createClient()
+    const {
+      data: { user },
+      error: authError
+    } = await authClient.auth.getUser()
+
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: "No autenticado" },
+        { status: 401 }
+      )
+    }
+
+    // La lista administrativa se consulta con el cliente de servidor solamente
+    // despues de comprobar el rol. Asi la evidencia no se expone mediante una
+    // consulta directa desde el navegador.
+    const { data: adminProfile, error: profileError } = await supabaseAdmin
+      .from("profiles")
+      .select("admin")
+      .eq("id", user.id)
+      .maybeSingle()
+
+    if (profileError || !adminProfile?.admin) {
+      return NextResponse.json(
+        { error: "No autorizado" },
+        { status: 403 }
+      )
+    }
+
+    const { data: claims, error: claimsError } = await supabaseAdmin
+      .from("author_claims")
+      .select(`
+        id,
+        status,
+        created_at,
+        user_id,
+        author_id,
+        proof_url,
+        proof_notes,
+        authors (
+          name,
+          slug
+        )
+      `)
+      .order("created_at", { ascending: false })
+
+    if (claimsError) {
+      return NextResponse.json(
+        { error: "No se pudieron cargar las solicitudes" },
+        { status: 500 }
+      )
+    }
+
+    const safeClaims = claims ?? []
+    const userIds = [
+      ...new Set(safeClaims.map((claim) => claim.user_id))
+    ]
+
+    let profiles: Array<{
+      id: string
+      username: string
+      full_name: string | null
+    }> = []
+
+    if (userIds.length > 0) {
+      const { data: profileRows, error: profilesError } = await supabaseAdmin
+        .from("profiles")
+        .select("id, username, full_name")
+        .in("id", userIds)
+
+      if (profilesError) {
+        return NextResponse.json(
+          { error: "No se pudieron cargar las solicitudes" },
+          { status: 500 }
+        )
+      }
+
+      profiles = profileRows ?? []
+    }
+
+    const profileById = new Map(
+      profiles.map((profile) => [profile.id, profile])
+    )
+
+    return NextResponse.json(
+      {
+        claims: safeClaims.map((claim) => ({
+          ...claim,
+          profile: profileById.get(claim.user_id)
+        }))
+      },
+      {
+        headers: {
+          "Cache-Control": "no-store"
+        }
+      }
+    )
+  } catch {
+    return NextResponse.json(
+      { error: "Error cargando las solicitudes" },
+      { status: 500 }
+    )
+  }
+}
+
 export async function POST(req: Request) {
   try {
     // Evita que otro origen intente ejecutar una accion administrativa usando

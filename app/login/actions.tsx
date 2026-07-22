@@ -8,7 +8,10 @@ export async function loginAction(
 ) {
   const supabase = await createClient()
 
-  const { data, error } =
+  // Se comento porque data no se utilizaba y generaba una advertencia; para
+  // este flujo solo hace falta saber si Supabase devolvio un error.
+  // const { data, error } =
+  const { error } =
     await supabase.auth.signInWithPassword({
       email,
       password
@@ -16,7 +19,10 @@ export async function loginAction(
 
   if (error) {
     return {
-      error: error.message
+      // Se comento para no devolver al navegador mensajes internos del
+      // proveedor, que podrian revelar detalles innecesarios del login.
+      // error: error.message
+      error: "Correo o contraseña incorrectos"
     }
   }
 

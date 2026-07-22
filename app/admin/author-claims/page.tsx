@@ -1,7 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { supabase } from "@/lib/supabase"
+// Se comento porque el panel ya no consulta Supabase directamente desde el
+// navegador. La sesion, el rol y los datos sensibles se validan en el servidor.
+// import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 
 type ClaimAuthor = {
@@ -47,6 +49,10 @@ export default function AdminAuthorClaimsPage() {
     const [updatingClaimId, setUpdatingClaimId] = useState<string | null>(null)
     const [actionError, setActionError] = useState("")
 
+    /*
+     * Implementacion anterior conservada como referencia.
+     * Se comento porque confiaba al navegador la lectura del rol, las
+     * reclamaciones, las evidencias y los perfiles de otros usuarios.
     useEffect(() => {
         const load = async () => {
             setLoading(true)
@@ -116,6 +122,59 @@ export default function AdminAuthorClaimsPage() {
 
             setClaims(enriched as Claim[])
             setLoading(false)
+        }
+
+        load()
+    }, [router])
+    */
+
+    useEffect(() => {
+        const load = async () => {
+            setLoading(true)
+            setActionError("")
+
+            try {
+                const response = await fetch("/api/admin/author-claims", {
+                    method: "GET",
+                    cache: "no-store",
+                })
+
+                const result = await response
+                    .json()
+                    .catch(() => null) as {
+                        claims?: Claim[]
+                        error?: string
+                    } | null
+
+                if (response.status === 401) {
+                    setLoading(false)
+                    router.replace("/login")
+                    return
+                }
+
+                if (response.status === 403) {
+                    setLoading(false)
+                    router.replace("/")
+                    return
+                }
+
+                if (!response.ok) {
+                    throw new Error(
+                        result?.error ?? "No se pudieron cargar las solicitudes"
+                    )
+                }
+
+                setClaims(result?.claims ?? [])
+            } catch (error) {
+                setClaims([])
+                setActionError(
+                    error instanceof Error
+                        ? error.message
+                        : "No se pudieron cargar las solicitudes"
+                )
+            } finally {
+                setLoading(false)
+            }
         }
 
         load()
