@@ -258,7 +258,7 @@ export default function MePage() {
 
                             <p className="text-zinc-400">
                                 Todavía no has reclamado ningún autor. Si ya has registrado tus libros
-                                en la Casa de Libros Indie, búscalos en el catálogo y reclama tu perfil
+                                en la Cas(z)a de Libros Indie, búscalos en el catálogo y reclama tu perfil
                                 para empezar a gestionar tu página de autor.
                             </p>
 
@@ -271,7 +271,7 @@ export default function MePage() {
 
                             <div className="border-t border-zinc-800 pt-5">
                                 <p className="text-zinc-400">
-                                    ¿Aún no tienes ningún libro registrado en la Casa de Libros Indie?
+                                    ¿Aún no tienes ningún libro registrado en la Cas(z)a de Libros Indie?
                                 </p>
 
                                 <Link

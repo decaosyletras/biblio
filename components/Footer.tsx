@@ -31,10 +31,10 @@ export default function Footer() {
           {/* BRAND */}
           <div>
             <p className="text-zinc-200 font-medium">
-              Casa de libros Indie
+              Cas(z)a de libros Indie
             </p>
             <p className="text-xs text-zinc-500 mt-1">
-              “Donde cazamos historias independientes”
+              “Un hogar para historias. Una cacería de libros únicos.”
             </p>
           </div>
 
@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
 
         <p className="mt-10 text-center text-xs text-zinc-600">
-          © 2026 Casa de libros Indie. Todos los derechos reservados.
+          © 2026 Cas(z)a de libros Indie. Todos los derechos reservados.
         </p>
 
       </div>
