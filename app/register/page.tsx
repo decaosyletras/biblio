@@ -32,15 +32,15 @@ export default function RegisterPage() {
             password,
         })
 
-        // Se comentÃ³ aquÃ­ porque el registro aÃºn debe guardar el consentimiento.
-        // Mantener el estado de carga evita que el formulario se envÃ­e dos veces.
+        // Se comento aqui porque el registro aun debe guardar el consentimiento.
+        // Mantener el estado de carga evita que el formulario se envie dos veces.
         // setLoading(false)
 
         if (error) {
             setLoading(false)
 
-            // Se comentÃ³ para no exponer mensajes internos de Supabase ni facilitar
-            // la enumeraciÃ³n de cuentas desde la interfaz.
+            // Se comento para no exponer mensajes internos de Supabase ni facilitar
+            // la enumeracion de cuentas desde la interfaz.
             // alert(error.message)
             /* Se conserva comentado el mensaje anterior porque quedo con una
                codificacion incorrecta durante el primer intento de parche.
@@ -78,7 +78,7 @@ export default function RegisterPage() {
         if (!response.ok) {
             setLoading(false)
 
-            // Se comentÃ³ para evitar mostrar directamente detalles devueltos por la API.
+            // Se comento para evitar mostrar directamente detalles devueltos por la API.
             // alert(result.error)
             /* Se conserva comentado el mensaje anterior porque quedo con una
                codificacion incorrecta durante el primer intento de parche.
@@ -90,8 +90,8 @@ export default function RegisterPage() {
 
         setLoading(false)
 
-        // Se comentÃ³ para que el correo no quede expuesto en la URL, el historial
-        // del navegador, registros de acceso o herramientas de analÃ­tica.
+        // Se comento para que el correo no quede expuesto en la URL, el historial
+        // del navegador, registros de acceso o herramientas de analitica.
         // router.push(
         //     `/register/success?email=${encodeURIComponent(normalizedEmail)}`
         // )
