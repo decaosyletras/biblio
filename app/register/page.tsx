@@ -54,9 +54,24 @@ export default function RegisterPage() {
 
         const normalizedEmail = email.trim().toLowerCase()
 
+        /*
+         * Implementacion anterior conservada como referencia.
+         * Se extraia data para enviar data.user.id a un endpoint publico.
         const { data, error } = await supabase.auth.signUp({
             email: normalizedEmail,
             password,
+        })
+        */
+
+        const { error } = await supabase.auth.signUp({
+            email: normalizedEmail,
+            password,
+            options: {
+                emailRedirectTo: window.location.origin,
+                data: {
+                    accepted_terms: aceptaTerminos,
+                },
+            },
         })
 
         // Se comento aqui porque el registro aun debe guardar el consentimiento.
@@ -88,6 +103,11 @@ export default function RegisterPage() {
             return
         }
 
+        /*
+         * Flujo anterior conservado como referencia.
+         * Se comento porque enviaba un user_id controlado por el navegador a
+         * un endpoint publico. El consentimiento ahora se guarda en servidor
+         * despues de confirmar el correo y verificar la identidad.
         const response = await fetch("/api/user-consents", {
             method: "POST",
             headers: {
@@ -110,13 +130,13 @@ export default function RegisterPage() {
 
             // Se comento para evitar mostrar directamente detalles devueltos por la API.
             // alert(result.error)
-            /* Se conserva comentado el mensaje anterior porque quedo con una
-               codificacion incorrecta durante el primer intento de parche.
-            setErrorMsg("La cuenta se creÃ³, pero no pudimos guardar el consentimiento. IntÃ©ntalo de nuevo.")
-            */
+            // Se conserva comentado el mensaje anterior porque quedo con una
+            // codificacion incorrecta durante el primer intento de parche.
+            // setErrorMsg("La cuenta se creÃ³, pero no pudimos guardar el consentimiento. IntÃ©ntalo de nuevo.")
             setErrorMsg("La cuenta se cre\u00f3, pero no pudimos guardar el consentimiento. Contacta con soporte.")
             return
         }
+        */
 
         setLoading(false)
 

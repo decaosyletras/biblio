@@ -1,3 +1,10 @@
+/*
+ * Implementacion anterior conservada como referencia.
+ *
+ * Se comento completa porque aceptaba user_id desde el navegador y permitia
+ * atribuir consentimientos sin verificar la identidad. El consentimiento ahora
+ * se registra en /auth/confirm despues de verificar TokenHash.
+ *
 import { createClient } from "@supabase/supabase-js"
 import { NextResponse } from "next/server"
 
@@ -82,4 +89,21 @@ export async function POST(req: Request) {
 
   }
 
+}
+*/
+
+import { NextResponse } from "next/server"
+
+export async function POST() {
+  return NextResponse.json(
+    {
+      error: "Este endpoint fue retirado"
+    },
+    {
+      status: 410,
+      headers: {
+        "Cache-Control": "no-store"
+      }
+    }
+  )
 }
