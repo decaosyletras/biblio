@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import Stripe from "stripe"
 import { createClient } from "@/lib/supabase-server"
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
 const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY!
@@ -11,6 +12,15 @@ const PRICE_IDS = {
   quarterly: process.env.STRIPE_PRICE_QUARTERLY!,
   semiannual: process.env.STRIPE_PRICE_SEMIANNUAL!
 }
+
+type AuthorRelation =
+  | {
+    slug?: string | null
+  }
+  | Array<{
+    slug?: string | null
+  }>
+  | null
 
 export async function POST(request: Request) {
 
@@ -111,15 +121,27 @@ export async function POST(request: Request) {
 
     }
 
-    const { data: existingPayment } =
-      await supabase
+    // Se comento porque author_payments ya no debe ser legible directamente
+    // por clientes autenticados. La identidad y propiedad ya se validaron.
+    // const { data: existingPayment } =
+    //   await supabase
+    const { data: existingPayment, error: existingPaymentError } =
+      await supabaseAdmin
         .from("author_payments")
         .select(
-          "stripe_subscription_id"
+          "stripe_subscription_id,status"
         )
         .eq(
           "author_id",
           authorId
+        )
+        .in(
+          "status",
+          [
+            "active",
+            "trialing",
+            "past_due"
+          ]
         )
         .not(
           "stripe_subscription_id",
@@ -127,6 +149,17 @@ export async function POST(request: Request) {
           null
         )
         .maybeSingle()
+
+    if (existingPaymentError) {
+      return NextResponse.json(
+        {
+          error: "No se pudo verificar la suscripcion"
+        },
+        {
+          status: 500
+        }
+      )
+    }
 
     if (existingPayment?.stripe_subscription_id) {
 
@@ -161,8 +194,11 @@ export async function POST(request: Request) {
 
     }
 
-    const authorSlug =
-      (claim.authors as any)?.slug
+    // Se comento porque any evitaba validar la forma real de la relacion.
+    // const authorSlug = (claim.authors as any)?.slug
+    const authors = claim.authors as unknown as AuthorRelation
+    const author = Array.isArray(authors) ? authors[0] : authors
+    const authorSlug = author?.slug
 
 
     if (!authorSlug) {
@@ -229,7 +265,9 @@ export async function POST(request: Request) {
     })
 
 
-  } catch (error: any) {
+  // Se comento el tipo any porque el error no debe confiarse ni exponerse.
+  // } catch (error: any) {
+  } catch (error: unknown) {
 
     console.error(
       "Stripe checkout error:",
@@ -238,8 +276,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        error: error.message ??
-          "Error creando checkout"
+        // Se comento para no exponer mensajes internos del proveedor.
+        // error: error.message ?? "Error creando checkout"
+        error: "Error creando checkout"
       },
       {
         status: 500

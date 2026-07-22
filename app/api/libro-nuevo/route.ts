@@ -199,7 +199,11 @@ export async function POST(req: Request) {
         .insert({
           name: autor,
           slug,
-          normalized_name: normalized
+          normalized_name: normalized,
+          // Los autores creados por el formulario publico siempre comienzan
+          // sin beneficios de pago. Solo el webhook puede activar PRO.
+          pro: false,
+          pro_until: null
         })
         .select("id")
         .single()
@@ -228,7 +232,11 @@ export async function POST(req: Request) {
         .insert({
           name: autor,
           slug,
-          normalized_name: normalized
+          normalized_name: normalized,
+          // Los autores creados por el formulario publico siempre comienzan
+          // sin beneficios de pago. Solo el webhook puede activar PRO.
+          pro: false,
+          pro_until: null
         })
         .select("id")
         .single()

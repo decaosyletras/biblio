@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import Stripe from "stripe"
 import { createClient } from "@/lib/supabase-server"
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
 const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY!
@@ -49,6 +50,9 @@ export async function POST(
 
 
 
+    /*
+     * Implementacion anterior conservada como referencia.
+     * Se comento porque consultaba author_payments con el cliente de sesion.
     const {
       data: payment
     } =
@@ -70,6 +74,41 @@ export async function POST(
           "active"
         )
         .maybeSingle()
+    */
+
+    const {
+      data: payment,
+      error: paymentError
+    } =
+      await supabaseAdmin
+        .from("author_payments")
+        .select(
+          "stripe_customer_id"
+        )
+        .eq(
+          "author_id",
+          authorId
+        )
+        .eq(
+          "user_id",
+          user.id
+        )
+        .eq(
+          "status",
+          "active"
+        )
+        .maybeSingle()
+
+    if (paymentError) {
+      return NextResponse.json(
+        {
+          error: "No se pudo verificar la suscripcion"
+        },
+        {
+          status: 500
+        }
+      )
+    }
 
 
 
@@ -108,11 +147,15 @@ export async function POST(
     })
 
 
-  } catch (error: any) {
+  // Se comento el tipo any porque el error no debe confiarse ni exponerse.
+  // } catch (error: any) {
+  } catch {
 
     return NextResponse.json(
       {
-        error: error.message
+        // Se comento para no devolver detalles internos del proveedor.
+        // error: error.message
+        error: "No se pudo abrir la gestion PRO"
       },
       {
         status: 500

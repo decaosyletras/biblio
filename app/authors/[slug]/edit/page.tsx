@@ -244,7 +244,9 @@ export default function EditAuthorPage() {
                     image: newsImageUrl
                 }
                 : null
-            data.news_updated_at = new Date().toISOString()
+            // Se comento porque la fecha de actualizacion ya la genera el
+            // servidor y no debe confiarse en un valor enviado por el cliente.
+            // data.news_updated_at = new Date().toISOString()
 
             data.theme = author.theme ?? {
                 mode: "dark",
@@ -258,11 +260,42 @@ export default function EditAuthorPage() {
         }
 
         // 👇 AQUÍ
+        /*
+         * Implementacion anterior conservada como referencia.
+         * Se comento porque actualizaba directamente la tabla authors desde el
+         * navegador y permitia intentar modificar columnas reservadas como PRO.
         const { data: updated, error } = await supabase
             .from("authors")
             .update(data)
             .eq("id", author.id)
             .select()
+        */
+
+        const updateResponse = await fetch("/api/authors/update", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                authorId: author.id,
+                updates: data
+            })
+        })
+
+        const updateResult = await updateResponse
+            .json()
+            .catch(() => null) as {
+                error?: string
+            } | null
+
+        if (!updateResponse.ok) {
+            setSaving(false)
+            alert(
+                updateResult?.error ??
+                "No se pudo actualizar el autor"
+            )
+            return
+        }
 
         if (
             originalNewsImage &&
