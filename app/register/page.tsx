@@ -10,11 +10,13 @@ export default function RegisterPage() {
     const [password, setPassword] = useState("")
     const [aceptaTerminos, setAceptaTerminos] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
 
     const router = useRouter()
 
     const register = async (e: React.FormEvent) => {
         e.preventDefault()
+        setErrorMsg("")
 
         if (!aceptaTerminos) {
             alert("Debes aceptar la Política de Privacidad y los Términos de Uso")
@@ -23,15 +25,36 @@ export default function RegisterPage() {
 
         setLoading(true)
 
+        const normalizedEmail = email.trim().toLowerCase()
+
         const { data, error } = await supabase.auth.signUp({
-            email,
+            email: normalizedEmail,
             password,
         })
 
-        setLoading(false)
+        // Se comentÃ³ aquÃ­ porque el registro aÃºn debe guardar el consentimiento.
+        // Mantener el estado de carga evita que el formulario se envÃ­e dos veces.
+        // setLoading(false)
 
         if (error) {
-            alert(error.message)
+            setLoading(false)
+
+            // Se comentÃ³ para no exponer mensajes internos de Supabase ni facilitar
+            // la enumeraciÃ³n de cuentas desde la interfaz.
+            // alert(error.message)
+            /* Se conserva comentado el mensaje anterior porque quedo con una
+               codificacion incorrecta durante el primer intento de parche.
+            setErrorMsg(
+                error.status === 429
+                    ? "Se han realizado demasiados intentos. Espera unos minutos e intÃ©ntalo de nuevo."
+                    : "No se pudo completar el registro. Revisa los datos e intÃ©ntalo de nuevo."
+            )
+            */
+            setErrorMsg(
+                error.status === 429
+                    ? "Se han realizado demasiados intentos. Espera unos minutos e int\u00e9ntalo de nuevo."
+                    : "No se pudo completar el registro. Revisa los datos e int\u00e9ntalo de nuevo."
+            )
             return
         }
 
@@ -47,17 +70,32 @@ export default function RegisterPage() {
         })
 
 
-        const result = await response.json()
+        // Se comento porque ya no se muestra directamente el detalle interno
+        // devuelto por la API de consentimientos.
+        // const result = await response.json()
 
 
         if (!response.ok) {
-            alert(result.error)
+            setLoading(false)
+
+            // Se comentÃ³ para evitar mostrar directamente detalles devueltos por la API.
+            // alert(result.error)
+            /* Se conserva comentado el mensaje anterior porque quedo con una
+               codificacion incorrecta durante el primer intento de parche.
+            setErrorMsg("La cuenta se creÃ³, pero no pudimos guardar el consentimiento. IntÃ©ntalo de nuevo.")
+            */
+            setErrorMsg("La cuenta se cre\u00f3, pero no pudimos guardar el consentimiento. Contacta con soporte.")
             return
         }
 
-        router.push(
-            `/register/success?email=${encodeURIComponent(email)}`
-        )
+        setLoading(false)
+
+        // Se comentÃ³ para que el correo no quede expuesto en la URL, el historial
+        // del navegador, registros de acceso o herramientas de analÃ­tica.
+        // router.push(
+        //     `/register/success?email=${encodeURIComponent(normalizedEmail)}`
+        // )
+        router.push("/register/success")
     }
 
     return (
@@ -141,6 +179,16 @@ export default function RegisterPage() {
                     </button>
 
                 </form>
+
+                {errorMsg && (
+                    <p
+                        role="alert"
+                        aria-live="polite"
+                        className="mt-4 text-sm text-red-400"
+                    >
+                        {errorMsg}
+                    </p>
+                )}
 
                 <p className="text-sm text-zinc-400 mt-4">
                     ¿Ya tienes cuenta?{" "}
