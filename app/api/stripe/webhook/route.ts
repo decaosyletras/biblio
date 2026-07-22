@@ -552,9 +552,16 @@ async function syncSubscription(
     throw new Error("payment_sync_failed")
   }
 
-  const grantsPro =
-    subscription.status === "active" ||
-    subscription.status === "trialing"
+  // Se comento porque past_due representa una recuperacion de pago y no debe
+  // retirar PRO mientras Stripe sigue intentando cobrar.
+  // const grantsPro =
+  //   subscription.status === "active" ||
+  //   subscription.status === "trialing"
+  const grantsPro = [
+    "active",
+    "trialing",
+    "past_due",
+  ].includes(subscription.status)
 
   const { error: authorError } = await supabaseAdmin
     .from("authors")

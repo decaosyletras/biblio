@@ -20,7 +20,13 @@ export default function ProCheckoutButton({
   const [loading, setLoading] =
     useState(false)
 
+  const [errorMessage, setErrorMessage] =
+    useState("")
 
+
+  /*
+   * Implementacion anterior conservada como referencia.
+   * Se comento porque no controlaba errores de red ni respuestas no JSON.
   async function startProCheckout() {
 
     setLoading(true)
@@ -63,13 +69,69 @@ export default function ProCheckoutButton({
     setLoading(false)
 
   }
+  */
+
+  async function startProCheckout() {
+    setLoading(true)
+    setErrorMessage("")
+
+    try {
+      const response = await fetch(
+        "/api/stripe/create-checkout",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            authorId,
+            plan
+          })
+        }
+      )
+
+      const data = await response
+        .json()
+        .catch(() => null) as {
+          url?: string
+          error?: string
+        } | null
+
+      if (!response.ok || !data?.url) {
+        throw new Error(
+          data?.error ??
+          "No se pudo iniciar el pago"
+        )
+      }
+
+      window.location.assign(data.url)
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "No se pudo iniciar el pago"
+      )
+    } finally {
+      setLoading(false)
+    }
+  }
 
 
   return (
     <div className="flex flex-col gap-3">
 
+      {errorMessage && (
+        <p
+          role="alert"
+          className="text-sm text-red-400"
+        >
+          {errorMessage}
+        </p>
+      )}
+
       <select
         value={plan}
+        disabled={loading}
         onChange={(e) =>
           setPlan(
             e.target.value as

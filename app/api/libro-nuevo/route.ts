@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js"
 import { NextResponse } from "next/server"
 import { createClient as createServerClient } from "@/lib/supabase-server"
+import { enforceRateLimit } from "@/lib/server-rate-limit"
 
 
 const supabase = createClient(
@@ -71,7 +72,46 @@ async function createUniqueBookSlug(title: string) {
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json()
+    const contentLength = Number(
+      req.headers.get("content-length") ?? 0
+    )
+
+    if (contentLength > 100000) {
+      return NextResponse.json(
+        {
+          error: "Solicitud demasiado grande"
+        },
+        {
+          status: 413
+        }
+      )
+    }
+
+    let body: unknown
+
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json(
+        {
+          error: "Solicitud invalida"
+        },
+        {
+          status: 400
+        }
+      )
+    }
+
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return NextResponse.json(
+        {
+          error: "Solicitud invalida"
+        },
+        {
+          status: 400
+        }
+      )
+    }
 
     const forwarded = req.headers.get("x-forwarded-for")
 
@@ -130,6 +170,36 @@ export async function POST(req: Request) {
       ownedAuthorId = ownedClaim?.author_id ?? null
     }
 
+    try {
+      const allowed = await enforceRateLimit({
+        request: req,
+        namespace: "public-book-submission",
+        subject: user?.id ?? ip,
+        limit: 12,
+        windowSeconds: 60 * 60,
+      })
+
+      if (!allowed) {
+        return NextResponse.json(
+          {
+            error: "Demasiados envios. Intenta nuevamente mas tarde."
+          },
+          {
+            status: 429
+          }
+        )
+      }
+    } catch {
+      return NextResponse.json(
+        {
+          error: "No se pudo validar la solicitud"
+        },
+        {
+          status: 500
+        }
+      )
+    }
+
 
     const {
       titulo,
@@ -143,9 +213,19 @@ export async function POST(req: Request) {
       tags,
       useExistingAuthor,
       aceptaTerminos
-    } = body
+    } = body as Record<string, unknown>
 
-    if (!titulo || !autor) {
+    // Se comento porque solo comprobaba valores truthy y aceptaba tipos
+    // inesperados enviados directamente a la API.
+    // if (!titulo || !autor) {
+    if (
+      typeof titulo !== "string" ||
+      typeof autor !== "string" ||
+      titulo.trim().length === 0 ||
+      autor.trim().length === 0 ||
+      titulo.length > 300 ||
+      autor.length > 300
+    ) {
       return NextResponse.json(
         {
           error: "Faltan tÃ­tulo o autor"
@@ -156,7 +236,9 @@ export async function POST(req: Request) {
       )
     }
 
-    if (!aceptaTerminos) {
+    // Se comento porque cualquier valor truthy podia contar como consentimiento.
+    // if (!aceptaTerminos) {
+    if (aceptaTerminos !== true) {
       return NextResponse.json(
         {
           error: "Debes aceptar la PolÃ­tica de Privacidad"
@@ -211,7 +293,9 @@ export async function POST(req: Request) {
       if (error) {
         return NextResponse.json(
           {
-            error: error.message
+            // Se comento para no devolver detalles internos de la base de datos.
+            // error: error.message
+            error: "No se pudo crear el autor"
           },
           {
             status: 400
@@ -244,7 +328,9 @@ export async function POST(req: Request) {
       if (error) {
         return NextResponse.json(
           {
-            error: error.message
+            // Se comento para no devolver detalles internos de la base de datos.
+            // error: error.message
+            error: "No se pudo crear el autor"
           },
           {
             status: 400
@@ -348,7 +434,9 @@ export async function POST(req: Request) {
     return NextResponse.json({
       success: true
     })
-  } catch (error) {
+  // Se comento el parametro porque no se utiliza y no debe exponerse.
+  // } catch (error) {
+  } catch {
 
     return NextResponse.json(
       {

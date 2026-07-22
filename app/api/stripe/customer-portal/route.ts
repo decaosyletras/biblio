@@ -2,10 +2,14 @@ import { NextResponse } from "next/server"
 import Stripe from "stripe"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
+import { enforceRateLimit } from "@/lib/server-rate-limit"
 
 const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY!
 )
+
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
 
 export async function POST(
@@ -40,13 +44,81 @@ export async function POST(
     }
 
 
-    const body =
-      await request.json()
+    const origin = request.headers.get("origin")
+    const requestOrigin = new URL(request.url).origin
+
+    if (origin && origin !== requestOrigin) {
+      return NextResponse.json(
+        { error: "Solicitud no autorizada" },
+        { status: 403 }
+      )
+    }
+
+    const contentLength = Number(
+      request.headers.get("content-length") ?? 0
+    )
+
+    if (contentLength > 5000) {
+      return NextResponse.json(
+        { error: "Solicitud demasiado grande" },
+        { status: 413 }
+      )
+    }
+
+    try {
+      const allowed = await enforceRateLimit({
+        request,
+        namespace: "stripe-portal",
+        subject: user.id,
+        limit: 20,
+        windowSeconds: 10 * 60,
+      })
+
+      if (!allowed) {
+        return NextResponse.json(
+          { error: "Demasiados intentos. Intenta nuevamente mas tarde." },
+          { status: 429 }
+        )
+      }
+    } catch {
+      return NextResponse.json(
+        { error: "No se pudo validar la solicitud" },
+        { status: 500 }
+      )
+    }
+
+    let body: unknown
+
+    try {
+      body = await request.json()
+    } catch {
+      return NextResponse.json(
+        { error: "Solicitud invalida" },
+        { status: 400 }
+      )
+    }
+
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return NextResponse.json(
+        { error: "Solicitud invalida" },
+        { status: 400 }
+      )
+    }
 
 
     const {
       authorId
-    } = body
+    } = body as Record<string, unknown>
+
+    if (
+      typeof authorId !== "string" ||
+      !UUID_PATTERN.test(authorId)
+    ) {
+      return NextResponse.json(
+        { error: "Datos invalidos" },
+        { status: 400 }
+      )
+    }
 
 
 
@@ -93,9 +165,19 @@ export async function POST(
           "user_id",
           user.id
         )
-        .eq(
+        // Se comento porque limitar el portal a active impedia que un cliente
+        // con pago en recuperacion actualizara su metodo de pago.
+        // .eq(
+        //   "status",
+        //   "active"
+        // )
+        .in(
           "status",
-          "active"
+          [
+            "active",
+            "trialing",
+            "past_due"
+          ]
         )
         .maybeSingle()
 
