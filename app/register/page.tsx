@@ -4,6 +4,7 @@ import { useState } from "react"
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { Eye, EyeOff } from "lucide-react"
 
 function getRegistrationError(error: {
     code?: string
@@ -35,6 +36,7 @@ function getRegistrationError(error: {
 export default function RegisterPage() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
     const [aceptaTerminos, setAceptaTerminos] = useState(false)
     const [loading, setLoading] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
@@ -170,9 +172,10 @@ export default function RegisterPage() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
 
+                    <div className="relative">
                     <input
-                        className="w-full p-3 rounded bg-zinc-800 border border-zinc-700"
-                        type="password"
+                        className="w-full p-3 pr-12 rounded bg-zinc-800 border border-zinc-700"
+                        type={showPassword ? "text" : "password"}
                         required
                         minLength={8}
                         placeholder="Contraseña"
@@ -180,6 +183,22 @@ export default function RegisterPage() {
                         onChange={(e) => setPassword(e.target.value)}
                         aria-describedby="register-password-help"
                     />
+
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword((current) => !current)}
+                        aria-label={
+                            showPassword
+                                ? "Ocultar contrasena"
+                                : "Mostrar contrasena"
+                        }
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 transition hover:text-white"
+                    >
+                        {showPassword
+                            ? <EyeOff size={20} />
+                            : <Eye size={20} />}
+                    </button>
+                    </div>
 
                     <p
                         id="register-password-help"
