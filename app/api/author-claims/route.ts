@@ -30,6 +30,32 @@ export async function POST(req: Request) {
       )
     }
 
+    // Una cuenta solo puede gestionar un perfil de autor. Esta validacion en
+    // servidor evita eludir el bloqueo de la interfaz con peticiones directas.
+    const { data: activeClaim, error: activeClaimError } = await supabaseAdmin
+      .from("author_claims")
+      .select("id")
+      .eq("user_id", user.id)
+      .in("status", ["pending", "approved"])
+      .limit(1)
+      .maybeSingle()
+
+    if (activeClaimError) {
+      return NextResponse.json(
+        { error: "No se pudo verificar tu reclamacion actual" },
+        { status: 500 }
+      )
+    }
+
+    if (activeClaim) {
+      return NextResponse.json(
+        {
+          error: "Tu cuenta ya tiene una reclamacion pendiente o aprobada"
+        },
+        { status: 409 }
+      )
+    }
+
     const body = await req.json()
 
     const forwarded = req.headers.get("x-forwarded-for")

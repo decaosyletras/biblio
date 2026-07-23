@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
+const resendFromMail = process.env.RESEND_FROM_MAIL
 
 const CLAIM_ID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
@@ -282,8 +283,20 @@ export async function POST(req: Request) {
     const authorName = author?.name?.trim() || "el autor"
     const approved = updatedClaim.status === "approved"
 
+    if (!resendFromMail) {
+      return NextResponse.json({
+        success: true,
+        status: updatedClaim.status,
+        emailSent: false,
+        warning: "La decision se guardo, pero falta configurar el remitente de correo"
+      })
+    }
+
     const { error: emailError } = await resend.emails.send({
-      from: "Casa de Libros Indie <onboarding@resend.dev>",
+      // Se comenta el remitente de prueba de Resend porque solo permite
+      // destinatarios autorizados y no las notificaciones reales del sitio.
+      // from: "Casa de Libros Indie <onboarding@resend.dev>",
+      from: resendFromMail,
       to: userData.user.email,
       subject: approved
         ? "Tu solicitud de autor ha sido aprobada"

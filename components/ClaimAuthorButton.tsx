@@ -97,18 +97,22 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
   const isPending = currentClaim?.status === "pending"
   const isRejected = currentClaim?.status === "rejected"
 
-  // Se comentan los bloqueos globales porque una reclamacion aprobada o
-  // pendiente de un coautor no debe impedir reclamar los demas perfiles.
+  // La implementacion anterior permitia varias reclamaciones de la misma
+  // cuenta. Se comenta porque cada cuenta solo puede tener una reclamacion
+  // activa, ya sea pendiente o aprobada.
   // const globalBlock = hasApprovedAny
   // const hasPendingOther = claims.some(
   //   c => c.status === "pending" && c.author_id !== currentAuthorId
   // )
+
+  const hasActiveClaim = hasApprovedAny || hasPendingAny
 
   const allAuthorsAlreadyManaged = safeAuthors.every(author =>
     approvedAuthors.includes(author.id)
   )
 
   const canSelectClaim =
+    !hasActiveClaim &&
     !authorAlreadyOwned &&
     (!currentClaim || currentClaim.status === "rejected")
 
