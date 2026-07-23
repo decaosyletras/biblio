@@ -161,7 +161,7 @@ export default async function Home() {
 
 
       {/* AUTORES */}
-      {/*<section className="py-6 px-6">
+      {<section className="py-6 px-6">
 
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">
@@ -186,7 +186,7 @@ export default async function Home() {
 
         </div>
 
-      </section>*/}
+      </section>}
 
 
       {/* RESEÑAS */}
