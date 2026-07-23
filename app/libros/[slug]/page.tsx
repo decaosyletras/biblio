@@ -17,6 +17,7 @@ import ClaimAuthorButton from "@/components/ClaimAuthorButton"
 
 import { supabase } from "@/lib/supabase"
 
+
 export const dynamic = "force-dynamic"
 
 export default async function Page({ params }: any) {
@@ -92,33 +93,33 @@ export default async function Page({ params }: any) {
           </h1>
 
           {/* 🔥 FIX CLAVE: authors seguro */}
-          <div className="flex flex-wrap gap-2 mt-2">
-            {(book.authors ?? []).map((author) => {
+          <div className="flex flex-wrap gap-x-2 mt-2">
+            {(book.authors ?? []).map((author, index) => {
+              const isVerified = verifiedAuthors.has(author.id)
 
+              return (
+                <span key={author.id}>
+                  {isVerified ? (
+                    <a
+                      href={`/authors/${author.slug}`}
+                      className="text-blue-400 hover:underline"
+                    >
+                      {author.name}
+                    </a>
+                  ) : (
+                    <span className="text-zinc-500">
+                      {author.name}
+                    </span>
+                  )}
 
-              //DESCOMENTAR AL PUBLICAR
-              //const isVerified = verifiedAuthors.has(author.id)
-              //COMENTAR CUANDO SE PUBLIQUE
-              const isVerified = false
-
-              return isVerified ? (
-                <a
-                  key={author.id}
-                  href={`/authors/${author.slug}`}
-                  className="text-blue-400 hover:underline"
-                >
-                  {author.name}
-                </a>
-              ) : (
-                <span
-                  key={author.id}
-                  className="text-zinc-500"
-                >
-                  {author.name}
+                  {index < (book.authors ?? []).length - 1 && (
+                    <span className="text-zinc-500">,</span>
+                  )}
                 </span>
               )
             })}
           </div>
+
 
           <ClaimAuthorButton authors={book.authors ?? []} />
 
