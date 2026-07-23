@@ -97,21 +97,24 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
   const isPending = currentClaim?.status === "pending"
   const isRejected = currentClaim?.status === "rejected"
 
-  const globalBlock = hasApprovedAny
+  // Se comentan los bloqueos globales porque una reclamacion aprobada o
+  // pendiente de un coautor no debe impedir reclamar los demas perfiles.
+  // const globalBlock = hasApprovedAny
+  // const hasPendingOther = claims.some(
+  //   c => c.status === "pending" && c.author_id !== currentAuthorId
+  // )
 
-  const hasPendingOther =
-    claims.some(
-      c =>
-        c.status === "pending" &&
-        c.author_id !== currentAuthorId
-    )
+  const allAuthorsAlreadyManaged = safeAuthors.every(author =>
+    approvedAuthors.includes(author.id)
+  )
+
+  const canSelectClaim =
+    !authorAlreadyOwned &&
+    (!currentClaim || currentClaim.status === "rejected")
 
   const canClaim =
     acceptedClaimPolicy &&
-    !authorAlreadyOwned &&
-    !globalBlock &&
-    !hasPendingOther &&
-    (!currentClaim || currentClaim.status === "rejected")
+    canSelectClaim
 
   const claimAuthor = async () => {
 
@@ -180,7 +183,7 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
       )}
 
       {/* SELECT */}
-      {safeAuthors.length > 1 && canClaim && (
+      {safeAuthors.length > 1 && (
         <select
           value={selectedAuthor}
           onChange={(e) => setSelectedAuthor(e.target.value)}
@@ -207,10 +210,10 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
         </p>
       )}
 
-      {authorAlreadyOwned && !hasApprovedAny && (
+      {allAuthorsAlreadyManaged && !isApproved && (
         <p className="text-zinc-400 text-sm mt-1">
-          🔒 Este autor ya está verificado y gestionado por otra cuenta.
-          Si necesitas revisar el caso, contáctanos.
+          🔒 Todos los autores de este libro ya están verificados y gestionados.
+          Si necesitas revisar un caso, contáctanos.
         </p>
       )}
 
@@ -220,7 +223,7 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
         </p>
       )}
 
-      {!isApproved && !isPending && (
+      {canSelectClaim && (
         <label className="
     flex
     items-start
