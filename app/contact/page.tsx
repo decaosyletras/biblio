@@ -10,10 +10,23 @@ import TagSelector from "@/components/TagSelector"
 import { genresCatalog } from "@/data/genres"
 import { metricsCatalog } from "@/data/metrics"
 
+type AdditionalAuthor = {
+  name: string
+  foundAuthor: {
+    id: string
+    name: string
+  } | null
+  useExistingAuthor: boolean | null
+}
+
 export default function Page() {
 
   const [titulo, setTitulo] = useState("")
   const [autor, setAutor] = useState("")
+  // Se comento el arreglo de textos porque cada coautor ahora conserva su
+  // coincidencia encontrada y la decision explicita de asociarla o no.
+  // const [autoresAdicionales, setAutoresAdicionales] = useState<string[]>([])
+  const [autoresAdicionales, setAutoresAdicionales] = useState<AdditionalAuthor[]>([])
   const [esSaga, setEsSaga] = useState(false)
 
   const [link, setLink] = useState("")
@@ -105,6 +118,38 @@ export default function Page() {
 
   }
 
+  async function checkAdditionalAuthor(index: number) {
+
+    const additionalAuthor = autoresAdicionales[index]
+
+    if (!additionalAuthor?.name.trim()) return
+
+    const res = await fetch("/api/authors/check", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: additionalAuthor.name
+      })
+    })
+
+    const data = await res.json()
+
+    setAutoresAdicionales(currentAuthors =>
+      currentAuthors.map((currentAuthor, currentIndex) => {
+        if (currentIndex !== index) return currentAuthor
+
+        return {
+          ...currentAuthor,
+          foundAuthor: data.exists ? data.author : null,
+          useExistingAuthor: data.exists ? null : false
+        }
+      })
+    )
+
+  }
+
 
   const validateForm = () => {
 
@@ -113,6 +158,15 @@ export default function Page() {
 
     if (!autor)
       return "El autor es obligatorio."
+
+    if (autoresAdicionales.some(({ name }) => !name.trim()))
+      return "Completa o elimina los autores adicionales."
+
+    if (autoresAdicionales.some(
+      ({ foundAuthor, useExistingAuthor }) =>
+        foundAuthor && useExistingAuthor === null
+    ))
+      return "Confirma cada coincidencia de autor antes de enviar."
 
     if (!asin)
       return "El ASIN es obligatorio."
@@ -136,7 +190,7 @@ export default function Page() {
       return "Debes aceptar la política de privacidad."
 
     if (foundAuthor && useExistingAuthor === null)
-      return "Confirma si eres el autor encontrado."
+      return "Confirma la coincidencia de autor antes de enviar."
 
     return null
 
@@ -175,6 +229,10 @@ export default function Page() {
 
           titulo,
           autor,
+          autoresAdicionales: autoresAdicionales.map((additionalAuthor) => ({
+            name: additionalAuthor.name,
+            useExistingAuthor: additionalAuthor.useExistingAuthor
+          })),
           esSaga,
           link,
           resumen,
@@ -221,6 +279,7 @@ export default function Page() {
 
       setTitulo("")
       setAutor("")
+      setAutoresAdicionales([])
       setEsSaga(false)
       setLink("")
       setResumen("")
@@ -313,6 +372,116 @@ export default function Page() {
             }`}
         />
 
+        <div className="mb-4">
+
+          {autoresAdicionales.map((autorAdicional, index) => (
+            <div key={index} className="flex gap-2 mb-2">
+              <input
+                type="text"
+                placeholder="Nombre de otro autor (como aparece en Amazon)"
+                value={autorAdicional.name}
+                onChange={e => {
+                  const nuevosAutores = [...autoresAdicionales]
+                  nuevosAutores[index] = {
+                    name: e.target.value,
+                    foundAuthor: null,
+                    useExistingAuthor: null
+                  }
+                  setAutoresAdicionales(nuevosAutores)
+                }}
+                onBlur={() => checkAdditionalAuthor(index)}
+                className="w-full p-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              />
+
+              <button
+                type="button"
+                onClick={() => setAutoresAdicionales(
+                  autoresAdicionales.filter((_, authorIndex) => authorIndex !== index)
+                )}
+                aria-label="Eliminar autor adicional"
+                className="px-4 rounded-xl bg-zinc-800 text-zinc-300 hover:bg-red-500/20 hover:text-red-300 transition"
+              >
+                ×
+              </button>
+            </div>
+          ))}
+
+          {autoresAdicionales.map((autorAdicional, index) => (
+            autorAdicional.foundAuthor && (
+              <div
+                key={`match-${index}`}
+                className="mb-3 p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/30 text-sm"
+              >
+                <p className="text-yellow-400 mb-2">
+                  Encontramos un autor con este nombre:
+                </p>
+
+                <p className="text-zinc-200 font-semibold mb-3">
+                  {autorAdicional.foundAuthor.name}
+                </p>
+
+                <p className="mb-3 text-zinc-300">
+                  ¿Quieres asociar este libro a este perfil?
+                </p>
+
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setAutoresAdicionales(currentAuthors =>
+                      currentAuthors.map((currentAuthor, currentIndex) =>
+                        currentIndex === index
+                          ? { ...currentAuthor, useExistingAuthor: true }
+                          : currentAuthor
+                      )
+                    )}
+                    className={`px-4 py-2 rounded-lg ${
+                      autorAdicional.useExistingAuthor === true
+                        ? "bg-green-600"
+                        : "bg-zinc-700"
+                    }`}
+                  >
+                    Sí, asociar
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setAutoresAdicionales(currentAuthors =>
+                      currentAuthors.map((currentAuthor, currentIndex) =>
+                        currentIndex === index
+                          ? { ...currentAuthor, useExistingAuthor: false }
+                          : currentAuthor
+                      )
+                    )}
+                    className={`px-4 py-2 rounded-lg ${
+                      autorAdicional.useExistingAuthor === false
+                        ? "bg-red-600"
+                        : "bg-zinc-700"
+                    }`}
+                  >
+                    No, es otra persona
+                  </button>
+                </div>
+              </div>
+            )
+          ))}
+
+          <button
+            type="button"
+            onClick={() => setAutoresAdicionales([
+              ...autoresAdicionales,
+              {
+                name: "",
+                foundAuthor: null,
+                useExistingAuthor: null
+              }
+            ])}
+            className="text-sm text-yellow-400 hover:text-yellow-300 hover:underline"
+          >
+            [+] agregar autor
+          </button>
+
+        </div>
+
 
         {foundAuthor && !userAuthor && (
 
@@ -335,7 +504,7 @@ export default function Page() {
             </p>
 
             <p className="mb-3 text-zinc-300">
-              ¿Eres tú este autor?
+              ¿Quieres asociar este libro a este perfil?
             </p>
 
             <div className="flex gap-3">
@@ -355,7 +524,7 @@ export default function Page() {
                   }
                 `}
               >
-                Sí, soy yo
+                Sí, asociar
               </button>
 
 
@@ -374,7 +543,7 @@ export default function Page() {
                   }
                 `}
               >
-                No
+                No, es otra persona
               </button>
 
             </div>

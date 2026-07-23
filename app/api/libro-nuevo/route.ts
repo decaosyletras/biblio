@@ -70,6 +70,52 @@ async function createUniqueBookSlug(title: string) {
   }
 }
 
+type AdditionalAuthorInput = {
+  name: string
+  useExistingAuthor: boolean
+}
+
+async function findOrCreateAdditionalAuthor(
+  name: string,
+  useExistingAuthor: boolean
+) {
+  const normalizedName = normalizeName(name)
+
+  const { data: existingAuthor, error: existingAuthorError } = await supabase
+    .from("authors")
+    .select("id")
+    .eq("normalized_name", normalizedName)
+    .maybeSingle()
+
+  if (existingAuthorError) {
+    throw new Error("No se pudo buscar el autor adicional")
+  }
+
+  if (existingAuthor && useExistingAuthor) {
+    return existingAuthor.id as string
+  }
+
+  const slug = await createUniqueSlug(name)
+
+  const { data: newAuthor, error: newAuthorError } = await supabase
+    .from("authors")
+    .insert({
+      name,
+      slug,
+      normalized_name: normalizedName,
+      pro: false,
+      pro_until: null
+    })
+    .select("id")
+    .single()
+
+  if (newAuthorError || !newAuthor) {
+    throw new Error("No se pudo crear el autor adicional")
+  }
+
+  return newAuthor.id as string
+}
+
 export async function POST(req: Request) {
   try {
     const contentLength = Number(
@@ -212,7 +258,8 @@ export async function POST(req: Request) {
       subgeneros,
       tags,
       useExistingAuthor,
-      aceptaTerminos
+      aceptaTerminos,
+      autoresAdicionales
     } = body as Record<string, unknown>
 
     // Se comento porque solo comprobaba valores truthy y aceptaba tipos
@@ -249,6 +296,32 @@ export async function POST(req: Request) {
       )
     }
 
+    const additionalAuthors = autoresAdicionales ?? []
+
+    if (
+      !Array.isArray(additionalAuthors) ||
+      additionalAuthors.length > 9 ||
+      additionalAuthors.some(
+        (additionalAuthor) =>
+          !additionalAuthor ||
+          typeof additionalAuthor !== "object" ||
+          Array.isArray(additionalAuthor) ||
+          typeof additionalAuthor.name !== "string" ||
+          additionalAuthor.name.trim().length === 0 ||
+          additionalAuthor.name.length > 300 ||
+          typeof additionalAuthor.useExistingAuthor !== "boolean"
+      )
+    ) {
+      return NextResponse.json(
+        {
+          error: "Los autores adicionales no son validos"
+        },
+        {
+          status: 400
+        }
+      )
+    }
+
     const normalized = normalizeName(autor)
 
     const { data: foundAuthor } = await supabase
@@ -257,6 +330,17 @@ export async function POST(req: Request) {
       .eq("normalized_name", normalized)
       .limit(1)
       .maybeSingle()
+
+    if (foundAuthor && !ownedAuthorId && typeof useExistingAuthor !== "boolean") {
+      return NextResponse.json(
+        {
+          error: "Confirma la coincidencia de autor antes de enviar"
+        },
+        {
+          status: 400
+        }
+      )
+    }
 
     let authorId: string
 
@@ -343,7 +427,7 @@ export async function POST(req: Request) {
 
     const bookSlug = await createUniqueBookSlug(titulo)
 
-    const { error: bookError } = await supabase
+    const { data: book, error: bookError } = await supabase
       .from("books")
       .insert({
         title: titulo,
@@ -377,11 +461,13 @@ export async function POST(req: Request) {
         // guarda el id real sin asumir que el formulario lo definió.
         submitted_by: user?.id ?? null
       })
+      .select("id")
+      .single()
 
-    if (bookError) {
+    if (bookError || !book) {
       return NextResponse.json(
         {
-          error: bookError.message
+          error: bookError?.message ?? "No se pudo crear el libro"
         },
         {
           status: 400
@@ -430,6 +516,53 @@ export async function POST(req: Request) {
     //
     // }
 
+
+    const additionalAuthorInputs = [...new Map(
+      (additionalAuthors as AdditionalAuthorInput[]).map((additionalAuthor) => {
+        const trimmedName = additionalAuthor.name.trim()
+        return [
+          normalizeName(trimmedName),
+          {
+            name: trimmedName,
+            useExistingAuthor: additionalAuthor.useExistingAuthor
+          }
+        ]
+      })
+    ).values()]
+
+    const additionalAuthorIds = await Promise.all(
+      additionalAuthorInputs.map((additionalAuthor) =>
+        findOrCreateAdditionalAuthor(
+          additionalAuthor.name,
+          additionalAuthor.useExistingAuthor
+        )
+      )
+    )
+
+    // Se conserva author_id en books como autor principal por compatibilidad
+    // con el resto del proyecto. Tambien se registra en book_authors porque
+    // el catalogo usa esa tabla como fuente completa cuando hay coautores.
+    const relatedAuthorIds = [...new Set([authorId, ...additionalAuthorIds])]
+
+    const { error: bookAuthorsError } = await supabase
+      .from("book_authors")
+      .insert(
+        relatedAuthorIds.map((relatedAuthorId) => ({
+          book_id: book.id,
+          author_id: relatedAuthorId
+        }))
+      )
+
+    if (bookAuthorsError) {
+      return NextResponse.json(
+        {
+          error: "El libro se creo, pero no se pudieron guardar todos sus autores"
+        },
+        {
+          status: 500
+        }
+      )
+    }
 
     return NextResponse.json({
       success: true
