@@ -88,7 +88,7 @@ export default async function Home() {
       <GenreFilter />
 
       {/* NOVEDADES AUTORES */}
-      {/*<section className="pt-12 pb-6 px-6 border-t border-zinc-900">
+      {<section className="pt-12 pb-6 px-6 border-t border-zinc-900">
 
         <div className="flex justify-between items-center mb-6">
 
@@ -117,7 +117,7 @@ export default async function Home() {
 
         </div>
 
-      </section>*/}
+      </section>}
 
       {/* LIBROS */}
       <section className="py-6 px-4">

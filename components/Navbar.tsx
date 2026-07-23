@@ -1,12 +1,36 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { FaHome } from "react-icons/fa";
+import { supabase } from "@/lib/supabase"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [hasSession, setHasSession] = useState(false)
+  const [sessionResolved, setSessionResolved] = useState(false)
+
+  useEffect(() => {
+    async function loadSession() {
+      const { data } = await supabase.auth.getSession()
+      setHasSession(Boolean(data.session))
+      setSessionResolved(true)
+    }
+
+    loadSession()
+
+    const {
+      data: {
+        subscription
+      }
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setHasSession(Boolean(session))
+      setSessionResolved(true)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
 
   return (
     <nav className="bg-zinc-900 text-zinc-100 p-4 sticky top-0 z-50">
@@ -41,8 +65,13 @@ export default function Navbar() {
         {/* LINKS DESKTOP */}
         <div className="hidden md:flex gap-4 text-sm">
           <Link href="/">Inicio</Link>
-          <Link href="/conoceme">Conóceme</Link>
           <Link href="/contact">Recomendar</Link>
+          <Link href="/conoceme">Conóceme</Link>
+          {sessionResolved && (
+            <Link href={hasSession ? "/me" : "/login"}>
+              {hasSession ? "Mi perfil" : "Iniciar sesión"}
+            </Link>
+          )}
           {/*<Link href="/afiliados">Transparencia</Link>
           <Link href="/privacidad">Privacidad</Link>*/}
         </div>
@@ -52,8 +81,16 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden mt-4 bg-zinc-800 rounded-xl p-4 flex flex-col gap-3 text-sm shadow-lg">
           <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
-          <Link href="/conoceme" onClick={() => setOpen(false)}>Conóceme</Link>
           <Link href="/contact" onClick={() => setOpen(false)}>Recomendar</Link>
+          <Link href="/conoceme" onClick={() => setOpen(false)}>Conóceme</Link>
+          {sessionResolved && (
+            <Link
+              href={hasSession ? "/me" : "/login"}
+              onClick={() => setOpen(false)}
+            >
+              {hasSession ? "Mi perfil" : "Iniciar sesión"}
+            </Link>
+          )}
           {/*<Link href="/afiliados" onClick={() => setOpen(false)}>Transparencia</Link>
           <Link href="/privacidad" onClick={() => setOpen(false)}>Privacidad</Link>*/}
         </div>
