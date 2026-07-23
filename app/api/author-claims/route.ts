@@ -121,6 +121,49 @@ export async function POST(req: Request) {
       )
     }
 
+    // La tabla conserva la solicitud rechazada para mantener el historial y
+    // su restriccion unica. En vez de insertar otra fila, se reactiva como
+    // pendiente con la nueva evidencia aportada por el usuario.
+    const { data: rejectedClaim, error: rejectedClaimError } = await supabaseAdmin
+      .from("author_claims")
+      .select("id,status")
+      .eq("user_id", user.id)
+      .eq("author_id", author_id)
+      .maybeSingle()
+
+    if (rejectedClaimError) {
+      return NextResponse.json(
+        { error: "No se pudo verificar la reclamacion anterior" },
+        { status: 500 }
+      )
+    }
+
+    if (rejectedClaim?.status === "rejected") {
+      const { error: reactivateError } = await supabaseAdmin
+        .from("author_claims")
+        .update({
+          status: "pending",
+          proof_notes: proof_notes.trim(),
+          proof_url: proof_url.trim(),
+          accepted_policy_version: "1.1",
+          accepted_at: new Date().toISOString(),
+          accepted_ip: ip
+        })
+        .eq("id", rejectedClaim.id)
+
+      if (reactivateError) {
+        return NextResponse.json(
+          { error: "No se pudo reenviar la reclamacion" },
+          { status: 500 }
+        )
+      }
+
+      return NextResponse.json({
+        success: true,
+        reactivated: true
+      })
+    }
+
 
     const { error } = await supabaseAdmin
       .from("author_claims")
@@ -147,7 +190,7 @@ export async function POST(req: Request) {
     if (error) {
 
       return NextResponse.json(
-        { error: error.message },
+        { error: "No se pudo enviar la reclamacion" },
         { status: 500 }
       )
 
