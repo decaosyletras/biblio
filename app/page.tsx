@@ -64,17 +64,36 @@ export default async function Home() {
         <div className="mt-10 flex justify-center gap-4">
           <Link
             href="/libros"
-            className="bg-white text-black px-7 py-3 rounded-full font-medium hover:scale-105 transition"
+            className="
+              bg-white text-black
+              px-7 py-3
+              rounded-full
+              font-medium
+              transition-all duration-200 ease-out
+              hover:scale-105
+              active:scale-95
+            "
           >
             Catálogo
           </Link>
 
+
           <Link
             href="/resenas"
-            className="border border-zinc-400 px-7 py-3 rounded-full hover:bg-zinc-800 hover:scale-105 transition"
+            className="
+              border border-zinc-400
+              px-7 py-3
+              rounded-full
+              transition-all duration-200 ease-out
+              hover:bg-zinc-800
+              hover:scale-105
+              active:scale-95
+              active:bg-zinc-700
+            "
           >
             Lectómetro
           </Link>
+
         </div>
       </section>
 
