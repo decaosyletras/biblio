@@ -110,15 +110,13 @@ export default async function Home() {
       {<section className="pt-12 pb-6 px-6 border-t border-zinc-900">
 
         <div className="flex justify-between items-center mb-6">
-
           <h2 className="text-2xl font-semibold">
             Novedades de autores
           </h2>
-          <p className="text-sm text-zinc-400 mt-2">
-            Nuevas noticias y anuncios de autores independientes.
-          </p>
-
         </div>
+        <p className="text-sm text-zinc-400 mt-2">
+          Nuevas noticias y anuncios de autores independientes.
+        </p>
 
         <div className="h-[420px] overflow-y-auto pr-2 space-y-3 rounded-2xl border border-zinc-800 bg-zinc-950/40 p-3">
           {latestNews.length === 0 ? (
