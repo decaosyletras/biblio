@@ -39,14 +39,17 @@ export default async function Page({ params }: any) {
   )
 
   const bookAuthors = book.authorNames ?? []
+  const bookAuthorIds = new Set(
+    (book.authors ?? []).map(author => author.id)
+  )
 
   const recommended = await getRecommendedBooks(book.slug)
 
   const sameAuthorBooks = books.filter(
-    b =>
+      b =>
       b.slug !== book.slug &&
-      b.authorNames?.some(author =>
-        bookAuthors.includes(author)
+      b.authors?.some(author =>
+        bookAuthorIds.has(author.id)
       )
   )
 

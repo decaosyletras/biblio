@@ -122,6 +122,17 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
 
     setSending(true)
 
+
+    let normalizedUrl = proofUrl.trim();
+    if (
+      normalizedUrl &&
+      !normalizedUrl.startsWith("http://") &&
+      !normalizedUrl.startsWith("https://")
+    ) {
+      normalizedUrl = `https://${normalizedUrl}`;
+    }
+
+
     const response = await fetch("/api/author-claims", {
       method: "POST",
       headers: {
@@ -132,7 +143,7 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
         author_id: currentAuthorId,
         aceptaPolitica: acceptedClaimPolicy,
         proof_notes: proofNotes,
-        proof_url: proofUrl
+        proof_url: normalizedUrl
       })
     })
 
