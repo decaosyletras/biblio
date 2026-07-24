@@ -190,6 +190,15 @@ export default function EditAuthorPage() {
 
         let newsImageUrl = author.news?.image ?? null
 
+        let avatarUrl = author.avatar
+
+            if (avatarFile) {
+                avatarUrl = await uploadImage(
+                    avatarFile,
+                    "avatars"
+                )
+            }
+
         const data: any = {
             avatar: author.avatar ?? "",
             bio: author.bio ?? "",
@@ -199,16 +208,7 @@ export default function EditAuthorPage() {
             show_bibliography: author.show_bibliography ?? true
         }
         if (isPro) {
-            let avatarUrl = author.avatar
-
-            if (avatarFile) {
-                avatarUrl = await uploadImage(
-                    avatarFile,
-                    "avatars"
-                )
-            }
-
-            data.avatar = avatarUrl ?? ""
+            
             let bannerUrl = author.banner
 
             if (bannerFile) {
