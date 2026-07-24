@@ -612,7 +612,7 @@ export default async function AuthorPage({
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div
                             className="mt-4 whitespace-pre-line leading-8"
                             style={{
@@ -621,7 +621,7 @@ export default async function AuthorPage({
                         >
                             {author.bio}
                         </div>
-                        
+
                     </section>
                 )}
 
@@ -634,41 +634,43 @@ export default async function AuthorPage({
                         }}
                     >
 
-                        <div className="mb-6">
+                        {author.news.type &&
+                            <div className="mb-6">
 
-                            <div className="flex flex-wrap items-center gap-3">
+                                <div className="flex flex-wrap items-center gap-3">
 
-                                <h2
-                                    className="text-2xl font-bold"
-                                    style={{
-                                        color: authorTheme.text
-                                    }}
-                                >
-                                    Novedades
-                                </h2>
+                                    <h2
+                                        className="text-2xl font-bold"
+                                        style={{
+                                            color: authorTheme.text
+                                        }}
+                                    >
+                                        Novedades
+                                    </h2>
 
 
-                                {author.news.type &&
+
                                     author.news.type.trim().toUpperCase() !== "OTRO" &&
                                     author.news.type.trim().toUpperCase() !== "OTROS" && (
-                                        <div className="flex justify-center w-full">
-                                            <span
-                                                className="text-sm uppercase tracking-[0.25em] px-4 py-1.5 rounded-full font-semibold"
-                                                style={{
-                                                    color: authorTheme.primary,
-                                                    border: `1px solid ${authorTheme.primary}40`,
-                                                    backgroundColor: `${authorTheme.primary}15`
-                                                }}
-                                            >
-                                                {author.news.type}
-                                            </span>
-                                        </div>
+                                    <div className="flex justify-center w-full">
+                                        <span
+                                            className="text-sm uppercase tracking-[0.25em] px-4 py-1.5 rounded-full font-semibold"
+                                            style={{
+                                                color: authorTheme.primary,
+                                                border: `1px solid ${authorTheme.primary}40`,
+                                                backgroundColor: `${authorTheme.primary}15`
+                                            }}
+                                        >
+                                            {author.news.type}
+                                        </span>
+                                    </div>
                                     )
-                                }
+
+                                </div>
 
                             </div>
 
-                        </div>
+                        }
 
 
                         {author.news.image && (
