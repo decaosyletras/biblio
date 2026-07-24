@@ -89,15 +89,19 @@ async function prepareCheckoutAttempt(
         attempt.stripe_session_id
       )
 
-      if (previousSession.status === "open" && previousSession.url) {
-        if (attempt.user_id !== userId || attempt.plan !== plan) {
+      if (previousSession.status === "open") {
+        if (attempt.user_id !== userId) {
           throw new CheckoutInProgressError()
         }
 
-        return {
-          idempotencyKey: attempt.idempotency_key,
-          existingUrl: previousSession.url,
+        if (attempt.plan === plan && previousSession.url) {
+          return {
+            idempotencyKey: attempt.idempotency_key,
+            existingUrl: previousSession.url,
+          }
         }
+
+        await stripe.checkout.sessions.expire(previousSession.id)
       }
 
       if (previousSession.status === "complete") {
