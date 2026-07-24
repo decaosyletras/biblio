@@ -105,7 +105,24 @@ async function prepareCheckoutAttempt(
       }
 
       if (previousSession.status === "complete") {
-        throw new CheckoutInProgressError()
+        const subscriptionId =
+          typeof previousSession.subscription === "string"
+            ? previousSession.subscription
+            : previousSession.subscription?.id
+
+        if (!subscriptionId) {
+          throw new CheckoutInProgressError()
+        }
+
+        const subscription = await stripe.subscriptions.retrieve(
+          subscriptionId
+        )
+
+        if (["active", "trialing", "past_due"].includes(
+          subscription.status
+        )) {
+          throw new CheckoutInProgressError()
+        }
       }
     }
 
