@@ -667,17 +667,43 @@ export async function POST(request: Request) {
       }
     }
 
-    if (
-      event.type === "customer.subscription.created" ||
-      event.type === "customer.subscription.updated" ||
-      event.type === "customer.subscription.deleted"
-    ) {
+    if (event.type === "customer.subscription.deleted") {
       const eventSubscription = event.data.object as Stripe.Subscription
+      const authorId = eventSubscription.metadata.author_id
+
+      if (!authorId || !UUID_PATTERN.test(authorId)) {
+        throw new Error("invalid_subscription_metadata")
+      }
+
+      const { error: paymentError } = await supabaseAdmin
+        .from("author_payments")
+        .update({
+          status: eventSubscription.status,
+          current_period_end: null,
+        })
+        .eq("stripe_subscription_id", eventSubscription.id)
+
+      if (paymentError) {
+        throw new Error("payment_cancellation_sync_failed")
+      }
+
+      const { error: authorError } = await supabaseAdmin
+        .from("authors")
+        .update({
+          pro: false,
+          pro_until: null,
+        })
+        .eq("id", authorId)
+
+      if (authorError) {
+        throw new Error("author_cancellation_sync_failed")
+      }
+    } else if (
+      event.type === "customer.subscription.created" ||
+      event.type === "customer.subscription.updated"
+    ) {
       const subscription = await retrieveCurrentSubscription(
-        eventSubscription.id,
-        event.type === "customer.subscription.deleted"
-          ? eventSubscription
-          : undefined
+        (event.data.object as Stripe.Subscription).id
       )
 
       await syncSubscription(subscription, event)
@@ -686,7 +712,13 @@ export async function POST(request: Request) {
     await completeEvent(event.id)
 
     return NextResponse.json({ received: true })
-  } catch {
+  } catch (error) {
+    console.error("Stripe webhook processing failed", {
+      eventId: event.id,
+      eventType: event.type,
+      error: error instanceof Error ? error.message : "unknown_error",
+    })
+
     await failEvent(event.id)
 
     return NextResponse.json(
