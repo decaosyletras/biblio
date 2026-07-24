@@ -95,7 +95,6 @@ export async function POST(req: Request) {
                     </a>
                     `
     })
-    console.log("RESEND RESULT:", emailResult)
 
 
     return NextResponse.json({

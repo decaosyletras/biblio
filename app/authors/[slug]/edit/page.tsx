@@ -193,12 +193,12 @@ export default function EditAuthorPage() {
         let avatarUrl = author.avatar
         let bannerUrl = author.banner ?? null
 
-            if (avatarFile) {
-                avatarUrl = await uploadImage(
-                    avatarFile,
-                    "avatars"
-                )
-            }
+        if (avatarFile) {
+            avatarUrl = await uploadImage(
+                avatarFile,
+                "avatars"
+            )
+        }
 
         const data: any = {
             avatar: avatarUrl ?? "",
@@ -380,7 +380,7 @@ export default function EditAuthorPage() {
 
 
         if (error) {
-            console.error(error)
+
             return ""
         }
 

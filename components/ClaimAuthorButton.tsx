@@ -157,9 +157,6 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
 
     const result = await response.json()
 
-    console.log("RESPUESTA CLAIM:", result)
-
-
     if (!response.ok) {
       alert(result.error)
       setSending(false)

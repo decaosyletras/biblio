@@ -34,8 +34,6 @@ export async function getLatestAuthorNews() {
       }
     )
 
-  console.log("NEWS HOME", data, error)
-
   return data ?? []
 }
 

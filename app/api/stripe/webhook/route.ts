@@ -111,14 +111,6 @@ export async function POST(
         session.subscription as string
       )
 
-    console.log({
-      sessionId: session.id,
-      customer: session.customer,
-      subscription: session.subscription,
-      metadata: session.metadata,
-      plan
-    })
-
     await supabaseAdmin
       .from("author_payments")
       .upsert(
@@ -713,11 +705,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ received: true })
   } catch (error) {
-    console.error("Stripe webhook processing failed", {
-      eventId: event.id,
-      eventType: event.type,
-      error: error instanceof Error ? error.message : "unknown_error",
-    })
 
     await failEvent(event.id)
 

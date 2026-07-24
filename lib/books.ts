@@ -15,7 +15,6 @@ export async function getBooks(): Promise<Book[]> {
     .eq("approved", true).order("created_at", { ascending: true })
 
   if (booksError) {
-    console.error("booksError")
     return staticBooks
   }
 
@@ -25,7 +24,6 @@ export async function getBooks(): Promise<Book[]> {
     .select("id, slug, name")
 
   if (authorsError) {
-    console.error("authorsError")
     return staticBooks
   }
 
@@ -35,7 +33,6 @@ export async function getBooks(): Promise<Book[]> {
     .select("book_id, author_id")
 
   if (bookAuthorsError) {
-    console.error("bookAuthorsError")
   }
 
   // Map autores por id
