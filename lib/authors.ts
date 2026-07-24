@@ -57,14 +57,19 @@ export async function getAuthors() {
 
   for (const author of authors) {
 
-    const { count } = await supabase
-      .from("books")
-      .select("*", {
+  const { count } = await supabase
+      .from("book_authors")
+      .select(`
+        book_id,
+        books!inner(
+          approved
+        )
+      `, {
         count: "exact",
         head: true
       })
       .eq("author_id", author.id)
-      .eq("approved", true)
+      .eq("books.approved", true)
 
     author.booksCount = count ?? 0
   }
