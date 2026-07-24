@@ -625,7 +625,7 @@ export default async function AuthorPage({
                     </section>
                 )}
 
-                {isPro && author.news.type && (
+                {isPro && author.news?.type && (
                     <section
                         className="rounded-3xl p-7 md:p-10 backdrop-blur-sm"
                         style={{
