@@ -44,7 +44,7 @@ type CheckoutAttempt = {
   expires_at: string
 }
 
-class CheckoutInProgressError extends Error {}
+class CheckoutInProgressError extends Error { }
 
 async function prepareCheckoutAttempt(
   authorId: string,
@@ -569,8 +569,8 @@ export async function POST(request: Request) {
     })
 
 
-  // Se comento el tipo any porque el error no debe confiarse ni exponerse.
-  // } catch (error: any) {
+    // Se comento el tipo any porque el error no debe confiarse ni exponerse.
+    // } catch (error: any) {
   } catch (error: unknown) {
 
     if (error instanceof CheckoutInProgressError) {
@@ -586,7 +586,8 @@ export async function POST(request: Request) {
 
     // Se comento porque podia registrar detalles internos de Stripe.
     // console.error("Stripe checkout error:", error)
-    console.error("Stripe checkout request failed")
+    console.error("Stripe checkout request failed", error)
+
 
     return NextResponse.json(
       {
