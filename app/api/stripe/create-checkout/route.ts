@@ -8,6 +8,16 @@ const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY!
 )
 
+console.log(
+  "Stripe mode:",
+  process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_")
+    ? "TEST"
+    : process.env.STRIPE_SECRET_KEY?.startsWith("sk_live_")
+      ? "LIVE"
+      : "UNKNOWN"
+)
+
+
 const PRICE_IDS = {
   monthly: process.env.STRIPE_PRICE_MONTHLY!,
   quarterly: process.env.STRIPE_PRICE_QUARTERLY!,
@@ -586,8 +596,7 @@ export async function POST(request: Request) {
 
     // Se comento porque podia registrar detalles internos de Stripe.
     // console.error("Stripe checkout error:", error)
-    console.error("Stripe checkout request failed", error)
-
+    console.error("Stripe checkout request failed")
 
     return NextResponse.json(
       {
