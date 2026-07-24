@@ -612,16 +612,16 @@ export default async function AuthorPage({
                                 </div>
                             </div>
                         </div>
-                        {author.news.content && (
-                            <div
-                                className="mt-4 whitespace-pre-line leading-8"
-                                style={{
-                                    color: authorTheme.text
-                                }}
-                            >
-                                {author.bio}
-                            </div>
-                        )}
+                        
+                        <div
+                            className="mt-4 whitespace-pre-line leading-8"
+                            style={{
+                                color: authorTheme.text
+                            }}
+                        >
+                            {author.bio}
+                        </div>
+                        
                     </section>
                 )}
 
