@@ -191,6 +191,7 @@ export default function EditAuthorPage() {
         let newsImageUrl = author.news?.image ?? null
 
         let avatarUrl = author.avatar
+        let bannerUrl = author.banner ?? null
 
             if (avatarFile) {
                 avatarUrl = await uploadImage(
@@ -208,9 +209,6 @@ export default function EditAuthorPage() {
             show_bibliography: author.show_bibliography ?? true
         }
         if (isPro) {
-            
-            let bannerUrl = author.banner
-
             if (bannerFile) {
                 bannerUrl = await uploadImage(
                     bannerFile,
@@ -221,7 +219,7 @@ export default function EditAuthorPage() {
             data.contact_email = author.contact_email ?? ""
             data.show_book_details = author.show_book_details ?? true
 
-            data.banner = bannerUrl === "" ? null : bannerUrl
+            data.banner = bannerUrl || null
             data.website = author.website ?? ""
             data.instagram = author.instagram ?? ""
             data.threads = author.threads ?? ""
@@ -331,17 +329,10 @@ export default function EditAuthorPage() {
                     .eq("id", books[i].id)
             }
         }*/
-        if (deletedBanner) {
-
-            await deleteImage(
-                deletedBanner
-            )
-
-        }
-        setSaving(false)
-        if (originalBanner && !author.banner) {
+        if (originalBanner && originalBanner !== data.banner) {
             await deleteImage(originalBanner)
         }
+        setSaving(false)
         router.push(`/authors/${slug}`)
     }
 
