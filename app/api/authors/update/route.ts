@@ -240,7 +240,7 @@ export async function POST(request: Request) {
 
     if (updateError) {
       return NextResponse.json(
-        { error: "No se pudo actualizar el autor" },
+        { error: "No se pudo actualizar el autor." },
         { status: 500 }
       )
     }
