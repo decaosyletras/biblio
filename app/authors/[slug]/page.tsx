@@ -558,7 +558,7 @@ export default async function AuthorPage({
 
             <main className="max-w-5xl mx-auto px-3 sm:px-6 pt-6 pb-16 space-y-8">
 
-                {/*(author.description || author.bio) && (
+                {(author.bio) && (
                     <section className={`
                         ${theme.card}
                         border border-zinc-800
@@ -573,10 +573,10 @@ export default async function AuthorPage({
                             leading-relaxed
                             whitespace-pre-line
                         ">
-                            {author.description || author.bio}
+                            {author.bio}
                         </p>
                     </section>
-                )*/}
+                )}
 
 
                 {author.bio && (
