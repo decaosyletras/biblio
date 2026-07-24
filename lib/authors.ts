@@ -57,15 +57,34 @@ export async function getAuthors() {
 
   for (const author of authors) {
 
-  const { count } = await supabase
-      .from("book_authors")
-      .select("*", {
-        count: "exact",
-        head: true
-      })
+    // Libros donde es autor principal
+    const { data: mainBooks } = await supabase
+      .from("books")
+      .select("id")
       .eq("author_id", author.id)
+      .eq("approved", true)
 
-    author.booksCount = count ?? 0
+
+    // Libros donde aparece en la relación múltiple
+    const { data: extraBooks } = await supabase
+      .from("book_authors")
+      .select(`
+        book_id,
+        books!inner(
+          approved
+        )
+      `)
+      .eq("author_id", author.id)
+      .eq("books.approved", true)
+
+
+    const bookIds = new Set([
+      ...(mainBooks?.map(b => b.id) ?? []),
+      ...(extraBooks?.map(b => b.book_id) ?? [])
+    ])
+
+
+    author.booksCount = bookIds.size
   }
 
   return authors.sort((a, b) =>
