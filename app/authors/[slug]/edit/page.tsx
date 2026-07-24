@@ -200,7 +200,7 @@ export default function EditAuthorPage() {
             }
 
         const data: any = {
-            avatar: author.avatar ?? "",
+            avatar: avatarUrl ?? "",
             bio: author.bio ?? "",
             description: author.description ?? "",
             style: author.style ?? "",
