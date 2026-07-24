@@ -650,21 +650,21 @@ export default async function AuthorPage({
 
 
 
-                                    author.news.type.trim().toUpperCase() !== "OTRO" &&
-                                    author.news.type.trim().toUpperCase() !== "OTROS" && (
-                                    <div className="flex justify-center w-full">
-                                        <span
-                                            className="text-sm uppercase tracking-[0.25em] px-4 py-1.5 rounded-full font-semibold"
-                                            style={{
-                                                color: authorTheme.primary,
-                                                border: `1px solid ${authorTheme.primary}40`,
-                                                backgroundColor: `${authorTheme.primary}15`
-                                            }}
-                                        >
-                                            {author.news.type}
-                                        </span>
-                                    </div>
-                                    )
+                                    {author.news.type.trim().toUpperCase() !== "OTRO" &&
+                                        author.news.type.trim().toUpperCase() !== "OTROS" && (
+                                            <div className="flex justify-center w-full">
+                                                <span
+                                                    className="text-sm uppercase tracking-[0.25em] px-4 py-1.5 rounded-full font-semibold"
+                                                    style={{
+                                                        color: authorTheme.primary,
+                                                        border: `1px solid ${authorTheme.primary}40`,
+                                                        backgroundColor: `${authorTheme.primary}15`
+                                                    }}
+                                                >
+                                                    {author.news.type}
+                                                </span>
+                                            </div>
+                                        )}
 
                                 </div>
 
