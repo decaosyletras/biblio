@@ -283,11 +283,6 @@ export async function POST(req: Request) {
     const authorName = author?.name?.trim() || "el autor"
     const approved = updatedClaim.status === "approved"
 
-    console.log("=== VARIABLES DE RESEND ===")
-console.log("API KEY existe:", !!process.env.RESEND_API_KEY)
-console.log("FROM:", process.env.RESEND_FROM_EMAIL)
-console.log("TO:", userData.user.email)
-
     if (!resendFromMail) {
       return NextResponse.json({
         success: true,
