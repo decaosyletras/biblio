@@ -16,7 +16,7 @@ export default function CardAuthor({
 
     <Link
       href={`/authors/${author.slug}`}
-      className={`group block rounded-2xl bg-zinc-900 transition-all duration-300 p-4
+      className={`group block min-w-0 overflow-hidden rounded-2xl bg-zinc-900 transition-all duration-300 p-4
 
         ${variant === "featured"
           ? `
@@ -37,7 +37,7 @@ export default function CardAuthor({
       }
     >
 
-      <div className="flex gap-4">
+      <div className="flex gap-3 min-w-0">
 
         <div className="shrink-0">
 
@@ -45,7 +45,7 @@ export default function CardAuthor({
 
             <img
               src={author.avatar}
-              className="w-20 h-20 rounded-xl object-cover border shadow-lg"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover border shadow-lg"
               style={{
                 borderColor: authorTheme.border
               }}

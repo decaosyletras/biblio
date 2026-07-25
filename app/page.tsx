@@ -24,7 +24,7 @@ export default async function Home() {
   const latestNews = await getLatestAuthorNews()
 
   const randomBooks = shuffleArray(books).slice(0, 4)
-  const randomAuthors = shuffleArray(authors).slice(0, 6)
+  const randomAuthors = shuffleArray(authors).slice(0, 3)
   const randomReviews = shuffleArray(
     books.filter(book => book.review?.title)
   ).slice(0, 3)
@@ -173,7 +173,7 @@ export default async function Home() {
             Ver todos →
           </Link>
         </div>
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 
           {randomAuthors.map(author => (
             <CardAuthor
