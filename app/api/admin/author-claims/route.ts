@@ -272,8 +272,8 @@ export async function POST(req: Request) {
         ? "Tu solicitud de autor ha sido aprobada"
         : "Tu solicitud de autor ha sido rechazada",
       text: approved
-        ? `Tu solicitud para representar a ${authorName} en la Casa de Libros Indie ha sido aprobada. Ya puedes acceder a tu perfil: https://casaindie.vercel.app/me`
-        : `Tu solicitud para representar a ${authorName} ha sido rechazada. Si crees que hubo un error, puedes volver a enviar una solicitud: https://casaindie.vercel.app/me`
+        ? `Tu solicitud para representar a ${authorName} en la Casa de Libros Indie ha sido aprobada. Ya puedes acceder a tu perfil: https://cazaindie.com/me`
+        : `Tu solicitud para representar a ${authorName} ha sido rechazada. Si crees que hubo un error, puedes volver a enviar una solicitud: https://cazaindie.com/me`
     })
 
     if (emailError) {
