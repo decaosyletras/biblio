@@ -190,62 +190,35 @@ export async function POST(req: Request) {
 
 
     if (error) {
+  return NextResponse.json(
+    { error: "No se pudo enviar la reclamacion" },
+    { status: 500 }
+  )
+}
 
-      return NextResponse.json(
-        { error: "No se pudo enviar la reclamacion" },
-        { status: 500 }
-      )
+await resend.emails.send({
+  from: "Casa de Libros Indie <onboarding@resend.dev>",
+  to: process.env.ADMIN_NOTIFICATION_EMAIL!,
+  subject: "Nueva reclamación de autor",
+  text: `
+Se ha recibido una nueva reclamación de autor.
 
-    }
+Autor ID: ${author_id}
 
+Usuario:
+${user.email}
 
+Notas:
+${proof_notes}
 
-    const { data: author } = await supabaseAdmin
-      .from("authors")
-      .select("name")
-      .eq("id", author_id)
-      .maybeSingle()
+Evidencia:
+${proof_url}
+`,
+})
 
-    const { data: profile } = await supabaseAdmin
-      .from("profiles")
-      .select("username, full_name")
-      .eq("id", user.id)
-      .maybeSingle()
-
-    const requester =
-      profile?.full_name ||
-      profile?.username ||
-      user.email ||
-      user.id
-
-    try {
-      await resend.emails.send({
-        from: "Casa de Libros Indie <notificaciones@cazaindie.com>",
-        to: process.env.ADMIN_NOTIFICATION_EMAIL!,
-        subject: "Nueva reclamación de autor",
-        text: `Se ha recibido una nueva reclamación de autor.
-
-    Autor: ${author?.name ?? "Desconocido"}
-
-    Solicitante: ${requester}
-
-    Correo del usuario: ${user.email}
-
-    Notas:
-    ${proof_notes}
-
-    Evidencia:
-    ${proof_url}
-    `,
-      })
-    } catch (emailError) {
-      console.error("Error enviando notificación:", emailError)
-    }
-
-
-    return NextResponse.json({
-      success: true
-    })
+return NextResponse.json({
+  success: true
+})
 
 
   } catch (err) {
