@@ -240,7 +240,6 @@ ${proof_url}
 })
 
 if (emailError) {
-  console.error("Error enviando correo:", emailError)
 
   return NextResponse.json({
     success: true,
