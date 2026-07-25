@@ -170,7 +170,7 @@ export default function AdminAuthorClaimsPage() {
                 setActionError(
                     error instanceof Error
                         ? error.message
-                        : "No se pudieron cargar las solicitudes"
+                        : "No se pudieron cargar las solicitudes."
                 )
             } finally {
                 setLoading(false)
