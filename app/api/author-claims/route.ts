@@ -159,6 +159,7 @@ export async function POST(req: Request) {
           { status: 500 }
         )
       }
+      console.log("REACTIVACIÓN: llegó al envío de correo")
 
       return NextResponse.json({
         success: true,
