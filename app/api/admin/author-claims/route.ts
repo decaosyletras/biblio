@@ -19,9 +19,99 @@ type AuthorRelation =
   }>
   | null
 
+
+
 function isClaimStatus(value: unknown): value is ClaimStatus {
   return value === "approved" || value === "rejected"
 }
+
+export async function GET() {
+  try {
+    const authClient = await createClient()
+
+    const {
+      data: { user },
+      error: authError,
+    } = await authClient.auth.getUser()
+
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: "No autenticado" },
+        { status: 401 }
+      )
+    }
+
+    const { data: profile, error: profileError } = await supabaseAdmin
+      .from("profiles")
+      .select("admin")
+      .eq("id", user.id)
+      .maybeSingle()
+
+    if (profileError || !profile?.admin) {
+      return NextResponse.json(
+        { error: "No autorizado" },
+        { status: 403 }
+      )
+    }
+
+    const { data: claimsData, error: claimsError } = await supabaseAdmin
+      .from("author_claims")
+      .select(`
+        id,
+        status,
+        created_at,
+        user_id,
+        author_id,
+        proof_url,
+        proof_notes,
+        authors (
+          name,
+          slug
+        )
+      `)
+      .order("created_at", { ascending: false })
+
+    if (claimsError) {
+      return NextResponse.json(
+        { error: "No se pudieron cargar las solicitudes" },
+        { status: 500 }
+      )
+    }
+
+    const claims = claimsData ?? []
+
+    const userIds = [...new Set(claims.map((claim) => claim.user_id))]
+
+    const { data: profiles, error: profilesError } = await supabaseAdmin
+      .from("profiles")
+      .select("id, username, full_name")
+      .in("id", userIds)
+
+    if (profilesError) {
+      return NextResponse.json(
+        { error: "No se pudieron cargar los perfiles" },
+        { status: 500 }
+      )
+    }
+
+    const enrichedClaims = claims.map((claim) => ({
+      ...claim,
+      profile: profiles?.find((p) => p.id === claim.user_id),
+    }))
+
+    return NextResponse.json({
+      claims: enrichedClaims,
+    })
+  } catch {
+    return NextResponse.json(
+      { error: "Error cargando las solicitudes" },
+      { status: 500 }
+    )
+  }
+}
+
+
+
 
 export async function POST(req: Request) {
   try {
