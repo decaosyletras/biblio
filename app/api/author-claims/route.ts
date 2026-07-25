@@ -197,7 +197,7 @@ export async function POST(req: Request) {
 }
 
 await resend.emails.send({
-  from: "Casa de Libros Indie <onboarding@resend.dev>",
+  from: "Casa de Libros Indie <notificaciones@resend.dev>",
   to: process.env.ADMIN_NOTIFICATION_EMAIL!,
   subject: "Nueva reclamación de autor",
   text: `
