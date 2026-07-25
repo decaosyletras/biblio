@@ -166,6 +166,27 @@ export async function POST(req: Request) {
       })
     }
 
+    await resend.emails.send({
+  from: "Casa de Libros Indie <notificaciones@resend.dev>",
+  to: process.env.ADMIN_NOTIFICATION_EMAIL!,
+  subject: "Nueva reclamación de autor",
+  text: `
+Se ha reactivado una reclamación de autor.
+
+Autor ID:
+${author_id}
+
+Usuario:
+${user.email}
+
+Notas:
+${proof_notes}
+
+Evidencia:
+${proof_url}
+`,
+})
+
 
     const { error } = await supabaseAdmin
       .from("author_claims")
@@ -196,14 +217,15 @@ export async function POST(req: Request) {
   )
 }
 
-await resend.emails.send({
+const { error: emailError } = await resend.emails.send({
   from: "Casa de Libros Indie <notificaciones@resend.dev>",
   to: process.env.ADMIN_NOTIFICATION_EMAIL!,
   subject: "Nueva reclamación de autor",
   text: `
 Se ha recibido una nueva reclamación de autor.
 
-Autor ID: ${author_id}
+Autor ID:
+${author_id}
 
 Usuario:
 ${user.email}
@@ -215,6 +237,16 @@ Evidencia:
 ${proof_url}
 `,
 })
+
+if (emailError) {
+  console.error("Error enviando correo:", emailError)
+
+  return NextResponse.json({
+    success: true,
+    emailSent: false,
+    warning: "La reclamación se guardó pero no se pudo enviar la notificación"
+  })
+}
 
 return NextResponse.json({
   success: true
