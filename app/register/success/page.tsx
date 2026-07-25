@@ -47,7 +47,7 @@ function SuccessContent() {
                     Haz clic en el enlace que encontrarás en ese correo para activar tu cuenta.
                 </p>
 
-                <div className="mt-6 rounded-xl bg-zinc-800 p-4 text-sm text-zinc-400">
+                <div className="mt-6 rounded-xl bg-zinc-800 p-4 text-sm text-yellow-400">
                     Si no lo encuentras, revisa la carpeta de spam, promociones o correo no deseado.
                 </div>
 
