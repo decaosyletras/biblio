@@ -161,14 +161,14 @@ export async function POST(req: Request) {
       body = await req.json()
     } catch {
       return NextResponse.json(
-        { error: "Solicitud invalida" },
+        { error: "Solicitud inválida" },
         { status: 400 }
       )
     }
 
     if (!body || typeof body !== "object" || Array.isArray(body)) {
       return NextResponse.json(
-        { error: "Solicitud invalida" },
+        { error: "Solicitud inválida" },
         { status: 400 }
       )
     }
@@ -184,7 +184,7 @@ export async function POST(req: Request) {
       !isClaimStatus(status)
     ) {
       return NextResponse.json(
-        { error: "Datos invalidos" },
+        { error: "Datos inválidos" },
         { status: 400 }
       )
     }
@@ -242,7 +242,7 @@ export async function POST(req: Request) {
           .eq("id", claimId)
 
         return NextResponse.json(
-          { error: "No se pudo completar la aprobacion" },
+          { error: "No se pudo completar la aprobación" },
           { status: 500 }
         )
       }
@@ -256,7 +256,7 @@ export async function POST(req: Request) {
         success: true,
         status: updatedClaim.status,
         emailSent: false,
-        warning: "La decision se guardo, pero no se pudo enviar la notificacion"
+        warning: "La decision se guardó, pero no se pudo enviar la notificación"
       })
     }
 
@@ -266,7 +266,7 @@ export async function POST(req: Request) {
     const approved = updatedClaim.status === "approved"
 
     const { error: emailError } = await resend.emails.send({
-      from: "Casa de Libros Indie <onboarding@resend.dev>",
+      from: "Casa de Libros Indie <notificaciones@resend.dev>",
       to: userData.user.email,
       subject: approved
         ? "Tu solicitud de autor ha sido aprobada"
@@ -281,7 +281,7 @@ export async function POST(req: Request) {
         success: true,
         status: updatedClaim.status,
         emailSent: false,
-        warning: "La decision se guardo, pero no se pudo enviar la notificacion"
+        warning: "La decisión se guardó, pero no se pudo enviar la notificación"
       })
     }
 

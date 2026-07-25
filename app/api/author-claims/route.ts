@@ -4,6 +4,7 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
+import { Resend } from "resend"
 
 // Sustituido por supabaseAdmin para las consultas/escrituras administrativas
 // y por authClient dentro de POST para obtener el usuario autenticado.
@@ -11,6 +12,7 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin"
 //   process.env.NEXT_PUBLIC_SUPABASE_URL!,
 //   process.env.SUPABASE_SERVICE_ROLE_KEY!
 // )
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 
 export async function POST(req: Request) {
@@ -194,6 +196,50 @@ export async function POST(req: Request) {
         { status: 500 }
       )
 
+    }
+
+
+
+    const { data: author } = await supabaseAdmin
+      .from("authors")
+      .select("name")
+      .eq("id", author_id)
+      .maybeSingle()
+
+    const { data: profile } = await supabaseAdmin
+      .from("profiles")
+      .select("username, full_name")
+      .eq("id", user.id)
+      .maybeSingle()
+
+    const requester =
+      profile?.full_name ||
+      profile?.username ||
+      user.email ||
+      user.id
+
+    try {
+      await resend.emails.send({
+        from: "Casa de Libros Indie <notificaciones@cazaindie.com>",
+        to: process.env.ADMIN_NOTIFICATION_EMAIL!,
+        subject: "Nueva reclamación de autor",
+        text: `Se ha recibido una nueva reclamación de autor.
+
+    Autor: ${author?.name ?? "Desconocido"}
+
+    Solicitante: ${requester}
+
+    Correo del usuario: ${user.email}
+
+    Notas:
+    ${proof_notes}
+
+    Evidencia:
+    ${proof_url}
+    `,
+      })
+    } catch (emailError) {
+      console.error("Error enviando notificación:", emailError)
     }
 
 
