@@ -163,7 +163,7 @@ export async function POST(req: Request) {
 
 
       const { error: emailError } = await resend.emails.send({
-  from: "Casa de Libros Indie <notificaciones@resend.dev>",
+  from: "Casa de Libros Indie <notificaciones@cazaindie.com>",
   to: process.env.ADMIN_NOTIFICATION_EMAIL!,
   subject: "Nueva reclamación de autor",
   text: `
@@ -192,7 +192,7 @@ console.log("Resultado Resend:", emailError)
     }
 
     await resend.emails.send({
-  from: "Casa de Libros Indie <notificaciones@resend.dev>",
+  from: "Casa de Libros Indie <notificaciones@cazaindie.com>",
   to: process.env.ADMIN_NOTIFICATION_EMAIL!,
   subject: "Nueva reclamación de autor",
   text: `
@@ -243,7 +243,7 @@ ${proof_url}
 }
 
 const { error: emailError } = await resend.emails.send({
-  from: "Casa de Libros Indie <notificaciones@resend.dev>",
+  from: "Casa de Libros Indie <notificaciones@cazaindie.com>",
   to: process.env.ADMIN_NOTIFICATION_EMAIL!,
   subject: "Nueva reclamación de autor",
   text: `
