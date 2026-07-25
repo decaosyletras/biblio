@@ -54,7 +54,7 @@ export default function CardAuthor({
           ) : (
 
             <div
-              className="w-20 h-20 rounded-xl flex items-center justify-center border"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl flex items-center justify-center border"
               style={{
                 backgroundColor: "#27272a",
                 borderColor: authorTheme.primary
@@ -62,7 +62,8 @@ export default function CardAuthor({
             >
 
               <UserRound
-                size={34}
+                size={30}
+                className="sm:w-[34px] sm:h-[34px]"
                 style={{
                   color: authorTheme.primary
                 }}
