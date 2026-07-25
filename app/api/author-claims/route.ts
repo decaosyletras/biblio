@@ -161,6 +161,30 @@ export async function POST(req: Request) {
       }
       console.log("REACTIVACIÓN: llegó al envío de correo")
 
+
+      const { error: emailError } = await resend.emails.send({
+  from: "Casa de Libros Indie <notificaciones@resend.dev>",
+  to: process.env.ADMIN_NOTIFICATION_EMAIL!,
+  subject: "Nueva reclamación de autor",
+  text: `
+Se ha recibido una nueva reclamación de autor.
+
+Autor ID:
+${author_id}
+
+Usuario:
+${user.email}
+
+Notas:
+${proof_notes}
+
+Evidencia:
+${proof_url}
+`,
+})
+
+console.log("Resultado Resend:", emailError)
+
       return NextResponse.json({
         success: true,
         reactivated: true
