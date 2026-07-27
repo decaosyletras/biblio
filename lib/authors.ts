@@ -27,6 +27,7 @@ export async function getLatestAuthorNews() {
       "news_updated_at",
       since.toISOString()
     )
+    .neq("news->>type", "")
     .order(
       "news_updated_at",
       {
