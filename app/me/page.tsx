@@ -32,6 +32,54 @@ export default function MePage() {
     const [users, setUsers] = useState<UserRow[]>([])
     const [loadingUsers, setLoadingUsers] = useState(false)
 
+    const [sendingLaunch, setSendingLaunch] = useState(false)
+
+
+    const sendLaunchEmail = async () => {
+
+        const confirm1 = window.confirm(
+            "⚠️ Vas a enviar el correo de lanzamiento a todos los registros. ¿Continuar?"
+        )
+
+        if (!confirm1) return
+
+
+        const confirm2 = window.confirm(
+            "🚨 Confirmación final: se enviarán correos reales a usuarios externos. ¿Seguro?"
+        )
+
+        if (!confirm2) return
+
+
+        setSendingLaunch(true)
+
+
+        const res = await fetch(
+            "/api/admin/send-launch-email",
+            {
+                method: "POST"
+            }
+        )
+
+
+        const data = await res.json()
+
+
+        setSendingLaunch(false)
+
+
+        if (data.error) {
+            alert(data.error)
+            return
+        }
+
+
+        alert(
+            `Correos enviados: ${data.enviados}\nErrores: ${data.errores}`
+        )
+
+    }
+
 
     useEffect(() => {
         if (!loading && !user) {
@@ -429,13 +477,34 @@ export default function MePage() {
 
                         {profile?.admin && (
 
-                            <button
-                                onClick={() =>
-                                    router.push("/admin/author-claims")
-                                }
-                                className="px-5 py-3 rounded-xl bg-green-600 hover:bg-green-500 active:bg-green-700 active:scale-95 transition-all duration-150">
-                                Panel admin
-                            </button>
+                            <div>
+
+                                <button
+                                    onClick={sendLaunchEmail}
+                                    disabled={sendingLaunch}
+                                    className="
+                                        px-5 py-3
+                                        rounded-xl
+                                        bg-purple-600
+                                        hover:bg-purple-500
+                                        disabled:opacity-50
+                                    "
+                                >
+                                    {sendingLaunch
+                                        ? "Enviando..."
+                                        : "📧 Enviar lanzamiento"
+                                    }
+                                </button>
+
+                                <button
+                                    onClick={() =>
+                                        router.push("/admin/author-claims")
+                                    }
+                                    className="px-5 py-3 rounded-xl bg-green-600 hover:bg-green-500 active:bg-green-700 active:scale-95 transition-all duration-150">
+                                    Panel admin
+                                </button>
+
+                            </div>
                         )}
                     </div>
                 </div>
