@@ -477,7 +477,7 @@ export default function MePage() {
 
                         {profile?.admin && (
 
-                            <div>
+                            <div className="flex flex-col sm:flex-row gap-3">
 
                                 <button
                                     onClick={sendLaunchEmail}
@@ -485,14 +485,15 @@ export default function MePage() {
                                     className="
                                         px-5 py-3
                                         rounded-xl
-                                        bg-purple-600
-                                        hover:bg-purple-500
-                                        disabled:opacity-50
+                                        bg-red-600
+                                        hover:bg-red-500
+                                        active:bg-red-700 
+                                        active:scale-95 transition-all duration-150
                                     "
                                 >
                                     {sendingLaunch
                                         ? "Enviando..."
-                                        : "📧 Enviar lanzamiento"
+                                        : "📧 Enviar Anuncio"
                                     }
                                 </button>
 
