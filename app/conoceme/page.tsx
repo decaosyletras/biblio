@@ -172,7 +172,7 @@ export default function ConocemePage() {
         </h2>
 
         <p className="text-zinc-400 mb-4">
-          Seguiremos trabajando en nuevas mejoras para esta plataforma, creando nuevas herramientas y experiencias que permitan a los escritores independientes dar a conocer su trabajo y a los lectores encontrar nuevas historias que descubrir.
+          Seguiremos trabajando en nuevas mejoras para esta plataforma, creando nuevas herramientas y experiencias que permitan a los escritores independientes dar a conocer su trabajo y a los lectores encontrar nuevas historias que les permitan disfrutar de un buen viaje.
         </p>
 
         <p className="text-zinc-400 mb-6">
