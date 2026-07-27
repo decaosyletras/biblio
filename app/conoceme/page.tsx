@@ -172,15 +172,11 @@ export default function ConocemePage() {
         </h2>
 
         <p className="text-zinc-400 mb-4">
-          Trabajaré en una segunda versión de esta plataforma donde los
-          lectores y escritores independientes podrán interactuar directamente.
-          La idea es que los autores puedan agregar sus libros, recibir
-          visibilidad y conectar con lectores reales.
+          Seguiremos trabajando en nuevas mejoras para esta plataforma, creando nuevas herramientas y experiencias que permitan a los escritores independientes dar a conocer su trabajo y a los lectores encontrar nuevas historias que descubrir.
         </p>
 
         <p className="text-zinc-400 mb-6">
-          Si quieres ser de los primeros en formar parte, agregar tus libros o
-          simplemente apoyar el desarrollo de este segundo proyecto, deja tu correo aquí:
+          Si quieres formar parte y apoyar el desarrollo de futuras versiones, deja tu correo aquí:
         </p>
 
         {sent ? (
