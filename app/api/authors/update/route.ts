@@ -230,7 +230,15 @@ export async function POST(request: Request) {
     }
 
     if (Object.hasOwn(safeUpdates, "news")) {
-      safeUpdates.news_updated_at = new Date().toISOString()
+      const news = safeUpdates.news as Record<string, unknown> | null
+
+      const hasNews =
+        typeof news?.type === "string" &&
+        news.type.trim() !== ""
+
+      safeUpdates.news_updated_at = hasNews
+        ? new Date().toISOString()
+        : null
     }
 
     const { error: updateError } = await supabaseAdmin
