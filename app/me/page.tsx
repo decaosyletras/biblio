@@ -402,11 +402,14 @@ export default function MePage() {
                                 w-full sm:w-auto
                                 px-5 py-3
                                 rounded-xl
-                                bg-zinc-800
-                                hover:bg-zinc-700
+                                bg-stone-100
+                                text-stone-900
+                                hover:bg-stone-200
                                 active:scale-95
+                                active:bg-stone-300
                                 transition-all
-                            "
+                                duration-150
+                                "
                         >
                             📖 Tutorial
                         </Link>
