@@ -218,9 +218,13 @@ export default function TutorialPage() {
                         <p>
                             Sabemos que crear y mantener una página web propia no siempre está al
                             alcance de todos los escritores. Por eso PRO te ofrece un espacio
-                            profesional donde tener presencia online, personalizar tu imagen y dar
-                            a tus libros la visibilidad que merecen, sin necesidad de construir una
-                            web desde cero.
+                            profesional donde tener presencia online, personalizar tu imagen, poner novedades, y dar a tus libros la visibilidad que merecen, sin necesidad de construir una web desde cero.
+                        </p>
+
+                        <p>
+                            Además, al formar parte de PRO estás apoyando directamente este proyecto
+                            y ayudando a que podamos seguir creando nuevas herramientas y mejoras
+                            para autores y lectores.
                         </p>
                     </div>
 
