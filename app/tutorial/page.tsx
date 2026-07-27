@@ -7,28 +7,28 @@ export default function TutorialPage() {
             title: "Crea tu cuenta",
             icon: "👤",
             text:
-                "Regístrate para tener acceso a tu espacio de autor. Desde tu cuenta podrás reclamar tus libros y gestionar tu página."
+                "Regístrate para tener acceso a tu perfil. Desde tu cuenta podrás reclamar tus libros y gestionar tu página de autor."
         },
         {
             number: "02",
             title: "Encuentra tu libro",
             icon: "📚",
             text:
-                "Busca tu libro en el catálogo. Cuando encuentres una obra tuya, podrás solicitar la reclamación de autoría."
+                "Busca tu libro en el catálogo. Cuando encuentres una obra tuya, podrás solicitar la reclamación de autoría. Solo pedimos que nos cuentes un poco sobre tu autoría y que dejes un link a alguna red social para hacer una breve revisión."
         },
         {
             number: "03",
             title: "Reclama tu autoría",
             icon: "✍️",
             text:
-                "Pulsa en «Reclamar autor» para solicitar acceso a tu página de autor. Revisaremos la solicitud antes de activarla."
+                "Pulsa en «Reclamar autor» para solicitar acceso a tu página de autor. Revisaremos la solicitud antes de activarla. (Basta con reclamar un solo libro, los demás asignados a ese autor se te asignarán automáticamente)."
         },
         {
             number: "04",
             title: "Completa tu perfil básico",
             icon: "📝",
             text:
-                "Una vez aprobada tu solicitud podrás añadir tu biografía, imagen y la información principal que verán tus lectores."
+                "Una vez aprobada tu solicitud podrás añadir tu biografía, imagen de perfil y la información principal que verán tus lectores."
         },
         {
             number: "05",
@@ -201,10 +201,28 @@ export default function TutorialPage() {
                         ¿Quieres destacar más?
                     </h2>
 
-                    <p className="mt-3 text-zinc-400 max-w-xl mx-auto">
-                        La versión PRO te permite transformar tu página
-                        de autor en un espacio más personal y profesional.
-                    </p>
+                    <div className="mt-3 text-zinc-400 max-w-xl mx-auto space-y-4 leading-relaxed">
+                        <p>
+                            Con PRO, tu página de autor se convierte en un espacio más personal,
+                            profesional y preparado para conectar con tus lectores.
+                        </p>
+
+                        <p>
+                            Hemos diseñado las páginas de autor para que tengan una apariencia
+                            limpia y enfocada en tu trayectoria, tus libros y tu identidad como
+                            escritor. Sin elementos innecesarios que distraigan, para que puedas
+                            compartir tu página en redes sociales, presentaciones, entrevistas o
+                            cualquier otro lugar donde quieras mostrar tu trabajo.
+                        </p>
+
+                        <p>
+                            Sabemos que crear y mantener una página web propia no siempre está al
+                            alcance de todos los escritores. Por eso PRO te ofrece un espacio
+                            profesional donde tener presencia online, personalizar tu imagen y dar
+                            a tus libros la visibilidad que merecen, sin necesidad de construir una
+                            web desde cero.
+                        </p>
+                    </div>
 
 
                     <Link
