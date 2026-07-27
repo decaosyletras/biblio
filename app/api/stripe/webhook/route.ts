@@ -362,19 +362,33 @@ const UUID_PATTERN =
 
 type EventStartResult = "process" | "completed" | "busy"
 
+const PRICE_IDS = {
+  usd: {
+    monthly: process.env.STRIPE_PRICE_MONTHLY!,
+    quarterly: process.env.STRIPE_PRICE_QUARTERLY!,
+    semiannual: process.env.STRIPE_PRICE_SEMIANNUAL!,
+  },
+  mxn: {
+    monthly: process.env.STRIPE_PRICE_MXN_MONTHLY!,
+    quarterly: process.env.STRIPE_PRICE_MXN_QUARTERLY!,
+    semiannual: process.env.STRIPE_PRICE_MXN_SEMIANNUAL!,
+  },
+  eur: {
+    monthly: process.env.STRIPE_PRICE_EUR_MONTHLY!,
+    quarterly: process.env.STRIPE_PRICE_EUR_QUARTERLY!,
+    semiannual: process.env.STRIPE_PRICE_EUR_SEMIANNUAL!,
+  },
+} as const
+
 function getPlan(subscription: Stripe.Subscription) {
   const priceId = subscription.items.data[0]?.price.id
 
-  if (priceId === process.env.STRIPE_PRICE_MONTHLY) {
-    return "monthly"
-  }
-
-  if (priceId === process.env.STRIPE_PRICE_QUARTERLY) {
-    return "quarterly"
-  }
-
-  if (priceId === process.env.STRIPE_PRICE_SEMIANNUAL) {
-    return "semiannual"
+  for (const prices of Object.values(PRICE_IDS)) {
+    for (const [plan, configuredPriceId] of Object.entries(prices)) {
+      if (priceId === configuredPriceId) {
+        return plan
+      }
+    }
   }
 
   return null

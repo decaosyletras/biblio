@@ -9,9 +9,21 @@ const stripe = new Stripe(
 )
 
 const PRICE_IDS = {
-  monthly: process.env.STRIPE_PRICE_MONTHLY!,
-  quarterly: process.env.STRIPE_PRICE_QUARTERLY!,
-  semiannual: process.env.STRIPE_PRICE_SEMIANNUAL!
+  usd: {
+    monthly: process.env.STRIPE_PRICE_MONTHLY!,
+    quarterly: process.env.STRIPE_PRICE_QUARTERLY!,
+    semiannual: process.env.STRIPE_PRICE_SEMIANNUAL!,
+  },
+  mxn: {
+    monthly: process.env.STRIPE_PRICE_MXN_MONTHLY!,
+    quarterly: process.env.STRIPE_PRICE_MXN_QUARTERLY!,
+    semiannual: process.env.STRIPE_PRICE_MXN_SEMIANNUAL!,
+  },
+  eur: {
+    monthly: process.env.STRIPE_PRICE_EUR_MONTHLY!,
+    quarterly: process.env.STRIPE_PRICE_EUR_QUARTERLY!,
+    semiannual: process.env.STRIPE_PRICE_EUR_SEMIANNUAL!,
+  },
 }
 
 type AuthorRelation =
@@ -23,7 +35,8 @@ type AuthorRelation =
   }>
   | null
 
-type Plan = keyof typeof PRICE_IDS
+type Currency = keyof typeof PRICE_IDS
+type Plan = keyof typeof PRICE_IDS.usd
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
@@ -34,10 +47,15 @@ function isPlan(value: unknown): value is Plan {
     value === "semiannual"
 }
 
+function isCurrency(value: unknown): value is Currency {
+  return value === "usd" || value === "mxn" || value === "eur"
+}
+
 type CheckoutAttempt = {
   author_id: string
   user_id: string
   plan: string
+  currency: string
   idempotency_key: string
   stripe_session_id: string | null
   status: string
@@ -50,6 +68,7 @@ async function prepareCheckoutAttempt(
   authorId: string,
   userId: string,
   plan: string,
+  currency: string,
   retryCount = 0
 ): Promise<{
   idempotencyKey: string
@@ -62,7 +81,7 @@ async function prepareCheckoutAttempt(
   const { data: existing, error: lookupError } = await supabaseAdmin
     .from("stripe_checkout_attempts")
     .select(
-      "author_id,user_id,plan,idempotency_key,stripe_session_id,status,expires_at"
+      "author_id,user_id,plan,currency,idempotency_key,stripe_session_id,status,expires_at"
     )
     .eq("author_id", authorId)
     .maybeSingle()
@@ -84,7 +103,11 @@ async function prepareCheckoutAttempt(
           throw new CheckoutInProgressError()
         }
 
-        if (attempt.plan === plan && previousSession.url) {
+        if (
+          attempt.plan === plan &&
+          attempt.currency === currency &&
+          previousSession.url
+        ) {
           return {
             idempotencyKey: attempt.idempotency_key,
             existingUrl: previousSession.url,
@@ -122,7 +145,11 @@ async function prepareCheckoutAttempt(
       new Date(attempt.expires_at).getTime() > Date.now()
 
     if (pendingAttemptIsCurrent) {
-      if (attempt.user_id !== userId || attempt.plan !== plan) {
+      if (
+        attempt.user_id !== userId ||
+        attempt.plan !== plan ||
+        attempt.currency !== currency
+      ) {
         throw new CheckoutInProgressError()
       }
 
@@ -137,6 +164,7 @@ async function prepareCheckoutAttempt(
       .update({
         user_id: userId,
         plan,
+        currency,
         idempotency_key: newIdempotencyKey,
         stripe_session_id: null,
         status: "pending",
@@ -157,6 +185,7 @@ async function prepareCheckoutAttempt(
         authorId,
         userId,
         plan,
+        currency,
         retryCount + 1
       )
     }
@@ -173,6 +202,7 @@ async function prepareCheckoutAttempt(
       author_id: authorId,
       user_id: userId,
       plan,
+      currency,
       idempotency_key: idempotencyKey,
       status: "pending",
       expires_at: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
@@ -183,6 +213,7 @@ async function prepareCheckoutAttempt(
       authorId,
       userId,
       plan,
+      currency,
       retryCount + 1
     )
   }
@@ -304,13 +335,15 @@ export async function POST(request: Request) {
 
     const {
       authorId,
-      plan
+      plan,
+      currency
     } = body as Record<string, unknown>
 
     if (
       typeof authorId !== "string" ||
       !UUID_PATTERN.test(authorId) ||
-      !isPlan(plan)
+      !isPlan(plan) ||
+      !isCurrency(currency)
     ) {
 
       return NextResponse.json(
@@ -324,7 +357,7 @@ export async function POST(request: Request) {
 
     }
 
-    const priceId = PRICE_IDS[plan]
+    const priceId = PRICE_IDS[currency][plan]
 
     if (!priceId) {
 
@@ -473,7 +506,8 @@ export async function POST(request: Request) {
     const attempt = await prepareCheckoutAttempt(
       authorId,
       user.id,
-      plan
+      plan,
+      currency
     )
 
     if (attempt.existingUrl) {
@@ -532,7 +566,8 @@ export async function POST(request: Request) {
         metadata: {
           author_id: authorId,
           user_id: user.id,
-          plan
+          plan,
+          currency
         },
 
 
