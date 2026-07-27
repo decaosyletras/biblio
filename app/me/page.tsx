@@ -396,6 +396,21 @@ export default function MePage() {
                             Mis solicitudes
                         </button>*/}
 
+                        <Link
+                            href="/tutorial"
+                            className="
+                                w-full sm:w-auto
+                                px-5 py-3
+                                rounded-xl
+                                bg-zinc-800
+                                hover:bg-zinc-700
+                                active:scale-95
+                                transition-all
+                            "
+                        >
+                            📖 Tutorial
+                        </Link>
+
                         <button
                             onClick={async () => {
 
