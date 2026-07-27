@@ -25,7 +25,7 @@ export default function TutorialPage() {
         },
         {
             number: "04",
-            title: "Completa tu perfil básico",
+            title: "Completa tu página de autor",
             icon: "📝",
             text:
                 "Una vez aprobada tu solicitud podrás añadir tu biografía, imagen de perfil y la información principal que verán tus lectores."
@@ -159,7 +159,7 @@ export default function TutorialPage() {
                             "Buscar libro",
                             "Reclamar autoría",
                             "Completar perfil",
-                            "Personalizar"
+                            "Personalizar (opcional)"
                         ].map((item, index) => (
 
                             <div key={item} className="flex items-center gap-3">
