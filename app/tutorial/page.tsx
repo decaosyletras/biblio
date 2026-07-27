@@ -159,7 +159,7 @@ export default function TutorialPage() {
                             "Buscar libro",
                             "Reclamar autoría",
                             "Completar perfil",
-                            "Personalizar (opcional)"
+                            "Personalizar"
                         ].map((item, index) => (
 
                             <div key={item} className="flex items-center gap-3">
