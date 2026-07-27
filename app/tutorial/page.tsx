@@ -32,7 +32,7 @@ export default function TutorialPage() {
         },
         {
             number: "05",
-            title: "Personaliza con PRO",
+            title: "Personaliza con PRO (opcional)",
             icon: "⭐",
             text:
                 "Con PRO podrás darle una identidad propia a tu página: colores, estilo visual, redes sociales, banner y novedades."
