@@ -35,7 +35,7 @@ export default function TutorialPage() {
             title: "Personaliza con PRO (opcional)",
             icon: "⭐",
             text:
-                "Con PRO podrás darle una identidad propia a tu página: colores, estilo visual, redes sociales, banner y novedades."
+                "Con PRO podrás darle una identidad propia a tu página: colores, estilo visual, redes sociales, banner y novedades. "
         }
     ]
 
@@ -228,25 +228,6 @@ export default function TutorialPage() {
                         </p>
                     </div>
 
-
-                    <Link
-                        href="/pro"
-                        className="
-                            inline-block
-                            mt-6
-                            bg-yellow-500
-                            text-black
-                            px-7
-                            py-3
-                            rounded-full
-                            font-medium
-                            hover:bg-yellow-400
-                            transition
-                        "
-                    >
-                        Conocer PRO
-                    </Link>
-
                 </section>
 
 
@@ -259,7 +240,7 @@ export default function TutorialPage() {
                     </p>
 
                     <Link
-                        href="/contact"
+                        href="/conoceme"
                         className="
                             inline-block
                             mt-3
