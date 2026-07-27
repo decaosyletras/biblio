@@ -266,13 +266,13 @@ export async function POST(req: Request) {
     const approved = updatedClaim.status === "approved"
 
     const { error: emailError } = await resend.emails.send({
-      from: "Casa de Libros Indie <notificaciones@resend.dev>",
+      from: "Caza de Libros Indie <notificaciones@cazaindie.com>",
       to: userData.user.email,
       subject: approved
         ? "Tu solicitud de autor ha sido aprobada"
         : "Tu solicitud de autor ha sido rechazada",
       text: approved
-        ? `Tu solicitud para representar a ${authorName} en la Casa de Libros Indie ha sido aprobada. Ya puedes acceder a tu perfil: https://cazaindie.com/me`
+        ? `Tu solicitud para representar a ${authorName} en la Caza de Libros Indie ha sido aprobada. Ya puedes acceder a tu perfil: https://cazaindie.com/me`
         : `Tu solicitud para representar a ${authorName} ha sido rechazada. Si crees que hubo un error, puedes volver a enviar una solicitud: https://cazaindie.com/me`
     })
 
