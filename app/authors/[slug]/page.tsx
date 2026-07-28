@@ -243,7 +243,7 @@ export default async function AuthorPage({
     const authorTheme = {
         bg: themeConfig?.bg ?? "#151518",
         surface: themeConfig?.surface ?? "#505061",
-        primary: themeConfig?.primary ?? "#557ac9",
+        primary: themeConfig?.primary ?? "#3762c0",
         text: themeConfig?.text ?? "#ffffff",
         muted: themeConfig?.muted ?? "#a1a1aa",
         border: themeConfig?.border ?? "#818198",
@@ -817,6 +817,7 @@ export default async function AuthorPage({
                                             }}
                                             amazonLink={featuredBook.amazonLink}
                                             color={authorTheme.primary}
+                                            textColor="#ffffff"
                                         />
 
                                         {(!isPro || author.show_book_details !== false) && (
@@ -984,6 +985,7 @@ export default async function AuthorPage({
                                                 }}
                                                 amazonLink={book.amazonLink}
                                                 color={authorTheme.primary}
+                                                textColor="#ffffff"
                                             />
 
 
