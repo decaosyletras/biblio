@@ -135,6 +135,20 @@ export default function EditAuthorPage() {
         }))
     }
 
+    function normalizeUrl(url?: string) {
+        if (!url) return ""
+
+        const value = url.trim()
+
+        if (!value) return ""
+
+        if (/^https?:\/\//i.test(value)) {
+            return value
+        }
+
+        return `https://${value}`
+    }
+
     function updateTheme(value: string) {
         setAuthor((prev: any) => ({
             ...prev,
@@ -220,13 +234,13 @@ export default function EditAuthorPage() {
             data.show_book_details = author.show_book_details ?? true
 
             data.banner = bannerUrl || null
-            data.website = author.website ?? ""
-            data.instagram = author.instagram ?? ""
-            data.threads = author.threads ?? ""
-            data.facebook = author.facebook ?? ""
-            data.tiktok = author.tiktok ?? ""
-            data.youtube = author.youtube ?? ""
-            data.wattpad = author.wattpad ?? ""
+            data.website = normalizeUrl(author.website)
+            data.instagram = normalizeUrl(author.instagram)
+            data.threads = normalizeUrl(author.threads)
+            data.facebook = normalizeUrl(author.facebook)
+            data.tiktok = normalizeUrl(author.tiktok)
+            data.youtube = normalizeUrl(author.youtube)
+            data.wattpad = normalizeUrl(author.wattpad)
             data.current_news = author.current_news ?? ""
 
             data.social_order = socialOrder

@@ -28,9 +28,9 @@ export default function GenreBadge({
       style={
         theme
           ? {
-            backgroundColor: `${theme.primary}20`,
+            backgroundColor: `${theme.primary}15`,
             color: theme.primary,
-            borderColor: `${theme.primary}60`,
+            borderColor: `${theme.primary}70`,
           }
           : undefined
       }

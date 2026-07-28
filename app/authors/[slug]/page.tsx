@@ -242,11 +242,11 @@ export default async function AuthorPage({
 
     const authorTheme = {
         bg: themeConfig?.bg ?? "#151518",
-        surface: themeConfig?.surface ?? "#505061",
-        primary: themeConfig?.primary ?? "#5d83d3",
-        text: themeConfig?.text ?? "#ffffff",
+        surface: themeConfig?.surface ?? "#212125",
+        primary: themeConfig?.primary ?? "#668fe7",
+        text: themeConfig?.text ?? "#c9cacd",
         muted: themeConfig?.muted ?? "#a1a1aa",
-        border: themeConfig?.border ?? "#818198",
+        border: themeConfig?.border ?? "#525261",
     }
 
     /*onsole.log({
@@ -545,7 +545,7 @@ export default async function AuthorPage({
                             href={`/authors/${author.slug}/edit`}
                             className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition-all duration-150 active:scale-95 whitespace-nowrap"
                             style={{
-                                backgroundColor: authorTheme.primary ?? "#2563eb"
+                                backgroundColor: authorTheme.primary
                             }}
                         >
                             Editar página
@@ -817,7 +817,7 @@ export default async function AuthorPage({
                                             }}
                                             amazonLink={featuredBook.amazonLink}
                                             color={authorTheme.primary}
-                                            textColor={authorTheme.text}
+                                            textColor="#ffffff"
                                         />
 
                                         {(!isPro || author.show_book_details !== false) && (
@@ -985,7 +985,7 @@ export default async function AuthorPage({
                                                 }}
                                                 amazonLink={book.amazonLink}
                                                 color={authorTheme.primary}
-                                                textColor={authorTheme.text}
+                                                textColor="#ffffff"
                                             />
 
 
