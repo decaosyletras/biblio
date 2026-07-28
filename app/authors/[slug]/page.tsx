@@ -242,8 +242,8 @@ export default async function AuthorPage({
 
     const authorTheme = {
         bg: themeConfig?.bg ?? "#151518",
-        surface: themeConfig?.surface ?? "#46466c",
-        primary: themeConfig?.primary ?? "#3762c0",
+        surface: themeConfig?.surface ?? "#3a3a74",
+        primary: themeConfig?.primary ?? "#2555bc",
         text: themeConfig?.text ?? "#ffffff",
         muted: themeConfig?.muted ?? "#a1a1aa",
         border: themeConfig?.border ?? "#8181b8",
