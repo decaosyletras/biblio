@@ -984,8 +984,8 @@ export default async function AuthorPage({
                                                     us: book.asin_us
                                                 }}
                                                 amazonLink={book.amazonLink}
-                                                color={authorTheme.surface}
-                                                textColor={authorTheme.text}
+                                                color={authorTheme.primary}
+                                                textColor={authorTheme.surface}
                                             />
 
 
