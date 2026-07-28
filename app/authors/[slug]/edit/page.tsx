@@ -20,6 +20,7 @@ export default function EditAuthorPage() {
     const slug = params.slug as string
     const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
+    const [savingStep, setSavingStep] = useState("")
     const [allowed, setAllowed] = useState(false)
     const [isPro, setIsPro] = useState(false)
     const [author, setAuthor] = useState<any>(null)
@@ -201,153 +202,182 @@ export default function EditAuthorPage() {
 
 
         setSaving(true)
+        setSavingStep("Preparando...")
 
-        let newsImageUrl = author.news?.image ?? null
+        try {
 
-        let avatarUrl = author.avatar
-        let bannerUrl = author.banner ?? null
+            let newsImageUrl = author.news?.image ?? null
 
-        if (avatarFile) {
-            avatarUrl = await uploadImage(
-                avatarFile,
-                "avatars"
-            )
-        }
+            let avatarUrl = author.avatar
+            let bannerUrl = author.banner ?? null
 
-        const data: any = {
-            avatar: avatarUrl ?? "",
-            bio: author.bio ?? "",
-            description: author.description ?? "",
-            style: author.style ?? "",
-            featured_book_id: author.featured_book_id ?? null,
-            show_bibliography: author.show_bibliography ?? true
-        }
-        if (isPro) {
-            if (bannerFile) {
-                bannerUrl = await uploadImage(
-                    bannerFile,
-                    "banners"
+            if (avatarFile) {
+                setSavingStep("Subiendo foto de perfil...")
+                avatarUrl = await uploadImage(
+                    avatarFile,
+                    "avatars"
                 )
             }
 
-            data.contact_email = author.contact_email ?? ""
-            data.show_book_details = author.show_book_details ?? true
-
-            data.banner = bannerUrl || null
-            data.website = normalizeUrl(author.website)
-            data.instagram = normalizeUrl(author.instagram)
-            data.threads = normalizeUrl(author.threads)
-            data.facebook = normalizeUrl(author.facebook)
-            data.tiktok = normalizeUrl(author.tiktok)
-            data.youtube = normalizeUrl(author.youtube)
-            data.wattpad = normalizeUrl(author.wattpad)
-            data.current_news = author.current_news ?? ""
-
-            data.social_order = socialOrder
-            if (newsImageFile) {
-                newsImageUrl = await uploadImage(
-                    newsImageFile,
-                    "news"
-                )
+            const data: any = {
+                avatar: avatarUrl ?? "",
+                bio: author.bio ?? "",
+                description: author.description ?? "",
+                style: author.style ?? "",
+                featured_book_id: author.featured_book_id ?? null,
+                show_bibliography: author.show_bibliography ?? true
             }
-            data.news = author.news
-                ? {
-                    ...author.news,
-                    image: newsImageUrl
+            if (isPro) {
+                if (bannerFile) {
+                    setSavingStep("Subiendo banner...")
+                    bannerUrl = await uploadImage(
+                        bannerFile,
+                        "banners"
+                    )
                 }
-                : null
-            // Se comento porque la fecha de actualizacion ya la genera el
-            // servidor y no debe confiarse en un valor enviado por el cliente.
-            // data.news_updated_at = new Date().toISOString()
 
-            data.theme = author.theme ?? {
-                mode: "dark",
-                preset: "dark-blue",
-                background: "zinc",
-                primary: "blue",
-                bg: "#09090b",
-                surface: "#18181b",
-                text: "#ffffff"
+                data.contact_email = author.contact_email ?? ""
+                data.show_book_details = author.show_book_details ?? true
+
+                data.banner = bannerUrl || null
+                data.website = normalizeUrl(author.website)
+                data.instagram = normalizeUrl(author.instagram)
+                data.threads = normalizeUrl(author.threads)
+                data.facebook = normalizeUrl(author.facebook)
+                data.tiktok = normalizeUrl(author.tiktok)
+                data.youtube = normalizeUrl(author.youtube)
+                data.wattpad = normalizeUrl(author.wattpad)
+                data.current_news = author.current_news ?? ""
+
+                data.social_order = socialOrder
+                if (newsImageFile) {
+                    setSavingStep("Subiendo imagen de novedades...")
+                    newsImageUrl = await uploadImage(
+                        newsImageFile,
+                        "news"
+                    )
+                }
+                data.news = author.news
+                    ? {
+                        ...author.news,
+                        image: newsImageUrl
+                    }
+                    : null
+                // Se comento porque la fecha de actualizacion ya la genera el
+                // servidor y no debe confiarse en un valor enviado por el cliente.
+                // data.news_updated_at = new Date().toISOString()
+
+                data.theme = author.theme ?? {
+                    mode: "dark",
+                    preset: "dark-blue",
+                    background: "zinc",
+                    primary: "blue",
+                    bg: "#09090b",
+                    surface: "#18181b",
+                    text: "#ffffff"
+                }
             }
-        }
 
-        // 👇 AQUÍ
-        /*
-         * Implementacion anterior conservada como referencia.
-         * Se comento porque actualizaba directamente la tabla authors desde el
-         * navegador y permitia intentar modificar columnas reservadas como PRO.
-        const { data: updated, error } = await supabase
-            .from("authors")
-            .update(data)
-            .eq("id", author.id)
-            .select()
-        */
+            // 👇 AQUÍ
+            /*
+             * Implementacion anterior conservada como referencia.
+             * Se comento porque actualizaba directamente la tabla authors desde el
+             * navegador y permitia intentar modificar columnas reservadas como PRO.
+            const { data: updated, error } = await supabase
+                .from("authors")
+                .update(data)
+                .eq("id", author.id)
+                .select()
+            */
 
-        const updateResponse = await fetch("/api/authors/update", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                authorId: author.id,
-                updates: data
+            setSavingStep("Guardando información...")
+            const controller = new AbortController()
+
+            const timeout = setTimeout(() => {
+                controller.abort()
+            }, 30000)
+
+            const updateResponse = await fetch("/api/authors/update", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    authorId: author.id,
+                    updates: data
+                }),
+                signal: controller.signal
             })
-        })
 
-        const updateResult = await updateResponse
-            .json()
-            .catch(() => null) as {
-                error?: string
-            } | null
+            clearTimeout(timeout)
 
-        if (!updateResponse.ok) {
-            setSaving(false)
-            alert(
-                updateResult?.error ??
-                "No se pudo actualizar el autor"
-            )
-            return
-        }
+            const updateResult = await updateResponse
+                .json()
+                .catch(() => null) as {
+                    error?: string
+                } | null
 
-        if (
-            originalNewsImage &&
-            originalNewsImage !== newsImageUrl
-        ) {
-            await deleteImage(originalNewsImage)
-        }
+            if (!updateResponse.ok) {
+                alert(
+                    updateResult?.error ??
+                    "No se pudo actualizar el autor"
+                )
+                return
+            }
 
-        if (
-            originalAvatar &&
-            avatarFile &&
-            originalAvatar !== data.avatar
-        ) {
-            await deleteImage(originalAvatar)
-        }
+            if (
+                originalNewsImage &&
+                originalNewsImage !== newsImageUrl
+            ) {
+                await deleteImage(originalNewsImage)
+            }
 
-        for (let i = 0; i < books.length; i++) {
-            const { error } = await supabase
-                .from("books")
-                .update({
-                    author_order: i
-                })
-                .eq("id", books[i].id)
-        }
+            if (
+                originalAvatar &&
+                avatarFile &&
+                originalAvatar !== data.avatar
+            ) {
+                await deleteImage(originalAvatar)
+            }
 
-        /*if (isPro) {
+            setSavingStep("Actualizando libros...")
             for (let i = 0; i < books.length; i++) {
-                await supabase
+                const { error } = await supabase
                     .from("books")
                     .update({
                         author_order: i
                     })
                     .eq("id", books[i].id)
             }
-        }*/
-        if (originalBanner && originalBanner !== data.banner) {
-            await deleteImage(originalBanner)
+
+            /*if (isPro) {
+                for (let i = 0; i < books.length; i++) {
+                    await supabase
+                        .from("books")
+                        .update({
+                            author_order: i
+                        })
+                        .eq("id", books[i].id)
+                }
+            }*/
+            if (originalBanner && originalBanner !== data.banner) {
+                await deleteImage(originalBanner)
+            }
+
+            router.push(`/authors/${slug}`)
+        } catch (err: any) {
+            console.error(err)
+
+            if (err.name === "AbortError") {
+                alert("El servidor tardó demasiado en responder.")
+                return
+            }
+
+            alert("Ocurrió un error al guardar.")
+        } finally {
+            setSaving(false)
+            setSavingStep("")
         }
-        setSaving(false)
-        router.push(`/authors/${slug}`)
     }
 
     async function uploadImage(
@@ -628,7 +658,7 @@ export default function EditAuthorPage() {
                     disabled={saving}
                     className="w-full py-4 rounded-xl bg-stone-100 text-stone-900 hover:bg-stone-200 whitespace-nowrap active:scale-95
                                 active:bg-stone-300 transition-all duration-150">
-                    {saving ? "Guardando..." : "Guardar cambios"}
+                    {saving ? savingStep : "Guardar cambios"}
                 </button>
 
             </div>
