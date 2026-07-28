@@ -521,6 +521,10 @@ export default function EditAuthorPage() {
                             Estas herramientas están disponibles para autores PRO.
                         </p>
 
+                        <p className="text-base font-semibold text-yellow-400">
+                            ¿Te registraste para probar la segunda versión? Revisa tu correo, incluida la carpeta de <strong>Promociones</strong> o <strong>Spam</strong>.
+                        </p>
+
                         <ProCheckoutButton
                             authorId={author.id}
                         />
