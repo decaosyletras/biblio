@@ -246,7 +246,7 @@ export default async function AuthorPage({
         primary: themeConfig?.primary ?? "#2c59b9",
         text: themeConfig?.text ?? "#c9cacd",
         muted: themeConfig?.muted ?? "#a1a1aa",
-        border: themeConfig?.border ?? "#707078",
+        border: themeConfig?.border ?? "#525261",
     }
 
     /*onsole.log({
