@@ -536,8 +536,7 @@ export default function EditAuthorPage() {
                         </p>
 
                         <p className="text-xs text-yellow-500">
-                            ⚠️ ¿Te registraste para ser de los primeros en usar la segunda versión?{" "}
-                            Revisa tu correo, incluida la carpeta de <strong>Promociones</strong> o <strong>Spam</strong>.
+                            ⚠️ ¿Te registraste para ser de los primeros en usar la segunda versión? Revisa tu correo, incluida la carpeta de <strong>Promociones</strong> o <strong>Spam</strong>.
                         </p>
 
                         <ProCheckoutButton
