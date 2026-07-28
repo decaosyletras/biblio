@@ -2,12 +2,14 @@
 
 type Props = {
     author: any;
+    accountUsername: string;
     updateField: (field: string, value: any) => void;
     setAvatarFile: (file: File | null) => void;
 };
 
 export default function AuthorBasicSection({
     author,
+    accountUsername,
     updateField,
     setAvatarFile
 }: Props) {
@@ -158,8 +160,17 @@ export default function AuthorBasicSection({
                             Mostrar mi nombre de usuario
                         </span>
                         <span className="mt-1 block text-xs leading-relaxed text-zinc-500">
-                            Actívalo únicamente cuando quieras que aparezca en tu
+                            Actívalo si quieres mostrar tu nombre de usuario en tu
                             página pública de autor.
+                            {accountUsername && (
+                                <>
+                                    {" "}Se mostrará como{" "}
+                                    <strong className="text-zinc-300">
+                                        @{accountUsername}
+                                    </strong>
+                                    .
+                                </>
+                            )}
                         </span>
                     </span>
                 </label>

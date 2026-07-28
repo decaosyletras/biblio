@@ -27,6 +27,7 @@ export default function EditAuthorPage() {
     const [books, setBooks] = useState<any[]>([])
     const [socialOrder, setSocialOrder] = useState<string[]>([])
     const [accountEmail, setAccountEmail] = useState("")
+    const [accountUsername, setAccountUsername] = useState("")
 
 
     const [avatarFile, setAvatarFile] = useState<File | null>(null)
@@ -51,6 +52,17 @@ export default function EditAuthorPage() {
             router.push("/login")
             return
         }
+
+        // Carga únicamente el username de la cuenta autenticada para mostrar
+        // al usuario qué nombre aparecerá en su página pública de autor.
+        const { data: profile } = await supabase
+            .from("profiles")
+            .select("username")
+            .eq("id", user.id)
+            .maybeSingle()
+
+        setAccountUsername(profile?.username ?? "")
+
         const { data: authorData, error } = await supabase
             .from("authors")
             .select("*")
@@ -485,6 +497,7 @@ export default function EditAuthorPage() {
 
                 <AuthorBasicSection
                     author={author}
+                    accountUsername={accountUsername}
                     updateField={updateField}
                     setAvatarFile={setAvatarFile}
                 />
