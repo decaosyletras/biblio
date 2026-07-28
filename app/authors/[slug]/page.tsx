@@ -535,8 +535,7 @@ export default async function AuthorPage({
                             href="/me"
                             className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition-all duration-150 active:scale-95 whitespace-nowrap"
                             style={{
-                                backgroundColor: authorTheme.primary,
-                                color: authorTheme.surface
+                                backgroundColor: authorTheme.primary
                             }}
                         >
                             Mi perfil
@@ -546,7 +545,7 @@ export default async function AuthorPage({
                             href={`/authors/${author.slug}/edit`}
                             className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition-all duration-150 active:scale-95 whitespace-nowrap"
                             style={{
-                                backgroundColor: authorTheme.primary ?? "#2563eb"
+                                backgroundColor: authorTheme.primary
                             }}
                         >
                             Editar página
@@ -818,7 +817,6 @@ export default async function AuthorPage({
                                             }}
                                             amazonLink={featuredBook.amazonLink}
                                             color={authorTheme.primary}
-                                            textColor={authorTheme.surface}
                                         />
 
                                         {(!isPro || author.show_book_details !== false) && (
@@ -986,7 +984,6 @@ export default async function AuthorPage({
                                                 }}
                                                 amazonLink={book.amazonLink}
                                                 color={authorTheme.primary}
-                                                textColor={authorTheme.surface}
                                             />
 
 
