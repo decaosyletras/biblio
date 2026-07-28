@@ -244,9 +244,9 @@ export default async function AuthorPage({
         bg: themeConfig?.bg ?? "#151518",
         surface: themeConfig?.surface ?? "#212125",
         primary: themeConfig?.primary ?? "#2049a2",
-        text: themeConfig?.text ?? "#eeeeee",
+        text: themeConfig?.text ?? "#c9cacd",
         muted: themeConfig?.muted ?? "#a1a1aa",
-        border: themeConfig?.border ?? "#8989a1",
+        border: themeConfig?.border ?? "#7c7c87",
     }
 
     /*onsole.log({
