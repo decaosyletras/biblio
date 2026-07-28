@@ -142,6 +142,28 @@ export default function AuthorBasicSection({
 
                 </div>
 
+                {/* Controla si el nombre de usuario aparece en la página pública. */}
+                <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-zinc-700 bg-zinc-950 p-4">
+                    <input
+                        type="checkbox"
+                        checked={author.show_username === true}
+                        onChange={e =>
+                            updateField("show_username", e.target.checked)
+                        }
+                        className="mt-1 h-4 w-4 accent-blue-500"
+                    />
+
+                    <span>
+                        <span className="block text-sm font-medium text-zinc-200">
+                            Mostrar mi nombre de usuario
+                        </span>
+                        <span className="mt-1 block text-xs leading-relaxed text-zinc-500">
+                            Actívalo únicamente cuando quieras que aparezca en tu
+                            página pública de autor.
+                        </span>
+                    </span>
+                </label>
+
             </div>
 
         </section>

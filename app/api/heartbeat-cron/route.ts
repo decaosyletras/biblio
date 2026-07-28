@@ -13,7 +13,7 @@ export async function GET() {
 
   if (error) {
     return NextResponse.json(
-      { ok: false, error: error.message },
+      { ok: false, error: "ERROR!!" },
       { status: 500 }
     )
   }

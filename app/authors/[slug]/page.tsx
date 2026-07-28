@@ -143,7 +143,8 @@ export default async function AuthorPage({
         .eq("status", "approved")
         .maybeSingle()
 
-    if (approvedClaim?.user_id) {
+    // Solo consultamos el perfil cuando el autor decidió mostrar su username.
+    if (author.show_username === true && approvedClaim?.user_id) {
         const { data: profile } = await supabase
             .from("profiles")
             .select("username")

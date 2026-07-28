@@ -225,7 +225,8 @@ export default function EditAuthorPage() {
                 description: author.description ?? "",
                 style: author.style ?? "",
                 featured_book_id: author.featured_book_id ?? null,
-                show_bibliography: author.show_bibliography ?? true
+                show_bibliography: author.show_bibliography ?? true,
+                show_username: author.show_username === true
             }
             if (isPro) {
                 if (bannerFile) {

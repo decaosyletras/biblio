@@ -12,6 +12,7 @@ const BASIC_FIELDS = new Set([
   "style",
   "featured_book_id",
   "show_bibliography",
+  "show_username",
 ])
 
 const PRO_FIELDS = new Set([
@@ -50,6 +51,7 @@ const STRING_FIELDS = new Set([
 const BOOLEAN_FIELDS = new Set([
   "show_bibliography",
   "show_book_details",
+  "show_username",
 ])
 
 const SOCIAL_FIELDS = new Set([

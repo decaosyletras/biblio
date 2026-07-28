@@ -84,7 +84,7 @@ export default function ManageProButton({
     } catch (error) {
       setErrorMessage(
         error instanceof Error
-          ? error.message
+          ? 'Se detectó un error. Favor de intentar más tarde.'
           : "No se pudo abrir la gestion PRO"
       )
     } finally {

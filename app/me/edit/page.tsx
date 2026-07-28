@@ -62,7 +62,7 @@ export default function EditProfilePage() {
         setSaving(false)
 
         if (error) {
-            alert(error.message)
+            alert("Error!!.")
             return
         }
 

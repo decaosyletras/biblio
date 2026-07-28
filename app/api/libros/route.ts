@@ -99,7 +99,7 @@ export async function POST(req: Request) {
 
     if (error) {
       return NextResponse.json(
-        { error: error.message },
+        { error: "Error!" },
         { status: 500 }
       )
     }
