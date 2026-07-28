@@ -136,7 +136,7 @@ export default function AuthorPreview({
             </h2>
 
 
-            {author.pro && (
+            {/*author.pro && (
 
               <FaCrown
                 className="
@@ -144,7 +144,7 @@ export default function AuthorPreview({
                                 "
               />
 
-            )}
+            )*/}
 
           </div>
 
