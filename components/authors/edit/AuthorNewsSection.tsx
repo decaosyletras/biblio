@@ -184,7 +184,7 @@ export default function AuthorNewsSection({
                     </label>
 
                     <input
-                        maxLength={60}
+                        maxLength={80}
                         value={
                             author.news?.title ?? ""
                         }
@@ -209,7 +209,7 @@ export default function AuthorNewsSection({
                     </label>
 
                     <textarea
-                        maxLength={500}
+                        maxLength={800}
                         value={
                             author.news?.content ?? ""
                         }
