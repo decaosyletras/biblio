@@ -276,6 +276,8 @@ export default function EditAuthorPage() {
                         image: newsImageUrl
                     }
                     : null
+                // Una fecha nula indica que la novedad no tiene fecha límite.
+                data.news_expires_on = author.news_expires_on || null
                 // Se comento porque la fecha de actualizacion ya la genera el
                 // servidor y no debe confiarse en un valor enviado por el cliente.
                 // data.news_updated_at = new Date().toISOString()

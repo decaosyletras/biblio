@@ -4,6 +4,7 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 
 const BASIC_FIELDS = new Set([
   "avatar",
@@ -29,6 +30,7 @@ const PRO_FIELDS = new Set([
   "current_news",
   "social_order",
   "news",
+  "news_expires_on",
   "theme",
 ])
 
@@ -72,6 +74,17 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
   )
 }
 
+function isValidCalendarDate(value: string) {
+  if (!DATE_PATTERN.test(value)) return false
+
+  const [year, month, day] = value.split("-").map(Number)
+  const date = new Date(Date.UTC(year, month - 1, day))
+
+  return date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month - 1 &&
+    date.getUTCDate() === day
+}
+
 function isSafeUpdateValue(field: string, value: unknown) {
   if (STRING_FIELDS.has(field)) {
     return typeof value === "string" && value.length <= 10000
@@ -89,6 +102,14 @@ function isSafeUpdateValue(field: string, value: unknown) {
   if (field === "featured_book_id") {
     return value === null ||
       (typeof value === "string" && UUID_PATTERN.test(value))
+  }
+
+  if (field === "news_expires_on") {
+    return value === null ||
+      (
+        typeof value === "string" &&
+        isValidCalendarDate(value)
+      )
   }
 
   if (field === "social_order") {
@@ -229,6 +250,25 @@ export async function POST(request: Request) {
         { error: "No hay cambios validos" },
         { status: 400 }
       )
+    }
+
+    if (typeof safeUpdates.news_expires_on === "string") {
+      const today = new Intl.DateTimeFormat(
+        "en-CA",
+        {
+          timeZone: "America/Mexico_City",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        }
+      ).format(new Date())
+
+      if (safeUpdates.news_expires_on <= today) {
+        return NextResponse.json(
+          { error: "La fecha de caducidad debe ser posterior a hoy" },
+          { status: 400 }
+        )
+      }
     }
 
     if (Object.hasOwn(safeUpdates, "news")) {

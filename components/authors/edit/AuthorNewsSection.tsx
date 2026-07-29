@@ -16,6 +16,13 @@ export default function AuthorNewsSection({
     newsImageFile,
     setNewsImageFile
 }: Props) {
+    const tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    const minimumExpirationDate = [
+        tomorrow.getFullYear(),
+        String(tomorrow.getMonth() + 1).padStart(2, "0"),
+        String(tomorrow.getDate()).padStart(2, "0")
+    ].join("-")
 
     function updateNewsField(
         field: string,
@@ -30,6 +37,13 @@ export default function AuthorNewsSection({
             }
         }))
 
+    }
+
+    function updateExpirationDate(value: string | null) {
+        setAuthor((prev: Record<string, unknown>) => ({
+            ...prev,
+            news_expires_on: value
+        }))
     }
 
 
@@ -212,6 +226,51 @@ export default function AuthorNewsSection({
                         placeholder="Escribe los detalles de la novedad..."
 
                         className="w-full bg-zinc-900 border border-zinc-700 rounded-xl p-3 resize-none" />
+
+                </div>
+
+                <div className="space-y-3">
+
+                    <div>
+                        <label
+                            htmlFor="news-expires-on"
+                            className="text-sm text-zinc-400 block mb-2"
+                        >
+                            Fecha de caducidad
+                        </label>
+
+                        <input
+                            id="news-expires-on"
+                            type="date"
+                            min={minimumExpirationDate}
+                            disabled={!author.news_expires_on}
+                            value={author.news_expires_on ?? ""}
+                            onChange={e =>
+                                updateExpirationDate(e.target.value || null)
+                            }
+                            className="w-full bg-zinc-900 border border-zinc-700 rounded-xl p-3 disabled:cursor-not-allowed disabled:opacity-50"
+                        />
+
+                        <p className="text-xs text-zinc-500 mt-2">
+                            La novedad seguirá visible durante el día elegido.
+                        </p>
+                    </div>
+
+                    <label className="flex items-center gap-3 text-sm text-zinc-300">
+                        <input
+                            type="checkbox"
+                            checked={!author.news_expires_on}
+                            onChange={e =>
+                                updateExpirationDate(
+                                    e.target.checked
+                                        ? null
+                                        : minimumExpirationDate
+                                )
+                            }
+                            className="h-4 w-4 accent-yellow-500"
+                        />
+                        Sin fecha límite
+                    </label>
 
                 </div>
 
