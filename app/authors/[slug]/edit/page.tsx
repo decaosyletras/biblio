@@ -245,7 +245,16 @@ const data: any = {
     featured_book_id: author.featured_book_id ?? null,
     show_bibliography: author.show_bibliography ?? true,
     show_username: author.show_username === true,
-    website: normalizeUrl(author.website)
+    website: normalizeUrl(author.website),
+    instagram: normalizeUrl(author.instagram),
+    threads: normalizeUrl(author.threads),
+    facebook: normalizeUrl(author.facebook),
+    tiktok: normalizeUrl(author.tiktok),
+    youtube: normalizeUrl(author.youtube),
+    wattpad: normalizeUrl(author.wattpad),
+    social_order: socialOrder.filter(
+        social => social !== "website"
+    )
 }
 
 if (isPro) {
@@ -260,17 +269,7 @@ if (isPro) {
     data.show_book_details = author.show_book_details ?? true
 
     data.banner = bannerUrl || null
-    data.instagram = normalizeUrl(author.instagram)
-    data.threads = normalizeUrl(author.threads)
-    data.facebook = normalizeUrl(author.facebook)
-    data.tiktok = normalizeUrl(author.tiktok)
-    data.youtube = normalizeUrl(author.youtube)
-    data.wattpad = normalizeUrl(author.wattpad)
     data.current_news = author.current_news ?? ""
-
-    data.social_order = socialOrder.filter(
-        social => social !== "website"
-    )
 
     if (newsImageFile) {
         newsImageUrl = await uploadImage(
@@ -293,15 +292,8 @@ if (isPro) {
 
                 data.banner = bannerUrl || null
                 data.website = normalizeUrl(author.website)
-                data.instagram = normalizeUrl(author.instagram)
-                data.threads = normalizeUrl(author.threads)
-                data.facebook = normalizeUrl(author.facebook)
-                data.tiktok = normalizeUrl(author.tiktok)
-                data.youtube = normalizeUrl(author.youtube)
-                data.wattpad = normalizeUrl(author.wattpad)
                 data.current_news = author.current_news ?? ""
 
-                data.social_order = socialOrder
                 if (newsImageFile) {
                     setSavingStep("Subiendo imagen de novedades...")
                     newsImageUrl = await uploadImage(
@@ -577,6 +569,15 @@ if (isPro) {
                     />
                 </div>
 
+                <div className="border-t border-zinc-500/70 pt-5">
+                    <AuthorSocialSection
+                        author={author}
+                        socialOrder={socialOrder}
+                        moveSocial={moveSocial}
+                        updateField={updateField}
+                    />
+                </div>
+
 
                 {!isPro && (
                     <div className="rounded-3xl bg-zinc-900 border border-yellow-500/30 p-5 space-y-5">
@@ -610,12 +611,6 @@ if (isPro) {
 
                                 <li>
                                     🖼️ Banner personalizado de autor
-                                </li>
-
-                                <li>
-                                    {/* 2026-08-01: Se comenta porque el sitio web ahora está disponible fuera de PRO. */}
-                                    {/* 🔗 Redes sociales y enlace a tu web */}
-                                    🔗 Redes sociales
                                 </li>
 
                                 <li>
@@ -692,15 +687,6 @@ if (isPro) {
                                 author={author}
                                 updateField={updateField}
                                 setBannerFile={setBannerFile}
-                            />
-                        </div>
-
-                        <div className="border-t border-yellow-500/70 pt-5">
-                            <AuthorSocialSection
-                                author={author}
-                                socialOrder={socialOrder}
-                                moveSocial={moveSocial}
-                                updateField={updateField}
                             />
                         </div>
 

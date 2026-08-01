@@ -462,9 +462,9 @@ export default async function AuthorPage({
                                     </div>
                                 )}
 
-                                {/* Redes PRO */}
+                                {/* Redes sociales disponibles para todos los autores. */}
 
-                                {isPro && (
+                                {(
                                     <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-3">
 
                                         {(author.social_order ?? [

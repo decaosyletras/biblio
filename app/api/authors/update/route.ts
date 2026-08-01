@@ -15,6 +15,13 @@ const BASIC_FIELDS = new Set([
   "show_bibliography",
   "website",
   "show_username",
+  "instagram",
+  "threads",
+  "facebook",
+  "tiktok",
+  "youtube",
+  "wattpad",
+  "social_order",
 ])
 
 const PRO_FIELDS = new Set([
@@ -23,14 +30,7 @@ const PRO_FIELDS = new Set([
   "banner",
   // 2026-08-01: Se comenta porque el sitio web ya no es una función PRO.
   // "website",
-  "instagram",
-  "threads",
-  "facebook",
-  "tiktok",
-  "youtube",
-  "wattpad",
   "current_news",
-  "social_order",
   "news",
   "news_expires_on",
   "theme",

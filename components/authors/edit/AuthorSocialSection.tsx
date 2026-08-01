@@ -46,7 +46,7 @@ export default function AuthorSocialSection({
                 <div className="flex items-center gap-3">
 
                     <div
-                        className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl bg-yellow-500/10 border border-yellow-500/20"
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl bg-zinc-800 border border-zinc-700"
                     >
                         🔗
                     </div>
@@ -54,7 +54,7 @@ export default function AuthorSocialSection({
 
                     <div>
 
-                        <h2 className="text-xl md:text-2xl font-bold text-yellow-400">
+                        <h2 className="text-xl md:text-2xl font-bold text-white">
                             Redes sociales
                         </h2>
 
