@@ -693,6 +693,10 @@ export async function POST(request: Request) {
         throw new Error("payment_cancellation_sync_failed")
       }
 
+      /*
+       * Implementacion anterior conservada como referencia.
+       * Se comento porque retiraba PRO sin comprobar si el autor ya tenia
+       * otra suscripcion vigente.
       const { error: authorError } = await supabaseAdmin
         .from("authors")
         .update({
@@ -701,6 +705,87 @@ export async function POST(request: Request) {
         })
         .eq("id", authorId)
 
+      if (authorError) {
+        throw new Error("author_cancellation_sync_failed")
+      }
+      */
+
+      // Busca otro registro de pago del mismo autor que todavia pueda conceder
+      // PRO. Se excluye la suscripcion que acaba de ser eliminada.
+      const {
+        data: replacementPayment,
+        error: replacementPaymentError,
+      } = await supabaseAdmin
+        .from("author_payments")
+        .select("stripe_subscription_id")
+        .eq("author_id", authorId)
+        .in("status", [
+          "active",
+          "trialing",
+          "past_due",
+        ])
+        .neq(
+          "stripe_subscription_id",
+          eventSubscription.id
+        )
+        .not(
+          "stripe_subscription_id",
+          "is",
+          null
+        )
+        .limit(1)
+        .maybeSingle()
+
+      // Si no se puede comprobar la base de datos, el webhook falla para que
+      // Stripe pueda reintentarlo en vez de retirar PRO por error.
+      if (replacementPaymentError) {
+        throw new Error("replacement_subscription_lookup_failed")
+      }
+
+      // Empieza sin una suscripcion sustituta valida. Solo se asignara despues
+      // de verificar su estado actual directamente con Stripe.
+      let replacementSubscription: Stripe.Subscription | null = null
+
+      if (replacementPayment?.stripe_subscription_id) {
+        // Recupera la suscripcion candidata desde Stripe para no confiar
+        // solamente en un estado que podria estar desactualizado en la BD.
+        const candidateSubscription =
+          await retrieveCurrentSubscription(
+            replacementPayment.stripe_subscription_id
+          )
+
+        // Estos son los mismos estados que el sistema considera capaces de
+        // mantener los beneficios PRO.
+        const candidateGrantsPro = [
+          "active",
+          "trialing",
+          "past_due",
+        ].includes(candidateSubscription.status)
+
+        // Tambien comprueba que la metadata de Stripe vincule la suscripcion
+        // con el mismo autor afectado por el evento de cancelacion.
+        const belongsToAuthor =
+          candidateSubscription.metadata.author_id === authorId
+
+        if (candidateGrantsPro && belongsToAuthor) {
+          replacementSubscription = candidateSubscription
+        }
+      }
+
+      // Mantiene PRO si existe otra suscripcion valida. Solo lo retira cuando
+      // la suscripcion eliminada era la ultima que concedia esos beneficios.
+      const { error: authorError } = await supabaseAdmin
+        .from("authors")
+        .update({
+          pro: replacementSubscription !== null,
+          pro_until: replacementSubscription
+            ? getPeriodEnd(replacementSubscription)
+            : null,
+        })
+        .eq("id", authorId)
+
+      // Un fallo al guardar deja el evento como fallido para permitir que
+      // Stripe lo vuelva a enviar y el estado pueda sincronizarse.
       if (authorError) {
         throw new Error("author_cancellation_sync_failed")
       }

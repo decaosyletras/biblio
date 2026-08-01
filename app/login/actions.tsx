@@ -21,7 +21,6 @@ export async function loginAction(
     return {
       // Se comento para no devolver al navegador mensajes internos del
       // proveedor, que podrian revelar detalles innecesarios del login.
-      // error: error.message
       error: "Correo o contraseña incorrectos"
     }
   }

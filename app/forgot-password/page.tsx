@@ -32,7 +32,6 @@ export default function ForgotPasswordPage() {
 
     if (error) {
       // Se comento para no exponer mensajes internos del proveedor.
-      // alert(error.message)
       setErrorMsg(
         error.status === 429
           ? "Se han realizado demasiados intentos. Espera unos minutos."

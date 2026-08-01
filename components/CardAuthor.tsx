@@ -83,7 +83,7 @@ export default function CardAuthor({
               {author.name}
             </h3>
 
-            {author.pro && (
+            {/*author.pro && (
               <div
                 className="flex items-center justify-center w-6 h-6 rounded-full shrink-0"
                 style={{
@@ -97,7 +97,7 @@ export default function CardAuthor({
                   className="text-yellow-400"
                 />
               </div>
-            )}
+            )*/}
 
           </div>
 

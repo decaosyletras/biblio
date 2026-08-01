@@ -3,12 +3,23 @@ import { createClient } from "@/lib/supabase-server"
 export async function getLatestAuthorNews() {
 
   const supabase = await createClient()
+  const today = new Intl.DateTimeFormat(
+    "en-CA",
+    {
+      timeZone: "America/Mexico_City",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }
+  ).format(new Date())
 
-  const since = new Date()
+  // Se comenta temporalmente para que las novedades no caduquen después de 15 días.
+  // Para reactivar el límite por fecha, descomentar este bloque y el filtro .gte de abajo.
+  // const since = new Date()
 
-  since.setDate(
-    since.getDate() - 15
-  )
+  // since.setDate(
+  //   since.getDate() - 15
+  // )
 
   const { data, error } = await supabase
     .from("authors")
@@ -20,14 +31,19 @@ export async function getLatestAuthorNews() {
       pro,
       theme,
       news,
-      news_updated_at
+      news_updated_at,
+      news_expires_on
   `)
     .eq("pro", true)
-    .gte(
-      "news_updated_at",
-      since.toISOString()
-    )
+    // Se desactiva el filtro por fecha para mostrar las novedades indefinidamente por ahora.
+    // .gte(
+    //   "news_updated_at",
+    //   since.toISOString()
+    // )
     .neq("news->>type", "")
+    // Una fecha nula mantiene la novedad visible indefinidamente. Si existe,
+    // se muestra hasta el día indicado y deja de aparecer al día siguiente.
+    .or(`news_expires_on.is.null,news_expires_on.gte.${today}`)
     .order(
       "news_updated_at",
       {
