@@ -228,6 +228,17 @@ export default async function AuthorPage({
                 (a.author_order ?? 0) - (b.author_order ?? 0)
         )
 
+    const { data: interviewQuestions } = await supabase
+        .from("author_interview_questions")
+        .select("id, question, answer")
+        .eq("author_id", author.id)
+        .eq("is_visible", true)
+        .order("sort_order")
+
+    const visibleInterviewQuestions = (interviewQuestions ?? []).filter(
+        question => question.answer.trim() !== ""
+    )
+
     const theme =
         themes[
         (author.theme?.background ?? "zinc") as keyof typeof themes
@@ -1040,6 +1051,42 @@ export default async function AuthorPage({
 
                     </section>
 
+                )}
+
+                {author.show_interview === true && visibleInterviewQuestions.length > 0 && (
+                    <section
+                        className="rounded-3xl p-6 md:p-8"
+                        style={{
+                            backgroundColor: authorTheme.surface,
+                            border: `1px solid ${authorTheme.border}`
+                        }}
+                    >
+                        <h2
+                            className="text-2xl font-bold"
+                            style={{ color: authorTheme.text }}
+                        >
+                            Conociendo al autor
+                        </h2>
+
+                        <div className="mt-6 space-y-6">
+                            {visibleInterviewQuestions.map(question => (
+                                <article key={question.id}>
+                                    <h3
+                                        className="font-semibold leading-7"
+                                        style={{ color: authorTheme.primary }}
+                                    >
+                                        {question.question}
+                                    </h3>
+                                    <p
+                                        className="mt-3 whitespace-pre-line leading-7"
+                                        style={{ color: authorTheme.text }}
+                                    >
+                                        {question.answer}
+                                    </p>
+                                </article>
+                            ))}
+                        </div>
+                    </section>
                 )}
 
             </main>

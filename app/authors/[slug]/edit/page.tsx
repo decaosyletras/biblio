@@ -12,7 +12,15 @@ import AuthorThemeSection from "@/components/authors/edit/AuthorThemeSection"
 import AuthorBooksSection from "@/components/authors/edit/AuthorBooksSection"
 import AuthorContactSection from "@/components/authors/edit/AuthorContactSection"
 import AuthorBookSettingsSection from "@/components/authors/edit/AuthorBookSettingsSection"
+import AuthorInterviewSection from "@/components/authors/edit/AuthorInterviewSection"
 import ProCheckoutButton from "@/components/ProCheckoutButton"
+
+type InterviewQuestion = {
+    id: string
+    question: string
+    answer: string
+    is_visible: boolean
+}
 
 export default function EditAuthorPage() {
     const params = useParams()
@@ -28,6 +36,7 @@ export default function EditAuthorPage() {
     const [socialOrder, setSocialOrder] = useState<string[]>([])
     const [accountEmail, setAccountEmail] = useState("")
     const [accountUsername, setAccountUsername] = useState("")
+    const [interviewQuestions, setInterviewQuestions] = useState<InterviewQuestion[]>([])
 
 
     const [avatarFile, setAvatarFile] = useState<File | null>(null)
@@ -122,6 +131,17 @@ export default function EditAuthorPage() {
         setOriginalNewsImage(
             authorData.news?.image ?? ""
         )
+
+        const interviewResponse = await fetch(
+            `/api/authors/interview?authorId=${authorData.id}`
+        )
+        const interviewResult = await interviewResponse
+            .json()
+            .catch(() => null) as { questions?: InterviewQuestion[] } | null
+
+        if (interviewResponse.ok) {
+            setInterviewQuestions(interviewResult?.questions ?? [])
+        }
         /*if (authorData.pro === true) {*/
         const { data: directBooks } = await supabase
             .from("books")
@@ -151,6 +171,14 @@ export default function EditAuthorPage() {
             ...prev,
             [field]: value
         }))
+    }
+
+    function updateInterviewQuestion(id: string, updates: Partial<InterviewQuestion>) {
+        setInterviewQuestions(previous => previous.map(question =>
+            question.id === id
+                ? { ...question, ...updates }
+                : question
+        ))
     }
 
     function normalizeUrl(url?: string) {
@@ -371,6 +399,35 @@ if (isPro) {
                 return
             }
 
+            setSavingStep("Guardando entrevista...")
+            const interviewResponse = await fetch("/api/authors/interview", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    authorId: author.id,
+                    showInterview: author.show_interview === true,
+                    questions: interviewQuestions.map(question => ({
+                        id: question.id,
+                        answer: question.answer,
+                        isVisible: question.is_visible
+                    }))
+                })
+            })
+
+            const interviewResult = await interviewResponse
+                .json()
+                .catch(() => null) as { error?: string } | null
+
+            if (!interviewResponse.ok) {
+                alert(
+                    interviewResult?.error ??
+                    "No se pudo guardar la entrevista"
+                )
+                return
+            }
+
             if (
                 originalNewsImage &&
                 originalNewsImage !== newsImageUrl
@@ -575,6 +632,17 @@ if (isPro) {
                         socialOrder={socialOrder}
                         moveSocial={moveSocial}
                         updateField={updateField}
+                    />
+                </div>
+
+                <div className="border-t border-zinc-500/70 pt-5">
+                    <AuthorInterviewSection
+                        questions={interviewQuestions}
+                        showInterview={author.show_interview === true}
+                        onShowInterviewChange={value =>
+                            updateField("show_interview", value)
+                        }
+                        onQuestionChange={updateInterviewQuestion}
                     />
                 </div>
 
