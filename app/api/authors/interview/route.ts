@@ -103,7 +103,7 @@ export async function POST(request: Request) {
     typeof question.id !== "string" ||
     !UUID_PATTERN.test(question.id) ||
     typeof question.answer !== "string" ||
-    question.answer.length > 5000 ||
+    question.answer.length > 700 ||
     typeof question.isVisible !== "boolean"
   )
 

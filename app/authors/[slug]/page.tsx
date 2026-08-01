@@ -13,6 +13,7 @@ import { Cinzel_Decorative } from "next/font/google";
 import { UserRound } from "lucide-react";
 import { Crown } from "lucide-react";
 import ManageProButton from "@/components/ManageProButton"
+import AuthorInterview from "@/components/authors/AuthorInterview"
 
 import {
     inter,
@@ -1077,39 +1078,10 @@ export default async function AuthorPage({
                 )}
 
                 {author.show_interview === true && visibleInterviewQuestions.length > 0 && (
-                    <section
-                        className="rounded-3xl p-6 md:p-8"
-                        style={{
-                            backgroundColor: authorTheme.surface,
-                            border: `1px solid ${authorTheme.border}`
-                        }}
-                    >
-                        <h2
-                            className="text-2xl font-bold"
-                            style={{ color: authorTheme.text }}
-                        >
-                            Conociendo al autor
-                        </h2>
-
-                        <div className="mt-6 space-y-6">
-                            {visibleInterviewQuestions.map(question => (
-                                <article key={question.id}>
-                                    <h3
-                                        className="font-semibold leading-7"
-                                        style={{ color: authorTheme.primary }}
-                                    >
-                                        {question.question}
-                                    </h3>
-                                    <p
-                                        className="mt-3 whitespace-pre-line leading-7"
-                                        style={{ color: authorTheme.text }}
-                                    >
-                                        {question.answer}
-                                    </p>
-                                </article>
-                            ))}
-                        </div>
-                    </section>
+                    <AuthorInterview
+                        questions={visibleInterviewQuestions}
+                        theme={authorTheme}
+                    />
                 )}
 
             </main>
