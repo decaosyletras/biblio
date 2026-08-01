@@ -62,6 +62,9 @@ export default function AuthorInterviewSection({
           <p className="text-sm text-zinc-400 mt-1">
             Comparte respuestas para que tus lectores te conozcan mejor.
           </p>
+          <p className="text-xs text-zinc-500 mt-1">
+            Procura que sean respuestas breves para que la entrevista sea cómoda de leer, especialmente en celular.
+          </p>
         </div>
       </div>
 

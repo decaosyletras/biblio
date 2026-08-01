@@ -37,7 +37,7 @@ export default function AuthorInterview({ questions, theme }: Props) {
         border: `1px solid ${theme.border}`
       }}
     >
-      <h2 className="text-2xl font-bold" style={{ color: theme.text }}>
+      <h2 className="text-xl sm:text-2xl font-bold" style={{ color: theme.text }}>
         Conociendo al autor
       </h2>
 
@@ -45,13 +45,13 @@ export default function AuthorInterview({ questions, theme }: Props) {
         {visibleQuestions.map(question => (
           <article key={question.id}>
             <h3
-              className="font-semibold leading-7"
+              className="text-sm sm:text-base font-semibold leading-6 sm:leading-7"
               style={{ color: theme.primary }}
             >
               {question.question}
             </h3>
             <p
-              className="mt-3 whitespace-pre-line leading-7"
+              className="mt-2 sm:mt-3 text-sm sm:text-base whitespace-pre-line leading-6 sm:leading-7"
               style={{ color: theme.text }}
             >
               {question.answer}
