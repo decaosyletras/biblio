@@ -84,7 +84,8 @@ export default function EditAuthorPage() {
         })
 
         const defaultOrder = [
-            "website",
+            // 2026-08-01: Se comenta porque el sitio web ya no forma parte de las redes PRO.
+            // "website",
             "instagram",
             "wattpad",
             "threads",
@@ -95,7 +96,11 @@ export default function EditAuthorPage() {
 
         setSocialOrder(
             authorData.social_order?.length
-                ? authorData.social_order
+                ? (
+                    // 2026-08-01: Se comenta porque los órdenes heredados podían incluir website como red PRO.
+                    // authorData.social_order
+                    authorData.social_order.filter((social: string) => social !== "website")
+                )
                 : defaultOrder
         )
 
@@ -220,7 +225,8 @@ export default function EditAuthorPage() {
             description: author.description ?? "",
             style: author.style ?? "",
             featured_book_id: author.featured_book_id ?? null,
-            show_bibliography: author.show_bibliography ?? true
+            show_bibliography: author.show_bibliography ?? true,
+            website: normalizeUrl(author.website)
         }
         if (isPro) {
             if (bannerFile) {
@@ -234,7 +240,8 @@ export default function EditAuthorPage() {
             data.show_book_details = author.show_book_details ?? true
 
             data.banner = bannerUrl || null
-            data.website = normalizeUrl(author.website)
+            // 2026-08-01: Se comenta porque el sitio web se guarda como un campo disponible fuera de PRO.
+            // data.website = normalizeUrl(author.website)
             data.instagram = normalizeUrl(author.instagram)
             data.threads = normalizeUrl(author.threads)
             data.facebook = normalizeUrl(author.facebook)
@@ -243,7 +250,9 @@ export default function EditAuthorPage() {
             data.wattpad = normalizeUrl(author.wattpad)
             data.current_news = author.current_news ?? ""
 
-            data.social_order = socialOrder
+            // 2026-08-01: Se comenta porque website ya no debe guardarse en el orden de redes PRO.
+            // data.social_order = socialOrder
+            data.social_order = socialOrder.filter(social => social !== "website")
             if (newsImageFile) {
                 newsImageUrl = await uploadImage(
                     newsImageFile,
@@ -458,6 +467,30 @@ export default function EditAuthorPage() {
                     setAvatarFile={setAvatarFile}
                 />
 
+                <div className="border-t border-zinc-500/70 pt-5">
+                    <section>
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl bg-zinc-800 border border-zinc-700">
+                                🔗
+                            </div>
+                            <div>
+                                <h2 className="text-xl md:text-2xl font-bold">
+                                    Sitio web
+                                </h2>
+                                <p className="text-sm text-zinc-400 mt-1">
+                                    Añade el enlace a tu sitio web.
+                                </p>
+                            </div>
+                        </div>
+                        <input
+                            value={author.website ?? ""}
+                            onChange={e => updateField("website", e.target.value)}
+                            placeholder="https://tuweb.com"
+                            className="mt-4 w-full rounded-xl border border-zinc-700 bg-zinc-900 p-3 text-white"
+                        />
+                    </section>
+                </div>
+
 
                 <div className="border-t border-zinc-500/70 pt-5">
                     <AuthorBooksSection
@@ -504,7 +537,9 @@ export default function EditAuthorPage() {
                                 </li>
 
                                 <li>
-                                    🔗 Redes sociales y enlace a tu web
+                                    {/* 2026-08-01: Se comenta porque el sitio web ahora está disponible fuera de PRO. */}
+                                    {/* 🔗 Redes sociales y enlace a tu web */}
+                                    🔗 Redes sociales
                                 </li>
 
                                 <li>

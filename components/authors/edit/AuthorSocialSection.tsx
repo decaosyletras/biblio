@@ -8,7 +8,8 @@ type Props = {
 };
 
 const labels: Record<string, string> = {
-    website: "Sitio web",
+    // 2026-08-01: Se comenta porque el sitio web ahora se edita fuera de la sección PRO.
+    // website: "Sitio web",
     instagram: "Instagram",
     wattpad: "Wattpad",
     threads: "Threads",
@@ -18,7 +19,8 @@ const labels: Record<string, string> = {
 };
 
 const placeholders: Record<string, string> = {
-    website: "https://tuweb.com",
+    // 2026-08-01: Se comenta porque el sitio web ahora se edita fuera de la sección PRO.
+    // website: "https://tuweb.com",
     instagram: "https://instagram.com/usuario",
     wattpad: "https://www.wattpad.com/user/usuario",
     threads: "https://threads.net/@usuario",
@@ -71,7 +73,10 @@ export default function AuthorSocialSection({
 
             <div className="space-y-4">
 
-                {socialOrder.map((social, index) => (
+                {socialOrder
+                    // 2026-08-01: Se excluye website de órdenes antiguas porque ya no pertenece a PRO.
+                    .filter(social => social !== "website")
+                    .map((social, index) => (
 
                     <div
                         key={social}
@@ -133,7 +138,7 @@ export default function AuthorSocialSection({
 
                     </div>
 
-                ))}
+                    ))}
 
             </div>
 

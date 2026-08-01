@@ -440,20 +440,42 @@ export default async function AuthorPage({
                                     </div>*/}
                                 </div>
 
-                                {/* Redes */}
+                                {/* Sitio web disponible para todos los autores. */}
+
+                                {author.website && (
+                                    <div className="flex justify-center lg:justify-start mt-3">
+                                        <a
+                                            href={author.website}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 hover:opacity-80"
+                                            style={{
+                                                backgroundColor: authorTheme.surface,
+                                                border: `1px solid ${authorTheme.border}`,
+                                                color: authorTheme.text
+                                            }}
+                                        >
+                                            <FaGlobe className="text-blue-400" />
+                                            Sitio web
+                                        </a>
+                                    </div>
+                                )}
+
+                                {/* Redes PRO */}
 
                                 {isPro && (
                                     <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-3">
 
                                         {(author.social_order ?? [
-                                            "website",
+                                            // 2026-08-01: Se comenta porque el sitio web ya se muestra fuera de la sección PRO.
+                                            // "website",
                                             "instagram",
                                             "wattpad",
                                             "threads",
                                             "facebook",
                                             "tiktok",
                                             "youtube"
-                                        ]).map((social: string) => {
+                                        ]).filter((social: string) => social !== "website").map((social: string) => {
 
                                             const value = author[social]
 

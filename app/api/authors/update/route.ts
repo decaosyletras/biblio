@@ -12,13 +12,15 @@ const BASIC_FIELDS = new Set([
   "style",
   "featured_book_id",
   "show_bibliography",
+  "website",
 ])
 
 const PRO_FIELDS = new Set([
   "contact_email",
   "show_book_details",
   "banner",
-  "website",
+  // 2026-08-01: Se comenta porque el sitio web ya no es una función PRO.
+  // "website",
   "instagram",
   "threads",
   "facebook",
@@ -53,7 +55,8 @@ const BOOLEAN_FIELDS = new Set([
 ])
 
 const SOCIAL_FIELDS = new Set([
-  "website",
+  // 2026-08-01: Se comenta porque el sitio web ya no forma parte de las redes PRO.
+  // "website",
   "instagram",
   "wattpad",
   "threads",
