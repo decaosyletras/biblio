@@ -293,7 +293,7 @@ export default function MePage() {
                                     🌐 ¡Novedad!
                                 </h2>
                                 <p className="mt-2 text-zinc-300">
-                                    Ya puedes agregar el enlace a tu sitio web en tu página de autor.
+                                    Ya puedes agregar el enlace a tu sitio web, tus redes sociales y llenar tu entrevista personal en tu página de autor.
                                 </p>
                             </div>
 
