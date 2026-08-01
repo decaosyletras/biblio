@@ -285,6 +285,28 @@ export default function MePage() {
 
                 </div>
 
+                {!loadingAuthor && author && (
+                    <div className="rounded-3xl border border-blue-500/30 bg-blue-500/10 p-5 sm:p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+                            <div>
+                                <h2 className="text-xl font-bold text-blue-300">
+                                    🌐 ¡Novedad!
+                                </h2>
+                                <p className="mt-2 text-zinc-300">
+                                    Ya puedes agregar el enlace a tu sitio web en tu página de autor.
+                                </p>
+                            </div>
+
+                            <Link
+                                href={`/authors/${author.slug}/edit`}
+                                className="w-full sm:w-auto shrink-0 text-center px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 active:scale-95 font-semibold transition-all duration-150"
+                            >
+                                Agregar mi sitio web →
+                            </Link>
+                        </div>
+                    </div>
+                )}
+
                 {/* MIS SOLICITUDES / AUTOR */}
 
                 <div
