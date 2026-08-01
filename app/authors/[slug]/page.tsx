@@ -228,16 +228,39 @@ export default async function AuthorPage({
                 (a.author_order ?? 0) - (b.author_order ?? 0)
         )
 
-    const { data: interviewQuestions } = await supabase
-        .from("author_interview_questions")
-        .select("id, question, answer")
-        .eq("author_id", author.id)
-        .eq("is_visible", true)
-        .order("sort_order")
+    let visibleInterviewQuestions: Array<{
+        id: string
+        question: string
+        answer: string
+    }> = []
 
-    const visibleInterviewQuestions = (interviewQuestions ?? []).filter(
-        question => question.answer.trim() !== ""
-    )
+    if (author.show_interview === true) {
+        const { data: interviewAnswers } = await supabase
+            .from("author_interview_answers")
+            .select("question_id, answer")
+            .eq("author_id", author.id)
+            .eq("is_visible", true)
+
+        const answerByQuestion = new Map(
+            (interviewAnswers ?? []).map(answer => [answer.question_id, answer.answer])
+        )
+        const questionIds = Array.from(answerByQuestion.keys())
+
+        if (questionIds.length > 0) {
+            const { data: interviewQuestions } = await supabase
+                .from("interview_questions")
+                .select("id, question, sort_order")
+                .in("id", questionIds)
+                .eq("is_active", true)
+                .order("sort_order")
+
+            visibleInterviewQuestions = (interviewQuestions ?? []).map(question => ({
+                id: question.id,
+                question: question.question,
+                answer: answerByQuestion.get(question.id) ?? ""
+            }))
+        }
+    }
 
     const theme =
         themes[
