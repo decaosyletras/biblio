@@ -264,7 +264,7 @@ export default function MePage() {
 
 
                         <button
-                            onClick={() => router.push("/me/edit")}
+                            onClick={() => router.push("/me/profile")}
                             className="
                                 w-full sm:w-auto
                                 px-5 py-3
@@ -278,7 +278,7 @@ export default function MePage() {
                                 duration-150
                                 "
                         >
-                            Editar nombre
+                            Editar perfil público
                         </button>
 
                     </div>

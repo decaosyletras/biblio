@@ -1,0 +1,468 @@
+"use client"
+
+import { FormEvent, useEffect, useState } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import imageCompression from "browser-image-compression"
+import { Camera, Download, ExternalLink, UserRound } from "lucide-react"
+import { supabase } from "@/lib/supabase"
+
+type ReaderProfileForm = {
+  username: string
+  displayName: string
+  bio: string
+  avatarUrl: string
+  instagramUrl: string
+  tiktokUrl: string
+  websiteUrl: string
+  isPublic: boolean
+}
+
+type AuthorProfileImport = {
+  name: string
+  avatarUrl: string
+  instagramUrl: string
+  tiktokUrl: string
+  websiteUrl: string
+}
+
+const EMPTY_PROFILE: ReaderProfileForm = {
+  username: "",
+  displayName: "",
+  bio: "",
+  avatarUrl: "",
+  instagramUrl: "",
+  tiktokUrl: "",
+  websiteUrl: "",
+  isPublic: false,
+}
+
+export default function ReaderProfileEditorPage() {
+  const router = useRouter()
+  const [profile, setProfile] = useState<ReaderProfileForm>(EMPTY_PROFILE)
+  const [authorProfile, setAuthorProfile] = useState<AuthorProfileImport | null>(null)
+  const [avatarFile, setAvatarFile] = useState<File | null>(null)
+  const [avatarPreview, setAvatarPreview] = useState("")
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [message, setMessage] = useState("")
+  const [notice, setNotice] = useState("")
+
+  useEffect(() => {
+    let active = true
+
+    async function loadProfile() {
+      const response = await fetch("/api/readers/profile", {
+        cache: "no-store",
+      })
+
+      if (response.status === 401) {
+        router.replace("/login")
+        return
+      }
+
+      const result = await response.json()
+
+      if (!active) return
+
+      if (!response.ok) {
+        setMessage(result.error ?? "No se pudo cargar el perfil")
+        setLoading(false)
+        return
+      }
+
+      setProfile(result.profile)
+      setAuthorProfile(result.authorProfile ?? null)
+      setLoading(false)
+    }
+
+    loadProfile()
+
+    return () => {
+      active = false
+    }
+  }, [router])
+
+  useEffect(() => {
+    if (!avatarFile) {
+      setAvatarPreview("")
+      return
+    }
+
+    const preview = URL.createObjectURL(avatarFile)
+    setAvatarPreview(preview)
+
+    return () => URL.revokeObjectURL(preview)
+  }, [avatarFile])
+
+  function updateField<K extends keyof ReaderProfileForm>(
+    field: K,
+    value: ReaderProfileForm[K]
+  ) {
+    setProfile((current) => ({ ...current, [field]: value }))
+  }
+
+  function importAuthorProfile() {
+    if (!authorProfile) return
+
+    setAvatarFile(null)
+    setProfile((current) => ({
+      ...current,
+      avatarUrl: authorProfile.avatarUrl || current.avatarUrl,
+      instagramUrl: authorProfile.instagramUrl || current.instagramUrl,
+      tiktokUrl: authorProfile.tiktokUrl || current.tiktokUrl,
+      websiteUrl: authorProfile.websiteUrl || current.websiteUrl,
+    }))
+    setMessage("")
+    setNotice("Datos importados. Revísalos y guarda el perfil para confirmar los cambios.")
+  }
+
+  async function uploadAvatar() {
+    if (!avatarFile) return profile.avatarUrl
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) throw new Error("Tu sesion termino. Inicia sesion de nuevo.")
+
+    const compressed = await imageCompression(avatarFile, {
+      maxWidthOrHeight: 600,
+      maxSizeMB: 0.7,
+      useWebWorker: true,
+      fileType: "image/webp",
+    })
+    const path = `${user.id}/avatar.webp`
+    const { error } = await supabase.storage
+      .from("reader-avatars")
+      .upload(path, compressed, {
+        contentType: "image/webp",
+        upsert: true,
+      })
+
+    if (error) {
+      throw new Error("No se pudo subir la imagen")
+    }
+
+    const { data } = supabase.storage
+      .from("reader-avatars")
+      .getPublicUrl(path)
+
+    return `${data.publicUrl}?v=${Date.now()}`
+  }
+
+  async function saveProfile(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setSaving(true)
+    setMessage("")
+    setNotice("")
+
+    try {
+      const avatarUrl = await uploadAvatar()
+      const response = await fetch("/api/readers/profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...profile,
+          avatarUrl,
+        }),
+      })
+      const result = await response.json()
+
+      if (!response.ok) {
+        setMessage(result.error ?? "No se pudo guardar el perfil")
+        return
+      }
+
+      if (result.warning) {
+        setMessage(result.warning)
+        return
+      }
+
+      router.refresh()
+      router.push(
+        result.isPublic
+          ? `/readers/${result.username}`
+          : "/me"
+      )
+    } catch (error) {
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "No se pudo guardar el perfil"
+      )
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center">
+        Cargando perfil...
+      </div>
+    )
+  }
+
+  const visibleAvatar = avatarPreview || profile.avatarUrl
+
+  return (
+    <main className="min-h-screen bg-zinc-950 px-4 py-10 text-white sm:px-6">
+      <div className="mx-auto max-w-2xl">
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-yellow-400">
+              Perfil de lector
+            </p>
+            <h1 className="mt-2 text-3xl font-bold sm:text-4xl">
+              Tu espacio público
+            </h1>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-zinc-400">
+              Comparte quién eres como lector. Tu correo y la información de tu cuenta nunca aparecen aquí.
+            </p>
+          </div>
+
+          {profile.isPublic && profile.username && (
+            <Link
+              href={`/readers/${profile.username}`}
+              className="inline-flex items-center gap-2 text-sm text-yellow-400 hover:text-yellow-300"
+            >
+              Ver perfil
+              <ExternalLink size={15} />
+            </Link>
+          )}
+        </div>
+
+        <form onSubmit={saveProfile} className="space-y-6">
+          <section className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+              <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-3xl border border-zinc-700 bg-zinc-800">
+                {visibleAvatar ? (
+                  // The image host is the runtime Supabase project selected by this installation.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={visibleAvatar}
+                    alt="Vista previa del avatar"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <UserRound className="h-12 w-12 text-zinc-500" />
+                )}
+              </div>
+
+              <div>
+                <label
+                  htmlFor="reader-avatar"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-zinc-100 px-4 py-2.5 font-medium text-zinc-900 transition hover:bg-white"
+                >
+                  <Camera size={18} />
+                  Elegir avatar
+                </label>
+                <input
+                  id="reader-avatar"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  className="sr-only"
+                  onChange={(event) => {
+                    const file = event.target.files?.[0] ?? null
+
+                    if (file && file.size > 5 * 1024 * 1024) {
+                      setMessage("La imagen original no puede superar 5 MB")
+                      event.target.value = ""
+                      return
+                    }
+
+                    setAvatarFile(file)
+                  }}
+                />
+                <p className="mt-2 text-xs text-zinc-500">
+                  JPG, PNG o WebP. La imagen se optimiza antes de subirla.
+                </p>
+                {visibleAvatar && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAvatarFile(null)
+                      updateField("avatarUrl", "")
+                      setNotice("El avatar se eliminará cuando guardes el perfil.")
+                    }}
+                    className="mt-3 text-sm text-red-300 hover:text-red-200"
+                  >
+                    Quitar avatar
+                  </button>
+                )}
+              </div>
+            </div>
+          </section>
+
+          {authorProfile && (
+            <section className="rounded-3xl border border-blue-500/30 bg-blue-500/10 p-5 sm:p-7">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h2 className="font-semibold text-blue-200">
+                    Importar desde tu página de autor
+                  </h2>
+                  <p className="mt-1 text-sm leading-relaxed text-zinc-300">
+                    Copia el avatar y los enlaces disponibles de {authorProfile.name || "tu perfil de autor"}. Podrás revisarlos antes de guardar.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={importAuthorProfile}
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 font-medium transition hover:bg-blue-500"
+                >
+                  <Download size={18} />
+                  Importar datos
+                </button>
+              </div>
+            </section>
+          )}
+
+          <section className="space-y-5 rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
+            <div>
+              <label htmlFor="username" className="text-sm font-medium text-zinc-200">
+                Nombre de usuario
+              </label>
+              <div className="mt-2 flex rounded-xl border border-zinc-700 bg-zinc-800 focus-within:border-yellow-500">
+                <span className="flex items-center pl-4 text-zinc-500">@</span>
+                <input
+                  id="username"
+                  value={profile.username}
+                  required
+                  minLength={3}
+                  maxLength={30}
+                  pattern="[a-zA-Z0-9][a-zA-Z0-9._-]{1,28}[a-zA-Z0-9]"
+                  onChange={(event) => updateField("username", event.target.value.toLowerCase())}
+                  className="w-full bg-transparent p-3 outline-none"
+                  placeholder="tu_usuario"
+                />
+              </div>
+              <p className="mt-2 text-xs text-zinc-500">
+                Será parte de tu URL. Usa entre 3 y 30 letras, números, puntos, guiones o guiones bajos.
+              </p>
+            </div>
+
+            <div>
+              <label htmlFor="display-name" className="text-sm font-medium text-zinc-200">
+                Nombre visible
+              </label>
+              <input
+                id="display-name"
+                value={profile.displayName}
+                required
+                maxLength={60}
+                onChange={(event) => updateField("displayName", event.target.value)}
+                className="mt-2 w-full rounded-xl border border-zinc-700 bg-zinc-800 p-3 outline-none focus:border-yellow-500"
+                placeholder="Cómo quieres que te conozcan"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between gap-3">
+                <label htmlFor="bio" className="text-sm font-medium text-zinc-200">
+                  Biografía
+                </label>
+                <span className="text-xs text-zinc-500">{profile.bio.length}/240</span>
+              </div>
+              <textarea
+                id="bio"
+                value={profile.bio}
+                maxLength={240}
+                rows={5}
+                onChange={(event) => updateField("bio", event.target.value)}
+                className="mt-2 w-full resize-none rounded-xl border border-zinc-700 bg-zinc-800 p-3 outline-none focus:border-yellow-500"
+                placeholder="Cuéntanos qué te gusta leer"
+              />
+            </div>
+          </section>
+
+          <section className="space-y-5 rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
+            <div>
+              <h2 className="text-xl font-semibold">Enlaces</h2>
+              <p className="mt-1 text-sm text-zinc-400">
+                Son opcionales y solo se mostrarán si publicas tu perfil.
+              </p>
+            </div>
+
+            {([
+              ["instagramUrl", "Instagram", "https://instagram.com/tu_usuario"],
+              ["tiktokUrl", "TikTok", "https://tiktok.com/@tu_usuario"],
+              ["websiteUrl", "Sitio web", "https://tusitio.com"],
+            ] as const).map(([field, label, placeholder]) => (
+              <div key={field}>
+                <label htmlFor={field} className="text-sm font-medium text-zinc-200">
+                  {label}
+                </label>
+                <input
+                  id={field}
+                  type="url"
+                  value={profile[field]}
+                  maxLength={500}
+                  onChange={(event) => updateField(field, event.target.value)}
+                  className="mt-2 w-full rounded-xl border border-zinc-700 bg-zinc-800 p-3 outline-none focus:border-yellow-500"
+                  placeholder={placeholder}
+                />
+              </div>
+            ))}
+          </section>
+
+          <section className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
+            <label className="flex cursor-pointer items-start gap-4">
+              <input
+                type="checkbox"
+                checked={profile.isPublic}
+                onChange={(event) => updateField("isPublic", event.target.checked)}
+                className="mt-1 h-5 w-5 accent-yellow-500"
+              />
+              <span>
+                <span className="block font-semibold">Publicar mi perfil</span>
+                <span className="mt-1 block text-sm leading-relaxed text-zinc-400">
+                  Al activarlo, cualquier persona podrá visitar tu perfil mediante su URL. Puedes volver a ocultarlo cuando quieras.
+                </span>
+              </span>
+            </label>
+          </section>
+
+          {message && (
+            <p
+              role="alert"
+              aria-live="polite"
+              className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300"
+            >
+              {message}
+            </p>
+          )}
+
+          {notice && (
+            <p
+              role="status"
+              aria-live="polite"
+              className="rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-sm text-green-300"
+            >
+              {notice}
+            </p>
+          )}
+
+          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+            <button
+              type="button"
+              onClick={() => router.push("/me")}
+              className="rounded-xl bg-zinc-800 px-5 py-3 font-medium transition hover:bg-zinc-700"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              disabled={saving}
+              className="rounded-xl bg-yellow-500 px-6 py-3 font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {saving ? "Guardando..." : "Guardar perfil"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  )
+}
