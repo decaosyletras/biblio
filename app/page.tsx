@@ -6,8 +6,8 @@ import CardReview from "@/components/CardReview"
 import CardAuthor from "@/components/CardAuthor"
 import GenreFilter from "@/components/GenreFilter"
 import BookRow from "@/components/BookRow"
-import { useMemo } from "react";
 import AuthorNewsCard from "@/components/AuthorNewsCard"
+import { createClient } from "@/lib/supabase-server"
 
 import {
   getAuthors,
@@ -18,6 +18,30 @@ import {
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
+
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  let claimedAuthorSlug: string | null = null
+
+  if (user) {
+    const { data: approvedClaim } = await supabase
+      .from("author_claims")
+      .select("author_id")
+      .eq("user_id", user.id)
+      .eq("status", "approved")
+      .maybeSingle()
+
+    if (approvedClaim?.author_id) {
+      const { data: claimedAuthor } = await supabase
+        .from("authors")
+        .select("slug")
+        .eq("id", approvedClaim.author_id)
+        .maybeSingle()
+
+      claimedAuthorSlug = claimedAuthor?.slug ?? null
+    }
+  }
 
   const authors = await getAuthors()
   const books = await getBooks()
@@ -94,6 +118,36 @@ export default async function Home() {
             Lectómetro
           </Link>
 
+        </div>
+
+        <div className="mt-6 flex flex-col items-center gap-3">
+          {!user ? (
+            <Link
+              href="/login"
+              className="rounded-full border border-yellow-500 px-6 py-3 font-medium text-yellow-400 transition hover:bg-yellow-500 hover:text-black"
+            >
+              Iniciar sesión
+            </Link>
+          ) : claimedAuthorSlug ? (
+            <Link
+              href={`/authors/${claimedAuthorSlug}`}
+              className="rounded-full bg-yellow-500 px-6 py-3 font-medium text-black transition hover:bg-yellow-400"
+            >
+              Mi página de autor
+            </Link>
+          ) : (
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/70 px-6 py-4">
+              <p className="text-sm text-zinc-300">
+                Puedes reclamar tu perfil de autor desde uno de tus libros.
+              </p>
+              <Link
+                href="/libros"
+                className="mt-2 inline-block text-sm font-medium text-yellow-400 hover:underline"
+              >
+                Buscar mi libro →
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
