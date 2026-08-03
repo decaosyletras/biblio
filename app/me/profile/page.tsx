@@ -182,11 +182,7 @@ export default function ReaderProfileEditorPage() {
       }
 
       router.refresh()
-      router.push(
-        result.isPublic
-          ? `/readers/${result.username}`
-          : "/me"
-      )
+      router.push("/me")
     } catch (error) {
       setMessage(
         error instanceof Error
