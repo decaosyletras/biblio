@@ -19,14 +19,31 @@ type UserRow = {
     username: string
 }
 
+type ReaderProfileSummary = {
+    username: string
+    isPublic: boolean
+}
+
+type AuthorClaim = {
+    id: string
+    status: "pending" | "approved" | "rejected"
+    created_at: string
+    authors: {
+        name: string
+        slug: string
+        avatar: string
+    } | null
+}
+
 export default function MePage() {
     const router = useRouter()
     const { user, profile, loading } = useProfile()
 
     const [author, setAuthor] = useState<OwnedAuthor | null>(null)
     const [loadingAuthor, setLoadingAuthor] = useState(true)
+    const [readerProfile, setReaderProfile] = useState<ReaderProfileSummary | null>(null)
 
-    const [claims, setClaims] = useState<any[]>([])
+    const [claims, setClaims] = useState<AuthorClaim[]>([])
     const [loadingClaims, setLoadingClaims] = useState(true)
 
     const [users, setUsers] = useState<UserRow[]>([])
@@ -86,6 +103,32 @@ export default function MePage() {
             router.replace("/login")
         }
     }, [loading, user, router])
+
+    useEffect(() => {
+        if (!user) return
+
+        let active = true
+
+        const loadReaderProfile = async () => {
+            const response = await fetch("/api/readers/profile", {
+                cache: "no-store"
+            })
+
+            if (!response.ok) return
+
+            const result = await response.json()
+
+            if (active) {
+                setReaderProfile(result.profile ?? null)
+            }
+        }
+
+        loadReaderProfile()
+
+        return () => {
+            active = false
+        }
+    }, [user])
 
 
     // LOAD AUTHOR
@@ -167,7 +210,16 @@ export default function MePage() {
             if (error) {
                 setClaims([])
             } else {
-                setClaims(data || [])
+                const normalizedClaims: AuthorClaim[] = (data || []).map((claim) => ({
+                    id: claim.id,
+                    status: claim.status as AuthorClaim["status"],
+                    created_at: claim.created_at,
+                    authors: Array.isArray(claim.authors)
+                        ? claim.authors[0] ?? null
+                        : claim.authors ?? null,
+                }))
+
+                setClaims(normalizedClaims)
             }
             setLoadingClaims(false)
         }
@@ -262,24 +314,34 @@ export default function MePage() {
                             </p>
                         </div>
 
+                        <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                            {readerProfile?.isPublic && readerProfile.username && (
+                                <Link
+                                    href={`/readers/${readerProfile.username}`}
+                                    className="w-full rounded-xl bg-yellow-500 px-5 py-3 text-center font-semibold text-black transition-all duration-150 hover:bg-yellow-400 active:scale-95 active:bg-yellow-600 sm:w-auto"
+                                >
+                                    Ver mi perfil de lector →
+                                </Link>
+                            )}
 
-                        <button
-                            onClick={() => router.push("/me/profile")}
-                            className="
-                                w-full sm:w-auto
-                                px-5 py-3
-                                rounded-xl
-                                bg-stone-100
-                                text-stone-900
-                                hover:bg-stone-200
-                                active:scale-95
-                                active:bg-stone-300
-                                transition-all
-                                duration-150
-                                "
-                        >
-                            Editar perfil público
-                        </button>
+                            <button
+                                onClick={() => router.push("/me/profile")}
+                                className="
+                                    w-full sm:w-auto
+                                    px-5 py-3
+                                    rounded-xl
+                                    bg-stone-100
+                                    text-stone-900
+                                    hover:bg-stone-200
+                                    active:scale-95
+                                    active:bg-stone-300
+                                    transition-all
+                                    duration-150
+                                    "
+                            >
+                                Editar perfil público
+                            </button>
+                        </div>
 
                     </div>
 
@@ -404,7 +466,7 @@ export default function MePage() {
                                     </div>
                                 </div>
 
-                                {claim.status === "approved" && (
+                                {claim.status === "approved" && claim.authors && (
 
                                     <Link
                                         href={`/authors/${claim.authors.slug}`}
