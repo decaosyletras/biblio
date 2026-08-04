@@ -65,7 +65,7 @@ export default function ReaderLibraryManager({
 
   return (
     <div>
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
         {[
           ["Todos", libraryBooks.length, "text-yellow-300"],
           ["Leídos", readCount, "text-green-300"],
@@ -73,10 +73,10 @@ export default function ReaderLibraryManager({
         ].map(([label, count, color]) => (
           <div
             key={String(label)}
-            className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5"
+            className="min-w-0 rounded-xl border border-zinc-800 bg-zinc-900 p-3 sm:rounded-2xl sm:p-5"
           >
-            <p className="text-sm text-zinc-500">{label}</p>
-            <p className={`mt-1 text-3xl font-bold ${color}`}>{count}</p>
+            <p className="truncate text-xs text-zinc-500 sm:text-sm">{label}</p>
+            <p className={`mt-1 text-2xl font-bold sm:text-3xl ${color}`}>{count}</p>
           </div>
         ))}
       </div>
@@ -147,7 +147,10 @@ export default function ReaderLibraryManager({
           No hay libros que coincidan con este filtro.
         </div>
       ) : (
-        <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <>
+          {/* La biblioteca privada también aprovecha dos columnas en móvil; las
+              acciones permanecen dentro de cada tarjeta con áreas táctiles claras. */}
+          <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {visibleBooks.map((book) => {
             const membership = library[book.id]
             const isPending = pendingBookId === book.id
@@ -155,11 +158,11 @@ export default function ReaderLibraryManager({
             return (
               <article
                 key={book.id}
-                className="flex gap-4 rounded-2xl border border-zinc-800 bg-zinc-900 p-4"
+                className="flex min-w-0 flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-900 p-3 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4"
               >
                 <Link
                   href={`/libros/${book.slug}`}
-                  className="h-40 w-28 shrink-0 overflow-hidden rounded-xl bg-zinc-800"
+                  className="aspect-[2/3] w-full shrink-0 overflow-hidden rounded-xl bg-zinc-800 sm:h-40 sm:w-28 sm:aspect-auto"
                 >
                   <CoverImage
                     src={getBookCover(book.amazon, book.cover)}
@@ -188,12 +191,12 @@ export default function ReaderLibraryManager({
                     {membership?.isRead ? "Leído" : "Pendiente"}
                   </span>
 
-                  <div className="mt-auto flex gap-2 pt-3">
+                  <div className="mt-auto grid grid-cols-[minmax(0,1fr)_auto] gap-2 pt-3 sm:flex">
                     <button
                       type="button"
                       disabled={isPending}
                       onClick={() => saveBook(book.id, !membership?.isRead)}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-700 px-3 py-2 text-xs transition hover:bg-zinc-600 disabled:opacity-50"
+                      className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-zinc-700 px-2 py-2 text-xs transition hover:bg-zinc-600 disabled:opacity-50 sm:gap-1.5 sm:px-3"
                     >
                       <BookOpenCheck size={14} />
                       {membership?.isRead ? "Pendiente" : "Leído"}
@@ -203,7 +206,7 @@ export default function ReaderLibraryManager({
                       aria-label={`Quitar ${book.title} de mi biblioteca`}
                       disabled={isPending}
                       onClick={() => removeBook(book.id)}
-                      className="rounded-lg border border-red-500/30 p-2 text-red-300 hover:bg-red-500/10 disabled:opacity-50"
+                      className="flex items-center justify-center rounded-lg border border-red-500/30 p-2 text-red-300 hover:bg-red-500/10 disabled:opacity-50"
                     >
                       <Trash2 size={15} />
                     </button>
@@ -212,7 +215,8 @@ export default function ReaderLibraryManager({
               </article>
             )
           })}
-        </div>
+          </div>
+        </>
       )}
     </div>
   )

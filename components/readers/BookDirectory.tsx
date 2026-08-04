@@ -78,7 +78,9 @@ export default function BookDirectory({
         {visibleBooks.length} {visibleBooks.length === 1 ? "libro" : "libros"}
       </p>
 
-      <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* En móvil se usan dos tarjetas verticales por fila para evitar una lista
+          excesivamente larga; desde sm recuperan el formato horizontal. */}
+      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {visibleBooks.map((book) => {
           const membership = library[book.id]
           const isPending = pendingBookId === book.id
@@ -86,11 +88,11 @@ export default function BookDirectory({
           return (
             <article
               key={book.id}
-              className="flex gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/80 p-4"
+              className="flex min-w-0 flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-900/80 p-3 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4"
             >
               <Link
                 href={`/libros/${book.slug}`}
-                className="h-36 w-24 shrink-0 overflow-hidden rounded-lg bg-zinc-800"
+                className="aspect-[2/3] w-full shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:h-36 sm:w-24 sm:aspect-auto"
               >
                 <CoverImage
                   src={getBookCover(book.amazon, book.cover)}
@@ -121,14 +123,14 @@ export default function BookDirectory({
                   </span>
                 )}
 
-                <div className="mt-auto flex flex-wrap gap-2 pt-3">
+                <div className="mt-auto grid gap-2 pt-3 sm:flex sm:flex-wrap">
                   {!membership ? (
                     <>
                       <button
                         type="button"
                         disabled={isPending || libraryLoading}
                         onClick={() => saveBook(book.id, false)}
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-yellow-500 px-3 py-2 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50"
+                        className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-yellow-500 px-2 py-2 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50 sm:w-auto sm:px-3"
                       >
                         <LibraryBig size={14} />
                         Agregar
@@ -137,7 +139,7 @@ export default function BookDirectory({
                         type="button"
                         disabled={isPending || libraryLoading}
                         onClick={() => saveBook(book.id, true)}
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-green-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-green-500 disabled:opacity-50"
+                        className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-green-600 px-2 py-2 text-xs font-semibold text-white transition hover:bg-green-500 disabled:opacity-50 sm:w-auto sm:px-3"
                       >
                         <BookOpenCheck size={14} />
                         Ya lo leí
@@ -145,23 +147,25 @@ export default function BookDirectory({
                     </>
                   ) : (
                     <>
-                      <button
-                        type="button"
-                        disabled={isPending || libraryLoading}
-                        onClick={() => saveBook(book.id, !membership.isRead)}
-                        className="rounded-lg bg-zinc-700 px-3 py-2 text-xs font-medium transition hover:bg-zinc-600 disabled:opacity-50"
-                      >
-                        {membership.isRead ? "Marcar pendiente" : "Marcar leído"}
-                      </button>
-                      <button
-                        type="button"
-                        aria-label={`Quitar ${book.title} de mi biblioteca`}
-                        disabled={isPending || libraryLoading}
-                        onClick={() => removeBook(book.id)}
-                        className="rounded-lg border border-red-500/30 p-2 text-red-300 transition hover:bg-red-500/10 disabled:opacity-50"
-                      >
-                        <Trash2 size={15} />
-                      </button>
+                      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2 sm:flex">
+                        <button
+                          type="button"
+                          disabled={isPending || libraryLoading}
+                          onClick={() => saveBook(book.id, !membership.isRead)}
+                          className="rounded-lg bg-zinc-700 px-2 py-2 text-xs font-medium transition hover:bg-zinc-600 disabled:opacity-50 sm:px-3"
+                        >
+                          {membership.isRead ? "Marcar pendiente" : "Marcar leído"}
+                        </button>
+                        <button
+                          type="button"
+                          aria-label={`Quitar ${book.title} de mi biblioteca`}
+                          disabled={isPending || libraryLoading}
+                          onClick={() => removeBook(book.id)}
+                          className="flex items-center justify-center rounded-lg border border-red-500/30 p-2 text-red-300 transition hover:bg-red-500/10 disabled:opacity-50"
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </div>
                     </>
                   )}
                 </div>
