@@ -140,8 +140,8 @@ export default function BookDirectory({
         {visibleBooks.length} {visibleBooks.length === 1 ? "libro" : "libros"}
       </p>
 
-      <div className="mt-3 grid grid-cols-3 gap-2 rounded-xl border border-zinc-800 bg-zinc-900/70 p-2.5 text-[10px] leading-tight text-zinc-300 sm:hidden">
-        <p className="col-span-3 text-zinc-400">
+      <div className="mt-3 grid grid-cols-3 gap-2 rounded-xl border border-zinc-800 bg-zinc-900/70 p-2.5 text-[10px] leading-tight text-zinc-300 sm:p-3 sm:text-xs">
+        <p className="col-span-3 text-zinc-400 sm:text-center">
           Presiona un botón para elegir qué hacer con el libro:
         </p>
         <span className="flex min-w-0 flex-col items-center gap-1 text-center">
@@ -180,11 +180,11 @@ export default function BookDirectory({
           return (
             <article
               key={book.id}
-              className="flex min-w-0 flex-col gap-2 rounded-xl border border-zinc-800 bg-zinc-900/80 p-2 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4"
+              className="flex min-w-0 flex-col gap-2 rounded-xl border border-zinc-800 bg-zinc-900/80 p-2 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4 lg:gap-3 lg:px-3 lg:py-2"
             >
               <Link
                 href={`/libros/${book.slug}`}
-                className="aspect-[2/3] w-full shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:h-36 sm:w-24 sm:aspect-auto"
+                className="mx-auto h-36 w-24 shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:mx-0 lg:h-40 lg:w-[6.75rem]"
               >
                 <CoverImage
                   src={getBookCover(book.amazon, book.cover)}
@@ -195,7 +195,7 @@ export default function BookDirectory({
 
               <div className="flex min-w-0 flex-1 flex-col">
                 <Link href={`/libros/${book.slug}`}>
-                  <h2 className="line-clamp-2 text-[11px] font-semibold leading-tight text-zinc-100 hover:text-yellow-300 sm:text-sm sm:leading-snug">
+                  <h2 className="line-clamp-2 text-[11px] font-semibold leading-tight text-zinc-100 hover:text-yellow-300 sm:text-sm sm:leading-snug lg:text-[13px] lg:leading-tight">
                     {book.title}
                   </h2>
                 </Link>
