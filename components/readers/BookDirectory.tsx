@@ -78,11 +78,11 @@ export default function BookDirectory({
     label: string
     count: number
   }> = [
-    { value: "all", label: "Todos", count: books.length - hiddenCount },
-    { value: "library", label: "Mi biblioteca", count: libraryCount },
-    { value: "read", label: "Leídos", count: readCount },
-    { value: "hidden", label: "Ocultos", count: hiddenCount },
-  ]
+      { value: "all", label: "Todos", count: books.length - hiddenCount },
+      { value: "library", label: "Mi biblioteca", count: libraryCount },
+      { value: "read", label: "Leídos", count: readCount },
+      { value: "hidden", label: "Ocultos", count: hiddenCount },
+    ]
 
   return (
     <div>
@@ -124,11 +124,10 @@ export default function BookDirectory({
               type="button"
               onClick={() => setFilter(value)}
               aria-pressed={filter === value}
-              className={`shrink-0 rounded-full px-3.5 py-2 text-xs transition ${
-                filter === value
+              className={`shrink-0 rounded-full px-3.5 py-2 text-xs transition ${filter === value
                   ? "bg-yellow-500 font-semibold text-black"
                   : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-              }`}
+                }`}
             >
               {label} · {count}
             </button>
@@ -142,7 +141,7 @@ export default function BookDirectory({
 
       <div className="mt-3 grid grid-cols-3 gap-2 rounded-xl border border-zinc-800 bg-zinc-900/70 p-2.5 text-[10px] leading-tight text-zinc-300 sm:p-3 sm:text-xs">
         <p className="col-span-3 text-zinc-400 sm:text-center">
-          Presiona un botón para elegir qué hacer con el libro:
+          Presiona un botón para elegir qué hacer con cada libro:
         </p>
         <span className="flex min-w-0 flex-col items-center gap-1 text-center">
           <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-yellow-500 px-1 text-black">
@@ -217,11 +216,10 @@ export default function BookDirectory({
                   </span>
                 ) : membership && (
                   <span
-                    className={`mt-2 w-fit rounded-full px-1.5 py-0.5 text-[9px] font-medium sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px] ${
-                      membership.isRead
+                    className={`mt-2 w-fit rounded-full px-1.5 py-0.5 text-[9px] font-medium sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px] ${membership.isRead
                         ? "bg-green-500/15 text-green-300"
                         : "bg-zinc-700 text-zinc-300"
-                    }`}
+                      }`}
                   >
                     {membership.isRead ? "Leído" : "Pendiente"}
                   </span>
