@@ -164,10 +164,11 @@ export default function BookDirectory({
         </span>
       </div>
 
-      {/* En celular se prioriza densidad con tres portadas verticales. Desde sm
+      {/* En celular se muestran dos portadas verticales para que las acciones
+          tengan suficiente separación y sean fáciles de tocar. Desde sm
           regresan las tarjetas horizontales y el ancho disponible permite
           crecer progresivamente hasta seis columnas. */}
-      <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+      <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-5 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {visibleBooks.map((book) => {
           const membership = library[book.id]
           const isHidden = hiddenBooks[book.id] === true
@@ -179,7 +180,7 @@ export default function BookDirectory({
           return (
             <article
               key={book.id}
-              className="flex min-w-0 flex-col gap-2 border border-transparent bg-transparent p-0 sm:flex-row sm:gap-4 sm:rounded-2xl sm:border-zinc-800 sm:bg-zinc-900/80 sm:p-4"
+              className="flex min-w-0 flex-col gap-2 rounded-xl border border-zinc-800 bg-zinc-900/80 p-2 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4"
             >
               <Link
                 href={`/libros/${book.slug}`}
@@ -226,7 +227,7 @@ export default function BookDirectory({
                   </span>
                 )}
 
-                <div className="mt-auto grid grid-cols-3 gap-2 pt-2 sm:pt-3">
+                <div className="mt-auto grid grid-cols-3 gap-1.5 pt-2 sm:gap-2 sm:pt-3">
                   {isHidden ? (
                     <>
                       <button
