@@ -129,7 +129,7 @@ export default async function ReaderProfilePage({
   }>
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-zinc-900 via-zinc-950 to-black px-4 py-14 text-white sm:px-6">
+    <main className="min-h-screen px-4 py-14 text-white sm:px-6">
       <div className="mx-auto max-w-4xl">
         <section className="overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-900/80 shadow-2xl shadow-black/30">
           <div className="h-32 bg-gradient-to-r from-yellow-500/25 via-amber-400/10 to-zinc-900 sm:h-40" />

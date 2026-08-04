@@ -16,7 +16,7 @@ export default function LayoutShell({
   const isAuthorPage = pathname.startsWith("/authors/")
 
   return (
-    <div className="bg-gradient-to-b from-zinc-900 via-zinc-900 to-black text-zinc-100 min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-[#151518] via-zinc-950 to-black text-zinc-100">
 
       {!isAuthorPage && <Navbar />}
 
