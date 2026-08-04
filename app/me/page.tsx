@@ -24,6 +24,11 @@ type ReaderProfileSummary = {
     isPublic: boolean
 }
 
+type ReaderLibrarySummary = {
+    total: number
+    read: number
+}
+
 type AuthorClaim = {
     id: string
     status: "pending" | "approved" | "rejected"
@@ -42,6 +47,7 @@ export default function MePage() {
     const [author, setAuthor] = useState<OwnedAuthor | null>(null)
     const [loadingAuthor, setLoadingAuthor] = useState(true)
     const [readerProfile, setReaderProfile] = useState<ReaderProfileSummary | null>(null)
+    const [readerLibrary, setReaderLibrary] = useState<ReaderLibrarySummary | null>(null)
 
     const [claims, setClaims] = useState<AuthorClaim[]>([])
     const [loadingClaims, setLoadingClaims] = useState(true)
@@ -109,21 +115,31 @@ export default function MePage() {
 
         let active = true
 
-        const loadReaderProfile = async () => {
-            const response = await fetch("/api/readers/profile", {
-                cache: "no-store"
-            })
+        const loadReaderData = async () => {
+            const [profileResponse, libraryResponse] = await Promise.all([
+                fetch("/api/readers/profile", { cache: "no-store" }),
+                fetch("/api/readers/books", { cache: "no-store" })
+            ])
 
-            if (!response.ok) return
+            if (!active) return
 
-            const result = await response.json()
-
-            if (active) {
+            if (profileResponse.ok) {
+                const result = await profileResponse.json()
                 setReaderProfile(result.profile ?? null)
+            }
+
+            if (libraryResponse.ok) {
+                const result = await libraryResponse.json()
+                const items = Array.isArray(result.books) ? result.books : []
+
+                setReaderLibrary({
+                    total: items.length,
+                    read: items.filter((item: { isRead?: boolean }) => item.isRead === true).length
+                })
             }
         }
 
-        loadReaderProfile()
+        loadReaderData()
 
         return () => {
             active = false
@@ -273,14 +289,15 @@ export default function MePage() {
         )
     }
 
-    const hasPendingClaim = claims.some(
-        claim => claim.status === "pending"
-    )
-
-    const showAuthorCTA =
-        !loadingClaims &&
-        !author &&
-        !hasPendingClaim
+    // El CTA independiente anterior se conserva desactivado porque la sección
+    // "Mi estado de autor" ya decide qué acción mostrar usando claims.
+    // const hasPendingClaim = claims.some(
+    //     claim => claim.status === "pending"
+    // )
+    // const showAuthorCTA =
+    //     !loadingClaims &&
+    //     !author &&
+    //     !hasPendingClaim
 
     return (
         <div className="min-h-screen bg-zinc-950 text-white">
@@ -345,6 +362,32 @@ export default function MePage() {
 
                     </div>
 
+                </div>
+
+                <div className="rounded-3xl border border-yellow-500/25 bg-yellow-500/5 p-5 sm:p-6">
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <p className="text-sm uppercase tracking-wider text-yellow-400">
+                                Espacio lector
+                            </p>
+                            <h2 className="mt-1 text-2xl font-bold">
+                                Mi biblioteca
+                            </h2>
+                            <p className="mt-2 text-sm text-zinc-400">
+                                {readerLibrary
+                                    ? `${readerLibrary.total} ${readerLibrary.total === 1 ? "libro" : "libros"} · ${readerLibrary.read} ${readerLibrary.read === 1 ? "leído" : "leídos"}`
+                                    : "Organiza tus intereses y tus lecturas pendientes."
+                                }
+                            </p>
+                        </div>
+
+                        <Link
+                            href="/me/library"
+                            className="w-full rounded-xl bg-yellow-500 px-5 py-3 text-center font-semibold text-black transition hover:bg-yellow-400 active:scale-95 sm:w-auto"
+                        >
+                            Ver mi biblioteca →
+                        </Link>
+                    </div>
                 </div>
 
                 {!loadingAuthor && author && (
@@ -427,6 +470,8 @@ export default function MePage() {
 
                                     {claim.authors?.avatar && (
 
+                                        // El host de avatares depende del proyecto Supabase en ejecución.
+                                        // eslint-disable-next-line @next/next/no-img-element
                                         <img
                                             src={claim.authors.avatar}
                                             alt={claim.authors.name}

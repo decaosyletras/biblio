@@ -1,80 +1,29 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { BookOpenCheck, LibraryBig, Search, Trash2 } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
-import { useCurrentUser } from "@/hooks/useCurrentUser"
+import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
 import type { DatabaseBook } from "@/types"
-
-type LibraryState = {
-  isRead: boolean
-}
 
 export default function BookDirectory({
   books,
 }: {
   books: DatabaseBook[]
 }) {
-  const router = useRouter()
-  const { user, loading: userLoading } = useCurrentUser()
   const [query, setQuery] = useState("")
-  const [library, setLibrary] = useState<Record<string, LibraryState>>({})
-  const [libraryLoading, setLibraryLoading] = useState(true)
-  const [pendingBookId, setPendingBookId] = useState<string | null>(null)
-  const [message, setMessage] = useState("")
-
-  useEffect(() => {
-    if (userLoading) return
-
-    if (!user) {
-      setLibrary({})
-      setLibraryLoading(false)
-      return
-    }
-
-    let active = true
-
-    async function loadLibrary() {
-      setLibraryLoading(true)
-      const response = await fetch("/api/readers/books", {
-        cache: "no-store",
-      })
-
-      if (!response.ok) {
-        if (active) {
-          setMessage("No se pudo cargar tu biblioteca.")
-          setLibraryLoading(false)
-        }
-        return
-      }
-
-      const result = await response.json()
-
-      if (!active) return
-
-      const nextLibrary: Record<string, LibraryState> = {}
-
-      for (const item of result.books ?? []) {
-        if (typeof item.bookId === "string") {
-          nextLibrary[item.bookId] = {
-            isRead: item.isRead === true,
-          }
-        }
-      }
-
-      setLibrary(nextLibrary)
-      setLibraryLoading(false)
-    }
-
-    loadLibrary()
-
-    return () => {
-      active = false
-    }
-  }, [user, userLoading])
+  const {
+    user,
+    userLoading,
+    library,
+    libraryLoading,
+    pendingBookId,
+    message,
+    saveBook,
+    removeBook,
+  } = useReaderLibrary()
 
   const visibleBooks = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("es")
@@ -92,90 +41,6 @@ export default function BookDirectory({
       return searchable.includes(normalizedQuery)
     })
   }, [books, query])
-
-  function requireSession() {
-    if (user) return true
-
-    router.push("/login")
-    return false
-  }
-
-  async function saveBook(bookId: string, isRead: boolean) {
-    if (!requireSession()) return
-
-    setPendingBookId(bookId)
-    setMessage("")
-
-    try {
-      const response = await fetch("/api/readers/books", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ bookId, isRead }),
-      })
-      const result = await response.json()
-
-      if (response.status === 401) {
-        router.push("/login")
-        return
-      }
-
-      if (!response.ok) {
-        setMessage(result.error ?? "No se pudo actualizar tu biblioteca.")
-        return
-      }
-
-      setLibrary((current) => ({
-        ...current,
-        [bookId]: {
-          isRead: result.book?.isRead === true,
-        },
-      }))
-    } catch {
-      setMessage("No se pudo conectar con la biblioteca.")
-    } finally {
-      setPendingBookId(null)
-    }
-  }
-
-  async function removeBook(bookId: string) {
-    if (!requireSession()) return
-
-    setPendingBookId(bookId)
-    setMessage("")
-
-    try {
-      const response = await fetch("/api/readers/books", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ bookId }),
-      })
-      const result = await response.json()
-
-      if (response.status === 401) {
-        router.push("/login")
-        return
-      }
-
-      if (!response.ok) {
-        setMessage(result.error ?? "No se pudo quitar el libro.")
-        return
-      }
-
-      setLibrary((current) => {
-        const next = { ...current }
-        delete next[bookId]
-        return next
-      })
-    } catch {
-      setMessage("No se pudo conectar con la biblioteca.")
-    } finally {
-      setPendingBookId(null)
-    }
-  }
 
   return (
     <div>
