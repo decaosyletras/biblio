@@ -91,6 +91,9 @@ export default function BookDirectory({
       </p>
 
       <div className="mt-3 grid grid-cols-2 gap-2 rounded-xl border border-zinc-800 bg-zinc-900/70 p-2.5 text-[10px] leading-tight text-zinc-300 sm:hidden">
+        <p className="col-span-2 text-zinc-400">
+          Presiona un botón para agregar el libro:
+        </p>
         <span className="flex items-center gap-2">
           <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-yellow-500 px-1 text-black">
             <AddToLibraryIcon />
@@ -112,6 +115,9 @@ export default function BookDirectory({
         {visibleBooks.map((book) => {
           const membership = library[book.id]
           const isPending = pendingBookId === book.id
+          const authorNames = book.authorNames ?? []
+          const visibleAuthorNames = authorNames.slice(0, 2)
+          const remainingAuthors = Math.max(0, authorNames.length - 2)
 
           return (
             <article
@@ -135,8 +141,16 @@ export default function BookDirectory({
                     {book.title}
                   </h2>
                 </Link>
-                <p className="mt-1 hidden line-clamp-2 text-xs text-zinc-500 sm:block">
-                  {(book.authorNames ?? []).join(", ") || "Autor independiente"}
+                <p
+                  title={authorNames.join(", ") || "Autor independiente"}
+                  className="mt-1 hidden h-8 line-clamp-2 text-xs text-zinc-500 sm:block"
+                >
+                  {visibleAuthorNames.join(", ") || "Autor independiente"}
+                  {remainingAuthors > 0 && (
+                    <span className="whitespace-nowrap text-zinc-400">
+                      {` (+${remainingAuthors})`}
+                    </span>
+                  )}
                 </p>
 
                 {membership && (
