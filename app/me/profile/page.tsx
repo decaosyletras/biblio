@@ -238,7 +238,7 @@ export default function ReaderProfileEditorPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center text-white">
         Cargando perfil...
       </div>
     )
@@ -247,14 +247,14 @@ export default function ReaderProfileEditorPage() {
   const visibleAvatar = avatarPreview || profile.avatarUrl
 
   return (
-    <main className="min-h-screen bg-zinc-950 px-4 py-10 text-white sm:px-6">
+    <main className="min-h-screen px-4 py-10 text-white sm:px-6 sm:py-16">
       <div className="mx-auto max-w-2xl">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-yellow-400">
+            {/*<p className="text-sm font-medium uppercase tracking-[0.2em] text-yellow-400">
               Perfil de lector
-            </p>
-            <h1 className="mt-2 text-3xl font-bold sm:text-4xl">
+            </p>*/}
+            <h1 className="text-2xl font-semibold text-zinc-100 sm:text-3xl">
               Tu espacio público
             </h1>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-zinc-400">
