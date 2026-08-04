@@ -160,7 +160,7 @@ export default function BookDirectory({
           <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-zinc-700 text-zinc-200">
             <EyeOff size={14} aria-hidden="true" />
           </span>
-          Ocultar
+          Ocultar de tu vista
         </span>
       </div>
 
@@ -227,16 +227,16 @@ export default function BookDirectory({
                   </span>
                 )}
 
-                <div className="mt-auto grid grid-cols-3 gap-1.5 pt-2 sm:gap-2 sm:pt-3">
+                <div className="mt-auto pt-2 sm:pt-3">
                   {isHidden ? (
-                    <>
+                    <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-2 sm:gap-2">
                       <button
                         type="button"
                         title="Volver a mostrar"
                         aria-label={`Volver a mostrar ${book.title}`}
                         disabled={isPending || libraryLoading}
                         onClick={() => restoreBook(book.id)}
-                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-zinc-700 px-1 py-2 text-zinc-100 transition hover:bg-zinc-600 disabled:opacity-50"
+                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-zinc-700 px-1 py-2 text-zinc-100 transition hover:bg-zinc-600 disabled:opacity-50 sm:order-3 sm:col-span-2 sm:mx-auto sm:w-1/2"
                       >
                         <Eye size={14} />
                       </button>
@@ -260,9 +260,9 @@ export default function BookDirectory({
                       >
                         <BookOpenCheck size={14} />
                       </button>
-                    </>
+                    </div>
                   ) : !membership ? (
-                    <>
+                    <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-2 sm:gap-2">
                       <button
                         type="button"
                         title="Agregar a mi biblioteca"
@@ -292,37 +292,35 @@ export default function BookDirectory({
                         aria-label={`Ocultar ${book.title}`}
                         disabled={isPending || libraryLoading}
                         onClick={() => hideBook(book.id)}
-                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-zinc-700 px-1 py-2 text-zinc-200 transition hover:bg-zinc-600 disabled:opacity-50"
+                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-zinc-700 px-1 py-2 text-zinc-200 transition hover:bg-zinc-600 disabled:opacity-50 sm:col-span-2 sm:mx-auto sm:w-1/2"
                       >
                         <EyeOff size={14} />
                       </button>
-                    </>
+                    </div>
                   ) : (
-                    <>
-                      <div className="col-span-3 grid grid-cols-[minmax(0,1fr)_auto] gap-1.5 sm:gap-2">
-                        <button
-                          type="button"
-                          title={membership.isRead ? "Marcar pendiente" : "Marcar leído"}
-                          aria-label={membership.isRead
-                            ? `Marcar ${book.title} como pendiente`
-                            : `Marcar ${book.title} como leído`}
-                          disabled={isPending || libraryLoading}
-                          onClick={() => saveBook(book.id, !membership.isRead)}
-                          className="inline-flex min-w-0 items-center justify-center rounded-lg bg-zinc-700 px-1 py-2 text-xs font-medium transition hover:bg-zinc-600 disabled:opacity-50"
-                        >
-                          <BookOpenCheck size={14} />
-                        </button>
-                        <button
-                          type="button"
-                          aria-label={`Quitar ${book.title} de mi biblioteca`}
-                          disabled={isPending || libraryLoading}
-                          onClick={() => removeBook(book.id)}
-                          className="flex items-center justify-center rounded-lg border border-red-500/30 p-2 text-red-300 transition hover:bg-red-500/10 disabled:opacity-50"
-                        >
-                          <Trash2 size={15} />
-                        </button>
-                      </div>
-                    </>
+                    <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-1.5 sm:gap-2">
+                      <button
+                        type="button"
+                        title={membership.isRead ? "Marcar pendiente" : "Marcar leído"}
+                        aria-label={membership.isRead
+                          ? `Marcar ${book.title} como pendiente`
+                          : `Marcar ${book.title} como leído`}
+                        disabled={isPending || libraryLoading}
+                        onClick={() => saveBook(book.id, !membership.isRead)}
+                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-zinc-700 px-1 py-2 text-xs font-medium transition hover:bg-zinc-600 disabled:opacity-50"
+                      >
+                        <BookOpenCheck size={14} />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label={`Quitar ${book.title} de mi biblioteca`}
+                        disabled={isPending || libraryLoading}
+                        onClick={() => removeBook(book.id)}
+                        className="flex items-center justify-center rounded-lg border border-red-500/30 p-2 text-red-300 transition hover:bg-red-500/10 disabled:opacity-50"
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
