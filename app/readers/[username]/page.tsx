@@ -4,6 +4,9 @@ import { ExternalLink, LibraryBig, UserRound } from "lucide-react"
 import { FaInstagram } from "react-icons/fa"
 import { SiTiktok } from "react-icons/si"
 import { createClient } from "@/lib/supabase-server"
+import CoverImage from "@/components/CoverImage"
+import { getBookCover } from "@/lib/amazon"
+import { getPublicReaderLibrary } from "@/lib/readerLibrary"
 
 export const dynamic = "force-dynamic"
 
@@ -50,6 +53,8 @@ export default async function ReaderProfilePage({
   }
 
   const profile = data as ReaderProfile
+  const library = await getPublicReaderLibrary(username)
+  const readCount = library.filter((item) => item.isRead).length
   const links = [
     profile.instagram_url
       ? {
@@ -140,18 +145,55 @@ export default async function ReaderProfilePage({
             </div>
             <div>
               <h2 className="text-2xl font-semibold">Biblioteca indie</h2>
-              <p className="text-sm text-zinc-500">La siguiente etapa de este perfil.</p>
+              <p className="text-sm text-zinc-500">
+                {library.length} {library.length === 1 ? "libro" : "libros"} · {readCount} {readCount === 1 ? "leído" : "leídos"}
+              </p>
             </div>
           </div>
 
-          <p className="mt-6 max-w-2xl text-zinc-400">
-            Aquí aparecerán los libros que este lector agregue a su biblioteca personal y marque como leídos.
-          </p>
+          {library.length === 0 ? (
+            <p className="mt-6 max-w-2xl text-zinc-400">
+              Esta biblioteca todavía no tiene libros.
+            </p>
+          ) : (
+            <div className="mt-7 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+              {library.map(({ book, isRead }) => (
+                <Link
+                  key={book.id}
+                  href={`/libros/${book.slug}`}
+                  className="group"
+                >
+                  <div className="relative aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800">
+                    <CoverImage
+                      src={getBookCover(book.amazon, book.cover)}
+                      alt={book.title}
+                      className="h-full w-full object-cover transition duration-200 group-hover:scale-105"
+                    />
+                    <span
+                      className={`absolute bottom-2 left-2 rounded-full px-2.5 py-1 text-[11px] font-semibold shadow-lg ${
+                        isRead
+                          ? "bg-green-500 text-white"
+                          : "bg-zinc-900/90 text-zinc-200"
+                      }`}
+                    >
+                      {isRead ? "Leído" : "Pendiente"}
+                    </span>
+                  </div>
+                  <h3 className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-zinc-200 group-hover:text-yellow-300">
+                    {book.title}
+                  </h3>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {/* El texto provisional anterior se sustituyó por la biblioteca real.
+              Esta nota conserva el motivo del cambio de etapa. */}
         </section>
 
         <div className="mt-8 text-center">
-          <Link href="/" className="text-sm text-yellow-400 hover:text-yellow-300">
-            Explorar Casa Indie
+          <Link href="/book-directory" className="text-sm text-yellow-400 hover:text-yellow-300">
+            Explorar directorio de libros
           </Link>
         </div>
       </div>
