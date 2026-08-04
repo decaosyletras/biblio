@@ -10,12 +10,11 @@ import type { DatabaseBook } from "@/types"
 
 function AddToLibraryIcon() {
   return (
-    <span className="relative inline-flex shrink-0" aria-hidden="true">
+    <span className="inline-flex shrink-0 items-center gap-1" aria-hidden="true">
       <LibraryBig size={14} />
       <Plus
-        size={9}
+        size={11}
         strokeWidth={3}
-        className="absolute -right-1 -top-1 rounded-full bg-zinc-950 text-yellow-400"
       />
     </span>
   )
@@ -93,18 +92,23 @@ export default function BookDirectory({
 
       <div className="mt-3 grid grid-cols-2 gap-2 rounded-xl border border-zinc-800 bg-zinc-900/70 p-2.5 text-[10px] leading-tight text-zinc-300 sm:hidden">
         <span className="flex items-center gap-2">
-          <AddToLibraryIcon />
+          <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-yellow-500 px-1 text-black">
+            <AddToLibraryIcon />
+          </span>
           Agregar a biblioteca
         </span>
         <span className="flex items-center gap-2">
-          <BookOpenCheck size={14} className="shrink-0 text-green-400" aria-hidden="true" />
-          Marcar como leído
+          <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-green-600 text-white">
+            <BookOpenCheck size={14} aria-hidden="true" />
+          </span>
+          Agregar como leído
         </span>
       </div>
 
       {/* En celular se prioriza densidad con tres portadas verticales. Desde sm
-          regresan las tarjetas horizontales para conservar legibilidad. */}
-      <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+          regresan las tarjetas horizontales y el ancho disponible permite
+          crecer progresivamente hasta seis columnas. */}
+      <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {visibleBooks.map((book) => {
           const membership = library[book.id]
           const isPending = pendingBookId === book.id
@@ -152,26 +156,26 @@ export default function BookDirectory({
                     <>
                       <button
                         type="button"
+                        title="Agregar a mi biblioteca"
                         disabled={isPending || libraryLoading}
                         onClick={() => saveBook(book.id, false)}
                         aria-label={`Agregar ${book.title} a mi biblioteca`}
-                        className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-yellow-500 px-1 py-2 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50 sm:px-2"
+                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-yellow-500 px-1 py-2 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50"
                       >
                         <AddToLibraryIcon />
-                        <span className="hidden sm:inline">Agregar</span>
                       </button>
                       <button
                         type="button"
+                        title="Agregar como leído"
                         disabled={isPending || libraryLoading}
                         onClick={() => saveBook(book.id, true)}
                         aria-label={`Marcar ${book.title} como leído`}
-                        className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-green-600 px-1 py-2 text-xs font-semibold text-white transition hover:bg-green-500 disabled:opacity-50 sm:px-2"
+                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-green-600 px-1 py-2 text-xs font-semibold text-white transition hover:bg-green-500 disabled:opacity-50"
                       >
                         <BookOpenCheck size={14} />
                         {/* El texto largo anterior se compacta para que las
-                            acciones quepan en cuatro columnas de escritorio. */}
+                            acciones quepan en la cuadrícula densa. */}
                         {/* Ya lo leí */}
-                        <span className="hidden sm:inline">Leído</span>
                       </button>
                     </>
                   ) : (
@@ -179,17 +183,15 @@ export default function BookDirectory({
                       <div className="col-span-2 grid grid-cols-[minmax(0,1fr)_auto] gap-1.5 sm:gap-2">
                         <button
                           type="button"
+                          title={membership.isRead ? "Marcar pendiente" : "Marcar leído"}
                           aria-label={membership.isRead
                             ? `Marcar ${book.title} como pendiente`
                             : `Marcar ${book.title} como leído`}
                           disabled={isPending || libraryLoading}
                           onClick={() => saveBook(book.id, !membership.isRead)}
-                          className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-zinc-700 px-1 py-2 text-xs font-medium transition hover:bg-zinc-600 disabled:opacity-50 sm:px-2"
+                          className="inline-flex min-w-0 items-center justify-center rounded-lg bg-zinc-700 px-1 py-2 text-xs font-medium transition hover:bg-zinc-600 disabled:opacity-50"
                         >
                           <BookOpenCheck size={14} />
-                          <span className="hidden truncate sm:inline">
-                            {membership.isRead ? "Pendiente" : "Leído"}
-                          </span>
                         </button>
                         <button
                           type="button"

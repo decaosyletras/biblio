@@ -13,7 +13,10 @@ export default async function BookDirectoryPage() {
 
   return (
     <main className="px-4 py-12 sm:px-6">
-      <div className="mx-auto max-w-6xl">
+      {/* Se comenta el ancho máximo anterior para que el catálogo aproveche los
+          bordes igual que /authors y pueda escalar a más columnas. */}
+      {/* <div className="mx-auto max-w-6xl"> */}
+      <div>
         <header className="mb-6 sm:mb-10">
           {/* La cabecera doble anterior se conserva comentada porque repetía dos
               conceptos para la misma colección y se alejaba del formato general. */}
