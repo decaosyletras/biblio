@@ -227,7 +227,7 @@ export default function BookDirectory({
 
                 <div className="mt-auto pt-2 sm:pt-3">
                   {isHidden ? (
-                    <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-2 sm:gap-2">
+                    <div className="grid grid-cols-3 gap-[7px] sm:grid-cols-2 sm:gap-2">
                       <button
                         type="button"
                         title="Volver a mostrar"
@@ -260,7 +260,7 @@ export default function BookDirectory({
                       </button>
                     </div>
                   ) : !membership ? (
-                    <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-2 sm:gap-2">
+                    <div className="grid grid-cols-3 gap-[7px] sm:grid-cols-2 sm:gap-2">
                       <button
                         type="button"
                         title="Agregar a mi biblioteca"
@@ -296,7 +296,7 @@ export default function BookDirectory({
                       </button>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-1.5 sm:gap-2">
+                    <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-[7px] sm:gap-2">
                       <button
                         type="button"
                         title={membership.isRead ? "Marcar pendiente" : "Marcar leído"}
