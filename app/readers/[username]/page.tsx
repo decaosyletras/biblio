@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { BookOpen, ExternalLink, LibraryBig, UserRound } from "lucide-react"
-import { FaInstagram } from "react-icons/fa"
-import { SiTiktok } from "react-icons/si"
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa"
+import { SiThreads, SiTiktok, SiWattpad } from "react-icons/si"
 import { createClient } from "@/lib/supabase-server"
 import CoverImage from "@/components/CoverImage"
 import { getBookCover } from "@/lib/amazon"
@@ -19,6 +19,10 @@ type ReaderProfile = {
   avatar_url: string
   instagram_url: string
   tiktok_url: string
+  wattpad_url: string
+  threads_url: string
+  facebook_url: string
+  youtube_url: string
   website_url: string
 }
 
@@ -48,6 +52,10 @@ export default async function ReaderProfilePage({
       avatar_url,
       instagram_url,
       tiktok_url,
+      wattpad_url,
+      threads_url,
+      facebook_url,
+      youtube_url,
       website_url
     `)
     .eq("username", username)
@@ -77,6 +85,34 @@ export default async function ReaderProfilePage({
           label: "TikTok",
           href: profile.tiktok_url,
           icon: <SiTiktok aria-hidden="true" />,
+        }
+      : null,
+    profile.wattpad_url
+      ? {
+          label: "Wattpad",
+          href: profile.wattpad_url,
+          icon: <SiWattpad aria-hidden="true" />,
+        }
+      : null,
+    profile.threads_url
+      ? {
+          label: "Threads",
+          href: profile.threads_url,
+          icon: <SiThreads aria-hidden="true" />,
+        }
+      : null,
+    profile.facebook_url
+      ? {
+          label: "Facebook",
+          href: profile.facebook_url,
+          icon: <FaFacebook aria-hidden="true" />,
+        }
+      : null,
+    profile.youtube_url
+      ? {
+          label: "YouTube",
+          href: profile.youtube_url,
+          icon: <FaYoutube aria-hidden="true" />,
         }
       : null,
     profile.website_url

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import imageCompression from "browser-image-compression"
 import { Camera, Download, ExternalLink, UserRound } from "lucide-react"
 import { supabase } from "@/lib/supabase"
+import { fetchAvatarCopy } from "@/lib/avatarImport"
 
 type ReaderProfileForm = {
   username: string
@@ -14,6 +15,10 @@ type ReaderProfileForm = {
   avatarUrl: string
   instagramUrl: string
   tiktokUrl: string
+  wattpadUrl: string
+  threadsUrl: string
+  facebookUrl: string
+  youtubeUrl: string
   websiteUrl: string
   isPublic: boolean
 }
@@ -23,6 +28,10 @@ type AuthorProfileImport = {
   avatarUrl: string
   instagramUrl: string
   tiktokUrl: string
+  wattpadUrl: string
+  threadsUrl: string
+  facebookUrl: string
+  youtubeUrl: string
   websiteUrl: string
 }
 
@@ -33,6 +42,10 @@ const EMPTY_PROFILE: ReaderProfileForm = {
   avatarUrl: "",
   instagramUrl: "",
   tiktokUrl: "",
+  wattpadUrl: "",
+  threadsUrl: "",
+  facebookUrl: "",
+  youtubeUrl: "",
   websiteUrl: "",
   isPublic: false,
 }
@@ -45,6 +58,7 @@ export default function ReaderProfileEditorPage() {
   const [avatarPreview, setAvatarPreview] = useState("")
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [importingAuthorProfile, setImportingAuthorProfile] = useState(false)
   const [message, setMessage] = useState("")
   const [notice, setNotice] = useState("")
 
@@ -102,19 +116,47 @@ export default function ReaderProfileEditorPage() {
     setProfile((current) => ({ ...current, [field]: value }))
   }
 
-  function importAuthorProfile() {
+  async function importAuthorProfile() {
     if (!authorProfile) return
 
-    setAvatarFile(null)
+    setImportingAuthorProfile(true)
+    setMessage("")
+    setNotice("")
+
     setProfile((current) => ({
       ...current,
-      avatarUrl: authorProfile.avatarUrl || current.avatarUrl,
+      // Se comenta la asignación directa anterior porque compartía la misma
+      // ruta y borrar una foto podía afectar al otro perfil.
+      // avatarUrl: authorProfile.avatarUrl || current.avatarUrl,
       instagramUrl: authorProfile.instagramUrl || current.instagramUrl,
       tiktokUrl: authorProfile.tiktokUrl || current.tiktokUrl,
+      wattpadUrl: authorProfile.wattpadUrl || current.wattpadUrl,
+      threadsUrl: authorProfile.threadsUrl || current.threadsUrl,
+      facebookUrl: authorProfile.facebookUrl || current.facebookUrl,
+      youtubeUrl: authorProfile.youtubeUrl || current.youtubeUrl,
       websiteUrl: authorProfile.websiteUrl || current.websiteUrl,
     }))
-    setMessage("")
-    setNotice("Datos importados. Revísalos y guarda el perfil para confirmar los cambios.")
+
+    try {
+      if (authorProfile.avatarUrl) {
+        const copiedAvatar = await fetchAvatarCopy("author")
+        setAvatarFile(copiedAvatar)
+      }
+
+      setNotice(
+        authorProfile.avatarUrl
+          ? "Foto y enlaces importados. Revísalos y guarda el perfil para confirmar los cambios."
+          : "Enlaces importados. La página de autor no tiene una foto para copiar."
+      )
+    } catch (error) {
+      setMessage(
+        error instanceof Error
+          ? `${error.message}. Los enlaces sí se cargaron en el formulario.`
+          : "No se pudo importar la foto. Los enlaces sí se cargaron en el formulario."
+      )
+    } finally {
+      setImportingAuthorProfile(false)
+    }
   }
 
   async function uploadAvatar() {
@@ -307,10 +349,11 @@ export default function ReaderProfileEditorPage() {
                 <button
                   type="button"
                   onClick={importAuthorProfile}
+                  disabled={importingAuthorProfile}
                   className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 font-medium transition hover:bg-blue-500"
                 >
                   <Download size={18} />
-                  Importar datos
+                  {importingAuthorProfile ? "Importando..." : "Importar datos"}
                 </button>
               </div>
             </section>
@@ -385,6 +428,10 @@ export default function ReaderProfileEditorPage() {
             {([
               ["instagramUrl", "Instagram", "https://instagram.com/tu_usuario"],
               ["tiktokUrl", "TikTok", "https://tiktok.com/@tu_usuario"],
+              ["wattpadUrl", "Wattpad", "https://wattpad.com/user/tu_usuario"],
+              ["threadsUrl", "Threads", "https://threads.net/@tu_usuario"],
+              ["facebookUrl", "Facebook", "https://facebook.com/tu_usuario"],
+              ["youtubeUrl", "YouTube", "https://youtube.com/@tu_canal"],
               ["websiteUrl", "Sitio web", "https://tusitio.com"],
             ] as const).map(([field, label, placeholder]) => (
               <div key={field}>

@@ -21,6 +21,10 @@ type ReaderProfileInput = {
   avatarUrl: string
   instagramUrl: string
   tiktokUrl: string
+  wattpadUrl: string
+  threadsUrl: string
+  facebookUrl: string
+  youtubeUrl: string
   websiteUrl: string
   isPublic: boolean
 }
@@ -95,6 +99,10 @@ function parseProfileInput(
     : ""
   const instagramUrl = normalizeOptionalUrl(body.instagramUrl)
   const tiktokUrl = normalizeOptionalUrl(body.tiktokUrl)
+  const wattpadUrl = normalizeOptionalUrl(body.wattpadUrl)
+  const threadsUrl = normalizeOptionalUrl(body.threadsUrl)
+  const facebookUrl = normalizeOptionalUrl(body.facebookUrl)
+  const youtubeUrl = normalizeOptionalUrl(body.youtubeUrl)
   const websiteUrl = normalizeOptionalUrl(body.websiteUrl)
 
   if (
@@ -106,6 +114,10 @@ function parseProfileInput(
     !isAllowedAvatar(avatarUrl, userId, authorAvatar) ||
     instagramUrl === null ||
     tiktokUrl === null ||
+    wattpadUrl === null ||
+    threadsUrl === null ||
+    facebookUrl === null ||
+    youtubeUrl === null ||
     websiteUrl === null ||
     typeof body.isPublic !== "boolean"
   ) {
@@ -119,6 +131,10 @@ function parseProfileInput(
     avatarUrl,
     instagramUrl,
     tiktokUrl,
+    wattpadUrl,
+    threadsUrl,
+    facebookUrl,
+    youtubeUrl,
     websiteUrl,
     isPublic: body.isPublic,
   }
@@ -146,7 +162,7 @@ async function getOwnedAuthorProfile(userId: string) {
 
   const { data: author, error: authorError } = await supabaseAdmin
     .from("authors")
-    .select("name, avatar, instagram, tiktok, website")
+    .select("name, avatar, instagram, tiktok, wattpad, threads, facebook, youtube, website")
     .eq("id", claim.author_id)
     .maybeSingle()
 
@@ -157,6 +173,10 @@ async function getOwnedAuthorProfile(userId: string) {
     avatarUrl: author.avatar ?? "",
     instagramUrl: author.instagram ?? "",
     tiktokUrl: author.tiktok ?? "",
+    wattpadUrl: author.wattpad ?? "",
+    threadsUrl: author.threads ?? "",
+    facebookUrl: author.facebook ?? "",
+    youtubeUrl: author.youtube ?? "",
     websiteUrl: author.website ?? "",
   }
 }
@@ -186,6 +206,10 @@ export async function GET() {
           avatar_url,
           instagram_url,
           tiktok_url,
+          wattpad_url,
+          threads_url,
+          facebook_url,
+          youtube_url,
           website_url,
           is_public
         `)
@@ -214,9 +238,14 @@ export async function GET() {
       avatarUrl: readerProfile?.avatar_url ?? "",
       instagramUrl: readerProfile?.instagram_url ?? "",
       tiktokUrl: readerProfile?.tiktok_url ?? "",
+      wattpadUrl: readerProfile?.wattpad_url ?? "",
+      threadsUrl: readerProfile?.threads_url ?? "",
+      facebookUrl: readerProfile?.facebook_url ?? "",
+      youtubeUrl: readerProfile?.youtube_url ?? "",
       websiteUrl: readerProfile?.website_url ?? "",
       isPublic: readerProfile?.is_public ?? false,
     },
+    hasReaderProfile: Boolean(readerProfile),
     authorProfile,
   })
 }
@@ -363,6 +392,10 @@ export async function PUT(request: Request) {
       avatar_url: profile.avatarUrl,
       instagram_url: profile.instagramUrl,
       tiktok_url: profile.tiktokUrl,
+      wattpad_url: profile.wattpadUrl,
+      threads_url: profile.threadsUrl,
+      facebook_url: profile.facebookUrl,
+      youtube_url: profile.youtubeUrl,
       website_url: profile.websiteUrl,
       is_public: profile.isPublic,
       updated_at: new Date().toISOString(),
