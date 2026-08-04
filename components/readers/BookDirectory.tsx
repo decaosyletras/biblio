@@ -2,11 +2,13 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { BookOpenCheck, LibraryBig, Plus, Search, Trash2 } from "lucide-react"
+import { BookOpenCheck, Eye, EyeOff, LibraryBig, Plus, Search, Trash2 } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
 import type { DatabaseBook } from "@/types"
+
+type DirectoryFilter = "all" | "library" | "read" | "hidden"
 
 function AddToLibraryIcon() {
   return (
@@ -26,23 +28,40 @@ export default function BookDirectory({
   books: DatabaseBook[]
 }) {
   const [query, setQuery] = useState("")
+  const [filter, setFilter] = useState<DirectoryFilter>("all")
   const {
     user,
     userLoading,
     library,
+    hiddenBooks,
     libraryLoading,
     pendingBookId,
     message,
     saveBook,
     removeBook,
+    hideBook,
+    restoreBook,
   } = useReaderLibrary()
+
+  const libraryCount = books.filter((book) => Boolean(library[book.id])).length
+  const readCount = books.filter((book) => library[book.id]?.isRead).length
+  const hiddenCount = books.filter((book) => hiddenBooks[book.id]).length
 
   const visibleBooks = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("es")
 
-    if (!normalizedQuery) return books
-
     return books.filter((book) => {
+      const membership = library[book.id]
+      const isHidden = hiddenBooks[book.id] === true
+      const matchesFilter =
+        (filter === "all" && !isHidden) ||
+        (filter === "library" && Boolean(membership) && !isHidden) ||
+        (filter === "read" && membership?.isRead === true && !isHidden) ||
+        (filter === "hidden" && isHidden)
+
+      if (!matchesFilter) return false
+      if (!normalizedQuery) return true
+
       const searchable = [
         book.title,
         ...(book.authorNames ?? []),
@@ -52,7 +71,18 @@ export default function BookDirectory({
 
       return searchable.includes(normalizedQuery)
     })
-  }, [books, query])
+  }, [books, filter, hiddenBooks, library, query])
+
+  const filters: Array<{
+    value: DirectoryFilter
+    label: string
+    count: number
+  }> = [
+    { value: "all", label: "Todos", count: books.length - hiddenCount },
+    { value: "library", label: "Mi biblioteca", count: libraryCount },
+    { value: "read", label: "Leídos", count: readCount },
+    { value: "hidden", label: "Ocultos", count: hiddenCount },
+  ]
 
   return (
     <div>
@@ -86,25 +116,51 @@ export default function BookDirectory({
         </p>
       )}
 
+      {!userLoading && user && (
+        <div className="mt-5 flex gap-2 overflow-x-auto pb-1">
+          {filters.map(({ value, label, count }) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => setFilter(value)}
+              aria-pressed={filter === value}
+              className={`shrink-0 rounded-full px-3.5 py-2 text-xs transition ${
+                filter === value
+                  ? "bg-yellow-500 font-semibold text-black"
+                  : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+              }`}
+            >
+              {label} · {count}
+            </button>
+          ))}
+        </div>
+      )}
+
       <p className="mt-6 text-sm text-zinc-500">
         {visibleBooks.length} {visibleBooks.length === 1 ? "libro" : "libros"}
       </p>
 
-      <div className="mt-3 grid grid-cols-2 gap-2 rounded-xl border border-zinc-800 bg-zinc-900/70 p-2.5 text-[10px] leading-tight text-zinc-300 sm:hidden">
-        <p className="col-span-2 text-zinc-400">
-          Presiona un botón para agregar el libro:
+      <div className="mt-3 grid grid-cols-3 gap-2 rounded-xl border border-zinc-800 bg-zinc-900/70 p-2.5 text-[10px] leading-tight text-zinc-300 sm:hidden">
+        <p className="col-span-3 text-zinc-400">
+          Presiona un botón para elegir qué hacer con el libro:
         </p>
-        <span className="flex items-center gap-2">
+        <span className="flex min-w-0 flex-col items-center gap-1 text-center">
           <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-yellow-500 px-1 text-black">
             <AddToLibraryIcon />
           </span>
           Agregar a biblioteca
         </span>
-        <span className="flex items-center gap-2">
+        <span className="flex min-w-0 flex-col items-center gap-1 text-center">
           <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-green-600 text-white">
             <BookOpenCheck size={14} aria-hidden="true" />
           </span>
           Agregar como leído
+        </span>
+        <span className="flex min-w-0 flex-col items-center gap-1 text-center">
+          <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-zinc-700 text-zinc-200">
+            <EyeOff size={14} aria-hidden="true" />
+          </span>
+          Ocultar
         </span>
       </div>
 
@@ -114,6 +170,7 @@ export default function BookDirectory({
       <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {visibleBooks.map((book) => {
           const membership = library[book.id]
+          const isHidden = hiddenBooks[book.id] === true
           const isPending = pendingBookId === book.id
           const authorNames = book.authorNames ?? []
           const visibleAuthorNames = authorNames.slice(0, 2)
@@ -153,7 +210,11 @@ export default function BookDirectory({
                   )}
                 </p>
 
-                {membership && (
+                {isHidden ? (
+                  <span className="mt-2 w-fit rounded-full bg-zinc-700 px-1.5 py-0.5 text-[9px] font-medium text-zinc-300 sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px]">
+                    Oculto
+                  </span>
+                ) : membership && (
                   <span
                     className={`mt-2 w-fit rounded-full px-1.5 py-0.5 text-[9px] font-medium sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px] ${
                       membership.isRead
@@ -165,8 +226,41 @@ export default function BookDirectory({
                   </span>
                 )}
 
-                <div className="mt-auto grid grid-cols-2 gap-1.5 pt-2 sm:gap-2 sm:pt-3">
-                  {!membership ? (
+                <div className="mt-auto grid grid-cols-3 gap-1.5 pt-2 sm:gap-2 sm:pt-3">
+                  {isHidden ? (
+                    <>
+                      <button
+                        type="button"
+                        title="Volver a mostrar"
+                        aria-label={`Volver a mostrar ${book.title}`}
+                        disabled={isPending || libraryLoading}
+                        onClick={() => restoreBook(book.id)}
+                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-zinc-700 px-1 py-2 text-zinc-100 transition hover:bg-zinc-600 disabled:opacity-50"
+                      >
+                        <Eye size={14} />
+                      </button>
+                      <button
+                        type="button"
+                        title="Agregar a mi biblioteca"
+                        aria-label={`Agregar ${book.title} a mi biblioteca`}
+                        disabled={isPending || libraryLoading}
+                        onClick={() => saveBook(book.id, false)}
+                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-yellow-500 px-1 py-2 text-black transition hover:bg-yellow-400 disabled:opacity-50"
+                      >
+                        <AddToLibraryIcon />
+                      </button>
+                      <button
+                        type="button"
+                        title="Agregar como leído"
+                        aria-label={`Agregar ${book.title} como leído`}
+                        disabled={isPending || libraryLoading}
+                        onClick={() => saveBook(book.id, true)}
+                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-green-600 px-1 py-2 text-white transition hover:bg-green-500 disabled:opacity-50"
+                      >
+                        <BookOpenCheck size={14} />
+                      </button>
+                    </>
+                  ) : !membership ? (
                     <>
                       <button
                         type="button"
@@ -191,10 +285,20 @@ export default function BookDirectory({
                             acciones quepan en la cuadrícula densa. */}
                         {/* Ya lo leí */}
                       </button>
+                      <button
+                        type="button"
+                        title="No me interesa"
+                        aria-label={`Ocultar ${book.title}`}
+                        disabled={isPending || libraryLoading}
+                        onClick={() => hideBook(book.id)}
+                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-zinc-700 px-1 py-2 text-zinc-200 transition hover:bg-zinc-600 disabled:opacity-50"
+                      >
+                        <EyeOff size={14} />
+                      </button>
                     </>
                   ) : (
                     <>
-                      <div className="col-span-2 grid grid-cols-[minmax(0,1fr)_auto] gap-1.5 sm:gap-2">
+                      <div className="col-span-3 grid grid-cols-[minmax(0,1fr)_auto] gap-1.5 sm:gap-2">
                         <button
                           type="button"
                           title={membership.isRead ? "Marcar pendiente" : "Marcar leído"}
@@ -228,7 +332,9 @@ export default function BookDirectory({
 
       {visibleBooks.length === 0 && (
         <div className="mt-10 rounded-2xl border border-zinc-800 bg-zinc-900 p-8 text-center text-zinc-400">
-          No encontramos libros con esa búsqueda.
+          {filter === "hidden" && !query
+            ? "No has ocultado ningún libro."
+            : "No encontramos libros con esa búsqueda o filtro."}
         </div>
       )}
     </div>
