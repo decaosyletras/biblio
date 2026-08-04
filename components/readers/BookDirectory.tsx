@@ -2,11 +2,24 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { BookOpenCheck, LibraryBig, Search, Trash2 } from "lucide-react"
+import { BookOpenCheck, LibraryBig, Plus, Search, Trash2 } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
 import type { DatabaseBook } from "@/types"
+
+function AddToLibraryIcon() {
+  return (
+    <span className="relative inline-flex shrink-0" aria-hidden="true">
+      <LibraryBig size={14} />
+      <Plus
+        size={9}
+        strokeWidth={3}
+        className="absolute -right-1 -top-1 rounded-full bg-zinc-950 text-yellow-400"
+      />
+    </span>
+  )
+}
 
 export default function BookDirectory({
   books,
@@ -78,9 +91,20 @@ export default function BookDirectory({
         {visibleBooks.length} {visibleBooks.length === 1 ? "libro" : "libros"}
       </p>
 
-      {/* La biblioteca general prioriza densidad: tres portadas por fila en
-          celular y cuatro desde md, como el catálogo de autores. */}
-      <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3 md:grid-cols-4 md:gap-4">
+      <div className="mt-3 grid grid-cols-2 gap-2 rounded-xl border border-zinc-800 bg-zinc-900/70 p-2.5 text-[10px] leading-tight text-zinc-300 sm:hidden">
+        <span className="flex items-center gap-2">
+          <AddToLibraryIcon />
+          Agregar a biblioteca
+        </span>
+        <span className="flex items-center gap-2">
+          <BookOpenCheck size={14} className="shrink-0 text-green-400" aria-hidden="true" />
+          Marcar como leído
+        </span>
+      </div>
+
+      {/* En celular se prioriza densidad con tres portadas verticales. Desde sm
+          regresan las tarjetas horizontales para conservar legibilidad. */}
+      <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {visibleBooks.map((book) => {
           const membership = library[book.id]
           const isPending = pendingBookId === book.id
@@ -88,11 +112,11 @@ export default function BookDirectory({
           return (
             <article
               key={book.id}
-              className="flex min-w-0 flex-col gap-2 rounded-xl border border-zinc-800 bg-zinc-900/80 p-2 sm:gap-3 sm:p-3"
+              className="flex min-w-0 flex-col gap-2 rounded-xl border border-zinc-800 bg-zinc-900/80 p-2 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4"
             >
               <Link
                 href={`/libros/${book.slug}`}
-                className="aspect-[2/3] w-full shrink-0 overflow-hidden rounded-lg bg-zinc-800"
+                className="aspect-[2/3] w-full shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:h-36 sm:w-24 sm:aspect-auto"
               >
                 <CoverImage
                   src={getBookCover(book.amazon, book.cover)}
@@ -133,7 +157,7 @@ export default function BookDirectory({
                         aria-label={`Agregar ${book.title} a mi biblioteca`}
                         className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-yellow-500 px-1 py-2 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50 sm:px-2"
                       >
-                        <LibraryBig size={14} />
+                        <AddToLibraryIcon />
                         <span className="hidden sm:inline">Agregar</span>
                       </button>
                       <button
