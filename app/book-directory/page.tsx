@@ -27,7 +27,7 @@ export default async function BookDirectoryPage() {
             Biblioteca indie
           </h1>
           <p className="max-w-2xl leading-relaxed text-zinc-400">
-            Explora la biblioteca general de Casa Indie y agrega a tu biblioteca personal los libros que te interesan o que ya leíste.
+            Explora la biblioteca general de Cas(z)a Indie y agrega a tu biblioteca personal los libros que te interesan o que ya leíste.
           </p>
         </header>
 

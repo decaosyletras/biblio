@@ -78,9 +78,9 @@ export default function BookDirectory({
         {visibleBooks.length} {visibleBooks.length === 1 ? "libro" : "libros"}
       </p>
 
-      {/* En móvil se usan dos tarjetas verticales por fila para evitar una lista
-          excesivamente larga; desde sm recuperan el formato horizontal. */}
-      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+      {/* La biblioteca general prioriza densidad: tres portadas por fila en
+          celular y cuatro desde md, como el catálogo de autores. */}
+      <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3 md:grid-cols-4 md:gap-4">
         {visibleBooks.map((book) => {
           const membership = library[book.id]
           const isPending = pendingBookId === book.id
@@ -88,11 +88,11 @@ export default function BookDirectory({
           return (
             <article
               key={book.id}
-              className="flex min-w-0 flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-900/80 p-3 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4"
+              className="flex min-w-0 flex-col gap-2 rounded-xl border border-zinc-800 bg-zinc-900/80 p-2 sm:gap-3 sm:p-3"
             >
               <Link
                 href={`/libros/${book.slug}`}
-                className="aspect-[2/3] w-full shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:h-36 sm:w-24 sm:aspect-auto"
+                className="aspect-[2/3] w-full shrink-0 overflow-hidden rounded-lg bg-zinc-800"
               >
                 <CoverImage
                   src={getBookCover(book.amazon, book.cover)}
@@ -103,17 +103,17 @@ export default function BookDirectory({
 
               <div className="flex min-w-0 flex-1 flex-col">
                 <Link href={`/libros/${book.slug}`}>
-                  <h2 className="line-clamp-2 text-sm font-semibold leading-snug text-zinc-100 hover:text-yellow-300">
+                  <h2 className="line-clamp-2 text-[11px] font-semibold leading-tight text-zinc-100 hover:text-yellow-300 sm:text-sm sm:leading-snug">
                     {book.title}
                   </h2>
                 </Link>
-                <p className="mt-1 line-clamp-2 text-xs text-zinc-500">
+                <p className="mt-1 hidden line-clamp-2 text-xs text-zinc-500 sm:block">
                   {(book.authorNames ?? []).join(", ") || "Autor independiente"}
                 </p>
 
                 {membership && (
                   <span
-                    className={`mt-3 w-fit rounded-full px-2.5 py-1 text-[11px] font-medium ${
+                    className={`mt-2 w-fit rounded-full px-1.5 py-0.5 text-[9px] font-medium sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px] ${
                       membership.isRead
                         ? "bg-green-500/15 text-green-300"
                         : "bg-zinc-700 text-zinc-300"
@@ -123,38 +123,49 @@ export default function BookDirectory({
                   </span>
                 )}
 
-                <div className="mt-auto grid gap-2 pt-3 sm:flex sm:flex-wrap">
+                <div className="mt-auto grid grid-cols-2 gap-1.5 pt-2 sm:gap-2 sm:pt-3">
                   {!membership ? (
                     <>
                       <button
                         type="button"
                         disabled={isPending || libraryLoading}
                         onClick={() => saveBook(book.id, false)}
-                        className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-yellow-500 px-2 py-2 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50 sm:w-auto sm:px-3"
+                        aria-label={`Agregar ${book.title} a mi biblioteca`}
+                        className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-yellow-500 px-1 py-2 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50 sm:px-2"
                       >
                         <LibraryBig size={14} />
-                        Agregar
+                        <span className="hidden sm:inline">Agregar</span>
                       </button>
                       <button
                         type="button"
                         disabled={isPending || libraryLoading}
                         onClick={() => saveBook(book.id, true)}
-                        className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-green-600 px-2 py-2 text-xs font-semibold text-white transition hover:bg-green-500 disabled:opacity-50 sm:w-auto sm:px-3"
+                        aria-label={`Marcar ${book.title} como leído`}
+                        className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-green-600 px-1 py-2 text-xs font-semibold text-white transition hover:bg-green-500 disabled:opacity-50 sm:px-2"
                       >
                         <BookOpenCheck size={14} />
-                        Ya lo leí
+                        {/* El texto largo anterior se compacta para que las
+                            acciones quepan en cuatro columnas de escritorio. */}
+                        {/* Ya lo leí */}
+                        <span className="hidden sm:inline">Leído</span>
                       </button>
                     </>
                   ) : (
                     <>
-                      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2 sm:flex">
+                      <div className="col-span-2 grid grid-cols-[minmax(0,1fr)_auto] gap-1.5 sm:gap-2">
                         <button
                           type="button"
+                          aria-label={membership.isRead
+                            ? `Marcar ${book.title} como pendiente`
+                            : `Marcar ${book.title} como leído`}
                           disabled={isPending || libraryLoading}
                           onClick={() => saveBook(book.id, !membership.isRead)}
-                          className="rounded-lg bg-zinc-700 px-2 py-2 text-xs font-medium transition hover:bg-zinc-600 disabled:opacity-50 sm:px-3"
+                          className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-zinc-700 px-1 py-2 text-xs font-medium transition hover:bg-zinc-600 disabled:opacity-50 sm:px-2"
                         >
-                          {membership.isRead ? "Marcar pendiente" : "Marcar leído"}
+                          <BookOpenCheck size={14} />
+                          <span className="hidden truncate sm:inline">
+                            {membership.isRead ? "Pendiente" : "Leído"}
+                          </span>
                         </button>
                         <button
                           type="button"
