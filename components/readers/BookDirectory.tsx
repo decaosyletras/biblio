@@ -184,7 +184,7 @@ export default function BookDirectory({
             >
               <Link
                 href={`/libros/${book.slug}`}
-                className="mx-auto h-36 w-24 shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:mx-0 lg:h-40 lg:w-[6.75rem]"
+                className="mx-auto h-[8.5rem] w-[5.6875rem] shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:mx-0 sm:h-36 sm:w-24 lg:h-40 lg:w-[6.75rem]"
               >
                 <CoverImage
                   src={getBookCover(book.amazon, book.cover)}
@@ -195,7 +195,7 @@ export default function BookDirectory({
 
               <div className="flex min-w-0 flex-1 flex-col">
                 <Link href={`/libros/${book.slug}`}>
-                  <h2 className="line-clamp-2 text-[11px] font-semibold leading-tight text-zinc-100 hover:text-yellow-300 sm:text-sm sm:leading-snug lg:text-[13px] lg:leading-tight">
+                  <h2 className="line-clamp-2 text-[11px] font-semibold leading-tight text-zinc-100 hover:text-yellow-300 sm:text-sm sm:leading-snug lg:text-xs lg:leading-tight">
                     {book.title}
                   </h2>
                 </Link>
