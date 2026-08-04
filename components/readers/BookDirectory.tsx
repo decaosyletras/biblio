@@ -179,7 +179,7 @@ export default function BookDirectory({
           return (
             <article
               key={book.id}
-              className="flex min-w-0 flex-col gap-2 rounded-xl border border-zinc-800 bg-zinc-900/80 p-2 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4"
+              className="flex min-w-0 flex-col gap-2 border border-transparent bg-transparent p-0 sm:flex-row sm:gap-4 sm:rounded-2xl sm:border-zinc-800 sm:bg-zinc-900/80 sm:p-4"
             >
               <Link
                 href={`/libros/${book.slug}`}
@@ -226,7 +226,7 @@ export default function BookDirectory({
                   </span>
                 )}
 
-                <div className="mt-auto grid grid-cols-3 gap-1.5 pt-2 sm:gap-2 sm:pt-3">
+                <div className="mt-auto grid grid-cols-3 gap-2 pt-2 sm:pt-3">
                   {isHidden ? (
                     <>
                       <button
