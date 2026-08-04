@@ -133,13 +133,13 @@ export default function ReaderLibraryManager({
           <LibraryBig className="mx-auto h-10 w-10 text-yellow-400" />
           <h2 className="mt-4 text-xl font-semibold">Tu biblioteca está vacía</h2>
           <p className="mx-auto mt-2 max-w-md text-sm text-zinc-400">
-            Explora el directorio y agrega los libros que te interesan o que ya leíste.
+            Explora la biblioteca indie y agrega los libros que te interesan o que ya leíste.
           </p>
           <Link
             href="/book-directory"
             className="mt-5 inline-flex rounded-xl bg-yellow-500 px-5 py-3 font-semibold text-black hover:bg-yellow-400"
           >
-            Explorar directorio
+            Explorar biblioteca indie
           </Link>
         </div>
       ) : visibleBooks.length === 0 ? (

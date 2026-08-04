@@ -1,12 +1,14 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ExternalLink, LibraryBig, UserRound } from "lucide-react"
+import { BookOpen, ExternalLink, LibraryBig, UserRound } from "lucide-react"
 import { FaInstagram } from "react-icons/fa"
 import { SiTiktok } from "react-icons/si"
 import { createClient } from "@/lib/supabase-server"
 import CoverImage from "@/components/CoverImage"
 import { getBookCover } from "@/lib/amazon"
 import { getPublicReaderLibrary } from "@/lib/readerLibrary"
+import { getLinkedAuthorForPublicReader } from "@/lib/publicProfileLinks"
+import PublicReaderLibrary from "@/components/readers/PublicReaderLibrary"
 
 export const dynamic = "force-dynamic"
 
@@ -19,6 +21,10 @@ type ReaderProfile = {
   tiktok_url: string
   website_url: string
 }
+
+// Se conserva la cuadrícula pública anterior como referencia mientras la nueva
+// versión añade búsqueda y filtros sin cambiar los datos que recibe la página.
+const useLegacyPublicLibrary = false
 
 export default async function ReaderProfilePage({
   params,
@@ -53,7 +59,10 @@ export default async function ReaderProfilePage({
   }
 
   const profile = data as ReaderProfile
-  const library = await getPublicReaderLibrary(username)
+  const [library, linkedAuthor] = await Promise.all([
+    getPublicReaderLibrary(username),
+    getLinkedAuthorForPublicReader(username),
+  ])
   const readCount = library.filter((item) => item.isRead).length
   const links = [
     profile.instagram_url
@@ -119,7 +128,7 @@ export default async function ReaderProfilePage({
               </p>
             )}
 
-            {links.length > 0 && (
+            {(links.length > 0 || linkedAuthor) && (
               <div className="mt-7 flex flex-wrap gap-3">
                 {links.map((link) => (
                   <a
@@ -133,6 +142,15 @@ export default async function ReaderProfilePage({
                     {link.label}
                   </a>
                 ))}
+                {linkedAuthor && (
+                  <Link
+                    href={`/authors/${linkedAuthor.slug}`}
+                    className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm transition hover:border-yellow-500/60 hover:text-yellow-300"
+                  >
+                    <BookOpen size={16} aria-hidden="true" />
+                    Ver página de autor
+                  </Link>
+                )}
               </div>
             )}
           </div>
@@ -144,14 +162,14 @@ export default async function ReaderProfilePage({
               <LibraryBig aria-hidden="true" />
             </div>
             <div>
-              <h2 className="text-2xl font-semibold">Biblioteca indie</h2>
+              <h2 className="text-2xl font-semibold">Biblioteca personal</h2>
               <p className="text-sm text-zinc-500">
                 {library.length} {library.length === 1 ? "libro" : "libros"} · {readCount} {readCount === 1 ? "leído" : "leídos"}
               </p>
             </div>
           </div>
 
-          {library.length === 0 ? (
+          {useLegacyPublicLibrary ? (library.length === 0 ? (
             <p className="mt-6 max-w-2xl text-zinc-400">
               Esta biblioteca todavía no tiene libros.
             </p>
@@ -185,6 +203,8 @@ export default async function ReaderProfilePage({
                 </Link>
               ))}
             </div>
+          )) : (
+            <PublicReaderLibrary library={library} />
           )}
 
           {/* El texto provisional anterior se sustituyó por la biblioteca real.
@@ -193,7 +213,7 @@ export default async function ReaderProfilePage({
 
         <div className="mt-8 text-center">
           <Link href="/book-directory" className="text-sm text-yellow-400 hover:text-yellow-300">
-            Explorar directorio de libros
+            Explorar biblioteca indie
           </Link>
         </div>
       </div>

@@ -14,6 +14,7 @@ import { UserRound } from "lucide-react";
 import { Crown } from "lucide-react";
 import ManageProButton from "@/components/ManageProButton"
 import AuthorInterview from "@/components/authors/AuthorInterview"
+import { getLinkedPublicReaderForAuthor } from "@/lib/publicProfileLinks"
 
 import {
     inter,
@@ -40,6 +41,9 @@ import {
     SiTiktok,
     SiThreads
 } from "react-icons/si"
+// LibraryBig se usaba en el botón separado de perfil lector. Ese botón se
+// comenta más abajo para mantener limpia la cabecera del autor.
+// import { LibraryBig } from "lucide-react"
 export const dynamic = "force-dynamic"
 
 const socialConfig = {
@@ -134,6 +138,8 @@ export default async function AuthorPage({
             </div>
         )
     }
+
+    const linkedReader = await getLinkedPublicReaderForAuthor(author.id)
 
     let username: string | null = null
 
@@ -430,12 +436,22 @@ export default async function AuthorPage({
                                 <div className="mt-2">
                                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                                         {username && (
-                                            <span
-                                                className="text-lg font-bold tracking-tight"
-                                                style={{ color: heroSecondaryText }}
-                                            >
-                                                @{username}
-                                            </span>
+                                            linkedReader ? (
+                                                <Link
+                                                    href={`/readers/${linkedReader.username}`}
+                                                    className="text-lg font-bold tracking-tight transition-opacity hover:opacity-75"
+                                                    style={{ color: heroSecondaryText }}
+                                                >
+                                                    @{username}
+                                                </Link>
+                                            ) : (
+                                                <span
+                                                    className="text-lg font-bold tracking-tight"
+                                                    style={{ color: heroSecondaryText }}
+                                                >
+                                                    @{username}
+                                                </span>
+                                            )
                                         )}
                                     </div>
 
@@ -555,6 +571,26 @@ export default async function AuthorPage({
 
                                     </div>
                                 )}
+
+                                {/* El botón separado se comenta para conservar una cabecera limpia.
+                                    Cuando existe un perfil lector público, el @username superior
+                                    funciona como enlace y mantiene el control en show_username. */}
+                                {/* {linkedReader && (
+                                    <div className="flex justify-center lg:justify-start mt-3">
+                                        <Link
+                                            href={`/readers/${linkedReader.username}`}
+                                            className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 hover:opacity-80"
+                                            style={{
+                                                backgroundColor: authorTheme.surface,
+                                                border: `1px solid ${authorTheme.border}`,
+                                                color: authorTheme.text
+                                            }}
+                                        >
+                                            <LibraryBig size={16} aria-hidden="true" />
+                                            Ver perfil de lector
+                                        </Link>
+                                    </div>
+                                )} */}
 
                             </div>
 

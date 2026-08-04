@@ -14,15 +14,20 @@ export default async function BookDirectoryPage() {
   return (
     <main className="px-4 py-12 sm:px-6">
       <div className="mx-auto max-w-6xl">
-        <header className="mb-9">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-yellow-400">
+        <header className="mb-6 sm:mb-10">
+          {/* La cabecera doble anterior se conserva comentada porque repetía dos
+              conceptos para la misma colección y se alejaba del formato general. */}
+          {/* <p className="text-sm font-medium uppercase tracking-[0.2em] text-yellow-400">
             Biblioteca indie
           </p>
           <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
             Directorio de libros
+          </h1> */}
+          <h1 className="mb-6 text-2xl font-semibold text-zinc-100 sm:mb-10 sm:text-3xl">
+            Biblioteca indie
           </h1>
-          <p className="mt-4 max-w-2xl leading-relaxed text-zinc-400">
-            Explora todos los libros en orden alfabético y construye una biblioteca personal con tus intereses y lecturas.
+          <p className="max-w-2xl leading-relaxed text-zinc-400">
+            Explora la biblioteca general de Casa Indie y agrega a tu biblioteca personal los libros que te interesan o que ya leíste.
           </p>
         </header>
 
