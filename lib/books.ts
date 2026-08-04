@@ -1,11 +1,13 @@
-import { Book } from "@/types"
-import { books as staticBooks } from "@/data/books"
+import { DatabaseBook } from "@/types"
+// Se conserva data/books.ts como respaldo histórico, pero ya no se importa
+// porque el catálogo actual debe tener una sola fuente: Supabase.
+// import { books as staticBooks } from "@/data/books"
 import { supabase } from "@/lib/supabase"
 import { unstable_noStore as noStore } from "next/cache"
 
 export const revalidate = 0
 
-export async function getBooks(): Promise<Book[]> {
+export async function getBooks(): Promise<DatabaseBook[]> {
   noStore()
 
   // 1. Libros
@@ -15,7 +17,10 @@ export async function getBooks(): Promise<Book[]> {
     .eq("approved", true).order("created_at", { ascending: true })
 
   if (booksError) {
-    return staticBooks
+    // Antes se devolvían staticBooks. Se conserva la referencia comentada
+    // para documentar el respaldo anterior sin mezclar fuentes nuevamente.
+    // return staticBooks
+    return []
   }
 
   // 2. Autores
@@ -24,7 +29,10 @@ export async function getBooks(): Promise<Book[]> {
     .select("id, slug, name")
 
   if (authorsError) {
-    return staticBooks
+    // Antes se devolvían staticBooks. Un error de Supabase ahora produce un
+    // catálogo vacío y evita mostrar información histórica o duplicada.
+    // return staticBooks
+    return []
   }
 
   // 3. Relación book_authors
@@ -41,9 +49,11 @@ export async function getBooks(): Promise<Book[]> {
   )
 
   // Map libro (DB id) por slug → NECESARIO para mezclar con staticBooks
-  const booksMapBySlug = new Map(
-    (booksData || []).map(b => [b.slug, b.id])
-  )
+  // Este mapa era necesario para reconciliar libros estáticos con Supabase.
+  // Se conserva comentado como referencia, pero ahora usamos book.id directo.
+  // const booksMapBySlug = new Map(
+  //   (booksData || []).map(b => [b.slug, b.id])
+  // )
 
   // Agrupar autores por book_id
   const authorsByBook = new Map<
@@ -72,14 +82,16 @@ export async function getBooks(): Promise<Book[]> {
   }
 
   // 4. Construcción final
-  const dynamicBooks: Book[] = (booksData || []).map((book: any) => {
+  const dynamicBooks: DatabaseBook[] = (booksData || []).map((book) => {
 
     const singleAuthor = book.author_id
       ? authorsMap.get(book.author_id)
       : null
 
     // 🔥 FIX CLAVE: resolver book_id real desde slug
-    const realBookId = booksMapBySlug.get(book.slug)
+    // Antes el UUID se resolvía por slug para mezclar fuentes. Supabase ya es
+    // la única fuente, así que el identificador real viene en la propia fila.
+    const realBookId = book.id
 
     const multiAuthors = realBookId
       ? authorsByBook.get(realBookId)
@@ -88,6 +100,7 @@ export async function getBooks(): Promise<Book[]> {
     const hasMulti = multiAuthors && multiAuthors.length > 0
 
     return {
+      id: book.id,
       slug: book.slug,
       title: book.title?.toUpperCase() || "",
       cover: book.cover || "",
@@ -151,5 +164,8 @@ export async function getBooks(): Promise<Book[]> {
     }
   })
 
-  return [...dynamicBooks, ...staticBooks]
+  // Antes se concatenaban staticBooks y dynamicBooks. Se conserva comentado
+  // para registrar el comportamiento anterior sin reintroducir duplicados.
+  // return [...dynamicBooks, ...staticBooks]
+  return dynamicBooks
 }
