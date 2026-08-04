@@ -68,6 +68,7 @@ export default function Navbar() {
         <div className="hidden md:flex gap-4 text-sm">
           <Link href="/">Inicio</Link>
           <Link href="/book-directory">Directorio</Link>
+          <Link href="/readers">Lectores</Link>
           <Link href="/contact">Recomendar Libro</Link>
           <Link href="/conoceme">Conóceme</Link>
           {sessionResolved && (
@@ -85,6 +86,7 @@ export default function Navbar() {
         <div className="md:hidden mt-4 bg-zinc-800 rounded-xl p-4 flex flex-col gap-3 text-sm shadow-lg">
           <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
           <Link href="/book-directory" onClick={() => setOpen(false)}>Directorio</Link>
+          <Link href="/readers" onClick={() => setOpen(false)}>Lectores</Link>
           <Link href="/contact" onClick={() => setOpen(false)}>Recomendar Libro</Link>
           <Link href="/conoceme" onClick={() => setOpen(false)}>Conóceme</Link>
           {sessionResolved && (

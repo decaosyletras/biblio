@@ -54,7 +54,7 @@ export default function BookDirectory({
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Buscar por título o autor"
-          className="w-full rounded-2xl border border-zinc-700 bg-zinc-900 py-4 pl-12 pr-4 text-white outline-none transition focus:border-yellow-500"
+          className="w-full rounded-2xl border border-zinc-700 bg-zinc-900 py-4 pl-12 pr-4 text-white outline-none transition focus:border-zinc-500"
         />
       </div>
 

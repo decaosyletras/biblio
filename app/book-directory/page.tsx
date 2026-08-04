@@ -12,7 +12,7 @@ export default async function BookDirectoryPage() {
   )
 
   return (
-    <main className="min-h-screen bg-zinc-950 px-4 py-12 text-white sm:px-6">
+    <main className="px-4 py-12 sm:px-6">
       <div className="mx-auto max-w-6xl">
         <header className="mb-9">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-yellow-400">
