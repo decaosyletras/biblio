@@ -29,17 +29,21 @@ export default function BookLibraryActions({ bookId }: { bookId: string }) {
 
   return (
     <div className="mt-5">
-      <div className="grid grid-cols-2 gap-2 sm:gap-3">
+      <p className="mb-2.5 text-xs leading-relaxed text-zinc-400">
+        Guarda este libro en tu biblioteca personal o marca que ya lo leíste.
+      </p>
+
+      <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
         <button
           type="button"
           aria-label={isInLibrary ? "Este libro está en mi biblioteca" : "Agregar a mi biblioteca"}
           disabled={isLoading || isPending || isInLibrary}
           onClick={() => saveBook(bookId, false)}
-          className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-yellow-500 px-2 py-2.5 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-default disabled:opacity-70 sm:gap-2 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
+          className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-yellow-500 px-2 py-2.5 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-default disabled:opacity-70 sm:px-3 sm:py-2"
         >
           <AddToLibraryIcon />
           <span className="sm:hidden">
-            {isLoading ? "Cargando..." : isInLibrary ? "En biblioteca" : isPending ? "Agregando..." : "Agregar"}
+            {isLoading ? "Cargando..." : isInLibrary ? "En biblioteca" : isPending ? "Guardando..." : "Guardar"}
           </span>
           <span className="hidden sm:inline">
             {isLoading
@@ -57,7 +61,7 @@ export default function BookLibraryActions({ bookId }: { bookId: string }) {
           aria-label={isRead ? "Este libro está marcado como leído" : "Marcar como leído"}
           disabled={isLoading || isPending || isRead}
           onClick={() => saveBook(bookId, true)}
-          className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-green-600 px-2 py-2.5 text-xs font-semibold text-white transition hover:bg-green-500 disabled:cursor-default disabled:opacity-70 sm:gap-2 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
+          className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-green-600 px-2 py-2.5 text-xs font-semibold text-white transition hover:bg-green-500 disabled:cursor-default disabled:opacity-70 sm:px-3 sm:py-2"
         >
           <BookOpenCheck size={14} aria-hidden="true" />
           <span className="sm:hidden">
