@@ -14,6 +14,7 @@ import AmazonButton from "@/components/AmazonButton"
 import { getBookCover } from "@/lib/amazon"
 
 import ClaimAuthorButton from "@/components/ClaimAuthorButton"
+import BookLibraryActions from "@/components/readers/BookLibraryActions"
 
 import { supabase } from "@/lib/supabase"
 
@@ -140,6 +141,8 @@ export default async function Page({ params }: any) {
               />
             ))}
           </div>
+
+          <BookLibraryActions bookId={book.id} />
 
           {/* SUMMARY */}
           {book.summary !== "" && (
