@@ -43,7 +43,7 @@ export default function BookLibraryActions({ bookId }: { bookId: string }) {
         >
           <AddToLibraryIcon />
           <span className="sm:hidden">
-            {isLoading ? "Cargando..." : isInLibrary ? "En biblioteca" : isPending ? "Guardando..." : "Guardar"}
+            {isLoading ? "Cargando..." : isInLibrary ? "En biblioteca" : isPending ? "Agregando..." : "Agregar"}
           </span>
           <span className="hidden sm:inline">
             {isLoading

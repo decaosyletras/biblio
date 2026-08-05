@@ -125,8 +125,8 @@ export default function BookDirectory({
               onClick={() => setFilter(value)}
               aria-pressed={filter === value}
               className={`shrink-0 rounded-full px-3.5 py-2 text-xs transition ${filter === value
-                  ? "bg-yellow-500 font-semibold text-black"
-                  : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+                ? "bg-yellow-500 font-semibold text-black"
+                : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
                 }`}
             >
               {label} · {count}
@@ -147,13 +147,13 @@ export default function BookDirectory({
           <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-yellow-500 px-1 text-black">
             <AddToLibraryIcon />
           </span>
-          Agregar a biblioteca
+          Agregar a mi biblioteca
         </span>
         <span className="flex min-w-0 flex-col items-center gap-1 text-center">
           <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-green-600 text-white">
             <BookOpenCheck size={14} aria-hidden="true" />
           </span>
-          Agregar como leído
+          Marcar como leído
         </span>
         <span className="flex min-w-0 flex-col items-center gap-1 text-center">
           <span className="inline-flex h-7 min-w-10 items-center justify-center rounded-lg bg-zinc-700 text-zinc-200">
@@ -217,8 +217,8 @@ export default function BookDirectory({
                 ) : membership && (
                   <span
                     className={`mt-2 w-fit rounded-full px-1.5 py-0.5 text-[9px] font-medium sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px] ${membership.isRead
-                        ? "bg-green-500/15 text-green-300"
-                        : "bg-zinc-700 text-zinc-300"
+                      ? "bg-green-500/15 text-green-300"
+                      : "bg-zinc-700 text-zinc-300"
                       }`}
                   >
                     {membership.isRead ? "Leído" : "Pendiente"}
