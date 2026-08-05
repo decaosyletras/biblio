@@ -2,10 +2,11 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { BookOpenCheck, LibraryBig, Search, Trash2 } from "lucide-react"
+import { BookOpenCheck, LibraryBig, Plus, Search, Sparkles, Trash2 } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
+import { getReaderRecommendations } from "@/lib/readerRecommendations"
 import type { DatabaseBook } from "@/types"
 
 type LibraryFilter = "all" | "read" | "pending"
@@ -17,6 +18,7 @@ export default function ReaderLibraryManager({
 }) {
   const {
     library,
+    hiddenBooks,
     libraryLoading,
     pendingBookId,
     message,
@@ -34,6 +36,10 @@ export default function ReaderLibraryManager({
     (book) => library[book.id]?.isRead
   ).length
   const pendingCount = libraryBooks.length - readCount
+  const recommendations = useMemo(
+    () => getReaderRecommendations({ books, library, hiddenBooks }),
+    [books, hiddenBooks, library]
+  )
 
   const visibleBooks = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("es")
@@ -217,6 +223,81 @@ export default function ReaderLibraryManager({
           })}
           </div>
         </>
+      )}
+
+      {recommendations.length > 0 && (
+        <section className="mt-12 border-t border-zinc-800 pt-9">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <div className="flex items-center gap-2 text-yellow-400">
+                <Sparkles size={19} aria-hidden="true" />
+                <p className="text-sm font-semibold uppercase tracking-[0.16em]">
+                  Basado en tu biblioteca
+                </p>
+              </div>
+              <h2 className="mt-2 text-2xl font-semibold text-zinc-100">
+                Quizá también te interesen
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">
+                Sugerencias según los géneros y el estilo de los libros que guardaste. Cuantas más elecciones hagas, más afinada será esta selección.
+              </p>
+            </div>
+            <Link
+              href="/book-directory"
+              className="text-sm font-medium text-yellow-400 hover:text-yellow-300"
+            >
+              Ver todo el catálogo →
+            </Link>
+          </div>
+
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+            {recommendations.map(({ book, reason }) => {
+              const isPending = pendingBookId === book.id
+
+              return (
+                <article
+                  key={book.id}
+                  className="flex min-w-0 flex-col rounded-2xl border border-zinc-800 bg-gradient-to-b from-zinc-900 to-zinc-950 p-3"
+                >
+                  <Link
+                    href={`/libros/${book.slug}`}
+                    className="aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800"
+                  >
+                    <CoverImage
+                      src={getBookCover(book.amazon, book.cover)}
+                      alt={book.title}
+                      className="h-full w-full object-cover transition duration-200 hover:scale-105"
+                    />
+                  </Link>
+
+                  <div className="flex flex-1 flex-col pt-3">
+                    <Link href={`/libros/${book.slug}`}>
+                      <h3 className="line-clamp-2 text-sm font-semibold text-zinc-100 hover:text-yellow-300">
+                        {book.title}
+                      </h3>
+                    </Link>
+                    <p className="mt-1 line-clamp-1 text-xs text-zinc-500">
+                      {(book.authorNames ?? []).join(", ") || "Autor independiente"}
+                    </p>
+                    <p className="mt-3 line-clamp-3 text-xs leading-relaxed text-zinc-400">
+                      {reason}
+                    </p>
+
+                    <button
+                      type="button"
+                      disabled={isPending}
+                      onClick={() => saveBook(book.id, false)}
+                      className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-yellow-500 px-3 py-2.5 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-wait disabled:opacity-50"
+                    >
+                      <Plus size={15} aria-hidden="true" />
+                      {isPending ? "Agregando..." : "Agregar a mi biblioteca"}
+                    </button>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </section>
       )}
     </div>
   )
