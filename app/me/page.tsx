@@ -328,13 +328,21 @@ export default function MePage() {
               </p>
             </div>
 
-            <button
-              type="button"
-              onClick={signOut}
-              className="w-full rounded-xl border border-red-500/30 px-4 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-500/10 sm:w-auto"
-            >
-              Cerrar sesión
-            </button>
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+              <Link
+                href="/me/profile"
+                className="rounded-xl border border-zinc-700 px-4 py-2.5 text-center text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+              >
+                Editar nombre de usuario
+              </Link>
+              <button
+                type="button"
+                onClick={signOut}
+                className="rounded-xl border border-red-500/30 px-4 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-500/10"
+              >
+                Cerrar sesión
+              </button>
+            </div>
           </div>
         </section>
 
