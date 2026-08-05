@@ -193,7 +193,7 @@ export default async function Home() {
       {/* LIBROS */}
       <section className="py-6 px-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold">Libros</h2>
+          <h2 className="text-2xl font-semibold">Catálogo</h2>
           <Link href="/libros" className="hover:text-white"
             style={{ color: "#eab308" }}>
             Ver todos →
