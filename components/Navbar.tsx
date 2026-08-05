@@ -91,9 +91,7 @@ export default function Navbar() {
               </Link>
             </div>
           </details>
-          <Link href="/contact" className="text-yellow-400 hover:text-yellow-300">
-            Recomendar libro
-          </Link>
+          <Link href="/contact">Recomendar libro</Link>
           {sessionResolved && (
             <Link href={hasSession ? "/me" : "/login"}>
               {hasSession ? "Mi espacio" : "Iniciar sesión"}
@@ -113,7 +111,7 @@ export default function Navbar() {
           <Link href="/resenas" onClick={() => setOpen(false)}>Lectómetro</Link>
           <Link href="/authors" onClick={() => setOpen(false)}>Autores</Link>
           <Link href="/readers" onClick={() => setOpen(false)}>Lectores</Link>
-          <Link href="/contact" onClick={() => setOpen(false)} className="text-yellow-400">
+          <Link href="/contact" onClick={() => setOpen(false)}>
             Recomendar libro
           </Link>
           {sessionResolved && (

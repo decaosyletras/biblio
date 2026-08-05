@@ -7,692 +7,684 @@ import { supabase } from "@/lib/supabase"
 import { useProfile } from "@/hooks/useProfile"
 
 type OwnedAuthor = {
-    id: string
-    name: string
-    slug: string
-    avatar: string
-    pro: boolean
+  id: string
+  name: string
+  slug: string
+  avatar: string
+  pro: boolean
 }
 
 type UserRow = {
-    id: string
-    username: string
+  id: string
+  username: string
 }
 
 type ReaderProfileSummary = {
-    username: string
-    isPublic: boolean
+  username: string
+  isPublic: boolean
 }
 
 type ReaderLibrarySummary = {
-    total: number
-    read: number
+  total: number
+  read: number
 }
 
 type AuthorClaim = {
-    id: string
-    status: "pending" | "approved" | "rejected"
-    created_at: string
-    authors: {
-        name: string
-        slug: string
-        avatar: string
-    } | null
+  id: string
+  status: "pending" | "approved" | "rejected"
+  created_at: string
+  authors: {
+    name: string
+    slug: string
+    avatar: string
+  } | null
+}
+
+function claimStatusLabel(status: AuthorClaim["status"]) {
+  if (status === "approved") return "Autor verificado"
+  if (status === "pending") return "Pendiente de revisión"
+  return "Solicitud rechazada"
+}
+
+function claimStatusClasses(status: AuthorClaim["status"]) {
+  if (status === "approved") return "bg-green-500/15 text-green-300"
+  if (status === "pending") return "bg-yellow-500/15 text-yellow-300"
+  return "bg-red-500/15 text-red-300"
 }
 
 export default function MePage() {
-    const router = useRouter()
-    const { user, profile, loading } = useProfile()
+  const router = useRouter()
+  const { user, profile, loading } = useProfile()
 
-    const [author, setAuthor] = useState<OwnedAuthor | null>(null)
-    const [loadingAuthor, setLoadingAuthor] = useState(true)
-    const [readerProfile, setReaderProfile] = useState<ReaderProfileSummary | null>(null)
-    const [readerLibrary, setReaderLibrary] = useState<ReaderLibrarySummary | null>(null)
+  const [author, setAuthor] = useState<OwnedAuthor | null>(null)
+  const [loadingAuthor, setLoadingAuthor] = useState(true)
+  const [readerProfile, setReaderProfile] =
+    useState<ReaderProfileSummary | null>(null)
+  const [readerLibrary, setReaderLibrary] =
+    useState<ReaderLibrarySummary | null>(null)
+  const [loadingReaderData, setLoadingReaderData] = useState(true)
+  const [claims, setClaims] = useState<AuthorClaim[]>([])
+  const [loadingClaims, setLoadingClaims] = useState(true)
+  const [users, setUsers] = useState<UserRow[]>([])
+  const [loadingUsers, setLoadingUsers] = useState(false)
+  const [sendingLaunch, setSendingLaunch] = useState(false)
 
-    const [claims, setClaims] = useState<AuthorClaim[]>([])
-    const [loadingClaims, setLoadingClaims] = useState(true)
+  useEffect(() => {
+    if (!loading && !user) router.replace("/login")
+  }, [loading, router, user])
 
-    const [users, setUsers] = useState<UserRow[]>([])
-    const [loadingUsers, setLoadingUsers] = useState(false)
+  useEffect(() => {
+    if (!user) return
 
-    const [sendingLaunch, setSendingLaunch] = useState(false)
+    let active = true
 
+    async function loadReaderData() {
+      setLoadingReaderData(true)
 
-    const sendLaunchEmail = async () => {
+      try {
+        const [profileResponse, libraryResponse] = await Promise.all([
+          fetch("/api/readers/profile", { cache: "no-store" }),
+          fetch("/api/readers/books", { cache: "no-store" }),
+        ])
 
-        const confirm1 = window.confirm(
-            "⚠️ Vas a enviar el correo de lanzamiento a todos los registros. ¿Continuar?"
-        )
+        if (!active) return
 
-        if (!confirm1) return
-
-
-        const confirm2 = window.confirm(
-            "🚨 Confirmación final: se enviarán correos reales a usuarios externos. ¿Seguro?"
-        )
-
-        if (!confirm2) return
-
-
-        setSendingLaunch(true)
-
-
-        const res = await fetch(
-            "/api/admin/send-launch-email",
-            {
-                method: "POST"
-            }
-        )
-
-
-        const data = await res.json()
-
-
-        setSendingLaunch(false)
-
-
-        if (data.error) {
-            alert(data.error)
-            return
+        if (profileResponse.ok) {
+          const result = await profileResponse.json()
+          setReaderProfile(
+            result.hasReaderProfile === true
+              ? result.profile ?? null
+              : null
+          )
         }
 
+        if (libraryResponse.ok) {
+          const result = await libraryResponse.json()
+          const items = Array.isArray(result.books) ? result.books : []
 
-        alert(
-            `Correos enviados: ${data.enviados}\nErrores: ${data.errores}`
-        )
-
+          setReaderLibrary({
+            total: items.length,
+            read: items.filter(
+              (item: { isRead?: boolean }) => item.isRead === true
+            ).length,
+          })
+        }
+      } finally {
+        if (active) setLoadingReaderData(false)
+      }
     }
 
+    loadReaderData()
 
-    useEffect(() => {
-        if (!loading && !user) {
-            router.replace("/login")
-        }
-    }, [loading, user, router])
+    return () => {
+      active = false
+    }
+  }, [user])
 
-    useEffect(() => {
-        if (!user) return
+  useEffect(() => {
+    if (!user) return
 
-        let active = true
+    async function loadAuthor() {
+      setLoadingAuthor(true)
 
-        const loadReaderData = async () => {
-            const [profileResponse, libraryResponse] = await Promise.all([
-                fetch("/api/readers/profile", { cache: "no-store" }),
-                fetch("/api/readers/books", { cache: "no-store" })
-            ])
+      const { data, error } = await supabase
+        .from("author_claims")
+        .select(`
+          status,
+          authors (
+            id,
+            name,
+            slug,
+            avatar,
+            pro
+          )
+        `)
+        .eq("user_id", user.id)
+        .eq("status", "approved")
+        .maybeSingle()
 
-            if (!active) return
+      if (error || !data?.authors) {
+        setAuthor(null)
+        setLoadingAuthor(false)
+        return
+      }
 
-            if (profileResponse.ok) {
-                const result = await profileResponse.json()
-                setReaderProfile(result.profile ?? null)
-            }
+      const authorData = Array.isArray(data.authors)
+        ? data.authors[0]
+        : data.authors
 
-            if (libraryResponse.ok) {
-                const result = await libraryResponse.json()
-                const items = Array.isArray(result.books) ? result.books : []
+      if (!authorData) {
+        setAuthor(null)
+        setLoadingAuthor(false)
+        return
+      }
 
-                setReaderLibrary({
-                    total: items.length,
-                    read: items.filter((item: { isRead?: boolean }) => item.isRead === true).length
-                })
-            }
-        }
-
-        loadReaderData()
-
-        return () => {
-            active = false
-        }
-    }, [user])
-
-
-    // LOAD AUTHOR
-    useEffect(() => {
-        if (!user) return
-
-        const loadAuthor = async () => {
-            setLoadingAuthor(true)
-
-            const { data, error } = await supabase
-                .from("author_claims")
-                .select(`
-                    status,
-                    authors (
-                        id,
-                        name,
-                        slug,
-                        avatar,
-                        pro
-                    )
-                `)
-                .eq("user_id", user.id)
-                .eq("status", "approved")
-                .maybeSingle()
-
-            if (error) {
-                setAuthor(null)
-                setLoadingAuthor(false)
-                return
-            }
-
-            const authorData = data?.authors
-
-            if (!authorData) {
-                setAuthor(null)
-                setLoadingAuthor(false)
-                return
-            }
-            const author = Array.isArray(authorData)
-                ? authorData[0]
-                : authorData
-
-
-            setAuthor({
-                id: author.id,
-                name: author.name,
-                slug: author.slug,
-                avatar: author.avatar,
-                pro: author.pro ?? false,
-            })
-            setLoadingAuthor(false)
-        }
-
-        loadAuthor()
-
-    }, [user])
-
-    // LOAD CLAIMS
-    useEffect(() => {
-        if (!user) return
-        const loadClaims = async () => {
-            setLoadingClaims(true)
-            const { data, error } = await supabase
-                .from("author_claims")
-                .select(`
-                    id,
-                    status,
-                    created_at,
-                    authors (
-                        name,
-                        slug,
-                        avatar
-                    )
-                `)
-                .eq("user_id", user.id)
-                .order("created_at", {
-                    ascending: false
-                })
-            if (error) {
-                setClaims([])
-            } else {
-                const normalizedClaims: AuthorClaim[] = (data || []).map((claim) => ({
-                    id: claim.id,
-                    status: claim.status as AuthorClaim["status"],
-                    created_at: claim.created_at,
-                    authors: Array.isArray(claim.authors)
-                        ? claim.authors[0] ?? null
-                        : claim.authors ?? null,
-                }))
-
-                setClaims(normalizedClaims)
-            }
-            setLoadingClaims(false)
-        }
-        loadClaims()
-    }, [user])
-
-    // ADMIN CHECK
-    const isAdmin = profile?.admin === true
-
-    // LOAD USERS ADMIN
-    const loadUsers = async () => {
-        setLoadingUsers(true)
-        const { data, error } = await supabase
-            .from("profiles")
-            .select("id, username")
-
-        if (!error && data) {
-            setUsers(data)
-        }
-
-        setLoadingUsers(false)
+      setAuthor({
+        id: authorData.id,
+        name: authorData.name,
+        slug: authorData.slug,
+        avatar: authorData.avatar,
+        pro: authorData.pro ?? false,
+      })
+      setLoadingAuthor(false)
     }
 
-    // DELETE USER
-    const deleteUser = async (id: string) => {
+    loadAuthor()
+  }, [user])
 
-        const confirmDelete = window.confirm(
-            "⚠️ Esto borrará el usuario completamente. ¿Continuar?"
-        )
-        if (!confirmDelete) return
-        const res = await fetch("/api/admin/delete-user", {
-            method: "POST",
-            body: JSON.stringify({ id }),
-        })
-        const json = await res.json()
-        if (json.error) {
-            alert(json.error)
-            return
-        }
-        setUsers(prev =>
-            prev.filter(u => u.id !== id)
-        )
-        alert("Usuario eliminado")
+  useEffect(() => {
+    if (!user) return
+
+    async function loadClaims() {
+      setLoadingClaims(true)
+
+      const { data, error } = await supabase
+        .from("author_claims")
+        .select(`
+          id,
+          status,
+          created_at,
+          authors (
+            name,
+            slug,
+            avatar
+          )
+        `)
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false })
+
+      if (error) {
+        setClaims([])
+      } else {
+        const normalizedClaims: AuthorClaim[] = (data ?? []).map((claim) => ({
+          id: claim.id,
+          status: claim.status as AuthorClaim["status"],
+          created_at: claim.created_at,
+          authors: Array.isArray(claim.authors)
+            ? claim.authors[0] ?? null
+            : claim.authors ?? null,
+        }))
+
+        setClaims(normalizedClaims)
+      }
+
+      setLoadingClaims(false)
     }
 
-    if (loading || !user) {
-        return (
-            <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-white">
-                Cargando perfil...
-            </div>
-        )
-    }
-
-    // El CTA independiente anterior se conserva desactivado porque la sección
-    // "Mi estado de autor" ya decide qué acción mostrar usando claims.
-    // const hasPendingClaim = claims.some(
-    //     claim => claim.status === "pending"
-    // )
-    // const showAuthorCTA =
-    //     !loadingClaims &&
-    //     !author &&
-    //     !hasPendingClaim
-
-    return (
-        <div className="min-h-screen bg-zinc-950 text-white">
-
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-6 sm:space-y-8">
-
-
-                {/* HEADER */}
-                <div>
-                    <h1 className="text-3xl sm:text-4xl font-bold">
-                        Mi cuenta
-                    </h1>
-                </div>
-
-                {/* PERFIL */}
-                <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-8">
-
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
-
-                        <div>
-                            <p className="text-sm uppercase tracking-wider text-zinc-500 mb-0">
-                                Usuario:
-                            </p>
-
-                            <p className="text-2xl font-bold text-white">
-                                {profile?.username}
-                            </p>
-
-                            <p className="text-zinc-400 mt-2 break-all">
-                                {user.email}
-                            </p>
-                        </div>
-
-                        <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-                            {readerProfile?.isPublic && readerProfile.username && (
-                                <Link
-                                    href={`/readers/${readerProfile.username}`}
-                                    className="w-full rounded-xl bg-yellow-500 px-5 py-3 text-center font-semibold text-black transition-all duration-150 hover:bg-yellow-400 active:scale-95 active:bg-yellow-600 sm:w-auto"
-                                >
-                                    Ver mi perfil de lector →
-                                </Link>
-                            )}
-
-                            <button
-                                onClick={() => router.push("/me/profile")}
-                                className="
-                                    w-full sm:w-auto
-                                    px-5 py-3
-                                    rounded-xl
-                                    bg-stone-100
-                                    text-stone-900
-                                    hover:bg-stone-200
-                                    active:scale-95
-                                    active:bg-stone-300
-                                    transition-all
-                                    duration-150
-                                    "
-                            >
-                                Editar perfil público
-                            </button>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div className="rounded-3xl border border-yellow-500/25 bg-yellow-500/5 p-5 sm:p-6">
-                    <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-                        <div>
-                            <p className="text-sm uppercase tracking-wider text-yellow-400">
-                                Espacio lector
-                            </p>
-                            <h2 className="mt-1 text-2xl font-bold">
-                                Mi biblioteca
-                            </h2>
-                            <p className="mt-2 text-sm text-zinc-400">
-                                {readerLibrary
-                                    ? `${readerLibrary.total} ${readerLibrary.total === 1 ? "libro" : "libros"} · ${readerLibrary.read} ${readerLibrary.read === 1 ? "leído" : "leídos"}`
-                                    : "Organiza tus intereses y tus lecturas pendientes."
-                                }
-                            </p>
-                        </div>
-
-                        <Link
-                            href="/me/library"
-                            className="w-full rounded-xl bg-yellow-500 px-5 py-3 text-center font-semibold text-black transition hover:bg-yellow-400 active:scale-95 sm:w-auto"
-                        >
-                            Ver mi biblioteca →
-                        </Link>
-                    </div>
-                </div>
-
-                {!loadingAuthor && author && (
-                    <div className="rounded-3xl border border-blue-500/30 bg-blue-500/10 p-5 sm:p-6">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
-                            <div>
-                                <h2 className="text-xl font-bold text-blue-300">
-                                    🌐 ¡Novedad!
-                                </h2>
-                                <p className="mt-2 text-zinc-300">
-                                    Ya puedes agregar el enlace a tu sitio web, tus redes sociales y llenar tu entrevista personal en tu página de autor.
-                                </p>
-                            </div>
-
-                            <Link
-                                href={`/authors/${author.slug}/edit`}
-                                className="w-full sm:w-auto shrink-0 text-center px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 active:scale-95 font-semibold transition-all duration-150"
-                            >
-                                Agregar mi sitio web →
-                            </Link>
-                        </div>
-                    </div>
-                )}
-
-                {/* MIS SOLICITUDES / AUTOR */}
-
-                <div
-                    id="mis-solicitudes"
-                    className="rounded-3xl border border-zinc-800 bg-zinc-900 p-4 sm:p-6"
-                >
-                    <h2 className="text-xl font-bold mb-5">
-                        Mi estado de autor
-                    </h2>
-
-                    {loadingClaims && (
-                        <p className="text-zinc-400">
-                            Cargando...
-                        </p>
-                    )}
-
-                    {!loadingClaims && claims.length === 0 && (
-                        <div className="space-y-5">
-
-                            <p className="text-zinc-400">
-                                Todavía no has reclamado ningún autor. Si ya has registrado tus libros
-                                en la Cas(z)a de Libros Indie, búscalos en el catálogo y reclama tu perfil
-                                para empezar a gestionar tu página de autor.
-                            </p>
-
-                            <Link
-                                href="/libros"
-                                className="inline-flex items-center px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 active:scale-95 active:bg-blue-700 transition-all duration-150 font-medium"
-                            >
-                                Buscar en el catálogo →
-                            </Link>
-
-                            <div className="border-t border-zinc-800 pt-5">
-                                <p className="text-zinc-400">
-                                    ¿Aún no tienes ningún libro registrado en la Cas(z)a de Libros Indie?
-                                </p>
-
-                                <Link
-                                    href="/contact"
-                                    className="inline-flex mt-3 px-5 py-3 rounded-xl bg-yellow-500 text-black font-medium hover:bg-yellow-400 active:scale-95 active:bg-yellow-600 transition-all duration-150"
-                                >
-                                    Registrar mi libro
-                                </Link>
-                            </div>
-
-                        </div>
-                    )}
-
-                    <div className="space-y-4">
-                        {claims.map((claim) => (
-                            <div
-                                key={claim.id}
-                                className="p-5 rounded-2xl border flex flex-col sm:flex-row gap-5 sm:items-center sm:justify-between"
-                            >
-                                <div className="flex items-start gap-4">
-
-                                    {claim.authors?.avatar && (
-
-                                        // El host de avatares depende del proyecto Supabase en ejecución.
-                                        // eslint-disable-next-line @next/next/no-img-element
-                                        <img
-                                            src={claim.authors.avatar}
-                                            alt={claim.authors.name}
-                                            className="w-14 h-14 rounded-xl object-cover border border-zinc-700"
-                                        />
-                                    )}
-
-                                    <div>
-                                        <p className="text-lg font-semibold">
-                                            {claim.authors?.name}
-                                        </p>
-
-                                        <p className="text-xs text-zinc-500">
-                                            Solicitud enviada el{" "}
-                                            {new Date(
-                                                claim.created_at
-                                            ).toLocaleDateString()}
-                                        </p>
-
-                                        {claim.status === "pending" && (
-                                            <p className="text-yellow-400 mt-1">
-                                                ⏳ Solicitud pendiente de revisión
-                                            </p>
-                                        )}
-
-                                        {claim.status === "rejected" && (
-                                            <p className="text-red-400 mt-1">
-                                                ❌ Solicitud rechazada
-                                            </p>
-                                        )}
-
-                                        {claim.status === "approved" && (
-                                            <p className="text-green-400 mt-1">
-                                                ✅ Autor verificado
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-
-                                {claim.status === "approved" && claim.authors && (
-
-                                    <Link
-                                        href={`/authors/${claim.authors.slug}`}
-                                        className="w-full sm:w-auto text-center px-5 py-3 rounded-xl bg-green-600 hover:bg-green-500 active:bg-green-700 active:scale-95 font-semibold transition-all duration-150 shadow-lg shadow-green-900/30"
-                                    >
-                                        Ver página de autor →
-                                    </Link>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-
-                </div>
-
-
-                {/* AUTOR */}
-                {/*!loadingAuthor && author && (
-
-                    <Link
-                        href={`/authors/${author.slug}`}
-                        className="block rounded-3xl border border-zinc-800 bg-zinc-900 p-6 hover:border-blue-500 transition"
-                    >
-                        <div className="flex items-center gap-4">
-
-                            <img
-                                src={author.avatar}
-                                alt={author.name}
-                                className="w-16 h-16 rounded-xl object-cover border border-zinc-700"
-                            />
-
-                            <div>
-                                <p className="text-xl font-bold">
-                                    {author.name}
-                                </p>
-
-                                <p className="text-zinc-400">
-                                    Ver página de autor →
-                                </p>
-                            </div>
-                        </div>
-                    </Link>
-
-                )*/}
-
-                {/* ACTIONS */}
-                <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-4 sm:p-6">
-
-                    <div className="flex flex-col sm:flex-row gap-3">
-                        {/*<button
-                            onClick={() =>
-                                document
-                                    .getElementById("mis-solicitudes")
-                                    ?.scrollIntoView({
-                                        behavior: "smooth"
-                                    })
-                            }
-                            className="px-5 py-3 rounded-xl bg-zinc-800"
-                        >
-                            Mis solicitudes
-                        </button>*/}
-
-                        <Link
-                            href="/tutorial"
-                            className="
-                                w-full sm:w-auto
-                                px-5 py-3
-                                rounded-xl
-                                bg-stone-100
-                                text-stone-900
-                                hover:bg-stone-200
-                                active:scale-95
-                                active:bg-stone-300
-                                transition-all
-                                duration-150
-                                "
-                        >
-                            📖 Tutorial
-                        </Link>
-
-                        <button
-                            onClick={async () => {
-
-                                await supabase.auth.signOut()
-
-                                router.refresh()
-                                router.push("/login")
-
-                            }}
-                            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-red-600 hover:bg-red-500 active:bg-red-700 active:scale-95 transition-all duration-150">
-                            Cerrar sesión
-                        </button>
-
-                        {profile?.admin && (
-
-                            <div className="flex flex-col sm:flex-row gap-3">
-
-                                <button
-                                    onClick={sendLaunchEmail}
-                                    disabled={sendingLaunch}
-                                    className="
-                                        px-5 py-3
-                                        rounded-xl
-                                        bg-red-600
-                                        hover:bg-red-500
-                                        active:bg-red-700 
-                                        active:scale-95 transition-all duration-150
-                                    "
-                                >
-                                    {sendingLaunch
-                                        ? "Enviando..."
-                                        : "📧 Enviar Anuncio"
-                                    }
-                                </button>
-
-                                <button
-                                    onClick={() =>
-                                        router.push("/admin/author-claims")
-                                    }
-                                    className="px-5 py-3 rounded-xl bg-green-600 hover:bg-green-500 active:bg-green-700 active:scale-95 transition-all duration-150">
-                                    Panel admin
-                                </button>
-
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                {/* ADMIN USERS */}
-                {isAdmin && (
-                    <div className="rounded-3xl border border-red-500/30 bg-red-500/5 p-4 sm:p-6">
-                        <h2 className="text-xl font-bold text-red-400">
-                            Admin - Usuarios
-                        </h2>
-                        <button
-                            onClick={loadUsers}
-                            className="mt-3 px-4 py-2 bg-red-600 rounded-xl"
-                        >
-                            Cargar usuarios
-                        </button>
-                        {loadingUsers && (
-
-                            <p className="text-zinc-400 mt-2">
-                                Cargando...
-                            </p>
-                        )}
-
-                        <div className="mt-4 space-y-2">
-                            {users.map((u) => (
-
-                                <div
-                                    key={u.id}
-                                    className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between bg-zinc-900 p-3 rounded-xl"
-                                >
-                                    <div>
-                                        <p className="text-sm">
-                                            {u.username}
-                                        </p>
-
-
-                                        <p className="text-xs text-zinc-500">
-                                            {u.id}
-                                        </p>
-
-                                    </div>
-                                    <button
-                                        onClick={() =>
-                                            deleteUser(u.id)
-                                        }
-                                        className="w-full sm:w-auto px-3 py-2 bg-red-600 rounded-lg"
-                                    >
-                                        Borrar
-                                    </button>
-
-                                </div>
-                            ))}
-
-                        </div>
-                    </div>
-                )}
-
-            </div>
-        </div>
+    loadClaims()
+  }, [user])
+
+  async function signOut() {
+    await supabase.auth.signOut()
+    router.refresh()
+    router.push("/login")
+  }
+
+  async function sendLaunchEmail() {
+    const firstConfirmation = window.confirm(
+      "⚠️ Vas a enviar el correo de lanzamiento a todos los registros. ¿Continuar?"
     )
+
+    if (!firstConfirmation) return
+
+    const finalConfirmation = window.confirm(
+      "🚨 Confirmación final: se enviarán correos reales a usuarios externos. ¿Seguro?"
+    )
+
+    if (!finalConfirmation) return
+
+    setSendingLaunch(true)
+    const response = await fetch("/api/admin/send-launch-email", {
+      method: "POST",
+    })
+    const result = await response.json()
+    setSendingLaunch(false)
+
+    if (result.error) {
+      alert(result.error)
+      return
+    }
+
+    alert(`Correos enviados: ${result.enviados}\nErrores: ${result.errores}`)
+  }
+
+  async function loadUsers() {
+    setLoadingUsers(true)
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, username")
+
+    if (!error && data) setUsers(data)
+    setLoadingUsers(false)
+  }
+
+  async function deleteUser(id: string) {
+    const confirmed = window.confirm(
+      "⚠️ Esto borrará el usuario completamente. ¿Continuar?"
+    )
+
+    if (!confirmed) return
+
+    const response = await fetch("/api/admin/delete-user", {
+      method: "POST",
+      body: JSON.stringify({ id }),
+    })
+    const result = await response.json()
+
+    if (result.error) {
+      alert(result.error)
+      return
+    }
+
+    setUsers((current) => current.filter((item) => item.id !== id))
+    alert("Usuario eliminado")
+  }
+
+  if (loading || !user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-zinc-950 text-white">
+        Cargando tu espacio...
+      </div>
+    )
+  }
+
+  const pendingClaim = claims.find((claim) => claim.status === "pending")
+  const rejectedClaim = claims.find((claim) => claim.status === "rejected")
+  const authorStateLoading = loadingAuthor || loadingClaims
+  const isAdmin = profile?.admin === true
+
+  return (
+    <main className="min-h-screen bg-zinc-950 text-white">
+      <div className="mx-auto max-w-6xl space-y-8 px-4 py-8 sm:px-6 sm:py-12">
+        <header>
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-yellow-400">
+            Cuenta y perfiles
+          </p>
+          <h1 className="mt-2 text-3xl font-bold sm:text-4xl">Mi espacio</h1>
+          <p className="mt-3 max-w-2xl text-zinc-400">
+            Una cuenta, dos formas de participar. Puedes tener perfil lector,
+            página de autor o ambos.
+          </p>
+        </header>
+
+        <section className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <h2 className="text-xl font-semibold">Cuenta privada</h2>
+                <span className="rounded-full bg-zinc-800 px-2.5 py-1 text-[11px] text-zinc-400">
+                  Sólo visible para ti
+                </span>
+              </div>
+              <p className="mt-4 text-lg font-medium text-zinc-100">
+                @{profile?.username}
+              </p>
+              <p className="mt-1 break-all text-sm text-zinc-400">
+                {user.email}
+              </p>
+              <p className="mt-3 max-w-xl text-xs leading-relaxed text-zinc-500">
+                Esta cuenta te permite administrar tu biblioteca y los perfiles
+                públicos que decidas crear.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={signOut}
+              className="w-full rounded-xl border border-red-500/30 px-4 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-500/10 sm:w-auto"
+            >
+              Cerrar sesión
+            </button>
+          </div>
+        </section>
+
+        <section>
+          <div>
+            <h2 className="text-2xl font-semibold">Mis perfiles</h2>
+            <p className="mt-2 text-sm text-zinc-400">
+              Los dos son opcionales y pueden convivir dentro de la misma cuenta.
+            </p>
+          </div>
+
+          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+            <article className="flex min-h-full flex-col rounded-3xl border border-yellow-500/25 bg-yellow-500/5 p-5 sm:p-7">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yellow-400">
+                    Perfil lector
+                  </p>
+                  <h3 className="mt-2 text-2xl font-bold">
+                    Tu identidad como lector
+                  </h3>
+                </div>
+
+                {!loadingReaderData && (
+                  <span
+                    className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${
+                      !readerProfile
+                        ? "bg-zinc-800 text-zinc-300"
+                        : readerProfile.isPublic
+                          ? "bg-green-500/15 text-green-300"
+                          : "bg-yellow-500/15 text-yellow-300"
+                    }`}
+                  >
+                    {!readerProfile
+                      ? "Sin configurar"
+                      : readerProfile.isPublic
+                        ? "Público"
+                        : "Privado"}
+                  </span>
+                )}
+              </div>
+
+              {loadingReaderData ? (
+                <p className="mt-5 text-sm text-zinc-400">
+                  Cargando perfil lector...
+                </p>
+              ) : readerProfile ? (
+                <div className="mt-5">
+                  <p className="font-medium text-zinc-100">
+                    @{readerProfile.username}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                    Comparte tus gustos, enlaces y biblioteca cuando decidas
+                    publicar este perfil.
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {readerProfile.isPublic && readerProfile.username && (
+                      <Link
+                        href={`/readers/${readerProfile.username}`}
+                        className="rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-yellow-400"
+                      >
+                        Ver perfil lector
+                      </Link>
+                    )}
+                    <Link
+                      href="/me/profile"
+                      className="rounded-xl border border-zinc-700 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+                    >
+                      Editar perfil
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <div className="mt-5">
+                  <p className="text-sm leading-relaxed text-zinc-400">
+                    Crea un perfil para compartir quién eres como lector. Puedes
+                    mantenerlo privado hasta que quieras publicarlo.
+                  </p>
+                  <Link
+                    href="/me/profile"
+                    className="mt-4 inline-flex rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-yellow-400"
+                  >
+                    Crear perfil lector
+                  </Link>
+                </div>
+              )}
+
+              <div className="mt-auto border-t border-yellow-500/15 pt-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-yellow-400">
+                  Biblioteca personal
+                </p>
+                <p className="mt-2 text-sm text-zinc-400">
+                  {loadingReaderData
+                    ? "Cargando tus lecturas..."
+                    : readerLibrary
+                      ? `${readerLibrary.total} ${readerLibrary.total === 1 ? "libro" : "libros"} · ${readerLibrary.read} ${readerLibrary.read === 1 ? "leído" : "leídos"}`
+                      : "Organiza tus intereses y lecturas pendientes."}
+                </p>
+                <Link
+                  href="/me/library"
+                  className="mt-4 inline-flex text-sm font-semibold text-yellow-400 hover:text-yellow-300"
+                >
+                  Abrir mi biblioteca →
+                </Link>
+              </div>
+            </article>
+
+            <article
+              id="mis-solicitudes"
+              className="flex min-h-full scroll-mt-28 flex-col rounded-3xl border border-blue-500/25 bg-blue-500/5 p-5 sm:p-7"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-400">
+                    Página de autor
+                  </p>
+                  <h3 className="mt-2 text-2xl font-bold">
+                    Tu identidad como escritor
+                  </h3>
+                </div>
+
+                {!authorStateLoading && (
+                  <span
+                    className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${
+                      author
+                        ? "bg-green-500/15 text-green-300"
+                        : pendingClaim
+                          ? "bg-yellow-500/15 text-yellow-300"
+                          : rejectedClaim
+                            ? "bg-red-500/15 text-red-300"
+                            : "bg-zinc-800 text-zinc-300"
+                    }`}
+                  >
+                    {author
+                      ? author.pro
+                        ? "Autor verificado · PRO"
+                        : "Autor verificado"
+                      : pendingClaim
+                        ? "Pendiente"
+                        : rejectedClaim
+                          ? "Rechazado"
+                          : "Sin página"}
+                  </span>
+                )}
+              </div>
+
+              {authorStateLoading ? (
+                <p className="mt-5 text-sm text-zinc-400">
+                  Cargando estado de autor...
+                </p>
+              ) : author ? (
+                <div className="mt-5">
+                  <div className="flex items-center gap-4">
+                    {author.avatar && (
+                      // El host de avatares depende del proyecto Supabase en ejecución.
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={author.avatar}
+                        alt={author.name}
+                        className="h-16 w-16 rounded-2xl border border-blue-500/20 object-cover"
+                      />
+                    )}
+                    <div>
+                      <p className="text-lg font-semibold">{author.name}</p>
+                      <p className="mt-1 text-sm text-green-300">
+                        Autor verificado{author.pro ? " con perfil PRO" : ""}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    <Link
+                      href={`/authors/${author.slug}`}
+                      className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold transition hover:bg-blue-500"
+                    >
+                      Ver página de autor
+                    </Link>
+                    <Link
+                      href={`/authors/${author.slug}/edit`}
+                      className="rounded-xl border border-blue-500/30 px-4 py-2.5 text-sm font-medium text-blue-200 transition hover:bg-blue-500/10"
+                    >
+                      Editar página
+                    </Link>
+                  </div>
+
+                  <div className="mt-5 rounded-2xl border border-blue-500/20 bg-blue-500/10 p-4">
+                    <p className="text-sm font-medium text-blue-200">
+                      Completa tu página de autor
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-zinc-400">
+                      Agrega tu sitio web, redes sociales, novedades y entrevista
+                      para que los lectores conozcan mejor tu trabajo.
+                    </p>
+                  </div>
+                </div>
+              ) : pendingClaim ? (
+                <div className="mt-5">
+                  <p className="text-sm leading-relaxed text-zinc-400">
+                    Tu solicitud para {pendingClaim.authors?.name ?? "este autor"}
+                    está pendiente de revisión.
+                  </p>
+                  <p className="mt-2 text-xs text-zinc-500">
+                    Enviada el{" "}
+                    {new Date(pendingClaim.created_at).toLocaleDateString("es")}
+                  </p>
+                </div>
+              ) : rejectedClaim ? (
+                <div className="mt-5">
+                  <p className="text-sm leading-relaxed text-zinc-400">
+                    La solicitud para {rejectedClaim.authors?.name ?? "este autor"}
+                    fue rechazada. Puedes revisar el catálogo e iniciar otra
+                    reclamación cuando corresponda.
+                  </p>
+                  <Link
+                    href="/libros"
+                    className="mt-4 inline-flex rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold transition hover:bg-blue-500"
+                  >
+                    Buscar en el catálogo
+                  </Link>
+                </div>
+              ) : (
+                <div className="mt-5">
+                  <p className="text-sm leading-relaxed text-zinc-400">
+                    Si tus libros ya aparecen en el catálogo, reclama tu autor.
+                    Si todavía no están registrados, puedes recomendarlos primero.
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <Link
+                      href="/libros"
+                      className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold transition hover:bg-blue-500"
+                    >
+                      Buscar mi libro
+                    </Link>
+                    <Link
+                      href="/contact"
+                      className="rounded-xl border border-blue-500/30 px-4 py-2.5 text-sm font-medium text-blue-200 transition hover:bg-blue-500/10"
+                    >
+                      Registrar mi libro
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-auto border-t border-blue-500/15 pt-6">
+                <Link
+                  href="/tutorial"
+                  className="text-sm font-semibold text-blue-300 hover:text-blue-200"
+                >
+                  Ver tutorial para autores →
+                </Link>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        {claims.length > 1 && (
+          <details className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-6">
+            <summary className="cursor-pointer font-semibold">
+              Historial de solicitudes de autor ({claims.length})
+            </summary>
+            <div className="mt-5 space-y-3">
+              {claims.map((claim) => (
+                <div
+                  key={claim.id}
+                  className="flex flex-col gap-3 rounded-2xl bg-zinc-950/60 p-4 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div>
+                    <p className="font-medium">
+                      {claim.authors?.name ?? "Autor sin nombre"}
+                    </p>
+                    <p className="mt-1 text-xs text-zinc-500">
+                      Solicitud del{" "}
+                      {new Date(claim.created_at).toLocaleDateString("es")}
+                    </p>
+                  </div>
+                  <span
+                    className={`w-fit rounded-full px-2.5 py-1 text-xs font-semibold ${claimStatusClasses(claim.status)}`}
+                  >
+                    {claimStatusLabel(claim.status)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </details>
+        )}
+
+        {isAdmin && (
+          <section className="rounded-3xl border border-red-500/30 bg-red-500/5 p-5 sm:p-6">
+            <h2 className="text-xl font-bold text-red-300">
+              Herramientas administrativas
+            </h2>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={sendLaunchEmail}
+                disabled={sendingLaunch}
+                className="rounded-xl bg-red-600 px-5 py-3 font-medium transition hover:bg-red-500 disabled:opacity-50"
+              >
+                {sendingLaunch ? "Enviando..." : "Enviar anuncio"}
+              </button>
+              <button
+                type="button"
+                onClick={() => router.push("/admin/author-claims")}
+                className="rounded-xl bg-green-600 px-5 py-3 font-medium transition hover:bg-green-500"
+              >
+                Panel de reclamaciones
+              </button>
+            </div>
+          </section>
+        )}
+
+        {isAdmin && (
+          <section className="rounded-3xl border border-red-500/30 bg-red-500/5 p-5 sm:p-6">
+            <h2 className="text-xl font-bold text-red-400">
+              Administración de usuarios
+            </h2>
+            <button
+              type="button"
+              onClick={loadUsers}
+              className="mt-3 rounded-xl bg-red-600 px-4 py-2"
+            >
+              Cargar usuarios
+            </button>
+            {loadingUsers && (
+              <p className="mt-2 text-zinc-400">Cargando...</p>
+            )}
+
+            <div className="mt-4 space-y-2">
+              {users.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex flex-col gap-3 rounded-xl bg-zinc-900 p-3 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div>
+                    <p className="text-sm">{item.username}</p>
+                    <p className="text-xs text-zinc-500">{item.id}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => deleteUser(item.id)}
+                    className="w-full rounded-lg bg-red-600 px-3 py-2 sm:w-auto"
+                  >
+                    Borrar
+                  </button>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </main>
+  )
 }
