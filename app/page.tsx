@@ -7,6 +7,7 @@ import CardAuthor from "@/components/CardAuthor"
 import GenreFilter from "@/components/GenreFilter"
 import BookRow from "@/components/BookRow"
 import AuthorNewsCard from "@/components/AuthorNewsCard"
+import LectometerMark from "@/components/LectometerMark"
 import { createClient } from "@/lib/supabase-server"
 
 import {
@@ -244,7 +245,8 @@ export default async function Home() {
       {/* RESEÑAS */}
       <section className="pt-18 pb-6 px-6">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold">
+          <h2 className="flex items-center gap-2 text-2xl font-semibold">
+            <LectometerMark variant="inline" />
             Lectómetro
           </h2>
 
