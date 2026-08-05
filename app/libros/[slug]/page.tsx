@@ -147,8 +147,6 @@ export default async function Page({
             ))}
           </div>
 
-          {book.review.title && <LectometerMark variant="note" />}
-
           <BookLibraryActions bookId={book.id} />
 
           {/* SUMMARY */}
@@ -175,6 +173,8 @@ export default async function Page({
               </span>
             )}
           </div>
+
+          {book.review.title && <LectometerMark variant="note" />}
 
           {/* METRICS */}
           {book.review.metrics?.length > 0 &&
