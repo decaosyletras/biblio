@@ -14,6 +14,7 @@ import { UserRound } from "lucide-react";
 import { Crown } from "lucide-react";
 import ManageProButton from "@/components/ManageProButton"
 import AuthorInterview from "@/components/authors/AuthorInterview"
+import ShareAuthorButton from "@/components/authors/ShareAuthorButton"
 
 import {
     inter,
@@ -608,6 +609,11 @@ export default async function AuthorPage({
                         >
                             Editar página
                         </Link>
+
+                        <ShareAuthorButton
+                            path={`/authors/${author.slug}`}
+                            backgroundColor={authorTheme.primary}
+                        />
 
                     </div>
 
