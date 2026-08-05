@@ -58,21 +58,45 @@ export default function Navbar() {
 
         {/* BOTÓN MOBILE */}
         <button
-          className="md:hidden text-2xl"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          className="text-2xl lg:hidden"
           onClick={() => setOpen(!open)}
         >
           ☰
         </button>
 
         {/* LINKS DESKTOP */}
-        <div className="hidden md:flex gap-4 text-sm">
+        <div className="hidden items-center gap-4 text-sm lg:flex">
           <Link href="/">Inicio</Link>
+          <Link href="/libros">Catálogo</Link>
           <Link href="/book-directory">Biblioteca general</Link>
-          <Link href="/readers">Lectores</Link>
-          <Link href="/contact">Recomendar Libro</Link>
+          <Link href="/resenas">Lectómetro</Link>
+          <details className="group relative">
+            <summary className="cursor-pointer list-none select-none">
+              Comunidad <span aria-hidden="true">▾</span>
+            </summary>
+            <div className="absolute right-0 top-full z-60 mt-3 flex w-40 flex-col gap-1 rounded-xl border border-zinc-700 bg-zinc-900 p-2 shadow-2xl shadow-black/40">
+              <Link
+                href="/authors"
+                className="rounded-lg px-3 py-2 hover:bg-zinc-800"
+              >
+                Autores
+              </Link>
+              <Link
+                href="/readers"
+                className="rounded-lg px-3 py-2 hover:bg-zinc-800"
+              >
+                Lectores
+              </Link>
+            </div>
+          </details>
+          <Link href="/contact" className="text-yellow-400 hover:text-yellow-300">
+            Recomendar libro
+          </Link>
           {sessionResolved && (
             <Link href={hasSession ? "/me" : "/login"}>
-              {hasSession ? "Mi perfil" : "Iniciar sesión"}
+              {hasSession ? "Mi espacio" : "Iniciar sesión"}
             </Link>
           )}
           {/*<Link href="/afiliados">Transparencia</Link>
@@ -82,17 +106,22 @@ export default function Navbar() {
 
       {/* MENÚ MOBILE */}
       {open && (
-        <div className="md:hidden mt-4 bg-zinc-800 rounded-xl p-4 flex flex-col gap-3 text-sm shadow-lg">
+        <div className="mt-4 flex flex-col gap-3 rounded-xl bg-zinc-800 p-4 text-sm shadow-lg lg:hidden">
           <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
+          <Link href="/libros" onClick={() => setOpen(false)}>Catálogo</Link>
           <Link href="/book-directory" onClick={() => setOpen(false)}>Biblioteca general</Link>
+          <Link href="/resenas" onClick={() => setOpen(false)}>Lectómetro</Link>
+          <Link href="/authors" onClick={() => setOpen(false)}>Autores</Link>
           <Link href="/readers" onClick={() => setOpen(false)}>Lectores</Link>
-          <Link href="/contact" onClick={() => setOpen(false)}>Recomendar Libro</Link>
+          <Link href="/contact" onClick={() => setOpen(false)} className="text-yellow-400">
+            Recomendar libro
+          </Link>
           {sessionResolved && (
             <Link
               href={hasSession ? "/me" : "/login"}
               onClick={() => setOpen(false)}
             >
-              {hasSession ? "Mi perfil" : "Iniciar sesión"}
+              {hasSession ? "Mi espacio" : "Iniciar sesión"}
             </Link>
           )}
           {/*<Link href="/afiliados" onClick={() => setOpen(false)}>Transparencia</Link>

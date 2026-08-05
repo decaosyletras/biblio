@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { getBooks } from "@/lib/books"
-import CardBook from "@/components/CardBook"
 import { shuffleArray } from "@/lib/shuffle"
 import CardReview from "@/components/CardReview"
 import CardAuthor from "@/components/CardAuthor"
@@ -9,6 +8,7 @@ import BookRow from "@/components/BookRow"
 import AuthorNewsCard from "@/components/AuthorNewsCard"
 import LectometerMark from "@/components/LectometerMark"
 import { createClient } from "@/lib/supabase-server"
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
 import {
   getAuthors,
@@ -24,14 +24,30 @@ export default async function Home() {
   const { data: { user } } = await supabase.auth.getUser()
 
   let claimedAuthorSlug: string | null = null
+  let hasReaderProfile = false
+  let hasPendingAuthorClaim = false
 
   if (user) {
-    const { data: approvedClaim } = await supabase
-      .from("author_claims")
-      .select("author_id")
-      .eq("user_id", user.id)
-      .eq("status", "approved")
-      .maybeSingle()
+    const [{ data: activeClaims }, { data: readerProfile }] = await Promise.all([
+      supabase
+        .from("author_claims")
+        .select("author_id, status")
+        .eq("user_id", user.id)
+        .in("status", ["approved", "pending"]),
+      supabaseAdmin
+        .from("reader_profiles")
+        .select("user_id")
+        .eq("user_id", user.id)
+        .maybeSingle(),
+    ])
+
+    hasReaderProfile = Boolean(readerProfile)
+    const approvedClaim = activeClaims?.find(
+      (claim) => claim.status === "approved"
+    )
+    hasPendingAuthorClaim = Boolean(
+      activeClaims?.some((claim) => claim.status === "pending")
+    )
 
     if (approvedClaim?.author_id) {
       const { data: claimedAuthor } = await supabase
@@ -48,7 +64,6 @@ export default async function Home() {
   const books = await getBooks()
   const latestNews = await getLatestAuthorNews()
 
-  const randomBooks = shuffleArray(books).slice(0, 4)
   const randomAuthors = shuffleArray(authors).slice(0, 3)
   const randomReviews = shuffleArray(
     books.filter(book => book.review?.title)
@@ -63,7 +78,86 @@ export default async function Home() {
     "Narrativas que se quedan contigo"
   ];
 
-  const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+  const fraseAleatoria = shuffleArray(frases)[0];
+
+  let accountMessage = ""
+  let showAuthorClaimLink = false
+  let accountActions: Array<{
+    href: string
+    label: string
+    primary: boolean
+  }> = []
+
+  if (user && claimedAuthorSlug && hasReaderProfile) {
+    accountMessage = "Tus lecturas y tu obra, en un mismo espacio."
+    accountActions = [
+      { href: "/me/library", label: "Mi biblioteca", primary: true },
+      {
+        href: `/authors/${claimedAuthorSlug}`,
+        label: "Mi página de autor",
+        primary: false,
+      },
+    ]
+  } else if (user && claimedAuthorSlug) {
+    accountMessage = "Gestiona tu página de autor y crea tu espacio como lector cuando quieras."
+    accountActions = [
+      {
+        href: `/authors/${claimedAuthorSlug}`,
+        label: "Mi página de autor",
+        primary: true,
+      },
+      {
+        href: "/me/profile",
+        label: "Crear perfil lector",
+        primary: false,
+      },
+    ]
+  } else if (user && hasPendingAuthorClaim && hasReaderProfile) {
+    accountMessage = "Tu solicitud de autor está pendiente de revisión."
+    accountActions = [
+      {
+        href: "/me#mis-solicitudes",
+        label: "Ver estado de mi solicitud",
+        primary: true,
+      },
+      { href: "/me/library", label: "Mi biblioteca", primary: false },
+    ]
+  } else if (user && hasPendingAuthorClaim) {
+    accountMessage = "Tu solicitud de autor está pendiente de revisión."
+    accountActions = [
+      {
+        href: "/me#mis-solicitudes",
+        label: "Ver estado de mi solicitud",
+        primary: true,
+      },
+      {
+        href: "/me/profile",
+        label: "Crear perfil lector",
+        primary: false,
+      },
+    ]
+  } else if (user && hasReaderProfile) {
+    accountMessage = "Continúa descubriendo historias y organiza tus próximas lecturas."
+    accountActions = [
+      { href: "/me/library", label: "Mi biblioteca", primary: true },
+      { href: "/me/profile", label: "Mi perfil lector", primary: false },
+    ]
+    showAuthorClaimLink = true
+  } else if (user) {
+    accountMessage = "Puedes participar como lector, como autor o de ambas formas."
+    accountActions = [
+      {
+        href: "/me/profile",
+        label: "Crear perfil lector",
+        primary: true,
+      },
+      {
+        href: "/me#mis-solicitudes",
+        label: "Crear página de autor",
+        primary: false,
+      },
+    ]
+  }
 
   return (
     <div className="text-zinc-100">
@@ -129,24 +223,37 @@ export default async function Home() {
             >
               Iniciar sesión
             </Link>
-          ) : claimedAuthorSlug ? (
-            <Link
-              href={`/authors/${claimedAuthorSlug}`}
-              className="rounded-full bg-yellow-500 px-6 py-3 font-medium text-black transition hover:bg-yellow-400"
-            >
-              Mi página de autor
-            </Link>
           ) : (
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/70 px-6 py-4">
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/70 px-5 py-4 sm:px-6">
               <p className="text-sm text-zinc-300">
-                Puedes reclamar tu perfil de autor desde uno de tus libros.
+                {accountMessage}
               </p>
-              <Link
-                href="/libros"
-                className="mt-2 inline-block text-sm font-medium text-yellow-400 hover:underline"
-              >
-                Buscar mi libro →
-              </Link>
+              <div className="mt-3 flex flex-wrap justify-center gap-2">
+                {accountActions.map((action) => (
+                  <Link
+                    key={action.href}
+                    href={action.href}
+                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                      action.primary
+                        ? "bg-yellow-500 text-black hover:bg-yellow-400"
+                        : "border border-zinc-600 text-zinc-200 hover:bg-zinc-800"
+                    }`}
+                  >
+                    {action.label}
+                  </Link>
+                ))}
+              </div>
+              {showAuthorClaimLink && (
+                <p className="mt-3 text-xs text-zinc-500">
+                  ¿También publicas?{" "}
+                  <Link
+                    href="/libros"
+                    className="text-yellow-400 hover:underline"
+                  >
+                    Busca tu libro para reclamar tu perfil de autor.
+                  </Link>
+                </p>
+              )}
             </div>
           )}
         </div>
