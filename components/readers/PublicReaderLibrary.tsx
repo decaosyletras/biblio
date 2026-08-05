@@ -4,6 +4,8 @@ import { useMemo, useState } from "react"
 import Link from "next/link"
 import { Search } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
+import LectometerMark from "@/components/LectometerMark"
+import ReadRibbon from "@/components/readers/ReadRibbon"
 import { getBookCover } from "@/lib/amazon"
 import type { PublicReaderBook } from "@/lib/readerLibrary"
 
@@ -112,15 +114,8 @@ export default function PublicReaderLibrary({
                   alt={book.title}
                   className="h-full w-full object-cover transition duration-200 group-hover:scale-105"
                 />
-                <span
-                  className={`absolute bottom-2 left-2 rounded-full px-2.5 py-1 text-[11px] font-semibold shadow-lg ${
-                    isRead
-                      ? "bg-green-500 text-white"
-                      : "bg-zinc-900/90 text-zinc-200"
-                  }`}
-                >
-                  {isRead ? "Leído" : "Pendiente"}
-                </span>
+                {book.review?.title && <LectometerMark />}
+                {isRead && <ReadRibbon />}
               </div>
               <h3 className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-zinc-200 group-hover:text-yellow-300">
                 {book.title}

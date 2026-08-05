@@ -4,6 +4,7 @@ import { authors } from "@/data/authors"
 import { getBookCover } from "@/lib/amazon"
 import CoverImage from "@/components/CoverImage"
 import AmazonButton from "@/components/AmazonButton"
+import LectometerMark from "@/components/LectometerMark"
 
 export default function CardBook({ book }: { book: Book }) {
 
@@ -17,7 +18,7 @@ export default function CardBook({ book }: { book: Book }) {
 
       <Link href={`/libros/${book.slug}`}>
         {/* Imagen */}
-        <div className="w-full h-38 sm:h-50 md:h-62 overflow-hidden rounded-lg">
+        <div className="relative w-full h-38 sm:h-50 md:h-62 overflow-hidden rounded-lg">
           <CoverImage
             src={getBookCover(book.amazon, book.cover)}
             alt={book.title}
@@ -25,11 +26,7 @@ export default function CardBook({ book }: { book: Book }) {
           />
 
           {book.review?.title && (
-            <div className="absolute top-0 right-0 w-24 h-24 overflow-hidden z-50 pointer-events-none">
-              <div className="absolute top-4 right-[-34px] rotate-45 bg-green-500 text-white text-[10px] font-bold px-10 py-1 shadow-md whitespace-nowrap">
-                LEÍDO
-              </div>
-            </div>
+            <LectometerMark />
           )}
         </div>
 

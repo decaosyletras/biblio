@@ -14,6 +14,7 @@ function AddToLibraryIcon() {
 
 export default function BookLibraryActions({ bookId }: { bookId: string }) {
   const {
+    user,
     userLoading,
     library,
     libraryLoading,
@@ -29,6 +30,21 @@ export default function BookLibraryActions({ bookId }: { bookId: string }) {
 
   return (
     <div className="mt-5">
+      {!isLoading && user && membership && (
+        <div className="mb-3 flex items-center gap-2 text-xs text-zinc-400">
+          <span>Estado en tu biblioteca:</span>
+          <span
+            className={`rounded-full px-2.5 py-1 font-semibold ${
+              isRead
+                ? "bg-green-500/15 text-green-300"
+                : "bg-zinc-800 text-zinc-300"
+            }`}
+          >
+            {isRead ? "Leído" : "Pendiente"}
+          </span>
+        </div>
+      )}
+
       <p className="mb-2.5 text-xs leading-relaxed text-zinc-400">
         Guarda este libro en tu biblioteca personal o marca que ya lo leíste.
       </p>

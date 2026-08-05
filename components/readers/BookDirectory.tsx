@@ -4,6 +4,7 @@ import { useMemo, useState } from "react"
 import Link from "next/link"
 import { BookOpenCheck, Eye, EyeOff, LibraryBig, Plus, Search, Trash2 } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
+import LectometerMark from "@/components/LectometerMark"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
 import type { DatabaseBook } from "@/types"
@@ -183,13 +184,14 @@ export default function BookDirectory({
             >
               <Link
                 href={`/libros/${book.slug}`}
-                className="mx-auto h-[8.5rem] w-[5.6875rem] shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:mx-0 sm:h-36 sm:w-24 lg:h-40 lg:w-[6.75rem]"
+                className="relative mx-auto h-[8.5rem] w-[5.6875rem] shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:mx-0 sm:h-36 sm:w-24 lg:h-40 lg:w-[6.75rem]"
               >
                 <CoverImage
                   src={getBookCover(book.amazon, book.cover)}
                   alt={book.title}
                   className="h-full w-full object-cover"
                 />
+                {book.review?.title && <LectometerMark />}
               </Link>
 
               <div className="flex min-w-0 flex-1 flex-col">
@@ -214,16 +216,7 @@ export default function BookDirectory({
                   <span className="mt-2 w-fit rounded-full bg-zinc-700 px-1.5 py-0.5 text-[9px] font-medium text-zinc-300 sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px]">
                     Oculto
                   </span>
-                ) : membership && (
-                  <span
-                    className={`mt-2 w-fit rounded-full px-1.5 py-0.5 text-[9px] font-medium sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px] ${membership.isRead
-                      ? "bg-green-500/15 text-green-300"
-                      : "bg-zinc-700 text-zinc-300"
-                      }`}
-                  >
-                    {membership.isRead ? "Leído" : "Pendiente"}
-                  </span>
-                )}
+                ) : null}
 
                 <div className="mt-auto pt-2 sm:pt-3">
                   {isHidden ? (

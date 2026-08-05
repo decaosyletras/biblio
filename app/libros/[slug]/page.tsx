@@ -15,13 +15,18 @@ import { getBookCover } from "@/lib/amazon"
 
 import ClaimAuthorButton from "@/components/ClaimAuthorButton"
 import BookLibraryActions from "@/components/readers/BookLibraryActions"
+import LectometerMark from "@/components/LectometerMark"
 
 import { supabase } from "@/lib/supabase"
 
 
 export const dynamic = "force-dynamic"
 
-export default async function Page({ params }: any) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
   const { slug } = await params
 
   const books = await getBooks()
@@ -84,7 +89,7 @@ export default async function Page({ params }: any) {
 
           {book.review.title && (
             <p className="mt-8 text-lg text-zinc-300 italic text-center">
-              "{book.review.title}"
+              “{book.review.title}”
             </p>
           )}
         </div>
@@ -142,6 +147,8 @@ export default async function Page({ params }: any) {
             ))}
           </div>
 
+          {book.review.title && <LectometerMark variant="note" />}
+
           <BookLibraryActions bookId={book.id} />
 
           {/* SUMMARY */}
@@ -158,16 +165,6 @@ export default async function Page({ params }: any) {
 
           {/* BADGES */}
           <div className="mt-6 flex flex-wrap gap-2">
-            {book.review.title !== "" ? (
-              <span className="text-xs px-3 py-1 rounded-full bg-green-600">
-                ✓ Leído
-              </span>
-            ) : (
-              <span className="text-xs px-3 py-1 rounded-full bg-zinc-700">
-                Pendiente
-              </span>
-            )}
-
             {book.isSaga ? (
               <span className="text-xs px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/30">
                 📚 Saga
@@ -208,7 +205,7 @@ export default async function Page({ params }: any) {
           {/* TAGS */}
           <div className="mt-6 space-y-4">
             {Object.entries(book.tags)
-              .filter(([_, value]) => value !== 0)
+              .filter(([, value]) => value !== 0)
               .map(([key, value]) => {
                 const text =
                   tagsCatalog[key as keyof typeof tagsCatalog][value]

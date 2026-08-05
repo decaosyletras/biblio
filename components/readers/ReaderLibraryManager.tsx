@@ -4,6 +4,8 @@ import { useMemo, useState } from "react"
 import Link from "next/link"
 import { BookOpenCheck, LibraryBig, Plus, Search, Sparkles, Trash2 } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
+import LectometerMark from "@/components/LectometerMark"
+import ReadRibbon from "@/components/readers/ReadRibbon"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
 import { getReaderRecommendations } from "@/lib/readerRecommendations"
@@ -168,13 +170,15 @@ export default function ReaderLibraryManager({
               >
                 <Link
                   href={`/libros/${book.slug}`}
-                  className="aspect-[2/3] w-full shrink-0 overflow-hidden rounded-xl bg-zinc-800 sm:h-40 sm:w-28 sm:aspect-auto"
+                  className="relative aspect-[2/3] w-full shrink-0 overflow-hidden rounded-xl bg-zinc-800 sm:h-40 sm:w-28 sm:aspect-auto"
                 >
                   <CoverImage
                     src={getBookCover(book.amazon, book.cover)}
                     alt={book.title}
                     className="h-full w-full object-cover"
                   />
+                  {book.review?.title && <LectometerMark />}
+                  {membership?.isRead && <ReadRibbon />}
                 </Link>
 
                 <div className="flex min-w-0 flex-1 flex-col">
@@ -186,16 +190,6 @@ export default function ReaderLibraryManager({
                   <p className="mt-1 line-clamp-2 text-xs text-zinc-500">
                     {(book.authorNames ?? []).join(", ") || "Autor independiente"}
                   </p>
-
-                  <span
-                    className={`mt-3 w-fit rounded-full px-2.5 py-1 text-[11px] font-medium ${
-                      membership?.isRead
-                        ? "bg-green-500/15 text-green-300"
-                        : "bg-zinc-800 text-zinc-300"
-                    }`}
-                  >
-                    {membership?.isRead ? "Leído" : "Pendiente"}
-                  </span>
 
                   <div className="mt-auto grid grid-cols-[minmax(0,1fr)_auto] gap-2 pt-3 sm:flex">
                     <button
@@ -261,13 +255,14 @@ export default function ReaderLibraryManager({
                 >
                   <Link
                     href={`/libros/${book.slug}`}
-                    className="aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800"
+                    className="relative aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800"
                   >
                     <CoverImage
                       src={getBookCover(book.amazon, book.cover)}
                       alt={book.title}
                       className="h-full w-full object-cover transition duration-200 hover:scale-105"
                     />
+                    {book.review?.title && <LectometerMark />}
                   </Link>
 
                   <div className="flex flex-1 flex-col pt-3">
