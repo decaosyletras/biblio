@@ -1,0 +1,225 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import { Download, ImageDown, LoaderCircle, Share2 } from "lucide-react"
+
+type ShareImageFormat = "story" | "post"
+
+const formats: Array<{
+  value: ShareImageFormat
+  label: string
+  dimensions: string
+}> = [
+  { value: "story", label: "Historia", dimensions: "1080 × 1920" },
+  { value: "post", label: "Publicación vertical", dimensions: "1080 × 1350" },
+]
+
+export default function ReaderShareImageButton() {
+  const [selectedFormat, setSelectedFormat] =
+    useState<ShareImageFormat>("story")
+  const [activeAction, setActiveAction] = useState<"download" | "share" | null>(
+    null
+  )
+  const [supportsFileSharing, setSupportsFileSharing] = useState(false)
+  const [error, setError] = useState("")
+
+  useEffect(() => {
+    if (typeof navigator.share !== "function" || !navigator.canShare) return
+
+    const sampleFile = new File(["share"], "biblioteca.png", {
+      type: "image/png",
+    })
+    setSupportsFileSharing(navigator.canShare({ files: [sampleFile] }))
+  }, [])
+
+  const createImageFile = async () => {
+    const response = await fetch(
+      `/api/readers/share-image?format=${selectedFormat}`
+    )
+
+    if (!response.ok) {
+      const payload = (await response.json().catch(() => null)) as
+        | { error?: string }
+        | null
+      throw new Error(payload?.error || "No se pudo crear la imagen")
+    }
+
+    const blob = await response.blob()
+    const filename = `mi-biblioteca-indie-${selectedFormat}.png`
+
+    return {
+      blob,
+      filename,
+      file: new File([blob], filename, { type: "image/png" }),
+    }
+  }
+
+  const downloadImage = async () => {
+    setActiveAction("download")
+    setError("")
+
+    try {
+      const { blob, filename } = await createImageFile()
+      const objectUrl = URL.createObjectURL(blob)
+      const link = document.createElement("a")
+
+      link.href = objectUrl
+      link.download = filename
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
+    } catch (downloadError) {
+      setError(
+        downloadError instanceof Error
+          ? downloadError.message
+          : "No se pudo crear la imagen"
+      )
+    } finally {
+      setActiveAction(null)
+    }
+  }
+
+  const shareImage = async () => {
+    setActiveAction("share")
+    setError("")
+
+    try {
+      const { file } = await createImageFile()
+
+      if (!navigator.canShare?.({ files: [file] })) {
+        throw new Error(
+          "Este dispositivo no permite compartir la imagen directamente"
+        )
+      }
+
+      await navigator.share({
+        files: [file],
+        title: "Mi biblioteca indie",
+        text: "Mi biblioteca indie en Cas(z)a de Libros",
+      })
+    } catch (shareError) {
+      if (shareError instanceof DOMException && shareError.name === "AbortError") {
+        return
+      }
+
+      setError(
+        shareError instanceof Error
+          ? shareError.message
+          : "No se pudo compartir la imagen"
+      )
+    } finally {
+      setActiveAction(null)
+    }
+  }
+
+  return (
+    <section className="mt-5 rounded-2xl border border-blue-500/25 bg-gradient-to-br from-blue-950/70 via-zinc-900 to-zinc-900 p-4 sm:p-5">
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex items-start gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/15 text-blue-300">
+            <ImageDown size={20} aria-hidden="true" />
+          </div>
+          <div>
+            <h2 className="font-semibold text-zinc-100">
+              Comparte tu biblioteca indie
+            </h2>
+            <p className="mt-1 max-w-xl text-sm leading-relaxed text-zinc-400">
+              Descarga una imagen personalizada con tus libros más recientes y
+              tus estadísticas.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+          <fieldset>
+            <legend className="mb-2 text-xs font-medium text-zinc-400">
+              Formato
+            </legend>
+            <div className="grid grid-cols-2 gap-2">
+              {formats.map((format) => (
+                <label
+                  key={format.value}
+                  className={`cursor-pointer rounded-xl border px-3 py-2 text-left transition ${
+                    selectedFormat === format.value
+                      ? "border-yellow-400/60 bg-yellow-400/10"
+                      : "border-zinc-700 bg-zinc-950/40 hover:border-zinc-600"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="share-image-format"
+                    value={format.value}
+                    checked={selectedFormat === format.value}
+                    onChange={() => setSelectedFormat(format.value)}
+                    className="sr-only"
+                  />
+                  <span className="block whitespace-nowrap text-xs font-semibold text-zinc-100 sm:text-sm">
+                    {format.label}
+                  </span>
+                  <span className="mt-0.5 block text-[10px] text-zinc-500 sm:text-xs">
+                    {format.dimensions}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <div className="grid grid-cols-1 gap-2 sm:flex">
+            <button
+              type="button"
+              onClick={downloadImage}
+              disabled={activeAction !== null}
+              className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition disabled:cursor-wait disabled:opacity-60 ${
+                supportsFileSharing
+                  ? "border border-zinc-700 bg-zinc-900 text-zinc-100 hover:bg-zinc-800"
+                  : "bg-yellow-500 text-black hover:bg-yellow-400"
+              }`}
+            >
+              {activeAction === "download" ? (
+                <LoaderCircle
+                  size={17}
+                  className="animate-spin"
+                  aria-hidden="true"
+                />
+              ) : (
+                <Download size={17} aria-hidden="true" />
+              )}
+              {activeAction === "download" ? "Creando..." : "Descargar"}
+            </button>
+
+            {supportsFileSharing && (
+              <button
+                type="button"
+                onClick={shareImage}
+                disabled={activeAction !== null}
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-yellow-500 px-5 py-3 text-sm font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-wait disabled:opacity-60"
+              >
+                {activeAction === "share" ? (
+                  <LoaderCircle
+                    size={17}
+                    className="animate-spin"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <Share2 size={17} aria-hidden="true" />
+                )}
+                {activeAction === "share" ? "Preparando..." : "Compartir"}
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {error && (
+        <p
+          role="alert"
+          aria-live="polite"
+          className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300"
+        >
+          {error}
+        </p>
+      )}
+    </section>
+  )
+}

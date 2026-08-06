@@ -6,6 +6,7 @@ import { BookOpenCheck, LibraryBig, Plus, Search, Sparkles, Trash2 } from "lucid
 import CoverImage from "@/components/CoverImage"
 import LectometerMark from "@/components/LectometerMark"
 import ReadRibbon from "@/components/readers/ReadRibbon"
+import ReaderShareImageButton from "@/components/readers/ReaderShareImageButton"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
 import { getReaderRecommendations } from "@/lib/readerRecommendations"
@@ -88,6 +89,8 @@ export default function ReaderLibraryManager({
           </div>
         ))}
       </div>
+
+      {libraryBooks.length > 0 && <ReaderShareImageButton />}
 
       <div className="mt-7 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="relative w-full lg:max-w-md">
