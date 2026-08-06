@@ -361,19 +361,13 @@ export default function MePage() {
         >
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-xl font-semibold">Nombre de usuario</h2>
-                <span className="rounded-full bg-zinc-800 px-2.5 py-1 text-[11px] text-zinc-400">
-                  Sólo visible para ti
-                </span>
-              </div>
               {editingUsername ? (
-                <form onSubmit={saveUsername} className="mt-4 max-w-md">
+                <form onSubmit={saveUsername} className="max-w-md">
                   <label
                     htmlFor="account-username"
-                    className="text-sm font-medium text-zinc-200"
+                    className="text-xl font-semibold text-zinc-100"
                   >
-                    Usuario de la cuenta
+                    Nombre de usuario
                   </label>
                   <div className="mt-2 flex rounded-xl border border-zinc-700 bg-zinc-800 focus-within:border-yellow-500">
                     <span className="flex items-center pl-4 text-zinc-500">@</span>
@@ -392,8 +386,8 @@ export default function MePage() {
                     />
                   </div>
                   <p className="mt-2 text-xs text-zinc-500">
-                    Identifica tu cuenta privada. No cambia el usuario ni la URL
-                    de tu perfil lector.
+                    Puede mostrarse en tu página de autor si así lo eliges. No
+                    cambia el usuario ni la URL de tu perfil lector.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <button
@@ -416,9 +410,12 @@ export default function MePage() {
                   </div>
                 </form>
               ) : (
-                <p className="mt-4 text-lg font-medium text-zinc-100">
-                  @{savedUsername ?? profile?.username}
-                </p>
+                <h2 className="text-xl text-zinc-400">
+                  Nombre de usuario:{" "}
+                  <span className="font-semibold text-zinc-100">
+                    @{savedUsername ?? profile?.username}
+                  </span>
+                </h2>
               )}
               <p className="mt-1 break-all text-sm text-zinc-400">
                 {user.email}
