@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { Search } from "lucide-react"
+import { LibraryBig, Search } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
 import LectometerMark from "@/components/LectometerMark"
 import ReadRibbon from "@/components/readers/ReadRibbon"
@@ -47,9 +47,24 @@ export default function PublicReaderLibrary({
 
   if (library.length === 0) {
     return (
-      <p className="mt-6 max-w-2xl text-zinc-400">
-        Esta biblioteca todavía no tiene libros.
-      </p>
+      <div className="mt-7 rounded-3xl border border-dashed border-zinc-700 bg-zinc-950/40 px-5 py-9 text-center sm:px-8 sm:py-11">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-500/10 text-yellow-400">
+          <LibraryBig aria-hidden="true" />
+        </div>
+        <h3 className="mt-4 text-lg font-semibold text-zinc-100">
+          Esta biblioteca todavía está vacía
+        </h3>
+        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-zinc-400">
+          Mientras llegan sus primeras lecturas, puedes descubrir más historias
+          independientes en el catálogo.
+        </p>
+        <Link
+          href="/book-directory"
+          className="mt-5 inline-flex rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-zinc-950 transition hover:bg-yellow-400"
+        >
+          Explorar catálogo indie
+        </Link>
+      </div>
     )
   }
 
