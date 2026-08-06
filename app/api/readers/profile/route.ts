@@ -314,9 +314,28 @@ export async function PUT(request: Request) {
     )
   }
 
-  const authorProfile = await getOwnedAuthorProfile(user.id)
+  const [{ data: previousReaderProfile, error: previousProfileError }, authorProfile] =
+    await Promise.all([
+      supabaseAdmin
+        .from("reader_profiles")
+        .select("username, avatar_url")
+        .eq("user_id", user.id)
+        .maybeSingle(),
+      getOwnedAuthorProfile(user.id),
+    ])
+
+  if (previousProfileError || !isPlainObject(body)) {
+    return NextResponse.json(
+      { error: "No se pudo cargar el perfil lector" },
+      { status: 500 }
+    )
+  }
+
   const profile = parseProfileInput(
-    body,
+    {
+      ...body,
+      username: previousReaderProfile?.username ?? body.username,
+    },
     user.id,
     authorProfile?.avatarUrl ?? ""
   )
@@ -324,61 +343,11 @@ export async function PUT(request: Request) {
   if (!profile) {
     return NextResponse.json(
       {
-        error: "Revisa el nombre de usuario, los limites de texto y las URLs.",
+        error: previousReaderProfile
+          ? "Revisa los límites de texto y las URLs."
+          : "Revisa el usuario público, los límites de texto y las URLs.",
       },
       { status: 400 }
-    )
-  }
-
-  const [
-    { data: readerUsername },
-    { data: accountUsername },
-    { data: previousReaderProfile },
-  ] =
-    await Promise.all([
-      supabaseAdmin
-        .from("reader_profiles")
-        .select("user_id")
-        .ilike("username", profile.username)
-        .neq("user_id", user.id)
-        .limit(1)
-        .maybeSingle(),
-      supabaseAdmin
-        .from("profiles")
-        .select("id")
-        .ilike("username", profile.username)
-        .neq("id", user.id)
-        .limit(1)
-        .maybeSingle(),
-      supabaseAdmin
-        .from("reader_profiles")
-        .select("avatar_url")
-        .eq("user_id", user.id)
-        .maybeSingle(),
-    ])
-
-  if (readerUsername || accountUsername) {
-    return NextResponse.json(
-      { error: "Ese nombre de usuario ya esta en uso" },
-      { status: 409 }
-    )
-  }
-
-  const { error: accountError } = await supabaseAdmin
-    .from("profiles")
-    .update({ username: profile.username })
-    .eq("id", user.id)
-
-  if (accountError) {
-    const conflict = accountError.code === "23505"
-
-    return NextResponse.json(
-      {
-        error: conflict
-          ? "Ese nombre de usuario ya esta en uso"
-          : "No se pudo actualizar el perfil",
-      },
-      { status: conflict ? 409 : 500 }
     )
   }
 

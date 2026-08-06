@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
@@ -68,6 +68,12 @@ export default function MePage() {
   const [users, setUsers] = useState<UserRow[]>([])
   const [loadingUsers, setLoadingUsers] = useState(false)
   const [sendingLaunch, setSendingLaunch] = useState(false)
+  const [editingUsername, setEditingUsername] = useState(false)
+  const [usernameDraft, setUsernameDraft] = useState("")
+  const [savedUsername, setSavedUsername] = useState<string | null>(null)
+  const [savingUsername, setSavingUsername] = useState(false)
+  const [usernameError, setUsernameError] = useState("")
+  const [usernameNotice, setUsernameNotice] = useState("")
 
   useEffect(() => {
     if (!loading && !user) router.replace("/login")
@@ -220,6 +226,51 @@ export default function MePage() {
     router.push("/login")
   }
 
+  function startUsernameEdit() {
+    setUsernameDraft(savedUsername ?? profile?.username ?? "")
+    setUsernameError("")
+    setUsernameNotice("")
+    setEditingUsername(true)
+  }
+
+  async function saveUsername(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setSavingUsername(true)
+    setUsernameError("")
+    setUsernameNotice("")
+
+    try {
+      const response = await fetch("/api/account/username", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: usernameDraft }),
+      })
+      const result = await response.json()
+
+      if (response.status === 401) {
+        router.replace("/login")
+        return
+      }
+
+      if (!response.ok) {
+        setUsernameError(result.error ?? "No se pudo actualizar el nombre de usuario")
+        return
+      }
+
+      const nextUsername = String(result.username ?? usernameDraft)
+      setSavedUsername(nextUsername)
+      setEditingUsername(false)
+      setUsernameNotice("Nombre de usuario actualizado.")
+      router.refresh()
+    } catch {
+      setUsernameError("No se pudo conectar con tu cuenta")
+    } finally {
+      setSavingUsername(false)
+    }
+  }
+
   async function sendLaunchEmail() {
     const firstConfirmation = window.confirm(
       "⚠️ Vas a enviar el correo de lanzamiento a todos los registros. ¿Continuar?"
@@ -307,7 +358,10 @@ export default function MePage() {
           </p>
         </header>
 
-        <section className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
+        <section
+          id="cuenta"
+          className="scroll-mt-28 rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7"
+        >
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="flex flex-wrap items-center gap-2">
@@ -316,9 +370,59 @@ export default function MePage() {
                   Sólo visible para ti
                 </span>
               </div>
-              <p className="mt-4 text-lg font-medium text-zinc-100">
-                @{profile?.username}
-              </p>
+              {editingUsername ? (
+                <form onSubmit={saveUsername} className="mt-4 max-w-md">
+                  <label
+                    htmlFor="account-username"
+                    className="text-sm font-medium text-zinc-200"
+                  >
+                    Usuario de la cuenta
+                  </label>
+                  <div className="mt-2 flex rounded-xl border border-zinc-700 bg-zinc-800 focus-within:border-yellow-500">
+                    <span className="flex items-center pl-4 text-zinc-500">@</span>
+                    <input
+                      id="account-username"
+                      value={usernameDraft}
+                      required
+                      minLength={3}
+                      maxLength={30}
+                      pattern="[a-zA-Z0-9][a-zA-Z0-9._-]{1,28}[a-zA-Z0-9]"
+                      onChange={(event) =>
+                        setUsernameDraft(event.target.value.toLowerCase())
+                      }
+                      className="min-w-0 flex-1 bg-transparent p-3 outline-none"
+                      autoComplete="username"
+                    />
+                  </div>
+                  <p className="mt-2 text-xs text-zinc-500">
+                    Identifica tu cuenta privada. No cambia el usuario ni la URL
+                    de tu perfil lector.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <button
+                      type="submit"
+                      disabled={savingUsername}
+                      className="rounded-xl bg-yellow-500 px-4 py-2 text-sm font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50"
+                    >
+                      {savingUsername ? "Guardando..." : "Guardar usuario"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditingUsername(false)
+                        setUsernameError("")
+                      }}
+                      className="rounded-xl bg-zinc-800 px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-700"
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <p className="mt-4 text-lg font-medium text-zinc-100">
+                  @{savedUsername ?? profile?.username}
+                </p>
+              )}
               <p className="mt-1 break-all text-sm text-zinc-400">
                 {user.email}
               </p>
@@ -326,15 +430,28 @@ export default function MePage() {
                 Esta cuenta te permite administrar tu biblioteca y los perfiles
                 públicos que decidas crear.
               </p>
+              {usernameError && (
+                <p className="mt-3 text-sm text-red-300" role="alert">
+                  {usernameError}
+                </p>
+              )}
+              {usernameNotice && (
+                <p className="mt-3 text-sm text-green-300" role="status">
+                  {usernameNotice}
+                </p>
+              )}
             </div>
 
             <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
-              <Link
-                href="/me/profile"
-                className="rounded-xl border border-zinc-700 px-4 py-2.5 text-center text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
-              >
-                Editar nombre de usuario
-              </Link>
+              {!editingUsername && (
+                <button
+                  type="button"
+                  onClick={startUsernameEdit}
+                  className="rounded-xl border border-zinc-700 px-4 py-2.5 text-center text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+                >
+                  Editar nombre de usuario
+                </button>
+              )}
               <button
                 type="button"
                 onClick={signOut}

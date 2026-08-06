@@ -53,6 +53,9 @@ const EMPTY_PROFILE: ReaderProfileForm = {
 export default function ReaderProfileEditorPage() {
   const router = useRouter()
   const [profile, setProfile] = useState<ReaderProfileForm>(EMPTY_PROFILE)
+  const [hasReaderProfile, setHasReaderProfile] = useState(false)
+  const [confirmedPermanentUsername, setConfirmedPermanentUsername] =
+    useState(false)
   const [authorProfile, setAuthorProfile] = useState<AuthorProfileImport | null>(null)
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
   const [avatarPreview, setAvatarPreview] = useState("")
@@ -86,6 +89,7 @@ export default function ReaderProfileEditorPage() {
       }
 
       setProfile(result.profile)
+      setHasReaderProfile(result.hasReaderProfile === true)
       setAuthorProfile(result.authorProfile ?? null)
       setLoading(false)
     }
@@ -195,6 +199,12 @@ export default function ReaderProfileEditorPage() {
 
   async function saveProfile(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+
+    if (!hasReaderProfile && !confirmedPermanentUsername) {
+      setMessage("Confirma que entiendes que el usuario público no podrá cambiarse.")
+      return
+    }
+
     setSaving(true)
     setMessage("")
     setNotice("")
@@ -274,6 +284,70 @@ export default function ReaderProfileEditorPage() {
         </div>
 
         <form onSubmit={saveProfile} className="space-y-6">
+          <section className="rounded-3xl border border-yellow-500/25 bg-yellow-500/5 p-5 sm:p-7">
+            {hasReaderProfile ? (
+              <div>
+                <p className="text-sm font-medium text-zinc-200">
+                  Usuario público del lector
+                </p>
+                <p className="mt-2 text-lg font-semibold text-yellow-300">
+                  @{profile.username}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                  Este usuario forma parte de la dirección de tu perfil y ya no
+                  puede cambiarse. Tu nombre visible sí se puede editar abajo.
+                </p>
+              </div>
+            ) : (
+              <div>
+                <label
+                  htmlFor="reader-username"
+                  className="text-sm font-medium text-zinc-200"
+                >
+                  Elige tu usuario público como lector
+                </label>
+                <div className="mt-2 flex rounded-xl border border-zinc-700 bg-zinc-800 focus-within:border-yellow-500">
+                  <span className="flex items-center pl-4 text-zinc-500">@</span>
+                  <input
+                    id="reader-username"
+                    value={profile.username}
+                    required
+                    minLength={3}
+                    maxLength={30}
+                    pattern="[a-zA-Z0-9][a-zA-Z0-9._-]{1,28}[a-zA-Z0-9]"
+                    onChange={(event) =>
+                      updateField("username", event.target.value.toLowerCase())
+                    }
+                    className="min-w-0 flex-1 bg-transparent p-3 outline-none"
+                    autoComplete="username"
+                    aria-describedby="reader-username-help"
+                  />
+                </div>
+                <p
+                  id="reader-username-help"
+                  className="mt-3 text-sm leading-relaxed text-yellow-200/80"
+                >
+                  Se usará en tu perfil público: /readers/{profile.username || "tu_usuario"}.
+                  Elígelo con cuidado: una vez creado el perfil no podrás cambiarlo.
+                </p>
+                <label className="mt-4 flex cursor-pointer items-start gap-3">
+                  <input
+                    type="checkbox"
+                    checked={confirmedPermanentUsername}
+                    required
+                    onChange={(event) =>
+                      setConfirmedPermanentUsername(event.target.checked)
+                    }
+                    className="mt-1 h-4 w-4 accent-yellow-500"
+                  />
+                  <span className="text-sm text-zinc-300">
+                    Entiendo que este usuario y la URL de mi perfil serán permanentes.
+                  </span>
+                </label>
+              </div>
+            )}
+          </section>
+
           <section className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
               <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-3xl border border-zinc-700 bg-zinc-800">
@@ -360,29 +434,6 @@ export default function ReaderProfileEditorPage() {
           )}
 
           <section className="space-y-5 rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
-            <div>
-              <label htmlFor="username" className="text-sm font-medium text-zinc-200">
-                Nombre de usuario
-              </label>
-              <div className="mt-2 flex rounded-xl border border-zinc-700 bg-zinc-800 focus-within:border-yellow-500">
-                <span className="flex items-center pl-4 text-zinc-500">@</span>
-                <input
-                  id="username"
-                  value={profile.username}
-                  required
-                  minLength={3}
-                  maxLength={30}
-                  pattern="[a-zA-Z0-9][a-zA-Z0-9._-]{1,28}[a-zA-Z0-9]"
-                  onChange={(event) => updateField("username", event.target.value.toLowerCase())}
-                  className="w-full bg-transparent p-3 outline-none"
-                  placeholder="tu_usuario"
-                />
-              </div>
-              <p className="mt-2 text-xs text-zinc-500">
-                Será parte de tu URL. Usa entre 3 y 30 letras, números, puntos, guiones o guiones bajos.
-              </p>
-            </div>
-
             <div>
               <label htmlFor="display-name" className="text-sm font-medium text-zinc-200">
                 Nombre visible
@@ -498,7 +549,7 @@ export default function ReaderProfileEditorPage() {
             </button>
             <button
               type="submit"
-              disabled={saving}
+              disabled={saving || (!hasReaderProfile && !confirmedPermanentUsername)}
               className="rounded-xl bg-yellow-500 px-6 py-3 font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {saving ? "Guardando..." : "Guardar perfil"}
