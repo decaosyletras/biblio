@@ -124,6 +124,7 @@ export default function AuthorSocialSection({
 
                         <input
                             value={author[social] ?? ""}
+                            maxLength={500}
                             onChange={e =>
                                 updateField(
                                     social,

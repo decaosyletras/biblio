@@ -743,6 +743,7 @@ if (isPro) {
                         </div>
                         <input
                             value={author.website ?? ""}
+                            maxLength={500}
                             onChange={e => updateField("website", e.target.value)}
                             placeholder="https://tuweb.com"
                             className="mt-4 w-full rounded-xl border border-zinc-700 bg-zinc-900 p-3 text-white"

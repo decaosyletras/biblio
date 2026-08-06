@@ -120,6 +120,14 @@ export default function ReaderProfileEditorPage() {
     setProfile((current) => ({ ...current, [field]: value }))
   }
 
+  function normalizeUrl(url: string) {
+    const value = url.trim()
+
+    if (!value || /^https?:\/\//i.test(value)) return value
+
+    return `https://${value}`
+  }
+
   async function importAuthorProfile() {
     if (!authorProfile) return
 
@@ -211,13 +219,23 @@ export default function ReaderProfileEditorPage() {
 
     try {
       const avatarUrl = await uploadAvatar()
+      const normalizedProfile = {
+        ...profile,
+        instagramUrl: normalizeUrl(profile.instagramUrl),
+        tiktokUrl: normalizeUrl(profile.tiktokUrl),
+        wattpadUrl: normalizeUrl(profile.wattpadUrl),
+        threadsUrl: normalizeUrl(profile.threadsUrl),
+        facebookUrl: normalizeUrl(profile.facebookUrl),
+        youtubeUrl: normalizeUrl(profile.youtubeUrl),
+        websiteUrl: normalizeUrl(profile.websiteUrl),
+      }
       const response = await fetch("/api/readers/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...profile,
+          ...normalizedProfile,
           avatarUrl,
         }),
       })
@@ -472,7 +490,9 @@ export default function ReaderProfileEditorPage() {
             <div>
               <h2 className="text-xl font-semibold">Enlaces</h2>
               <p className="mt-1 text-sm text-zinc-400">
-                Son opcionales y solo se mostrarán si publicas tu perfil.
+                Son opcionales y solo se mostrarán si publicas tu perfil. Puedes
+                omitir <span className="font-medium text-zinc-300">https://</span>;
+                lo completaremos al guardar.
               </p>
             </div>
 
@@ -491,7 +511,8 @@ export default function ReaderProfileEditorPage() {
                 </label>
                 <input
                   id={field}
-                  type="url"
+                  type="text"
+                  inputMode="url"
                   value={profile[field]}
                   maxLength={500}
                   onChange={(event) => updateField(field, event.target.value)}

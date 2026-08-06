@@ -52,6 +52,16 @@ const STRING_FIELDS = new Set([
   "current_news",
 ])
 
+const PUBLIC_LINK_FIELDS = new Set([
+  "website",
+  "instagram",
+  "threads",
+  "facebook",
+  "tiktok",
+  "youtube",
+  "wattpad",
+])
+
 const BOOLEAN_FIELDS = new Set([
   "show_bibliography",
   "show_book_details",
@@ -90,7 +100,9 @@ function isValidCalendarDate(value: string) {
 
 function isSafeUpdateValue(field: string, value: unknown) {
   if (STRING_FIELDS.has(field)) {
-    return typeof value === "string" && value.length <= 10000
+    const maxLength = PUBLIC_LINK_FIELDS.has(field) ? 500 : 10000
+
+    return typeof value === "string" && value.length <= maxLength
   }
 
   if (BOOLEAN_FIELDS.has(field)) {
