@@ -36,10 +36,10 @@ export default function ShareAuthorButton({
       aria-label={failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir perfil"}
       aria-live="polite"
       title={failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir"}
-      className={`inline-flex w-fit items-center justify-center whitespace-nowrap text-sm text-white shadow-lg transition-all duration-150 active:scale-95 ${
+      className={`inline-flex items-center justify-center whitespace-nowrap text-sm text-white shadow-lg transition-all duration-150 active:scale-95 ${
         iconOnly
-          ? "h-10 w-12 rounded-xl"
-          : "gap-2 rounded-lg px-4 py-2.5"
+          ? "h-12 w-12 rounded-xl"
+          : "w-fit gap-2 rounded-lg px-4 py-2.5"
       }`}
       style={{ backgroundColor }}
     >
