@@ -6,9 +6,11 @@ import { Check, Share2 } from "lucide-react"
 export default function ShareAuthorButton({
   path,
   backgroundColor,
+  iconOnly = false,
 }: {
   path: string
   backgroundColor: string
+  iconOnly?: boolean
 }) {
   const [copied, setCopied] = useState(false)
   const [failed, setFailed] = useState(false)
@@ -31,8 +33,14 @@ export default function ShareAuthorButton({
     <button
       type="button"
       onClick={copyAuthorLink}
+      aria-label={failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir perfil"}
       aria-live="polite"
-      className="inline-flex w-fit items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2.5 text-sm text-white transition-all duration-150 active:scale-95"
+      title={failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir"}
+      className={`inline-flex w-fit items-center justify-center whitespace-nowrap text-sm text-white shadow-lg transition-all duration-150 active:scale-95 ${
+        iconOnly
+          ? "h-10 w-10 rounded-xl"
+          : "gap-2 rounded-lg px-4 py-2.5"
+      }`}
       style={{ backgroundColor }}
     >
       {copied ? (
@@ -40,7 +48,9 @@ export default function ShareAuthorButton({
       ) : (
         <Share2 size={16} aria-hidden="true" />
       )}
-      {failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir"}
+      {!iconOnly && (
+        failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir"
+      )}
     </button>
   )
 }
