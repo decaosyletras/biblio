@@ -31,10 +31,7 @@ export default function CardReader({
           <h2 className="truncate font-semibold text-white">
             {reader.displayName}
           </h2>
-          <p className="mt-0.5 truncate text-xs text-zinc-500">
-            @{reader.username}
-          </p>
-          <p className="mt-2 line-clamp-2 text-sm text-zinc-500">
+          <p className="mt-2 line-clamp-3 text-sm text-zinc-500">
             {reader.bio || "Lector de literatura independiente"}
           </p>
           <p className="mt-3 text-xs text-zinc-400">

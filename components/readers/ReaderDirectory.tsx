@@ -24,7 +24,7 @@ export default function ReaderDirectory({
 
     return readers.filter((reader) =>
       normalize(
-        `${reader.displayName} ${reader.username} ${reader.bio}`
+        `${reader.displayName} ${reader.bio}`
       ).includes(normalizedQuery)
     )
   }, [query, readers])
@@ -37,7 +37,7 @@ export default function ReaderDirectory({
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Buscar lector..."
-          aria-label="Buscar por nombre o usuario"
+          aria-label="Buscar por nombre o biografía"
           className="w-full rounded-xl bg-zinc-800 p-4 text-zinc-100 outline-none"
         />
       </div>
