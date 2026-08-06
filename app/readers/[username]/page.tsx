@@ -78,6 +78,8 @@ export default async function ReaderProfilePage({
           label: "Instagram",
           href: profile.instagram_url,
           icon: <FaInstagram aria-hidden="true" />,
+          className:
+            "border-pink-500/30 bg-pink-500/10 text-pink-200 hover:border-pink-400/60 hover:bg-pink-500/15",
         }
       : null,
     profile.tiktok_url
@@ -85,6 +87,8 @@ export default async function ReaderProfilePage({
           label: "TikTok",
           href: profile.tiktok_url,
           icon: <SiTiktok aria-hidden="true" />,
+          className:
+            "border-cyan-400/30 bg-cyan-400/10 text-cyan-100 hover:border-cyan-300/60 hover:bg-cyan-400/15",
         }
       : null,
     profile.wattpad_url
@@ -92,6 +96,8 @@ export default async function ReaderProfilePage({
           label: "Wattpad",
           href: profile.wattpad_url,
           icon: <SiWattpad aria-hidden="true" />,
+          className:
+            "border-orange-500/30 bg-orange-500/10 text-orange-200 hover:border-orange-400/60 hover:bg-orange-500/15",
         }
       : null,
     profile.threads_url
@@ -99,6 +105,8 @@ export default async function ReaderProfilePage({
           label: "Threads",
           href: profile.threads_url,
           icon: <SiThreads aria-hidden="true" />,
+          className:
+            "border-zinc-600 bg-zinc-800 text-zinc-100 hover:border-zinc-400 hover:bg-zinc-700",
         }
       : null,
     profile.facebook_url
@@ -106,6 +114,8 @@ export default async function ReaderProfilePage({
           label: "Facebook",
           href: profile.facebook_url,
           icon: <FaFacebook aria-hidden="true" />,
+          className:
+            "border-blue-500/30 bg-blue-500/10 text-blue-200 hover:border-blue-400/60 hover:bg-blue-500/15",
         }
       : null,
     profile.youtube_url
@@ -113,6 +123,8 @@ export default async function ReaderProfilePage({
           label: "YouTube",
           href: profile.youtube_url,
           icon: <FaYoutube aria-hidden="true" />,
+          className:
+            "border-red-500/30 bg-red-500/10 text-red-200 hover:border-red-400/60 hover:bg-red-500/15",
         }
       : null,
     profile.website_url
@@ -120,12 +132,15 @@ export default async function ReaderProfilePage({
           label: "Sitio web",
           href: profile.website_url,
           icon: <ExternalLink size={16} aria-hidden="true" />,
+          className:
+            "border-yellow-500/30 bg-yellow-500/10 text-yellow-200 hover:border-yellow-400/60 hover:bg-yellow-500/15",
         }
       : null,
   ].filter(Boolean) as Array<{
     label: string
     href: string
     icon: React.ReactNode
+    className: string
   }>
 
   return (
@@ -151,10 +166,10 @@ export default async function ReaderProfilePage({
               </div>
 
               <div className="pb-1">
-                <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                <h1 className="break-words text-2xl font-semibold tracking-tight sm:text-3xl">
                   {profile.display_name}
                 </h1>
-                <p className="mt-1 text-zinc-400">@{profile.username}</p>
+                <p className="mt-1 text-sm text-zinc-400">@{profile.username}</p>
               </div>
             </div>
 
@@ -165,26 +180,33 @@ export default async function ReaderProfilePage({
             )}
 
             {(links.length > 0 || linkedAuthor) && (
-              <div className="mt-7 flex flex-wrap gap-3">
-                {links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm transition hover:border-yellow-500/60 hover:text-yellow-300"
-                  >
-                    {link.icon}
-                    {link.label}
-                  </a>
-                ))}
+              <div className="mt-7 space-y-4">
+                {links.length > 0 && (
+                  <div>
+                    <h2 className="text-sm font-medium text-zinc-400">Enlaces</h2>
+                    <div className="mt-3 flex flex-wrap gap-2.5">
+                      {links.map((link) => (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className={`inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-sm font-medium shadow-sm transition ${link.className}`}
+                        >
+                          <span className="text-lg leading-none">{link.icon}</span>
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {linkedAuthor && (
                   <Link
                     href={`/authors/${linkedAuthor.slug}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm transition hover:border-yellow-500/60 hover:text-yellow-300"
+                    className="inline-flex items-center gap-2 rounded-xl border border-blue-500/30 bg-blue-500/10 px-3.5 py-2 text-sm font-medium text-blue-200 transition hover:border-blue-400/60 hover:bg-blue-500/15"
                   >
                     <BookOpen size={16} aria-hidden="true" />
-                    Ver página de autor
+                    Página de autor: {linkedAuthor.name}
                   </Link>
                 )}
               </div>
