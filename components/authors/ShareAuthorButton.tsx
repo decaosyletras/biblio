@@ -38,7 +38,7 @@ export default function ShareAuthorButton({
       title={failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir"}
       className={`inline-flex items-center justify-center whitespace-nowrap text-sm text-white shadow-lg transition-all duration-150 active:scale-95 ${
         iconOnly
-          ? "h-12 w-12 rounded-xl"
+          ? "h-10 w-12 rounded-xl"
           : "w-fit gap-2 rounded-lg px-4 py-2.5"
       }`}
       style={{ backgroundColor }}
