@@ -111,7 +111,7 @@ function parseProfileInput(
   const websiteUrl = normalizeOptionalUrl(body.websiteUrl)
 
   if (!USERNAME_PATTERN.test(username) || RESERVED_USERNAMES.has(username)) {
-    return { profile: null, error: "El usuario público no es válido." }
+    return { profile: null, error: "La dirección del perfil no es válida." }
   }
 
   if (displayName.length < 1 || displayName.length > 60) {
@@ -422,7 +422,7 @@ export async function PUT(request: Request) {
     return NextResponse.json(
       {
         error: conflict
-          ? "Ese nombre de usuario ya esta en uso"
+          ? "Esa dirección de perfil ya está en uso"
           : "No se pudo guardar el perfil publico",
       },
       { status: conflict ? 409 : 500 }

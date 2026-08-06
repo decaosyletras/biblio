@@ -498,8 +498,11 @@ export default function MePage() {
                 </p>
               ) : readerProfile ? (
                 <div className="mt-5">
-                  <p className="font-medium text-zinc-100">
-                    @{readerProfile.username}
+                  <p className="text-sm text-zinc-400">
+                    Dirección del perfil:{" "}
+                    <span className="font-medium text-zinc-200">
+                      /readers/{readerProfile.username}
+                    </span>
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                     Comparte tus gustos, enlaces y biblioteca cuando decidas

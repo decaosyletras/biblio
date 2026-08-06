@@ -209,7 +209,7 @@ export default function ReaderProfileEditorPage() {
     event.preventDefault()
 
     if (!hasReaderProfile && !confirmedPermanentUsername) {
-      setMessage("Confirma que entiendes que el usuario público no podrá cambiarse.")
+      setMessage("Confirma que entiendes que la dirección del perfil no podrá cambiarse.")
       return
     }
 
@@ -306,14 +306,14 @@ export default function ReaderProfileEditorPage() {
             {hasReaderProfile ? (
               <div>
                 <p className="text-sm font-medium text-zinc-200">
-                  Usuario público del lector
+                  Dirección permanente
                 </p>
-                <p className="mt-2 text-lg font-semibold text-yellow-300">
-                  @{profile.username}
+                <p className="mt-2 break-all text-lg font-semibold text-yellow-300">
+                  /readers/{profile.username}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-                  Este usuario forma parte de la dirección de tu perfil y ya no
-                  puede cambiarse. Tu nombre visible sí se puede editar abajo.
+                  Esta dirección no puede cambiarse, pero tu nombre visible sí
+                  se puede editar abajo.
                 </p>
               </div>
             ) : (
@@ -322,10 +322,10 @@ export default function ReaderProfileEditorPage() {
                   htmlFor="reader-username"
                   className="text-sm font-medium text-zinc-200"
                 >
-                  Elige tu usuario público como lector
+                  Elige la dirección de tu perfil
                 </label>
                 <div className="mt-2 flex rounded-xl border border-zinc-700 bg-zinc-800 focus-within:border-yellow-500">
-                  <span className="flex items-center pl-4 text-zinc-500">@</span>
+                  <span className="flex items-center pl-4 text-zinc-500">/readers/</span>
                   <input
                     id="reader-username"
                     value={profile.username}
@@ -345,8 +345,8 @@ export default function ReaderProfileEditorPage() {
                   id="reader-username-help"
                   className="mt-3 text-sm leading-relaxed text-yellow-200/80"
                 >
-                  Se usará en tu perfil público: /readers/{profile.username || "tu_usuario"}.
-                  Elígelo con cuidado: una vez creado el perfil no podrás cambiarlo.
+                  Ésta será la dirección para compartir tu perfil. Elígela con
+                  cuidado: una vez creado no podrás cambiarla.
                 </p>
                 <label className="mt-4 flex cursor-pointer items-start gap-3">
                   <input
@@ -359,7 +359,7 @@ export default function ReaderProfileEditorPage() {
                     className="mt-1 h-4 w-4 accent-yellow-500"
                   />
                   <span className="text-sm text-zinc-300">
-                    Entiendo que este usuario y la URL de mi perfil serán permanentes.
+                    Entiendo que la dirección de mi perfil será permanente.
                   </span>
                 </label>
               </div>
