@@ -362,7 +362,7 @@ export default function MePage() {
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-xl font-semibold">Cuenta privada</h2>
+                <h2 className="text-xl font-semibold">Nombre de usuario</h2>
                 <span className="rounded-full bg-zinc-800 px-2.5 py-1 text-[11px] text-zinc-400">
                   Sólo visible para ti
                 </span>
@@ -422,10 +422,6 @@ export default function MePage() {
               )}
               <p className="mt-1 break-all text-sm text-zinc-400">
                 {user.email}
-              </p>
-              <p className="mt-3 max-w-xl text-xs leading-relaxed text-zinc-500">
-                Esta cuenta te permite administrar tu biblioteca y los perfiles
-                públicos que decidas crear.
               </p>
               {usernameError && (
                 <p className="mt-3 text-sm text-red-300" role="alert">
