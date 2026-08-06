@@ -41,7 +41,7 @@ type AuthorClaim = {
 }
 
 function claimStatusLabel(status: AuthorClaim["status"]) {
-  if (status === "approved") return "Autor verificado"
+  if (status === "approved") return "Solicitud aprobada"
   if (status === "pending") return "Pendiente de revisión"
   return "Solicitud rechazada"
 }
@@ -348,10 +348,7 @@ export default function MePage() {
     <main className="min-h-screen bg-zinc-950 text-white">
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-8 sm:px-6 sm:py-12">
         <header>
-          <p className="text-sm font-medium uppercase tracking-[0.18em] text-yellow-400">
-            Cuenta y perfiles
-          </p>
-          <h1 className="mt-2 text-3xl font-bold sm:text-4xl">Mi espacio</h1>
+          <h1 className="text-3xl font-semibold sm:text-4xl">Mi espacio</h1>
           <p className="mt-3 max-w-2xl text-zinc-400">
             Una cuenta, dos formas de participar. Puedes tener perfil lector,
             página de autor o ambos.
@@ -475,12 +472,12 @@ export default function MePage() {
             <article className="flex min-h-full flex-col rounded-3xl border border-yellow-500/25 bg-yellow-500/5 p-5 sm:p-7">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yellow-400">
+                  <h3 className="text-2xl font-semibold text-zinc-100">
                     Perfil lector
-                  </p>
-                  <h3 className="mt-2 text-2xl font-bold">
-                    Tu identidad como lector
                   </h3>
+                  <p className="mt-1 text-sm text-zinc-400">
+                    Tu identidad como lector
+                  </p>
                 </div>
 
                 {!loadingReaderData && (
@@ -548,9 +545,9 @@ export default function MePage() {
               )}
 
               <div className="mt-auto border-t border-yellow-500/15 pt-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-yellow-400">
+                <h4 className="text-base font-semibold text-zinc-100">
                   Biblioteca personal
-                </p>
+                </h4>
                 <p className="mt-2 text-sm text-zinc-400">
                   {loadingReaderData
                     ? "Cargando tus lecturas..."
@@ -573,12 +570,12 @@ export default function MePage() {
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-400">
+                  <h3 className="text-2xl font-semibold text-zinc-100">
                     Página de autor
-                  </p>
-                  <h3 className="mt-2 text-2xl font-bold">
-                    Tu identidad como escritor
                   </h3>
+                  <p className="mt-1 text-sm text-zinc-400">
+                    Tu identidad como escritor
+                  </p>
                 </div>
 
                 {!authorStateLoading && (
@@ -595,8 +592,8 @@ export default function MePage() {
                   >
                     {author
                       ? author.pro
-                        ? "Autor verificado · PRO"
-                        : "Autor verificado"
+                        ? "Verificado · PRO"
+                        : "Verificado"
                       : pendingClaim
                         ? "Pendiente"
                         : rejectedClaim
@@ -622,12 +619,7 @@ export default function MePage() {
                         className="h-16 w-16 rounded-2xl border border-blue-500/20 object-cover"
                       />
                     )}
-                    <div>
-                      <p className="text-lg font-semibold">{author.name}</p>
-                      <p className="mt-1 text-sm text-green-300">
-                        Autor verificado{author.pro ? " con perfil PRO" : ""}
-                      </p>
-                    </div>
+                    <p className="text-lg font-semibold">{author.name}</p>
                   </div>
 
                   <div className="mt-5 flex flex-wrap gap-2">
