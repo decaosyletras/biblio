@@ -417,6 +417,9 @@ export default function MePage() {
                   </span>
                 </h2>
               )}
+              <p className="mt-1 break-all text-sm text-zinc-400">
+                {user.email}
+              </p>
               {usernameError && (
                 <p className="mt-3 text-sm text-red-300" role="alert">
                   {usernameError}
