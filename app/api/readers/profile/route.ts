@@ -71,21 +71,26 @@ function isReaderAvatarUrl(value: string, userId: string) {
 function isAllowedAvatar(
   value: string,
   userId: string,
-  authorAvatar: string
+  authorAvatar: string,
+  existingAvatar: string
 ) {
   return value.length <= 2048 && (
     !value ||
     isReaderAvatarUrl(value, userId) ||
-    Boolean(authorAvatar && value === authorAvatar)
+    Boolean(authorAvatar && value === authorAvatar) ||
+    Boolean(existingAvatar && value === existingAvatar)
   )
 }
 
 function parseProfileInput(
   body: unknown,
   userId: string,
-  authorAvatar: string
-): ReaderProfileInput | null {
-  if (!isPlainObject(body)) return null
+  authorAvatar: string,
+  existingAvatar: string
+): { profile: ReaderProfileInput | null; error: string } {
+  if (!isPlainObject(body)) {
+    return { profile: null, error: "Solicitud inválida." }
+  }
 
   const username = typeof body.username === "string"
     ? body.username.trim().toLowerCase()
@@ -105,38 +110,76 @@ function parseProfileInput(
   const youtubeUrl = normalizeOptionalUrl(body.youtubeUrl)
   const websiteUrl = normalizeOptionalUrl(body.websiteUrl)
 
+  if (!USERNAME_PATTERN.test(username) || RESERVED_USERNAMES.has(username)) {
+    return { profile: null, error: "El usuario público no es válido." }
+  }
+
+  if (displayName.length < 1 || displayName.length > 60) {
+    return {
+      profile: null,
+      error: "El nombre visible debe tener entre 1 y 60 caracteres.",
+    }
+  }
+
+  if (bio.length > 240) {
+    return {
+      profile: null,
+      error: "La biografía no puede superar 240 caracteres.",
+    }
+  }
+
+  if (!isAllowedAvatar(avatarUrl, userId, authorAvatar, existingAvatar)) {
+    return {
+      profile: null,
+      error: "El avatar no es válido. Vuelve a elegir la imagen.",
+    }
+  }
+
   if (
-    !USERNAME_PATTERN.test(username) ||
-    RESERVED_USERNAMES.has(username) ||
-    displayName.length < 1 ||
-    displayName.length > 60 ||
-    bio.length > 240 ||
-    !isAllowedAvatar(avatarUrl, userId, authorAvatar) ||
     instagramUrl === null ||
     tiktokUrl === null ||
     wattpadUrl === null ||
     threadsUrl === null ||
     facebookUrl === null ||
     youtubeUrl === null ||
-    websiteUrl === null ||
-    typeof body.isPublic !== "boolean"
+    websiteUrl === null
   ) {
-    return null
+    const invalidLink = [
+      ["Instagram", instagramUrl],
+      ["TikTok", tiktokUrl],
+      ["Wattpad", wattpadUrl],
+      ["Threads", threadsUrl],
+      ["Facebook", facebookUrl],
+      ["YouTube", youtubeUrl],
+      ["Sitio web", websiteUrl],
+    ].find(([, value]) => value === null)
+
+    return {
+      profile: null,
+      error: `Revisa el enlace de ${invalidLink?.[0] ?? "redes sociales"}.`,
+    }
+  }
+
+  if (typeof body.isPublic !== "boolean") {
+    return { profile: null, error: "El estado público del perfil no es válido." }
   }
 
   return {
-    username,
-    displayName,
-    bio,
-    avatarUrl,
-    instagramUrl,
-    tiktokUrl,
-    wattpadUrl,
-    threadsUrl,
-    facebookUrl,
-    youtubeUrl,
-    websiteUrl,
-    isPublic: body.isPublic,
+    profile: {
+      username,
+      displayName,
+      bio,
+      avatarUrl,
+      instagramUrl,
+      tiktokUrl,
+      wattpadUrl,
+      threadsUrl,
+      facebookUrl,
+      youtubeUrl,
+      websiteUrl,
+      isPublic: body.isPublic,
+    },
+    error: "",
   }
 }
 
@@ -331,25 +374,26 @@ export async function PUT(request: Request) {
     )
   }
 
-  const profile = parseProfileInput(
+  const parsedProfile = parseProfileInput(
     {
       ...body,
       username: previousReaderProfile?.username ?? body.username,
     },
     user.id,
-    authorProfile?.avatarUrl ?? ""
+    authorProfile?.avatarUrl ?? "",
+    previousReaderProfile?.avatar_url ?? ""
   )
 
-  if (!profile) {
+  if (!parsedProfile.profile) {
     return NextResponse.json(
       {
-        error: previousReaderProfile
-          ? "Revisa los límites de texto y las URLs."
-          : "Revisa el usuario público, los límites de texto y las URLs.",
+        error: parsedProfile.error,
       },
       { status: 400 }
     )
   }
+
+  const profile = parsedProfile.profile
 
   const { error: readerError } = await supabaseAdmin
     .from("reader_profiles")
