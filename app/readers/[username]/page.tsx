@@ -159,7 +159,7 @@ export default async function ReaderProfilePage({
               </div>
 
               <div className="min-w-0 flex-1 pb-1">
-                <h1 className="break-words text-3xl font-bold tracking-tight sm:text-4xl">
+                <h1 className="max-w-full break-all text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
                   {profile.display_name}
                 </h1>
 
