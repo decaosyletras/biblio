@@ -9,6 +9,7 @@ import { getBookCover } from "@/lib/amazon"
 import { getPublicReaderLibrary } from "@/lib/readerLibrary"
 import { getLinkedAuthorForPublicReader } from "@/lib/publicProfileLinks"
 import PublicReaderLibrary from "@/components/readers/PublicReaderLibrary"
+import ShareProfileButton from "@/components/ShareProfileButton"
 
 export const dynamic = "force-dynamic"
 
@@ -163,7 +164,6 @@ export default async function ReaderProfilePage({
                   {profile.display_name}
                 </h1>
 
-                {(links.length > 0 || linkedAuthor) && (
               <div className="mt-5 space-y-3">
                 {links.length > 0 && (
                     <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
@@ -183,17 +183,24 @@ export default async function ReaderProfilePage({
                       ))}
                     </div>
                 )}
-                {linkedAuthor && (
-                  <Link
-                    href={`/authors/${linkedAuthor.slug}`}
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-blue-400/25 bg-blue-500/10 px-2.5 py-1.5 text-xs font-medium text-blue-200 transition hover:border-blue-300/50 hover:bg-blue-500/15 sm:px-3 sm:py-2 sm:text-sm"
-                  >
-                    <BookOpen size={16} aria-hidden="true" />
-                    Página de autor: {linkedAuthor.name}
-                  </Link>
-                )}
+                <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
+                  {linkedAuthor && (
+                    <Link
+                      href={`/authors/${linkedAuthor.slug}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-blue-400/25 bg-blue-500/10 px-2.5 py-1.5 text-xs font-medium text-blue-200 transition hover:border-blue-300/50 hover:bg-blue-500/15 sm:px-3 sm:py-2 sm:text-sm"
+                    >
+                      <BookOpen size={16} aria-hidden="true" />
+                      Página de autor: {linkedAuthor.name}
+                    </Link>
+                  )}
+                  <ShareProfileButton
+                    path={`/readers/${profile.username}`}
+                    backgroundColor="#eab308"
+                    textColor="#18181b"
+                    compact
+                  />
+                </div>
               </div>
-            )}
               </div>
           </div>
         </section>
