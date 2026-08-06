@@ -315,7 +315,7 @@ export default async function AuthorPage({
     }
 
     const heroHasBanner = isPro && author.banner;
-    const bannerHeight = "h-[500px] md:h-[420px]"
+    const bannerHeight = isPro ? "h-[500px] md:h-[420px]" : ""
 
     const heroTextColor = heroHasBanner
         ? "#ffffff"
@@ -361,17 +361,26 @@ export default async function AuthorPage({
                 ) : (
                     <>
                         <div
-                            className={`absolute inset-x-0 top-0 ${bannerHeight}`}
+                            className={`absolute inset-0 ${bannerHeight}`}
                             style={{
-                                background: authorTheme.bg
+                                background: isPro
+                                    ? authorTheme.bg
+                                    : "linear-gradient(135deg, #0b1d3a 0%, #111827 42%, #151518 78%, #09090b 100%)"
                             }}
                         ></div>
+
+                        {!isPro && (
+                            <>
+                                <div className="absolute -left-24 -top-28 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
+                                <div className="absolute -bottom-28 right-0 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl" />
+                            </>
+                        )}
 
                     </>
                 )}
 
-                <div className="absolute inset-x-0 bottom-0 z-10">
-                    <div className="max-w-5xl mx-auto px-6 pb-10">
+                <div className={isPro ? "absolute inset-x-0 bottom-0 z-10" : "relative z-10"}>
+                    <div className={`max-w-5xl mx-auto px-6 ${isPro ? "pb-10" : "py-10 sm:py-12 lg:py-14"}`}>
 
                         <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 items-center lg:items-start">
 
@@ -573,6 +582,13 @@ export default async function AuthorPage({
                                     </div>
                                 )}
 
+                                <div className="mt-4 flex justify-center lg:justify-start">
+                                    <ShareProfileButton
+                                        path={`/authors/${author.slug}`}
+                                        backgroundColor={authorTheme.primary}
+                                    />
+                                </div>
+
                                 {/* El botón separado se comenta para conservar una cabecera limpia.
                                     Cuando existe un perfil lector público, el @username superior
                                     funciona como enlace y mantiene el control en show_username. */}
@@ -645,11 +661,6 @@ export default async function AuthorPage({
                         >
                             Editar página
                         </Link>
-
-                        <ShareProfileButton
-                            path={`/authors/${author.slug}`}
-                            backgroundColor={authorTheme.primary}
-                        />
 
                     </div>
 
