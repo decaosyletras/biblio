@@ -169,7 +169,6 @@ export default async function ReaderProfilePage({
                 <h1 className="break-words text-2xl font-semibold tracking-tight sm:text-3xl">
                   {profile.display_name}
                 </h1>
-                <p className="mt-1 text-sm text-zinc-400">@{profile.username}</p>
               </div>
             </div>
 
