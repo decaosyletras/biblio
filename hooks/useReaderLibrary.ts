@@ -8,6 +8,8 @@ export type ReaderLibraryState = Record<
   string,
   {
     isRead: boolean
+    readAt: string | null
+    readYear: number | null
   }
 >
 
@@ -62,6 +64,9 @@ export function useReaderLibrary() {
           if (typeof item.bookId === "string") {
             nextLibrary[item.bookId] = {
               isRead: item.isRead === true,
+              readAt: typeof item.readAt === "string" ? item.readAt : null,
+              readYear:
+                typeof item.readYear === "number" ? item.readYear : null,
             }
           }
         }
@@ -151,6 +156,14 @@ export function useReaderLibrary() {
         ...current,
         [bookId]: {
           isRead: result.book?.isRead === true,
+          readAt:
+            typeof result.book?.readAt === "string"
+              ? result.book.readAt
+              : null,
+          readYear:
+            typeof result.book?.readYear === "number"
+              ? result.book.readYear
+              : null,
         },
       }))
 
@@ -201,6 +214,61 @@ export function useReaderLibrary() {
       return false
     } finally {
       setPendingBookId(null)
+    }
+  }
+
+  async function setReadYear(bookIds: string[], readYear: number | null) {
+    if (!requireSession() || bookIds.length === 0) return false
+
+    setMessage("")
+
+    try {
+      const response = await fetch("/api/readers/books", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bookIds, readYear }),
+      })
+      const result = await response.json()
+
+      if (response.status === 401) {
+        router.push("/login")
+        return false
+      }
+
+      if (!response.ok) {
+        setMessage(result.error ?? "No se pudo guardar el año de lectura.")
+        return false
+      }
+
+      const updatedYears = new Map<string, number | null>(
+        (result.books ?? []).flatMap(
+          (item: { bookId?: unknown; readYear?: unknown }) =>
+            typeof item.bookId === "string"
+              ? [[
+                  item.bookId,
+                  typeof item.readYear === "number" ? item.readYear : null,
+                ] as const]
+              : []
+        )
+      )
+
+      setLibrary((current) => {
+        const next = { ...current }
+
+        for (const [bookId, year] of updatedYears) {
+          const membership = next[bookId]
+          if (membership) next[bookId] = { ...membership, readYear: year }
+        }
+
+        return next
+      })
+
+      return updatedYears.size > 0
+    } catch {
+      setMessage("No se pudo conectar con la biblioteca.")
+      return false
     }
   }
 
@@ -289,6 +357,7 @@ export function useReaderLibrary() {
     pendingBookId,
     message,
     saveBook,
+    setReadYear,
     removeBook,
     hideBook,
     restoreBook,

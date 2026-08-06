@@ -7,6 +7,7 @@ import CoverImage from "@/components/CoverImage"
 import LectometerMark from "@/components/LectometerMark"
 import ReadRibbon from "@/components/readers/ReadRibbon"
 import ReaderShareImageButton from "@/components/readers/ReaderShareImageButton"
+import ReaderYearOrganizer from "@/components/readers/ReaderYearOrganizer"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
 import { getReaderRecommendations } from "@/lib/readerRecommendations"
@@ -26,6 +27,7 @@ export default function ReaderLibraryManager({
     pendingBookId,
     message,
     saveBook,
+    setReadYear,
     removeBook,
   } = useReaderLibrary()
   const [query, setQuery] = useState("")
@@ -91,6 +93,14 @@ export default function ReaderLibraryManager({
       </div>
 
       {libraryBooks.length > 0 && <ReaderShareImageButton />}
+
+      {readCount > 0 && (
+        <ReaderYearOrganizer
+          books={libraryBooks}
+          library={library}
+          onSave={setReadYear}
+        />
+      )}
 
       <div className="mt-7 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="relative w-full lg:max-w-md">
@@ -193,6 +203,19 @@ export default function ReaderLibraryManager({
                   <p className="mt-1 line-clamp-2 text-xs text-zinc-500">
                     {(book.authorNames ?? []).join(", ") || "Autor independiente"}
                   </p>
+                  {membership?.isRead && (
+                    <p
+                      className={`mt-1.5 text-[11px] font-medium ${
+                        membership.readYear
+                          ? "text-green-300"
+                          : "text-zinc-500"
+                      }`}
+                    >
+                      {membership.readYear
+                        ? `Lectura de ${membership.readYear}`
+                        : "Año de lectura sin asignar"}
+                    </p>
+                  )}
 
                   <div className="mt-auto grid grid-cols-[minmax(0,1fr)_auto] gap-2 pt-3 sm:flex">
                     <button

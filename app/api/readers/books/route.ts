@@ -10,7 +10,7 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
   return Boolean(value && typeof value === "object" && !Array.isArray(value))
 }
 
-function validateMutationRequest(request: Request) {
+function validateMutationRequest(request: Request, maxContentLength = 2000) {
   const origin = request.headers.get("origin")
   const requestOrigin = new URL(request.url).origin
 
@@ -23,7 +23,7 @@ function validateMutationRequest(request: Request) {
 
   const contentLength = Number(request.headers.get("content-length") ?? 0)
 
-  if (!Number.isFinite(contentLength) || contentLength > 2000) {
+  if (!Number.isFinite(contentLength) || contentLength > maxContentLength) {
     return NextResponse.json(
       { error: "Solicitud demasiado grande" },
       { status: 413 }
@@ -83,7 +83,7 @@ export async function GET() {
 
   const { data, error } = await context.supabase
     .from("reader_books")
-    .select("book_id, is_read, added_at, read_at, updated_at")
+    .select("book_id, is_read, added_at, read_at, read_year, updated_at")
     .eq("user_id", context.user.id)
     .order("added_at", { ascending: false })
 
@@ -100,6 +100,7 @@ export async function GET() {
       isRead: item.is_read,
       addedAt: item.added_at,
       readAt: item.read_at,
+      readYear: item.read_year,
       updatedAt: item.updated_at,
     })),
   })
@@ -203,7 +204,7 @@ export async function PUT(request: Request) {
       })
 
   const { data, error } = await mutation
-    .select("book_id, is_read, added_at, read_at, updated_at")
+    .select("book_id, is_read, added_at, read_at, read_year, updated_at")
     .single()
 
   if (error || !data) {
@@ -220,8 +221,88 @@ export async function PUT(request: Request) {
       isRead: data.is_read,
       addedAt: data.added_at,
       readAt: data.read_at,
+      readYear: data.read_year,
       updatedAt: data.updated_at,
     },
+  })
+}
+
+export async function PATCH(request: Request) {
+  const invalidRequest = validateMutationRequest(request, 10_000)
+
+  if (invalidRequest) return invalidRequest
+
+  const context = await getAuthenticatedContext()
+
+  if (!context) {
+    return NextResponse.json({ error: "No autenticado" }, { status: 401 })
+  }
+
+  const allowed = await enforceLibraryWriteLimit(request, context.user.id)
+
+  if (allowed === null) {
+    return NextResponse.json(
+      { error: "No se pudo validar la solicitud" },
+      { status: 500 }
+    )
+  }
+
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "Demasiados cambios. Espera unos minutos." },
+      { status: 429 }
+    )
+  }
+
+  const body = await parseBody(request)
+  const rawBookIds = body?.bookIds
+  const readYear = body?.readYear
+  const currentYear = new Date().getUTCFullYear()
+
+  if (
+    !Array.isArray(rawBookIds) ||
+    rawBookIds.length === 0 ||
+    rawBookIds.length > 200 ||
+    !rawBookIds.every(
+      (bookId): bookId is string =>
+        typeof bookId === "string" && UUID_PATTERN.test(bookId)
+    ) ||
+    !(
+      readYear === null ||
+      (typeof readYear === "number" &&
+        Number.isInteger(readYear) &&
+        readYear >= 1900 &&
+        readYear <= currentYear)
+    )
+  ) {
+    return NextResponse.json(
+      { error: "Año o selección de libros inválidos" },
+      { status: 400 }
+    )
+  }
+
+  const bookIds = [...new Set(rawBookIds)]
+  const { data, error } = await context.supabase
+    .from("reader_books")
+    .update({ read_year: readYear })
+    .eq("user_id", context.user.id)
+    .eq("is_read", true)
+    .in("book_id", bookIds)
+    .select("book_id, read_year")
+
+  if (error) {
+    return NextResponse.json(
+      { error: "No se pudo guardar el año de lectura" },
+      { status: 500 }
+    )
+  }
+
+  return NextResponse.json({
+    success: true,
+    books: (data ?? []).map((item) => ({
+      bookId: item.book_id,
+      readYear: item.read_year,
+    })),
   })
 }
 
