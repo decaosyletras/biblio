@@ -78,8 +78,7 @@ export default async function ReaderProfilePage({
           label: "Instagram",
           href: profile.instagram_url,
           icon: <FaInstagram aria-hidden="true" />,
-          className:
-            "border-pink-500/30 bg-pink-500/10 text-pink-200 hover:border-pink-400/60 hover:bg-pink-500/15",
+          iconClassName: "text-pink-400",
         }
       : null,
     profile.tiktok_url
@@ -87,8 +86,7 @@ export default async function ReaderProfilePage({
           label: "TikTok",
           href: profile.tiktok_url,
           icon: <SiTiktok aria-hidden="true" />,
-          className:
-            "border-cyan-400/30 bg-cyan-400/10 text-cyan-100 hover:border-cyan-300/60 hover:bg-cyan-400/15",
+          iconClassName: "text-cyan-300",
         }
       : null,
     profile.wattpad_url
@@ -96,8 +94,7 @@ export default async function ReaderProfilePage({
           label: "Wattpad",
           href: profile.wattpad_url,
           icon: <SiWattpad aria-hidden="true" />,
-          className:
-            "border-orange-500/30 bg-orange-500/10 text-orange-200 hover:border-orange-400/60 hover:bg-orange-500/15",
+          iconClassName: "text-orange-400",
         }
       : null,
     profile.threads_url
@@ -105,8 +102,7 @@ export default async function ReaderProfilePage({
           label: "Threads",
           href: profile.threads_url,
           icon: <SiThreads aria-hidden="true" />,
-          className:
-            "border-zinc-600 bg-zinc-800 text-zinc-100 hover:border-zinc-400 hover:bg-zinc-700",
+          iconClassName: "text-zinc-100",
         }
       : null,
     profile.facebook_url
@@ -114,8 +110,7 @@ export default async function ReaderProfilePage({
           label: "Facebook",
           href: profile.facebook_url,
           icon: <FaFacebook aria-hidden="true" />,
-          className:
-            "border-blue-500/30 bg-blue-500/10 text-blue-200 hover:border-blue-400/60 hover:bg-blue-500/15",
+          iconClassName: "text-blue-400",
         }
       : null,
     profile.youtube_url
@@ -123,8 +118,7 @@ export default async function ReaderProfilePage({
           label: "YouTube",
           href: profile.youtube_url,
           icon: <FaYoutube aria-hidden="true" />,
-          className:
-            "border-red-500/30 bg-red-500/10 text-red-200 hover:border-red-400/60 hover:bg-red-500/15",
+          iconClassName: "text-red-400",
         }
       : null,
     profile.website_url
@@ -132,26 +126,25 @@ export default async function ReaderProfilePage({
           label: "Sitio web",
           href: profile.website_url,
           icon: <ExternalLink size={16} aria-hidden="true" />,
-          className:
-            "border-yellow-500/30 bg-yellow-500/10 text-yellow-200 hover:border-yellow-400/60 hover:bg-yellow-500/15",
+          iconClassName: "text-yellow-400",
         }
       : null,
   ].filter(Boolean) as Array<{
     label: string
     href: string
     icon: React.ReactNode
-    className: string
+    iconClassName: string
   }>
 
   return (
-    <main className="min-h-screen px-4 py-14 text-white sm:px-6">
-      <div className="mx-auto max-w-4xl">
-        <section className="overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-900/80 shadow-2xl shadow-black/30">
-          <div className="h-32 bg-gradient-to-r from-yellow-500/25 via-amber-400/10 to-zinc-900 sm:h-40" />
+    <main className="min-h-screen px-4 py-10 text-white sm:px-6 sm:py-14">
+      <div className="mx-auto max-w-5xl">
+        <section className="relative overflow-hidden rounded-[2rem] border border-blue-500/15 bg-gradient-to-br from-blue-950 via-slate-950 to-zinc-950 shadow-2xl shadow-black/30">
+          <div className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
+          <div className="absolute -right-20 bottom-0 h-56 w-56 rounded-full bg-yellow-500/10 blur-3xl" />
 
-          <div className="px-5 pb-8 sm:px-10">
-            <div className="-mt-16 flex flex-col gap-5 sm:-mt-20 sm:flex-row sm:items-end">
-              <div className="flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-[2rem] border-4 border-zinc-900 bg-zinc-800 shadow-xl sm:h-40 sm:w-40">
+          <div className="relative flex min-h-[310px] flex-col items-center justify-end gap-5 px-5 py-9 text-center sm:px-8 sm:py-11 lg:flex-row lg:items-end lg:gap-8 lg:px-10 lg:text-left">
+              <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-[1.75rem] border border-yellow-500/50 bg-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,.45)] sm:h-36 sm:w-36 lg:h-40 lg:w-40 lg:rounded-[2rem]">
                 {profile.avatar_url ? (
                   // Reader avatars come from the installation's runtime Supabase host.
                   // eslint-disable-next-line @next/next/no-img-element
@@ -161,48 +154,39 @@ export default async function ReaderProfilePage({
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <UserRound className="h-16 w-16 text-zinc-500" />
+                  <UserRound className="h-14 w-14 text-yellow-500/60 sm:h-16 sm:w-16" />
                 )}
               </div>
 
-              <div className="pb-1">
-                <h1 className="break-words text-2xl font-semibold tracking-tight sm:text-3xl">
+              <div className="min-w-0 flex-1 pb-1">
+                <h1 className="break-words text-3xl font-bold tracking-tight sm:text-4xl">
                   {profile.display_name}
                 </h1>
-              </div>
-            </div>
 
-            {profile.bio && (
-              <p className="mt-7 max-w-2xl whitespace-pre-wrap leading-relaxed text-zinc-300">
-                {profile.bio}
-              </p>
-            )}
-
-            {(links.length > 0 || linkedAuthor) && (
-              <div className="mt-7 space-y-4">
+                {(links.length > 0 || linkedAuthor) && (
+              <div className="mt-5 space-y-3">
                 {links.length > 0 && (
-                  <div>
-                    <h2 className="text-sm font-medium text-zinc-400">Enlaces</h2>
-                    <div className="mt-3 flex flex-wrap gap-2.5">
+                    <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
                       {links.map((link) => (
                         <a
                           key={link.label}
                           href={link.href}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className={`inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-sm font-medium shadow-sm transition ${link.className}`}
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-700/80 bg-zinc-900/75 px-2.5 py-1.5 text-xs font-medium text-zinc-200 shadow-sm transition hover:border-zinc-500 hover:bg-zinc-800 sm:px-3 sm:py-2 sm:text-sm"
                         >
-                          <span className="text-lg leading-none">{link.icon}</span>
+                          <span className={`text-base leading-none ${link.iconClassName}`}>
+                            {link.icon}
+                          </span>
                           {link.label}
                         </a>
                       ))}
                     </div>
-                  </div>
                 )}
                 {linkedAuthor && (
                   <Link
                     href={`/authors/${linkedAuthor.slug}`}
-                    className="inline-flex items-center gap-2 rounded-xl border border-blue-500/30 bg-blue-500/10 px-3.5 py-2 text-sm font-medium text-blue-200 transition hover:border-blue-400/60 hover:bg-blue-500/15"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-blue-400/25 bg-blue-500/10 px-2.5 py-1.5 text-xs font-medium text-blue-200 transition hover:border-blue-300/50 hover:bg-blue-500/15 sm:px-3 sm:py-2 sm:text-sm"
                   >
                     <BookOpen size={16} aria-hidden="true" />
                     Página de autor: {linkedAuthor.name}
@@ -210,8 +194,21 @@ export default async function ReaderProfilePage({
                 )}
               </div>
             )}
+              </div>
           </div>
         </section>
+
+        {profile.bio && (
+          <section className="mt-8 rounded-[2rem] border border-zinc-800 bg-zinc-900/60 p-6 sm:p-9">
+            <div className="flex items-center gap-3">
+              <div className="h-9 w-1.5 rounded-full bg-yellow-500" />
+              <h2 className="text-2xl font-semibold">Sobre este lector</h2>
+            </div>
+            <p className="mt-5 max-w-3xl whitespace-pre-wrap leading-8 text-zinc-300">
+              {profile.bio}
+            </p>
+          </section>
+        )}
 
         <section className="mt-8 rounded-[2rem] border border-zinc-800 bg-zinc-900/60 p-6 sm:p-9">
           <div className="flex items-center gap-3">
