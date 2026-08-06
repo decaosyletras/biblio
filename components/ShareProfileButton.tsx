@@ -8,11 +8,13 @@ export default function ShareProfileButton({
   backgroundColor,
   textColor = "#ffffff",
   compact = false,
+  iconOnly = false,
 }: {
   path: string
   backgroundColor: string
   textColor?: string
   compact?: boolean
+  iconOnly?: boolean
 }) {
   const [copied, setCopied] = useState(false)
   const [failed, setFailed] = useState(false)
@@ -35,11 +37,15 @@ export default function ShareProfileButton({
     <button
       type="button"
       onClick={copyProfileLink}
+      aria-label={failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir perfil"}
       aria-live="polite"
-      className={`inline-flex w-fit items-center justify-center whitespace-nowrap font-medium transition-all duration-150 active:scale-95 ${
-        compact
-          ? "gap-1.5 rounded-lg px-2.5 py-1.5 text-xs sm:px-3 sm:py-2 sm:text-sm"
-          : "gap-2 rounded-lg px-4 py-2.5 text-sm"
+      title={failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir"}
+      className={`inline-flex items-center justify-center whitespace-nowrap font-medium shadow-lg transition-all duration-150 active:scale-95 ${
+        iconOnly
+          ? "h-10 w-12 rounded-xl text-sm"
+          : compact
+            ? "w-fit gap-1.5 rounded-lg px-2.5 py-1.5 text-xs sm:px-3 sm:py-2 sm:text-sm"
+            : "w-fit gap-2 rounded-lg px-4 py-2.5 text-sm"
       }`}
       style={{ backgroundColor, color: textColor }}
     >
@@ -48,7 +54,9 @@ export default function ShareProfileButton({
       ) : (
         <Share2 size={16} aria-hidden="true" />
       )}
-      {failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir"}
+      {!iconOnly && (
+        failed ? "No se pudo copiar" : copied ? "Liga copiada" : "Compartir"
+      )}
     </button>
   )
 }

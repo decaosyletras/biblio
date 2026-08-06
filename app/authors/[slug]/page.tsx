@@ -379,6 +379,14 @@ export default async function AuthorPage({
                     </>
                 )}
 
+                <div className="absolute right-4 top-4 z-20 sm:right-6 sm:top-6">
+                    <ShareProfileButton
+                        path={`/authors/${author.slug}`}
+                        backgroundColor={authorTheme.primary}
+                        iconOnly
+                    />
+                </div>
+
                 <div className={isPro ? "absolute inset-x-0 bottom-0 z-10" : "relative z-10"}>
                     <div className={`max-w-5xl mx-auto px-6 ${isPro ? "pb-10" : "py-10 sm:py-12 lg:py-14"}`}>
 
@@ -581,13 +589,6 @@ export default async function AuthorPage({
 
                                     </div>
                                 )}
-
-                                <div className="mt-4 flex justify-center lg:justify-start">
-                                    <ShareProfileButton
-                                        path={`/authors/${author.slug}`}
-                                        backgroundColor={authorTheme.primary}
-                                    />
-                                </div>
 
                                 {/* El botón separado se comenta para conservar una cabecera limpia.
                                     Cuando existe un perfil lector público, el @username superior

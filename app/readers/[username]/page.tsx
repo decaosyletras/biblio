@@ -143,6 +143,14 @@ export default async function ReaderProfilePage({
         <section className="relative overflow-hidden rounded-[2rem] border border-blue-500/15 bg-gradient-to-br from-blue-950 via-slate-950 to-zinc-950 shadow-2xl shadow-black/30">
           <div className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
           <div className="absolute -right-20 bottom-0 h-56 w-56 rounded-full bg-yellow-500/10 blur-3xl" />
+          <div className="absolute right-4 top-4 z-20 sm:right-6 sm:top-6">
+            <ShareProfileButton
+              path={`/readers/${profile.username}`}
+              backgroundColor="#eab308"
+              textColor="#18181b"
+              iconOnly
+            />
+          </div>
 
           <div className="relative flex min-h-[310px] flex-col items-center justify-end gap-5 px-5 py-9 text-center sm:px-8 sm:py-11 lg:flex-row lg:items-end lg:gap-8 lg:px-10 lg:text-left">
               <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-[1.75rem] border border-yellow-500/50 bg-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,.45)] sm:h-36 sm:w-36 lg:h-40 lg:w-40 lg:rounded-[2rem]">
@@ -193,12 +201,6 @@ export default async function ReaderProfilePage({
                       Página de autor: {linkedAuthor.name}
                     </Link>
                   )}
-                  <ShareProfileButton
-                    path={`/readers/${profile.username}`}
-                    backgroundColor="#eab308"
-                    textColor="#18181b"
-                    compact
-                  />
                 </div>
               </div>
               </div>
