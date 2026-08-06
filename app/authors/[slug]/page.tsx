@@ -377,6 +377,7 @@ export default async function AuthorPage({
                     <ShareAuthorButton
                         path={`/authors/${author.slug}`}
                         backgroundColor={authorTheme.primary}
+                        iconOnly
                     />
                 </div>
 
