@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useCurrentUser } from "@/hooks/useCurrentUser"
+import { notifyReaderAchievementsChanged } from "@/lib/readerAchievementEvents"
 
 export type ReaderLibraryState = Record<
   string,
@@ -179,6 +180,7 @@ export function useReaderLibrary() {
         },
       }))
 
+      notifyReaderAchievementsChanged()
       return true
     } catch {
       setMessage("No se pudo conectar con la biblioteca.")
@@ -220,6 +222,7 @@ export function useReaderLibrary() {
         return next
       })
 
+      notifyReaderAchievementsChanged()
       return true
     } catch {
       setMessage("No se pudo conectar con la biblioteca.")
@@ -272,6 +275,7 @@ export function useReaderLibrary() {
         }
       })
 
+      notifyReaderAchievementsChanged()
       return true
     } catch {
       setMessage("No se pudo conectar con la biblioteca.")
@@ -329,6 +333,7 @@ export function useReaderLibrary() {
         return next
       })
 
+      if (updatedYears.size > 0) notifyReaderAchievementsChanged()
       return updatedYears.size > 0
     } catch {
       setMessage("No se pudo conectar con la biblioteca.")

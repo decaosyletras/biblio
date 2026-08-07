@@ -22,6 +22,7 @@ type ReaderProfileForm = {
   websiteUrl: string
   isPublic: boolean
   showFavorites: boolean
+  showAchievements: boolean
 }
 
 type AuthorProfileImport = {
@@ -50,6 +51,7 @@ const EMPTY_PROFILE: ReaderProfileForm = {
   websiteUrl: "",
   isPublic: false,
   showFavorites: true,
+  showAchievements: true,
 }
 
 export default function ReaderProfileEditorPage() {
@@ -558,6 +560,28 @@ export default function ReaderProfileEditorPage() {
                   <span className="mt-1 block text-sm leading-relaxed text-zinc-400">
                     Si lo desactivas, tus favoritos seguirán guardados y solo
                     tú podrás verlos en tu biblioteca.
+                  </span>
+                </span>
+              </label>
+            </div>
+
+            <div className="border-t border-zinc-800 pt-5">
+              <label className="flex cursor-pointer items-start gap-4">
+                <input
+                  type="checkbox"
+                  checked={profile.showAchievements}
+                  onChange={(event) =>
+                    updateField("showAchievements", event.target.checked)
+                  }
+                  className="mt-1 h-5 w-5 accent-amber-500"
+                />
+                <span>
+                  <span className="block font-semibold">
+                    Mostrar mis logros en mi perfil público
+                  </span>
+                  <span className="mt-1 block text-sm leading-relaxed text-zinc-400">
+                    Solo se mostrarán hasta tres medallas. El resto de tu avance
+                    seguirá siendo privado.
                   </span>
                 </span>
               </label>

@@ -8,6 +8,7 @@ import LectometerMark from "@/components/LectometerMark"
 import ReadRibbon from "@/components/readers/ReadRibbon"
 import ReaderShareImageButton from "@/components/readers/ReaderShareImageButton"
 import ReaderYearOrganizer from "@/components/readers/ReaderYearOrganizer"
+import ReaderAchievements from "@/components/readers/ReaderAchievements"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
 import { getReaderRecommendations } from "@/lib/readerRecommendations"
@@ -92,6 +93,8 @@ export default function ReaderLibraryManager({
           </div>
         ))}
       </div>
+
+      <ReaderAchievements />
 
       {libraryBooks.length > 0 && <ReaderShareImageButton />}
 

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
+import { unlockReaderAchievement } from "@/lib/readerAchievements"
 
 const USERNAME_PATTERN = /^[a-z0-9][a-z0-9._-]{1,28}[a-z0-9]$/
 const RESERVED_USERNAMES = new Set([
@@ -28,6 +29,7 @@ type ReaderProfileInput = {
   websiteUrl: string
   isPublic: boolean
   showFavorites: boolean
+  showAchievements: boolean
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -172,6 +174,13 @@ function parseProfileInput(
     }
   }
 
+  if (typeof body.showAchievements !== "boolean") {
+    return {
+      profile: null,
+      error: "La visibilidad de logros no es válida.",
+    }
+  }
+
   return {
     profile: {
       username,
@@ -187,6 +196,7 @@ function parseProfileInput(
       websiteUrl,
       isPublic: body.isPublic,
       showFavorites: body.showFavorites,
+      showAchievements: body.showAchievements,
     },
     error: "",
   }
@@ -264,7 +274,8 @@ export async function GET() {
           youtube_url,
           website_url,
           is_public,
-          show_favorites
+          show_favorites,
+          show_achievements
         `)
         .eq("user_id", user.id)
         .maybeSingle(),
@@ -298,6 +309,7 @@ export async function GET() {
       websiteUrl: readerProfile?.website_url ?? "",
       isPublic: readerProfile?.is_public ?? false,
       showFavorites: readerProfile?.show_favorites ?? true,
+      showAchievements: readerProfile?.show_achievements ?? true,
     },
     hasReaderProfile: Boolean(readerProfile),
     authorProfile,
@@ -423,6 +435,7 @@ export async function PUT(request: Request) {
       website_url: profile.websiteUrl,
       is_public: profile.isPublic,
       show_favorites: profile.showFavorites,
+      show_achievements: profile.showAchievements,
       updated_at: new Date().toISOString(),
     }, {
       onConflict: "user_id",
@@ -440,6 +453,8 @@ export async function PUT(request: Request) {
       { status: conflict ? 409 : 500 }
     )
   }
+
+  await unlockReaderAchievement(user.id, "profile-identity")
 
   let avatarCleanupWarning = ""
   const hadStoredReaderAvatar = isReaderAvatarUrl(

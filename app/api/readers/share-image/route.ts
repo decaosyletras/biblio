@@ -6,6 +6,7 @@ import { enforceRateLimit } from "@/lib/server-rate-limit"
 import { getBooks } from "@/lib/books"
 import { getBookCover } from "@/lib/amazon"
 import { isShareImageTheme } from "@/lib/shareImageThemes"
+import { unlockReaderAchievement } from "@/lib/readerAchievements"
 import {
   READER_SHARE_IMAGE_SIZES,
   renderReaderShareImage,
@@ -160,6 +161,8 @@ export async function GET(request: Request) {
     .replace(/[^a-z0-9._-]+/g, "-")
     .replace(/^-+|-+$/g, "") || "lector"
   const size = READER_SHARE_IMAGE_SIZES[formatValue]
+
+  await unlockReaderAchievement(user.id, "library-image")
 
   return new ImageResponse(
     renderReaderShareImage({

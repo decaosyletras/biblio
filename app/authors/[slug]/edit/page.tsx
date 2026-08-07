@@ -13,6 +13,7 @@ import AuthorBooksSection from "@/components/authors/edit/AuthorBooksSection"
 import AuthorContactSection from "@/components/authors/edit/AuthorContactSection"
 import AuthorBookSettingsSection from "@/components/authors/edit/AuthorBookSettingsSection"
 import AuthorInterviewSection from "@/components/authors/edit/AuthorInterviewSection"
+import AuthorPageReadiness from "@/components/authors/edit/AuthorPageReadiness"
 import ProCheckoutButton from "@/components/ProCheckoutButton"
 import { Download } from "lucide-react"
 import { fetchAvatarCopy } from "@/lib/avatarImport"
@@ -684,6 +685,8 @@ if (isPro) {
                         {author.name}
                     </p>
                 </div>
+
+                <AuthorPageReadiness author={author} books={books} />
 
                 <AuthorBasicSection
                     author={author}

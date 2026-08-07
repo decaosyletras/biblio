@@ -16,6 +16,7 @@ import {
   isShareImageTheme,
   type ShareImageTheme,
 } from "@/lib/shareImageThemes"
+import { notifyReaderAchievementsChanged } from "@/lib/readerAchievementEvents"
 
 type ShareImageFormat = "story" | "post"
 
@@ -120,6 +121,7 @@ export default function BookRecommendationShareButton({
     }
 
     const blob = await response.blob()
+    notifyReaderAchievementsChanged()
     const filename = `recomendacion-${bookSlug}-${selectedFormat}.png`
 
     return {

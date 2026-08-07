@@ -11,6 +11,8 @@ import { getLinkedAuthorForPublicReader } from "@/lib/publicProfileLinks"
 import PublicReaderLibrary from "@/components/readers/PublicReaderLibrary"
 import PublicReaderFavorites from "@/components/readers/PublicReaderFavorites"
 import ShareProfileButton from "@/components/ShareProfileButton"
+import PublicReaderAchievements from "@/components/readers/PublicReaderAchievements"
+import { getPublicReaderAchievements } from "@/lib/readerAchievements"
 
 export const dynamic = "force-dynamic"
 
@@ -27,6 +29,7 @@ type ReaderProfile = {
   youtube_url: string
   website_url: string
   show_favorites: boolean
+  show_achievements: boolean
 }
 
 // Se conserva la cuadrícula pública anterior como referencia mientras la nueva
@@ -60,7 +63,8 @@ export default async function ReaderProfilePage({
       facebook_url,
       youtube_url,
       website_url,
-      show_favorites
+      show_favorites,
+      show_achievements
     `)
     .eq("username", username)
     .eq("is_public", true)
@@ -71,9 +75,12 @@ export default async function ReaderProfilePage({
   }
 
   const profile = data as ReaderProfile
-  const [library, linkedAuthor] = await Promise.all([
+  const [library, linkedAuthor, achievements] = await Promise.all([
     getPublicReaderLibrary(username, profile.show_favorites),
     getLinkedAuthorForPublicReader(username),
+    profile.show_achievements
+      ? getPublicReaderAchievements(username)
+      : Promise.resolve([]),
   ])
   const readCount = library.filter((item) => item.isRead).length
   const links = [
@@ -221,6 +228,8 @@ export default async function ReaderProfilePage({
             </p>
           </section>
         )}
+
+        <PublicReaderAchievements achievements={achievements} />
 
         {profile.show_favorites && (
           <PublicReaderFavorites library={library} />

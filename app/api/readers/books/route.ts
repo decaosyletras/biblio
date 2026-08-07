@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
+import { unlockReaderAchievement } from "@/lib/readerAchievements"
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
@@ -215,6 +216,13 @@ export async function PUT(request: Request) {
       { status: 500 }
     )
   }
+
+  await Promise.all([
+    unlockReaderAchievement(context.user.id, "first-shelf"),
+    data.is_read
+      ? unlockReaderAchievement(context.user.id, "first-read")
+      : Promise.resolve(false),
+  ])
 
   return NextResponse.json({
     success: true,

@@ -11,6 +11,7 @@ import { enforceRateLimit } from "@/lib/server-rate-limit"
 import { isShareImageTheme } from "@/lib/shareImageThemes"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
+import { unlockReaderAchievement } from "@/lib/readerAchievements"
 
 export const dynamic = "force-dynamic"
 
@@ -149,6 +150,8 @@ export async function GET(request: Request) {
     accountProfile?.username?.trim() ||
     "Un lector indie"
   const size = READER_SHARE_IMAGE_SIZES[formatValue]
+
+  await unlockReaderAchievement(user.id, "recommendation-image")
 
   return new ImageResponse(
     renderBookRecommendationShareImage({
