@@ -184,7 +184,7 @@ export default function AuthorShareImageButton({
       await navigator.share({
         files: [file],
         title: authorName,
-        text: `Descubre a ${authorName} en Cas(z)a de Libros.`,
+        text: `Descubre a ${authorName} en Cas(z)a Indie.`,
         url: `${window.location.origin}/authors/${authorSlug}`,
       })
     } catch (shareError) {
@@ -338,7 +338,7 @@ export default function AuthorShareImageButton({
             <p className="mt-5 rounded-xl border border-zinc-800 bg-zinc-900/70 px-4 py-3 text-xs leading-relaxed text-zinc-400">
               {isPro
                 ? "La imagen utilizará los colores y el banner de tu página cuando corresponda."
-                : "La imagen utilizará el diseño oficial de Cas(z)a de Libros."}
+                : "La imagen utilizará el diseño oficial de Cas(z)a Indie."}
             </p>
 
             <div className="mt-5 grid gap-2 sm:grid-cols-2">

@@ -51,14 +51,14 @@ function Brand({ accent, isStory }: { accent: string; isStory: boolean }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        fontSize: isStory ? 29 : 23,
+        fontSize: isStory ? 34 : 28,
         fontWeight: 800,
         letterSpacing: 1.3,
         position: "relative",
       }}
     >
       <div style={{ display: "flex" }}>
-        CAS(<span style={{ color: "#ef4444" }}>Z</span>)A DE LIBROS
+        CAS(<span style={{ color: "#ef4444" }}>Z</span>)A INDIE
       </div>
       <div style={{ display: "flex", color: accent }}>LITERATURA INDIE</div>
     </div>
@@ -76,11 +76,11 @@ function Footer({ accent, isStory }: { accent: string; isStory: boolean }) {
         bottom: isStory ? 62 : 42,
         justifyContent: "center",
         color: accent,
-        fontSize: isStory ? 23 : 18,
+        fontSize: isStory ? 28 : 23,
         fontWeight: 700,
       }}
     >
-      Descubre su página en Cas(z)a de Libros
+      Descubre su página en Cas(z)a Indie
     </div>
   )
 }
@@ -334,7 +334,7 @@ export function renderAuthorShareImage({
                 display: "flex",
                 marginTop: isStory ? 44 : 28,
                 color: palette.primary,
-                fontSize: isStory ? 28 : 22,
+                fontSize: isStory ? 34 : 28,
                 fontWeight: 800,
                 letterSpacing: 5,
                 textTransform: "uppercase",
@@ -362,7 +362,7 @@ export function renderAuthorShareImage({
                 display: "flex",
                 marginTop: 18,
                 color: palette.muted,
-                fontSize: isStory ? 29 : 23,
+                fontSize: isStory ? 35 : 28,
                 textAlign: "center",
               }}
             >
@@ -384,7 +384,7 @@ export function renderAuthorShareImage({
                 style={{
                   display: "flex",
                   color: palette.muted,
-                  fontSize: isStory ? 22 : 17,
+                  fontSize: isStory ? 28 : 22,
                   fontWeight: 800,
                   letterSpacing: 4,
                   textTransform: "uppercase",
@@ -451,7 +451,7 @@ export function renderAuthorShareImage({
               style={{
                 display: "flex",
                 color: palette.primary,
-                fontSize: isStory ? 29 : 23,
+                fontSize: isStory ? 34 : 27,
                 fontWeight: 800,
                 letterSpacing: 4,
                 textTransform: "uppercase",
@@ -489,7 +489,7 @@ export function renderAuthorShareImage({
                 display: "flex",
                 marginTop: 15,
                 color: palette.muted,
-                fontSize: isStory ? 28 : 22,
+                fontSize: isStory ? 34 : 27,
               }}
             >
               de {authorName}
@@ -513,7 +513,7 @@ export function renderAuthorShareImage({
             style={{
               display: "flex",
               color: palette.primary,
-              fontSize: isStory ? 28 : 22,
+              fontSize: isStory ? 34 : 27,
               fontWeight: 800,
               letterSpacing: 4,
               textTransform: "uppercase",
@@ -590,7 +590,7 @@ export function renderAuthorShareImage({
                   marginTop: isStory ? 27 : 18,
                   color: palette.muted,
                   textAlign: "center",
-                  fontSize: isStory ? 25 : 20,
+                  fontSize: isStory ? 30 : 24,
                   lineHeight: 1.45,
                 }}
               >
@@ -642,7 +642,7 @@ export function renderAuthorShareImage({
                 display: "flex",
                 marginLeft: 18,
                 color: palette.text,
-                fontSize: isStory ? 29 : 23,
+                fontSize: isStory ? 34 : 27,
                 fontWeight: 800,
               }}
             >

@@ -163,8 +163,31 @@ export async function GET(request: Request) {
   }
 
   const catalog = await getBooks()
-  const authorBooks = catalog.filter((book) =>
+  const unorderedAuthorBooks = catalog.filter((book) =>
     book.authors?.some((bookAuthor) => bookAuthor.id === authorId)
+  )
+  const authorBookIds = unorderedAuthorBooks.map((book) => book.id)
+  const { data: orderRows, error: orderError } = authorBookIds.length > 0
+    ? await supabaseAdmin
+        .from("books")
+        .select("id, author_order")
+        .in("id", authorBookIds)
+    : { data: [], error: null }
+
+  if (orderError) {
+    return NextResponse.json(
+      { error: "No se pudo ordenar la bibliografía" },
+      { status: 500 }
+    )
+  }
+
+  const orderByBookId = new Map(
+    (orderRows ?? []).map((book) => [book.id, book.author_order ?? 0])
+  )
+  const authorBooks = [...unorderedAuthorBooks].sort(
+    (first, second) =>
+      (orderByBookId.get(first.id) ?? 0) -
+      (orderByBookId.get(second.id) ?? 0)
   )
   const featuredBook = authorBooks.find(
     (book) => book.id === author.featured_book_id
@@ -189,12 +212,9 @@ export async function GET(request: Request) {
       return ""
     }
   }
-  const prioritizedBooks = featuredBook
-    ? [featuredBook, ...authorBooks.filter((book) => book.id !== featuredBook.id)]
-    : authorBooks
   // Doce portadas caben en dos filas legibles; si el catálogo es todavía
   // mayor, el encabezado conserva el total real de obras del autor.
-  const booksForImage = kind === "profile" ? prioritizedBooks.slice(0, 12) : []
+  const booksForImage = kind === "profile" ? authorBooks.slice(0, 12) : []
   const coverUrls = booksForImage.map((book) =>
     new URL(getBookCover(book.amazon, book.cover), origin).toString()
   )
