@@ -161,7 +161,12 @@ export function renderAuthorShareImage({
   const coverCount = books.length
   const profileCoverWidth = isStory
     ? coverCount <= 3 ? 250 : coverCount === 4 ? 205 : coverCount === 5 ? 165 : 145
-    : coverCount <= 3 ? 205 : coverCount === 4 ? 175 : coverCount === 5 ? 150 : 132
+    : coverCount === 1 ? 320
+      : coverCount === 2 ? 260
+        : coverCount === 3 ? 205
+          : coverCount === 4 ? 175
+            : coverCount === 5 ? 150
+              : 132
   const profileCoverHeight = Math.round(profileCoverWidth * 1.5)
 
   return (
@@ -259,6 +264,9 @@ export function renderAuthorShareImage({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            justifyContent: isStory ? "flex-start" : "center",
+            flexGrow: isStory ? 0 : 1,
+            paddingBottom: isStory ? 0 : 60,
             position: "relative",
           }}
         >
@@ -267,7 +275,7 @@ export function renderAuthorShareImage({
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              marginTop: isStory ? 100 : 54,
+              marginTop: isStory ? 100 : 0,
               position: "relative",
             }}
           >
@@ -407,7 +415,7 @@ export function renderAuthorShareImage({
                     key={`${book.title}-${index}`}
                     style={{
                       display: "flex",
-                      ...(coverCount <= 4
+                      ...(coverCount >= 2 && coverCount <= 4
                         ? {
                             transform: `rotate(${index === 0 ? -5 : index === coverCount - 1 ? 5 : 0}deg) translateY(${index > 0 && index < coverCount - 1 ? -10 : 4}px)`,
                           }
@@ -435,6 +443,9 @@ export function renderAuthorShareImage({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            justifyContent: isStory ? "flex-start" : "center",
+            flexGrow: isStory ? 0 : 1,
+            paddingBottom: isStory ? 0 : 60,
             position: "relative",
           }}
         >
@@ -443,7 +454,7 @@ export function renderAuthorShareImage({
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              marginTop: isStory ? 90 : 48,
+              marginTop: isStory ? 90 : 0,
               position: "relative",
             }}
           >
@@ -462,8 +473,8 @@ export function renderAuthorShareImage({
             <div style={{ display: "flex", marginTop: isStory ? 46 : 26 }}>
               <Cover
                 book={featuredBook}
-                width={isStory ? 500 : 350}
-                height={isStory ? 750 : 525}
+                width={isStory ? 500 : 410}
+                height={isStory ? 750 : 615}
                 border={palette.primary}
               />
             </div>
@@ -505,7 +516,10 @@ export function renderAuthorShareImage({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            marginTop: isStory ? 82 : 45,
+            justifyContent: isStory ? "flex-start" : "center",
+            flexGrow: isStory ? 0 : 1,
+            marginTop: isStory ? 82 : 0,
+            paddingBottom: isStory ? 0 : 60,
             position: "relative",
           }}
         >
@@ -525,7 +539,7 @@ export function renderAuthorShareImage({
             <div
               style={{
                 width: 920,
-                height: isStory ? 620 : 430,
+                height: isStory ? 620 : 470,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -541,7 +555,7 @@ export function renderAuthorShareImage({
                 src={news.imageDataUrl}
                 alt=""
                 width={920}
-                height={isStory ? 620 : 430}
+                height={isStory ? 620 : 470}
                 style={{
                   width: "100%",
                   height: "100%",

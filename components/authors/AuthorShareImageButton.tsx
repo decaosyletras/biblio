@@ -3,6 +3,8 @@
 import { useEffect, useId, useState } from "react"
 import {
   BookOpen,
+  Check,
+  Copy,
   Crown,
   Download,
   ImageDown,
@@ -53,6 +55,7 @@ export default function AuthorShareImageButton({
     null
   )
   const [supportsFileSharing, setSupportsFileSharing] = useState(false)
+  const [linkCopied, setLinkCopied] = useState(false)
   const [error, setError] = useState("")
 
   useEffect(() => {
@@ -202,12 +205,27 @@ export default function AuthorShareImageButton({
     }
   }
 
+  async function copyProfileLink() {
+    setError("")
+
+    try {
+      await navigator.clipboard.writeText(
+        `${window.location.origin}/authors/${authorSlug}`
+      )
+      setLinkCopied(true)
+      window.setTimeout(() => setLinkCopied(false), 2000)
+    } catch {
+      setError("No se pudo copiar el enlace. Cópialo desde la barra del navegador.")
+    }
+  }
+
   return (
     <>
       <button
         type="button"
         onClick={() => {
           setError("")
+          setLinkCopied(false)
           setOpen(true)
         }}
         className="inline-flex w-fit items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2.5 text-sm text-white transition-all duration-150 active:scale-95"
@@ -335,11 +353,31 @@ export default function AuthorShareImageButton({
               </div>
             </fieldset>
 
-            <p className="mt-5 rounded-xl border border-zinc-800 bg-zinc-900/70 px-4 py-3 text-xs leading-relaxed text-zinc-400">
-              {isPro
-                ? "La imagen utilizará los colores y el banner de tu página cuando corresponda."
-                : "La imagen utilizará el diseño oficial de Cas(z)a Indie."}
-            </p>
+            <div className="mt-5 rounded-xl border border-zinc-800 bg-zinc-900/70 px-4 py-3 text-xs leading-relaxed text-zinc-400">
+              <p>
+                {isPro
+                  ? "La imagen utilizará los colores y el banner de tu página cuando corresponda."
+                  : "La imagen utilizará el diseño oficial de Cas(z)a Indie."}
+              </p>
+              <p className="mt-1 text-zinc-500">
+                {format === "story"
+                  ? "La zona inferior queda libre para que añadas el sticker de enlace sin tapar el contenido."
+                  : "La publicación reorganiza y amplía el contenido para aprovechar todo el espacio."}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={copyProfileLink}
+              className="mt-3 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+            >
+              {linkCopied ? (
+                <Check className="h-4 w-4 text-emerald-400" aria-hidden="true" />
+              ) : (
+                <Copy className="h-4 w-4" aria-hidden="true" />
+              )}
+              {linkCopied ? "Enlace copiado" : "Copiar enlace de mi página"}
+            </button>
 
             <div className="mt-5 grid gap-2 sm:grid-cols-2">
               <button
