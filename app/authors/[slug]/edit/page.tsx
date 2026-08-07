@@ -710,7 +710,7 @@ export default function EditAuthorPage() {
                         </p>
 
                         <p className="text-xs text-yellow-500">
-                            ✨ Prueba <strong>PRO</strong> gratis durante tu primer mes con el código <strong>AUTORPRO</strong>. Obtén un <strong>100% de descuento</strong> y cancela en cualquier momento si no es para ti.
+                            ✨ ¡Tenemos dos promociones! Usa <strong>AUTORPRO</strong> para obtener tu <strong>primer mes gratis</strong>, o usa <strong>LANZAMIENTO</strong> para obtener un <strong>50% de descuento</strong> en cualquier modalidad de pago: mensual, trimestral o semestral. ¡Elige la que más te convenga y cancela cuando quieras!
                         </p>
 
                         <ProCheckoutButton
