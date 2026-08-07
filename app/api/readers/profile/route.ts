@@ -27,6 +27,7 @@ type ReaderProfileInput = {
   youtubeUrl: string
   websiteUrl: string
   isPublic: boolean
+  showFavorites: boolean
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -164,6 +165,13 @@ function parseProfileInput(
     return { profile: null, error: "El estado público del perfil no es válido." }
   }
 
+  if (typeof body.showFavorites !== "boolean") {
+    return {
+      profile: null,
+      error: "La visibilidad de favoritos no es válida.",
+    }
+  }
+
   return {
     profile: {
       username,
@@ -178,6 +186,7 @@ function parseProfileInput(
       youtubeUrl,
       websiteUrl,
       isPublic: body.isPublic,
+      showFavorites: body.showFavorites,
     },
     error: "",
   }
@@ -254,7 +263,8 @@ export async function GET() {
           facebook_url,
           youtube_url,
           website_url,
-          is_public
+          is_public,
+          show_favorites
         `)
         .eq("user_id", user.id)
         .maybeSingle(),
@@ -287,6 +297,7 @@ export async function GET() {
       youtubeUrl: readerProfile?.youtube_url ?? "",
       websiteUrl: readerProfile?.website_url ?? "",
       isPublic: readerProfile?.is_public ?? false,
+      showFavorites: readerProfile?.show_favorites ?? true,
     },
     hasReaderProfile: Boolean(readerProfile),
     authorProfile,
@@ -411,6 +422,7 @@ export async function PUT(request: Request) {
       youtube_url: profile.youtubeUrl,
       website_url: profile.websiteUrl,
       is_public: profile.isPublic,
+      show_favorites: profile.showFavorites,
       updated_at: new Date().toISOString(),
     }, {
       onConflict: "user_id",

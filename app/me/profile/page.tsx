@@ -21,6 +21,7 @@ type ReaderProfileForm = {
   youtubeUrl: string
   websiteUrl: string
   isPublic: boolean
+  showFavorites: boolean
 }
 
 type AuthorProfileImport = {
@@ -48,6 +49,7 @@ const EMPTY_PROFILE: ReaderProfileForm = {
   youtubeUrl: "",
   websiteUrl: "",
   isPublic: false,
+  showFavorites: true,
 }
 
 export default function ReaderProfileEditorPage() {
@@ -523,7 +525,7 @@ export default function ReaderProfileEditorPage() {
             ))}
           </section>
 
-          <section className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
+          <section className="space-y-5 rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
             <label className="flex cursor-pointer items-start gap-4">
               <input
                 type="checkbox"
@@ -538,6 +540,28 @@ export default function ReaderProfileEditorPage() {
                 </span>
               </span>
             </label>
+
+            <div className="border-t border-zinc-800 pt-5">
+              <label className="flex cursor-pointer items-start gap-4">
+                <input
+                  type="checkbox"
+                  checked={profile.showFavorites}
+                  onChange={(event) =>
+                    updateField("showFavorites", event.target.checked)
+                  }
+                  className="mt-1 h-5 w-5 accent-rose-500"
+                />
+                <span>
+                  <span className="block font-semibold">
+                    Mostrar mis favoritos en mi perfil público
+                  </span>
+                  <span className="mt-1 block text-sm leading-relaxed text-zinc-400">
+                    Si lo desactivas, tus favoritos seguirán guardados y solo
+                    tú podrás verlos en tu biblioteca.
+                  </span>
+                </span>
+              </label>
+            </div>
           </section>
 
           {message && (

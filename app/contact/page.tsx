@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { supabase } from "@/lib/supabase"
 
 import GenreSelector from "@/components/GenreSelector"
 import SubgenreSelector from "@/components/SubgenreSelector"
@@ -17,6 +16,11 @@ type AdditionalAuthor = {
     name: string
   } | null
   useExistingAuthor: boolean | null
+}
+
+type AuthorMatch = {
+  id: string
+  name: string
 }
 
 export default function Page() {
@@ -43,11 +47,10 @@ export default function Page() {
   const [error, setError] = useState("")
   const [sent, setSent] = useState(false)
 
-  const [foundAuthor, setFoundAuthor] = useState<any>(null)
+  const [foundAuthor, setFoundAuthor] = useState<AuthorMatch | null>(null)
   const [useExistingAuthor, setUseExistingAuthor] = useState<boolean | null>(null)
 
-  const [userAuthor, setUserAuthor] = useState<any>(null)
-  const [loadingAuthor, setLoadingAuthor] = useState(true)
+  const [userAuthor, setUserAuthor] = useState<AuthorMatch | null>(null)
 
 
   useEffect(() => {
@@ -57,7 +60,6 @@ export default function Page() {
       const res = await fetch("/api/my-author")
 
       if (!res.ok) {
-        setLoadingAuthor(false)
         return
       }
 
@@ -75,8 +77,6 @@ export default function Page() {
 
       }
 
-      setLoadingAuthor(false)
-
     }
 
     loadUserAuthor()
@@ -85,7 +85,7 @@ export default function Page() {
 
 
   const isValidASIN = (value: string) =>
-    /^[a-zA-Z0-9]{10}$/.test(value)
+    /^[A-Z0-9]{10}$/.test(value.trim().toUpperCase())
 
 
   async function checkAuthor() {
@@ -236,7 +236,7 @@ export default function Page() {
           esSaga,
           link,
           resumen,
-          asin,
+          asin: asin.trim().toUpperCase(),
 
           generos: selectedGenres,
           subgeneros: selectedSubgenres,
@@ -600,7 +600,9 @@ export default function Page() {
             placeholder="ASIN del ebook"
             maxLength={10}
             value={asin}
-            onChange={e => setAsin(e.target.value)}
+            onChange={e =>
+              setAsin(e.target.value.toUpperCase().replace(/\s/g, ""))
+            }
             className="w-full p-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
 

@@ -8,6 +8,8 @@ export type ReaderLibraryState = Record<
   string,
   {
     isRead: boolean
+    isFavorite: boolean
+    favoritedAt: string | null
     readAt: string | null
     readYear: number | null
   }
@@ -64,6 +66,11 @@ export function useReaderLibrary() {
           if (typeof item.bookId === "string") {
             nextLibrary[item.bookId] = {
               isRead: item.isRead === true,
+              isFavorite: item.isFavorite === true,
+              favoritedAt:
+                typeof item.favoritedAt === "string"
+                  ? item.favoritedAt
+                  : null,
               readAt: typeof item.readAt === "string" ? item.readAt : null,
               readYear:
                 typeof item.readYear === "number" ? item.readYear : null,
@@ -156,6 +163,11 @@ export function useReaderLibrary() {
         ...current,
         [bookId]: {
           isRead: result.book?.isRead === true,
+          isFavorite: result.book?.isFavorite === true,
+          favoritedAt:
+            typeof result.book?.favoritedAt === "string"
+              ? result.book.favoritedAt
+              : null,
           readAt:
             typeof result.book?.readAt === "string"
               ? result.book.readAt
@@ -206,6 +218,58 @@ export function useReaderLibrary() {
         const next = { ...current }
         delete next[bookId]
         return next
+      })
+
+      return true
+    } catch {
+      setMessage("No se pudo conectar con la biblioteca.")
+      return false
+    } finally {
+      setPendingBookId(null)
+    }
+  }
+
+  async function setFavorite(bookId: string, isFavorite: boolean) {
+    if (!requireSession()) return false
+
+    setPendingBookId(bookId)
+    setMessage("")
+
+    try {
+      const response = await fetch("/api/readers/favorites", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bookId, isFavorite }),
+      })
+      const result = await response.json()
+
+      if (response.status === 401) {
+        router.push("/login")
+        return false
+      }
+
+      if (!response.ok) {
+        setMessage(result.error ?? "No se pudo actualizar el favorito.")
+        return false
+      }
+
+      setLibrary((current) => {
+        const membership = current[bookId]
+        if (!membership) return current
+
+        return {
+          ...current,
+          [bookId]: {
+            ...membership,
+            isFavorite: result.book?.isFavorite === true,
+            favoritedAt:
+              typeof result.book?.favoritedAt === "string"
+                ? result.book.favoritedAt
+                : null,
+          },
+        }
       })
 
       return true
@@ -357,6 +421,7 @@ export function useReaderLibrary() {
     pendingBookId,
     message,
     saveBook,
+    setFavorite,
     setReadYear,
     removeBook,
     hideBook,

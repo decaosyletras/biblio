@@ -17,6 +17,14 @@ function normalizeName(name: string) {
     .replace(/[^a-z0-9]/g, "")
 }
 
+function normalizeAsin(value: string) {
+  return value.trim().toUpperCase()
+}
+
+function isValidAsin(value: string) {
+  return /^[A-Z0-9]{10}$/.test(value)
+}
+
 function createSlug(name: string) {
   return name
     .toLowerCase()
@@ -283,6 +291,64 @@ export async function POST(req: Request) {
       )
     }
 
+    if (typeof asin !== "string") {
+      return NextResponse.json(
+        {
+          error: "El ASIN es obligatorio"
+        },
+        {
+          status: 400
+        }
+      )
+    }
+
+    const normalizedAsin = normalizeAsin(asin)
+
+    if (!isValidAsin(normalizedAsin)) {
+      return NextResponse.json(
+        {
+          error: "El ASIN debe tener 10 caracteres alfanuméricos"
+        },
+        {
+          status: 400
+        }
+      )
+    }
+
+    // Esta comprobación ocurre antes de crear autores para que un intento
+    // duplicado no deje registros huérfanos. La migración añade además una
+    // protección atómica para solicitudes simultáneas.
+    const { data: existingBook, error: existingBookError } = await supabase
+      .from("books")
+      .select("id")
+      .or(
+        `asin_es.ilike.${normalizedAsin},asin_mx.ilike.${normalizedAsin},asin_us.ilike.${normalizedAsin}`
+      )
+      .limit(1)
+      .maybeSingle()
+
+    if (existingBookError) {
+      return NextResponse.json(
+        {
+          error: "No se pudo comprobar el ASIN"
+        },
+        {
+          status: 500
+        }
+      )
+    }
+
+    if (existingBook) {
+      return NextResponse.json(
+        {
+          error: "Este ASIN ya está registrado en el catálogo"
+        },
+        {
+          status: 409
+        }
+      )
+    }
+
     // Se comento porque cualquier valor truthy podia contar como consentimiento.
     // if (!aceptaTerminos) {
     if (aceptaTerminos !== true) {
@@ -433,9 +499,9 @@ export async function POST(req: Request) {
         title: titulo,
         slug: bookSlug,
 
-        asin_es: asin,
-        asin_mx: asin,
-        asin_us: asin,
+        asin_es: normalizedAsin,
+        asin_mx: normalizedAsin,
+        asin_us: normalizedAsin,
 
         amazon_link: link,
 
@@ -465,12 +531,20 @@ export async function POST(req: Request) {
       .single()
 
     if (bookError || !book) {
+      const duplicateAsin =
+        bookError?.code === "23505" &&
+        `${bookError.message ?? ""} ${bookError.details ?? ""}`
+          .toLowerCase()
+          .includes("asin")
+
       return NextResponse.json(
         {
-          error: bookError?.message ?? "No se pudo crear el libro"
+          error: duplicateAsin
+            ? "Este ASIN ya está registrado en el catálogo"
+            : "No se pudo crear el libro"
         },
         {
-          status: 400
+          status: duplicateAsin ? 409 : 400
         }
       )
     }

@@ -6,12 +6,15 @@ import type { DatabaseBook } from "@/types"
 export type PublicReaderBook = {
   book: DatabaseBook
   isRead: boolean
+  isFavorite: boolean
+  favoritedAt: string | null
   addedAt: string
   readAt: string | null
 }
 
 export async function getPublicReaderLibrary(
-  username: string
+  username: string,
+  includeFavorites = false
 ): Promise<PublicReaderBook[]> {
   // user_id se resuelve exclusivamente en servidor. La página pública recibe
   // libros y estados, nunca el identificador interno de la cuenta.
@@ -26,7 +29,7 @@ export async function getPublicReaderLibrary(
 
   const { data: memberships, error: membershipsError } = await supabaseAdmin
     .from("reader_books")
-    .select("book_id, is_read, added_at, read_at")
+    .select("book_id, is_read, is_favorite, favorited_at, added_at, read_at")
     .eq("user_id", profile.user_id)
 
   if (membershipsError || !memberships?.length) return []
@@ -43,6 +46,11 @@ export async function getPublicReaderLibrary(
       return {
         book,
         isRead: membership.is_read,
+        isFavorite: includeFavorites && membership.is_favorite,
+        favoritedAt:
+          includeFavorites && membership.is_favorite
+            ? membership.favorited_at
+            : null,
         addedAt: membership.added_at,
         readAt: membership.read_at,
       }

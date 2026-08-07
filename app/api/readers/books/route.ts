@@ -83,7 +83,7 @@ export async function GET() {
 
   const { data, error } = await context.supabase
     .from("reader_books")
-    .select("book_id, is_read, added_at, read_at, read_year, updated_at")
+    .select("book_id, is_read, is_favorite, favorited_at, added_at, read_at, read_year, updated_at")
     .eq("user_id", context.user.id)
     .order("added_at", { ascending: false })
 
@@ -98,6 +98,8 @@ export async function GET() {
     books: (data ?? []).map((item) => ({
       bookId: item.book_id,
       isRead: item.is_read,
+      isFavorite: item.is_favorite,
+      favoritedAt: item.favorited_at,
       addedAt: item.added_at,
       readAt: item.read_at,
       readYear: item.read_year,
@@ -204,7 +206,7 @@ export async function PUT(request: Request) {
       })
 
   const { data, error } = await mutation
-    .select("book_id, is_read, added_at, read_at, read_year, updated_at")
+    .select("book_id, is_read, is_favorite, favorited_at, added_at, read_at, read_year, updated_at")
     .single()
 
   if (error || !data) {
@@ -219,6 +221,8 @@ export async function PUT(request: Request) {
     book: {
       bookId: data.book_id,
       isRead: data.is_read,
+      isFavorite: data.is_favorite,
+      favoritedAt: data.favorited_at,
       addedAt: data.added_at,
       readAt: data.read_at,
       readYear: data.read_year,

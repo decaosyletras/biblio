@@ -9,6 +9,7 @@ import { getBookCover } from "@/lib/amazon"
 import { getPublicReaderLibrary } from "@/lib/readerLibrary"
 import { getLinkedAuthorForPublicReader } from "@/lib/publicProfileLinks"
 import PublicReaderLibrary from "@/components/readers/PublicReaderLibrary"
+import PublicReaderFavorites from "@/components/readers/PublicReaderFavorites"
 import ShareProfileButton from "@/components/ShareProfileButton"
 
 export const dynamic = "force-dynamic"
@@ -25,6 +26,7 @@ type ReaderProfile = {
   facebook_url: string
   youtube_url: string
   website_url: string
+  show_favorites: boolean
 }
 
 // Se conserva la cuadrícula pública anterior como referencia mientras la nueva
@@ -57,7 +59,8 @@ export default async function ReaderProfilePage({
       threads_url,
       facebook_url,
       youtube_url,
-      website_url
+      website_url,
+      show_favorites
     `)
     .eq("username", username)
     .eq("is_public", true)
@@ -69,7 +72,7 @@ export default async function ReaderProfilePage({
 
   const profile = data as ReaderProfile
   const [library, linkedAuthor] = await Promise.all([
-    getPublicReaderLibrary(username),
+    getPublicReaderLibrary(username, profile.show_favorites),
     getLinkedAuthorForPublicReader(username),
   ])
   const readCount = library.filter((item) => item.isRead).length
@@ -217,6 +220,10 @@ export default async function ReaderProfilePage({
               {profile.bio}
             </p>
           </section>
+        )}
+
+        {profile.show_favorites && (
+          <PublicReaderFavorites library={library} />
         )}
 
         <section className="mt-8 rounded-[2rem] border border-zinc-800 bg-zinc-900/60 p-6 sm:p-9">

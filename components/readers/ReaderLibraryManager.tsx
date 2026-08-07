@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { BookOpenCheck, LibraryBig, Plus, Search, Sparkles, Trash2 } from "lucide-react"
+import { BookOpenCheck, Heart, LibraryBig, Plus, Search, Sparkles, Trash2 } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
 import LectometerMark from "@/components/LectometerMark"
 import ReadRibbon from "@/components/readers/ReadRibbon"
@@ -27,6 +27,7 @@ export default function ReaderLibraryManager({
     pendingBookId,
     message,
     saveBook,
+    setFavorite,
     setReadYear,
     removeBook,
   } = useReaderLibrary()
@@ -217,7 +218,13 @@ export default function ReaderLibraryManager({
                     </p>
                   )}
 
-                  <div className="mt-auto grid grid-cols-[minmax(0,1fr)_auto] gap-2 pt-3 sm:flex">
+                  <div
+                    className={`mt-auto grid gap-2 pt-3 sm:flex ${
+                      membership?.isRead
+                        ? "grid-cols-[minmax(0,1fr)_auto_auto]"
+                        : "grid-cols-[minmax(0,1fr)_auto]"
+                    }`}
+                  >
                     <button
                       type="button"
                       disabled={isPending}
@@ -227,6 +234,32 @@ export default function ReaderLibraryManager({
                       <BookOpenCheck size={14} />
                       {membership?.isRead ? "Pendiente" : "Leído"}
                     </button>
+                    {membership?.isRead && (
+                      <button
+                        type="button"
+                        aria-label={
+                          membership.isFavorite
+                            ? `Quitar ${book.title} de favoritos`
+                            : `Marcar ${book.title} como favorito`
+                        }
+                        aria-pressed={membership.isFavorite}
+                        disabled={isPending}
+                        onClick={() =>
+                          setFavorite(book.id, !membership.isFavorite)
+                        }
+                        className={`flex items-center justify-center rounded-lg border p-2 transition disabled:opacity-50 ${
+                          membership.isFavorite
+                            ? "border-rose-400/40 bg-rose-500/15 text-rose-300"
+                            : "border-zinc-700 text-zinc-400 hover:border-rose-400/40 hover:bg-rose-500/10 hover:text-rose-300"
+                        }`}
+                      >
+                        <Heart
+                          size={15}
+                          fill={membership.isFavorite ? "currentColor" : "none"}
+                          aria-hidden="true"
+                        />
+                      </button>
+                    )}
                     <button
                       type="button"
                       aria-label={`Quitar ${book.title} de mi biblioteca`}
