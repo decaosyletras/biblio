@@ -192,7 +192,9 @@ export async function GET(request: Request) {
   const prioritizedBooks = featuredBook
     ? [featuredBook, ...authorBooks.filter((book) => book.id !== featuredBook.id)]
     : authorBooks
-  const booksForImage = kind === "profile" ? prioritizedBooks.slice(0, 3) : []
+  // Doce portadas caben en dos filas legibles; si el catálogo es todavía
+  // mayor, el encabezado conserva el total real de obras del autor.
+  const booksForImage = kind === "profile" ? prioritizedBooks.slice(0, 12) : []
   const coverUrls = booksForImage.map((book) =>
     new URL(getBookCover(book.amazon, book.cover), origin).toString()
   )
@@ -256,6 +258,7 @@ export async function GET(request: Request) {
         title: book.title,
         coverDataUrl: coverDataUrls[index],
       })),
+      totalBooks: authorBooks.length,
       featuredBook: featuredBook
         ? {
             title: featuredBook.title,

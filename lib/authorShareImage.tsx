@@ -23,6 +23,7 @@ type AuthorShareImageData = {
   avatarDataUrl: string | null
   bannerDataUrl: string | null
   books: ShareBook[]
+  totalBooks: number
   featuredBook: ShareBook | null
   news: {
     type: string
@@ -146,6 +147,7 @@ export function renderAuthorShareImage({
   avatarDataUrl,
   bannerDataUrl,
   books,
+  totalBooks,
   featuredBook,
   news,
   format,
@@ -156,6 +158,11 @@ export function renderAuthorShareImage({
   const initial = authorName.trim().charAt(0).toUpperCase() || "A"
   const padding = isStory ? "76px 72px" : "50px 62px"
   const background = `linear-gradient(145deg, ${palette.background} 0%, ${palette.surface} 62%, #09090b 100%)`
+  const coverCount = books.length
+  const profileCoverWidth = isStory
+    ? coverCount <= 3 ? 250 : coverCount === 4 ? 205 : coverCount === 5 ? 165 : 145
+    : coverCount <= 3 ? 205 : coverCount === 4 ? 175 : coverCount === 5 ? 150 : 132
+  const profileCoverHeight = Math.round(profileCoverWidth * 1.5)
 
   return (
     <div
@@ -383,29 +390,35 @@ export function renderAuthorShareImage({
                   textTransform: "uppercase",
                 }}
               >
-                Historias para descubrir
+                {totalBooks} {totalBooks === 1 ? "historia" : "historias"} para descubrir
               </div>
               <div
                 style={{
                   display: "flex",
+                  flexWrap: "wrap",
                   justifyContent: "center",
-                  gap: isStory ? 18 : 14,
+                  width: isStory ? 940 : 920,
+                  gap: coverCount > 5 ? 12 : isStory ? 18 : 14,
                   marginTop: isStory ? 34 : 23,
                 }}
               >
-                {books.slice(0, 3).map((book, index) => (
+                {books.map((book, index) => (
                   <div
                     key={`${book.title}-${index}`}
                     style={{
                       display: "flex",
-                      transform: `rotate(${index === 0 ? -5 : index === 2 ? 5 : 0}deg) translateY(${index === 1 ? -14 : 5}px)`,
+                      ...(coverCount <= 4
+                        ? {
+                            transform: `rotate(${index === 0 ? -5 : index === coverCount - 1 ? 5 : 0}deg) translateY(${index > 0 && index < coverCount - 1 ? -10 : 4}px)`,
+                          }
+                        : {}),
                     }}
                   >
                     <Cover
                       book={book}
-                      width={isStory ? 250 : 205}
-                      height={isStory ? 375 : 308}
-                      border={index === 1 ? palette.primary : palette.border}
+                      width={profileCoverWidth}
+                      height={profileCoverHeight}
+                      border={index === Math.floor(coverCount / 2) ? palette.primary : palette.border}
                     />
                   </div>
                 ))}
@@ -509,21 +522,33 @@ export function renderAuthorShareImage({
             {news.type || "Novedad"}
           </div>
           {news.imageDataUrl && (
-            <img
-              src={news.imageDataUrl}
-              alt=""
-              width={920}
-              height={isStory ? 620 : 430}
+            <div
               style={{
                 width: 920,
                 height: isStory ? 620 : 430,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
                 marginTop: isStory ? 42 : 26,
                 borderRadius: 30,
                 border: `2px solid ${palette.border}`,
-                objectFit: "cover",
+                background: palette.surface,
                 boxShadow: "0 28px 70px rgba(0,0,0,.42)",
               }}
-            />
+            >
+              <img
+                src={news.imageDataUrl}
+                alt=""
+                width={920}
+                height={isStory ? 620 : 430}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                }}
+              />
+            </div>
           )}
           <div
             style={{
