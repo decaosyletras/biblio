@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from "react"
 import { Download, ImageDown, LoaderCircle, Share2 } from "lucide-react"
+import ShareImageThemePicker from "@/components/readers/ShareImageThemePicker"
+import {
+  SHARE_IMAGE_THEME_STORAGE_KEY,
+  isShareImageTheme,
+  type ShareImageTheme,
+} from "@/lib/shareImageThemes"
 
 type ShareImageFormat = "story" | "post"
 
@@ -17,6 +23,8 @@ const formats: Array<{
 export default function ReaderShareImageButton() {
   const [selectedFormat, setSelectedFormat] =
     useState<ShareImageFormat>("story")
+  const [selectedTheme, setSelectedTheme] =
+    useState<ShareImageTheme>("nocturnal")
   const [activeAction, setActiveAction] = useState<"download" | "share" | null>(
     null
   )
@@ -32,9 +40,30 @@ export default function ReaderShareImageButton() {
     setSupportsFileSharing(navigator.canShare({ files: [sampleFile] }))
   }, [])
 
+  useEffect(() => {
+    try {
+      const storedTheme = window.localStorage.getItem(
+        SHARE_IMAGE_THEME_STORAGE_KEY
+      )
+      if (isShareImageTheme(storedTheme)) setSelectedTheme(storedTheme)
+    } catch {
+      // La imagen sigue funcionando con el tema predeterminado si el
+      // navegador bloquea el almacenamiento local.
+    }
+  }, [])
+
+  const selectTheme = (theme: ShareImageTheme) => {
+    setSelectedTheme(theme)
+    try {
+      window.localStorage.setItem(SHARE_IMAGE_THEME_STORAGE_KEY, theme)
+    } catch {
+      // La preferencia simplemente no se recordará en este navegador.
+    }
+  }
+
   const createImageFile = async () => {
     const response = await fetch(
-      `/api/readers/share-image?format=${selectedFormat}`
+      `/api/readers/share-image?format=${selectedFormat}&theme=${selectedTheme}`
     )
 
     if (!response.ok) {
@@ -131,7 +160,8 @@ export default function ReaderShareImageButton() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+        <div className="flex flex-col gap-3">
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
           <fieldset>
             <legend className="mb-2 text-xs font-medium text-zinc-400">
               Formato
@@ -165,7 +195,14 @@ export default function ReaderShareImageButton() {
             </div>
           </fieldset>
 
-          <div className="grid grid-cols-1 gap-2 sm:flex">
+          <ShareImageThemePicker
+            name="library-share-image-theme"
+            value={selectedTheme}
+            onChange={selectTheme}
+          />
+          </div>
+
+          <div className="grid grid-cols-1 gap-2 sm:flex sm:justify-end">
             <button
               type="button"
               onClick={downloadImage}

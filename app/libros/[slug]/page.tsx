@@ -147,7 +147,13 @@ export default async function Page({
             ))}
           </div>
 
-          <BookLibraryActions bookId={book.id} />
+          <BookLibraryActions
+            bookId={book.id}
+            bookSlug={book.slug}
+            bookTitle={book.title}
+            authors={bookAuthors.join(", ") || "Autor independiente"}
+            coverSrc={getBookCover(book.amazon, book.cover)}
+          />
 
           {/* SUMMARY */}
           {book.summary !== "" && (

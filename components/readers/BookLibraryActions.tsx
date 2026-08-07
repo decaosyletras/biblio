@@ -1,6 +1,7 @@
 "use client"
 
 import { BookOpenCheck, LibraryBig, Plus } from "lucide-react"
+import BookRecommendationShareButton from "@/components/readers/BookRecommendationShareButton"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 
 function AddToLibraryIcon() {
@@ -12,7 +13,21 @@ function AddToLibraryIcon() {
   )
 }
 
-export default function BookLibraryActions({ bookId }: { bookId: string }) {
+type Props = {
+  bookId: string
+  bookSlug: string
+  bookTitle: string
+  authors: string
+  coverSrc: string
+}
+
+export default function BookLibraryActions({
+  bookId,
+  bookSlug,
+  bookTitle,
+  authors,
+  coverSrc,
+}: Props) {
   const {
     user,
     userLoading,
@@ -94,6 +109,16 @@ export default function BookLibraryActions({ bookId }: { bookId: string }) {
           </span>
         </button>
       </div>
+
+      {!isLoading && user && isRead && (
+        <BookRecommendationShareButton
+          bookId={bookId}
+          bookSlug={bookSlug}
+          bookTitle={bookTitle}
+          authors={authors}
+          coverSrc={coverSrc}
+        />
+      )}
 
       {message && (
         <p

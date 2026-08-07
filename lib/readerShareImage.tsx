@@ -1,5 +1,9 @@
 /* eslint-disable @next/next/no-img-element -- ImageResponse necesita elementos img para incrustar los datos binarios. */
 import type { ReactElement } from "react"
+import {
+  SHARE_IMAGE_PALETTES,
+  type ShareImageTheme,
+} from "@/lib/shareImageThemes"
 
 export type ReaderShareImageFormat = "story" | "post"
 
@@ -15,6 +19,7 @@ type ReaderShareImageData = {
   readBooks: number
   books: ShareBook[]
   format: ReaderShareImageFormat
+  theme: ShareImageTheme
 }
 
 export const READER_SHARE_IMAGE_SIZES: Record<
@@ -32,6 +37,7 @@ export function renderReaderShareImage({
   readBooks,
   books,
   format,
+  theme,
 }: ReaderShareImageData): ReactElement {
   const isStory = format === "story"
   const coverWidth = isStory ? 360 : 270
@@ -39,6 +45,7 @@ export function renderReaderShareImage({
   const coverGap = isStory ? 28 : 22
   const avatarSize = isStory ? 132 : 104
   const initial = displayName.trim().charAt(0).toUpperCase() || "L"
+  const palette = SHARE_IMAGE_PALETTES[theme]
 
   return (
     <div
@@ -50,8 +57,7 @@ export function renderReaderShareImage({
         position: "relative",
         overflow: "hidden",
         color: "#f4f4f5",
-        background:
-          "linear-gradient(145deg, #07152d 0%, #0f1f3c 38%, #18181b 70%, #09090b 100%)",
+        background: palette.background,
         padding: isStory ? "78px 76px" : "52px 64px",
         fontFamily: "sans-serif",
       }}
@@ -62,8 +68,7 @@ export function renderReaderShareImage({
           width: 620,
           height: 620,
           borderRadius: 999,
-          background: "rgba(37, 99, 235, 0.22)",
-          filter: "blur(80px)",
+          background: palette.glowPrimary,
           left: -280,
           top: -260,
         }}
@@ -74,8 +79,7 @@ export function renderReaderShareImage({
           width: 500,
           height: 500,
           borderRadius: 999,
-          background: "rgba(234, 179, 8, 0.12)",
-          filter: "blur(75px)",
+          background: palette.glowSecondary,
           right: -240,
           bottom: -200,
         }}
@@ -87,7 +91,6 @@ export function renderReaderShareImage({
           alignItems: "center",
           justifyContent: "space-between",
           position: "relative",
-          zIndex: 1,
         }}
       >
         <div
@@ -104,7 +107,7 @@ export function renderReaderShareImage({
         <div
           style={{
             display: "flex",
-            color: "#facc15",
+            color: palette.accent,
             fontSize: isStory ? 24 : 20,
             fontWeight: 700,
           }}
@@ -119,7 +122,6 @@ export function renderReaderShareImage({
           alignItems: "center",
           marginTop: isStory ? 68 : 38,
           position: "relative",
-          zIndex: 1,
         }}
       >
         {avatarDataUrl ? (
@@ -132,7 +134,7 @@ export function renderReaderShareImage({
               width: avatarSize,
               height: avatarSize,
               borderRadius: 32,
-              border: "3px solid rgba(250, 204, 21, 0.75)",
+              border: `3px solid ${palette.accentBorder}`,
               objectFit: "cover",
             }}
           />
@@ -142,9 +144,9 @@ export function renderReaderShareImage({
               width: avatarSize,
               height: avatarSize,
               borderRadius: 32,
-              border: "3px solid rgba(250, 204, 21, 0.75)",
+              border: `3px solid ${palette.accentBorder}`,
               background: "#27272a",
-              color: "#facc15",
+              color: palette.accent,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -195,7 +197,6 @@ export function renderReaderShareImage({
           alignItems: "center",
           marginTop: isStory ? 66 : 34,
           position: "relative",
-          zIndex: 1,
         }}
       >
         <div
@@ -217,7 +218,7 @@ export function renderReaderShareImage({
             padding: isStory ? "14px 26px" : "10px 20px",
             borderRadius: 999,
             background: "rgba(9, 9, 11, 0.58)",
-            border: "1px solid rgba(250, 204, 21, 0.28)",
+            border: `1px solid ${palette.accentBorder}`,
             color: "#d4d4d8",
             fontSize: isStory ? 27 : 22,
           }}
@@ -236,7 +237,6 @@ export function renderReaderShareImage({
           gap: coverGap,
           marginTop: isStory ? 56 : 32,
           position: "relative",
-          zIndex: 1,
         }}
       >
         {books.map((book, index) => (
@@ -302,7 +302,6 @@ export function renderReaderShareImage({
           color: "#a1a1aa",
           fontSize: isStory ? 24 : 20,
           position: "relative",
-          zIndex: 1,
         }}
       >
         Descubre libros independientes en Cas(z)a de Libros

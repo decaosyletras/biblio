@@ -1,18 +1,21 @@
 import { ImageResponse } from "next/og"
 import { NextResponse } from "next/server"
-import { createClient } from "@/lib/supabase-server"
-import { supabaseAdmin } from "@/lib/supabaseAdmin"
-import { enforceRateLimit } from "@/lib/server-rate-limit"
-import { getBooks } from "@/lib/books"
 import { getBookCover } from "@/lib/amazon"
-import { isShareImageTheme } from "@/lib/shareImageThemes"
 import {
   READER_SHARE_IMAGE_SIZES,
-  renderReaderShareImage,
+  renderBookRecommendationShareImage,
   type ReaderShareImageFormat,
-} from "@/lib/readerShareImage"
+} from "@/lib/bookRecommendationShareImage"
+import { getBooks } from "@/lib/books"
+import { enforceRateLimit } from "@/lib/server-rate-limit"
+import { isShareImageTheme } from "@/lib/shareImageThemes"
+import { createClient } from "@/lib/supabase-server"
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
 export const dynamic = "force-dynamic"
+
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
 function isShareFormat(value: string | null): value is ReaderShareImageFormat {
   return value === "story" || value === "post"
@@ -40,18 +43,21 @@ export async function GET(request: Request) {
   const searchParams = new URL(request.url).searchParams
   const formatValue = searchParams.get("format")
   const themeValue = searchParams.get("theme")
+  const bookId = searchParams.get("bookId")
 
   if (
     !isShareFormat(formatValue) ||
-    (themeValue !== null && !isShareImageTheme(themeValue))
+    (themeValue !== null && !isShareImageTheme(themeValue)) ||
+    !bookId ||
+    !UUID_PATTERN.test(bookId)
   ) {
     return NextResponse.json(
-      { error: "Formato de imagen inválido" },
+      { error: "Libro o formato de imagen inválido" },
       { status: 400 }
     )
   }
 
-  const theme = themeValue ?? "nocturnal"
+  const theme = themeValue ?? "emerald"
 
   const authClient = await createClient()
   const {
@@ -66,7 +72,7 @@ export async function GET(request: Request) {
   try {
     const allowed = await enforceRateLimit({
       request,
-      namespace: "reader-share-image",
+      namespace: "reader-book-recommendation-image",
       subject: user.id,
       limit: 12,
       windowSeconds: 600,
@@ -86,13 +92,20 @@ export async function GET(request: Request) {
   }
 
   const [
+    { data: membership, error: membershipError },
     { data: readerProfile },
     { data: accountProfile },
-    { data: memberships, error: membershipsError },
   ] = await Promise.all([
+    authClient
+      .from("reader_books")
+      .select("book_id")
+      .eq("user_id", user.id)
+      .eq("book_id", bookId)
+      .eq("is_read", true)
+      .maybeSingle(),
     supabaseAdmin
       .from("reader_profiles")
-      .select("username, display_name, avatar_url")
+      .select("display_name, avatar_url")
       .eq("user_id", user.id)
       .maybeSingle(),
     supabaseAdmin
@@ -100,77 +113,50 @@ export async function GET(request: Request) {
       .select("username")
       .eq("id", user.id)
       .maybeSingle(),
-    supabaseAdmin
-      .from("reader_books")
-      .select("book_id, is_read, added_at")
-      .eq("user_id", user.id)
-      .order("added_at", { ascending: false }),
   ])
 
-  if (membershipsError) {
+  if (membershipError) {
     return NextResponse.json(
-      { error: "No se pudo cargar la biblioteca" },
+      { error: "No se pudo validar la lectura" },
       { status: 500 }
     )
   }
 
-  if (!memberships?.length) {
+  if (!membership) {
     return NextResponse.json(
-      { error: "Agrega al menos un libro antes de crear una imagen" },
-      { status: 400 }
+      { error: "Marca el libro como leído antes de recomendarlo" },
+      { status: 403 }
     )
   }
 
   const books = await getBooks()
-  const booksById = new Map(books.map((book) => [book.id, book]))
-  const visibleBooks = memberships
-    .map((membership) => booksById.get(membership.book_id) ?? null)
-    .filter((book): book is NonNullable<typeof book> => book !== null)
-    .slice(0, 4)
+  const book = books.find((candidate) => candidate.id === bookId)
 
-  if (visibleBooks.length === 0) {
-    return NextResponse.json(
-      { error: "No se encontraron portadas para compartir" },
-      { status: 404 }
-    )
+  if (!book) {
+    return NextResponse.json({ error: "Libro no encontrado" }, { status: 404 })
   }
 
   const origin = new URL(request.url).origin
-  const coverDataUrls = await Promise.all(
-    visibleBooks.map((book) => {
-      const coverUrl = new URL(
-        getBookCover(book.amazon, book.cover),
-        origin
-      ).toString()
-
-      return fetchImageDataUrl(coverUrl)
-    })
-  )
-  const avatarDataUrl = readerProfile?.avatar_url
-    ? await fetchImageDataUrl(readerProfile.avatar_url)
-    : null
+  const coverUrl = new URL(getBookCover(book.amazon, book.cover), origin).toString()
+  const [coverDataUrl, avatarDataUrl] = await Promise.all([
+    fetchImageDataUrl(coverUrl),
+    readerProfile?.avatar_url
+      ? fetchImageDataUrl(readerProfile.avatar_url)
+      : Promise.resolve(null),
+  ])
   const displayName =
     readerProfile?.display_name?.trim() ||
     accountProfile?.username?.trim() ||
-    "Lector indie"
-  const safeFilename = (
-    readerProfile?.username || accountProfile?.username || "lector"
-  )
-    .toLowerCase()
-    .replace(/[^a-z0-9._-]+/g, "-")
-    .replace(/^-+|-+$/g, "") || "lector"
+    "Un lector indie"
   const size = READER_SHARE_IMAGE_SIZES[formatValue]
 
   return new ImageResponse(
-    renderReaderShareImage({
+    renderBookRecommendationShareImage({
+      title: book.title,
+      authors: (book.authorNames ?? []).join(", ") || "Autor independiente",
+      coverDataUrl,
       displayName,
       avatarDataUrl,
-      totalBooks: memberships.length,
-      readBooks: memberships.filter((membership) => membership.is_read).length,
-      books: visibleBooks.map((book, index) => ({
-        title: book.title,
-        coverDataUrl: coverDataUrls[index],
-      })),
       format: formatValue,
       theme,
     }),
@@ -178,7 +164,7 @@ export async function GET(request: Request) {
       ...size,
       headers: {
         "Cache-Control": "private, no-store",
-        "Content-Disposition": `attachment; filename="biblioteca-${safeFilename}-${formatValue}.png"`,
+        "Content-Disposition": `attachment; filename="recomendacion-${book.slug}-${formatValue}.png"`,
         "X-Content-Type-Options": "nosniff",
       },
     }
