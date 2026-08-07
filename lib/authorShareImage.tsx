@@ -69,12 +69,14 @@ function Footer({ accent, isStory }: { accent: string; isStory: boolean }) {
     <div
       style={{
         display: "flex",
-        marginTop: "auto",
-        paddingTop: isStory ? 44 : 28,
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: isStory ? 62 : 42,
+        justifyContent: "center",
         color: accent,
         fontSize: isStory ? 23 : 18,
         fontWeight: 700,
-        position: "relative",
       }}
     >
       Descubre su página en Cas(z)a de Libros
@@ -191,6 +193,50 @@ export function renderAuthorShareImage({
       <div
         style={{
           position: "absolute",
+          width: isStory ? 720 : 560,
+          height: isStory ? 720 : 560,
+          left: isStory ? -370 : -300,
+          top: isStory ? 360 : 230,
+          borderRadius: 999,
+          background: `${palette.primary}20`,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: isStory ? 620 : 480,
+          height: isStory ? 620 : 480,
+          right: isStory ? -330 : -260,
+          bottom: isStory ? -250 : -210,
+          borderRadius: 999,
+          border: `80px solid ${palette.primary}12`,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          left: isStory ? 28 : 22,
+          right: isStory ? 28 : 22,
+          top: isStory ? 28 : 22,
+          bottom: isStory ? 28 : 22,
+          border: `2px solid ${palette.border}`,
+          borderRadius: isStory ? 38 : 30,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          right: 0,
+          top: isStory ? 210 : 150,
+          width: isStory ? 15 : 11,
+          height: isStory ? 330 : 245,
+          borderRadius: "20px 0 0 20px",
+          background: palette.primary,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
           inset: 0,
           background:
             "linear-gradient(to bottom, rgba(9,9,11,.08), rgba(9,9,11,.28) 45%, rgba(9,9,11,.48))",
@@ -200,7 +246,15 @@ export function renderAuthorShareImage({
       <Brand accent={palette.primary} isStory={isStory} />
 
       {kind === "profile" && (
-        <>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            position: "relative",
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -210,24 +264,46 @@ export function renderAuthorShareImage({
               position: "relative",
             }}
           >
-            {avatarDataUrl ? (
-              <img
-                src={avatarDataUrl}
-                alt=""
-                width={isStory ? 230 : 170}
-                height={isStory ? 230 : 170}
-                style={{
-                  width: isStory ? 230 : 170,
-                  height: isStory ? 230 : 170,
-                  objectFit: "cover",
-                  borderRadius: 42,
-                  border: `4px solid ${palette.primary}`,
-                  boxShadow: "0 25px 70px rgba(0,0,0,.5)",
-                }}
-              />
-            ) : (
+            <div
+              style={{
+                width: isStory ? 250 : 188,
+                height: isStory ? 250 : 188,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                position: "relative",
+              }}
+            >
               <div
                 style={{
+                  position: "absolute",
+                  width: isStory ? 220 : 164,
+                  height: isStory ? 220 : 164,
+                  borderRadius: 42,
+                  background: palette.primary,
+                  transform: "rotate(9deg)",
+                  opacity: 0.55,
+                }}
+              />
+              {avatarDataUrl ? (
+                <img
+                  src={avatarDataUrl}
+                  alt=""
+                  width={isStory ? 230 : 170}
+                  height={isStory ? 230 : 170}
+                  style={{
+                    width: isStory ? 230 : 170,
+                    height: isStory ? 230 : 170,
+                    objectFit: "cover",
+                    borderRadius: 42,
+                    border: `4px solid ${palette.primary}`,
+                    boxShadow: "0 25px 70px rgba(0,0,0,.5)",
+                    position: "relative",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
                   width: isStory ? 230 : 170,
                   height: isStory ? 230 : 170,
                   display: "flex",
@@ -239,11 +315,13 @@ export function renderAuthorShareImage({
                   color: palette.primary,
                   fontSize: isStory ? 100 : 74,
                   fontWeight: 900,
+                  position: "relative",
                 }}
               >
                 {initial}
-              </div>
-            )}
+                </div>
+              )}
+            </div>
             <div
               style={{
                 display: "flex",
@@ -289,28 +367,64 @@ export function renderAuthorShareImage({
             <div
               style={{
                 display: "flex",
-                justifyContent: "center",
-                gap: isStory ? 28 : 22,
+                flexDirection: "column",
+                alignItems: "center",
                 marginTop: isStory ? 72 : 40,
                 position: "relative",
               }}
             >
-              {books.slice(0, 3).map((book, index) => (
-                <Cover
-                  key={`${book.title}-${index}`}
-                  book={book}
-                  width={isStory ? 250 : 205}
-                  height={isStory ? 375 : 308}
-                  border={palette.border}
-                />
-              ))}
+              <div
+                style={{
+                  display: "flex",
+                  color: palette.muted,
+                  fontSize: isStory ? 22 : 17,
+                  fontWeight: 800,
+                  letterSpacing: 4,
+                  textTransform: "uppercase",
+                }}
+              >
+                Historias para descubrir
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: isStory ? 18 : 14,
+                  marginTop: isStory ? 34 : 23,
+                }}
+              >
+                {books.slice(0, 3).map((book, index) => (
+                  <div
+                    key={`${book.title}-${index}`}
+                    style={{
+                      display: "flex",
+                      transform: `rotate(${index === 0 ? -5 : index === 2 ? 5 : 0}deg) translateY(${index === 1 ? -14 : 5}px)`,
+                    }}
+                  >
+                    <Cover
+                      book={book}
+                      width={isStory ? 250 : 205}
+                      height={isStory ? 375 : 308}
+                      border={index === 1 ? palette.primary : palette.border}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           )}
-        </>
+        </div>
       )}
 
       {kind === "featured" && featuredBook && (
-        <>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            position: "relative",
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -368,7 +482,7 @@ export function renderAuthorShareImage({
               de {authorName}
             </div>
           </div>
-        </>
+        </div>
       )}
 
       {kind === "news" && news && (
@@ -413,47 +527,102 @@ export function renderAuthorShareImage({
           )}
           <div
             style={{
+              width: 920,
               display: "flex",
-              maxWidth: 900,
-              marginTop: isStory ? 52 : 32,
-              color: palette.text,
-              textAlign: "center",
-              fontSize: news.title.length > 65
-                ? isStory ? 49 : 38
-                : isStory ? 62 : 48,
-              fontWeight: 900,
-              lineHeight: 1.08,
+              flexDirection: "column",
+              alignItems: "center",
+              marginTop: isStory ? 48 : 30,
+              padding: isStory ? "42px 48px" : "30px 38px",
+              borderRadius: 30,
+              border: `2px solid ${palette.border}`,
+              borderTop: `8px solid ${palette.primary}`,
+              background: palette.surface,
+              boxShadow: "0 24px 60px rgba(0,0,0,.28)",
             }}
           >
-            {news.title}
-          </div>
-          {news.content && (
             <div
               style={{
                 display: "flex",
-                maxWidth: 880,
-                maxHeight: isStory ? 210 : 145,
-                overflow: "hidden",
-                marginTop: isStory ? 30 : 20,
-                color: palette.muted,
+                maxWidth: 830,
+                color: palette.text,
                 textAlign: "center",
-                fontSize: isStory ? 27 : 21,
-                lineHeight: 1.45,
+                fontSize: news.title.length > 65
+                  ? isStory ? 47 : 36
+                  : isStory ? 58 : 45,
+                fontWeight: 900,
+                lineHeight: 1.08,
               }}
             >
-              {news.content}
+              {news.title}
             </div>
-          )}
+            {news.content && (
+              <div
+                style={{
+                  display: "flex",
+                  maxWidth: 820,
+                  maxHeight: isStory ? 190 : 125,
+                  overflow: "hidden",
+                  marginTop: isStory ? 27 : 18,
+                  color: palette.muted,
+                  textAlign: "center",
+                  fontSize: isStory ? 25 : 20,
+                  lineHeight: 1.45,
+                }}
+              >
+                {news.content}
+              </div>
+            )}
+          </div>
           <div
             style={{
               display: "flex",
+              alignItems: "center",
               marginTop: isStory ? 36 : 24,
-              color: palette.text,
-              fontSize: isStory ? 29 : 23,
-              fontWeight: 800,
             }}
           >
-            {authorName}
+            {avatarDataUrl ? (
+              <img
+                src={avatarDataUrl}
+                alt=""
+                width={isStory ? 70 : 54}
+                height={isStory ? 70 : 54}
+                style={{
+                  width: isStory ? 70 : 54,
+                  height: isStory ? 70 : 54,
+                  borderRadius: 18,
+                  border: `2px solid ${palette.primary}`,
+                  objectFit: "cover",
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  width: isStory ? 70 : 54,
+                  height: isStory ? 70 : 54,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: 18,
+                  background: palette.surface,
+                  color: palette.primary,
+                  fontSize: isStory ? 31 : 24,
+                  fontWeight: 900,
+                }}
+              >
+                {initial}
+              </div>
+            )}
+            <div
+              style={{
+                display: "flex",
+                marginLeft: 18,
+                color: palette.text,
+                fontSize: isStory ? 29 : 23,
+                fontWeight: 800,
+              }}
+            >
+              {authorName}
+            </div>
           </div>
         </div>
       )}
