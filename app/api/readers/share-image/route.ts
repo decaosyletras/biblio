@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og"
 import { NextResponse } from "next/server"
+import sharp from "sharp"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
@@ -14,6 +15,7 @@ import {
 } from "@/lib/readerShareImage"
 
 export const dynamic = "force-dynamic"
+export const runtime = "nodejs"
 
 function isShareFormat(value: string | null): value is ReaderShareImageFormat {
   return value === "story" || value === "post"
@@ -28,10 +30,27 @@ async function fetchImageDataUrl(url: string) {
     const contentType = response.headers.get("content-type") ?? ""
     if (!contentType.startsWith("image/")) return null
 
-    const bytes = await response.arrayBuffer()
+    const bytes = Buffer.from(await response.arrayBuffer())
     if (bytes.byteLength > 5 * 1024 * 1024) return null
 
-    return `data:${contentType};base64,${Buffer.from(bytes).toString("base64")}`
+    const normalizedType = contentType.split(";", 1)[0].toLowerCase()
+
+    if (normalizedType !== "image/png" && normalizedType !== "image/jpeg") {
+      const png = await sharp(bytes, { animated: false })
+        .rotate()
+        .resize({
+          width: 1800,
+          height: 1800,
+          fit: "inside",
+          withoutEnlargement: true,
+        })
+        .png()
+        .toBuffer()
+
+      return `data:image/png;base64,${png.toString("base64")}`
+    }
+
+    return `data:${normalizedType};base64,${bytes.toString("base64")}`
   } catch {
     return null
   }

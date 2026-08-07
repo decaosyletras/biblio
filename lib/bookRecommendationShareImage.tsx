@@ -32,12 +32,17 @@ export function renderBookRecommendationShareImage({
   theme,
 }: BookRecommendationShareImageData): ReactElement {
   const isStory = format === "story"
-  const coverWidth = isStory ? 500 : 350
-  const coverHeight = isStory ? 750 : 525
-  const avatarSize = isStory ? 92 : 72
-  const titleSize = title.length > 55
-    ? isStory ? 47 : 36
-    : isStory ? 58 : 44
+  const coverWidth = isStory ? 480 : 370
+  const coverHeight = isStory ? 720 : 555
+  const avatarSize = isStory ? 82 : 66
+  const titleSize = title.length > 70
+    ? isStory ? 40 : 31
+    : title.length > 42
+      ? isStory ? 48 : 37
+      : isStory ? 58 : 44
+  const displayNameSize = displayName.length > 24
+    ? isStory ? 25 : 20
+    : isStory ? 30 : 24
   const initial = displayName.trim().charAt(0).toUpperCase() || "L"
   const palette = SHARE_IMAGE_PALETTES[theme]
 
@@ -51,7 +56,7 @@ export function renderBookRecommendationShareImage({
         alignItems: "center",
         position: "relative",
         overflow: "hidden",
-        padding: isStory ? "76px 74px" : "50px 62px",
+        padding: isStory ? "72px 76px 82px" : "50px 64px 58px",
         color: "#f4f4f5",
         background: palette.background,
         fontFamily: "sans-serif",
@@ -60,22 +65,43 @@ export function renderBookRecommendationShareImage({
       <div
         style={{
           position: "absolute",
-          width: 560,
-          height: 560,
-          borderRadius: 999,
-          background: palette.glowPrimary,
-          left: -300,
-          top: 330,
+          inset: isStory ? 28 : 22,
+          display: "flex",
+          border: `2px solid ${palette.accentBorder}`,
+          borderRadius: isStory ? 34 : 28,
         }}
       />
       <div
         style={{
           position: "absolute",
-          width: 430,
-          height: 430,
+          top: isStory ? 122 : 92,
+          right: isStory ? 28 : 22,
+          width: 8,
+          height: isStory ? 210 : 160,
+          display: "flex",
+          borderRadius: 999,
+          background: palette.accent,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: isStory ? 620 : 520,
+          height: isStory ? 620 : 520,
+          borderRadius: 999,
+          background: palette.glowPrimary,
+          left: isStory ? -310 : -260,
+          top: isStory ? 390 : 220,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: 500,
+          height: 500,
           borderRadius: 999,
           background: palette.glowSecondary,
-          right: -230,
+          right: -250,
           bottom: -180,
         }}
       />
@@ -92,52 +118,60 @@ export function renderBookRecommendationShareImage({
         <div
           style={{
             display: "flex",
-            fontSize: isStory ? 30 : 24,
-            fontWeight: 800,
-            letterSpacing: 1.4,
+            fontSize: isStory ? 32 : 27,
+            fontWeight: 900,
+            letterSpacing: 1.8,
           }}
         >
-          CAS(<span style={{ color: "#ef4444" }}>Z</span>)A DE LIBROS
+          CAS(<span style={{ color: "#ef4444" }}>Z</span>)A INDIE
         </div>
         <div
           style={{
             display: "flex",
             color: palette.accent,
-            fontSize: isStory ? 24 : 19,
-            fontWeight: 700,
+            fontSize: isStory ? 22 : 18,
+            fontWeight: 800,
+            letterSpacing: 2.5,
           }}
         >
-          LITERATURA INDIE
+          RECOMENDACIÓN
         </div>
       </div>
 
       <div
         style={{
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: isStory ? 70 : 38,
+          justifyContent: isStory ? "flex-start" : "center",
+          flexGrow: 1,
+          marginTop: isStory ? 74 : 32,
+          paddingBottom: isStory ? 180 : 42,
           position: "relative",
         }}
       >
         <div
           style={{
             display: "flex",
+            padding: isStory ? "10px 22px" : "8px 18px",
+            borderRadius: 999,
+            border: `1px solid ${palette.accentBorder}`,
+            background: "rgba(9,9,11,0.48)",
             color: palette.accent,
-            fontSize: isStory ? 30 : 23,
-            fontWeight: 800,
-            letterSpacing: 4,
-            textTransform: "uppercase",
+            fontSize: isStory ? 22 : 18,
+            fontWeight: 900,
+            letterSpacing: 3.5,
           }}
         >
-          Te recomiendo
+          TE RECOMIENDO
         </div>
         <div
           style={{
             display: "flex",
-            marginTop: isStory ? 20 : 12,
+            marginTop: isStory ? 17 : 12,
             color: "#ffffff",
-            fontSize: isStory ? 74 : 54,
+            fontSize: isStory ? 65 : 50,
             fontWeight: 900,
             lineHeight: 1,
             textAlign: "center",
@@ -145,178 +179,203 @@ export function renderBookRecommendationShareImage({
         >
           una lectura indie
         </div>
-      </div>
 
-      <div
-        style={{
-          width: coverWidth,
-          height: coverHeight,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-          marginTop: isStory ? 58 : 30,
-          borderRadius: isStory ? 28 : 22,
-          border: `3px solid ${palette.accentBorder}`,
-          background: "#27272a",
-          boxShadow: "0 28px 70px rgba(0, 0, 0, 0.48)",
-          position: "relative",
-        }}
-      >
-        {coverDataUrl ? (
-          <img
-            src={coverDataUrl}
-            alt=""
-            width={coverWidth}
-            height={coverHeight}
+        <div
+          style={{
+            display: "flex",
+            position: "relative",
+            marginTop: isStory ? 48 : 27,
+            padding: isStory ? 14 : 11,
+            borderRadius: isStory ? 29 : 23,
+            border: `2px solid ${palette.accentBorder}`,
+            background: "rgba(9,9,11,0.56)",
+            boxShadow: "0 30px 80px rgba(0,0,0,0.52)",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              width: isStory ? 122 : 96,
+              height: isStory ? 14 : 11,
+              right: isStory ? -28 : -22,
+              top: isStory ? 86 : 68,
+              display: "flex",
+              borderRadius: 999,
+              background: palette.accent,
+            }}
+          />
+          <div
             style={{
               width: coverWidth,
               height: coverHeight,
-              objectFit: "cover",
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: 38,
-              color: "#e4e4e7",
-              fontSize: isStory ? 42 : 31,
-              fontWeight: 800,
-              lineHeight: 1.15,
+              overflow: "hidden",
+              borderRadius: isStory ? 20 : 16,
+              background: "#27272a",
+            }}
+          >
+            {coverDataUrl ? (
+              <img
+                src={coverDataUrl}
+                alt=""
+                width={coverWidth}
+                height={coverHeight}
+                style={{
+                  width: coverWidth,
+                  height: coverHeight,
+                  objectFit: "cover",
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: 38,
+                  color: "#e4e4e7",
+                  fontSize: isStory ? 40 : 31,
+                  fontWeight: 900,
+                  lineHeight: 1.12,
+                  textAlign: "center",
+                  background: "linear-gradient(145deg, #27272a, #18181b)",
+                }}
+              >
+                {title}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            maxWidth: isStory ? 900 : 850,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: isStory ? 38 : 23,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              maxHeight: isStory ? 120 : 88,
+              overflow: "hidden",
+              color: "#ffffff",
+              fontSize: titleSize,
+              fontWeight: 900,
+              lineHeight: 1.06,
               textAlign: "center",
-              background: "linear-gradient(145deg, #27272a, #18181b)",
             }}
           >
             {title}
           </div>
-        )}
+          <div
+            style={{
+              display: "flex",
+              marginTop: isStory ? 15 : 10,
+              color: "#b4b4bc",
+              fontSize: isStory ? 27 : 21,
+              textAlign: "center",
+            }}
+          >
+            {authors}
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginTop: isStory ? 35 : 22,
+            padding: isStory ? "12px 25px 12px 13px" : "10px 20px 10px 11px",
+            borderRadius: 999,
+            border: "1px solid rgba(255,255,255,0.14)",
+            background: "rgba(9,9,11,0.62)",
+          }}
+        >
+          {avatarDataUrl ? (
+            <img
+              src={avatarDataUrl}
+              alt=""
+              width={avatarSize}
+              height={avatarSize}
+              style={{
+                width: avatarSize,
+                height: avatarSize,
+                borderRadius: 999,
+                border: `2px solid ${palette.accentBorder}`,
+                objectFit: "cover",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: avatarSize,
+                height: avatarSize,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 999,
+                border: `2px solid ${palette.accentBorder}`,
+                background: "#27272a",
+                color: palette.accent,
+                fontSize: isStory ? 34 : 27,
+                fontWeight: 900,
+              }}
+            >
+              {initial}
+            </div>
+          )}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginLeft: isStory ? 19 : 15,
+            }}
+          >
+            <div style={{ display: "flex", color: "#a1a1aa", fontSize: isStory ? 18 : 15, letterSpacing: 1.2 }}>
+              RECOMENDADO POR
+            </div>
+            <div
+              style={{
+                display: "flex",
+                maxWidth: isStory ? 510 : 455,
+                maxHeight: isStory ? 62 : 50,
+                overflow: "hidden",
+                marginTop: 4,
+                color: "#f4f4f5",
+                fontSize: displayNameSize,
+                fontWeight: 900,
+                lineHeight: 1.05,
+              }}
+            >
+              {displayName}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div
         style={{
-          maxWidth: 900,
+          width: "100%",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
-          marginTop: isStory ? 42 : 25,
+          justifyContent: "space-between",
+          color: "#a1a1aa",
+          fontSize: isStory ? 22 : 18,
           position: "relative",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            maxHeight: isStory ? 126 : 94,
-            overflow: "hidden",
-            color: "#ffffff",
-            fontSize: titleSize,
-            fontWeight: 900,
-            lineHeight: 1.08,
-            textAlign: "center",
-          }}
-        >
-          {title}
+        <div style={{ display: "flex" }}>Encuentra libros indie que sí quieres leer</div>
+        <div style={{ display: "flex", color: palette.accent, fontWeight: 800 }}>
+          Cas(z)a Indie
         </div>
-        <div
-          style={{
-            display: "flex",
-            marginTop: isStory ? 18 : 12,
-            color: "#a1a1aa",
-            fontSize: isStory ? 29 : 22,
-            textAlign: "center",
-          }}
-        >
-          {authors}
-        </div>
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          marginTop: "auto",
-          paddingTop: isStory ? 42 : 24,
-          position: "relative",
-        }}
-      >
-        {avatarDataUrl ? (
-          <img
-            src={avatarDataUrl}
-            alt=""
-            width={avatarSize}
-            height={avatarSize}
-            style={{
-              width: avatarSize,
-              height: avatarSize,
-              borderRadius: 999,
-              border: `2px solid ${palette.accentBorder}`,
-              objectFit: "cover",
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              width: avatarSize,
-              height: avatarSize,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 999,
-              border: `2px solid ${palette.accentBorder}`,
-              background: "#27272a",
-              color: palette.accent,
-              fontSize: isStory ? 40 : 31,
-              fontWeight: 800,
-            }}
-          >
-            {initial}
-          </div>
-        )}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginLeft: isStory ? 23 : 17,
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              color: "#a1a1aa",
-              fontSize: isStory ? 22 : 18,
-            }}
-          >
-            Lo recomienda
-          </div>
-          <div
-            style={{
-              display: "flex",
-              marginTop: 5,
-              color: "#f4f4f5",
-              fontSize: isStory ? 31 : 24,
-              fontWeight: 800,
-            }}
-          >
-            {displayName}
-          </div>
-        </div>
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          marginTop: isStory ? 34 : 21,
-          color: palette.accent,
-          fontSize: isStory ? 23 : 18,
-          fontWeight: 700,
-          position: "relative",
-        }}
-      >
-        Descúbrelo en Cas(z)a de Libros
       </div>
     </div>
   )

@@ -127,7 +127,7 @@ export default function ReaderShareImageButton() {
       await navigator.share({
         files: [file],
         title: "Mi biblioteca indie",
-        text: "Mi biblioteca indie en Cas(z)a de Libros",
+        text: "Mi biblioteca indie en Cas(z)a Indie",
       })
     } catch (shareError) {
       if (shareError instanceof DOMException && shareError.name === "AbortError") {

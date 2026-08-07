@@ -175,7 +175,7 @@ export default function BookRecommendationShareButton({
       await navigator.share({
         files: [file],
         title: `Te recomiendo ${bookTitle}`,
-        text: `Te recomiendo “${bookTitle}”, de ${authors}, en Cas(z)a de Libros.`,
+        text: `Te recomiendo “${bookTitle}”, de ${authors}, en Cas(z)a Indie.`,
         url: window.location.href,
       })
     } catch (shareError) {
@@ -275,7 +275,7 @@ export default function BookRecommendationShareButton({
                   className="mt-auto pt-3 text-[8px] font-semibold"
                   style={{ color: selectedPalette.accent }}
                 >
-                  CAS(Z)A DE LIBROS
+                  CAS(Z)A INDIE
                 </p>
               </div>
 

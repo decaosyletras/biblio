@@ -30,6 +30,20 @@ export const READER_SHARE_IMAGE_SIZES: Record<
   post: { width: 1080, height: 1350 },
 }
 
+function getCoverLayout(bookCount: number, isStory: boolean) {
+  if (isStory) {
+    if (bookCount === 1) return { width: 430, height: 645, gap: 0 }
+    if (bookCount === 2) return { width: 350, height: 525, gap: 30 }
+    if (bookCount === 3) return { width: 285, height: 428, gap: 24 }
+    return { width: 255, height: 383, gap: 22 }
+  }
+
+  if (bookCount === 1) return { width: 330, height: 495, gap: 0 }
+  if (bookCount === 2) return { width: 270, height: 405, gap: 28 }
+  if (bookCount === 3) return { width: 220, height: 330, gap: 22 }
+  return { width: 198, height: 297, gap: 18 }
+}
+
 export function renderReaderShareImage({
   displayName,
   avatarDataUrl,
@@ -40,12 +54,13 @@ export function renderReaderShareImage({
   theme,
 }: ReaderShareImageData): ReactElement {
   const isStory = format === "story"
-  const coverWidth = isStory ? 360 : 270
-  const coverHeight = isStory ? 540 : 405
-  const coverGap = isStory ? 28 : 22
-  const avatarSize = isStory ? 132 : 104
+  const avatarSize = isStory ? 112 : 88
   const initial = displayName.trim().charAt(0).toUpperCase() || "L"
   const palette = SHARE_IMAGE_PALETTES[theme]
+  const coverLayout = getCoverLayout(books.length, isStory)
+  const displayNameSize = displayName.length > 24
+    ? isStory ? 38 : 31
+    : isStory ? 46 : 37
 
   return (
     <div
@@ -58,35 +73,57 @@ export function renderReaderShareImage({
         overflow: "hidden",
         color: "#f4f4f5",
         background: palette.background,
-        padding: isStory ? "78px 76px" : "52px 64px",
+        padding: isStory ? "72px 76px 82px" : "50px 64px 58px",
         fontFamily: "sans-serif",
       }}
     >
       <div
         style={{
           position: "absolute",
-          width: 620,
-          height: 620,
-          borderRadius: 999,
-          background: palette.glowPrimary,
-          left: -280,
-          top: -260,
+          inset: isStory ? 28 : 22,
+          display: "flex",
+          border: `2px solid ${palette.accentBorder}`,
+          borderRadius: isStory ? 34 : 28,
         }}
       />
       <div
         style={{
           position: "absolute",
-          width: 500,
-          height: 500,
+          top: isStory ? 122 : 92,
+          right: isStory ? 28 : 22,
+          width: 8,
+          height: isStory ? 210 : 160,
+          display: "flex",
+          borderRadius: 999,
+          background: palette.accent,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: isStory ? 690 : 560,
+          height: isStory ? 690 : 560,
+          borderRadius: 999,
+          background: palette.glowPrimary,
+          left: isStory ? -340 : -290,
+          top: isStory ? 300 : 130,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: 520,
+          height: 520,
           borderRadius: 999,
           background: palette.glowSecondary,
-          right: -240,
-          bottom: -200,
+          right: -260,
+          bottom: -180,
         }}
       />
 
       <div
         style={{
+          width: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -97,105 +134,126 @@ export function renderReaderShareImage({
           style={{
             display: "flex",
             alignItems: "center",
-            fontSize: isStory ? 30 : 25,
-            fontWeight: 800,
-            letterSpacing: 1.5,
+            fontSize: isStory ? 32 : 27,
+            fontWeight: 900,
+            letterSpacing: 1.8,
           }}
         >
-          CAS(<span style={{ color: "#ef4444" }}>Z</span>)A DE LIBROS
+          CAS(<span style={{ color: "#ef4444" }}>Z</span>)A INDIE
         </div>
         <div
           style={{
             display: "flex",
             color: palette.accent,
-            fontSize: isStory ? 24 : 20,
-            fontWeight: 700,
+            fontSize: isStory ? 22 : 18,
+            fontWeight: 800,
+            letterSpacing: 2.5,
           }}
         >
-          LITERATURA INDIE
+          PERFIL LECTOR
         </div>
       </div>
 
       <div
         style={{
+          width: "100%",
           display: "flex",
           alignItems: "center",
-          marginTop: isStory ? 68 : 38,
+          marginTop: isStory ? 72 : 42,
           position: "relative",
         }}
       >
-        {avatarDataUrl ? (
-          <img
-            src={avatarDataUrl}
-            alt=""
-            width={avatarSize}
-            height={avatarSize}
-            style={{
-              width: avatarSize,
-              height: avatarSize,
-              borderRadius: 32,
-              border: `3px solid ${palette.accentBorder}`,
-              objectFit: "cover",
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              width: avatarSize,
-              height: avatarSize,
-              borderRadius: 32,
-              border: `3px solid ${palette.accentBorder}`,
-              background: "#27272a",
-              color: palette.accent,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: isStory ? 62 : 48,
-              fontWeight: 800,
-            }}
-          >
-            {initial}
-          </div>
-        )}
+        <div
+          style={{
+            width: avatarSize + 18,
+            height: avatarSize + 18,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            borderRadius: isStory ? 34 : 28,
+            background: `linear-gradient(145deg, ${palette.accentBorder}, rgba(255,255,255,0.05))`,
+          }}
+        >
+          {avatarDataUrl ? (
+            <img
+              src={avatarDataUrl}
+              alt=""
+              width={avatarSize}
+              height={avatarSize}
+              style={{
+                width: avatarSize,
+                height: avatarSize,
+                borderRadius: isStory ? 27 : 22,
+                objectFit: "cover",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: avatarSize,
+                height: avatarSize,
+                borderRadius: isStory ? 27 : 22,
+                background: "#18181b",
+                color: palette.accent,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: isStory ? 52 : 41,
+                fontWeight: 900,
+              }}
+            >
+              {initial}
+            </div>
+          )}
+        </div>
 
         <div
           style={{
             minWidth: 0,
             display: "flex",
             flexDirection: "column",
-            marginLeft: isStory ? 32 : 25,
+            marginLeft: isStory ? 30 : 24,
           }}
         >
           <div
             style={{
               display: "flex",
-              fontSize: isStory ? 48 : 38,
+              color: palette.accent,
+              fontSize: isStory ? 20 : 17,
               fontWeight: 800,
-              lineHeight: 1.1,
-              maxWidth: isStory ? 720 : 760,
+              letterSpacing: 2.5,
             }}
           >
-            {displayName}
+            LA BIBLIOTECA DE
           </div>
           <div
             style={{
               display: "flex",
-              marginTop: 10,
-              color: "#a1a1aa",
-              fontSize: isStory ? 25 : 21,
+              marginTop: 7,
+              maxWidth: isStory ? 700 : 760,
+              maxHeight: isStory ? 106 : 85,
+              overflow: "hidden",
+              fontSize: displayNameSize,
+              fontWeight: 900,
+              lineHeight: 1.05,
             }}
           >
-            Mi biblioteca en Cas(z)a de Libros
+            {displayName}
           </div>
         </div>
       </div>
 
       <div
         style={{
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: isStory ? 66 : 34,
+          justifyContent: isStory ? "flex-start" : "center",
+          flexGrow: 1,
+          marginTop: isStory ? 76 : 36,
+          paddingBottom: isStory ? 185 : 54,
           position: "relative",
         }}
       >
@@ -203,10 +261,10 @@ export function renderReaderShareImage({
           style={{
             display: "flex",
             color: "#ffffff",
-            fontSize: isStory ? 70 : 52,
+            fontSize: isStory ? 67 : 52,
             fontWeight: 900,
-            textAlign: "center",
             lineHeight: 1,
+            textAlign: "center",
           }}
         >
           Mi biblioteca indie
@@ -214,97 +272,144 @@ export function renderReaderShareImage({
         <div
           style={{
             display: "flex",
-            marginTop: isStory ? 24 : 17,
-            padding: isStory ? "14px 26px" : "10px 20px",
-            borderRadius: 999,
-            background: "rgba(9, 9, 11, 0.58)",
-            border: `1px solid ${palette.accentBorder}`,
-            color: "#d4d4d8",
-            fontSize: isStory ? 27 : 22,
+            marginTop: isStory ? 18 : 13,
+            color: "#a1a1aa",
+            fontSize: isStory ? 25 : 20,
+            textAlign: "center",
           }}
         >
-          {totalBooks} {totalBooks === 1 ? "libro" : "libros"} · {readBooks}{" "}
-          {readBooks === 1 ? "leído" : "leídos"}
+          Historias independientes que forman parte de mí
+        </div>
+
+        <div
+          style={{
+            width: isStory && books.length === 4 ? 550 : "100%",
+            display: "flex",
+            flexWrap: isStory && books.length === 4 ? "wrap" : "nowrap",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: coverLayout.gap,
+            marginTop: isStory ? 50 : 30,
+          }}
+        >
+          {books.map((book, index) => (
+            <div
+              key={`${book.title}-${index}`}
+              style={{
+                width: coverLayout.width,
+                height: coverLayout.height,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                flexShrink: 0,
+                borderRadius: isStory ? 24 : 19,
+                border: "2px solid rgba(255,255,255,0.18)",
+                background: "#27272a",
+                boxShadow: "0 25px 70px rgba(0,0,0,0.5)",
+              }}
+            >
+              {book.coverDataUrl ? (
+                <img
+                  src={book.coverDataUrl}
+                  alt=""
+                  width={coverLayout.width}
+                  height={coverLayout.height}
+                  style={{
+                    width: coverLayout.width,
+                    height: coverLayout.height,
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: 28,
+                    color: "#e4e4e7",
+                    fontSize: isStory ? 27 : 21,
+                    fontWeight: 800,
+                    lineHeight: 1.15,
+                    textAlign: "center",
+                    background: "linear-gradient(145deg, #27272a, #18181b)",
+                  }}
+                >
+                  {book.title}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "stretch",
+            justifyContent: "center",
+            gap: isStory ? 22 : 17,
+            marginTop: isStory ? 46 : 30,
+          }}
+        >
+          <div
+            style={{
+              minWidth: isStory ? 225 : 190,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              padding: isStory ? "18px 30px" : "14px 26px",
+              borderRadius: isStory ? 22 : 18,
+              border: "1px solid rgba(255,255,255,0.13)",
+              background: "rgba(9,9,11,0.62)",
+            }}
+          >
+            <div style={{ display: "flex", color: palette.accent, fontSize: isStory ? 38 : 31, fontWeight: 900 }}>
+              {totalBooks}
+            </div>
+            <div style={{ display: "flex", marginTop: 3, color: "#a1a1aa", fontSize: isStory ? 19 : 16 }}>
+              EN BIBLIOTECA
+            </div>
+          </div>
+          <div
+            style={{
+              minWidth: isStory ? 225 : 190,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              padding: isStory ? "18px 30px" : "14px 26px",
+              borderRadius: isStory ? 22 : 18,
+              border: `1px solid ${palette.accentBorder}`,
+              background: "rgba(9,9,11,0.62)",
+            }}
+          >
+            <div style={{ display: "flex", color: "#ffffff", fontSize: isStory ? 38 : 31, fontWeight: 900 }}>
+              {readBooks}
+            </div>
+            <div style={{ display: "flex", marginTop: 3, color: "#a1a1aa", fontSize: isStory ? 19 : 16 }}>
+              {readBooks === 1 ? "LEÍDO" : "LEÍDOS"}
+            </div>
+          </div>
         </div>
       </div>
 
       <div
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: coverGap,
-          marginTop: isStory ? 56 : 32,
-          position: "relative",
-        }}
-      >
-        {books.map((book, index) => (
-          <div
-            key={`${book.title}-${index}`}
-            style={{
-              width: coverWidth,
-              height: coverHeight,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              overflow: "hidden",
-              borderRadius: isStory ? 26 : 22,
-              border: "2px solid rgba(255, 255, 255, 0.14)",
-              background: "#27272a",
-              boxShadow: "0 24px 60px rgba(0, 0, 0, 0.42)",
-            }}
-          >
-            {book.coverDataUrl ? (
-              <img
-                src={book.coverDataUrl}
-                alt=""
-                width={coverWidth}
-                height={coverHeight}
-                style={{
-                  width: coverWidth,
-                  height: coverHeight,
-                  objectFit: "cover",
-                }}
-              />
-            ) : (
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: 32,
-                  color: "#d4d4d8",
-                  fontSize: isStory ? 29 : 24,
-                  fontWeight: 700,
-                  lineHeight: 1.2,
-                  textAlign: "center",
-                  background:
-                    "linear-gradient(145deg, #27272a 0%, #18181b 100%)",
-                }}
-              >
-                {book.title}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div
-        style={{
+          width: "100%",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          marginTop: "auto",
-          paddingTop: isStory ? 42 : 24,
+          justifyContent: "space-between",
           color: "#a1a1aa",
-          fontSize: isStory ? 24 : 20,
+          fontSize: isStory ? 22 : 18,
           position: "relative",
         }}
       >
-        Descubre libros independientes en Cas(z)a de Libros
+        <div style={{ display: "flex" }}>Descubre tu próxima lectura indie</div>
+        <div style={{ display: "flex", color: palette.accent, fontWeight: 800 }}>
+          Cas(z)a Indie
+        </div>
       </div>
     </div>
   )
