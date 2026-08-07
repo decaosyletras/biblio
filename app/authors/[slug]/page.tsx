@@ -16,6 +16,7 @@ import ManageProButton from "@/components/ManageProButton"
 import AuthorInterview from "@/components/authors/AuthorInterview"
 import ShareProfileButton from "@/components/ShareProfileButton"
 import { getLinkedPublicReaderForAuthor } from "@/lib/publicProfileLinks"
+import AuthorShareImageButton from "@/components/authors/AuthorShareImageButton"
 
 import {
     inter,
@@ -642,6 +643,16 @@ export default async function AuthorPage({
 
                             </div>
                         )}
+
+                        <AuthorShareImageButton
+                            authorId={author.id}
+                            authorSlug={author.slug}
+                            authorName={author.name}
+                            isPro={isPro}
+                            hasFeaturedBook={Boolean(featuredBook)}
+                            hasNews={Boolean(author.news?.type)}
+                            primaryColor={authorTheme.primary}
+                        />
 
                         <Link
                             href="/me"
