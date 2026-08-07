@@ -257,55 +257,55 @@ export default function EditAuthorPage() {
             let bannerUrl = author.banner ?? null
 
 
-if (avatarFile) {
-    setSavingStep("Subiendo foto de perfil...")
-    avatarUrl = await uploadImage(
-        avatarFile,
-        "avatars"
-    )
-}
+            if (avatarFile) {
+                setSavingStep("Subiendo foto de perfil...")
+                avatarUrl = await uploadImage(
+                    avatarFile,
+                    "avatars"
+                )
+            }
 
-const data: any = {
-    avatar: avatarUrl ?? "",
-    bio: author.bio ?? "",
-    description: author.description ?? "",
-    style: author.style ?? "",
-    featured_book_id: author.featured_book_id ?? null,
-    show_bibliography: author.show_bibliography ?? true,
-    show_username: author.show_username === true,
-    website: normalizeUrl(author.website),
-    instagram: normalizeUrl(author.instagram),
-    threads: normalizeUrl(author.threads),
-    facebook: normalizeUrl(author.facebook),
-    tiktok: normalizeUrl(author.tiktok),
-    youtube: normalizeUrl(author.youtube),
-    wattpad: normalizeUrl(author.wattpad),
-    social_order: socialOrder.filter(
-        social => social !== "website"
-    )
-}
+            const data: any = {
+                avatar: avatarUrl ?? "",
+                bio: author.bio ?? "",
+                description: author.description ?? "",
+                style: author.style ?? "",
+                featured_book_id: author.featured_book_id ?? null,
+                show_bibliography: author.show_bibliography ?? true,
+                show_username: author.show_username === true,
+                website: normalizeUrl(author.website),
+                instagram: normalizeUrl(author.instagram),
+                threads: normalizeUrl(author.threads),
+                facebook: normalizeUrl(author.facebook),
+                tiktok: normalizeUrl(author.tiktok),
+                youtube: normalizeUrl(author.youtube),
+                wattpad: normalizeUrl(author.wattpad),
+                social_order: socialOrder.filter(
+                    social => social !== "website"
+                )
+            }
 
-if (isPro) {
-    if (bannerFile) {
-        bannerUrl = await uploadImage(
-            bannerFile,
-            "banners"
-        )
-    }
+            if (isPro) {
+                if (bannerFile) {
+                    bannerUrl = await uploadImage(
+                        bannerFile,
+                        "banners"
+                    )
+                }
 
-    data.contact_email = author.contact_email ?? ""
-    data.show_book_details = author.show_book_details ?? true
+                data.contact_email = author.contact_email ?? ""
+                data.show_book_details = author.show_book_details ?? true
 
-    data.banner = bannerUrl || null
-    data.current_news = author.current_news ?? ""
+                data.banner = bannerUrl || null
+                data.current_news = author.current_news ?? ""
 
-    if (newsImageFile) {
-        newsImageUrl = await uploadImage(
-            newsImageFile,
-            "news"
-        )
-    }
-}
+                if (newsImageFile) {
+                    newsImageUrl = await uploadImage(
+                        newsImageFile,
+                        "news"
+                    )
+                }
+            }
             if (isPro) {
                 if (bannerFile) {
                     setSavingStep("Subiendo banner...")
@@ -710,7 +710,7 @@ if (isPro) {
                         </p>
 
                         <p className="text-xs text-yellow-500">
-                            ⚠️ ¿Te registraste para ser de los primeros en usar la segunda versión? Revisa tu correo, incluida la carpeta de <strong>Promociones</strong> o <strong>Spam</strong>.
+                            ✨ Prueba <strong>PRO</strong> gratis durante tu primer mes con el código <strong>AUTORPRO</strong>. Obtén un <strong>100% de descuento</strong> y cancela en cualquier momento si no es para ti.
                         </p>
 
                         <ProCheckoutButton
