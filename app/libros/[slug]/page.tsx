@@ -130,7 +130,12 @@ export default async function Page({
           </div>
 
 
-          <ClaimAuthorButton authors={book.authors ?? []} />
+          <ClaimAuthorButton
+            authors={book.authors ?? []}
+            approvedAuthorIds={(book.authors ?? [])
+              .filter(author => verifiedAuthors.has(author.id))
+              .map(author => author.id)}
+          />
 
           {/* GENRES */}
           <div className="mt-4 flex flex-wrap gap-2">

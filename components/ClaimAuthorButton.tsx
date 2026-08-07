@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
+import Link from "next/link"
+import { PenLine } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { useCurrentUser } from "@/hooks/useCurrentUser"
 import { useProfile } from "@/hooks/useProfile"
@@ -17,20 +19,29 @@ type Claim = {
 
 type Props = {
   authors?: Author[]
+  approvedAuthorIds?: string[]
 }
 
-export default function ClaimAuthorButton({ authors = [] }: Props) {
+export default function ClaimAuthorButton({
+  authors = [],
+  approvedAuthorIds = [],
+}: Props) {
   const { user, loading: userLoading } = useCurrentUser()
-  const { profile, loading: profileLoading } = useProfile()
+  const { loading: profileLoading } = useProfile()
 
   const safeAuthors = useMemo(
     () => Array.isArray(authors) ? authors : [],
     [authors]
   )
+  const approvedAuthors = useMemo(
+    () => new Set(approvedAuthorIds),
+    [approvedAuthorIds]
+  )
 
-  const [selectedAuthor, setSelectedAuthor] = useState("")
+  const [selectedAuthor, setSelectedAuthor] = useState(
+    () => safeAuthors[0]?.id ?? ""
+  )
   const [claims, setClaims] = useState<Claim[]>([])
-  const [approvedAuthors, setApprovedAuthors] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
   const [sending, setSending] = useState(false)
 
@@ -38,12 +49,6 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
 
   const [proofNotes, setProofNotes] = useState("")
   const [proofUrl, setProofUrl] = useState("")
-
-  useEffect(() => {
-    if (safeAuthors.length > 0 && !selectedAuthor) {
-      setSelectedAuthor(safeAuthors[0].id)
-    }
-  }, [safeAuthors, selectedAuthor])
 
   useEffect(() => {
     const load = async () => {
@@ -65,14 +70,6 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
 
       setClaims((data ?? []) as Claim[])
 
-      const { data: approvedData } = await supabase
-        .from("author_claims")
-        .select("author_id")
-        .eq("status", "approved")
-
-      setApprovedAuthors(
-        (approvedData ?? []).map(a => a.author_id)
-      )
       setLoading(false)
     }
 
@@ -80,14 +77,47 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
   }, [user, userLoading])
 
   if (userLoading || loading || profileLoading) return null
-  if (!user) return null
   if (safeAuthors.length === 0) return null
+
+  const allAuthorsAlreadyManaged = safeAuthors.every(author =>
+    approvedAuthors.has(author.id)
+  )
+
+  if (!user) {
+    if (allAuthorsAlreadyManaged) return null
+
+    return (
+      <div className="mt-3 rounded-xl border border-blue-500/25 bg-blue-500/10 px-4 py-3">
+        <div className="flex items-start gap-3">
+          <PenLine
+            size={18}
+            aria-hidden="true"
+            className="mt-0.5 shrink-0 text-blue-300"
+          />
+          <p className="text-sm leading-relaxed text-zinc-300">
+            <span className="font-semibold text-zinc-100">
+              {safeAuthors.length > 1
+                ? "¿Eres uno de los autores de este libro?"
+                : "¿Eres el autor de este libro?"}
+            </span>{" "}
+            <Link
+              href="/login"
+              className="font-semibold text-blue-300 underline decoration-blue-400/40 underline-offset-2 hover:text-blue-200"
+            >
+              Inicia sesión
+            </Link>{" "}
+            para reclamar tu autoría y crear tu página de autor.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   const currentAuthorId = selectedAuthor
   const currentClaim = claims.find(c => c.author_id === currentAuthorId)
 
   const authorAlreadyOwned =
-    approvedAuthors.includes(currentAuthorId) &&
+    approvedAuthors.has(currentAuthorId) &&
     currentClaim?.status !== "approved"
 
   const hasApprovedAny = claims.some(c => c.status === "approved")
@@ -106,10 +136,6 @@ export default function ClaimAuthorButton({ authors = [] }: Props) {
   // )
 
   const hasActiveClaim = hasApprovedAny || hasPendingAny
-
-  const allAuthorsAlreadyManaged = safeAuthors.every(author =>
-    approvedAuthors.includes(author.id)
-  )
 
   const canSelectClaim =
     !hasActiveClaim &&
