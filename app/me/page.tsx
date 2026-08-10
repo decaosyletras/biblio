@@ -68,6 +68,7 @@ export default function MePage() {
   const [users, setUsers] = useState<UserRow[]>([])
   const [loadingUsers, setLoadingUsers] = useState(false)
   const [sendingLaunch, setSendingLaunch] = useState(false)
+  const [sendingClaimReminder, setSendingClaimReminder] = useState(false)
   const [editingUsername, setEditingUsername] = useState(false)
   const [usernameDraft, setUsernameDraft] = useState("")
   const [savedUsername, setSavedUsername] = useState<string | null>(null)
@@ -297,6 +298,36 @@ export default function MePage() {
     }
 
     alert(`Correos enviados: ${result.enviados}\nErrores: ${result.errores}`)
+  }
+
+  async function sendAuthorClaimReminder() {
+    const confirmed = window.confirm(
+      "¿Estás seguro de que deseas enviar el correo a las personas que aún no reclaman su autor?"
+    )
+
+    if (!confirmed) return
+
+    setSendingClaimReminder(true)
+
+    try {
+      const response = await fetch("/api/admin/send-author-claim-reminder", {
+        method: "POST",
+      })
+      const result = await response.json()
+
+      if (!response.ok || result.error) {
+        alert(result.error ?? "No se pudieron enviar los correos")
+        return
+      }
+
+      alert(
+        `Correos enviados: ${result.enviados}\nOmitidos: ${result.omitidos}\nErrores: ${result.errores}`
+      )
+    } catch {
+      alert("No se pudo conectar con el servicio de correo")
+    } finally {
+      setSendingClaimReminder(false)
+    }
   }
 
   async function loadUsers() {
@@ -743,10 +774,20 @@ export default function MePage() {
               <button
                 type="button"
                 onClick={sendLaunchEmail}
-                disabled={sendingLaunch}
+                disabled={sendingLaunch || sendingClaimReminder}
                 className="rounded-xl bg-red-600 px-5 py-3 font-medium transition hover:bg-red-500 disabled:opacity-50"
               >
                 {sendingLaunch ? "Enviando..." : "Enviar anuncio"}
+              </button>
+              <button
+                type="button"
+                onClick={sendAuthorClaimReminder}
+                disabled={sendingLaunch || sendingClaimReminder}
+                className="rounded-xl bg-amber-600 px-5 py-3 font-medium transition hover:bg-amber-500 disabled:opacity-50"
+              >
+                {sendingClaimReminder
+                  ? "Enviando..."
+                  : "Recordar reclamación de autor"}
               </button>
               <button
                 type="button"
