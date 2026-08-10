@@ -33,6 +33,7 @@ export default function MePage() {
     const [loadingUsers, setLoadingUsers] = useState(false)
 
     const [sendingLaunch, setSendingLaunch] = useState(false)
+    const [sendingClaimReminder, setSendingClaimReminder] = useState(false)
 
 
     const sendLaunchEmail = async () => {
@@ -78,6 +79,40 @@ export default function MePage() {
             `Correos enviados: ${data.enviados}\nErrores: ${data.errores}`
         )
 
+    }
+
+
+    const sendAuthorClaimReminder = async () => {
+        const confirmed = window.confirm(
+            "¿Estás seguro de que deseas enviar el correo a las personas que aún no reclaman su autor?"
+        )
+
+        if (!confirmed) return
+
+        setSendingClaimReminder(true)
+
+        try {
+            const response = await fetch(
+                "/api/admin/send-author-claim-reminder",
+                {
+                    method: "POST"
+                }
+            )
+            const result = await response.json()
+
+            if (!response.ok || result.error) {
+                alert(result.error ?? "No se pudieron enviar los correos")
+                return
+            }
+
+            alert(
+                `Correos enviados: ${result.enviados}\nOmitidos: ${result.omitidos}\nErrores: ${result.errores}`
+            )
+        } catch {
+            alert("No se pudo conectar con el servicio de correo")
+        } finally {
+            setSendingClaimReminder(false)
+        }
     }
 
 
@@ -503,7 +538,7 @@ export default function MePage() {
 
                                 <button
                                     onClick={sendLaunchEmail}
-                                    disabled={sendingLaunch}
+                                    disabled={sendingLaunch || sendingClaimReminder}
                                     className="
                                         px-5 py-3
                                         rounded-xl
@@ -516,6 +551,24 @@ export default function MePage() {
                                     {sendingLaunch
                                         ? "Enviando..."
                                         : "📧 Enviar Anuncio"
+                                    }
+                                </button>
+
+                                <button
+                                    onClick={sendAuthorClaimReminder}
+                                    disabled={sendingLaunch || sendingClaimReminder}
+                                    className="
+                                        px-5 py-3
+                                        rounded-xl
+                                        bg-amber-600
+                                        hover:bg-amber-500
+                                        active:bg-amber-700
+                                        active:scale-95 transition-all duration-150
+                                    "
+                                >
+                                    {sendingClaimReminder
+                                        ? "Enviando..."
+                                        : "Recordar reclamación de autor"
                                     }
                                 </button>
 
