@@ -3,8 +3,6 @@ import { Resend } from "resend"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 const CLAIM_ID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
@@ -264,6 +262,7 @@ export async function POST(req: Request) {
     const author = Array.isArray(authors) ? authors[0] : authors
     const authorName = author?.name?.trim() || "el autor"
     const approved = updatedClaim.status === "approved"
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     const { error: emailError } = await resend.emails.send({
       from: "Caza de Libros Indie <notificaciones@cazaindie.com>",
