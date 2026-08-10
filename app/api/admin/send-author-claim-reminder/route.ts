@@ -4,7 +4,6 @@ import type { User } from "@supabase/supabase-js"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
 const USERS_PER_PAGE = 100
 
 export async function POST(req: Request) {
@@ -115,6 +114,7 @@ export async function POST(req: Request) {
 
     let enviados = 0
     let errores = 0
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     for (const recipient of recipients) {
       const { error } = await resend.emails.send({

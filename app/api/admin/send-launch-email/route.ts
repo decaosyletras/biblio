@@ -3,8 +3,6 @@ import { Resend } from "resend"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(req: Request) {
 
   try {
@@ -71,6 +69,7 @@ export async function POST(req: Request) {
 
     let enviados = 0
     let errores = 0
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     for (const registro of registros ?? []) {
 
