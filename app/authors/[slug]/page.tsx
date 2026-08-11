@@ -933,7 +933,11 @@ export default async function AuthorPage({
                                     <div className="mt-2 flex flex-wrap gap-3 items-center">
 
                                         <AmazonButton
-                                            amazon={featuredBook.amazon}
+                                            amazon={{
+                                                es: featuredBook.asin_es,
+                                                mx: featuredBook.asin_mx,
+                                                us: featuredBook.asin_us
+                                            }}
                                             amazonLink={featuredBook.amazon_link}
                                             color={authorTheme.primary}
                                             textColor="#ffffff"
@@ -1097,7 +1101,11 @@ export default async function AuthorPage({
                                         <div className="mt-5 space-y-3">
 
                                             <AmazonButton
-                                                amazon={book.amazon}
+                                                amazon={{
+                                                    es: book.asin_es,
+                                                    mx: book.asin_mx,
+                                                    us: book.asin_us
+                                                }}
                                                 amazonLink={book.amazon_link}
                                                 color={authorTheme.primary}
                                                 textColor="#ffffff"
