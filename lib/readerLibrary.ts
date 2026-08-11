@@ -19,24 +19,26 @@ export async function getPublicReaderLibrary(
 ): Promise<PublicReaderBook[]> {
   // user_id se resuelve exclusivamente en servidor. La página pública recibe
   // libros y estados, nunca el identificador interno de la cuenta.
-  let profileQuery = supabaseAdmin
-    .from("reader_profiles")
-    .select("user_id")
-    .eq("username", username)
+  let readerUserId = ownerUserId
 
-  profileQuery = ownerUserId
-    ? profileQuery.eq("user_id", ownerUserId)
-    : profileQuery.eq("is_public", true)
+  if (!readerUserId) {
+    const { data: profile, error: profileError } = await supabaseAdmin
+      .from("reader_profiles")
+      .select("user_id")
+      .eq("username", username)
+      .eq("is_public", true)
+      .maybeSingle()
 
-  const { data: profile, error: profileError } =
-    await profileQuery.maybeSingle()
+    if (profileError || !profile?.user_id) return []
+    readerUserId = profile.user_id
+  }
 
-  if (profileError || !profile?.user_id) return []
+  if (!readerUserId) return []
 
   const { data: memberships, error: membershipsError } = await supabaseAdmin
     .from("reader_books")
     .select("book_id, is_read, is_favorite, favorited_at, added_at, read_at")
-    .eq("user_id", profile.user_id)
+    .eq("user_id", readerUserId)
 
   if (membershipsError || !memberships?.length) return []
 
