@@ -107,6 +107,23 @@ export default function BookDirectory({
         </p>
       )}
 
+      {!userLoading && user && (
+        <div className="mt-4 flex justify-end">
+          <Link
+            href="/me/library"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-yellow-400"
+          >
+            <LibraryBig size={17} aria-hidden="true" />
+            Abrir mi biblioteca
+            {!libraryLoading && (
+              <span className="rounded-full bg-black/15 px-2 py-0.5 text-xs">
+                {libraryCount}
+              </span>
+            )}
+          </Link>
+        </div>
+      )}
+
       {message && (
         <p
           role="alert"

@@ -93,9 +93,19 @@ export default function Navbar() {
           </details>
           <Link href="/contact">Recomendar libro</Link>
           {sessionResolved && (
-            <Link href={hasSession ? "/me" : "/login"}>
-              {hasSession ? "Mi espacio" : "Iniciar sesión"}
-            </Link>
+            <>
+              {hasSession && (
+                <Link
+                  href="/me/library"
+                  className="rounded-lg bg-yellow-500 px-3 py-2 font-semibold text-black transition hover:bg-yellow-400"
+                >
+                  Mi biblioteca
+                </Link>
+              )}
+              <Link href={hasSession ? "/me" : "/login"}>
+                {hasSession ? "Mi espacio" : "Iniciar sesión"}
+              </Link>
+            </>
           )}
           {/*<Link href="/afiliados">Transparencia</Link>
           <Link href="/privacidad">Privacidad</Link>*/}
@@ -115,12 +125,23 @@ export default function Navbar() {
             Recomendar libro
           </Link>
           {sessionResolved && (
-            <Link
-              href={hasSession ? "/me" : "/login"}
-              onClick={() => setOpen(false)}
-            >
-              {hasSession ? "Mi espacio" : "Iniciar sesión"}
-            </Link>
+            <>
+              {hasSession && (
+                <Link
+                  href="/me/library"
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg bg-yellow-500 px-3 py-2.5 text-center font-semibold text-black transition hover:bg-yellow-400"
+                >
+                  Mi biblioteca
+                </Link>
+              )}
+              <Link
+                href={hasSession ? "/me" : "/login"}
+                onClick={() => setOpen(false)}
+              >
+                {hasSession ? "Mi espacio" : "Iniciar sesión"}
+              </Link>
+            </>
           )}
           {/*<Link href="/afiliados" onClick={() => setOpen(false)}>Transparencia</Link>
           <Link href="/privacidad" onClick={() => setOpen(false)}>Privacidad</Link>*/}
