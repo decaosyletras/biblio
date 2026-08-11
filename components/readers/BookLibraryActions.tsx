@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { BookOpenCheck, LibraryBig, Plus } from "lucide-react"
 import BookRecommendationShareButton from "@/components/readers/BookRecommendationShareButton"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
@@ -61,7 +62,33 @@ export default function BookLibraryActions({
       )}
 
       <p className="mb-2.5 text-xs leading-relaxed text-zinc-400">
-        Guarda este libro en tu biblioteca personal o marca que ya lo leíste.
+        {isRead ? (
+          <>
+            Este libro ya está marcado como leído. Si necesitas corregirlo,
+            puedes cambiar su estado desde la{" "}
+            <Link
+              href="/book-directory"
+              className="font-medium text-yellow-400 hover:text-yellow-300"
+            >
+              biblioteca general
+            </Link>
+            .
+          </>
+        ) : isInLibrary ? (
+          <>
+            Este libro ya está en tu biblioteca. Puedes marcarlo como leído aquí
+            o administrarlo desde la{" "}
+            <Link
+              href="/book-directory"
+              className="font-medium text-yellow-400 hover:text-yellow-300"
+            >
+              biblioteca general
+            </Link>
+            .
+          </>
+        ) : (
+          "Guarda este libro en tu biblioteca personal o marca que ya lo leíste."
+        )}
       </p>
 
       <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
