@@ -79,40 +79,36 @@ export default async function ReaderProfilePage({
 
   let profile = publicProfile as ReaderProfile | null
   let ownerUserId: string | undefined
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
-  if (!profile) {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
+  if (user) {
+    const { data: ownedProfile, error: ownedProfileError } = await supabaseAdmin
+      .from("reader_profiles")
+      .select(`
+        username,
+        display_name,
+        bio,
+        avatar_url,
+        instagram_url,
+        tiktok_url,
+        wattpad_url,
+        threads_url,
+        facebook_url,
+        youtube_url,
+        website_url,
+        is_public,
+        show_favorites,
+        show_achievements
+      `)
+      .eq("username", username)
+      .eq("user_id", user.id)
+      .maybeSingle()
 
-    if (user) {
-      const { data: ownedProfile, error: ownedProfileError } =
-        await supabaseAdmin
-          .from("reader_profiles")
-          .select(`
-            username,
-            display_name,
-            bio,
-            avatar_url,
-            instagram_url,
-            tiktok_url,
-            wattpad_url,
-            threads_url,
-            facebook_url,
-            youtube_url,
-            website_url,
-            is_public,
-            show_favorites,
-            show_achievements
-          `)
-          .eq("username", username)
-          .eq("user_id", user.id)
-          .maybeSingle()
-
-      if (!ownedProfileError && ownedProfile) {
-        profile = ownedProfile as ReaderProfile
-        ownerUserId = user.id
-      }
+    if (!ownedProfileError && ownedProfile) {
+      profile = ownedProfile as ReaderProfile
+      ownerUserId = user.id
     }
   }
 
@@ -120,10 +116,14 @@ export default async function ReaderProfilePage({
     notFound()
   }
 
+  const isOwner = Boolean(ownerUserId)
+  const isPrivatePreview = isOwner && !profile.is_public
+  const showFavorites = isOwner || profile.show_favorites
+  const showAchievements = isOwner || profile.show_achievements
   const [library, linkedAuthor, achievements] = await Promise.all([
-    getPublicReaderLibrary(username, profile.show_favorites, ownerUserId),
+    getPublicReaderLibrary(username, showFavorites, ownerUserId),
     getLinkedAuthorForPublicReader(username, ownerUserId),
-    profile.show_achievements
+    showAchievements
       ? getPublicReaderAchievements(username, ownerUserId)
       : Promise.resolve([]),
   ])
@@ -195,7 +195,7 @@ export default async function ReaderProfilePage({
   return (
     <main className="min-h-screen px-4 py-10 text-white sm:px-6 sm:py-14">
       <div className="mx-auto max-w-5xl">
-        {ownerUserId && (
+        {isPrivatePreview && (
           <div className="mb-5 rounded-2xl border border-yellow-500/30 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-200">
             Vista privada: puedes ver este perfil porque es tuyo, pero todavía
             no está disponible para otras personas.
@@ -204,7 +204,7 @@ export default async function ReaderProfilePage({
         <section className="relative overflow-hidden rounded-[2rem] border border-blue-500/15 bg-gradient-to-br from-blue-950 via-slate-950 to-zinc-950 shadow-2xl shadow-black/30">
           <div className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
           <div className="absolute -right-20 bottom-0 h-56 w-56 rounded-full bg-yellow-500/10 blur-3xl" />
-          {!ownerUserId && (
+          {profile.is_public && (
             <div className="absolute right-4 top-4 z-20 sm:right-6 sm:top-6">
               <ShareProfileButton
                 path={`/readers/${profile.username}`}
@@ -284,7 +284,7 @@ export default async function ReaderProfilePage({
 
         <PublicReaderAchievements achievements={achievements} />
 
-        {profile.show_favorites && (
+        {showFavorites && (
           <PublicReaderFavorites library={library} />
         )}
 
