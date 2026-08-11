@@ -120,6 +120,10 @@ export default async function ReaderProfilePage({
   const isPrivatePreview = isOwner && !profile.is_public
   const showFavorites = isOwner || profile.show_favorites
   const showAchievements = isOwner || profile.show_achievements
+  const hiddenPublicSections = [
+    !profile.show_favorites ? "tus favoritos" : null,
+    !profile.show_achievements ? "tus logros" : null,
+  ].filter((section): section is string => Boolean(section))
   const [library, linkedAuthor, achievements] = await Promise.all([
     getPublicReaderLibrary(username, showFavorites, ownerUserId),
     getLinkedAuthorForPublicReader(username, ownerUserId),
@@ -199,6 +203,12 @@ export default async function ReaderProfilePage({
           <div className="mb-5 rounded-2xl border border-yellow-500/30 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-200">
             Vista privada: puedes ver este perfil porque es tuyo, pero todavía
             no está disponible para otras personas.
+          </div>
+        )}
+        {isOwner && profile.is_public && hiddenPublicSections.length > 0 && (
+          <div className="mb-5 rounded-2xl border border-blue-400/25 bg-blue-500/10 px-4 py-3 text-sm text-blue-100">
+            Vista de propietario: puedes ver todo tu perfil. El público no puede
+            ver {hiddenPublicSections.join(" ni ")}.
           </div>
         )}
         <section className="relative overflow-hidden rounded-[2rem] border border-blue-500/15 bg-gradient-to-br from-blue-950 via-slate-950 to-zinc-950 shadow-2xl shadow-black/30">
