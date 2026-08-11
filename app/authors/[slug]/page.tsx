@@ -934,7 +934,7 @@ export default async function AuthorPage({
 
                                         <AmazonButton
                                             amazon={featuredBook.amazon}
-                                            amazonLink={featuredBook.amazonLink}
+                                            amazonLink={featuredBook.amazon_link}
                                             color={authorTheme.primary}
                                             textColor="#ffffff"
                                         />
@@ -1098,7 +1098,7 @@ export default async function AuthorPage({
 
                                             <AmazonButton
                                                 amazon={book.amazon}
-                                                amazonLink={book.amazonLink}
+                                                amazonLink={book.amazon_link}
                                                 color={authorTheme.primary}
                                                 textColor="#ffffff"
                                             />
