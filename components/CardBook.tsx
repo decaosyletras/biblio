@@ -9,8 +9,8 @@ export default function CardBook({ book }: { book: Book }) {
 
   // 👇 multi-autor
   const bookAuthors = book.authorSlug
-  .map(slug => authors.find(a => a.slug === slug))
-  .filter(Boolean)
+    .map(slug => authors.find(a => a.slug === slug))
+    .filter(Boolean)
 
   return (
     <div className="bg-zinc-800 rounded-xl p-3 hover:scale-108 transition duration-300 relative z-10 hover:z-20">
