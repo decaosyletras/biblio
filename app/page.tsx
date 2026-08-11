@@ -153,7 +153,7 @@ export default async function Home() {
       },
       {
         href: "/me#mis-solicitudes",
-        label: "Crear página de autor",
+        label: "Ver mis perfiles",
         primary: false,
       },
     ]
@@ -233,11 +233,10 @@ export default async function Home() {
                   <Link
                     key={action.href}
                     href={action.href}
-                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                      action.primary
-                        ? "bg-yellow-500 text-black hover:bg-yellow-400"
-                        : "border border-zinc-600 text-zinc-200 hover:bg-zinc-800"
-                    }`}
+                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${action.primary
+                      ? "bg-yellow-500 text-black hover:bg-yellow-400"
+                      : "border border-zinc-600 text-zinc-200 hover:bg-zinc-800"
+                      }`}
                   >
                     {action.label}
                   </Link>

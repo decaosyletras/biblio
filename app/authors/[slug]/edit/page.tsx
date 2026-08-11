@@ -190,14 +190,36 @@ export default function EditAuthorPage() {
             .from("book_authors")
             .select(`books(*)`)
             .eq("author_id", authorData.id)
-        const multiBooks = relationBooks?.map(item => item.books).filter(Boolean) ?? []
+        const multiBooks = (relationBooks ?? [])
+            .flatMap(item => {
+                const relatedBooks = item.books
+
+                return Array.isArray(relatedBooks)
+                    ? relatedBooks
+                    : relatedBooks
+                        ? [relatedBooks]
+                        : []
+            })
+            .filter(book => book.approved === true)
+        const { data: bookSettings } = await supabase
+            .from("author_book_settings")
+            .select("book_id, author_order")
+            .eq("author_id", authorData.id)
+        const orderByBookId = new Map(
+            (bookSettings ?? []).map(setting => [
+                setting.book_id,
+                setting.author_order ?? 0
+            ])
+        )
         const map = new Map()
             ;[...(directBooks ?? []), ...multiBooks].forEach(book => {
                 map.set(book.id, book)
             })
         setBooks(
             Array.from(map.values()).sort(
-                (a, b) => (a.author_order ?? 0) - (b.author_order ?? 0)
+                (a, b) =>
+                    (orderByBookId.get(a.id) ?? a.author_order ?? 0) -
+                    (orderByBookId.get(b.id) ?? b.author_order ?? 0)
             )
         )
         //}
@@ -545,25 +567,28 @@ export default function EditAuthorPage() {
             }
 
             setSavingStep("Actualizando libros...")
-            for (let i = 0; i < books.length; i++) {
-                const { error } = await supabase
-                    .from("books")
-                    .update({
-                        author_order: i
-                    })
-                    .eq("id", books[i].id)
+            const orderResponse = await fetch("/api/authors/books/order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    authorId: author.id,
+                    bookIds: books.map(book => book.id)
+                })
+            })
+            const orderResult = await orderResponse
+                .json()
+                .catch(() => null) as { error?: string } | null
+
+            if (!orderResponse.ok) {
+                alert(
+                    orderResult?.error ??
+                    "No se pudo guardar el orden de los libros"
+                )
+                return
             }
 
-            /*if (isPro) {
-                for (let i = 0; i < books.length; i++) {
-                    await supabase
-                        .from("books")
-                        .update({
-                            author_order: i
-                        })
-                        .eq("id", books[i].id)
-                }
-            }*/
             if (originalBanner && originalBanner !== data.banner) {
                 await deleteImage(originalBanner)
             }

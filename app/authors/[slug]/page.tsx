@@ -216,10 +216,29 @@ export default async function AuthorPage({
         `)
         .eq("author_id", author.id)
 
-    const multiBooks =
-        relationBooks
-            ?.map(x => x.books)
-            .filter(Boolean) ?? []
+    const multiBooks = (relationBooks ?? [])
+        .flatMap(item => {
+            const relatedBooks = item.books
+
+            return Array.isArray(relatedBooks)
+                ? relatedBooks
+                : relatedBooks
+                    ? [relatedBooks]
+                    : []
+        })
+        .filter(book => book.approved === true)
+
+    const { data: bookSettings } = await supabase
+        .from("author_book_settings")
+        .select("book_id, author_order")
+        .eq("author_id", author.id)
+
+    const orderByBookId = new Map(
+        (bookSettings ?? []).map(setting => [
+            setting.book_id,
+            setting.author_order ?? 0
+        ])
+    )
 
     const booksMap = new Map()
 
@@ -234,7 +253,8 @@ export default async function AuthorPage({
         .from(booksMap.values())
         .sort(
             (a, b) =>
-                (a.author_order ?? 0) - (b.author_order ?? 0)
+                (orderByBookId.get(a.id) ?? a.author_order ?? 0) -
+                (orderByBookId.get(b.id) ?? b.author_order ?? 0)
         )
 
     let visibleInterviewQuestions: Array<{

@@ -169,9 +169,10 @@ export async function GET(request: Request) {
   const authorBookIds = unorderedAuthorBooks.map((book) => book.id)
   const { data: orderRows, error: orderError } = authorBookIds.length > 0
     ? await supabaseAdmin
-        .from("books")
-        .select("id, author_order")
-        .in("id", authorBookIds)
+        .from("author_book_settings")
+        .select("book_id, author_order")
+        .eq("author_id", authorId)
+        .in("book_id", authorBookIds)
     : { data: [], error: null }
 
   if (orderError) {
@@ -182,7 +183,10 @@ export async function GET(request: Request) {
   }
 
   const orderByBookId = new Map(
-    (orderRows ?? []).map((book) => [book.id, book.author_order ?? 0])
+    (orderRows ?? []).map((setting) => [
+      setting.book_id,
+      setting.author_order ?? 0,
+    ])
   )
   const authorBooks = [...unorderedAuthorBooks].sort(
     (first, second) =>
