@@ -71,6 +71,9 @@ export default function Navbar() {
           <Link href="/">Inicio</Link>
           <Link href="/libros">Catálogo</Link>
           <Link href="/book-directory">Biblioteca general</Link>
+          {sessionResolved && hasSession && (
+            <Link href="/me/library">Mi biblioteca</Link>
+          )}
           <Link href="/resenas">Lectómetro</Link>
           <details className="group relative">
             <summary className="cursor-pointer list-none select-none">
@@ -93,19 +96,9 @@ export default function Navbar() {
           </details>
           <Link href="/contact">Recomendar libro</Link>
           {sessionResolved && (
-            <>
-              {hasSession && (
-                <Link
-                  href="/me/library"
-                  className="rounded-lg bg-yellow-500 px-3 py-2 font-semibold text-black transition hover:bg-yellow-400"
-                >
-                  Mi biblioteca
-                </Link>
-              )}
-              <Link href={hasSession ? "/me" : "/login"}>
-                {hasSession ? "Mi espacio" : "Iniciar sesión"}
-              </Link>
-            </>
+            <Link href={hasSession ? "/me" : "/login"}>
+              {hasSession ? "Mi espacio" : "Iniciar sesión"}
+            </Link>
           )}
           {/*<Link href="/afiliados">Transparencia</Link>
           <Link href="/privacidad">Privacidad</Link>*/}
@@ -118,6 +111,11 @@ export default function Navbar() {
           <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
           <Link href="/libros" onClick={() => setOpen(false)}>Catálogo</Link>
           <Link href="/book-directory" onClick={() => setOpen(false)}>Biblioteca general</Link>
+          {sessionResolved && hasSession && (
+            <Link href="/me/library" onClick={() => setOpen(false)}>
+              Mi biblioteca
+            </Link>
+          )}
           <Link href="/resenas" onClick={() => setOpen(false)}>Lectómetro</Link>
           <Link href="/authors" onClick={() => setOpen(false)}>Autores</Link>
           <Link href="/readers" onClick={() => setOpen(false)}>Lectores</Link>
@@ -125,23 +123,12 @@ export default function Navbar() {
             Recomendar libro
           </Link>
           {sessionResolved && (
-            <>
-              {hasSession && (
-                <Link
-                  href="/me/library"
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg bg-yellow-500 px-3 py-2.5 text-center font-semibold text-black transition hover:bg-yellow-400"
-                >
-                  Mi biblioteca
-                </Link>
-              )}
-              <Link
-                href={hasSession ? "/me" : "/login"}
-                onClick={() => setOpen(false)}
-              >
-                {hasSession ? "Mi espacio" : "Iniciar sesión"}
-              </Link>
-            </>
+            <Link
+              href={hasSession ? "/me" : "/login"}
+              onClick={() => setOpen(false)}
+            >
+              {hasSession ? "Mi espacio" : "Iniciar sesión"}
+            </Link>
           )}
           {/*<Link href="/afiliados" onClick={() => setOpen(false)}>Transparencia</Link>
           <Link href="/privacidad" onClick={() => setOpen(false)}>Privacidad</Link>*/}
