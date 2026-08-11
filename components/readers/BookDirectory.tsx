@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { BookOpenCheck, Eye, EyeOff, LibraryBig, Plus, Search, Trash2 } from "lucide-react"
+import { BookOpen, BookOpenCheck, Eye, EyeOff, LibraryBig, Plus, Search, Trash2 } from "lucide-react"
 import CoverImage from "@/components/CoverImage"
 import LectometerMark from "@/components/LectometerMark"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
@@ -302,15 +302,23 @@ export default function BookDirectory({
                       </button>
                       <button
                         type="button"
-                        title={membership.isRead ? "Marcar pendiente" : "Marcar leído"}
+                        title={membership.isRead ? "Quitar de leídos" : "Marcar como leído"}
                         aria-label={membership.isRead
-                          ? `Marcar ${book.title} como pendiente`
+                          ? `Quitar ${book.title} de mis libros leídos`
                           : `Marcar ${book.title} como leído`}
                         disabled={isPending || libraryLoading}
                         onClick={() => saveBook(book.id, !membership.isRead)}
-                        className="inline-flex min-w-0 items-center justify-center rounded-lg bg-green-600 px-1 py-2 text-xs font-medium text-white transition hover:bg-green-500 disabled:opacity-50"
+                        className={`inline-flex min-w-0 items-center justify-center rounded-lg px-1 py-2 text-xs font-medium text-white transition disabled:opacity-50 ${
+                          membership.isRead
+                            ? "bg-zinc-700 hover:bg-zinc-600"
+                            : "bg-green-600 hover:bg-green-500"
+                        }`}
                       >
-                        <BookOpenCheck size={14} />
+                        {membership.isRead ? (
+                          <BookOpen size={14} />
+                        ) : (
+                          <BookOpenCheck size={14} />
+                        )}
                       </button>
                       <button
                         type="button"
