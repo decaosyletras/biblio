@@ -260,13 +260,20 @@ export async function getReaderAchievementSnapshot(
   }
 }
 
-export async function getPublicReaderAchievements(username: string) {
-  const { data: profile, error } = await supabaseAdmin
+export async function getPublicReaderAchievements(
+  username: string,
+  ownerUserId?: string
+) {
+  let profileQuery = supabaseAdmin
     .from("reader_profiles")
     .select("user_id, show_achievements")
     .eq("username", username)
-    .eq("is_public", true)
-    .maybeSingle()
+
+  profileQuery = ownerUserId
+    ? profileQuery.eq("user_id", ownerUserId)
+    : profileQuery.eq("is_public", true)
+
+  const { data: profile, error } = await profileQuery.maybeSingle()
 
   if (error || !profile?.user_id || !profile.show_achievements) return []
 

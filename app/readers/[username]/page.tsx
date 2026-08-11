@@ -4,6 +4,7 @@ import { BookOpen, ExternalLink, LibraryBig, UserRound } from "lucide-react"
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa"
 import { SiThreads, SiTiktok, SiWattpad } from "react-icons/si"
 import { createClient } from "@/lib/supabase-server"
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import CoverImage from "@/components/CoverImage"
 import { getBookCover } from "@/lib/amazon"
 import { getPublicReaderLibrary } from "@/lib/readerLibrary"
@@ -28,6 +29,7 @@ type ReaderProfile = {
   facebook_url: string
   youtube_url: string
   website_url: string
+  is_public: boolean
   show_favorites: boolean
   show_achievements: boolean
 }
@@ -49,7 +51,7 @@ export default async function ReaderProfilePage({
   }
 
   const supabase = await createClient()
-  const { data, error } = await supabase
+  const { data: publicProfile, error } = await supabase
     .from("reader_profiles")
     .select(`
       username,
@@ -63,6 +65,7 @@ export default async function ReaderProfilePage({
       facebook_url,
       youtube_url,
       website_url,
+      is_public,
       show_favorites,
       show_achievements
     `)
@@ -70,16 +73,58 @@ export default async function ReaderProfilePage({
     .eq("is_public", true)
     .maybeSingle()
 
-  if (error || !data) {
+  if (error) {
     notFound()
   }
 
-  const profile = data as ReaderProfile
+  let profile = publicProfile as ReaderProfile | null
+  let ownerUserId: string | undefined
+
+  if (!profile) {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (user) {
+      const { data: ownedProfile, error: ownedProfileError } =
+        await supabaseAdmin
+          .from("reader_profiles")
+          .select(`
+            username,
+            display_name,
+            bio,
+            avatar_url,
+            instagram_url,
+            tiktok_url,
+            wattpad_url,
+            threads_url,
+            facebook_url,
+            youtube_url,
+            website_url,
+            is_public,
+            show_favorites,
+            show_achievements
+          `)
+          .eq("username", username)
+          .eq("user_id", user.id)
+          .maybeSingle()
+
+      if (!ownedProfileError && ownedProfile) {
+        profile = ownedProfile as ReaderProfile
+        ownerUserId = user.id
+      }
+    }
+  }
+
+  if (!profile) {
+    notFound()
+  }
+
   const [library, linkedAuthor, achievements] = await Promise.all([
-    getPublicReaderLibrary(username, profile.show_favorites),
-    getLinkedAuthorForPublicReader(username),
+    getPublicReaderLibrary(username, profile.show_favorites, ownerUserId),
+    getLinkedAuthorForPublicReader(username, ownerUserId),
     profile.show_achievements
-      ? getPublicReaderAchievements(username)
+      ? getPublicReaderAchievements(username, ownerUserId)
       : Promise.resolve([]),
   ])
   const readCount = library.filter((item) => item.isRead).length
@@ -150,17 +195,25 @@ export default async function ReaderProfilePage({
   return (
     <main className="min-h-screen px-4 py-10 text-white sm:px-6 sm:py-14">
       <div className="mx-auto max-w-5xl">
+        {ownerUserId && (
+          <div className="mb-5 rounded-2xl border border-yellow-500/30 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-200">
+            Vista privada: puedes ver este perfil porque es tuyo, pero todavía
+            no está disponible para otras personas.
+          </div>
+        )}
         <section className="relative overflow-hidden rounded-[2rem] border border-blue-500/15 bg-gradient-to-br from-blue-950 via-slate-950 to-zinc-950 shadow-2xl shadow-black/30">
           <div className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
           <div className="absolute -right-20 bottom-0 h-56 w-56 rounded-full bg-yellow-500/10 blur-3xl" />
-          <div className="absolute right-4 top-4 z-20 sm:right-6 sm:top-6">
-            <ShareProfileButton
-              path={`/readers/${profile.username}`}
-              backgroundColor="#eab308"
-              textColor="#18181b"
-              iconOnly
-            />
-          </div>
+          {!ownerUserId && (
+            <div className="absolute right-4 top-4 z-20 sm:right-6 sm:top-6">
+              <ShareProfileButton
+                path={`/readers/${profile.username}`}
+                backgroundColor="#eab308"
+                textColor="#18181b"
+                iconOnly
+              />
+            </div>
+          )}
 
           <div className="relative flex min-h-[310px] flex-col items-center justify-end gap-5 px-5 py-9 text-center sm:px-8 sm:py-11 lg:flex-row lg:items-end lg:gap-8 lg:px-10 lg:text-left">
               <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-[1.75rem] border border-yellow-500/50 bg-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,.45)] sm:h-36 sm:w-36 lg:h-40 lg:w-40 lg:rounded-[2rem]">

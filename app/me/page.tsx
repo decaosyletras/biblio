@@ -540,7 +540,7 @@ export default function MePage() {
                     publicar este perfil.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {readerProfile.isPublic && readerProfile.username && (
+                    {readerProfile.username && (
                       <Link
                         href={`/readers/${readerProfile.username}`}
                         className="rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-yellow-400"
@@ -555,6 +555,12 @@ export default function MePage() {
                       Editar perfil
                     </Link>
                   </div>
+                  {!readerProfile.isPublic && (
+                    <p className="mt-3 text-xs leading-relaxed text-yellow-300/80">
+                      Este perfil no es público. Puedes verlo porque es tuyo,
+                      pero las demás personas no podrán abrirlo.
+                    </p>
+                  )}
                 </div>
               ) : (
                 <div className="mt-5">

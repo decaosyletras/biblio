@@ -12,14 +12,20 @@ export type LinkedReaderProfile = {
 }
 
 export async function getLinkedAuthorForPublicReader(
-  username: string
+  username: string,
+  ownerUserId?: string
 ): Promise<LinkedAuthorProfile | null> {
-  const { data: readerProfile, error: readerError } = await supabaseAdmin
+  let profileQuery = supabaseAdmin
     .from("reader_profiles")
     .select("user_id")
     .eq("username", username)
-    .eq("is_public", true)
-    .maybeSingle()
+
+  profileQuery = ownerUserId
+    ? profileQuery.eq("user_id", ownerUserId)
+    : profileQuery.eq("is_public", true)
+
+  const { data: readerProfile, error: readerError } =
+    await profileQuery.maybeSingle()
 
   if (readerError || !readerProfile?.user_id) return null
 

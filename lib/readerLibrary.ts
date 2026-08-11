@@ -14,16 +14,22 @@ export type PublicReaderBook = {
 
 export async function getPublicReaderLibrary(
   username: string,
-  includeFavorites = false
+  includeFavorites = false,
+  ownerUserId?: string
 ): Promise<PublicReaderBook[]> {
   // user_id se resuelve exclusivamente en servidor. La página pública recibe
   // libros y estados, nunca el identificador interno de la cuenta.
-  const { data: profile, error: profileError } = await supabaseAdmin
+  let profileQuery = supabaseAdmin
     .from("reader_profiles")
     .select("user_id")
     .eq("username", username)
-    .eq("is_public", true)
-    .maybeSingle()
+
+  profileQuery = ownerUserId
+    ? profileQuery.eq("user_id", ownerUserId)
+    : profileQuery.eq("is_public", true)
+
+  const { data: profile, error: profileError } =
+    await profileQuery.maybeSingle()
 
   if (profileError || !profile?.user_id) return []
 
