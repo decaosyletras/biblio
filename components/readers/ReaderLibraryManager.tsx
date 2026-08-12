@@ -123,10 +123,10 @@ export default function ReaderLibraryManager({
 
         <div className="flex flex-wrap gap-2">
           {([
-            ["all", "Todos"],
-            ["read", "Leídos"],
-            ["pending", "Pendientes"],
-          ] as const).map(([value, label]) => (
+            ["all", "Todos", libraryBooks.length],
+            ["read", "Leídos", readCount],
+            ["pending", "Pendientes", pendingCount],
+          ] as const).map(([value, label, count]) => (
             <button
               key={value}
               type="button"
@@ -137,7 +137,7 @@ export default function ReaderLibraryManager({
                   : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
               }`}
             >
-              {label}
+              {label} · {count}
             </button>
           ))}
         </div>
@@ -207,6 +207,15 @@ export default function ReaderLibraryManager({
                   <p className="mt-1 line-clamp-2 text-xs text-zinc-500">
                     {(book.authorNames ?? []).join(", ") || "Autor independiente"}
                   </p>
+                  <span
+                    className={`mt-2 w-fit rounded-full px-2 py-1 text-[10px] font-semibold ${
+                      membership?.isRead
+                        ? "bg-green-500/15 text-green-300"
+                        : "bg-zinc-800 text-zinc-300"
+                    }`}
+                  >
+                    Estado: {membership?.isRead ? "Leído" : "Pendiente de leer"}
+                  </span>
                   {membership?.isRead && (
                     <p
                       className={`mt-1.5 text-[11px] font-medium ${
@@ -230,12 +239,29 @@ export default function ReaderLibraryManager({
                   >
                     <button
                       type="button"
+                      title={
+                        membership?.isRead
+                          ? "Mover a pendientes"
+                          : "Marcar como leído"
+                      }
+                      aria-label={
+                        membership?.isRead
+                          ? `Mover ${book.title} a pendientes`
+                          : `Marcar ${book.title} como leído`
+                      }
                       disabled={isPending}
                       onClick={() => saveBook(book.id, !membership?.isRead)}
                       className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-zinc-700 px-2 py-2 text-xs transition hover:bg-zinc-600 disabled:opacity-50 sm:gap-1.5 sm:px-3"
                     >
                       <BookOpenCheck size={14} />
-                      {membership?.isRead ? "Pendiente" : "Leído"}
+                      <span className="sm:hidden">
+                        {membership?.isRead ? "A pendientes" : "Marcar leído"}
+                      </span>
+                      <span className="hidden sm:inline">
+                        {membership?.isRead
+                          ? "Mover a pendientes"
+                          : "Marcar como leído"}
+                      </span>
                     </button>
                     {membership?.isRead && (
                       <button
