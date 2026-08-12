@@ -135,59 +135,59 @@ export default async function ReaderProfilePage({
   const links = [
     profile.instagram_url
       ? {
-          label: "Instagram",
-          href: profile.instagram_url,
-          icon: <FaInstagram aria-hidden="true" />,
-          iconClassName: "text-pink-400",
-        }
+        label: "Instagram",
+        href: profile.instagram_url,
+        icon: <FaInstagram aria-hidden="true" />,
+        iconClassName: "text-pink-400",
+      }
       : null,
     profile.tiktok_url
       ? {
-          label: "TikTok",
-          href: profile.tiktok_url,
-          icon: <SiTiktok aria-hidden="true" />,
-          iconClassName: "text-cyan-300",
-        }
+        label: "TikTok",
+        href: profile.tiktok_url,
+        icon: <SiTiktok aria-hidden="true" />,
+        iconClassName: "text-cyan-300",
+      }
       : null,
     profile.wattpad_url
       ? {
-          label: "Wattpad",
-          href: profile.wattpad_url,
-          icon: <SiWattpad aria-hidden="true" />,
-          iconClassName: "text-orange-400",
-        }
+        label: "Wattpad",
+        href: profile.wattpad_url,
+        icon: <SiWattpad aria-hidden="true" />,
+        iconClassName: "text-orange-400",
+      }
       : null,
     profile.threads_url
       ? {
-          label: "Threads",
-          href: profile.threads_url,
-          icon: <SiThreads aria-hidden="true" />,
-          iconClassName: "text-zinc-100",
-        }
+        label: "Threads",
+        href: profile.threads_url,
+        icon: <SiThreads aria-hidden="true" />,
+        iconClassName: "text-zinc-100",
+      }
       : null,
     profile.facebook_url
       ? {
-          label: "Facebook",
-          href: profile.facebook_url,
-          icon: <FaFacebook aria-hidden="true" />,
-          iconClassName: "text-blue-400",
-        }
+        label: "Facebook",
+        href: profile.facebook_url,
+        icon: <FaFacebook aria-hidden="true" />,
+        iconClassName: "text-blue-400",
+      }
       : null,
     profile.youtube_url
       ? {
-          label: "YouTube",
-          href: profile.youtube_url,
-          icon: <FaYoutube aria-hidden="true" />,
-          iconClassName: "text-red-400",
-        }
+        label: "YouTube",
+        href: profile.youtube_url,
+        icon: <FaYoutube aria-hidden="true" />,
+        iconClassName: "text-red-400",
+      }
       : null,
     profile.website_url
       ? {
-          label: "Sitio web",
-          href: profile.website_url,
-          icon: <ExternalLink size={16} aria-hidden="true" />,
-          iconClassName: "text-yellow-400",
-        }
+        label: "Sitio web",
+        href: profile.website_url,
+        icon: <ExternalLink size={16} aria-hidden="true" />,
+        iconClassName: "text-yellow-400",
+      }
       : null,
   ].filter(Boolean) as Array<{
     label: string
@@ -226,43 +226,43 @@ export default async function ReaderProfilePage({
           )}
 
           <div className="relative flex min-h-[310px] flex-col items-center justify-end gap-5 px-5 py-9 text-center sm:px-8 sm:py-11 lg:flex-row lg:items-end lg:gap-8 lg:px-10 lg:text-left">
-              <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-[1.75rem] border border-yellow-500/50 bg-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,.45)] sm:h-36 sm:w-36 lg:h-40 lg:w-40 lg:rounded-[2rem]">
-                {profile.avatar_url ? (
-                  // Reader avatars come from the installation's runtime Supabase host.
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={profile.avatar_url}
-                    alt={`Avatar de ${profile.display_name}`}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <UserRound className="h-14 w-14 text-yellow-500/60 sm:h-16 sm:w-16" />
-                )}
-              </div>
+            <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-[1.75rem] border border-yellow-500/50 bg-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,.45)] sm:h-36 sm:w-36 lg:h-40 lg:w-40 lg:rounded-[2rem]">
+              {profile.avatar_url ? (
+                // Reader avatars come from the installation's runtime Supabase host.
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={profile.avatar_url}
+                  alt={`Avatar de ${profile.display_name}`}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <UserRound className="h-14 w-14 text-yellow-500/60 sm:h-16 sm:w-16" />
+              )}
+            </div>
 
-              <div className="min-w-0 flex-1 pb-1">
-                <h1 className="max-w-full break-all text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
-                  {profile.display_name}
-                </h1>
+            <div className="min-w-0 flex-1 pb-1">
+              <h1 className="max-w-full break-all text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
+                {profile.display_name}
+              </h1>
 
               <div className="mt-5 space-y-3">
                 {links.length > 0 && (
-                    <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
-                      {links.map((link) => (
-                        <a
-                          key={link.label}
-                          href={link.href}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-700/80 bg-zinc-900/75 px-2.5 py-1.5 text-xs font-medium text-zinc-200 shadow-sm transition hover:border-zinc-500 hover:bg-zinc-800 sm:px-3 sm:py-2 sm:text-sm"
-                        >
-                          <span className={`text-base leading-none ${link.iconClassName}`}>
-                            {link.icon}
-                          </span>
-                          {link.label}
-                        </a>
-                      ))}
-                    </div>
+                  <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
+                    {links.map((link) => (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-700/80 bg-zinc-900/75 px-2.5 py-1.5 text-xs font-medium text-zinc-200 shadow-sm transition hover:border-zinc-500 hover:bg-zinc-800 sm:px-3 sm:py-2 sm:text-sm"
+                      >
+                        <span className={`text-base leading-none ${link.iconClassName}`}>
+                          {link.icon}
+                        </span>
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
                 )}
                 <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
                   {linkedAuthor && (
@@ -276,7 +276,7 @@ export default async function ReaderProfilePage({
                   )}
                 </div>
               </div>
-              </div>
+            </div>
           </div>
         </section>
 
@@ -330,11 +330,10 @@ export default async function ReaderProfilePage({
                       className="h-full w-full object-cover transition duration-200 group-hover:scale-105"
                     />
                     <span
-                      className={`absolute bottom-2 left-2 rounded-full px-2.5 py-1 text-[11px] font-semibold shadow-lg ${
-                        isRead
+                      className={`absolute bottom-2 left-2 rounded-full px-2.5 py-1 text-[11px] font-semibold shadow-lg ${isRead
                           ? "bg-green-500 text-white"
                           : "bg-zinc-900/90 text-zinc-200"
-                      }`}
+                        }`}
                     >
                       {isRead ? "Leído" : "Pendiente"}
                     </span>
@@ -355,7 +354,7 @@ export default async function ReaderProfilePage({
 
         <div className="mt-8 text-center">
           <Link href="/book-directory" className="text-sm text-yellow-400 hover:text-yellow-300">
-            Explorar biblioteca indie
+            Explorar biblioteca general
           </Link>
         </div>
       </div>

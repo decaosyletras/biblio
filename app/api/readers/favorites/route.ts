@@ -44,13 +44,13 @@ export async function PUT(request: Request) {
       request,
       namespace: "reader-favorites-write",
       subject: user.id,
-      limit: 60,
-      windowSeconds: 600,
+      limit: 40,
+      windowSeconds: 60,
     })
 
     if (!allowed) {
       return NextResponse.json(
-        { error: "Demasiados cambios. Espera unos minutos." },
+        { error: "Demasiados cambios. Espera un minuto." },
         { status: 429 }
       )
     }

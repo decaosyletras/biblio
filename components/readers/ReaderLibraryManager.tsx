@@ -131,11 +131,10 @@ export default function ReaderLibraryManager({
               key={value}
               type="button"
               onClick={() => setFilter(value)}
-              className={`rounded-full px-4 py-2 text-sm transition ${
-                filter === value
+              className={`rounded-full px-4 py-2 text-sm transition ${filter === value
                   ? "bg-yellow-500 font-semibold text-black"
                   : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-              }`}
+                }`}
             >
               {label} · {count}
             </button>
@@ -164,7 +163,7 @@ export default function ReaderLibraryManager({
             href="/book-directory"
             className="mt-5 inline-flex rounded-xl bg-yellow-500 px-5 py-3 font-semibold text-black hover:bg-yellow-400"
           >
-            Explorar biblioteca indie
+            Explorar biblioteca general
           </Link>
         </div>
       ) : visibleBooks.length === 0 ? (
@@ -176,133 +175,129 @@ export default function ReaderLibraryManager({
           {/* La biblioteca privada también aprovecha dos columnas en móvil; las
               acciones permanecen dentro de cada tarjeta con áreas táctiles claras. */}
           <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
-          {visibleBooks.map((book) => {
-            const membership = library[book.id]
-            const isPending = pendingBookId === book.id
+            {visibleBooks.map((book) => {
+              const membership = library[book.id]
+              const isPending = pendingBookId === book.id
 
-            return (
-              <article
-                key={book.id}
-                className="flex min-w-0 flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-900 p-3 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4"
-              >
-                <Link
-                  href={`/libros/${book.slug}`}
-                  className="relative aspect-[2/3] w-full shrink-0 overflow-hidden rounded-xl bg-zinc-800 sm:h-40 sm:w-28 sm:aspect-auto"
+              return (
+                <article
+                  key={book.id}
+                  className="flex min-w-0 flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-900 p-3 sm:flex-row sm:gap-4 sm:rounded-2xl sm:p-4"
                 >
-                  <CoverImage
-                    src={getBookCover(book.amazon, book.cover)}
-                    alt={book.title}
-                    className="h-full w-full object-cover"
-                  />
-                  {book.review?.title && <LectometerMark />}
-                  {membership?.isRead && <ReadRibbon />}
-                </Link>
-
-                <div className="flex min-w-0 flex-1 flex-col">
-                  <Link href={`/libros/${book.slug}`}>
-                    <h2 className="line-clamp-2 text-sm font-semibold hover:text-yellow-300">
-                      {book.title}
-                    </h2>
+                  <Link
+                    href={`/libros/${book.slug}`}
+                    className="relative aspect-[2/3] w-full shrink-0 overflow-hidden rounded-xl bg-zinc-800 sm:h-40 sm:w-28 sm:aspect-auto"
+                  >
+                    <CoverImage
+                      src={getBookCover(book.amazon, book.cover)}
+                      alt={book.title}
+                      className="h-full w-full object-cover"
+                    />
+                    {book.review?.title && <LectometerMark />}
+                    {membership?.isRead && <ReadRibbon />}
                   </Link>
-                  <p className="mt-1 line-clamp-2 text-xs text-zinc-500">
-                    {(book.authorNames ?? []).join(", ") || "Autor independiente"}
-                  </p>
-                  <span
-                    className={`mt-2 w-fit rounded-full px-2 py-1 text-[10px] font-semibold ${
-                      membership?.isRead
-                        ? "bg-green-500/15 text-green-300"
-                        : "bg-zinc-800 text-zinc-300"
-                    }`}
-                  >
-                    Estado: {membership?.isRead ? "Leído" : "Pendiente de leer"}
-                  </span>
-                  {membership?.isRead && (
-                    <p
-                      className={`mt-1.5 text-[11px] font-medium ${
-                        membership.readYear
-                          ? "text-green-300"
-                          : "text-zinc-500"
-                      }`}
-                    >
-                      {membership.readYear
-                        ? `Lectura de ${membership.readYear}`
-                        : "Año de lectura sin asignar"}
-                    </p>
-                  )}
 
-                  <div
-                    className={`mt-auto grid gap-2 pt-3 sm:flex ${
-                      membership?.isRead
-                        ? "grid-cols-[minmax(0,1fr)_auto_auto]"
-                        : "grid-cols-[minmax(0,1fr)_auto]"
-                    }`}
-                  >
-                    <button
-                      type="button"
-                      title={
-                        membership?.isRead
-                          ? "Mover a pendientes"
-                          : "Marcar como leído"
-                      }
-                      aria-label={
-                        membership?.isRead
-                          ? `Mover ${book.title} a pendientes`
-                          : `Marcar ${book.title} como leído`
-                      }
-                      disabled={isPending}
-                      onClick={() => saveBook(book.id, !membership?.isRead)}
-                      className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-zinc-700 px-2 py-2 text-xs transition hover:bg-zinc-600 disabled:opacity-50 sm:gap-1.5 sm:px-3"
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <Link href={`/libros/${book.slug}`}>
+                      <h2 className="line-clamp-2 text-sm font-semibold hover:text-yellow-300">
+                        {book.title}
+                      </h2>
+                    </Link>
+                    <p className="mt-1 line-clamp-2 text-xs text-zinc-500">
+                      {(book.authorNames ?? []).join(", ") || "Autor independiente"}
+                    </p>
+                    <span
+                      className={`mt-2 w-fit rounded-full px-2 py-1 text-[10px] font-semibold ${membership?.isRead
+                          ? "bg-green-500/15 text-green-300"
+                          : "bg-zinc-800 text-zinc-300"
+                        }`}
                     >
-                      <BookOpenCheck size={14} />
-                      <span className="sm:hidden">
-                        {membership?.isRead ? "A pendientes" : "Marcar leído"}
-                      </span>
-                      <span className="hidden sm:inline">
-                        {membership?.isRead
-                          ? "Mover a pendientes"
-                          : "Marcar como leído"}
-                      </span>
-                    </button>
+                      Estado: {membership?.isRead ? "Leído" : "Pendiente de leer"}
+                    </span>
                     {membership?.isRead && (
+                      <p
+                        className={`mt-1.5 text-[11px] font-medium ${membership.readYear
+                            ? "text-green-300"
+                            : "text-zinc-500"
+                          }`}
+                      >
+                        {membership.readYear
+                          ? `Lectura de ${membership.readYear}`
+                          : "Año de lectura sin asignar"}
+                      </p>
+                    )}
+
+                    <div
+                      className={`mt-auto grid gap-2 pt-3 sm:flex ${membership?.isRead
+                          ? "grid-cols-[minmax(0,1fr)_auto_auto]"
+                          : "grid-cols-[minmax(0,1fr)_auto]"
+                        }`}
+                    >
                       <button
                         type="button"
+                        title={
+                          membership?.isRead
+                            ? "Mover a pendientes"
+                            : "Marcar como leído"
+                        }
                         aria-label={
-                          membership.isFavorite
-                            ? `Quitar ${book.title} de favoritos`
-                            : `Marcar ${book.title} como favorito`
+                          membership?.isRead
+                            ? `Mover ${book.title} a pendientes`
+                            : `Marcar ${book.title} como leído`
                         }
-                        aria-pressed={membership.isFavorite}
                         disabled={isPending}
-                        onClick={() =>
-                          setFavorite(book.id, !membership.isFavorite)
-                        }
-                        className={`flex items-center justify-center rounded-lg border p-2 transition disabled:opacity-50 ${
-                          membership.isFavorite
-                            ? "border-rose-400/40 bg-rose-500/15 text-rose-300"
-                            : "border-zinc-700 text-zinc-400 hover:border-rose-400/40 hover:bg-rose-500/10 hover:text-rose-300"
-                        }`}
+                        onClick={() => saveBook(book.id, !membership?.isRead)}
+                        className="inline-flex min-w-0 items-center justify-center gap-1 rounded-lg bg-zinc-700 px-2 py-2 text-xs transition hover:bg-zinc-600 disabled:opacity-50 sm:gap-1.5 sm:px-3"
                       >
-                        <Heart
-                          size={15}
-                          fill={membership.isFavorite ? "currentColor" : "none"}
-                          aria-hidden="true"
-                        />
+                        <BookOpenCheck size={14} />
+                        <span className="sm:hidden">
+                          {membership?.isRead ? "A pendientes" : "Marcar leído"}
+                        </span>
+                        <span className="hidden sm:inline">
+                          {membership?.isRead
+                            ? "Mover a pendientes"
+                            : "Marcar como leído"}
+                        </span>
                       </button>
-                    )}
-                    <button
-                      type="button"
-                      aria-label={`Quitar ${book.title} de mi biblioteca`}
-                      disabled={isPending}
-                      onClick={() => removeBook(book.id)}
-                      className="flex items-center justify-center rounded-lg border border-red-500/30 p-2 text-red-300 hover:bg-red-500/10 disabled:opacity-50"
-                    >
-                      <Trash2 size={15} />
-                    </button>
+                      {membership?.isRead && (
+                        <button
+                          type="button"
+                          aria-label={
+                            membership.isFavorite
+                              ? `Quitar ${book.title} de favoritos`
+                              : `Marcar ${book.title} como favorito`
+                          }
+                          aria-pressed={membership.isFavorite}
+                          disabled={isPending}
+                          onClick={() =>
+                            setFavorite(book.id, !membership.isFavorite)
+                          }
+                          className={`flex items-center justify-center rounded-lg border p-2 transition disabled:opacity-50 ${membership.isFavorite
+                              ? "border-rose-400/40 bg-rose-500/15 text-rose-300"
+                              : "border-zinc-700 text-zinc-400 hover:border-rose-400/40 hover:bg-rose-500/10 hover:text-rose-300"
+                            }`}
+                        >
+                          <Heart
+                            size={15}
+                            fill={membership.isFavorite ? "currentColor" : "none"}
+                            aria-hidden="true"
+                          />
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        aria-label={`Quitar ${book.title} de mi biblioteca`}
+                        disabled={isPending}
+                        onClick={() => removeBook(book.id)}
+                        className="flex items-center justify-center rounded-lg border border-red-500/30 p-2 text-red-300 hover:bg-red-500/10 disabled:opacity-50"
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </article>
-            )
-          })}
+                </article>
+              )
+            })}
           </div>
         </>
       )}

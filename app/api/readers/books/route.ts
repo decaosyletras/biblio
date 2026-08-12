@@ -64,8 +64,8 @@ async function enforceLibraryWriteLimit(request: Request, userId: string) {
       request,
       namespace: "reader-books-write",
       subject: userId,
-      limit: 60,
-      windowSeconds: 600,
+      limit: 40,
+      windowSeconds: 60,
     })
   } catch {
     return null
@@ -134,7 +134,7 @@ export async function PUT(request: Request) {
 
   if (!allowed) {
     return NextResponse.json(
-      { error: "Demasiados cambios. Espera unos minutos." },
+      { error: "Demasiados cambios. Espera un minuto." },
       { status: 429 }
     )
   }
@@ -261,7 +261,7 @@ export async function PATCH(request: Request) {
 
   if (!allowed) {
     return NextResponse.json(
-      { error: "Demasiados cambios. Espera unos minutos." },
+      { error: "Demasiados cambios. Espera un minuto." },
       { status: 429 }
     )
   }
@@ -343,7 +343,7 @@ export async function DELETE(request: Request) {
 
   if (!allowed) {
     return NextResponse.json(
-      { error: "Demasiados cambios. Espera unos minutos." },
+      { error: "Demasiados cambios. Espera un minuto." },
       { status: 429 }
     )
   }
