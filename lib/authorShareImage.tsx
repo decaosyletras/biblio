@@ -73,14 +73,14 @@ function Footer({ accent, isStory }: { accent: string; isStory: boolean }) {
         position: "absolute",
         left: 0,
         right: 0,
-        bottom: isStory ? 62 : 42,
+        bottom: isStory ? 200 : 42,
         justifyContent: "center",
         color: accent,
         fontSize: isStory ? 28 : 23,
         fontWeight: 700,
       }}
     >
-      Descubre su página en Cas(z)a Indie
+      Descubre su página en cazaindie.com
     </div>
   )
 }

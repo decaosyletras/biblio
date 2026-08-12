@@ -404,11 +404,12 @@ export function renderReaderShareImage({
           color: "#a1a1aa",
           fontSize: isStory ? 22 : 18,
           position: "relative",
+          marginBottom: isStory ? 120 : 0,
         }}
       >
         <div style={{ display: "flex" }}>Descubre tu próxima lectura indie</div>
         <div style={{ display: "flex", color: palette.accent, fontWeight: 800 }}>
-          Cas(z)a Indie
+          cazaindie.com
         </div>
       </div>
     </div>

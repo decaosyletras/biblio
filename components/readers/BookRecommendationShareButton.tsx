@@ -275,7 +275,7 @@ export default function BookRecommendationShareButton({
                   className="mt-auto pt-3 text-[8px] font-semibold"
                   style={{ color: selectedPalette.accent }}
                 >
-                  CAS(Z)A INDIE
+                  cazaindie.com
                 </p>
               </div>
 
