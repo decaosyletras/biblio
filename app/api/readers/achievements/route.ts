@@ -29,13 +29,13 @@ export async function POST(request: Request) {
       request,
       namespace: "reader-achievements-sync",
       subject: user.id,
-      limit: 30,
-      windowSeconds: 600,
+      limit: 60,
+      windowSeconds: 60,
     })
 
     if (!allowed) {
       return NextResponse.json(
-        { error: "Demasiadas solicitudes. Espera unos minutos." },
+        { error: "Demasiadas solicitudes. Espera un minuto." },
         { status: 429 }
       )
     }
