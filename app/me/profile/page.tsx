@@ -370,6 +370,32 @@ export default function ReaderProfileEditorPage() {
             )}
           </section>
 
+          {authorProfile && (
+            <section className="rounded-3xl border border-blue-500/30 bg-blue-500/10 p-5 sm:p-7">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h2 className="font-semibold text-blue-200">
+                    Importar desde tu página de autor
+                  </h2>
+                  <p className="mt-1 text-sm leading-relaxed text-zinc-300">
+                    Usa el avatar y los enlaces disponibles de {authorProfile.name || "tu perfil de autor"} como punto de partida. Podrás revisarlos antes de guardar.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={importAuthorProfile}
+                  disabled={importingAuthorProfile}
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 font-medium transition hover:bg-blue-500 disabled:opacity-60"
+                >
+                  <Download size={18} />
+                  {importingAuthorProfile
+                    ? "Importando..."
+                    : "Usar foto y enlaces de mi página de autor"}
+                </button>
+              </div>
+            </section>
+          )}
+
           <section className="rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
               <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-3xl border border-zinc-700 bg-zinc-800">
@@ -430,30 +456,6 @@ export default function ReaderProfileEditorPage() {
               </div>
             </div>
           </section>
-
-          {authorProfile && (
-            <section className="rounded-3xl border border-blue-500/30 bg-blue-500/10 p-5 sm:p-7">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <h2 className="font-semibold text-blue-200">
-                    Importar desde tu página de autor
-                  </h2>
-                  <p className="mt-1 text-sm leading-relaxed text-zinc-300">
-                    Copia el avatar y los enlaces disponibles de {authorProfile.name || "tu perfil de autor"}. Podrás revisarlos antes de guardar.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={importAuthorProfile}
-                  disabled={importingAuthorProfile}
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 font-medium transition hover:bg-blue-500"
-                >
-                  <Download size={18} />
-                  {importingAuthorProfile ? "Importando..." : "Importar datos"}
-                </button>
-              </div>
-            </section>
-          )}
 
           <section className="space-y-5 rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7">
             <div>

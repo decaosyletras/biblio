@@ -713,13 +713,6 @@ export default function EditAuthorPage() {
 
                 <AuthorPageReadiness author={author} books={books} />
 
-                <AuthorBasicSection
-                    author={author}
-                    accountUsername={accountUsername}
-                    updateField={updateField}
-                    setAvatarFile={setAvatarFile}
-                />
-
                 {readerSocialProfile && (
                     <section className="rounded-3xl border border-blue-500/30 bg-blue-500/10 p-5 sm:p-6">
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -738,7 +731,9 @@ export default function EditAuthorPage() {
                                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 font-medium transition hover:bg-blue-500"
                             >
                                 <Download size={18} />
-                                {importingReaderProfile ? "Importando..." : "Importar foto y enlaces"}
+                                {importingReaderProfile
+                                    ? "Importando..."
+                                    : "Importar foto y enlaces de mi perfil de lector"}
                             </button>
                         </div>
 
@@ -753,6 +748,13 @@ export default function EditAuthorPage() {
                         )}
                     </section>
                 )}
+
+                <AuthorBasicSection
+                    author={author}
+                    accountUsername={accountUsername}
+                    updateField={updateField}
+                    setAvatarFile={setAvatarFile}
+                />
 
                 <div className="border-t border-zinc-500/70 pt-5">
                     <section>
