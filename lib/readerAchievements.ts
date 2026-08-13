@@ -292,5 +292,4 @@ export async function getPublicReaderAchievements(
       if (!b.firstUnlockedAt) return -1
       return b.firstUnlockedAt.localeCompare(a.firstUnlockedAt)
     })
-    .slice(0, 3)
 }
