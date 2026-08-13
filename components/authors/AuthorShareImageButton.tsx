@@ -55,6 +55,7 @@ export default function AuthorShareImageButton({
     null
   )
   const [supportsFileSharing, setSupportsFileSharing] = useState(false)
+  const [preparedShareFile, setPreparedShareFile] = useState<File | null>(null)
   const [linkCopied, setLinkCopied] = useState(false)
   const [error, setError] = useState("")
 
@@ -173,7 +174,7 @@ export default function AuthorShareImageButton({
     }
   }
 
-  async function shareImage() {
+  async function prepareShareImage() {
     setActiveAction("share")
     setError("")
 
@@ -184,12 +185,35 @@ export default function AuthorShareImageButton({
         throw new Error("Este dispositivo no permite compartir archivos")
       }
 
-      await navigator.share({
-        files: [file],
+      setPreparedShareFile(file)
+    } catch (shareError) {
+      setError(
+        shareError instanceof Error
+          ? shareError.message
+          : "No se pudo preparar la imagen"
+      )
+    } finally {
+      setActiveAction(null)
+    }
+  }
+
+  async function sharePreparedImage() {
+    if (!preparedShareFile) return
+
+    setActiveAction("share")
+    setError("")
+
+    try {
+      // Compartir debe comenzar directamente desde este segundo clic. Generar
+      // el archivo aquí haría que algunos navegadores perdieran el gesto.
+      const shareRequest = navigator.share({
+        files: [preparedShareFile],
         title: authorName,
         text: `Descubre a ${authorName} en Cas(z)a Indie.`,
         url: `${window.location.origin}/authors/${authorSlug}`,
       })
+
+      await shareRequest
     } catch (shareError) {
       if (shareError instanceof DOMException && shareError.name === "AbortError") {
         return
@@ -226,6 +250,7 @@ export default function AuthorShareImageButton({
         onClick={() => {
           setError("")
           setLinkCopied(false)
+          setPreparedShareFile(null)
           setOpen(true)
         }}
         className="inline-flex w-fit items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2.5 text-sm text-white transition-all duration-150 active:scale-95"
@@ -298,7 +323,10 @@ export default function AuthorShareImageButton({
                         value={template.value}
                         checked={selected}
                         disabled={!template.enabled}
-                        onChange={() => setKind(template.value)}
+                        onChange={() => {
+                          setKind(template.value)
+                          setPreparedShareFile(null)
+                        }}
                         className="sr-only"
                       />
                       <div className="flex items-center justify-between gap-2">
@@ -339,7 +367,10 @@ export default function AuthorShareImageButton({
                       name="author-share-format"
                       value={option.value}
                       checked={format === option.value}
-                      onChange={() => setFormat(option.value)}
+                      onChange={() => {
+                        setFormat(option.value)
+                        setPreparedShareFile(null)
+                      }}
                       className="sr-only"
                     />
                     <span className="block text-sm font-semibold">
@@ -401,7 +432,11 @@ export default function AuthorShareImageButton({
               {supportsFileSharing && (
                 <button
                   type="button"
-                  onClick={shareImage}
+                  onClick={
+                    preparedShareFile
+                      ? sharePreparedImage
+                      : prepareShareImage
+                  }
                   disabled={activeAction !== null}
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold transition hover:bg-blue-500 disabled:cursor-wait disabled:opacity-60"
                 >
@@ -410,10 +445,22 @@ export default function AuthorShareImageButton({
                   ) : (
                     <Share2 className="h-4 w-4" aria-hidden="true" />
                   )}
-                  {activeAction === "share" ? "Preparando..." : "Compartir"}
+                  {activeAction === "share"
+                    ? preparedShareFile
+                      ? "Abriendo..."
+                      : "Preparando..."
+                    : preparedShareFile
+                      ? "Compartir ahora"
+                      : "Preparar para compartir"}
                 </button>
               )}
             </div>
+
+            {supportsFileSharing && preparedShareFile && (
+              <p className="mt-3 text-right text-xs text-emerald-300" role="status">
+                Imagen lista. Pulsa “Compartir ahora” para abrir las opciones de tu dispositivo.
+              </p>
+            )}
 
             {error && (
               <p

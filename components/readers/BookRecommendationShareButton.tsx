@@ -54,6 +54,7 @@ export default function BookRecommendationShareButton({
     null
   )
   const [supportsFileSharing, setSupportsFileSharing] = useState(false)
+  const [preparedShareFile, setPreparedShareFile] = useState<File | null>(null)
   const [error, setError] = useState("")
 
   useEffect(() => {
@@ -79,6 +80,7 @@ export default function BookRecommendationShareButton({
 
   const selectTheme = (theme: ShareImageTheme) => {
     setSelectedTheme(theme)
+    setPreparedShareFile(null)
     try {
       window.localStorage.setItem(SHARE_IMAGE_THEME_STORAGE_KEY, theme)
     } catch {
@@ -159,7 +161,7 @@ export default function BookRecommendationShareButton({
     }
   }
 
-  const shareImage = async () => {
+  const prepareShareImage = async () => {
     setActiveAction("share")
     setError("")
 
@@ -172,12 +174,34 @@ export default function BookRecommendationShareButton({
         )
       }
 
-      await navigator.share({
-        files: [file],
+      setPreparedShareFile(file)
+    } catch (shareError) {
+      setError(
+        shareError instanceof Error
+          ? shareError.message
+          : "No se pudo preparar la recomendación"
+      )
+    } finally {
+      setActiveAction(null)
+    }
+  }
+
+  const sharePreparedImage = async () => {
+    if (!preparedShareFile) return
+
+    setActiveAction("share")
+    setError("")
+
+    try {
+      // Este segundo clic conserva la activación requerida por Web Share.
+      const shareRequest = navigator.share({
+        files: [preparedShareFile],
         title: `Te recomiendo ${bookTitle}`,
         text: `Te recomiendo “${bookTitle}”, de ${authors}, en Cas(z)a Indie.`,
         url: window.location.href,
       })
+
+      await shareRequest
     } catch (shareError) {
       if (shareError instanceof DOMException && shareError.name === "AbortError") {
         return
@@ -199,6 +223,7 @@ export default function BookRecommendationShareButton({
         type="button"
         onClick={() => {
           setError("")
+          setPreparedShareFile(null)
           setOpen(true)
         }}
         className="mt-3 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg border border-green-500/30 bg-green-500/10 px-3 py-2 text-xs font-semibold text-green-200 transition hover:bg-green-500/15 sm:w-auto"
@@ -299,7 +324,10 @@ export default function BookRecommendationShareButton({
                           name="book-recommendation-format"
                           value={format.value}
                           checked={selectedFormat === format.value}
-                          onChange={() => setSelectedFormat(format.value)}
+                          onChange={() => {
+                            setSelectedFormat(format.value)
+                            setPreparedShareFile(null)
+                          }}
                           className="sr-only"
                         />
                         <span className="block text-xs font-semibold text-zinc-100 sm:text-sm">
@@ -347,7 +375,11 @@ export default function BookRecommendationShareButton({
                   {supportsFileSharing && (
                     <button
                       type="button"
-                      onClick={shareImage}
+                      onClick={
+                        preparedShareFile
+                          ? sharePreparedImage
+                          : prepareShareImage
+                      }
                       disabled={activeAction !== null}
                       className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-yellow-500 px-4 py-3 text-sm font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-wait disabled:opacity-60"
                     >
@@ -360,10 +392,22 @@ export default function BookRecommendationShareButton({
                       ) : (
                         <Share2 size={17} aria-hidden="true" />
                       )}
-                      {activeAction === "share" ? "Preparando..." : "Compartir"}
+                      {activeAction === "share"
+                        ? preparedShareFile
+                          ? "Abriendo..."
+                          : "Preparando..."
+                        : preparedShareFile
+                          ? "Compartir ahora"
+                          : "Preparar para compartir"}
                     </button>
                   )}
                 </div>
+
+                {supportsFileSharing && preparedShareFile && (
+                  <p className="mt-3 text-right text-xs text-green-300" role="status">
+                    Imagen lista. Pulsa “Compartir ahora” para abrir las opciones de tu dispositivo.
+                  </p>
+                )}
 
                 {error && (
                   <p
