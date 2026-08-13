@@ -386,121 +386,16 @@ export default function MePage() {
           </p>
         </header>
 
-        <section
-          id="cuenta"
-          className="scroll-mt-28 rounded-3xl border border-zinc-800 bg-zinc-900 p-5 sm:p-7"
-        >
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              {editingUsername ? (
-                <form onSubmit={saveUsername} className="max-w-md">
-                  <label
-                    htmlFor="account-username"
-                    className="text-xl font-semibold text-zinc-100"
-                  >
-                    Nombre de usuario
-                  </label>
-                  <div className="mt-2 flex rounded-xl border border-zinc-700 bg-zinc-800 focus-within:border-yellow-500">
-                    <span className="flex items-center pl-4 text-zinc-500">@</span>
-                    <input
-                      id="account-username"
-                      value={usernameDraft}
-                      required
-                      minLength={3}
-                      maxLength={30}
-                      pattern="[a-zA-Z0-9][a-zA-Z0-9._-]{1,28}[a-zA-Z0-9]"
-                      onChange={(event) =>
-                        setUsernameDraft(event.target.value.toLowerCase())
-                      }
-                      className="min-w-0 flex-1 bg-transparent p-3 outline-none"
-                      autoComplete="username"
-                    />
-                  </div>
-                  <p className="mt-2 text-xs text-zinc-500">
-                    Puede mostrarse en tu página de autor si así lo eliges. No
-                    cambia el usuario ni la URL de tu perfil lector.
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <button
-                      type="submit"
-                      disabled={savingUsername}
-                      className="rounded-xl bg-yellow-500 px-4 py-2 text-sm font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50"
-                    >
-                      {savingUsername ? "Guardando..." : "Guardar usuario"}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setEditingUsername(false)
-                        setUsernameError("")
-                      }}
-                      className="rounded-xl bg-zinc-800 px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-700"
-                    >
-                      Cancelar
-                    </button>
-                  </div>
-                </form>
-              ) : (
-                <h2 className="text-xl text-zinc-400">
-                  Nombre de usuario:{" "}
-                  <span className="font-semibold text-zinc-100">
-                    @{savedUsername ?? profile?.username}
-                  </span>
-                </h2>
-              )}
-              <p className="mt-1 break-all text-sm text-zinc-400">
-                {user.email}
-              </p>
-              {usernameError && (
-                <p className="mt-3 text-sm text-red-300" role="alert">
-                  {usernameError}
-                </p>
-              )}
-              {usernameNotice && (
-                <p className="mt-3 text-sm text-green-300" role="status">
-                  {usernameNotice}
-                </p>
-              )}
-            </div>
-
-            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
-              {!editingUsername && (
-                <button
-                  type="button"
-                  onClick={startUsernameEdit}
-                  className="rounded-xl border border-zinc-700 px-4 py-2.5 text-center text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
-                >
-                  Editar nombre de usuario
-                </button>
-              )}
-              <button
-                type="button"
-                onClick={signOut}
-                className="rounded-xl border border-red-500/30 px-4 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-500/10"
-              >
-                Cerrar sesión
-              </button>
-            </div>
-          </div>
-        </section>
-
         <section>
-          <div>
-            <h2 className="text-2xl font-semibold">Mis perfiles</h2>
-            <p className="mt-2 text-sm text-zinc-400">
-              Los dos son opcionales y pueden convivir dentro de la misma cuenta.
-            </p>
-          </div>
-
-          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <div className="grid gap-5 lg:grid-cols-2">
             <article className="flex min-h-full flex-col rounded-3xl border border-yellow-500/25 bg-yellow-500/5 p-5 sm:p-7">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h3 className="text-2xl font-semibold text-zinc-100">
-                    Perfil lector
-                  </h3>
+                  <h2 className="text-xl font-semibold text-zinc-100">
+                    Espacio lector
+                  </h2>
                   <p className="mt-1 text-sm text-zinc-400">
-                    Tu identidad como lector
+                    Tus lecturas, favoritos y perfil público
                   </p>
                 </div>
 
@@ -536,23 +431,28 @@ export default function MePage() {
                     </span>
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-                    Comparte tus gustos, enlaces y biblioteca cuando decidas
-                    publicar este perfil.
+                    Administra tus lecturas y decide qué quieres compartir.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
+                    <Link
+                      href="/me/library"
+                      className="rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-yellow-400"
+                    >
+                      Mi biblioteca
+                    </Link>
                     {readerProfile.username && (
                       <Link
                         href={`/readers/${readerProfile.username}`}
-                        className="rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-yellow-400"
+                        className="rounded-xl border border-zinc-700 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
                       >
-                        Ver perfil lector
+                        Ver mi perfil
                       </Link>
                     )}
                     <Link
                       href="/me/profile"
                       className="rounded-xl border border-zinc-700 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
                     >
-                      Editar perfil
+                      Editar mi perfil
                     </Link>
                   </div>
                   {!readerProfile.isPublic && (
@@ -568,32 +468,31 @@ export default function MePage() {
                     Crea un perfil para compartir quién eres como lector. Puedes
                     mantenerlo privado hasta que quieras publicarlo.
                   </p>
-                  <Link
-                    href="/me/profile"
-                    className="mt-4 inline-flex rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-yellow-400"
-                  >
-                    Crear perfil lector
-                  </Link>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <Link
+                      href="/me/library"
+                      className="rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-yellow-400"
+                    >
+                      Mi biblioteca
+                    </Link>
+                    <Link
+                      href="/me/profile"
+                      className="rounded-xl border border-zinc-700 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+                    >
+                      Crear perfil lector
+                    </Link>
+                  </div>
                 </div>
               )}
 
-              <div className="mt-auto border-t border-yellow-500/15 pt-6">
-                <h4 className="text-base font-semibold text-zinc-100">
-                  Biblioteca personal
-                </h4>
-                <p className="mt-2 text-sm text-zinc-400">
+              <div className="mt-auto border-t border-yellow-500/15 pt-5">
+                <p className="text-sm text-zinc-400">
                   {loadingReaderData
                     ? "Cargando tus lecturas..."
                     : readerLibrary
                       ? `${readerLibrary.total} ${readerLibrary.total === 1 ? "libro" : "libros"} · ${readerLibrary.read} ${readerLibrary.read === 1 ? "leído" : "leídos"}`
                       : "Organiza tus intereses y lecturas pendientes."}
                 </p>
-                <Link
-                  href="/me/library"
-                  className="mt-4 inline-flex text-sm font-semibold text-yellow-400 hover:text-yellow-300"
-                >
-                  Abrir mi biblioteca →
-                </Link>
               </div>
             </article>
 
@@ -603,11 +502,11 @@ export default function MePage() {
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h3 className="text-2xl font-semibold text-zinc-100">
-                    Página de autor
-                  </h3>
+                  <h2 className="text-xl font-semibold text-zinc-100">
+                    Espacio de autor
+                  </h2>
                   <p className="mt-1 text-sm text-zinc-400">
-                    Tu identidad como escritor
+                    Tu obra, novedades y presencia pública
                   </p>
                 </div>
 
@@ -657,16 +556,16 @@ export default function MePage() {
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     <Link
-                      href={`/authors/${author.slug}`}
+                      href={`/authors/${author.slug}/edit`}
                       className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold transition hover:bg-blue-500"
                     >
-                      Ver página de autor
+                      Editar mi página
                     </Link>
                     <Link
-                      href={`/authors/${author.slug}/edit`}
+                      href={`/authors/${author.slug}`}
                       className="rounded-xl border border-blue-500/30 px-4 py-2.5 text-sm font-medium text-blue-200 transition hover:bg-blue-500/10"
                     >
-                      Editar página
+                      Ver mi página
                     </Link>
                   </div>
 
@@ -770,6 +669,115 @@ export default function MePage() {
             </div>
           </details>
         )}
+
+        <section
+          id="cuenta"
+          className="scroll-mt-28 rounded-3xl border border-zinc-800 bg-zinc-900/60 p-5 sm:p-6"
+        >
+          <div>
+            <h2 className="text-xl font-semibold text-zinc-100">
+              Cuenta y seguridad
+            </h2>
+            <p className="mt-1 text-sm text-zinc-500">
+              Administra tus datos de acceso y tu sesión.
+            </p>
+          </div>
+
+          <div className="mt-5 flex flex-col gap-5 border-t border-zinc-800 pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              {editingUsername ? (
+                <form onSubmit={saveUsername} className="max-w-md">
+                  <label
+                    htmlFor="account-username"
+                    className="text-base font-semibold text-zinc-100"
+                  >
+                    Nombre de usuario
+                  </label>
+                  <div className="mt-2 flex rounded-xl border border-zinc-700 bg-zinc-800 focus-within:border-yellow-500">
+                    <span className="flex items-center pl-4 text-zinc-500">@</span>
+                    <input
+                      id="account-username"
+                      value={usernameDraft}
+                      required
+                      minLength={3}
+                      maxLength={30}
+                      pattern="[a-zA-Z0-9][a-zA-Z0-9._-]{1,28}[a-zA-Z0-9]"
+                      onChange={(event) =>
+                        setUsernameDraft(event.target.value.toLowerCase())
+                      }
+                      className="min-w-0 flex-1 bg-transparent p-3 outline-none"
+                      autoComplete="username"
+                    />
+                  </div>
+                  <p className="mt-2 text-xs text-zinc-500">
+                    Puede mostrarse en tu página de autor si así lo eliges. No
+                    cambia el usuario ni la URL de tu perfil lector.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <button
+                      type="submit"
+                      disabled={savingUsername}
+                      className="rounded-xl bg-yellow-500 px-4 py-2 text-sm font-semibold text-black transition hover:bg-yellow-400 disabled:opacity-50"
+                    >
+                      {savingUsername ? "Guardando..." : "Guardar usuario"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditingUsername(false)
+                        setUsernameError("")
+                      }}
+                      className="rounded-xl bg-zinc-800 px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-700"
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Nombre de usuario
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-zinc-100">
+                    @{savedUsername ?? profile?.username}
+                  </p>
+                </div>
+              )}
+              <p className="mt-1 break-all text-sm text-zinc-400">
+                {user.email}
+              </p>
+              {usernameError && (
+                <p className="mt-3 text-sm text-red-300" role="alert">
+                  {usernameError}
+                </p>
+              )}
+              {usernameNotice && (
+                <p className="mt-3 text-sm text-green-300" role="status">
+                  {usernameNotice}
+                </p>
+              )}
+            </div>
+
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+              {!editingUsername && (
+                <button
+                  type="button"
+                  onClick={startUsernameEdit}
+                  className="rounded-xl border border-zinc-700 px-4 py-2.5 text-center text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+                >
+                  Editar nombre de usuario
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={signOut}
+                className="rounded-xl border border-red-500/30 px-4 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-500/10"
+              >
+                Cerrar sesión
+              </button>
+            </div>
+          </div>
+        </section>
 
         {isAdmin && (
           <section className="rounded-3xl border border-red-500/30 bg-red-500/5 p-5 sm:p-6">
