@@ -30,6 +30,7 @@ export default function ReaderShareImageButton() {
     null
   )
   const [supportsFileSharing, setSupportsFileSharing] = useState(false)
+  const [preparedShareFile, setPreparedShareFile] = useState<File | null>(null)
   const [error, setError] = useState("")
 
   useEffect(() => {
@@ -55,6 +56,7 @@ export default function ReaderShareImageButton() {
 
   const selectTheme = (theme: ShareImageTheme) => {
     setSelectedTheme(theme)
+    setPreparedShareFile(null)
     try {
       window.localStorage.setItem(SHARE_IMAGE_THEME_STORAGE_KEY, theme)
     } catch {
@@ -111,7 +113,7 @@ export default function ReaderShareImageButton() {
     }
   }
 
-  const shareImage = async () => {
+  const prepareShareImage = async () => {
     setActiveAction("share")
     setError("")
 
@@ -124,11 +126,34 @@ export default function ReaderShareImageButton() {
         )
       }
 
-      await navigator.share({
-        files: [file],
+      setPreparedShareFile(file)
+    } catch (shareError) {
+      setError(
+        shareError instanceof Error
+          ? shareError.message
+          : "No se pudo preparar la imagen"
+      )
+    } finally {
+      setActiveAction(null)
+    }
+  }
+
+  const sharePreparedImage = async () => {
+    if (!preparedShareFile) return
+
+    setActiveAction("share")
+    setError("")
+
+    try {
+      // La llamada debe ocurrir directamente dentro de este segundo clic. Si se
+      // genera el archivo aquí, el navegador pierde la activación del usuario.
+      const shareRequest = navigator.share({
+        files: [preparedShareFile],
         title: "Mi biblioteca indie",
         text: "Mi biblioteca indie en Cas(z)a Indie",
       })
+
+      await shareRequest
     } catch (shareError) {
       if (shareError instanceof DOMException && shareError.name === "AbortError") {
         return
@@ -183,7 +208,10 @@ export default function ReaderShareImageButton() {
                     name="share-image-format"
                     value={format.value}
                     checked={selectedFormat === format.value}
-                    onChange={() => setSelectedFormat(format.value)}
+                    onChange={() => {
+                      setSelectedFormat(format.value)
+                      setPreparedShareFile(null)
+                    }}
                     className="sr-only"
                   />
                   <span className="block whitespace-nowrap text-xs font-semibold text-zinc-100 sm:text-sm">
@@ -230,7 +258,11 @@ export default function ReaderShareImageButton() {
             {supportsFileSharing && (
               <button
                 type="button"
-                onClick={shareImage}
+                onClick={
+                  preparedShareFile
+                    ? sharePreparedImage
+                    : prepareShareImage
+                }
                 disabled={activeAction !== null}
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-yellow-500 px-5 py-3 text-sm font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-wait disabled:opacity-60"
               >
@@ -243,10 +275,21 @@ export default function ReaderShareImageButton() {
                 ) : (
                   <Share2 size={17} aria-hidden="true" />
                 )}
-                {activeAction === "share" ? "Preparando..." : "Compartir"}
+                {activeAction === "share"
+                  ? preparedShareFile
+                    ? "Abriendo..."
+                    : "Preparando..."
+                  : preparedShareFile
+                    ? "Compartir ahora"
+                    : "Preparar para compartir"}
               </button>
             )}
           </div>
+          {supportsFileSharing && preparedShareFile && (
+            <p className="text-right text-xs text-green-300" role="status">
+              Imagen lista. Pulsa “Compartir ahora” para abrir las opciones de tu dispositivo.
+            </p>
+          )}
         </div>
       </div>
 
