@@ -345,7 +345,7 @@ export default async function ReaderProfilePage({
               ))}
             </div>
           )) : (
-            <PublicReaderLibrary library={library} />
+            <PublicReaderLibrary library={library} isOwner={isOwner} />
           )}
 
           {/* El texto provisional anterior se sustituyó por la biblioteca real.
@@ -353,8 +353,11 @@ export default async function ReaderProfilePage({
         </section>
 
         <div className="mt-8 text-center">
-          <Link href="/book-directory" className="text-sm text-yellow-400 hover:text-yellow-300">
-            Explorar biblioteca general
+          <Link
+            href={isOwner ? "/book-directory" : "/libros"}
+            className="text-sm text-yellow-400 hover:text-yellow-300"
+          >
+            {isOwner ? "Explorar biblioteca general" : "Explorar catálogo"}
           </Link>
         </div>
       </div>

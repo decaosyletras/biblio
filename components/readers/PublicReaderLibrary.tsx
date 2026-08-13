@@ -20,8 +20,10 @@ function normalize(value: string) {
 
 export default function PublicReaderLibrary({
   library,
+  isOwner = false,
 }: {
   library: PublicReaderBook[]
+  isOwner?: boolean
 }) {
   const [query, setQuery] = useState("")
   const [filter, setFilter] = useState<LibraryFilter>("all")
@@ -52,17 +54,20 @@ export default function PublicReaderLibrary({
           <LibraryBig aria-hidden="true" />
         </div>
         <h3 className="mt-4 text-lg font-semibold text-zinc-100">
-          Esta biblioteca todavía está vacía
+          {isOwner
+            ? "Tu biblioteca todavía está vacía"
+            : "Esta biblioteca todavía está vacía"}
         </h3>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-zinc-400">
-          Mientras llegan sus primeras lecturas, puedes descubrir más historias
-          independientes en el catálogo.
+          {isOwner
+            ? "Explora la biblioteca general y agrega tus primeras lecturas."
+            : "Mientras llegan sus primeras lecturas, puedes descubrir más historias independientes en el catálogo."}
         </p>
         <Link
-          href="/book-directory"
+          href={isOwner ? "/book-directory" : "/libros"}
           className="mt-5 inline-flex rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-zinc-950 transition hover:bg-yellow-400"
         >
-          Explorar catálogo indie
+          {isOwner ? "Explorar biblioteca general" : "Explorar catálogo"}
         </Link>
       </div>
     )
@@ -73,10 +78,10 @@ export default function PublicReaderLibrary({
     label: string
     count: number
   }> = [
-    { value: "all", label: "Todos", count: library.length },
-    { value: "read", label: "Leídos", count: readCount },
-    { value: "pending", label: "Pendientes", count: pendingCount },
-  ]
+      { value: "all", label: "Todos", count: library.length },
+      { value: "read", label: "Leídos", count: readCount },
+      { value: "pending", label: "Pendientes", count: pendingCount },
+    ]
 
   return (
     <div className="mt-7">
@@ -103,11 +108,10 @@ export default function PublicReaderLibrary({
               type="button"
               onClick={() => setFilter(value)}
               aria-pressed={filter === value}
-              className={`rounded-full px-3.5 py-2 text-xs transition ${
-                filter === value
+              className={`rounded-full px-3.5 py-2 text-xs transition ${filter === value
                   ? "bg-yellow-500 font-semibold text-black"
                   : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-              }`}
+                }`}
             >
               {label} · {count}
             </button>

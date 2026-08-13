@@ -80,7 +80,7 @@ export default function BookDirectory({
     count: number
   }> = [
       { value: "all", label: "Todos", count: books.length - hiddenCount },
-      { value: "library", label: "Mi biblioteca", count: libraryCount },
+      { value: "library", label: "Agregados", count: libraryCount },
       { value: "read", label: "Leídos", count: readCount },
       { value: "hidden", label: "Ocultos", count: hiddenCount },
     ]
@@ -325,11 +325,10 @@ export default function BookDirectory({
                           : `Marcar ${book.title} como leído`}
                         disabled={isPending || libraryLoading}
                         onClick={() => saveBook(book.id, !membership.isRead)}
-                        className={`inline-flex min-w-0 items-center justify-center rounded-lg px-1 py-2 text-xs font-medium text-white transition disabled:opacity-50 ${
-                          membership.isRead
+                        className={`inline-flex min-w-0 items-center justify-center rounded-lg px-1 py-2 text-xs font-medium text-white transition disabled:opacity-50 ${membership.isRead
                             ? "bg-zinc-700 hover:bg-zinc-600"
                             : "bg-green-600 hover:bg-green-500"
-                        }`}
+                          }`}
                       >
                         {membership.isRead ? (
                           <BookOpen size={14} />

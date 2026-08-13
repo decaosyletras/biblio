@@ -132,8 +132,8 @@ export default function ReaderLibraryManager({
               type="button"
               onClick={() => setFilter(value)}
               className={`rounded-full px-4 py-2 text-sm transition ${filter === value
-                  ? "bg-yellow-500 font-semibold text-black"
-                  : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+                ? "bg-yellow-500 font-semibold text-black"
+                : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
                 }`}
             >
               {label} · {count}
@@ -208,8 +208,8 @@ export default function ReaderLibraryManager({
                     </p>
                     <span
                       className={`mt-2 w-fit rounded-full px-2 py-1 text-[10px] font-semibold ${membership?.isRead
-                          ? "bg-green-500/15 text-green-300"
-                          : "bg-zinc-800 text-zinc-300"
+                        ? "bg-green-500/15 text-green-300"
+                        : "bg-zinc-800 text-zinc-300"
                         }`}
                     >
                       Estado: {membership?.isRead ? "Leído" : "Pendiente de leer"}
@@ -217,8 +217,8 @@ export default function ReaderLibraryManager({
                     {membership?.isRead && (
                       <p
                         className={`mt-1.5 text-[11px] font-medium ${membership.readYear
-                            ? "text-green-300"
-                            : "text-zinc-500"
+                          ? "text-green-300"
+                          : "text-zinc-500"
                           }`}
                       >
                         {membership.readYear
@@ -229,8 +229,8 @@ export default function ReaderLibraryManager({
 
                     <div
                       className={`mt-auto grid gap-2 pt-3 sm:flex ${membership?.isRead
-                          ? "grid-cols-[minmax(0,1fr)_auto_auto]"
-                          : "grid-cols-[minmax(0,1fr)_auto]"
+                        ? "grid-cols-[minmax(0,1fr)_auto_auto]"
+                        : "grid-cols-[minmax(0,1fr)_auto]"
                         }`}
                     >
                       <button
@@ -273,8 +273,8 @@ export default function ReaderLibraryManager({
                             setFavorite(book.id, !membership.isFavorite)
                           }
                           className={`flex items-center justify-center rounded-lg border p-2 transition disabled:opacity-50 ${membership.isFavorite
-                              ? "border-rose-400/40 bg-rose-500/15 text-rose-300"
-                              : "border-zinc-700 text-zinc-400 hover:border-rose-400/40 hover:bg-rose-500/10 hover:text-rose-300"
+                            ? "border-rose-400/40 bg-rose-500/15 text-rose-300"
+                            : "border-zinc-700 text-zinc-400 hover:border-rose-400/40 hover:bg-rose-500/10 hover:text-rose-300"
                             }`}
                         >
                           <Heart
@@ -323,7 +323,7 @@ export default function ReaderLibraryManager({
               href="/book-directory"
               className="text-sm font-medium text-yellow-400 hover:text-yellow-300"
             >
-              Ver todo el catálogo →
+              Ver biblioteca general →
             </Link>
           </div>
 
