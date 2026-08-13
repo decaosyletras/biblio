@@ -681,7 +681,7 @@ export default async function AuthorPage({
                                 backgroundColor: authorTheme.primary
                             }}
                         >
-                            Mi perfil
+                            Mi espacio
                         </Link>
 
                         <Link
