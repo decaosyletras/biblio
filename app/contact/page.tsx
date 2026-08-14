@@ -1,7 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import { BOOK_COVER_CONSENT_TEXT } from "@/lib/bookCoverConsent"
 
 import GenreSelector from "@/components/GenreSelector"
 import SubgenreSelector from "@/components/SubgenreSelector"
@@ -49,6 +50,10 @@ export default function Page() {
 
   const [aceptaTerminos, setAceptaTerminos] = useState(false)
   const [confirmaAutoria, setConfirmaAutoria] = useState(false)
+  const [coverRightsConfirmed, setCoverRightsConfirmed] = useState(false)
+  const [coverFile, setCoverFile] = useState<File | null>(null)
+  const [coverPreviewUrl, setCoverPreviewUrl] = useState("")
+  const coverInputRef = useRef<HTMLInputElement>(null)
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -102,6 +107,24 @@ export default function Page() {
     loadUserAuthor()
 
   }, [])
+
+  useEffect(() => {
+    if (!coverFile) return
+
+    let active = true
+    const reader = new FileReader()
+    reader.onload = () => {
+      if (active && typeof reader.result === "string") {
+        setCoverPreviewUrl(reader.result)
+      }
+    }
+    reader.readAsDataURL(coverFile)
+
+    return () => {
+      active = false
+      reader.abort()
+    }
+  }, [coverFile])
 
 
   const isValidASIN = (value: string) =>
@@ -188,6 +211,18 @@ export default function Page() {
     ))
       return "Confirma cada coincidencia de autor antes de enviar."
 
+    if (!coverFile)
+      return "La portada es obligatoria."
+
+    if (coverFile.size > 2 * 1024 * 1024)
+      return "La portada debe pesar máximo 2 MB."
+
+    if (!["image/jpeg", "image/png", "image/webp"].includes(coverFile.type))
+      return "La portada debe ser JPG, PNG o WebP."
+
+    if (!coverRightsConfirmed)
+      return "Debes confirmar que puedes proporcionar esta portada."
+
     if (!asin)
       return "El ASIN es obligatorio."
 
@@ -244,37 +279,34 @@ export default function Page() {
 
     try {
 
+      const payload = {
+        titulo,
+        autor,
+        autoresAdicionales: autoresAdicionales.map((additionalAuthor) => ({
+          name: additionalAuthor.name,
+          useExistingAuthor: additionalAuthor.useExistingAuthor
+        })),
+        esSaga,
+        link,
+        resumen,
+        asin: asin.trim().toUpperCase(),
+        generos: selectedGenres,
+        subgeneros: selectedSubgenres,
+        tags: selectedTags,
+        aceptaTerminos,
+        confirmaAutoria,
+        coverRightsConfirmed,
+        useExistingAuthor
+      }
+
+      const submission = new FormData()
+      submission.set("payload", JSON.stringify(payload))
+      submission.set("cover", coverFile!)
+
       const res = await fetch("/api/libro-nuevo", {
 
         method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-
-          titulo,
-          autor,
-          autoresAdicionales: autoresAdicionales.map((additionalAuthor) => ({
-            name: additionalAuthor.name,
-            useExistingAuthor: additionalAuthor.useExistingAuthor
-          })),
-          esSaga,
-          link,
-          resumen,
-          asin: asin.trim().toUpperCase(),
-
-          generos: selectedGenres,
-          subgeneros: selectedSubgenres,
-          tags: selectedTags,
-
-          aceptaTerminos,
-          confirmaAutoria,
-
-          useExistingAuthor
-
-        })
+        body: submission
 
       })
 
@@ -317,6 +349,10 @@ export default function Page() {
 
       setAceptaTerminos(false)
       setConfirmaAutoria(false)
+      setCoverRightsConfirmed(false)
+      setCoverFile(null)
+      setCoverPreviewUrl("")
+      if (coverInputRef.current) coverInputRef.current.value = ""
 
       if (
         resolvedAuthor?.id &&
@@ -695,6 +731,83 @@ export default function Page() {
 
           </label>
 
+        </div>
+
+        <div className="mb-6 rounded-2xl border border-zinc-700 bg-zinc-950/50 p-4">
+          <div>
+            <p className="font-semibold text-zinc-100">
+              Portada del libro <span className="text-yellow-400">*</span>
+            </p>
+            <p className="mt-1 text-sm leading-relaxed text-zinc-400">
+              Sube la portada que quieres mostrar en el catálogo. Se optimizará
+              automáticamente para reducir su peso.
+            </p>
+          </div>
+
+          {coverPreviewUrl && (
+            <div className="mt-4 flex justify-center rounded-2xl border border-zinc-800 bg-black p-3">
+              {/* La vista previa usa exclusivamente el archivo local elegido por el usuario. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={coverPreviewUrl}
+                alt="Vista previa de la portada"
+                className="max-h-80 rounded-lg object-contain"
+              />
+            </div>
+          )}
+
+          <label className="mt-4 inline-flex cursor-pointer rounded-xl bg-zinc-800 px-4 py-2.5 text-sm font-medium transition hover:bg-zinc-700">
+            {coverFile ? "Cambiar portada" : "Seleccionar portada"}
+            <input
+              ref={coverInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              onChange={(event) => {
+                const selectedCover = event.target.files?.[0] ?? null
+                setCoverRightsConfirmed(false)
+
+                if (
+                  selectedCover &&
+                  !["image/jpeg", "image/png", "image/webp"].includes(
+                    selectedCover.type
+                  )
+                ) {
+                  setError("La portada debe ser JPG, PNG o WebP.")
+                  setCoverFile(null)
+                  setCoverPreviewUrl("")
+                  event.target.value = ""
+                  return
+                }
+
+                if (selectedCover && selectedCover.size > 2 * 1024 * 1024) {
+                  setError("La portada debe pesar máximo 2 MB.")
+                  setCoverFile(null)
+                  setCoverPreviewUrl("")
+                  event.target.value = ""
+                  return
+                }
+
+                setCoverFile(selectedCover)
+                if (!selectedCover) setCoverPreviewUrl("")
+                setError("")
+              }}
+              className="sr-only"
+            />
+          </label>
+
+          <p className="mt-2 text-xs text-zinc-500">
+            JPG, PNG o WebP de hasta 2 MB. Recomendamos una imagen vertical.
+          </p>
+
+          <label className="mt-4 flex items-start gap-3 text-sm leading-relaxed text-zinc-300">
+            <input
+              type="checkbox"
+              checked={coverRightsConfirmed}
+              onChange={(event) => setCoverRightsConfirmed(event.target.checked)}
+              className="mt-1"
+            />
+            <span>{BOOK_COVER_CONSENT_TEXT}</span>
+          </label>
         </div>
 
 
