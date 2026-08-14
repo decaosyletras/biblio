@@ -46,7 +46,7 @@ export default function Footer() {
               Conóceme
             </Link>
             <Link href="/tutorial" className="hover:text-zinc-200 transition">
-              Tutorial para autores
+              Tutoriales
             </Link>
           </div>
 

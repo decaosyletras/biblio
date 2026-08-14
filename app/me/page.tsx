@@ -528,6 +528,12 @@ export default function MePage() {
                       ? `${readerLibrary.total} ${readerLibrary.total === 1 ? "libro" : "libros"} · ${readerLibrary.read} ${readerLibrary.read === 1 ? "leído" : "leídos"}`
                       : "Organiza tus intereses y lecturas pendientes."}
                 </p>
+                <Link
+                  href="/tutorial/lectores"
+                  className="mt-3 inline-flex text-sm font-semibold text-yellow-300 hover:text-yellow-200"
+                >
+                  Ver tutorial para lectores →
+                </Link>
               </div>
             </article>
 
@@ -685,7 +691,7 @@ export default function MePage() {
 
               <div className="mt-auto border-t border-blue-500/15 pt-6">
                 <Link
-                  href="/tutorial"
+                  href="/tutorial/autores"
                   className="text-sm font-semibold text-blue-300 hover:text-blue-200"
                 >
                   Ver tutorial para autores →
@@ -865,6 +871,13 @@ export default function MePage() {
                 className="rounded-xl bg-green-600 px-5 py-3 font-medium transition hover:bg-green-500"
               >
                 Panel de reclamaciones
+              </button>
+              <button
+                type="button"
+                onClick={() => router.push("/admin/tutorials")}
+                className="rounded-xl bg-violet-600 px-5 py-3 font-medium transition hover:bg-violet-500"
+              >
+                Editar tutoriales
               </button>
             </div>
           </section>
