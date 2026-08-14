@@ -133,7 +133,6 @@ export default function AuthorBookCoverEditor({
         maxSizeMB: 0.9,
         maxWidthOrHeight: 1800,
         useWebWorker: true,
-        fileType: "image/webp",
         initialQuality: 0.82,
       })
       const formData = new FormData()
@@ -142,19 +141,26 @@ export default function AuthorBookCoverEditor({
       formData.set("authorId", authorId)
       formData.set("consentVersion", BOOK_COVER_CONSENT_VERSION)
       formData.set("rightsConfirmed", "true")
-      formData.set("cover", compressed, `${book.id}.webp`)
+      formData.set("cover", compressed, compressed.name || file.name)
 
       const response = await fetch("/api/authors/books/cover", {
         method: "POST",
         body: formData,
       })
-      const result = await response.json().catch(() => null) as {
+      const responseText = await response.text()
+      let result: {
         error?: string
         cover?: string
         coverSource?: BookCoverSource
         coverStoragePath?: string
         coverUpdatedAt?: string
-      } | null
+      } | null = null
+
+      try {
+        result = responseText ? JSON.parse(responseText) : null
+      } catch {
+        result = null
+      }
 
       if (
         !response.ok ||
@@ -163,7 +169,10 @@ export default function AuthorBookCoverEditor({
         !result.coverStoragePath ||
         !result.coverUpdatedAt
       ) {
-        throw new Error(result?.error ?? "No se pudo actualizar la portada")
+        throw new Error(
+          result?.error ??
+          `El servidor no pudo procesar la portada (HTTP ${response.status}).`
+        )
       }
 
       onUpdated(book.id, {
@@ -181,6 +190,8 @@ export default function AuthorBookCoverEditor({
       setError(
         uploadError instanceof Error
           ? uploadError.message
+          : typeof uploadError === "string"
+            ? uploadError
           : "No se pudo actualizar la portada"
       )
     } finally {

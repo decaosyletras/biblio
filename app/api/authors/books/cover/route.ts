@@ -52,7 +52,7 @@ async function optimizeCover(bytes: Buffer) {
   return smallerOutput.byteLength <= MAX_OUTPUT_BYTES ? smallerOutput : null
 }
 
-export async function POST(request: Request) {
+async function handlePost(request: Request) {
   const origin = request.headers.get("origin")
   const requestOrigin = new URL(request.url).origin
 
@@ -310,4 +310,15 @@ export async function POST(request: Request) {
     coverStoragePath: storagePath,
     coverUpdatedAt: acceptedAt,
   })
+}
+
+export async function POST(request: Request) {
+  try {
+    return await handlePost(request)
+  } catch {
+    return NextResponse.json(
+      { error: "No se pudo procesar la carga de la portada" },
+      { status: 500 }
+    )
+  }
 }
