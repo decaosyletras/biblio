@@ -325,7 +325,7 @@ export default async function ReaderProfilePage({
                 >
                   <div className="relative aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800">
                     <CoverImage
-                      src={getBookCover(book.amazon, book.cover)}
+                      src={getBookCover(book.amazon, book.cover, book.coverSource)}
                       alt={book.title}
                       className="h-full w-full object-cover transition duration-200 group-hover:scale-105"
                     />

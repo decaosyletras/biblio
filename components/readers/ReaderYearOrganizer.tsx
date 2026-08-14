@@ -177,7 +177,7 @@ export default function ReaderYearOrganizer({ books, library, onSave }: Props) {
                   />
                   <div className="h-16 w-11 shrink-0 overflow-hidden rounded-md bg-zinc-800">
                     <CoverImage
-                      src={getBookCover(book.amazon, book.cover)}
+                      src={getBookCover(book.amazon, book.cover, book.coverSource)}
                       alt=""
                       className="h-full w-full object-cover"
                     />

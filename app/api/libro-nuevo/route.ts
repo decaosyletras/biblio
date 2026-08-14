@@ -503,6 +503,10 @@ export async function POST(req: Request) {
         asin_mx: normalizedAsin,
         asin_us: normalizedAsin,
 
+        // La portada de Amazon se conserva durante la transicion hasta que un
+        // autor reclamado cargue y autorice una imagen propia.
+        cover_source: "amazon",
+
         amazon_link: link,
 
         author_id: authorId,

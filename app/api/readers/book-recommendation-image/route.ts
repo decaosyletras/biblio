@@ -157,7 +157,10 @@ export async function GET(request: Request) {
   }
 
   const origin = new URL(request.url).origin
-  const coverUrl = new URL(getBookCover(book.amazon, book.cover), origin).toString()
+  const coverUrl = new URL(
+    getBookCover(book.amazon, book.cover, book.coverSource),
+    origin
+  ).toString()
   const [coverDataUrl, avatarDataUrl] = await Promise.all([
     fetchImageDataUrl(coverUrl),
     readerProfile?.avatar_url

@@ -338,6 +338,17 @@ export default function EditAuthorPage() {
         setBooks(copy)
     }
 
+    function updateBookCover(
+        bookId: string,
+        updates: Record<string, string>
+    ) {
+        setBooks(currentBooks => currentBooks.map(book =>
+            book.id === bookId
+                ? { ...book, ...updates }
+                : book
+        ))
+    }
+
     function moveSocial(index: number, direction: number) {
 
         const copy = [...socialOrder]
@@ -784,10 +795,12 @@ export default function EditAuthorPage() {
 
                 <div className="border-t border-zinc-500/70 pt-5">
                     <AuthorBooksSection
+                        authorId={author.id}
                         author={author}
                         updateField={updateField}
                         books={books}
                         moveBook={moveBook}
+                        onCoverUpdated={updateBookCover}
                     />
                 </div>
 

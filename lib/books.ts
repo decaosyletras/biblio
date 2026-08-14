@@ -1,4 +1,4 @@
-import { DatabaseBook } from "@/types"
+import { DatabaseBook, type BookCoverSource } from "@/types"
 // Se conserva data/books.ts como respaldo histórico, pero ya no se importa
 // porque el catálogo actual debe tener una sola fuente: Supabase.
 // import { books as staticBooks } from "@/data/books"
@@ -6,6 +6,31 @@ import { supabase } from "@/lib/supabase"
 import { unstable_noStore as noStore } from "next/cache"
 
 export const revalidate = 0
+
+const BOOK_COVER_SOURCES = new Set<BookCoverSource>([
+  "amazon",
+  "author_upload",
+  "admin_upload",
+  "legacy",
+  "generic",
+])
+
+function getCoverSource(book: Record<string, unknown>): BookCoverSource {
+  if (
+    typeof book.cover_source === "string" &&
+    BOOK_COVER_SOURCES.has(book.cover_source as BookCoverSource)
+  ) {
+    return book.cover_source as BookCoverSource
+  }
+
+  if ([book.asin_us, book.asin_es, book.asin_mx].some(
+    (asin) => typeof asin === "string" && asin.trim()
+  )) return "amazon"
+
+  return typeof book.cover === "string" && book.cover.trim()
+    ? "legacy"
+    : "generic"
+}
 
 export async function getBooks(): Promise<DatabaseBook[]> {
   noStore()
@@ -104,6 +129,7 @@ export async function getBooks(): Promise<DatabaseBook[]> {
       slug: book.slug,
       title: book.title?.toUpperCase() || "",
       cover: book.cover || "",
+      coverSource: getCoverSource(book),
 
       amazon: {
         es: book.asin_es || "",

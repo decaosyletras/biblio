@@ -1,6 +1,11 @@
 "use client"
 
+import AuthorBookCoverEditor from "@/components/authors/edit/AuthorBookCoverEditor"
+import type { BookCoverSource } from "@/types"
+
 interface Props {
+
+    authorId: string
 
     author: any
 
@@ -16,20 +21,37 @@ interface Props {
         direction: number
     ) => void
 
+    onCoverUpdated: (
+        bookId: string,
+        updates: {
+            cover: string
+            cover_source: BookCoverSource
+            cover_storage_path: string
+            cover_updated_at: string
+        }
+    ) => void
+
 }
 
 
 export default function AuthorBooksSection({
+    authorId,
     author,
     updateField,
     books,
-    moveBook
+    moveBook,
+    onCoverUpdated
 }: Props) {
+
+    const pendingCoverCount = books.filter(book =>
+        book.cover_source !== "author_upload" &&
+        book.cover_source !== "admin_upload"
+    ).length
 
 
     return (
 
-        <section>
+        <section className="space-y-6">
 
             {/* CABECERA */}
 
@@ -54,6 +76,56 @@ export default function AuthorBooksSection({
 
                 </div>
 
+            </div>
+
+            {/* PORTADAS */}
+
+            <div className="rounded-3xl border border-blue-500/25 bg-blue-500/5 p-5 space-y-5">
+                <div>
+                    <h3 className="font-semibold text-lg text-blue-100">
+                        Portadas de tus libros
+                    </h3>
+                    {pendingCoverCount > 0 ? (
+                        <div className="mt-2 rounded-2xl border border-yellow-500/25 bg-yellow-500/10 p-4">
+                            <p className="text-sm font-medium text-yellow-200">
+                                {pendingCoverCount === 1
+                                    ? "Hay una portada pendiente de actualizar."
+                                    : `Hay ${pendingCoverCount} portadas pendientes de actualizar.`}
+                            </p>
+                            <p className="mt-1 text-xs leading-relaxed text-zinc-300">
+                                Próximamente dejaremos de utilizar portadas obtenidas
+                                desde servicios externos. Sube una portada autorizada
+                                para evitar que posteriormente sea sustituida por una
+                                imagen genérica.
+                            </p>
+                        </div>
+                    ) : (
+                        <p className="mt-2 text-sm text-green-300">
+                            Todas tus portadas están cargadas y autorizadas.
+                        </p>
+                    )}
+                    <p className="mt-3 text-xs leading-relaxed text-zinc-500">
+                        La imagen se optimiza automáticamente. Este cambio se guarda
+                        al momento y no depende del botón general Guardar cambios.
+                    </p>
+                </div>
+
+                <div className="space-y-3">
+                    {books.map(book => (
+                        <AuthorBookCoverEditor
+                            key={book.id}
+                            authorId={authorId}
+                            book={book}
+                            onUpdated={onCoverUpdated}
+                        />
+                    ))}
+
+                    {books.length === 0 && (
+                        <p className="py-6 text-center text-sm text-zinc-500">
+                            No hay libros disponibles para actualizar.
+                        </p>
+                    )}
+                </div>
             </div>
 
             {/* LIBRO DESTACADO */}

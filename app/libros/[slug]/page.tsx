@@ -82,7 +82,7 @@ export default async function Page({
         {/* Imagen */}
         <div className="relative mx-auto w-full max-w-[220px] sm:max-w-[240px] md:max-w-xs">
           <CoverImage
-            src={getBookCover(book.amazon, book.cover)}
+            src={getBookCover(book.amazon, book.cover, book.coverSource)}
             alt={book.title}
             className="w-full aspect-[2/3] object-cover rounded-xl"
           />
@@ -157,7 +157,7 @@ export default async function Page({
             bookSlug={book.slug}
             bookTitle={book.title}
             authors={bookAuthors.join(", ") || "Autor independiente"}
-            coverSrc={getBookCover(book.amazon, book.cover)}
+            coverSrc={getBookCover(book.amazon, book.cover, book.coverSource)}
           />
 
           {/* SUMMARY */}

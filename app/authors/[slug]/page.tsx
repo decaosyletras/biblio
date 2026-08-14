@@ -892,7 +892,8 @@ export default async function AuthorPage({
                                                 mx: featuredBook.asin_mx,
                                                 us: featuredBook.asin_us
                                             },
-                                            featuredBook.cover
+                                            featuredBook.cover,
+                                            featuredBook.cover_source
                                         )}
                                         alt={featuredBook.title}
                                         className="w-full h-full object-cover transition duration-500"
@@ -1063,7 +1064,8 @@ export default async function AuthorPage({
                                                         mx: book.asin_mx,
                                                         us: book.asin_us
                                                     },
-                                                    book.cover
+                                                    book.cover,
+                                                    book.cover_source
                                                 )}
                                                 alt={book.title}
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

@@ -204,7 +204,7 @@ export default function BookDirectory({
                 className="relative mx-auto h-[8.5rem] w-[5.6875rem] shrink-0 overflow-hidden rounded-lg bg-zinc-800 sm:mx-0 sm:h-36 sm:w-24 lg:h-40 lg:w-[6.75rem]"
               >
                 <CoverImage
-                  src={getBookCover(book.amazon, book.cover)}
+                  src={getBookCover(book.amazon, book.cover, book.coverSource)}
                   alt={book.title}
                   className="h-full w-full object-cover"
                 />

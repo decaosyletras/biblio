@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { getAmazonCover } from "@/lib/amazon"
 import { getBookCover } from "@/lib/amazon"
 import { UserRound } from "lucide-react"
 
@@ -83,7 +82,7 @@ export default function SearchSimple({
                 >
                   <div className="bg-zinc-800 p-4 rounded-xl flex items-center gap-4">
                     <img
-                      src={getBookCover(item.amazon, item.cover)}
+                      src={getBookCover(item.amazon, item.cover, item.coverSource)}
                       alt={item.title}
                       className="w-12 h-24 object-cover"
                     />

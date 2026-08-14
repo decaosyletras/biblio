@@ -20,7 +20,7 @@ export default function CardBook({ book }: { book: Book }) {
         {/* Imagen */}
         <div className="relative w-full h-38 sm:h-50 md:h-62 overflow-hidden rounded-lg">
           <CoverImage
-            src={getBookCover(book.amazon, book.cover)}
+            src={getBookCover(book.amazon, book.cover, book.coverSource)}
             alt={book.title}
             className="w-full h-full object-cover rounded-xl"
           />

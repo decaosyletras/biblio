@@ -12,6 +12,7 @@ type OwnedAuthor = {
   slug: string
   avatar: string
   pro: boolean
+  pendingCoverCount: number
 }
 
 type UserRow = {
@@ -166,12 +167,46 @@ export default function MePage() {
         return
       }
 
+      const [directBooksResult, relationBooksResult] = await Promise.all([
+        supabase
+          .from("books")
+          .select("id, cover_source")
+          .eq("author_id", authorData.id)
+          .eq("approved", true),
+        supabase
+          .from("book_authors")
+          .select("books(id, cover_source, approved)")
+          .eq("author_id", authorData.id),
+      ])
+      const relatedBooks = (relationBooksResult.data ?? []).flatMap((item) => {
+        const related = item.books
+
+        return Array.isArray(related) ? related : related ? [related] : []
+      })
+      const authorBooks = new Map<
+        string,
+        { id: string; cover_source: string | null }
+      >()
+
+      for (const book of [
+        ...(directBooksResult.data ?? []),
+        ...relatedBooks.filter((book) => book.approved === true),
+      ]) {
+        authorBooks.set(book.id, book)
+      }
+      const pendingCoverCount = Array.from(authorBooks.values()).filter(
+        (book) =>
+          book.cover_source !== "author_upload" &&
+          book.cover_source !== "admin_upload"
+      ).length
+
       setAuthor({
         id: authorData.id,
         name: authorData.name,
         slug: authorData.slug,
         avatar: authorData.avatar,
         pro: authorData.pro ?? false,
+        pendingCoverCount,
       })
       setLoadingAuthor(false)
     }
@@ -578,6 +613,27 @@ export default function MePage() {
                       para que los lectores conozcan mejor tu trabajo.
                     </p>
                   </div>
+
+                  {author.pendingCoverCount > 0 && (
+                    <div className="mt-3 rounded-2xl border border-yellow-500/25 bg-yellow-500/10 p-4">
+                      <p className="text-sm font-medium text-yellow-200">
+                        Actualiza las portadas de tus libros
+                      </p>
+                      <p className="mt-1 text-xs leading-relaxed text-zinc-300">
+                        {author.pendingCoverCount === 1
+                          ? "Tienes una portada pendiente de cargar o verificar."
+                          : `Tienes ${author.pendingCoverCount} portadas pendientes de cargar o verificar.`}{" "}
+                        Las que permanezcan pendientes podrán sustituirse más
+                        adelante por una portada genérica.
+                      </p>
+                      <Link
+                        href={`/authors/${author.slug}/edit`}
+                        className="mt-3 inline-flex text-xs font-semibold text-yellow-200 hover:text-yellow-100"
+                      >
+                        Revisar portadas →
+                      </Link>
+                    </div>
+                  )}
                 </div>
               ) : pendingClaim ? (
                 <div className="mt-5">

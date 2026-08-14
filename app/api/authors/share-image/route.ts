@@ -220,11 +220,18 @@ export async function GET(request: Request) {
   // mayor, el encabezado conserva el total real de obras del autor.
   const booksForImage = kind === "profile" ? authorBooks.slice(0, 12) : []
   const coverUrls = booksForImage.map((book) =>
-    new URL(getBookCover(book.amazon, book.cover), origin).toString()
+    new URL(
+      getBookCover(book.amazon, book.cover, book.coverSource),
+      origin
+    ).toString()
   )
   const featuredCoverUrl = featuredBook
     ? new URL(
-        getBookCover(featuredBook.amazon, featuredBook.cover),
+        getBookCover(
+          featuredBook.amazon,
+          featuredBook.cover,
+          featuredBook.coverSource
+        ),
         origin
       ).toString()
     : ""

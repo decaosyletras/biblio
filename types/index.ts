@@ -8,6 +8,13 @@
   genre: string
 }*/}
 
+export type BookCoverSource =
+  | "amazon"
+  | "author_upload"
+  | "admin_upload"
+  | "legacy"
+  | "generic"
+
 export type Book = {
   // Los respaldos estáticos históricos no tienen UUID. Todo libro servido por
   // getBooks() sí lo tiene mediante DatabaseBook.
@@ -15,6 +22,7 @@ export type Book = {
   slug: string
   title: string
   cover: string
+  coverSource?: BookCoverSource
   amazon: {
     es: string,
     mx: string,

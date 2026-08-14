@@ -189,7 +189,7 @@ export default function ReaderLibraryManager({
                     className="relative aspect-[2/3] w-full shrink-0 overflow-hidden rounded-xl bg-zinc-800 sm:h-40 sm:w-28 sm:aspect-auto"
                   >
                     <CoverImage
-                      src={getBookCover(book.amazon, book.cover)}
+                      src={getBookCover(book.amazon, book.cover, book.coverSource)}
                       alt={book.title}
                       className="h-full w-full object-cover"
                     />
@@ -341,7 +341,7 @@ export default function ReaderLibraryManager({
                     className="relative aspect-[2/3] overflow-hidden rounded-xl bg-zinc-800"
                   >
                     <CoverImage
-                      src={getBookCover(book.amazon, book.cover)}
+                      src={getBookCover(book.amazon, book.cover, book.coverSource)}
                       alt={book.title}
                       className="h-full w-full object-cover transition duration-200 hover:scale-105"
                     />

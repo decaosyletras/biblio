@@ -159,7 +159,7 @@ export async function GET(request: Request) {
   const coverDataUrls = await Promise.all(
     visibleBooks.map((book) => {
       const coverUrl = new URL(
-        getBookCover(book.amazon, book.cover),
+        getBookCover(book.amazon, book.cover, book.coverSource),
         origin
       ).toString()
 
