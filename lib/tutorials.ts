@@ -42,26 +42,26 @@ export const DEFAULT_TUTORIALS: Tutorial[] = [
       },
       {
         id: "a1000000-0000-4000-8000-000000000003",
-        title: "Encuentra uno de tus libros",
-        text: "Busca una obra tuya en el catálogo y abre su ficha.",
+        title: "Busca tu autor",
+        text: "Si uno de tus libros ya aparece en el catálogo, abre su ficha y selecciona Reclamar autor.",
         imagePath: null,
       },
       {
         id: "a1000000-0000-4000-8000-000000000004",
-        title: "Reclama tu autor",
-        text: "Pulsa Reclamar autor y envía los datos de verificación. Solo necesitas reclamar uno de tus libros.",
+        title: "O agrega tu primer libro",
+        text: "Si todavía no apareces, entra a Mi espacio y selecciona Agregar uno de mis libros. Tu nuevo autor quedará asociado a tu cuenta.",
         imagePath: null,
       },
       {
         id: "a1000000-0000-4000-8000-000000000005",
-        title: "Espera la aprobación",
-        text: "Revisaremos tu solicitud. Puedes consultar su estado desde Mi espacio.",
+        title: "Agrega tus demás libros",
+        text: "Cuando tu autor esté aprobado o pendiente, su nombre aparecerá fijo para que cada libro quede asociado correctamente.",
         imagePath: null,
       },
       {
         id: "a1000000-0000-4000-8000-000000000006",
         title: "Edita tu página",
-        text: "Cuando sea aprobada, entra a Mi espacio y pulsa Editar mi página.",
+        text: "Cuando tengas acceso aprobado, entra a Mi espacio y pulsa Editar mi página.",
         imagePath: null,
       },
       {

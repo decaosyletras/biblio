@@ -608,6 +608,12 @@ export default function MePage() {
                     >
                       Ver mi página
                     </Link>
+                    <Link
+                      href="/contact"
+                      className="rounded-xl border border-blue-500/30 px-4 py-2.5 text-sm font-medium text-blue-200 transition hover:bg-blue-500/10"
+                    >
+                      Agregar uno de mis libros
+                    </Link>
                   </div>
 
                   <div className="mt-5 rounded-2xl border border-blue-500/20 bg-blue-500/10 p-4">
@@ -651,6 +657,12 @@ export default function MePage() {
                     Enviada el{" "}
                     {new Date(pendingClaim.created_at).toLocaleDateString("es")}
                   </p>
+                  <Link
+                    href="/contact"
+                    className="mt-4 inline-flex rounded-xl border border-blue-500/30 px-4 py-2.5 text-sm font-medium text-blue-200 transition hover:bg-blue-500/10"
+                  >
+                    Agregar uno de mis libros
+                  </Link>
                 </div>
               ) : rejectedClaim ? (
                 <div className="mt-5">
@@ -670,7 +682,8 @@ export default function MePage() {
                 <div className="mt-5">
                   <p className="text-sm leading-relaxed text-zinc-400">
                     Si tus libros ya aparecen en el catálogo, reclama tu autor.
-                    Si todavía no están registrados, puedes recomendarlos primero.
+                    Si todavía no están registrados, agrega uno para crear tu
+                    espacio de autor.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     <Link
@@ -683,7 +696,7 @@ export default function MePage() {
                       href="/contact"
                       className="rounded-xl border border-blue-500/30 px-4 py-2.5 text-sm font-medium text-blue-200 transition hover:bg-blue-500/10"
                     >
-                      Registrar mi libro
+                      Agregar uno de mis libros
                     </Link>
                   </div>
                 </div>

@@ -258,6 +258,57 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="px-4 pb-12 pt-4 sm:px-6">
+        <div className="mx-auto max-w-5xl rounded-3xl border border-zinc-800 bg-zinc-900/70 p-5 sm:p-8">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-yellow-400">
+              Empieza aquí
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
+              Crea tu espacio en Caza Indie
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-base">
+              Te mostramos cómo comenzar en unos cuantos pasos, ya sea que
+              quieras organizar tus lecturas o compartir tu obra.
+            </p>
+          </div>
+
+          <div className="mt-7 grid gap-4 md:grid-cols-2">
+            <Link
+              href="/tutorial/lectores"
+              className="group rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5 transition hover:border-yellow-500/50 hover:bg-yellow-500/10"
+            >
+              <span className="text-2xl" aria-hidden="true">📚</span>
+              <h3 className="mt-3 text-lg font-semibold group-hover:text-yellow-300">
+                Quiero participar como lector
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                Organiza tus lecturas y crea un perfil para compartirlas.
+              </p>
+              <span className="mt-4 inline-flex text-sm font-semibold text-yellow-400">
+                Ver tutorial para lectores →
+              </span>
+            </Link>
+
+            <Link
+              href="/tutorial/autores"
+              className="group rounded-2xl border border-blue-500/20 bg-blue-500/5 p-5 transition hover:border-blue-500/50 hover:bg-blue-500/10"
+            >
+              <span className="text-2xl" aria-hidden="true">✍️</span>
+              <h3 className="mt-3 text-lg font-semibold group-hover:text-blue-300">
+                Quiero crear mi página de autor
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                Registra tus libros y prepara un espacio para tus lectores.
+              </p>
+              <span className="mt-4 inline-flex text-sm font-semibold text-blue-300">
+                Ver tutorial para autores →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* FRASES */}
       {/*<section className="py-8 text-center">
         <p className="text-zinc-400 text-base md:text-lg italic">
@@ -377,18 +428,18 @@ export default async function Home() {
       {/* CTA */}
       {<section className="py-20 text-center">
         <h2 className="text-2xl font-semibold">
-          ¿Eres escritor independiente o conoces a uno?
+          ¿Eres escritor independiente?
         </h2>
 
         <p className="text-zinc-400 mt-4">
-          Comparte esa gran historia para que llegue a nuevos lectores.
+          Agrega uno de tus libros para que pueda llegar a nuevos lectores.
         </p>
 
         <Link
           href="/contact"
           className="inline-block mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full"
         >
-          Recomendar
+          Agregar uno de mis libros
         </Link>
       </section>}
 

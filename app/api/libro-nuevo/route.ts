@@ -100,7 +100,10 @@ async function findOrCreateAdditionalAuthor(
   }
 
   if (existingAuthor && useExistingAuthor) {
-    return existingAuthor.id as string
+    return {
+      id: existingAuthor.id as string,
+      created: false
+    }
   }
 
   const slug = await createUniqueSlug(name)
@@ -121,11 +124,22 @@ async function findOrCreateAdditionalAuthor(
     throw new Error("No se pudo crear el autor adicional")
   }
 
-  return newAuthor.id as string
+  return {
+    id: newAuthor.id as string,
+    created: true
+  }
 }
 
 export async function POST(req: Request) {
   try {
+    const origin = req.headers.get("origin")
+    if (origin && origin !== new URL(req.url).origin) {
+      return NextResponse.json(
+        { error: "Solicitud no autorizada" },
+        { status: 403 }
+      )
+    }
+
     const contentLength = Number(
       req.headers.get("content-length") ?? 0
     )
@@ -182,53 +196,44 @@ export async function POST(req: Request) {
       }
     } = await authClient.auth.getUser()
 
-    // CAMBIO: este endpoint vuelve a permitir registro anónimo porque el flujo
-    // del proyecto lo necesita. La restricción real ahora es otra: si existe
-    // sesión y ya hay una reclamación aprobada, el autor se fija en servidor y
-    // no se puede eludir desde el formulario.
-    //
-    // if (!user) {
-    //   return NextResponse.json(
-    //     {
-    //       error: "No autenticado"
-    //     },
-    //     {
-    //       status: 401
-    //     }
-    //   )
-    // }
-
-    // CAMBIO: si hay sesión, buscamos si ese perfil ya tiene un autor aprobado.
-    // Eso sustituye la confianza en el formulario y evita que un usuario con
-    // autor activo registre un libro para otro autor distinto.
-    let ownedAuthorId: string | null = null
-    if (user) {
-      const { data: ownedClaim, error: ownedClaimError } = await supabase
-        .from("author_claims")
-        .select("author_id")
-        .eq("user_id", user.id)
-        .eq("status", "approved")
-        .maybeSingle()
-
-      if (ownedClaimError) {
-        return NextResponse.json(
-          {
-            error: "No se pudo verificar el autor asociado a la cuenta"
-          },
-          {
-            status: 500
-          }
-        )
-      }
-
-      ownedAuthorId = ownedClaim?.author_id ?? null
+    // El registro pertenece a cuentas identificadas. Las reclamaciones
+    // pendientes y aprobadas fijan el autor desde el servidor.
+    if (!user) {
+      return NextResponse.json(
+        { error: "Inicia sesión para registrar uno de tus libros" },
+        { status: 401 }
+      )
     }
+
+    let ownedAuthorId: string | null = null
+    let ownedClaimStatus: "pending" | "approved" | null = null
+    const { data: ownedClaim, error: ownedClaimError } = await supabase
+      .from("author_claims")
+      .select("author_id, status")
+      .eq("user_id", user.id)
+      .in("status", ["pending", "approved"])
+      .order("status", { ascending: true })
+      .limit(1)
+      .maybeSingle()
+
+    if (ownedClaimError) {
+      return NextResponse.json(
+        { error: "No se pudo verificar el autor asociado a la cuenta" },
+        { status: 500 }
+      )
+    }
+
+    ownedAuthorId = ownedClaim?.author_id ?? null
+    ownedClaimStatus =
+      ownedClaim?.status === "pending" || ownedClaim?.status === "approved"
+        ? ownedClaim.status
+        : null
 
     try {
       const allowed = await enforceRateLimit({
         request: req,
-        namespace: "public-book-submission",
-        subject: user?.id ?? ip,
+        namespace: "author-book-submission",
+        subject: user.id,
         limit: 12,
         windowSeconds: 60 * 60,
       })
@@ -267,6 +272,7 @@ export async function POST(req: Request) {
       tags,
       useExistingAuthor,
       aceptaTerminos,
+      confirmaAutoria,
       autoresAdicionales
     } = body as Record<string, unknown>
 
@@ -362,6 +368,13 @@ export async function POST(req: Request) {
       )
     }
 
+    if (confirmaAutoria !== true) {
+      return NextResponse.json(
+        { error: "Debes confirmar que eres autor o coautor de esta obra" },
+        { status: 400 }
+      )
+    }
+
     const additionalAuthors = autoresAdicionales ?? []
 
     if (
@@ -409,6 +422,8 @@ export async function POST(req: Request) {
     }
 
     let authorId: string
+    let createdMainAuthor = false
+    let ownershipCreated = false
 
     // CAMBIO: si la cuenta ya tiene un autor aprobado, ese autor manda.
     // El formulario puede seguir enviando cualquier valor, pero ya no decide.
@@ -418,7 +433,14 @@ export async function POST(req: Request) {
 
     // Existe el autor y el usuario confirma que es Ã©l
     else if (foundAuthor && useExistingAuthor) {
-      authorId = foundAuthor.id
+      return NextResponse.json(
+        {
+          error: "Este autor ya existe. Reclámalo primero para registrar libros en su nombre."
+        },
+        {
+          status: 409
+        }
+      )
     }
 
     // Existe el autor pero el usuario dice que NO es Ã©l
@@ -454,6 +476,7 @@ export async function POST(req: Request) {
       }
 
       authorId = newAuthor.id
+      createdMainAuthor = true
     }
 
 
@@ -489,6 +512,34 @@ export async function POST(req: Request) {
       }
 
       authorId = newAuthor.id
+      createdMainAuthor = true
+    }
+
+    if (createdMainAuthor) {
+      const { error: ownershipError } = await supabase
+        .from("author_claims")
+        .insert({
+          user_id: user.id,
+          author_id: authorId,
+          status: "approved",
+          proof_notes: "Autor creado al registrar su primer libro con una sesión verificada.",
+          proof_url: null,
+          accepted_policy_version: "1.1",
+          accepted_at: new Date().toISOString(),
+          accepted_ip: ip
+        })
+
+      if (ownershipError) {
+        await supabase.from("authors").delete().eq("id", authorId)
+
+        return NextResponse.json(
+          { error: "No se pudo asociar el nuevo autor a tu cuenta" },
+          { status: 500 }
+        )
+      }
+
+      ownershipCreated = true
+      ownedClaimStatus = "approved"
     }
 
     const bookSlug = await createUniqueBookSlug(titulo)
@@ -527,14 +578,22 @@ export async function POST(req: Request) {
         privacy_version: "2.0",
         accepted_at: new Date().toISOString(),
         accepted_ip: ip,
-        // CAMBIO: si no hay sesión, submitted_by queda nulo. Si la hay, se
-        // guarda el id real sin asumir que el formulario lo definió.
-        submitted_by: user?.id ?? null
+        // La identidad procede de la sesión validada, no del formulario.
+        submitted_by: user.id
       })
       .select("id")
       .single()
 
     if (bookError || !book) {
+      if (ownershipCreated) {
+        await supabase
+          .from("author_claims")
+          .delete()
+          .eq("user_id", user.id)
+          .eq("author_id", authorId)
+        await supabase.from("authors").delete().eq("id", authorId)
+      }
+
       const duplicateAsin =
         bookError?.code === "23505" &&
         `${bookError.message ?? ""} ${bookError.details ?? ""}`
@@ -554,47 +613,6 @@ export async function POST(req: Request) {
     }
 
 
-    // Ya no se asocia automÃ¡ticamente el autor al usuario desde esta ruta.
-    // El bloque anterior creaba una reclamaciÃ³n con status: "approved" al
-    // registrar un libro, permitiendo eludir la revisiÃ³n de author-claims.
-    // Registrar un libro sigue permitido para un autor existente; reclamarlo
-    // se realiza exclusivamente en author-claims como solicitud "pending".
-    //
-    // if (user) {
-    //
-    //   const { data: existingClaim } = await supabase
-    //     .from("author_claims")
-    //     .select("id")
-    //     .eq("user_id", user.id)
-    //     .eq("author_id", authorId)
-    //     .maybeSingle()
-    //
-    //
-    //   if (!existingClaim) {
-    //
-    //     const { error: claimError } = await supabase
-    //       .from("author_claims")
-    //       .insert({
-    //         user_id: user.id,
-    //         author_id: authorId,
-    //         status: "approved"
-    //       })
-    //
-    //
-    //     if (claimError) {
-    //
-    //       console.error(
-    //         "Error creando author claim:",
-    //         claimError
-    //       )
-    //
-    //     }
-    //
-    //   }
-    //
-    // }
-
-
     const additionalAuthorInputs = [...new Map(
       (additionalAuthors as AdditionalAuthorInput[]).map((additionalAuthor) => {
         const trimmedName = additionalAuthor.name.trim()
@@ -608,13 +626,48 @@ export async function POST(req: Request) {
       })
     ).values()]
 
-    const additionalAuthorIds = await Promise.all(
-      additionalAuthorInputs.map((additionalAuthor) =>
-        findOrCreateAdditionalAuthor(
-          additionalAuthor.name,
-          additionalAuthor.useExistingAuthor
+    const additionalAuthorResults: Array<{ id: string; created: boolean }> = []
+
+    try {
+      for (const additionalAuthor of additionalAuthorInputs) {
+        additionalAuthorResults.push(
+          await findOrCreateAdditionalAuthor(
+            additionalAuthor.name,
+            additionalAuthor.useExistingAuthor
+          )
         )
+      }
+    } catch {
+      await supabase.from("books").delete().eq("id", book.id)
+
+      const createdAdditionalAuthorIds = additionalAuthorResults
+        .filter((result) => result.created)
+        .map((result) => result.id)
+
+      if (createdAdditionalAuthorIds.length > 0) {
+        await supabase
+          .from("authors")
+          .delete()
+          .in("id", createdAdditionalAuthorIds)
+      }
+
+      if (ownershipCreated) {
+        await supabase
+          .from("author_claims")
+          .delete()
+          .eq("user_id", user.id)
+          .eq("author_id", authorId)
+        await supabase.from("authors").delete().eq("id", authorId)
+      }
+
+      return NextResponse.json(
+        { error: "No se pudieron guardar todos los autores" },
+        { status: 500 }
       )
+    }
+
+    const additionalAuthorIds = additionalAuthorResults.map(
+      (result) => result.id
     )
 
     // Se conserva author_id en books como autor principal por compatibilidad
@@ -632,6 +685,28 @@ export async function POST(req: Request) {
       )
 
     if (bookAuthorsError) {
+      await supabase.from("books").delete().eq("id", book.id)
+
+      const createdAdditionalAuthorIds = additionalAuthorResults
+        .filter((result) => result.created)
+        .map((result) => result.id)
+
+      if (createdAdditionalAuthorIds.length > 0) {
+        await supabase
+          .from("authors")
+          .delete()
+          .in("id", createdAdditionalAuthorIds)
+      }
+
+      if (ownershipCreated) {
+        await supabase
+          .from("author_claims")
+          .delete()
+          .eq("user_id", user.id)
+          .eq("author_id", authorId)
+        await supabase.from("authors").delete().eq("id", authorId)
+      }
+
       return NextResponse.json(
         {
           error: "El libro se creo, pero no se pudieron guardar todos sus autores"
@@ -642,8 +717,22 @@ export async function POST(req: Request) {
       )
     }
 
+    const { data: savedAuthor } = await supabase
+      .from("authors")
+      .select("id, name, slug")
+      .eq("id", authorId)
+      .maybeSingle()
+
     return NextResponse.json({
-      success: true
+      success: true,
+      bookSlug,
+      ownershipCreated,
+      author: savedAuthor
+        ? {
+            ...savedAuthor,
+            claimStatus: ownedClaimStatus
+          }
+        : null
     })
   // Se comento el parametro porque no se utiliza y no debe exponerse.
   // } catch (error) {

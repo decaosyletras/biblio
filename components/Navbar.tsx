@@ -70,11 +70,35 @@ export default function Navbar() {
         <div className="hidden items-center gap-4 text-sm lg:flex">
           <Link href="/">Inicio</Link>
           <Link href="/libros">Catálogo</Link>
-          <Link href="/book-directory">Biblioteca general</Link>
-          {sessionResolved && hasSession && (
-            <Link href="/me/library">Mi biblioteca</Link>
-          )}
           <Link href="/resenas">Lectómetro</Link>
+          <details className="group relative">
+            <summary className="cursor-pointer list-none select-none">
+              Biblioteca <span aria-hidden="true">▾</span>
+            </summary>
+            <div className="absolute left-0 top-full z-60 mt-3 flex w-52 flex-col gap-1 rounded-xl border border-zinc-700 bg-zinc-900 p-2 shadow-2xl shadow-black/40">
+              <Link
+                href="/book-directory"
+                className="rounded-lg px-3 py-2 hover:bg-zinc-800"
+              >
+                Biblioteca general
+              </Link>
+              {sessionResolved && hasSession ? (
+                <Link
+                  href="/me/library"
+                  className="rounded-lg px-3 py-2 hover:bg-zinc-800"
+                >
+                  Mi biblioteca
+                </Link>
+              ) : sessionResolved ? (
+                <Link
+                  href="/login"
+                  className="rounded-lg px-3 py-2 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200"
+                >
+                  Inicia sesión para crear la tuya
+                </Link>
+              ) : null}
+            </div>
+          </details>
           <details className="group relative">
             <summary className="cursor-pointer list-none select-none">
               Comunidad <span aria-hidden="true">▾</span>
@@ -94,9 +118,12 @@ export default function Navbar() {
               </Link>
             </div>
           </details>
-          <Link href="/contact">Recomendar libro</Link>
+          <Link href="/tutorial">Tutoriales</Link>
           {sessionResolved && (
-            <Link href={hasSession ? "/me" : "/login"}>
+            <Link
+              href={hasSession ? "/me" : "/login"}
+              className="rounded-full border border-yellow-500/50 px-4 py-2 font-medium text-yellow-300 transition hover:bg-yellow-500 hover:text-black"
+            >
               {hasSession ? "Mi espacio" : "Iniciar sesión"}
             </Link>
           )}
@@ -107,29 +134,52 @@ export default function Navbar() {
 
       {/* MENÚ MOBILE */}
       {open && (
-        <div className="mt-4 flex flex-col gap-3 rounded-xl bg-zinc-800 p-4 text-sm shadow-lg lg:hidden">
-          <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
-          <Link href="/libros" onClick={() => setOpen(false)}>Catálogo</Link>
-          <Link href="/book-directory" onClick={() => setOpen(false)}>Biblioteca general</Link>
+        <div className="mt-4 rounded-xl bg-zinc-800 p-4 text-sm shadow-lg lg:hidden">
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Explorar
+            </p>
+            <Link href="/" onClick={() => setOpen(false)}>Inicio</Link>
+            <Link href="/libros" onClick={() => setOpen(false)}>Catálogo</Link>
+            <Link href="/resenas" onClick={() => setOpen(false)}>Lectómetro</Link>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3 border-t border-zinc-700 pt-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Biblioteca
+            </p>
+            <Link href="/book-directory" onClick={() => setOpen(false)}>
+              Biblioteca general
+            </Link>
           {sessionResolved && hasSession && (
             <Link href="/me/library" onClick={() => setOpen(false)}>
               Mi biblioteca
             </Link>
           )}
-          <Link href="/resenas" onClick={() => setOpen(false)}>Lectómetro</Link>
-          <Link href="/authors" onClick={() => setOpen(false)}>Autores</Link>
-          <Link href="/readers" onClick={() => setOpen(false)}>Lectores</Link>
-          <Link href="/contact" onClick={() => setOpen(false)}>
-            Recomendar libro
-          </Link>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3 border-t border-zinc-700 pt-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Comunidad
+            </p>
+            <Link href="/authors" onClick={() => setOpen(false)}>Autores</Link>
+            <Link href="/readers" onClick={() => setOpen(false)}>Lectores</Link>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3 border-t border-zinc-700 pt-4">
+            <Link href="/tutorial" onClick={() => setOpen(false)}>
+              Tutoriales
+            </Link>
           {sessionResolved && (
             <Link
               href={hasSession ? "/me" : "/login"}
               onClick={() => setOpen(false)}
+              className="rounded-xl border border-yellow-500/50 px-4 py-2.5 text-center font-medium text-yellow-300"
             >
               {hasSession ? "Mi espacio" : "Iniciar sesión"}
             </Link>
           )}
+          </div>
           {/*<Link href="/afiliados" onClick={() => setOpen(false)}>Transparencia</Link>
           <Link href="/privacidad" onClick={() => setOpen(false)}>Privacidad</Link>*/}
         </div>

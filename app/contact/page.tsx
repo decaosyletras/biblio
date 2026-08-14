@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 import GenreSelector from "@/components/GenreSelector"
 import SubgenreSelector from "@/components/SubgenreSelector"
@@ -21,6 +22,11 @@ type AdditionalAuthor = {
 type AuthorMatch = {
   id: string
   name: string
+  slug?: string
+}
+
+type UserAuthor = AuthorMatch & {
+  claimStatus: "pending" | "approved"
 }
 
 export default function Page() {
@@ -42,6 +48,7 @@ export default function Page() {
   const [selectedTags, setSelectedTags] = useState<string[]>([])
 
   const [aceptaTerminos, setAceptaTerminos] = useState(false)
+  const [confirmaAutoria, setConfirmaAutoria] = useState(false)
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -50,31 +57,44 @@ export default function Page() {
   const [foundAuthor, setFoundAuthor] = useState<AuthorMatch | null>(null)
   const [useExistingAuthor, setUseExistingAuthor] = useState<boolean | null>(null)
 
-  const [userAuthor, setUserAuthor] = useState<AuthorMatch | null>(null)
+  const [userAuthor, setUserAuthor] = useState<UserAuthor | null>(null)
+  const [sessionState, setSessionState] = useState<
+    "loading" | "authenticated" | "guest" | "error"
+  >("loading")
+  const [ownershipCreated, setOwnershipCreated] = useState(false)
 
 
   useEffect(() => {
 
     async function loadUserAuthor() {
+      try {
+        const res = await fetch("/api/my-author")
 
-      const res = await fetch("/api/my-author")
+        if (res.status === 401) {
+          setSessionState("guest")
+          return
+        }
 
-      if (!res.ok) {
-        return
-      }
+        if (!res.ok) {
+          setSessionState("error")
+          return
+        }
 
-      const data = await res.json()
+        const data = await res.json()
 
-      if (data.author) {
+        if (data.author) {
+          setUserAuthor({
+            ...data.author,
+            claimStatus: data.claimStatus
+          })
+          setAutor(data.author.name)
+          setFoundAuthor(data.author)
+          setUseExistingAuthor(true)
+        }
 
-        setUserAuthor(data.author)
-
-        setAutor(data.author.name)
-
-        setFoundAuthor(data.author)
-
-        setUseExistingAuthor(true)
-
+        setSessionState("authenticated")
+      } catch {
+        setSessionState("error")
       }
 
     }
@@ -189,8 +209,14 @@ export default function Page() {
     if (!aceptaTerminos)
       return "Debes aceptar la política de privacidad."
 
+    if (!confirmaAutoria)
+      return "Debes confirmar que eres autor o coautor de esta obra."
+
     if (foundAuthor && useExistingAuthor === null)
       return "Confirma la coincidencia de autor antes de enviar."
+
+    if (foundAuthor && useExistingAuthor === true && !userAuthor)
+      return "Este autor ya existe. Reclámalo antes de registrar libros en su nombre."
 
     return null
 
@@ -201,6 +227,7 @@ export default function Page() {
 
     setError("")
     setSent(false)
+    setOwnershipCreated(false)
 
     const validationError = validateForm()
 
@@ -243,15 +270,7 @@ export default function Page() {
           tags: selectedTags,
 
           aceptaTerminos,
-
-          authorId:
-            userAuthor
-              ? userAuthor.id
-              : (
-                useExistingAuthor && foundAuthor
-                  ? foundAuthor.id
-                  : null
-              ),
+          confirmaAutoria,
 
           useExistingAuthor
 
@@ -265,6 +284,10 @@ export default function Page() {
 
       if (!res.ok) {
 
+        if (res.status === 401) {
+          setSessionState("guest")
+        }
+
         setError(
           data.error || "Error al guardar"
         )
@@ -276,9 +299,12 @@ export default function Page() {
 
 
       setSent(true)
+      setOwnershipCreated(Boolean(data.ownershipCreated))
+
+      const resolvedAuthor = data.author ?? userAuthor
 
       setTitulo("")
-      setAutor("")
+      setAutor(resolvedAuthor?.name ?? "")
       setAutoresAdicionales([])
       setEsSaga(false)
       setLink("")
@@ -290,9 +316,26 @@ export default function Page() {
       setSelectedTags([])
 
       setAceptaTerminos(false)
+      setConfirmaAutoria(false)
 
-      setFoundAuthor(null)
-      setUseExistingAuthor(null)
+      if (
+        resolvedAuthor?.id &&
+        resolvedAuthor?.name &&
+        resolvedAuthor?.claimStatus
+      ) {
+        const savedUserAuthor: UserAuthor = {
+          id: resolvedAuthor.id,
+          name: resolvedAuthor.name,
+          slug: resolvedAuthor.slug,
+          claimStatus: resolvedAuthor.claimStatus
+        }
+        setUserAuthor(savedUserAuthor)
+        setFoundAuthor(savedUserAuthor)
+        setUseExistingAuthor(true)
+      } else {
+        setFoundAuthor(null)
+        setUseExistingAuthor(null)
+      }
 
 
     } catch {
@@ -307,6 +350,55 @@ export default function Page() {
     setLoading(false)
 
   }
+  if (sessionState === "loading") {
+    return (
+      <section className="flex min-h-screen items-center justify-center bg-black px-4 text-zinc-300">
+        Verificando tu sesión...
+      </section>
+    )
+  }
+
+  if (sessionState === "guest") {
+    return (
+      <section className="flex min-h-screen items-start justify-center bg-black px-4 py-16 text-zinc-100">
+        <div className="w-full max-w-xl rounded-3xl border border-zinc-800 bg-zinc-900 p-7 text-center sm:p-10">
+          <h1 className="text-3xl font-bold">Registra uno de tus libros</h1>
+          <p className="mt-4 leading-relaxed text-zinc-400">
+            Inicia sesión para agregar tu obra y asociarla correctamente con tu
+            espacio de autor.
+          </p>
+          <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link
+              href="/login"
+              className="rounded-xl bg-yellow-500 px-6 py-3 font-semibold text-black transition hover:bg-yellow-400"
+            >
+              Iniciar sesión
+            </Link>
+            <Link
+              href="/tutorial/autores"
+              className="rounded-xl border border-zinc-700 px-6 py-3 font-medium transition hover:bg-zinc-800"
+            >
+              Ver tutorial para autores
+            </Link>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (sessionState === "error") {
+    return (
+      <section className="flex min-h-screen items-center justify-center bg-black px-4 text-zinc-100">
+        <div className="max-w-lg rounded-3xl border border-red-500/30 bg-red-500/10 p-7 text-center">
+          <h1 className="text-2xl font-bold">No pudimos verificar tu cuenta</h1>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-300">
+            Recarga la página para intentarlo nuevamente. No se ha guardado ningún dato.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section className="
       min-h-screen
@@ -343,7 +435,7 @@ export default function Page() {
           sm:text-base
           mb-6
         ">
-          Recomienda tu libro o uno que te haya gustado. Llena los datos tal como quieres que se muestren en la página.
+          Agrega uno de tus libros. Llena los datos tal como quieres que se muestren en el catálogo.
         </p>
 
 
@@ -371,6 +463,18 @@ export default function Page() {
           className={`w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 ${userAuthor ? "opacity-60 cursor-not-allowed" : ""
             }`}
         />
+
+        {userAuthor && (
+          <div className={`mb-4 rounded-xl border p-4 text-sm ${
+            userAuthor.claimStatus === "pending"
+              ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-200"
+              : "border-green-500/30 bg-green-500/10 text-green-200"
+          }`}>
+            {userAuthor.claimStatus === "pending"
+              ? "Tu reclamación sigue pendiente. Mientras la revisamos, los libros que registres quedarán asociados a este autor."
+              : "Este libro quedará asociado automáticamente a tu página de autor."}
+          </div>
+        )}
 
         <div className="mb-4">
 
@@ -524,7 +628,7 @@ export default function Page() {
                   }
                 `}
               >
-                Sí, asociar
+                Sí, es mi perfil
               </button>
 
 
@@ -547,6 +651,24 @@ export default function Page() {
               </button>
 
             </div>
+
+            {useExistingAuthor === true && (
+              <div className="mt-4 rounded-xl border border-blue-500/30 bg-blue-500/10 p-3 text-blue-200">
+                Para proteger los perfiles existentes, primero debes reclamar
+                este autor. Busca uno de sus libros y selecciona Reclamar autor.
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <Link href="/libros" className="font-semibold hover:underline">
+                    Buscar un libro
+                  </Link>
+                  <Link
+                    href="/tutorial/autores"
+                    className="font-semibold hover:underline"
+                  >
+                    Ver tutorial
+                  </Link>
+                </div>
+              </div>
+            )}
 
           </div>
 
@@ -655,6 +777,27 @@ export default function Page() {
 
         <div className="mb-6">
 
+          <label className="mb-4 flex items-start gap-3 text-sm text-zinc-300">
+            <input
+              type="checkbox"
+              checked={confirmaAutoria}
+              onChange={e => setConfirmaAutoria(e.target.checked)}
+              className="mt-1"
+            />
+            <span>
+              Confirmo que soy autor o coautor de esta obra y que los datos
+              proporcionados son correctos. También acepto la{" "}
+              <a
+                href="/politica"
+                target="_blank"
+                className="text-yellow-400 hover:underline"
+              >
+                Política de reclamación de autores
+              </a>
+              .
+            </span>
+          </label>
+
           <label className="
             flex
             items-start
@@ -720,7 +863,9 @@ export default function Page() {
             mb-4
             text-sm
           ">
-            ¡Libro guardado correctamente! Puede tardar unos minutos para que aparezca en el catálogo.
+            {ownershipCreated
+              ? "¡Libro guardado! También creamos y asociamos tu página de autor. A partir de ahora tus nuevos libros usarán este autor automáticamente."
+              : "¡Libro guardado correctamente! Puede tardar unos minutos para que aparezca en el catálogo."}
           </div>
 
         )}
