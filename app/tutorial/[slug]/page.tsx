@@ -44,17 +44,6 @@ export default async function TutorialDetailPage({
               key={step.id}
               className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900"
             >
-              {step.imageUrl && (
-                <div className="border-b border-zinc-800 bg-black">
-                  {/* Las capturas provienen del bucket público administrado de tutoriales. */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={step.imageUrl}
-                    alt={`Paso ${index + 1}: ${step.title}`}
-                    className="max-h-[42rem] w-full object-contain"
-                  />
-                </div>
-              )}
               <div className="flex gap-4 p-5 sm:gap-5 sm:p-7">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-yellow-500/30 bg-yellow-500/10 text-sm font-bold text-yellow-300">
                   {String(index + 1).padStart(2, "0")}
@@ -71,6 +60,17 @@ export default async function TutorialDetailPage({
                   </p>
                 </div>
               </div>
+              {step.imageUrl && (
+                <div className="border-t border-zinc-800 bg-black px-2 py-3 sm:p-0">
+                  {/* Las capturas provienen del bucket público administrado de tutoriales. */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={step.imageUrl}
+                    alt={`Paso ${index + 1}: ${step.title}`}
+                    className="mx-auto max-h-72 w-auto max-w-full object-contain sm:max-h-[32rem] lg:max-h-[42rem]"
+                  />
+                </div>
+              )}
             </article>
           ))}
         </div>
