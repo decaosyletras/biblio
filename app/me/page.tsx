@@ -892,6 +892,13 @@ export default function MePage() {
               >
                 Editar tutoriales
               </button>
+              <button
+                type="button"
+                onClick={() => router.push("/admin/author-pro")}
+                className="rounded-xl bg-amber-600 px-5 py-3 font-medium transition hover:bg-amber-500"
+              >
+                Gestionar cortesías PRO
+              </button>
             </div>
           </section>
         )}

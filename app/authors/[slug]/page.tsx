@@ -17,6 +17,7 @@ import AuthorInterview from "@/components/authors/AuthorInterview"
 import ShareProfileButton from "@/components/ShareProfileButton"
 import { getLinkedPublicReaderForAuthor } from "@/lib/publicProfileLinks"
 import AuthorShareImageButton from "@/components/authors/AuthorShareImageButton"
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
 import {
     inter,
@@ -184,6 +185,21 @@ export default async function AuthorPage({
             .maybeSingle()
 
         canEdit = !!claim
+    }
+
+    let hasStripeSubscription = false
+
+    if (canEdit && author.pro === true) {
+        const { data: payment } = await supabaseAdmin
+            .from("author_payments")
+            .select("stripe_subscription_id")
+            .eq("author_id", author.id)
+            .in("status", ["active", "trialing", "past_due"])
+            .not("stripe_subscription_id", "is", null)
+            .limit(1)
+            .maybeSingle()
+
+        hasStripeSubscription = Boolean(payment?.stripe_subscription_id)
     }
 
     const isPro = author.pro === true
@@ -646,7 +662,7 @@ export default async function AuthorPage({
 
                     <div className="flex flex-col sm:flex-row items-center sm:items-center justify-center lg:justify-end gap-3 mt-8">
 
-                        {author.pro && (
+                        {author.pro && hasStripeSubscription && (
                             <div className="flex flex-col items-center justify-center gap-3">
 
                                 <ManageProButton
