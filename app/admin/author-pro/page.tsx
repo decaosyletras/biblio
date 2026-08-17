@@ -13,9 +13,12 @@ type ProAuthor = {
   complimentary_pro: boolean
 }
 
+type AuthorFilter = "all" | "complimentary" | "stripe"
+
 export default function AdminAuthorProPage() {
   const [authors, setAuthors] = useState<ProAuthor[]>([])
   const [query, setQuery] = useState("")
+  const [filter, setFilter] = useState<AuthorFilter>("all")
   const [loading, setLoading] = useState(true)
   const [savingId, setSavingId] = useState<string | null>(null)
   const [error, setError] = useState("")
@@ -52,14 +55,26 @@ export default function AdminAuthorProPage() {
 
   const filteredAuthors = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("es")
-    if (!normalizedQuery) return authors
 
-    return authors.filter((author) =>
-      `${author.name} ${author.slug}`
-        .toLocaleLowerCase("es")
-        .includes(normalizedQuery)
-    )
-  }, [authors, query])
+    return authors.filter((author) => {
+      if (filter === "complimentary" && !author.complimentary_pro) return false
+      if (filter === "stripe" && !author.stripe_pro_active) return false
+
+      return (
+        !normalizedQuery ||
+        `${author.name} ${author.slug}`
+          .toLocaleLowerCase("es")
+          .includes(normalizedQuery)
+      )
+    })
+  }, [authors, filter, query])
+
+  const complimentaryCount = authors.filter(
+    (author) => author.complimentary_pro
+  ).length
+  const stripeCount = authors.filter(
+    (author) => author.stripe_pro_active
+  ).length
 
   async function setComplimentaryPro(author: ProAuthor, enabled: boolean) {
     setSavingId(author.id)
@@ -133,6 +148,28 @@ export default function AdminAuthorProPage() {
             className="mt-2 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 outline-none focus:border-amber-400"
           />
         </label>
+
+        <div className="mt-4 flex flex-wrap gap-2" aria-label="Filtrar autores">
+          {([
+            ["all", `Todos (${authors.length})`],
+            ["complimentary", `Con cortesía (${complimentaryCount})`],
+            ["stripe", `Con Stripe (${stripeCount})`],
+          ] as const).map(([value, label]) => (
+            <button
+              key={value}
+              type="button"
+              aria-pressed={filter === value}
+              onClick={() => setFilter(value)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                filter === value
+                  ? "bg-amber-500 text-black"
+                  : "border border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
         {error && (
           <p className="mt-5 rounded-2xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
