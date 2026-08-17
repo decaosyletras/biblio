@@ -5,7 +5,7 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin"
 export const dynamic = "force-dynamic"
 
 const UUID_PATTERN =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{12}$/i
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 async function getAdminUser() {
   const authClient = await createClient()
@@ -93,7 +93,7 @@ export async function PATCH(request: Request) {
 
     const candidate = body as Record<string, unknown>
     const authorId =
-      typeof candidate.authorId === "string" ? candidate.authorId : ""
+      typeof candidate.authorId === "string" ? candidate.authorId.trim() : ""
     const enabled = candidate.enabled
 
     if (!UUID_PATTERN.test(authorId) || typeof enabled !== "boolean") {
