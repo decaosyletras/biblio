@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import imageCompression from "browser-image-compression"
 import { BOOK_COVER_CONSENT_TEXT } from "@/lib/bookCoverConsent"
 
 import GenreSelector from "@/components/GenreSelector"
@@ -10,6 +11,9 @@ import TagSelector from "@/components/TagSelector"
 
 import { genresCatalog } from "@/data/genres"
 import { metricsCatalog } from "@/data/metrics"
+
+const MAX_ORIGINAL_COVER_BYTES = 10 * 1024 * 1024
+const ALLOWED_COVER_TYPES = new Set(["image/jpeg", "image/png", "image/webp"])
 
 type AdditionalAuthor = {
   name: string
@@ -214,10 +218,10 @@ export default function Page() {
     if (!coverFile)
       return "La portada es obligatoria."
 
-    if (coverFile.size > 2 * 1024 * 1024)
-      return "La portada debe pesar máximo 2 MB."
+    if (coverFile.size > MAX_ORIGINAL_COVER_BYTES)
+      return "La portada original debe pesar máximo 10 MB."
 
-    if (!["image/jpeg", "image/png", "image/webp"].includes(coverFile.type))
+    if (!ALLOWED_COVER_TYPES.has(coverFile.type))
       return "La portada debe ser JPG, PNG o WebP."
 
     if (!coverRightsConfirmed)
@@ -279,6 +283,13 @@ export default function Page() {
 
     try {
 
+      const compressedCover = await imageCompression(coverFile!, {
+        maxSizeMB: 0.9,
+        maxWidthOrHeight: 1800,
+        useWebWorker: true,
+        initialQuality: 0.82,
+      })
+
       const payload = {
         titulo,
         autor,
@@ -301,7 +312,11 @@ export default function Page() {
 
       const submission = new FormData()
       submission.set("payload", JSON.stringify(payload))
-      submission.set("cover", coverFile!)
+      submission.set(
+        "cover",
+        compressedCover,
+        compressedCover.name || coverFile!.name
+      )
 
       const res = await fetch("/api/libro-nuevo", {
 
@@ -374,10 +389,12 @@ export default function Page() {
       }
 
 
-    } catch {
+    } catch (submissionError) {
 
       setError(
-        "Error de conexión 😢"
+        submissionError instanceof Error
+          ? submissionError.message
+          : "No se pudo preparar o enviar la portada."
       )
 
     }
@@ -768,9 +785,7 @@ export default function Page() {
 
                 if (
                   selectedCover &&
-                  !["image/jpeg", "image/png", "image/webp"].includes(
-                    selectedCover.type
-                  )
+                  !ALLOWED_COVER_TYPES.has(selectedCover.type)
                 ) {
                   setError("La portada debe ser JPG, PNG o WebP.")
                   setCoverFile(null)
@@ -779,8 +794,11 @@ export default function Page() {
                   return
                 }
 
-                if (selectedCover && selectedCover.size > 2 * 1024 * 1024) {
-                  setError("La portada debe pesar máximo 2 MB.")
+                if (
+                  selectedCover &&
+                  selectedCover.size > MAX_ORIGINAL_COVER_BYTES
+                ) {
+                  setError("La portada original debe pesar máximo 10 MB.")
                   setCoverFile(null)
                   setCoverPreviewUrl("")
                   event.target.value = ""
@@ -796,7 +814,8 @@ export default function Page() {
           </label>
 
           <p className="mt-2 text-xs text-zinc-500">
-            JPG, PNG o WebP de hasta 2 MB. Recomendamos una imagen vertical.
+            JPG, PNG o WebP de hasta 10 MB. La reduciremos automáticamente
+            antes de enviarla. Recomendamos una imagen vertical.
           </p>
 
           <label className="mt-4 flex items-start gap-3 text-sm leading-relaxed text-zinc-300">
@@ -1002,7 +1021,7 @@ export default function Page() {
             disabled:opacity-50
           "
         >
-          {loading ? "Guardando..." : "Enviar libro"}
+          {loading ? "Optimizando y guardando..." : "Enviar libro"}
         </button>
 
 
