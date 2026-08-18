@@ -93,6 +93,7 @@ export default function AdminTutorialsPage() {
           text: "Escribe aquí una indicación breve.",
           imagePath: null,
           imageUrl: null,
+          actions: [],
         },
       ],
     })
@@ -365,6 +366,88 @@ export default function AdminTutorialsPage() {
                           className="resize-y rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 outline-none focus:border-yellow-500"
                         />
                       </label>
+
+                      <div>
+                        <p className="text-sm font-medium">
+                          Botones <span className="font-normal text-zinc-500">(opcionales)</span>
+                        </p>
+                        <p className="mt-1 text-xs text-zinc-500">
+                          Puedes agregar hasta dos botones. Las rutas deben ser internas,
+                          por ejemplo <span className="font-mono">/me/library</span>.
+                        </p>
+                        <div className="mt-3 grid gap-3">
+                          {[0, 1].map((actionIndex) => {
+                            const action = step.actions[actionIndex] ?? {
+                              label: "",
+                              href: "",
+                            }
+
+                            const updateAction = (
+                              update: Partial<typeof action>
+                            ) => {
+                              const actions = Array.from(
+                                {
+                                  length: Math.max(
+                                    step.actions.length,
+                                    actionIndex + 1
+                                  ),
+                                },
+                                (_, index) =>
+                                  step.actions[index] ?? { label: "", href: "" }
+                              )
+                              actions[actionIndex] = { ...action, ...update }
+
+                              while (
+                                actions.length > 0 &&
+                                !actions.at(-1)?.label &&
+                                !actions.at(-1)?.href
+                              ) {
+                                actions.pop()
+                              }
+
+                              updateStep(tutorial.slug, step.id, {
+                                actions,
+                              })
+                            }
+
+                            return (
+                              <div
+                                key={actionIndex}
+                                className="grid gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3 sm:grid-cols-2"
+                              >
+                                <label className="grid gap-1.5 text-xs text-zinc-400">
+                                  Texto del botón {actionIndex + 1}
+                                  <input
+                                    value={action.label}
+                                    maxLength={80}
+                                    placeholder={
+                                      actionIndex === 0
+                                        ? "Ir a Mi espacio"
+                                        : "Botón secundario"
+                                    }
+                                    onChange={(event) =>
+                                      updateAction({ label: event.target.value })
+                                    }
+                                    className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 outline-none focus:border-yellow-500"
+                                  />
+                                </label>
+                                <label className="grid gap-1.5 text-xs text-zinc-400">
+                                  Ruta del botón {actionIndex + 1}
+                                  <input
+                                    value={action.href}
+                                    maxLength={200}
+                                    placeholder="/me"
+                                    onChange={(event) =>
+                                      updateAction({ href: event.target.value })
+                                    }
+                                    className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2.5 font-mono text-sm text-zinc-100 outline-none focus:border-yellow-500"
+                                  />
+                                </label>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
 
                       <div>
                         <p className="text-sm font-medium">Imagen</p>

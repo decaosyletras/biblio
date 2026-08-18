@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import {
   getTutorialImageUrl,
+  isTutorialActionHref,
   isTutorialSlug,
   mapTutorialRow,
   type TutorialStep,
@@ -57,6 +58,30 @@ function parseSteps(value: unknown, slug: string): TutorialStep[] | null {
       typeof step.imagePath === "string" && step.imagePath.trim()
         ? step.imagePath.trim()
         : null
+    const rawActions = step.actions
+
+    if (!Array.isArray(rawActions) || rawActions.length > 2) return null
+
+    const actions = rawActions.flatMap((rawAction) => {
+      if (
+        !rawAction ||
+        typeof rawAction !== "object" ||
+        Array.isArray(rawAction)
+      ) {
+        return []
+      }
+
+      const action = rawAction as Record<string, unknown>
+      const label = typeof action.label === "string" ? action.label.trim() : ""
+      const href = typeof action.href === "string" ? action.href.trim() : ""
+
+      return label &&
+        label.length <= 80 &&
+        href.length <= 200 &&
+        isTutorialActionHref(href)
+        ? [{ label, href }]
+        : []
+    })
 
     if (
       typeof step.id !== "string" ||
@@ -66,6 +91,7 @@ function parseSteps(value: unknown, slug: string): TutorialStep[] | null {
       title.length > 100 ||
       text.length === 0 ||
       text.length > 500 ||
+      actions.length !== rawActions.length ||
       (imagePath !== null &&
         (!IMAGE_PATH_PATTERN.test(imagePath) || !imagePath.startsWith(`${slug}/`)))
     ) {
@@ -73,7 +99,7 @@ function parseSteps(value: unknown, slug: string): TutorialStep[] | null {
     }
 
     ids.add(step.id)
-    steps.push({ id: step.id, title, text, imagePath })
+    steps.push({ id: step.id, title, text, imagePath, actions })
   }
 
   return steps
@@ -179,11 +205,12 @@ export async function PUT(request: Request) {
       .update({
         title,
         description,
-        steps: steps.map(({ id, title: stepTitle, text, imagePath }) => ({
+        steps: steps.map(({ id, title: stepTitle, text, imagePath, actions }) => ({
           id,
           title: stepTitle,
           text,
           imagePath,
+          actions,
         })),
         updated_at: new Date().toISOString(),
         updated_by: admin.user.id,

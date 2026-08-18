@@ -58,6 +58,23 @@ export default async function TutorialDetailPage({
                   <p className="mt-2 leading-relaxed text-zinc-400">
                     {step.text}
                   </p>
+                  {step.actions.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-2.5">
+                      {step.actions.map((action, actionIndex) => (
+                        <Link
+                          key={`${action.href}-${action.label}`}
+                          href={action.href}
+                          className={
+                            actionIndex === 0
+                              ? "inline-flex min-h-11 items-center justify-center rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-yellow-400"
+                              : "inline-flex min-h-11 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
+                          }
+                        >
+                          {action.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
               {step.imageUrl && (
