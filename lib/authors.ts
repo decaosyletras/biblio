@@ -1,5 +1,18 @@
 import { createClient } from "@/lib/supabase-server"
 
+type CatalogAuthor = Record<string, unknown> & {
+  id: string
+  name: string
+  booksCount?: number
+}
+
+function isCatalogAuthor(value: unknown): value is CatalogAuthor {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false
+
+  const author = value as Record<string, unknown>
+  return typeof author.id === "string" && typeof author.name === "string"
+}
+
 export async function getLatestAuthorNews() {
 
   const supabase = await createClient()
@@ -21,7 +34,7 @@ export async function getLatestAuthorNews() {
   //   since.getDate() - 15
   // )
 
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from("authors")
     .select(`
       id,
@@ -67,40 +80,58 @@ export async function getAuthors() {
 
   const authors =
     claims
-      ?.map((x: any) => x.author)
-      .filter(Boolean) ?? []
+      ?.map(claim => claim.author as unknown)
+      .filter(isCatalogAuthor) ?? []
 
-  for (const author of authors) {
+  const authorIds = Array.from(
+    new Set(
+      authors
+        .map(author => author.id)
+        .filter((authorId): authorId is string => typeof authorId === "string")
+    )
+  )
 
-    // Libros donde es autor principal
-    const { data: mainBooks } = await supabase
+  if (authorIds.length === 0) {
+    return []
+  }
+
+  // Los libros principales y las coautorías son independientes. Consultarlos
+  // por lote evita ejecutar dos peticiones adicionales por cada autor.
+  const [{ data: mainBooks }, { data: extraBooks }] = await Promise.all([
+    supabase
       .from("books")
-      .select("id")
-      .eq("author_id", author.id)
-      .eq("approved", true)
-
-
-    // Libros donde aparece en la relación múltiple
-    const { data: extraBooks } = await supabase
+      .select("id, author_id")
+      .in("author_id", authorIds)
+      .eq("approved", true),
+    supabase
       .from("book_authors")
       .select(`
+        author_id,
         book_id,
         books!inner(
           approved
         )
       `)
-      .eq("author_id", author.id)
-      .eq("books.approved", true)
+      .in("author_id", authorIds)
+      .eq("books.approved", true),
+  ])
 
+  const bookIdsByAuthor = new Map(
+    authorIds.map(authorId => [authorId, new Set<string>()])
+  )
 
-    const bookIds = new Set([
-      ...(mainBooks?.map(b => b.id) ?? []),
-      ...(extraBooks?.map(b => b.book_id) ?? [])
-    ])
+  mainBooks?.forEach(book => {
+    if (!book.author_id) return
+    bookIdsByAuthor.get(book.author_id)?.add(book.id)
+  })
 
+  extraBooks?.forEach(book => {
+    bookIdsByAuthor.get(book.author_id)?.add(book.book_id)
+  })
 
-    author.booksCount = bookIds.size
-  }
+  authors.forEach(author => {
+    author.booksCount = bookIdsByAuthor.get(author.id)?.size ?? 0
+  })
 
   return authors.sort((a, b) =>
     a.name.localeCompare(b.name)

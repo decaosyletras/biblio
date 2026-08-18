@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
+import { isSupabasePublicImageUrl } from "@/lib/server-image-fetch"
 import { unlockReaderAchievement } from "@/lib/readerAchievements"
 
 const USERNAME_PATTERN = /^[a-z0-9][a-z0-9._-]{1,28}[a-z0-9]$/
@@ -60,15 +61,10 @@ function isReaderAvatarUrl(value: string, userId: string) {
   if (!value) return false
   if (value.length > 2048) return false
 
-  try {
-    const url = new URL(value)
-    const expectedPath = `/storage/v1/object/public/reader-avatars/${userId}/`
-
-    return (url.protocol === "https:" || url.protocol === "http:") &&
-      url.pathname.includes(expectedPath)
-  } catch {
-    return false
-  }
+  return isSupabasePublicImageUrl(value, {
+    bucket: "reader-avatars",
+    pathPrefix: `${userId}/`,
+  })
 }
 
 function isAllowedAvatar(

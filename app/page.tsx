@@ -9,6 +9,8 @@ import AuthorNewsCard from "@/components/AuthorNewsCard"
 import LectometerMark from "@/components/LectometerMark"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
+import { cookies } from "next/headers"
+import type { User } from "@supabase/supabase-js"
 
 import {
   getAuthors,
@@ -20,49 +22,62 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
 
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const publicContentPromise = Promise.all([
+    getAuthors(),
+    getBooks(),
+    getLatestAuthorNews(),
+  ])
 
   let claimedAuthorSlug: string | null = null
   let hasReaderProfile = false
   let hasPendingAuthorClaim = false
+  let user: User | null = null
 
-  if (user) {
-    const [{ data: activeClaims }, { data: readerProfile }] = await Promise.all([
-      supabase
-        .from("author_claims")
-        .select("author_id, status")
-        .eq("user_id", user.id)
-        .in("status", ["approved", "pending"]),
-      supabaseAdmin
-        .from("reader_profiles")
-        .select("user_id")
-        .eq("user_id", user.id)
-        .maybeSingle(),
-    ])
+  const cookieStore = await cookies()
+  const hasAuthCookie = cookieStore.getAll().some(({ name, value }) =>
+    Boolean(value) && name.startsWith("sb-") && /-auth-token(?:\.\d+)?$/.test(name)
+  )
 
-    hasReaderProfile = Boolean(readerProfile)
-    const approvedClaim = activeClaims?.find(
-      (claim) => claim.status === "approved"
-    )
-    hasPendingAuthorClaim = Boolean(
-      activeClaims?.some((claim) => claim.status === "pending")
-    )
+  if (hasAuthCookie) {
+    const supabase = await createClient()
+    const { data } = await supabase.auth.getUser()
+    user = data.user
 
-    if (approvedClaim?.author_id) {
-      const { data: claimedAuthor } = await supabase
-        .from("authors")
-        .select("slug")
-        .eq("id", approvedClaim.author_id)
-        .maybeSingle()
+    if (user) {
+      const [{ data: activeClaims }, { data: readerProfile }] = await Promise.all([
+        supabase
+          .from("author_claims")
+          .select("author_id, status")
+          .eq("user_id", user.id)
+          .in("status", ["approved", "pending"]),
+        supabaseAdmin
+          .from("reader_profiles")
+          .select("user_id")
+          .eq("user_id", user.id)
+          .maybeSingle(),
+      ])
 
-      claimedAuthorSlug = claimedAuthor?.slug ?? null
+      hasReaderProfile = Boolean(readerProfile)
+      const approvedClaim = activeClaims?.find(
+        (claim) => claim.status === "approved"
+      )
+      hasPendingAuthorClaim = Boolean(
+        activeClaims?.some((claim) => claim.status === "pending")
+      )
+
+      if (approvedClaim?.author_id) {
+        const { data: claimedAuthor } = await supabase
+          .from("authors")
+          .select("slug")
+          .eq("id", approvedClaim.author_id)
+          .maybeSingle()
+
+        claimedAuthorSlug = claimedAuthor?.slug ?? null
+      }
     }
   }
 
-  const authors = await getAuthors()
-  const books = await getBooks()
-  const latestNews = await getLatestAuthorNews()
+  const [authors, books, latestNews] = await publicContentPromise
 
   const randomAuthors = shuffleArray(authors).slice(0, 3)
   const randomReviews = shuffleArray(

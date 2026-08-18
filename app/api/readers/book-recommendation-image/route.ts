@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og"
 import { NextResponse } from "next/server"
-import sharp from "sharp"
 import { getBookCover } from "@/lib/amazon"
 import {
   READER_SHARE_IMAGE_SIZES,
@@ -9,6 +8,7 @@ import {
 } from "@/lib/bookRecommendationShareImage"
 import { getBooks } from "@/lib/books"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
+import { fetchTrustedImageDataUrl } from "@/lib/server-image-fetch"
 import { isShareImageTheme } from "@/lib/shareImageThemes"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
@@ -23,41 +23,6 @@ const UUID_PATTERN =
 
 function isShareFormat(value: string | null): value is ReaderShareImageFormat {
   return value === "story" || value === "post"
-}
-
-async function fetchImageDataUrl(url: string) {
-  try {
-    const response = await fetch(url, { cache: "force-cache" })
-
-    if (!response.ok) return null
-
-    const contentType = response.headers.get("content-type") ?? ""
-    if (!contentType.startsWith("image/")) return null
-
-    const bytes = Buffer.from(await response.arrayBuffer())
-    if (bytes.byteLength > 5 * 1024 * 1024) return null
-
-    const normalizedType = contentType.split(";", 1)[0].toLowerCase()
-
-    if (normalizedType !== "image/png" && normalizedType !== "image/jpeg") {
-      const png = await sharp(bytes, { animated: false })
-        .rotate()
-        .resize({
-          width: 1800,
-          height: 1800,
-          fit: "inside",
-          withoutEnlargement: true,
-        })
-        .png()
-        .toBuffer()
-
-      return `data:image/png;base64,${png.toString("base64")}`
-    }
-
-    return `data:${normalizedType};base64,${bytes.toString("base64")}`
-  } catch {
-    return null
-  }
 }
 
 export async function GET(request: Request) {
@@ -172,6 +137,8 @@ export async function GET(request: Request) {
   }
 
   const origin = new URL(request.url).origin
+  const fetchImageDataUrl = (url: string) =>
+    fetchTrustedImageDataUrl(url, { siteOrigin: origin })
   const coverUrl = new URL(
     getBookCover(book.amazon, book.cover, book.coverSource),
     origin

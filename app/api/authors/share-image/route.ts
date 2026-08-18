@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og"
 import { NextResponse } from "next/server"
-import sharp from "sharp"
 import { getBookCover } from "@/lib/amazon"
 import {
   AUTHOR_SHARE_IMAGE_SIZES,
@@ -10,6 +9,7 @@ import {
 } from "@/lib/authorShareImage"
 import { getBooks } from "@/lib/books"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
+import { fetchTrustedImageDataUrl } from "@/lib/server-image-fetch"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
@@ -40,41 +40,6 @@ function safeColor(value: unknown, fallback: string) {
   return typeof value === "string" && HEX_COLOR_PATTERN.test(value)
     ? value
     : fallback
-}
-
-async function fetchImageDataUrl(url: string) {
-  try {
-    const response = await fetch(url, { cache: "force-cache" })
-
-    if (!response.ok) return null
-
-    const contentType = response.headers.get("content-type") ?? ""
-    if (!contentType.startsWith("image/")) return null
-
-    const bytes = Buffer.from(await response.arrayBuffer())
-    if (bytes.byteLength > 5 * 1024 * 1024) return null
-
-    const normalizedType = contentType.split(";", 1)[0].toLowerCase()
-
-    if (normalizedType !== "image/png" && normalizedType !== "image/jpeg") {
-      const png = await sharp(bytes, { animated: false })
-        .rotate()
-        .resize({
-          width: 1800,
-          height: 1800,
-          fit: "inside",
-          withoutEnlargement: true,
-        })
-        .png()
-        .toBuffer()
-
-      return `data:image/png;base64,${png.toString("base64")}`
-    }
-
-    return `data:${normalizedType};base64,${bytes.toString("base64")}`
-  } catch {
-    return null
-  }
 }
 
 export async function GET(request: Request) {
@@ -236,6 +201,8 @@ export async function GET(request: Request) {
       ).toString()
     : ""
   const newsImageUrl = rawNews ? imageUrl(rawNews.image) : ""
+  const fetchImageDataUrl = (url: string) =>
+    fetchTrustedImageDataUrl(url, { siteOrigin: origin })
   const [avatarDataUrl, bannerDataUrl, featuredCoverDataUrl, newsImageDataUrl] =
     await Promise.all([
       imageUrl(author.avatar)
