@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
 import { createClient } from "@/lib/supabase-server"
+import { readerOwnsBook } from "@/lib/readerOwnedBooks"
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
@@ -84,6 +85,20 @@ export async function PUT(request: Request) {
     return NextResponse.json(
       { error: "Datos de favorito inválidos" },
       { status: 400 }
+    )
+  }
+
+  try {
+    if (await readerOwnsBook(user.id, bookId)) {
+      return NextResponse.json(
+        { error: "Tus publicaciones no forman parte de tus favoritos de lector" },
+        { status: 409 }
+      )
+    }
+  } catch {
+    return NextResponse.json(
+      { error: "No se pudo validar la autoría del libro" },
+      { status: 500 }
     )
   }
 

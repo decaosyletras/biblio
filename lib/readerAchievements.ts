@@ -9,6 +9,7 @@ import {
 } from "@/lib/readerAchievementCatalog"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import type { DatabaseBook } from "@/types"
+import { getReaderOwnedBookContext } from "@/lib/readerOwnedBooks"
 
 type StoredAchievement = {
   achievement_key: string
@@ -145,7 +146,7 @@ export async function getReaderAchievementSnapshot(
   achievements: ReaderAchievementStatus[]
   newlyUnlockedKeys: ReaderAchievementKey[]
 }> {
-  const [profileResult, membershipsResult, storedResult, books] =
+  const [profileResult, membershipsResult, storedResult, books, ownedContext] =
     await Promise.all([
       supabaseAdmin
         .from("reader_profiles")
@@ -162,13 +163,20 @@ export async function getReaderAchievementSnapshot(
         .eq("user_id", userId)
         .eq("period_key", "lifetime"),
       getBooks(),
+      getReaderOwnedBookContext(userId).catch(() => null),
     ])
 
-  if (profileResult.error || membershipsResult.error || storedResult.error) {
+  if (
+    profileResult.error ||
+    membershipsResult.error ||
+    storedResult.error ||
+    !ownedContext
+  ) {
     throw new Error("No se pudieron calcular los logros")
   }
 
-  const memberships = (membershipsResult.data ?? []) as ReaderMembership[]
+  const memberships = ((membershipsResult.data ?? []) as ReaderMembership[])
+    .filter((membership) => !ownedContext.bookIds.has(membership.book_id))
   const stored = (storedResult.data ?? []) as StoredAchievement[]
   const storedByKey = new Map(
     stored.map((achievement) => [

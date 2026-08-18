@@ -13,6 +13,7 @@ import { isShareImageTheme } from "@/lib/shareImageThemes"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import { unlockReaderAchievement } from "@/lib/readerAchievements"
+import { readerOwnsBook } from "@/lib/readerOwnedBooks"
 
 export const dynamic = "force-dynamic"
 export const runtime = "nodejs"
@@ -107,6 +108,20 @@ export async function GET(request: Request) {
   } catch {
     return NextResponse.json(
       { error: "No se pudo validar la solicitud" },
+      { status: 500 }
+    )
+  }
+
+  try {
+    if (await readerOwnsBook(user.id, bookId)) {
+      return NextResponse.json(
+        { error: "Tus publicaciones no pueden compartirse como lecturas propias" },
+        { status: 409 }
+      )
+    }
+  } catch {
+    return NextResponse.json(
+      { error: "No se pudo validar la autoría del libro" },
       { status: 500 }
     )
   }

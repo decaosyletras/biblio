@@ -3,6 +3,10 @@ import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
 import { unlockReaderAchievement } from "@/lib/readerAchievements"
+import {
+  getReaderOwnedBookContext,
+  readerOwnsBook,
+} from "@/lib/readerOwnedBooks"
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
@@ -82,6 +86,17 @@ export async function GET() {
     )
   }
 
+  let ownedContext
+
+  try {
+    ownedContext = await getReaderOwnedBookContext(context.user.id)
+  } catch {
+    return NextResponse.json(
+      { error: "No se pudo validar tu perfil de autor" },
+      { status: 500 }
+    )
+  }
+
   const { data, error } = await context.supabase
     .from("reader_books")
     .select("book_id, is_read, is_favorite, favorited_at, added_at, read_at, read_year, updated_at")
@@ -96,16 +111,20 @@ export async function GET() {
   }
 
   return NextResponse.json({
-    books: (data ?? []).map((item) => ({
-      bookId: item.book_id,
-      isRead: item.is_read,
-      isFavorite: item.is_favorite,
-      favoritedAt: item.favorited_at,
-      addedAt: item.added_at,
-      readAt: item.read_at,
-      readYear: item.read_year,
-      updatedAt: item.updated_at,
-    })),
+    books: (data ?? [])
+      .filter((item) => !ownedContext.bookIds.has(item.book_id))
+      .map((item) => ({
+        bookId: item.book_id,
+        isRead: item.is_read,
+        isFavorite: item.is_favorite,
+        favoritedAt: item.favorited_at,
+        addedAt: item.added_at,
+        readAt: item.read_at,
+        readYear: item.read_year,
+        updatedAt: item.updated_at,
+      })),
+    ownedBookIds: [...ownedContext.bookIds],
+    ownedAuthors: ownedContext.authors,
   })
 }
 
@@ -172,6 +191,20 @@ export async function PUT(request: Request) {
     return NextResponse.json(
       { error: "Libro no encontrado" },
       { status: 404 }
+    )
+  }
+
+  try {
+    if (await readerOwnsBook(context.user.id, bookId)) {
+      return NextResponse.json(
+        { error: "Tus publicaciones se administran desde tu espacio de autor" },
+        { status: 409 }
+      )
+    }
+  } catch {
+    return NextResponse.json(
+      { error: "No se pudo validar la autoría del libro" },
+      { status: 500 }
     )
   }
 
@@ -294,6 +327,23 @@ export async function PATCH(request: Request) {
   }
 
   const bookIds = [...new Set(rawBookIds)]
+
+  try {
+    const ownedContext = await getReaderOwnedBookContext(context.user.id)
+
+    if (bookIds.some((bookId) => ownedContext.bookIds.has(bookId))) {
+      return NextResponse.json(
+        { error: "Tus publicaciones no forman parte de tus lecturas" },
+        { status: 409 }
+      )
+    }
+  } catch {
+    return NextResponse.json(
+      { error: "No se pudo validar la autoría de los libros" },
+      { status: 500 }
+    )
+  }
+
   const { data, error } = await context.supabase
     .from("reader_books")
     .update({ read_year: readYear })

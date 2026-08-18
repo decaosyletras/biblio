@@ -2,6 +2,7 @@ import "server-only"
 import { getBooks } from "@/lib/books"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import type { DatabaseBook } from "@/types"
+import { getReaderOwnedBookContext } from "@/lib/readerOwnedBooks"
 
 export type PublicReaderBook = {
   book: DatabaseBook
@@ -35,17 +36,23 @@ export async function getPublicReaderLibrary(
 
   if (!readerUserId) return []
 
-  const { data: memberships, error: membershipsError } = await supabaseAdmin
-    .from("reader_books")
-    .select("book_id, is_read, is_favorite, favorited_at, added_at, read_at")
-    .eq("user_id", readerUserId)
+  const [membershipsResult, ownedContext] = await Promise.all([
+    supabaseAdmin
+      .from("reader_books")
+      .select("book_id, is_read, is_favorite, favorited_at, added_at, read_at")
+      .eq("user_id", readerUserId),
+    getReaderOwnedBookContext(readerUserId).catch(() => null),
+  ])
 
-  if (membershipsError || !memberships?.length) return []
+  const { data: memberships, error: membershipsError } = membershipsResult
+
+  if (membershipsError || !ownedContext || !memberships?.length) return []
 
   const books = await getBooks()
   const booksById = new Map(books.map((book) => [book.id, book]))
 
   return memberships
+    .filter((membership) => !ownedContext.bookIds.has(membership.book_id))
     .map((membership) => {
       const book = booksById.get(membership.book_id)
 

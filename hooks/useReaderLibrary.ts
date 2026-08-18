@@ -18,11 +18,21 @@ export type ReaderLibraryState = Record<
 
 export type ReaderHiddenBooksState = Record<string, true>
 
+export type ReaderOwnedBooksState = Record<string, true>
+
+export type ReaderOwnedAuthor = {
+  id: string
+  name: string
+  slug: string
+}
+
 export function useReaderLibrary() {
   const router = useRouter()
   const { user, loading: userLoading } = useCurrentUser()
   const [library, setLibrary] = useState<ReaderLibraryState>({})
   const [hiddenBooks, setHiddenBooks] = useState<ReaderHiddenBooksState>({})
+  const [ownedBookIds, setOwnedBookIds] = useState<ReaderOwnedBooksState>({})
+  const [ownedAuthors, setOwnedAuthors] = useState<ReaderOwnedAuthor[]>([])
   const [libraryLoading, setLibraryLoading] = useState(true)
   const [pendingBookId, setPendingBookId] = useState<string | null>(null)
   const [message, setMessage] = useState("")
@@ -33,6 +43,8 @@ export function useReaderLibrary() {
     if (!user) {
       setLibrary({})
       setHiddenBooks({})
+      setOwnedBookIds({})
+      setOwnedAuthors([])
       setLibraryLoading(false)
       return
     }
@@ -62,6 +74,11 @@ export function useReaderLibrary() {
         if (!active) return
 
         const nextLibrary: ReaderLibraryState = {}
+        const nextOwnedBookIds: ReaderOwnedBooksState = {}
+
+        for (const bookId of libraryResult.ownedBookIds ?? []) {
+          if (typeof bookId === "string") nextOwnedBookIds[bookId] = true
+        }
 
         for (const item of libraryResult.books ?? []) {
           if (typeof item.bookId === "string") {
@@ -82,13 +99,30 @@ export function useReaderLibrary() {
         const nextHiddenBooks: ReaderHiddenBooksState = {}
 
         for (const item of hiddenResult.books ?? []) {
-          if (typeof item.bookId === "string") {
+          if (
+            typeof item.bookId === "string" &&
+            !nextOwnedBookIds[item.bookId]
+          ) {
             nextHiddenBooks[item.bookId] = true
           }
         }
 
         setLibrary(nextLibrary)
         setHiddenBooks(nextHiddenBooks)
+        setOwnedBookIds(nextOwnedBookIds)
+        setOwnedAuthors(
+          (libraryResult.ownedAuthors ?? []).filter(
+            (author: unknown): author is ReaderOwnedAuthor => {
+              if (!author || typeof author !== "object") return false
+              const candidate = author as Record<string, unknown>
+              return (
+                typeof candidate.id === "string" &&
+                typeof candidate.name === "string" &&
+                typeof candidate.slug === "string"
+              )
+            }
+          )
+        )
       } catch {
         if (active) setMessage("No se pudo conectar con tu biblioteca.")
       } finally {
@@ -112,6 +146,11 @@ export function useReaderLibrary() {
 
   async function saveBook(bookId: string, isRead: boolean) {
     if (!requireSession()) return false
+
+    if (ownedBookIds[bookId]) {
+      setMessage("Tus publicaciones se administran desde tu espacio de autor.")
+      return false
+    }
 
     setPendingBookId(bookId)
     setMessage("")
@@ -235,6 +274,11 @@ export function useReaderLibrary() {
   async function setFavorite(bookId: string, isFavorite: boolean) {
     if (!requireSession()) return false
 
+    if (ownedBookIds[bookId]) {
+      setMessage("Tus publicaciones no forman parte de tus favoritos de lector.")
+      return false
+    }
+
     setPendingBookId(bookId)
     setMessage("")
 
@@ -344,6 +388,11 @@ export function useReaderLibrary() {
   async function hideBook(bookId: string) {
     if (!requireSession()) return false
 
+    if (ownedBookIds[bookId]) {
+      setMessage("Tus publicaciones permanecen visibles en el catálogo general.")
+      return false
+    }
+
     setPendingBookId(bookId)
     setMessage("")
 
@@ -422,6 +471,8 @@ export function useReaderLibrary() {
     userLoading,
     library,
     hiddenBooks,
+    ownedBookIds,
+    ownedAuthors,
     libraryLoading,
     pendingBookId,
     message,

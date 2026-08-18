@@ -1,5 +1,6 @@
 import "server-only"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
+import { getOwnedBookIdsByUser } from "@/lib/readerOwnedBooks"
 
 export type PublicReaderSummary = {
   username: string
@@ -20,6 +21,7 @@ type PublicReaderRow = {
 
 type ReaderBookCountRow = {
   user_id: string
+  book_id: string
   is_read: boolean
 }
 
@@ -33,14 +35,21 @@ export async function getPublicReaders(): Promise<PublicReaderSummary[]> {
 
   const profiles = data as PublicReaderRow[]
   const publicUserIds = profiles.map((profile) => profile.user_id)
-  const { data: libraryRows } = await supabaseAdmin
-    .from("reader_books")
-    .select("user_id, is_read")
-    .in("user_id", publicUserIds)
+  const [{ data: libraryRows }, ownedBookIdsByUser] = await Promise.all([
+    supabaseAdmin
+      .from("reader_books")
+      .select("user_id, book_id, is_read")
+      .in("user_id", publicUserIds),
+    getOwnedBookIdsByUser(publicUserIds).catch(() => null),
+  ])
+
+  if (!ownedBookIdsByUser) return []
 
   const countsByUser = new Map<string, { books: number; read: number }>()
 
   for (const row of (libraryRows ?? []) as ReaderBookCountRow[]) {
+    if (ownedBookIdsByUser.get(row.user_id)?.has(row.book_id)) continue
+
     const counts = countsByUser.get(row.user_id) ?? { books: 0, read: 0 }
     counts.books += 1
     counts.read += row.is_read ? 1 : 0

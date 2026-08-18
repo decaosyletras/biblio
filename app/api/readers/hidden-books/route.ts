@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
+import { readerOwnsBook } from "@/lib/readerOwnedBooks"
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
@@ -173,6 +174,20 @@ export async function PUT(request: Request) {
 
   if (!book) {
     return NextResponse.json({ error: "Libro no encontrado" }, { status: 404 })
+  }
+
+  try {
+    if (await readerOwnsBook(context.user.id, bookId)) {
+      return NextResponse.json(
+        { error: "Tus publicaciones permanecen visibles en el catálogo general" },
+        { status: 409 }
+      )
+    }
+  } catch {
+    return NextResponse.json(
+      { error: "No se pudo validar la autoría del libro" },
+      { status: 500 }
+    )
   }
 
   if (libraryBook) {

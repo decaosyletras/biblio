@@ -8,6 +8,7 @@ import { getBooks } from "@/lib/books"
 import { getBookCover } from "@/lib/amazon"
 import { isShareImageTheme } from "@/lib/shareImageThemes"
 import { unlockReaderAchievement } from "@/lib/readerAchievements"
+import { getReaderOwnedBookContext } from "@/lib/readerOwnedBooks"
 import {
   READER_SHARE_IMAGE_SIZES,
   renderReaderShareImage,
@@ -109,6 +110,7 @@ export async function GET(request: Request) {
     { data: readerProfile },
     { data: accountProfile },
     { data: memberships, error: membershipsError },
+    ownedContextResult,
   ] = await Promise.all([
     supabaseAdmin
       .from("reader_profiles")
@@ -125,16 +127,21 @@ export async function GET(request: Request) {
       .select("book_id, is_read, added_at")
       .eq("user_id", user.id)
       .order("added_at", { ascending: false }),
+    getReaderOwnedBookContext(user.id).catch(() => null),
   ])
 
-  if (membershipsError) {
+  if (membershipsError || !ownedContextResult) {
     return NextResponse.json(
       { error: "No se pudo cargar la biblioteca" },
       { status: 500 }
     )
   }
 
-  if (!memberships?.length) {
+  const visibleMemberships = (memberships ?? []).filter(
+    (membership) => !ownedContextResult.bookIds.has(membership.book_id)
+  )
+
+  if (visibleMemberships.length === 0) {
     return NextResponse.json(
       { error: "Agrega al menos un libro antes de crear una imagen" },
       { status: 400 }
@@ -143,7 +150,7 @@ export async function GET(request: Request) {
 
   const books = await getBooks()
   const booksById = new Map(books.map((book) => [book.id, book]))
-  const visibleBooks = memberships
+  const visibleBooks = visibleMemberships
     .map((membership) => booksById.get(membership.book_id) ?? null)
     .filter((book): book is NonNullable<typeof book> => book !== null)
     .slice(0, 4)
@@ -187,8 +194,8 @@ export async function GET(request: Request) {
     renderReaderShareImage({
       displayName,
       avatarDataUrl,
-      totalBooks: memberships.length,
-      readBooks: memberships.filter((membership) => membership.is_read).length,
+      totalBooks: visibleMemberships.length,
+      readBooks: visibleMemberships.filter((membership) => membership.is_read).length,
       books: visibleBooks.map((book, index) => ({
         title: book.title,
         coverDataUrl: coverDataUrls[index],

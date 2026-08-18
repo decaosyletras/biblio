@@ -9,6 +9,7 @@ import ReadRibbon from "@/components/readers/ReadRibbon"
 import ReaderShareImageButton from "@/components/readers/ReaderShareImageButton"
 import ReaderYearOrganizer from "@/components/readers/ReaderYearOrganizer"
 import ReaderAchievements from "@/components/readers/ReaderAchievements"
+import OwnedAuthorBooks from "@/components/readers/OwnedAuthorBooks"
 import { useReaderLibrary } from "@/hooks/useReaderLibrary"
 import { getBookCover } from "@/lib/amazon"
 import { getReaderRecommendations } from "@/lib/readerRecommendations"
@@ -24,6 +25,8 @@ export default function ReaderLibraryManager({
   const {
     library,
     hiddenBooks,
+    ownedBookIds,
+    ownedAuthors,
     libraryLoading,
     pendingBookId,
     message,
@@ -35,17 +38,26 @@ export default function ReaderLibraryManager({
   const [query, setQuery] = useState("")
   const [filter, setFilter] = useState<LibraryFilter>("all")
 
+  const ownedBooks = useMemo(
+    () => books.filter((book) => ownedBookIds[book.id]),
+    [books, ownedBookIds]
+  )
+  const readerBooks = useMemo(
+    () => books.filter((book) => !ownedBookIds[book.id]),
+    [books, ownedBookIds]
+  )
+
   const libraryBooks = useMemo(
-    () => books.filter((book) => Boolean(library[book.id])),
-    [books, library]
+    () => readerBooks.filter((book) => Boolean(library[book.id])),
+    [library, readerBooks]
   )
   const readCount = libraryBooks.filter(
     (book) => library[book.id]?.isRead
   ).length
   const pendingCount = libraryBooks.length - readCount
   const recommendations = useMemo(
-    () => getReaderRecommendations({ books, library, hiddenBooks }),
-    [books, hiddenBooks, library]
+    () => getReaderRecommendations({ books: readerBooks, library, hiddenBooks }),
+    [hiddenBooks, library, readerBooks]
   )
 
   const visibleBooks = useMemo(() => {
@@ -78,6 +90,8 @@ export default function ReaderLibraryManager({
 
   return (
     <div>
+      <OwnedAuthorBooks books={ownedBooks} authors={ownedAuthors} />
+
       <div className="grid grid-cols-3 gap-2 sm:gap-3">
         {[
           ["Todos", libraryBooks.length, "text-yellow-300"],

@@ -35,6 +35,7 @@ export default function BookDirectory({
     userLoading,
     library,
     hiddenBooks,
+    ownedBookIds,
     libraryLoading,
     pendingBookId,
     message,
@@ -46,14 +47,17 @@ export default function BookDirectory({
 
   const libraryCount = books.filter((book) => Boolean(library[book.id])).length
   const readCount = books.filter((book) => library[book.id]?.isRead).length
-  const hiddenCount = books.filter((book) => hiddenBooks[book.id]).length
+  const hiddenCount = books.filter(
+    (book) => hiddenBooks[book.id] && !ownedBookIds[book.id]
+  ).length
 
   const visibleBooks = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("es")
 
     return books.filter((book) => {
       const membership = library[book.id]
-      const isHidden = hiddenBooks[book.id] === true
+      const isOwnedBook = ownedBookIds[book.id] === true
+      const isHidden = !isOwnedBook && hiddenBooks[book.id] === true
       const matchesFilter =
         (filter === "all" && !isHidden) ||
         (filter === "library" && Boolean(membership) && !isHidden) ||
@@ -72,7 +76,7 @@ export default function BookDirectory({
 
       return searchable.includes(normalizedQuery)
     })
-  }, [books, filter, hiddenBooks, library, query])
+  }, [books, filter, hiddenBooks, library, ownedBookIds, query])
 
   const filters: Array<{
     value: DirectoryFilter
@@ -188,7 +192,8 @@ export default function BookDirectory({
       <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-5 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {visibleBooks.map((book) => {
           const membership = library[book.id]
-          const isHidden = hiddenBooks[book.id] === true
+          const isOwnedBook = ownedBookIds[book.id] === true
+          const isHidden = !isOwnedBook && hiddenBooks[book.id] === true
           const isPending = pendingBookId === book.id
           const authorNames = book.authorNames ?? []
           const visibleAuthorNames = authorNames.slice(0, 2)
@@ -229,14 +234,25 @@ export default function BookDirectory({
                   )}
                 </p>
 
-                {isHidden ? (
+                {isOwnedBook ? (
+                  <span className="mt-2 w-fit rounded-full bg-blue-500/15 px-1.5 py-0.5 text-[9px] font-semibold text-blue-300 sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px]">
+                    Tu libro
+                  </span>
+                ) : isHidden ? (
                   <span className="mt-2 w-fit rounded-full bg-zinc-700 px-1.5 py-0.5 text-[9px] font-medium text-zinc-300 sm:mt-3 sm:px-2.5 sm:py-1 sm:text-[11px]">
                     Oculto
                   </span>
                 ) : null}
 
                 <div className="mt-auto pt-2 sm:pt-3">
-                  {isHidden ? (
+                  {isOwnedBook ? (
+                    <Link
+                      href="/me/library"
+                      className="inline-flex w-full items-center justify-center rounded-lg border border-blue-500/30 bg-blue-500/10 px-2 py-2 text-center text-[10px] font-semibold text-blue-200 transition hover:bg-blue-500/20 sm:text-xs"
+                    >
+                      Administrar publicación
+                    </Link>
+                  ) : isHidden ? (
                     <div className="grid grid-cols-3 gap-[7px] sm:grid-cols-2 sm:gap-2">
                       <button
                         type="button"

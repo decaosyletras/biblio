@@ -33,6 +33,8 @@ export default function BookLibraryActions({
     user,
     userLoading,
     library,
+    ownedBookIds,
+    ownedAuthors,
     libraryLoading,
     pendingBookId,
     message,
@@ -43,6 +45,29 @@ export default function BookLibraryActions({
   const isLoading = userLoading || libraryLoading
   const isInLibrary = Boolean(membership)
   const isRead = membership?.isRead === true
+  const isOwnedBook = ownedBookIds[bookId] === true
+
+  if (!isLoading && user && isOwnedBook) {
+    const author = ownedAuthors[0]
+
+    return (
+      <div className="mt-5 rounded-2xl border border-blue-500/25 bg-blue-500/10 p-4">
+        <p className="text-sm font-semibold text-blue-200">Este es tu libro</p>
+        <p className="mt-1 text-xs leading-relaxed text-zinc-400">
+          Tus publicaciones se administran desde tu espacio de autor y no se
+          mezclan con tus lecturas personales.
+        </p>
+        {author && (
+          <Link
+            href={`/authors/${author.slug}/edit`}
+            className="mt-3 inline-flex rounded-xl bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-500"
+          >
+            Administrar publicación
+          </Link>
+        )}
+      </div>
+    )
+  }
 
   return (
     <div className="mt-5">
