@@ -384,12 +384,13 @@ export default function MePage() {
 
     const response = await fetch("/api/admin/delete-user", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     })
     const result = await response.json()
 
-    if (result.error) {
-      alert(result.error)
+    if (!response.ok || result.error) {
+      alert(result.error ?? "No se pudo eliminar el usuario")
       return
     }
 

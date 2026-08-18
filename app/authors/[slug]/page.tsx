@@ -170,11 +170,6 @@ export default async function AuthorPage({
 
     let canEdit = false
 
-    const { data: claimsDebug } = await supabase
-        .from("author_claims")
-        .select("*")
-        .eq("author_id", author.id)
-
     if (user) {
         const { data: claim } = await supabase
             .from("author_claims")

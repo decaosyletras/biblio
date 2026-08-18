@@ -49,7 +49,7 @@ export default async function Page({
     (book.authors ?? []).map(author => author.id)
   )
 
-  const recommended = await getRecommendedBooks(book.slug)
+  const recommended = getRecommendedBooks(book.slug, books)
 
   const sameAuthorBooks = books.filter(
       b =>

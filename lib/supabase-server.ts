@@ -26,10 +26,5 @@ export async function createClient() {
     }
   )
 
-  const {
-    data,
-    error
-  } = await client.auth.getUser()
-
   return client
 }

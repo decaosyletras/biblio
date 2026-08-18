@@ -1,6 +1,4 @@
-import { getBooks } from "@/lib/books"
 import { Book } from "@/types"
-export const dynamic = "force-dynamic"
 
 // 🔧 helper
 function normalizeArray(val: any): string[] {
@@ -65,8 +63,10 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 // 🚀 MAIN
-export async function getRecommendedBooks(currentSlug: string) {
-  const books = await getBooks()
+export function getRecommendedBooks(
+  currentSlug: string,
+  books: readonly Book[]
+) {
   const current = books.find(b => b.slug === currentSlug)
   if (!current) return []
 
