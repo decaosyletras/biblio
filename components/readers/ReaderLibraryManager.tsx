@@ -156,6 +156,13 @@ export default function ReaderLibraryManager({
         </div>
       </div>
 
+      {libraryBooks.length > 0 && (
+        <p className="mt-3 flex items-center gap-2 text-sm text-zinc-400">
+          <Heart size={15} className="shrink-0 text-rose-300" aria-hidden="true" />
+          Marca un libro como leído para poder añadirlo a tus favoritos con el corazón.
+        </p>
+      )}
+
       {message && (
         <p
           role="alert"
@@ -276,6 +283,11 @@ export default function ReaderLibraryManager({
                       {membership?.isRead && (
                         <button
                           type="button"
+                          title={
+                            membership.isFavorite
+                              ? "Quitar de favoritos"
+                              : "Añadir a favoritos"
+                          }
                           aria-label={
                             membership.isFavorite
                               ? `Quitar ${book.title} de favoritos`
@@ -300,6 +312,7 @@ export default function ReaderLibraryManager({
                       )}
                       <button
                         type="button"
+                        title="Eliminar de mi biblioteca"
                         aria-label={`Quitar ${book.title} de mi biblioteca`}
                         disabled={isPending}
                         onClick={() => removeBook(book.id)}

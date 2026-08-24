@@ -43,7 +43,7 @@ export default function OwnedAuthorBooks({
             className="inline-flex items-center gap-2 rounded-xl border border-zinc-700 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
           >
             <ExternalLink size={15} aria-hidden="true" />
-            Ver perfil
+            Ver página
           </Link>
           <Link
             href={`/authors/${primaryAuthor.slug}/edit`}
