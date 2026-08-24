@@ -17,9 +17,9 @@ const formats: Array<{
   label: string
   dimensions: string
 }> = [
-  { value: "story", label: "Historia", dimensions: "1080 × 1920" },
-  { value: "post", label: "Publicación vertical", dimensions: "1080 × 1350" },
-]
+    { value: "story", label: "Historia", dimensions: "1080 × 1920" },
+    { value: "post", label: "Publicación vertical", dimensions: "1080 × 1350" },
+  ]
 
 export default function ReaderShareImageButton() {
   const [selectedFormat, setSelectedFormat] =
@@ -189,47 +189,46 @@ export default function ReaderShareImageButton() {
 
         <div className="flex flex-col gap-3">
           <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
-          <fieldset>
-            <legend className="mb-2 text-xs font-medium text-zinc-400">
-              Formato
-            </legend>
-            <div className="grid grid-cols-2 gap-2">
-              {formats.map((format) => (
-                <label
-                  key={format.value}
-                  className={`cursor-pointer rounded-xl border px-3 py-2 text-left transition ${
-                    selectedFormat === format.value
-                      ? "border-yellow-400/60 bg-yellow-400/10"
-                      : "border-zinc-700 bg-zinc-950/40 hover:border-zinc-600"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="share-image-format"
-                    value={format.value}
-                    checked={selectedFormat === format.value}
-                    onChange={() => {
-                      setSelectedFormat(format.value)
-                      setPreparedShareFile(null)
-                    }}
-                    className="sr-only"
-                  />
-                  <span className="block whitespace-nowrap text-xs font-semibold text-zinc-100 sm:text-sm">
-                    {format.label}
-                  </span>
-                  <span className="mt-0.5 block text-[10px] text-zinc-500 sm:text-xs">
-                    {format.dimensions}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
+            <fieldset>
+              <legend className="mb-2 text-xs font-medium text-zinc-400">
+                Formato
+              </legend>
+              <div className="grid grid-cols-2 gap-2">
+                {formats.map((format) => (
+                  <label
+                    key={format.value}
+                    className={`cursor-pointer rounded-xl border px-3 py-2 text-left transition ${selectedFormat === format.value
+                        ? "border-yellow-400/60 bg-yellow-400/10"
+                        : "border-zinc-700 bg-zinc-950/40 hover:border-zinc-600"
+                      }`}
+                  >
+                    <input
+                      type="radio"
+                      name="share-image-format"
+                      value={format.value}
+                      checked={selectedFormat === format.value}
+                      onChange={() => {
+                        setSelectedFormat(format.value)
+                        setPreparedShareFile(null)
+                      }}
+                      className="sr-only"
+                    />
+                    <span className="block text-xs font-semibold leading-tight text-zinc-100 sm:text-sm">
+                      {format.label}
+                    </span>
+                    <span className="mt-0.5 block text-[10px] text-zinc-500 sm:text-xs">
+                      {format.dimensions}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
-          <ShareImageThemePicker
-            name="library-share-image-theme"
-            value={selectedTheme}
-            onChange={selectTheme}
-          />
+            <ShareImageThemePicker
+              name="library-share-image-theme"
+              value={selectedTheme}
+              onChange={selectTheme}
+            />
           </div>
 
           <div className="grid grid-cols-1 gap-2 sm:flex sm:justify-end">
@@ -237,11 +236,10 @@ export default function ReaderShareImageButton() {
               type="button"
               onClick={downloadImage}
               disabled={activeAction !== null}
-              className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition disabled:cursor-wait disabled:opacity-60 ${
-                supportsFileSharing
+              className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition disabled:cursor-wait disabled:opacity-60 ${supportsFileSharing
                   ? "border border-zinc-700 bg-zinc-900 text-zinc-100 hover:bg-zinc-800"
                   : "bg-yellow-500 text-black hover:bg-yellow-400"
-              }`}
+                }`}
             >
               {activeAction === "download" ? (
                 <LoaderCircle
