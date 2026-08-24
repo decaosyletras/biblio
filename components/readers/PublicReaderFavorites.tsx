@@ -7,8 +7,10 @@ import type { PublicReaderBook } from "@/lib/readerLibrary"
 
 export default function PublicReaderFavorites({
   library,
+  displayName,
 }: {
   library: PublicReaderBook[]
+  displayName: string
 }) {
   const favorites = library
     .filter((item) => item.isRead && item.isFavorite)
@@ -30,7 +32,7 @@ export default function PublicReaderFavorites({
         <div>
           <h2 className="text-2xl font-semibold">Sus favoritos</h2>
           <p className="text-sm text-zinc-500">
-            Lecturas especiales para este lector
+            Las lecturas favoritas de {displayName}
           </p>
         </div>
       </div>

@@ -284,7 +284,9 @@ export default async function ReaderProfilePage({
           <section className="mt-8 rounded-[2rem] border border-zinc-800 bg-zinc-900/60 p-6 sm:p-9">
             <div className="flex items-center gap-3">
               <div className="h-9 w-1.5 rounded-full bg-yellow-500" />
-              <h2 className="text-2xl font-semibold">Sobre este lector</h2>
+              <h2 className="text-2xl font-semibold">
+                Sobre {profile.display_name}
+              </h2>
             </div>
             <p className="mt-5 max-w-3xl whitespace-pre-wrap leading-8 text-zinc-300">
               {profile.bio}
@@ -295,7 +297,10 @@ export default async function ReaderProfilePage({
         <PublicReaderAchievements achievements={achievements} />
 
         {showFavorites && (
-          <PublicReaderFavorites library={library} />
+          <PublicReaderFavorites
+            library={library}
+            displayName={profile.display_name}
+          />
         )}
 
         <section className="mt-8 rounded-[2rem] border border-zinc-800 bg-zinc-900/60 p-6 sm:p-9">
