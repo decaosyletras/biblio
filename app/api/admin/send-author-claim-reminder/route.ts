@@ -121,30 +121,6 @@ export async function POST(req: Request) {
         from: "Caza de Libros Indie <notificaciones@cazaindie.com>",
         replyTo: "decaosyletras@gmail.com",
         to: recipient.email,
-<<<<<<< HEAD
-        subject: "Ya estás registrado: reclama tu página de autor",
-        text: `Hemos detectado que ya estás registrado en Cas(z)a de Libros Indie, pero todavía no has reclamado un autor. Para crear y gestionar tu página de autor, inicia sesión, busca uno de tus libros en nuestro catálogo y pulsa en «Reclamar autor». Solo tienes que reclamar uno de tus libros para asociar los demás del mismo autor. Empieza aquí: https://cazaindie.com/libros`,
-        html: `
-          <p>Hola,</p>
-          <p>
-            Hemos detectado que ya estás registrado en Cas(z)a de Libros Indie,
-            pero todavía no has reclamado un autor.
-          </p>
-          <p>
-            Para crear y gestionar tu página de autor, solo tienes que:
-          </p>
-          <ol>
-            <li>Iniciar sesión en Cas(z)a de Libros Indie.</li>
-            <li>Buscar uno de tus libros en nuestro catálogo.</li>
-            <li>Pulsar en <b>«Reclamar autor»</b>.</li>
-          </ol>
-          <p>
-            Solo tienes que reclamar uno de tus libros para asociar los demás
-            del mismo autor.
-          </p>
-          <p>
-            <a href="https://cazaindie.com/libros">Iniciar sesión y buscar mi libro</a>
-=======
         subject: "Tu página de autor puede estar esperándote",
         text: `Si tus libros ya aparecen en Caza de Libros Indie, puedes reclamar tu autoría y crear tu página de autor. Busca uno de tus libros y pulsa en «Reclamar autor». Basta con reclamar un solo libro para asociar los demás del mismo autor. Empieza aquí: https://cazaindie.com/libros`,
         html: `
@@ -159,7 +135,6 @@ export async function POST(req: Request) {
           </p>
           <p>
             <a href="https://cazaindie.com/libros">Buscar mi libro y reclamar mi autor</a>
->>>>>>> test
           </p>
           <p>Gracias por formar parte de Caza de Libros Indie.</p>
         `,

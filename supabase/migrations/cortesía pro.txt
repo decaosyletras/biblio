@@ -1,0 +1,8 @@
+begin;
+
+  update public.authors
+  set complimentary_pro = true
+  where stripe_pro_active = true
+    and complimentary_pro = false;
+
+  commit;
