@@ -3,6 +3,7 @@
 import GenreBadge from "@/components/GenreBadge"
 import { genresCatalog } from "@/data/genres"
 import { FaCrown } from "react-icons/fa"
+import { getBookCover } from "@/lib/amazon"
 
 export default function AuthorPreview({
   author,
@@ -218,7 +219,16 @@ export default function AuthorPreview({
                         ">
 
               <img
-                src={featured.cover}
+                src={getBookCover(
+                  {
+                    es: featured.asin_es ?? "",
+                    mx: featured.asin_mx ?? "",
+                    us: featured.asin_us ?? ""
+                  },
+                  featured.cover,
+                  featured.cover_source
+                )}
+                alt={`Portada de ${featured.title}`}
                 className="
                                     w-20
                                     aspect-[2/3]

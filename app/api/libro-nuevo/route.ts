@@ -1,5 +1,11 @@
+import { createHash, randomUUID } from "node:crypto"
 import { createClient } from "@supabase/supabase-js"
 import { NextResponse } from "next/server"
+import sharp from "sharp"
+import {
+  BOOK_COVER_CONSENT_TEXT,
+  BOOK_COVER_CONSENT_VERSION,
+} from "@/lib/bookCoverConsent"
 import { createClient as createServerClient } from "@/lib/supabase-server"
 import { enforceRateLimit } from "@/lib/server-rate-limit"
 
@@ -9,12 +15,62 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+export const dynamic = "force-dynamic"
+export const runtime = "nodejs"
+
+const MAX_COVER_INPUT_BYTES = 2 * 1024 * 1024
+const MAX_COVER_OUTPUT_BYTES = 1024 * 1024
+const ALLOWED_COVER_TYPES = new Set(["image/jpeg", "image/png", "image/webp"])
+
+async function optimizeCover(bytes: Buffer) {
+  const image = sharp(bytes, {
+    animated: false,
+    failOn: "error",
+    limitInputPixels: 40_000_000,
+  })
+    .rotate()
+    .resize({
+      width: 1200,
+      height: 1800,
+      fit: "inside",
+      withoutEnlargement: true,
+    })
+
+  for (const quality of [82, 72, 62]) {
+    const output = await image.clone().webp({ quality, effort: 4 }).toBuffer()
+    if (output.byteLength <= MAX_COVER_OUTPUT_BYTES) return output
+  }
+
+  const smallerOutput = await image
+    .clone()
+    .resize({
+      width: 1000,
+      height: 1500,
+      fit: "inside",
+      withoutEnlargement: true,
+    })
+    .webp({ quality: 60, effort: 4 })
+    .toBuffer()
+
+  return smallerOutput.byteLength <= MAX_COVER_OUTPUT_BYTES
+    ? smallerOutput
+    : null
+}
+
 function normalizeName(name: string) {
   return name
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]/g, "")
+}
+
+function normalizeAsin(value: string) {
+  return value.trim().toUpperCase()
+}
+
+function isValidAsin(value: string) {
+  return /^[A-Z0-9]{10}$/.test(value)
 }
 
 function createSlug(name: string) {
@@ -92,7 +148,10 @@ async function findOrCreateAdditionalAuthor(
   }
 
   if (existingAuthor && useExistingAuthor) {
-    return existingAuthor.id as string
+    return {
+      id: existingAuthor.id as string,
+      created: false
+    }
   }
 
   const slug = await createUniqueSlug(name)
@@ -113,16 +172,27 @@ async function findOrCreateAdditionalAuthor(
     throw new Error("No se pudo crear el autor adicional")
   }
 
-  return newAuthor.id as string
+  return {
+    id: newAuthor.id as string,
+    created: true
+  }
 }
 
 export async function POST(req: Request) {
   try {
+    const origin = req.headers.get("origin")
+    if (origin && origin !== new URL(req.url).origin) {
+      return NextResponse.json(
+        { error: "Solicitud no autorizada" },
+        { status: 403 }
+      )
+    }
+
     const contentLength = Number(
       req.headers.get("content-length") ?? 0
     )
 
-    if (contentLength > 100000) {
+    if (contentLength > MAX_COVER_INPUT_BYTES + 200_000) {
       return NextResponse.json(
         {
           error: "Solicitud demasiado grande"
@@ -133,10 +203,10 @@ export async function POST(req: Request) {
       )
     }
 
-    let body: unknown
+    let formData: FormData
 
     try {
-      body = await req.json()
+      formData = await req.formData()
     } catch {
       return NextResponse.json(
         {
@@ -145,6 +215,38 @@ export async function POST(req: Request) {
         {
           status: 400
         }
+      )
+    }
+
+    const rawPayload = formData.get("payload")
+    const coverFile = formData.get("cover")
+
+    if (typeof rawPayload !== "string" || !(coverFile instanceof File)) {
+      return NextResponse.json(
+        { error: "La portada y los datos del libro son obligatorios" },
+        { status: 400 }
+      )
+    }
+
+    if (
+      coverFile.size === 0 ||
+      coverFile.size > MAX_COVER_INPUT_BYTES ||
+      !ALLOWED_COVER_TYPES.has(coverFile.type)
+    ) {
+      return NextResponse.json(
+        { error: "Usa una portada JPG, PNG o WebP de hasta 2 MB" },
+        { status: 400 }
+      )
+    }
+
+    let body: unknown
+
+    try {
+      body = JSON.parse(rawPayload)
+    } catch {
+      return NextResponse.json(
+        { error: "Solicitud invalida" },
+        { status: 400 }
       )
     }
 
@@ -174,53 +276,44 @@ export async function POST(req: Request) {
       }
     } = await authClient.auth.getUser()
 
-    // CAMBIO: este endpoint vuelve a permitir registro anónimo porque el flujo
-    // del proyecto lo necesita. La restricción real ahora es otra: si existe
-    // sesión y ya hay una reclamación aprobada, el autor se fija en servidor y
-    // no se puede eludir desde el formulario.
-    //
-    // if (!user) {
-    //   return NextResponse.json(
-    //     {
-    //       error: "No autenticado"
-    //     },
-    //     {
-    //       status: 401
-    //     }
-    //   )
-    // }
-
-    // CAMBIO: si hay sesión, buscamos si ese perfil ya tiene un autor aprobado.
-    // Eso sustituye la confianza en el formulario y evita que un usuario con
-    // autor activo registre un libro para otro autor distinto.
-    let ownedAuthorId: string | null = null
-    if (user) {
-      const { data: ownedClaim, error: ownedClaimError } = await supabase
-        .from("author_claims")
-        .select("author_id")
-        .eq("user_id", user.id)
-        .eq("status", "approved")
-        .maybeSingle()
-
-      if (ownedClaimError) {
-        return NextResponse.json(
-          {
-            error: "No se pudo verificar el autor asociado a la cuenta"
-          },
-          {
-            status: 500
-          }
-        )
-      }
-
-      ownedAuthorId = ownedClaim?.author_id ?? null
+    // El registro pertenece a cuentas identificadas. Las reclamaciones
+    // pendientes y aprobadas fijan el autor desde el servidor.
+    if (!user) {
+      return NextResponse.json(
+        { error: "Inicia sesión para registrar uno de tus libros" },
+        { status: 401 }
+      )
     }
+
+    let ownedAuthorId: string | null = null
+    let ownedClaimStatus: "pending" | "approved" | null = null
+    const { data: ownedClaim, error: ownedClaimError } = await supabase
+      .from("author_claims")
+      .select("author_id, status")
+      .eq("user_id", user.id)
+      .in("status", ["pending", "approved"])
+      .order("status", { ascending: true })
+      .limit(1)
+      .maybeSingle()
+
+    if (ownedClaimError) {
+      return NextResponse.json(
+        { error: "No se pudo verificar el autor asociado a la cuenta" },
+        { status: 500 }
+      )
+    }
+
+    ownedAuthorId = ownedClaim?.author_id ?? null
+    ownedClaimStatus =
+      ownedClaim?.status === "pending" || ownedClaim?.status === "approved"
+        ? ownedClaim.status
+        : null
 
     try {
       const allowed = await enforceRateLimit({
         request: req,
-        namespace: "public-book-submission",
-        subject: user?.id ?? ip,
+        namespace: "author-book-submission",
+        subject: user.id,
         limit: 12,
         windowSeconds: 60 * 60,
       })
@@ -259,6 +352,8 @@ export async function POST(req: Request) {
       tags,
       useExistingAuthor,
       aceptaTerminos,
+      confirmaAutoria,
+      coverRightsConfirmed,
       autoresAdicionales
     } = body as Record<string, unknown>
 
@@ -283,6 +378,64 @@ export async function POST(req: Request) {
       )
     }
 
+    if (typeof asin !== "string") {
+      return NextResponse.json(
+        {
+          error: "El ASIN es obligatorio"
+        },
+        {
+          status: 400
+        }
+      )
+    }
+
+    const normalizedAsin = normalizeAsin(asin)
+
+    if (!isValidAsin(normalizedAsin)) {
+      return NextResponse.json(
+        {
+          error: "El ASIN debe tener 10 caracteres alfanuméricos"
+        },
+        {
+          status: 400
+        }
+      )
+    }
+
+    // Esta comprobación ocurre antes de crear autores para que un intento
+    // duplicado no deje registros huérfanos. La migración añade además una
+    // protección atómica para solicitudes simultáneas.
+    const { data: existingBook, error: existingBookError } = await supabase
+      .from("books")
+      .select("id")
+      .or(
+        `asin_es.ilike.${normalizedAsin},asin_mx.ilike.${normalizedAsin},asin_us.ilike.${normalizedAsin}`
+      )
+      .limit(1)
+      .maybeSingle()
+
+    if (existingBookError) {
+      return NextResponse.json(
+        {
+          error: "No se pudo comprobar el ASIN"
+        },
+        {
+          status: 500
+        }
+      )
+    }
+
+    if (existingBook) {
+      return NextResponse.json(
+        {
+          error: "Este ASIN ya está registrado en el catálogo"
+        },
+        {
+          status: 409
+        }
+      )
+    }
+
     // Se comento porque cualquier valor truthy podia contar como consentimiento.
     // if (!aceptaTerminos) {
     if (aceptaTerminos !== true) {
@@ -293,6 +446,40 @@ export async function POST(req: Request) {
         {
           status: 400
         }
+      )
+    }
+
+    if (confirmaAutoria !== true) {
+      return NextResponse.json(
+        { error: "Debes confirmar que eres autor o coautor de esta obra" },
+        { status: 400 }
+      )
+    }
+
+    if (coverRightsConfirmed !== true) {
+      return NextResponse.json(
+        { error: "Debes confirmar que puedes proporcionar esta portada" },
+        { status: 400 }
+      )
+    }
+
+    let optimizedCover: Buffer | null
+
+    try {
+      optimizedCover = await optimizeCover(
+        Buffer.from(await coverFile.arrayBuffer())
+      )
+    } catch {
+      return NextResponse.json(
+        { error: "No se pudo procesar la portada" },
+        { status: 400 }
+      )
+    }
+
+    if (!optimizedCover) {
+      return NextResponse.json(
+        { error: "No se pudo reducir la portada a un tamaño seguro" },
+        { status: 422 }
       )
     }
 
@@ -343,6 +530,8 @@ export async function POST(req: Request) {
     }
 
     let authorId: string
+    let createdMainAuthor = false
+    let ownershipCreated = false
 
     // CAMBIO: si la cuenta ya tiene un autor aprobado, ese autor manda.
     // El formulario puede seguir enviando cualquier valor, pero ya no decide.
@@ -352,7 +541,14 @@ export async function POST(req: Request) {
 
     // Existe el autor y el usuario confirma que es Ã©l
     else if (foundAuthor && useExistingAuthor) {
-      authorId = foundAuthor.id
+      return NextResponse.json(
+        {
+          error: "Este autor ya existe. Reclámalo primero para registrar libros en su nombre."
+        },
+        {
+          status: 409
+        }
+      )
     }
 
     // Existe el autor pero el usuario dice que NO es Ã©l
@@ -388,6 +584,7 @@ export async function POST(req: Request) {
       }
 
       authorId = newAuthor.id
+      createdMainAuthor = true
     }
 
 
@@ -423,19 +620,92 @@ export async function POST(req: Request) {
       }
 
       authorId = newAuthor.id
+      createdMainAuthor = true
+    }
+
+    if (createdMainAuthor) {
+      const { error: ownershipError } = await supabase
+        .from("author_claims")
+        .insert({
+          user_id: user.id,
+          author_id: authorId,
+          status: "approved",
+          proof_notes: "Autor creado al registrar su primer libro con una sesión verificada.",
+          proof_url: null,
+          accepted_policy_version: "1.1",
+          accepted_at: new Date().toISOString(),
+          accepted_ip: ip
+        })
+
+      if (ownershipError) {
+        await supabase.from("authors").delete().eq("id", authorId)
+
+        return NextResponse.json(
+          { error: "No se pudo asociar el nuevo autor a tu cuenta" },
+          { status: 500 }
+        )
+      }
+
+      ownershipCreated = true
+      ownedClaimStatus = "approved"
+    }
+
+    const cleanupCreatedOwnership = async () => {
+      if (!ownershipCreated) return
+
+      await supabase
+        .from("author_claims")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("author_id", authorId)
+      await supabase.from("authors").delete().eq("id", authorId)
     }
 
     const bookSlug = await createUniqueBookSlug(titulo)
+    const bookId = randomUUID()
+    const storagePath = `${bookId}/${randomUUID()}.webp`
+    const acceptedAt = new Date().toISOString()
+    const imageSha256 = createHash("sha256")
+      .update(optimizedCover)
+      .digest("hex")
+
+    const { error: uploadError } = await supabase.storage
+      .from("book-covers")
+      .upload(storagePath, optimizedCover, {
+        cacheControl: "31536000",
+        contentType: "image/webp",
+        upsert: false,
+      })
+
+    if (uploadError) {
+      await cleanupCreatedOwnership()
+
+      return NextResponse.json(
+        { error: "No se pudo guardar la portada" },
+        { status: 500 }
+      )
+    }
+
+    const { data: publicUrlData } = supabase.storage
+      .from("book-covers")
+      .getPublicUrl(storagePath)
 
     const { data: book, error: bookError } = await supabase
       .from("books")
       .insert({
+        id: bookId,
         title: titulo,
         slug: bookSlug,
 
-        asin_es: asin,
-        asin_mx: asin,
-        asin_us: asin,
+        asin_es: normalizedAsin,
+        asin_mx: normalizedAsin,
+        asin_us: normalizedAsin,
+
+        cover: publicUrlData.publicUrl,
+        cover_source: "author_upload",
+        cover_storage_path: storagePath,
+        cover_rights_confirmed_at: acceptedAt,
+        cover_updated_at: acceptedAt,
 
         amazon_link: link,
 
@@ -457,64 +727,57 @@ export async function POST(req: Request) {
         privacy_version: "2.0",
         accepted_at: new Date().toISOString(),
         accepted_ip: ip,
-        // CAMBIO: si no hay sesión, submitted_by queda nulo. Si la hay, se
-        // guarda el id real sin asumir que el formulario lo definió.
-        submitted_by: user?.id ?? null
+        // La identidad procede de la sesión validada, no del formulario.
+        submitted_by: user.id
       })
       .select("id")
       .single()
 
     if (bookError || !book) {
+      await supabase.storage.from("book-covers").remove([storagePath])
+      await cleanupCreatedOwnership()
+
+      const duplicateAsin =
+        bookError?.code === "23505" &&
+        `${bookError.message ?? ""} ${bookError.details ?? ""}`
+          .toLowerCase()
+          .includes("asin")
+
       return NextResponse.json(
         {
-          error: bookError?.message ?? "No se pudo crear el libro"
+          error: duplicateAsin
+            ? "Este ASIN ya está registrado en el catálogo"
+            : "No se pudo crear el libro"
         },
         {
-          status: 400
+          status: duplicateAsin ? 409 : 400
         }
       )
     }
 
+    const { error: consentError } = await supabase
+      .from("book_cover_consents")
+      .insert({
+        book_id: book.id,
+        author_id: authorId,
+        user_id: user.id,
+        storage_path: storagePath,
+        image_sha256: imageSha256,
+        consent_version: BOOK_COVER_CONSENT_VERSION,
+        consent_text: BOOK_COVER_CONSENT_TEXT,
+        accepted_at: acceptedAt,
+      })
 
-    // Ya no se asocia automÃ¡ticamente el autor al usuario desde esta ruta.
-    // El bloque anterior creaba una reclamaciÃ³n con status: "approved" al
-    // registrar un libro, permitiendo eludir la revisiÃ³n de author-claims.
-    // Registrar un libro sigue permitido para un autor existente; reclamarlo
-    // se realiza exclusivamente en author-claims como solicitud "pending".
-    //
-    // if (user) {
-    //
-    //   const { data: existingClaim } = await supabase
-    //     .from("author_claims")
-    //     .select("id")
-    //     .eq("user_id", user.id)
-    //     .eq("author_id", authorId)
-    //     .maybeSingle()
-    //
-    //
-    //   if (!existingClaim) {
-    //
-    //     const { error: claimError } = await supabase
-    //       .from("author_claims")
-    //       .insert({
-    //         user_id: user.id,
-    //         author_id: authorId,
-    //         status: "approved"
-    //       })
-    //
-    //
-    //     if (claimError) {
-    //
-    //       console.error(
-    //         "Error creando author claim:",
-    //         claimError
-    //       )
-    //
-    //     }
-    //
-    //   }
-    //
-    // }
+    if (consentError) {
+      await supabase.from("books").delete().eq("id", book.id)
+      await supabase.storage.from("book-covers").remove([storagePath])
+      await cleanupCreatedOwnership()
+
+      return NextResponse.json(
+        { error: "No se pudo registrar la autorización de la portada" },
+        { status: 500 }
+      )
+    }
 
 
     const additionalAuthorInputs = [...new Map(
@@ -530,13 +793,42 @@ export async function POST(req: Request) {
       })
     ).values()]
 
-    const additionalAuthorIds = await Promise.all(
-      additionalAuthorInputs.map((additionalAuthor) =>
-        findOrCreateAdditionalAuthor(
-          additionalAuthor.name,
-          additionalAuthor.useExistingAuthor
+    const additionalAuthorResults: Array<{ id: string; created: boolean }> = []
+
+    try {
+      for (const additionalAuthor of additionalAuthorInputs) {
+        additionalAuthorResults.push(
+          await findOrCreateAdditionalAuthor(
+            additionalAuthor.name,
+            additionalAuthor.useExistingAuthor
+          )
         )
+      }
+    } catch {
+      await supabase.from("books").delete().eq("id", book.id)
+      await supabase.storage.from("book-covers").remove([storagePath])
+
+      const createdAdditionalAuthorIds = additionalAuthorResults
+        .filter((result) => result.created)
+        .map((result) => result.id)
+
+      if (createdAdditionalAuthorIds.length > 0) {
+        await supabase
+          .from("authors")
+          .delete()
+          .in("id", createdAdditionalAuthorIds)
+      }
+
+      await cleanupCreatedOwnership()
+
+      return NextResponse.json(
+        { error: "No se pudieron guardar todos los autores" },
+        { status: 500 }
       )
+    }
+
+    const additionalAuthorIds = additionalAuthorResults.map(
+      (result) => result.id
     )
 
     // Se conserva author_id en books como autor principal por compatibilidad
@@ -554,6 +846,22 @@ export async function POST(req: Request) {
       )
 
     if (bookAuthorsError) {
+      await supabase.from("books").delete().eq("id", book.id)
+      await supabase.storage.from("book-covers").remove([storagePath])
+
+      const createdAdditionalAuthorIds = additionalAuthorResults
+        .filter((result) => result.created)
+        .map((result) => result.id)
+
+      if (createdAdditionalAuthorIds.length > 0) {
+        await supabase
+          .from("authors")
+          .delete()
+          .in("id", createdAdditionalAuthorIds)
+      }
+
+      await cleanupCreatedOwnership()
+
       return NextResponse.json(
         {
           error: "El libro se creo, pero no se pudieron guardar todos sus autores"
@@ -564,8 +872,22 @@ export async function POST(req: Request) {
       )
     }
 
+    const { data: savedAuthor } = await supabase
+      .from("authors")
+      .select("id, name, slug")
+      .eq("id", authorId)
+      .maybeSingle()
+
     return NextResponse.json({
-      success: true
+      success: true,
+      bookSlug,
+      ownershipCreated,
+      author: savedAuthor
+        ? {
+            ...savedAuthor,
+            claimStatus: ownedClaimStatus
+          }
+        : null
     })
   // Se comento el parametro porque no se utiliza y no debe exponerse.
   // } catch (error) {

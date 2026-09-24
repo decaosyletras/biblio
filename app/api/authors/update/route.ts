@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { isSupabasePublicImageUrl } from "@/lib/server-image-fetch"
 import { createClient } from "@/lib/supabase-server"
 import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
@@ -52,6 +53,16 @@ const STRING_FIELDS = new Set([
   "current_news",
 ])
 
+const PUBLIC_LINK_FIELDS = new Set([
+  "website",
+  "instagram",
+  "threads",
+  "facebook",
+  "tiktok",
+  "youtube",
+  "wattpad",
+])
+
 const BOOLEAN_FIELDS = new Set([
   "show_bibliography",
   "show_book_details",
@@ -88,9 +99,31 @@ function isValidCalendarDate(value: string) {
     date.getUTCDate() === day
 }
 
+function isAllowedAuthorImage(
+  value: unknown,
+  existingValue: unknown,
+  folder: "avatars" | "banners" | "news"
+) {
+  if (value === null || value === "") return true
+  if (typeof value !== "string") return false
+  if (typeof existingValue === "string" && value === existingValue) return true
+
+  return isSupabasePublicImageUrl(value, {
+    bucket: "authors",
+    pathPrefix: `${folder}/`,
+  })
+}
+
+function getNewsImage(value: unknown) {
+  if (!isPlainObject(value) || typeof value.image !== "string") return null
+  return value.image
+}
+
 function isSafeUpdateValue(field: string, value: unknown) {
   if (STRING_FIELDS.has(field)) {
-    return typeof value === "string" && value.length <= 10000
+    const maxLength = PUBLIC_LINK_FIELDS.has(field) ? 500 : 10000
+
+    return typeof value === "string" && value.length <= maxLength
   }
 
   if (BOOLEAN_FIELDS.has(field)) {
@@ -218,7 +251,7 @@ export async function POST(request: Request) {
 
     const { data: author, error: authorError } = await supabaseAdmin
       .from("authors")
-      .select("pro")
+      .select("pro, avatar, banner, news")
       .eq("id", authorId)
       .maybeSingle()
 
@@ -253,6 +286,45 @@ export async function POST(request: Request) {
         { error: "No hay cambios validos" },
         { status: 400 }
       )
+    }
+
+    if (
+      Object.hasOwn(safeUpdates, "avatar") &&
+      !isAllowedAuthorImage(safeUpdates.avatar, author.avatar, "avatars")
+    ) {
+      return NextResponse.json(
+        { error: "La imagen de perfil no tiene un origen permitido" },
+        { status: 400 }
+      )
+    }
+
+    if (
+      Object.hasOwn(safeUpdates, "banner") &&
+      !isAllowedAuthorImage(safeUpdates.banner, author.banner, "banners")
+    ) {
+      return NextResponse.json(
+        { error: "El banner no tiene un origen permitido" },
+        { status: 400 }
+      )
+    }
+
+    if (Object.hasOwn(safeUpdates, "news")) {
+      const news = safeUpdates.news
+
+      if (
+        isPlainObject(news) &&
+        Object.hasOwn(news, "image") &&
+        !isAllowedAuthorImage(
+          news.image,
+          getNewsImage(author.news),
+          "news"
+        )
+      ) {
+        return NextResponse.json(
+          { error: "La imagen de la novedad no tiene un origen permitido" },
+          { status: 400 }
+        )
+      }
     }
 
     if (typeof safeUpdates.news_expires_on === "string") {

@@ -2,6 +2,7 @@ import { getBooks } from "@/lib/books"
 import CardReview from "@/components/CardReview"
 import SearchSimple from "@/components/SearchSimple"
 import { shuffleArray } from "@/lib/shuffle"
+import LectometerMark from "@/components/LectometerMark"
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,8 @@ export default function Page() {
   return (
     <section className="py-16 px-6">
   
-      <h1 className="text-3xl font-semibold text-zinc-100 mb-10">
+      <h1 className="mb-10 flex items-center gap-2 text-3xl font-semibold text-zinc-100">
+        <LectometerMark variant="inline" />
         Lectómetro
       </h1>
 

@@ -3,6 +3,7 @@ import { getBooks } from "@/lib/books"
 import BookRow from "@/components/BookRow"
 import { getRecommendedAuthors } from "@/lib/recommendAuthors"
 import CardAuthor from "@/components/CardAuthor"
+import { getBookCover } from "@/lib/amazon"
 
 export const dynamic = "force-dynamic"
 const books = await getBooks()
@@ -82,7 +83,7 @@ export default async function Page({
           {authorBooks.map((book) => (
             <a key={book.slug} href={`/libros/${book.slug}`}>
               <img
-                src={book.cover}
+                src={getBookCover(book.amazon, book.cover, book.coverSource)}
                 className="w-32 h-48 object-cover rounded-lg"
                 alt={book.title}
               />

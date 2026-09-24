@@ -1,0 +1,186 @@
+"use client"
+
+import Link from "next/link"
+import { BookOpenCheck, LibraryBig, Plus } from "lucide-react"
+import BookRecommendationShareButton from "@/components/readers/BookRecommendationShareButton"
+import { useReaderLibrary } from "@/hooks/useReaderLibrary"
+
+function AddToLibraryIcon() {
+  return (
+    <span className="inline-flex shrink-0 items-center gap-1" aria-hidden="true">
+      <LibraryBig size={14} />
+      <Plus size={11} strokeWidth={3} />
+    </span>
+  )
+}
+
+type Props = {
+  bookId: string
+  bookSlug: string
+  bookTitle: string
+  authors: string
+  coverSrc: string
+}
+
+export default function BookLibraryActions({
+  bookId,
+  bookSlug,
+  bookTitle,
+  authors,
+  coverSrc,
+}: Props) {
+  const {
+    user,
+    userLoading,
+    library,
+    ownedBookIds,
+    ownedAuthors,
+    libraryLoading,
+    pendingBookId,
+    message,
+    saveBook,
+  } = useReaderLibrary()
+  const membership = library[bookId]
+  const isPending = pendingBookId === bookId
+  const isLoading = userLoading || libraryLoading
+  const isInLibrary = Boolean(membership)
+  const isRead = membership?.isRead === true
+  const isOwnedBook = ownedBookIds[bookId] === true
+
+  if (!isLoading && user && isOwnedBook) {
+    const author = ownedAuthors[0]
+
+    return (
+      <div className="mt-5 rounded-2xl border border-blue-500/25 bg-blue-500/10 p-4">
+        <p className="text-sm font-semibold text-blue-200">Este es tu libro</p>
+        <p className="mt-1 text-xs leading-relaxed text-zinc-400">
+          Tus publicaciones se administran desde tu espacio de autor y no se
+          mezclan con tus lecturas personales.
+        </p>
+        {author && (
+          <Link
+            href={`/authors/${author.slug}/edit`}
+            className="mt-3 inline-flex rounded-xl bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-500"
+          >
+            Administrar publicación
+          </Link>
+        )}
+      </div>
+    )
+  }
+
+  return (
+    <div className="mt-5">
+      {!isLoading && user && membership && (
+        <div className="mb-3 flex items-center gap-2 text-xs text-zinc-400">
+          <span>Estado en tu biblioteca:</span>
+          <span
+            className={`rounded-full px-2.5 py-1 font-semibold ${
+              isRead
+                ? "bg-green-500/15 text-green-300"
+                : "bg-zinc-800 text-zinc-300"
+            }`}
+          >
+            {isRead ? "Leído" : "Pendiente"}
+          </span>
+        </div>
+      )}
+
+      <p className="mb-2.5 text-xs leading-relaxed text-zinc-400">
+        {isRead ? (
+          <>
+            Este libro ya está marcado como leído. Si necesitas corregirlo,
+            puedes cambiar su estado desde la{" "}
+            <Link
+              href="/book-directory"
+              className="font-medium text-yellow-400 hover:text-yellow-300"
+            >
+              biblioteca general
+            </Link>
+            .
+          </>
+        ) : isInLibrary ? (
+          <>
+            Este libro ya está en tu biblioteca. Puedes marcarlo como leído aquí
+            o administrarlo desde la{" "}
+            <Link
+              href="/book-directory"
+              className="font-medium text-yellow-400 hover:text-yellow-300"
+            >
+              biblioteca general
+            </Link>
+            .
+          </>
+        ) : (
+          "Guarda este libro en tu biblioteca personal o marca que ya lo leíste."
+        )}
+      </p>
+
+      <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+        <button
+          type="button"
+          aria-label={isInLibrary ? "Este libro está en mi biblioteca" : "Agregar a mi biblioteca"}
+          disabled={isLoading || isPending || isInLibrary}
+          onClick={() => saveBook(bookId, false)}
+          className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-yellow-500 px-2 py-2.5 text-xs font-semibold text-black transition hover:bg-yellow-400 disabled:cursor-default disabled:opacity-70 sm:px-3 sm:py-2"
+        >
+          <AddToLibraryIcon />
+          <span className="sm:hidden">
+            {isLoading ? "Cargando..." : isInLibrary ? "En biblioteca" : isPending ? "Agregando..." : "Agregar"}
+          </span>
+          <span className="hidden sm:inline">
+            {isLoading
+              ? "Cargando biblioteca..."
+              : isInLibrary
+                ? "En mi biblioteca"
+                : isPending
+                  ? "Agregando..."
+                  : "Agregar a mi biblioteca"}
+          </span>
+        </button>
+
+        <button
+          type="button"
+          aria-label={isRead ? "Este libro está marcado como leído" : "Marcar como leído"}
+          disabled={isLoading || isPending || isRead}
+          onClick={() => saveBook(bookId, true)}
+          className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-green-600 px-2 py-2.5 text-xs font-semibold text-white transition hover:bg-green-500 disabled:cursor-default disabled:opacity-70 sm:px-3 sm:py-2"
+        >
+          <BookOpenCheck size={14} aria-hidden="true" />
+          <span className="sm:hidden">
+            {isLoading ? "Cargando..." : isRead ? "Leído" : isPending ? "Guardando..." : "Marcar leído"}
+          </span>
+          <span className="hidden sm:inline">
+            {isLoading
+              ? "Cargando biblioteca..."
+              : isRead
+                ? "Marcado como leído"
+                : isPending
+                  ? "Guardando..."
+                  : "Marcar como leído"}
+          </span>
+        </button>
+      </div>
+
+      {!isLoading && user && isRead && (
+        <BookRecommendationShareButton
+          bookId={bookId}
+          bookSlug={bookSlug}
+          bookTitle={bookTitle}
+          authors={authors}
+          coverSrc={coverSrc}
+        />
+      )}
+
+      {message && (
+        <p
+          role="alert"
+          aria-live="polite"
+          className="mt-3 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-300"
+        >
+          {message}
+        </p>
+      )}
+    </div>
+  )
+}

@@ -46,7 +46,7 @@ export default function CardReview({ book }: any) {
         <div className="flex gap-4">
 
           <img
-            src={getBookCover(book.amazon, book.cover)}
+            src={getBookCover(book.amazon, book.cover, book.coverSource)}
             alt={book.title}
             className="
               w-20

@@ -1,7 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { supabase } from "@/lib/supabase"
+import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
+import imageCompression from "browser-image-compression"
+import { BOOK_COVER_CONSENT_TEXT } from "@/lib/bookCoverConsent"
 
 import GenreSelector from "@/components/GenreSelector"
 import SubgenreSelector from "@/components/SubgenreSelector"
@@ -10,6 +12,9 @@ import TagSelector from "@/components/TagSelector"
 import { genresCatalog } from "@/data/genres"
 import { metricsCatalog } from "@/data/metrics"
 
+const MAX_ORIGINAL_COVER_BYTES = 10 * 1024 * 1024
+const ALLOWED_COVER_TYPES = new Set(["image/jpeg", "image/png", "image/webp"])
+
 type AdditionalAuthor = {
   name: string
   foundAuthor: {
@@ -17,6 +22,16 @@ type AdditionalAuthor = {
     name: string
   } | null
   useExistingAuthor: boolean | null
+}
+
+type AuthorMatch = {
+  id: string
+  name: string
+  slug?: string
+}
+
+type UserAuthor = AuthorMatch & {
+  claimStatus: "pending" | "approved"
 }
 
 export default function Page() {
@@ -38,44 +53,58 @@ export default function Page() {
   const [selectedTags, setSelectedTags] = useState<string[]>([])
 
   const [aceptaTerminos, setAceptaTerminos] = useState(false)
+  const [confirmaAutoria, setConfirmaAutoria] = useState(false)
+  const [coverRightsConfirmed, setCoverRightsConfirmed] = useState(false)
+  const [coverFile, setCoverFile] = useState<File | null>(null)
+  const [coverPreviewUrl, setCoverPreviewUrl] = useState("")
+  const coverInputRef = useRef<HTMLInputElement>(null)
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [sent, setSent] = useState(false)
 
-  const [foundAuthor, setFoundAuthor] = useState<any>(null)
+  const [foundAuthor, setFoundAuthor] = useState<AuthorMatch | null>(null)
   const [useExistingAuthor, setUseExistingAuthor] = useState<boolean | null>(null)
 
-  const [userAuthor, setUserAuthor] = useState<any>(null)
-  const [loadingAuthor, setLoadingAuthor] = useState(true)
+  const [userAuthor, setUserAuthor] = useState<UserAuthor | null>(null)
+  const [sessionState, setSessionState] = useState<
+    "loading" | "authenticated" | "guest" | "error"
+  >("loading")
+  const [ownershipCreated, setOwnershipCreated] = useState(false)
 
 
   useEffect(() => {
 
     async function loadUserAuthor() {
+      try {
+        const res = await fetch("/api/my-author")
 
-      const res = await fetch("/api/my-author")
+        if (res.status === 401) {
+          setSessionState("guest")
+          return
+        }
 
-      if (!res.ok) {
-        setLoadingAuthor(false)
-        return
+        if (!res.ok) {
+          setSessionState("error")
+          return
+        }
+
+        const data = await res.json()
+
+        if (data.author) {
+          setUserAuthor({
+            ...data.author,
+            claimStatus: data.claimStatus
+          })
+          setAutor(data.author.name)
+          setFoundAuthor(data.author)
+          setUseExistingAuthor(true)
+        }
+
+        setSessionState("authenticated")
+      } catch {
+        setSessionState("error")
       }
-
-      const data = await res.json()
-
-      if (data.author) {
-
-        setUserAuthor(data.author)
-
-        setAutor(data.author.name)
-
-        setFoundAuthor(data.author)
-
-        setUseExistingAuthor(true)
-
-      }
-
-      setLoadingAuthor(false)
 
     }
 
@@ -83,9 +112,27 @@ export default function Page() {
 
   }, [])
 
+  useEffect(() => {
+    if (!coverFile) return
+
+    let active = true
+    const reader = new FileReader()
+    reader.onload = () => {
+      if (active && typeof reader.result === "string") {
+        setCoverPreviewUrl(reader.result)
+      }
+    }
+    reader.readAsDataURL(coverFile)
+
+    return () => {
+      active = false
+      reader.abort()
+    }
+  }, [coverFile])
+
 
   const isValidASIN = (value: string) =>
-    /^[a-zA-Z0-9]{10}$/.test(value)
+    /^[A-Z0-9]{10}$/.test(value.trim().toUpperCase())
 
 
   async function checkAuthor() {
@@ -168,6 +215,18 @@ export default function Page() {
     ))
       return "Confirma cada coincidencia de autor antes de enviar."
 
+    if (!coverFile)
+      return "La portada es obligatoria."
+
+    if (coverFile.size > MAX_ORIGINAL_COVER_BYTES)
+      return "La portada original debe pesar máximo 10 MB."
+
+    if (!ALLOWED_COVER_TYPES.has(coverFile.type))
+      return "La portada debe ser JPG, PNG o WebP."
+
+    if (!coverRightsConfirmed)
+      return "Debes confirmar que puedes proporcionar esta portada."
+
     if (!asin)
       return "El ASIN es obligatorio."
 
@@ -189,8 +248,14 @@ export default function Page() {
     if (!aceptaTerminos)
       return "Debes aceptar la política de privacidad."
 
+    if (!confirmaAutoria)
+      return "Debes confirmar que eres autor o coautor de esta obra."
+
     if (foundAuthor && useExistingAuthor === null)
       return "Confirma la coincidencia de autor antes de enviar."
+
+    if (foundAuthor && useExistingAuthor === true && !userAuthor)
+      return "Este autor ya existe. Reclámalo antes de registrar libros en su nombre."
 
     return null
 
@@ -201,6 +266,7 @@ export default function Page() {
 
     setError("")
     setSent(false)
+    setOwnershipCreated(false)
 
     const validationError = validateForm()
 
@@ -217,45 +283,45 @@ export default function Page() {
 
     try {
 
+      const compressedCover = await imageCompression(coverFile!, {
+        maxSizeMB: 0.9,
+        maxWidthOrHeight: 1800,
+        useWebWorker: true,
+        initialQuality: 0.82,
+      })
+
+      const payload = {
+        titulo,
+        autor,
+        autoresAdicionales: autoresAdicionales.map((additionalAuthor) => ({
+          name: additionalAuthor.name,
+          useExistingAuthor: additionalAuthor.useExistingAuthor
+        })),
+        esSaga,
+        link,
+        resumen,
+        asin: asin.trim().toUpperCase(),
+        generos: selectedGenres,
+        subgeneros: selectedSubgenres,
+        tags: selectedTags,
+        aceptaTerminos,
+        confirmaAutoria,
+        coverRightsConfirmed,
+        useExistingAuthor
+      }
+
+      const submission = new FormData()
+      submission.set("payload", JSON.stringify(payload))
+      submission.set(
+        "cover",
+        compressedCover,
+        compressedCover.name || coverFile!.name
+      )
+
       const res = await fetch("/api/libro-nuevo", {
 
         method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-
-          titulo,
-          autor,
-          autoresAdicionales: autoresAdicionales.map((additionalAuthor) => ({
-            name: additionalAuthor.name,
-            useExistingAuthor: additionalAuthor.useExistingAuthor
-          })),
-          esSaga,
-          link,
-          resumen,
-          asin,
-
-          generos: selectedGenres,
-          subgeneros: selectedSubgenres,
-          tags: selectedTags,
-
-          aceptaTerminos,
-
-          authorId:
-            userAuthor
-              ? userAuthor.id
-              : (
-                useExistingAuthor && foundAuthor
-                  ? foundAuthor.id
-                  : null
-              ),
-
-          useExistingAuthor
-
-        })
+        body: submission
 
       })
 
@@ -264,6 +330,10 @@ export default function Page() {
 
 
       if (!res.ok) {
+
+        if (res.status === 401) {
+          setSessionState("guest")
+        }
 
         setError(
           data.error || "Error al guardar"
@@ -276,9 +346,12 @@ export default function Page() {
 
 
       setSent(true)
+      setOwnershipCreated(Boolean(data.ownershipCreated))
+
+      const resolvedAuthor = data.author ?? userAuthor
 
       setTitulo("")
-      setAutor("")
+      setAutor(resolvedAuthor?.name ?? "")
       setAutoresAdicionales([])
       setEsSaga(false)
       setLink("")
@@ -290,15 +363,38 @@ export default function Page() {
       setSelectedTags([])
 
       setAceptaTerminos(false)
+      setConfirmaAutoria(false)
+      setCoverRightsConfirmed(false)
+      setCoverFile(null)
+      setCoverPreviewUrl("")
+      if (coverInputRef.current) coverInputRef.current.value = ""
 
-      setFoundAuthor(null)
-      setUseExistingAuthor(null)
+      if (
+        resolvedAuthor?.id &&
+        resolvedAuthor?.name &&
+        resolvedAuthor?.claimStatus
+      ) {
+        const savedUserAuthor: UserAuthor = {
+          id: resolvedAuthor.id,
+          name: resolvedAuthor.name,
+          slug: resolvedAuthor.slug,
+          claimStatus: resolvedAuthor.claimStatus
+        }
+        setUserAuthor(savedUserAuthor)
+        setFoundAuthor(savedUserAuthor)
+        setUseExistingAuthor(true)
+      } else {
+        setFoundAuthor(null)
+        setUseExistingAuthor(null)
+      }
 
 
-    } catch {
+    } catch (submissionError) {
 
       setError(
-        "Error de conexión 😢"
+        submissionError instanceof Error
+          ? submissionError.message
+          : "No se pudo preparar o enviar la portada."
       )
 
     }
@@ -307,6 +403,55 @@ export default function Page() {
     setLoading(false)
 
   }
+  if (sessionState === "loading") {
+    return (
+      <section className="flex min-h-screen items-center justify-center bg-black px-4 text-zinc-300">
+        Verificando tu sesión...
+      </section>
+    )
+  }
+
+  if (sessionState === "guest") {
+    return (
+      <section className="flex min-h-screen items-start justify-center bg-black px-4 py-16 text-zinc-100">
+        <div className="w-full max-w-xl rounded-3xl border border-zinc-800 bg-zinc-900 p-7 text-center sm:p-10">
+          <h1 className="text-3xl font-bold">Registra uno de tus libros</h1>
+          <p className="mt-4 leading-relaxed text-zinc-400">
+            Inicia sesión para agregar tu obra y asociarla correctamente con tu
+            espacio de autor.
+          </p>
+          <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link
+              href="/login"
+              className="rounded-xl bg-yellow-500 px-6 py-3 font-semibold text-black transition hover:bg-yellow-400"
+            >
+              Iniciar sesión
+            </Link>
+            <Link
+              href="/tutorial/autores"
+              className="rounded-xl border border-zinc-700 px-6 py-3 font-medium transition hover:bg-zinc-800"
+            >
+              Ver tutorial para autores
+            </Link>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (sessionState === "error") {
+    return (
+      <section className="flex min-h-screen items-center justify-center bg-black px-4 text-zinc-100">
+        <div className="max-w-lg rounded-3xl border border-red-500/30 bg-red-500/10 p-7 text-center">
+          <h1 className="text-2xl font-bold">No pudimos verificar tu cuenta</h1>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-300">
+            Recarga la página para intentarlo nuevamente. No se ha guardado ningún dato.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section className="
       min-h-screen
@@ -343,7 +488,7 @@ export default function Page() {
           sm:text-base
           mb-6
         ">
-          Recomienda tu libro o uno que te haya gustado. Llena los datos tal como quieres que se muestren en la página.
+          Agrega uno de tus libros. Llena los datos tal como quieres que se muestren en el catálogo.
         </p>
 
 
@@ -371,6 +516,18 @@ export default function Page() {
           className={`w-full p-4 mb-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 ${userAuthor ? "opacity-60 cursor-not-allowed" : ""
             }`}
         />
+
+        {userAuthor && (
+          <div className={`mb-4 rounded-xl border p-4 text-sm ${
+            userAuthor.claimStatus === "pending"
+              ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-200"
+              : "border-green-500/30 bg-green-500/10 text-green-200"
+          }`}>
+            {userAuthor.claimStatus === "pending"
+              ? "Tu reclamación sigue pendiente. Mientras la revisamos, los libros que registres quedarán asociados a este autor."
+              : "Este libro quedará asociado automáticamente a tu página de autor."}
+          </div>
+        )}
 
         <div className="mb-4">
 
@@ -524,7 +681,7 @@ export default function Page() {
                   }
                 `}
               >
-                Sí, asociar
+                Sí, es mi perfil
               </button>
 
 
@@ -547,6 +704,24 @@ export default function Page() {
               </button>
 
             </div>
+
+            {useExistingAuthor === true && (
+              <div className="mt-4 rounded-xl border border-blue-500/30 bg-blue-500/10 p-3 text-blue-200">
+                Para proteger los perfiles existentes, primero debes reclamar
+                este autor. Busca uno de sus libros y selecciona Reclamar autor.
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <Link href="/libros" className="font-semibold hover:underline">
+                    Buscar un libro
+                  </Link>
+                  <Link
+                    href="/tutorial/autores"
+                    className="font-semibold hover:underline"
+                  >
+                    Ver tutorial
+                  </Link>
+                </div>
+              </div>
+            )}
 
           </div>
 
@@ -575,6 +750,85 @@ export default function Page() {
 
         </div>
 
+        <div className="mb-6 rounded-2xl border border-zinc-700 bg-zinc-950/50 p-4">
+          <div>
+            <p className="font-semibold text-zinc-100">
+              Portada del libro <span className="text-yellow-400">*</span>
+            </p>
+            <p className="mt-1 text-sm leading-relaxed text-zinc-400">
+              Sube la portada que quieres mostrar en el catálogo. Se optimizará
+              automáticamente para reducir su peso.
+            </p>
+          </div>
+
+          {coverPreviewUrl && (
+            <div className="mt-4 flex justify-center rounded-2xl border border-zinc-800 bg-black p-3">
+              {/* La vista previa usa exclusivamente el archivo local elegido por el usuario. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={coverPreviewUrl}
+                alt="Vista previa de la portada"
+                className="max-h-80 rounded-lg object-contain"
+              />
+            </div>
+          )}
+
+          <label className="mt-4 inline-flex cursor-pointer rounded-xl bg-zinc-800 px-4 py-2.5 text-sm font-medium transition hover:bg-zinc-700">
+            {coverFile ? "Cambiar portada" : "Seleccionar portada"}
+            <input
+              ref={coverInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              onChange={(event) => {
+                const selectedCover = event.target.files?.[0] ?? null
+                setCoverRightsConfirmed(false)
+
+                if (
+                  selectedCover &&
+                  !ALLOWED_COVER_TYPES.has(selectedCover.type)
+                ) {
+                  setError("La portada debe ser JPG, PNG o WebP.")
+                  setCoverFile(null)
+                  setCoverPreviewUrl("")
+                  event.target.value = ""
+                  return
+                }
+
+                if (
+                  selectedCover &&
+                  selectedCover.size > MAX_ORIGINAL_COVER_BYTES
+                ) {
+                  setError("La portada original debe pesar máximo 10 MB.")
+                  setCoverFile(null)
+                  setCoverPreviewUrl("")
+                  event.target.value = ""
+                  return
+                }
+
+                setCoverFile(selectedCover)
+                if (!selectedCover) setCoverPreviewUrl("")
+                setError("")
+              }}
+              className="sr-only"
+            />
+          </label>
+
+          <p className="mt-2 text-xs text-zinc-500">
+            JPG, PNG o WebP de hasta 10 MB. La reduciremos automáticamente
+            antes de enviarla. Recomendamos una imagen vertical.
+          </p>
+
+          <label className="mt-4 flex items-start gap-3 text-sm leading-relaxed text-zinc-300">
+            <input
+              type="checkbox"
+              checked={coverRightsConfirmed}
+              onChange={(event) => setCoverRightsConfirmed(event.target.checked)}
+              className="mt-1"
+            />
+            <span>{BOOK_COVER_CONSENT_TEXT}</span>
+          </label>
+        </div>
+
 
 
         <input
@@ -600,7 +854,9 @@ export default function Page() {
             placeholder="ASIN del ebook"
             maxLength={10}
             value={asin}
-            onChange={e => setAsin(e.target.value)}
+            onChange={e =>
+              setAsin(e.target.value.toUpperCase().replace(/\s/g, ""))
+            }
             className="w-full p-4 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
 
@@ -652,6 +908,27 @@ export default function Page() {
 
 
         <div className="mb-6">
+
+          <label className="mb-4 flex items-start gap-3 text-sm text-zinc-300">
+            <input
+              type="checkbox"
+              checked={confirmaAutoria}
+              onChange={e => setConfirmaAutoria(e.target.checked)}
+              className="mt-1"
+            />
+            <span>
+              Confirmo que soy autor o coautor de esta obra y que los datos
+              proporcionados son correctos. También acepto la{" "}
+              <a
+                href="/politica"
+                target="_blank"
+                className="text-yellow-400 hover:underline"
+              >
+                Política de reclamación de autores
+              </a>
+              .
+            </span>
+          </label>
 
           <label className="
             flex
@@ -718,7 +995,9 @@ export default function Page() {
             mb-4
             text-sm
           ">
-            ¡Libro guardado correctamente! Puede tardar unos minutos para que aparezca en el catálogo.
+            {ownershipCreated
+              ? "¡Libro guardado! También creamos y asociamos tu página de autor. A partir de ahora tus nuevos libros usarán este autor automáticamente."
+              : "¡Libro guardado correctamente! Puede tardar unos minutos para que aparezca en el catálogo."}
           </div>
 
         )}
@@ -742,7 +1021,7 @@ export default function Page() {
             disabled:opacity-50
           "
         >
-          {loading ? "Guardando..." : "Enviar libro"}
+          {loading ? "Optimizando y guardando..." : "Enviar libro"}
         </button>
 
 

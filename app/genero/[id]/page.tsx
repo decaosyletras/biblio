@@ -1,6 +1,7 @@
 import { getBooks } from "@/lib/books"
 import { genresCatalog } from "@/data/genres"
 import Link from "next/link"
+import { getBookCover } from "@/lib/amazon"
 
 export const dynamic = "force-dynamic"
 const books = await getBooks()
@@ -35,7 +36,7 @@ export default function Page({ params }: any) {
               <div className="flex gap-4 bg-zinc-900 p-4 rounded-xl hover:bg-zinc-800 transition">
 
                 <img
-                  src={book.cover}
+                  src={getBookCover(book.amazon, book.cover, book.coverSource)}
                   className="w-24 h-36 object-cover rounded"
                 />
 

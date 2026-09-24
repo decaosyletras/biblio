@@ -572,7 +572,7 @@ async function syncSubscription(
   const { error: authorError } = await supabaseAdmin
     .from("authors")
     .update({
-      pro: grantsPro,
+      stripe_pro_active: grantsPro,
       pro_until: grantsPro ? currentPeriodEnd : null,
     })
     .eq("id", authorId)
@@ -777,7 +777,7 @@ export async function POST(request: Request) {
       const { error: authorError } = await supabaseAdmin
         .from("authors")
         .update({
-          pro: replacementSubscription !== null,
+          stripe_pro_active: replacementSubscription !== null,
           pro_until: replacementSubscription
             ? getPeriodEnd(replacementSubscription)
             : null,

@@ -13,13 +13,28 @@ import AuthorBooksSection from "@/components/authors/edit/AuthorBooksSection"
 import AuthorContactSection from "@/components/authors/edit/AuthorContactSection"
 import AuthorBookSettingsSection from "@/components/authors/edit/AuthorBookSettingsSection"
 import AuthorInterviewSection from "@/components/authors/edit/AuthorInterviewSection"
+import AuthorPageReadiness from "@/components/authors/edit/AuthorPageReadiness"
 import ProCheckoutButton from "@/components/ProCheckoutButton"
+import { Download } from "lucide-react"
+import { fetchAvatarCopy } from "@/lib/avatarImport"
 
 type InterviewQuestion = {
     id: string
     question: string
     answer: string
     is_visible: boolean
+}
+
+type ReaderSocialProfile = {
+    displayName: string
+    avatarUrl: string
+    instagramUrl: string
+    tiktokUrl: string
+    wattpadUrl: string
+    threadsUrl: string
+    facebookUrl: string
+    youtubeUrl: string
+    websiteUrl: string
 }
 
 export default function EditAuthorPage() {
@@ -37,6 +52,9 @@ export default function EditAuthorPage() {
     const [accountEmail, setAccountEmail] = useState("")
     const [accountUsername, setAccountUsername] = useState("")
     const [interviewQuestions, setInterviewQuestions] = useState<InterviewQuestion[]>([])
+    const [readerSocialProfile, setReaderSocialProfile] = useState<ReaderSocialProfile | null>(null)
+    const [readerImportNotice, setReaderImportNotice] = useState("")
+    const [importingReaderProfile, setImportingReaderProfile] = useState(false)
 
 
     const [avatarFile, setAvatarFile] = useState<File | null>(null)
@@ -126,6 +144,26 @@ export default function EditAuthorPage() {
                 : defaultOrder
         )
 
+        // La API privada ya verifica la sesión y sólo devuelve el perfil lector
+        // de la misma cuenta. La importación únicamente llena este formulario.
+        const readerResponse = await fetch("/api/readers/profile", {
+            cache: "no-store"
+        })
+        const readerResult = await readerResponse
+            .json()
+            .catch(() => null) as {
+                hasReaderProfile?: boolean
+                profile?: ReaderSocialProfile
+            } | null
+
+        if (
+            readerResponse.ok &&
+            readerResult?.hasReaderProfile &&
+            readerResult.profile
+        ) {
+            setReaderSocialProfile(readerResult.profile)
+        }
+
         setOriginalBanner(authorData.banner)
         setOriginalAvatar(authorData.avatar)
         setOriginalNewsImage(
@@ -152,14 +190,36 @@ export default function EditAuthorPage() {
             .from("book_authors")
             .select(`books(*)`)
             .eq("author_id", authorData.id)
-        const multiBooks = relationBooks?.map(item => item.books).filter(Boolean) ?? []
+        const multiBooks = (relationBooks ?? [])
+            .flatMap(item => {
+                const relatedBooks = item.books
+
+                return Array.isArray(relatedBooks)
+                    ? relatedBooks
+                    : relatedBooks
+                        ? [relatedBooks]
+                        : []
+            })
+            .filter(book => book.approved === true)
+        const { data: bookSettings } = await supabase
+            .from("author_book_settings")
+            .select("book_id, author_order")
+            .eq("author_id", authorData.id)
+        const orderByBookId = new Map(
+            (bookSettings ?? []).map(setting => [
+                setting.book_id,
+                setting.author_order ?? 0
+            ])
+        )
         const map = new Map()
             ;[...(directBooks ?? []), ...multiBooks].forEach(book => {
                 map.set(book.id, book)
             })
         setBooks(
             Array.from(map.values()).sort(
-                (a, b) => (a.author_order ?? 0) - (b.author_order ?? 0)
+                (a, b) =>
+                    (orderByBookId.get(a.id) ?? a.author_order ?? 0) -
+                    (orderByBookId.get(b.id) ?? b.author_order ?? 0)
             )
         )
         //}
@@ -171,6 +231,69 @@ export default function EditAuthorPage() {
             ...prev,
             [field]: value
         }))
+    }
+
+    async function importReaderSocialProfile() {
+        if (!readerSocialProfile) return
+
+        setImportingReaderProfile(true)
+        setReaderImportNotice("")
+
+        setAuthor((previous: Record<string, unknown>) => ({
+            ...previous,
+            website: readerSocialProfile.websiteUrl || previous.website,
+            instagram: readerSocialProfile.instagramUrl || previous.instagram,
+            tiktok: readerSocialProfile.tiktokUrl || previous.tiktok,
+            wattpad: readerSocialProfile.wattpadUrl || previous.wattpad,
+            threads: readerSocialProfile.threadsUrl || previous.threads,
+            facebook: readerSocialProfile.facebookUrl || previous.facebook,
+            youtube: readerSocialProfile.youtubeUrl || previous.youtube,
+        }))
+
+        const importedSocials = [
+            ["instagram", readerSocialProfile.instagramUrl],
+            ["wattpad", readerSocialProfile.wattpadUrl],
+            ["threads", readerSocialProfile.threadsUrl],
+            ["facebook", readerSocialProfile.facebookUrl],
+            ["tiktok", readerSocialProfile.tiktokUrl],
+            ["youtube", readerSocialProfile.youtubeUrl],
+        ].filter(([, value]) => Boolean(value))
+
+        setSocialOrder((current) => [
+            ...current,
+            ...importedSocials
+                .map(([social]) => social)
+                .filter((social) => !current.includes(social)),
+        ])
+
+        try {
+            if (readerSocialProfile.avatarUrl) {
+                const copiedAvatar = await fetchAvatarCopy("reader")
+                const previewUrl = URL.createObjectURL(copiedAvatar)
+
+                setAvatarFile(copiedAvatar)
+                setAuthor((previous: Record<string, unknown>) => ({
+                    ...previous,
+                    // La URL temporal sólo presenta la copia en el formulario.
+                    // Al guardar se sube como un objeto nuevo al bucket authors.
+                    avatar: previewUrl,
+                }))
+            }
+
+            setReaderImportNotice(
+                readerSocialProfile.avatarUrl
+                    ? "Foto y enlaces importados. Revísalos y usa Guardar cambios para confirmarlos."
+                    : "Enlaces importados. El perfil lector no tiene una foto para copiar."
+            )
+        } catch (error) {
+            setReaderImportNotice(
+                error instanceof Error
+                    ? `${error.message}. Los enlaces sí se cargaron en el formulario.`
+                    : "No se pudo importar la foto. Los enlaces sí se cargaron en el formulario."
+            )
+        } finally {
+            setImportingReaderProfile(false)
+        }
     }
 
     function updateInterviewQuestion(id: string, updates: Partial<InterviewQuestion>) {
@@ -213,6 +336,17 @@ export default function EditAuthorPage() {
         copy[index] = copy[target]
         copy[target] = temp
         setBooks(copy)
+    }
+
+    function updateBookCover(
+        bookId: string,
+        updates: Record<string, string>
+    ) {
+        setBooks(currentBooks => currentBooks.map(book =>
+            book.id === bookId
+                ? { ...book, ...updates }
+                : book
+        ))
     }
 
     function moveSocial(index: number, direction: number) {
@@ -444,25 +578,28 @@ export default function EditAuthorPage() {
             }
 
             setSavingStep("Actualizando libros...")
-            for (let i = 0; i < books.length; i++) {
-                const { error } = await supabase
-                    .from("books")
-                    .update({
-                        author_order: i
-                    })
-                    .eq("id", books[i].id)
+            const orderResponse = await fetch("/api/authors/books/order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    authorId: author.id,
+                    bookIds: books.map(book => book.id)
+                })
+            })
+            const orderResult = await orderResponse
+                .json()
+                .catch(() => null) as { error?: string } | null
+
+            if (!orderResponse.ok) {
+                alert(
+                    orderResult?.error ??
+                    "No se pudo guardar el orden de los libros"
+                )
+                return
             }
 
-            /*if (isPro) {
-                for (let i = 0; i < books.length; i++) {
-                    await supabase
-                        .from("books")
-                        .update({
-                            author_order: i
-                        })
-                        .eq("id", books[i].id)
-                }
-            }*/
             if (originalBanner && originalBanner !== data.banner) {
                 await deleteImage(originalBanner)
             }
@@ -585,6 +722,44 @@ export default function EditAuthorPage() {
                     </p>
                 </div>
 
+                <AuthorPageReadiness author={author} books={books} />
+
+                {readerSocialProfile && (
+                    <section className="rounded-3xl border border-blue-500/30 bg-blue-500/10 p-5 sm:p-6">
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <h2 className="font-semibold text-blue-200">
+                                    Importar desde tu perfil lector
+                                </h2>
+                                <p className="mt-1 text-sm leading-relaxed text-zinc-300">
+                                    Copia el sitio web y las redes disponibles de {readerSocialProfile.displayName || "tu perfil lector"}. Podrás revisarlos antes de guardar.
+                                </p>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={importReaderSocialProfile}
+                                disabled={importingReaderProfile}
+                                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 font-medium transition hover:bg-blue-500"
+                            >
+                                <Download size={18} />
+                                {importingReaderProfile
+                                    ? "Importando..."
+                                    : "Importar foto y enlaces de mi perfil de lector"}
+                            </button>
+                        </div>
+
+                        {readerImportNotice && (
+                            <p
+                                role="status"
+                                aria-live="polite"
+                                className="mt-4 rounded-xl border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-300"
+                            >
+                                {readerImportNotice}
+                            </p>
+                        )}
+                    </section>
+                )}
+
                 <AuthorBasicSection
                     author={author}
                     accountUsername={accountUsername}
@@ -609,6 +784,7 @@ export default function EditAuthorPage() {
                         </div>
                         <input
                             value={author.website ?? ""}
+                            maxLength={500}
                             onChange={e => updateField("website", e.target.value)}
                             placeholder="https://tuweb.com"
                             className="mt-4 w-full rounded-xl border border-zinc-700 bg-zinc-900 p-3 text-white"
@@ -619,10 +795,12 @@ export default function EditAuthorPage() {
 
                 <div className="border-t border-zinc-500/70 pt-5">
                     <AuthorBooksSection
+                        authorId={author.id}
                         author={author}
                         updateField={updateField}
                         books={books}
                         moveBook={moveBook}
+                        onCoverUpdated={updateBookCover}
                     />
                 </div>
 

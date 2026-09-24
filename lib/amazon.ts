@@ -1,3 +1,5 @@
+import type { BookCoverSource } from "@/types"
+
 const affiliateTags = {
   ES: "casaindie-21",
   US: "casaindie-20",
@@ -13,7 +15,7 @@ export function getAmazonStore(country: string = "US") {
         tag: affiliateTags.ES,
         asinKey: "es",
       }
-      
+
     case "MX":
       return {
         domain: "amazon.com.mx",
@@ -30,13 +32,9 @@ export function getAmazonStore(country: string = "US") {
   }
 }
 
-/**
- * 🔥 NUEVO: detección segura (sin romper compatibilidad)
- */
 export async function detectAmazonCountry() {
   try {
     const res = await fetch("/api/country")
-
     const data = await res.json()
 
     return data.country || "US"
@@ -50,12 +48,7 @@ export function getBookAsin(
   country: string
 ) {
   const store = getAmazonStore(country)
-
-  const asin =
-    amazon[store.asinKey] ||
-    amazon.us ||
-    amazon.es ||
-    amazon.mx
+  const asin = amazon[store.asinKey] || amazon.us || amazon.es || amazon.mx
 
   return asin || undefined
 }
@@ -67,85 +60,60 @@ export function generateAmazonLink(
 ) {
   const safeCountry = country || "US"
   const store = getAmazonStore(safeCountry)
-
   const asin = getBookAsin(amazon, country)
 
-  if (!asin) {
-    return fallbackUrl || "https://amazon.com"
-  }
+  if (!asin) return fallbackUrl || "https://amazon.com"
 
   const baseUrl = `https://${store.domain}/dp/${asin}`
 
-  return `${baseUrl}?tag=${store.tag}`
+  return store.tag ? `${baseUrl}?tag=${store.tag}` : baseUrl
 }
 
-/* =========================================================
-   🔥 TODAS TUS FUNCIONES ORIGINALES (RESTORED / NO BORRADAS)
-   ========================================================= */
-
-// 👇 NO quitar porque ya lo usas
-export function getAmazonCover(
-  amazon: Record<string, string>,
-  localCover?: string
-) {
-  // Buscar primer ASIN válido (no vacío)
-  const asin = [
-    amazon.us,
-    amazon.es,
-    amazon.mx,
-    ...Object.values(amazon),
-  ].find(
-    (value) =>
-      typeof value === "string" &&
-      value.trim() !== ""
+function findAsin(amazon: Record<string, string>) {
+  return [amazon.us, amazon.es, amazon.mx, ...Object.values(amazon)].find(
+    (value) => typeof value === "string" && value.trim() !== ""
   )
-
-  // 1. Portada de Amazon si hay ASIN válido
-  if (asin) {
-    return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`
-  }
-
-  // 2. Cover local si existe
-  if (
-    typeof localCover === "string" &&
-    localCover.trim() !== ""
-  ) {
-    return localCover
-  }
-
-  // 3. Fallback genérico
-  return "/covers/portadagenerica.png"
 }
 
 export function getBookCover(
   amazon: Record<string, string>,
-  localCover?: string
+  localCover?: string,
+  coverSource?: BookCoverSource
 ) {
-  // Buscar primer ASIN válido (no vacío)
-  const asin = [
-    amazon.us,
-    amazon.es,
-    amazon.mx,
-    ...Object.values(amazon),
-  ].find(
-    (value) =>
-      typeof value === "string" &&
-      value.trim() !== ""
-  )
+  const asin = findAsin(amazon)
+  const safeLocalCover =
+    typeof localCover === "string" ? localCover.trim() : ""
 
-  // 1. Portada de Amazon si hay ASIN válido
-  if (asin) {
+  // Antes de aplicar la migracion se conserva exactamente el orden historico.
+  if (!coverSource) {
+    if (asin) {
+      return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`
+    }
+
+    return safeLocalCover || "/covers/portadagenerica.png"
+  }
+
+  if (
+    (coverSource === "author_upload" ||
+      coverSource === "admin_upload" ||
+      coverSource === "legacy") &&
+    safeLocalCover
+  ) {
+    return safeLocalCover
+  }
+
+  if (coverSource === "amazon" && asin) {
     return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`
   }
 
-  // 2. Cover local si existe
-  if (
-    typeof localCover === "string" &&
-    localCover.trim() !== ""
-  ) {
-    return localCover
-  }
-
-  // 3. Fallback genérico
   return "/covers/portadagenerica.png"
+}
+
+// Alias conservado para no romper importaciones historicas.
+export function getAmazonCover(
+  amazon: Record<string, string>,
+  localCover?: string,
+  coverSource?: BookCoverSource
+) {
+  return getBookCover(amazon, localCover, coverSource)
 }

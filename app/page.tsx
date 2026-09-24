@@ -1,13 +1,16 @@
 import Link from "next/link"
 import { getBooks } from "@/lib/books"
-import CardBook from "@/components/CardBook"
 import { shuffleArray } from "@/lib/shuffle"
 import CardReview from "@/components/CardReview"
 import CardAuthor from "@/components/CardAuthor"
 import GenreFilter from "@/components/GenreFilter"
 import BookRow from "@/components/BookRow"
 import AuthorNewsCard from "@/components/AuthorNewsCard"
+import LectometerMark from "@/components/LectometerMark"
 import { createClient } from "@/lib/supabase-server"
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
+import { cookies } from "next/headers"
+import type { User } from "@supabase/supabase-js"
 
 import {
   getAuthors,
@@ -19,35 +22,63 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
 
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const publicContentPromise = Promise.all([
+    getAuthors(),
+    getBooks(),
+    getLatestAuthorNews(),
+  ])
 
   let claimedAuthorSlug: string | null = null
+  let hasReaderProfile = false
+  let hasPendingAuthorClaim = false
+  let user: User | null = null
 
-  if (user) {
-    const { data: approvedClaim } = await supabase
-      .from("author_claims")
-      .select("author_id")
-      .eq("user_id", user.id)
-      .eq("status", "approved")
-      .maybeSingle()
+  const cookieStore = await cookies()
+  const hasAuthCookie = cookieStore.getAll().some(({ name, value }) =>
+    Boolean(value) && name.startsWith("sb-") && /-auth-token(?:\.\d+)?$/.test(name)
+  )
 
-    if (approvedClaim?.author_id) {
-      const { data: claimedAuthor } = await supabase
-        .from("authors")
-        .select("slug")
-        .eq("id", approvedClaim.author_id)
-        .maybeSingle()
+  if (hasAuthCookie) {
+    const supabase = await createClient()
+    const { data } = await supabase.auth.getUser()
+    user = data.user
 
-      claimedAuthorSlug = claimedAuthor?.slug ?? null
+    if (user) {
+      const [{ data: activeClaims }, { data: readerProfile }] = await Promise.all([
+        supabase
+          .from("author_claims")
+          .select("author_id, status")
+          .eq("user_id", user.id)
+          .in("status", ["approved", "pending"]),
+        supabaseAdmin
+          .from("reader_profiles")
+          .select("user_id")
+          .eq("user_id", user.id)
+          .maybeSingle(),
+      ])
+
+      hasReaderProfile = Boolean(readerProfile)
+      const approvedClaim = activeClaims?.find(
+        (claim) => claim.status === "approved"
+      )
+      hasPendingAuthorClaim = Boolean(
+        activeClaims?.some((claim) => claim.status === "pending")
+      )
+
+      if (approvedClaim?.author_id) {
+        const { data: claimedAuthor } = await supabase
+          .from("authors")
+          .select("slug")
+          .eq("id", approvedClaim.author_id)
+          .maybeSingle()
+
+        claimedAuthorSlug = claimedAuthor?.slug ?? null
+      }
     }
   }
 
-  const authors = await getAuthors()
-  const books = await getBooks()
-  const latestNews = await getLatestAuthorNews()
+  const [authors, books, latestNews] = await publicContentPromise
 
-  const randomBooks = shuffleArray(books).slice(0, 4)
   const randomAuthors = shuffleArray(authors).slice(0, 3)
   const randomReviews = shuffleArray(
     books.filter(book => book.review?.title)
@@ -62,7 +93,86 @@ export default async function Home() {
     "Narrativas que se quedan contigo"
   ];
 
-  const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+  const fraseAleatoria = shuffleArray(frases)[0];
+
+  let accountMessage = ""
+  let showAuthorClaimLink = false
+  let accountActions: Array<{
+    href: string
+    label: string
+    primary: boolean
+  }> = []
+
+  if (user && claimedAuthorSlug && hasReaderProfile) {
+    accountMessage = "Tus lecturas y tu obra, en un mismo espacio."
+    accountActions = [
+      { href: "/me/library", label: "Mi biblioteca", primary: true },
+      {
+        href: `/authors/${claimedAuthorSlug}`,
+        label: "Mi página de autor",
+        primary: false,
+      },
+    ]
+  } else if (user && claimedAuthorSlug) {
+    accountMessage = "Gestiona tu página de autor y crea tu espacio como lector cuando quieras."
+    accountActions = [
+      {
+        href: `/authors/${claimedAuthorSlug}`,
+        label: "Mi página de autor",
+        primary: true,
+      },
+      {
+        href: "/me/profile",
+        label: "Crear perfil lector",
+        primary: false,
+      },
+    ]
+  } else if (user && hasPendingAuthorClaim && hasReaderProfile) {
+    accountMessage = "Tu solicitud de autor está pendiente de revisión."
+    accountActions = [
+      {
+        href: "/me#mis-solicitudes",
+        label: "Ver estado de mi solicitud",
+        primary: true,
+      },
+      { href: "/me/library", label: "Mi biblioteca", primary: false },
+    ]
+  } else if (user && hasPendingAuthorClaim) {
+    accountMessage = "Tu solicitud de autor está pendiente de revisión."
+    accountActions = [
+      {
+        href: "/me#mis-solicitudes",
+        label: "Ver estado de mi solicitud",
+        primary: true,
+      },
+      {
+        href: "/me/profile",
+        label: "Crear perfil lector",
+        primary: false,
+      },
+    ]
+  } else if (user && hasReaderProfile) {
+    accountMessage = "Continúa descubriendo historias y organiza tus próximas lecturas."
+    accountActions = [
+      { href: "/me/library", label: "Mi biblioteca", primary: true },
+      { href: "/me/profile", label: "Mi perfil lector", primary: false },
+    ]
+    showAuthorClaimLink = true
+  } else if (user) {
+    accountMessage = "Puedes participar como lector, como autor o de ambas formas."
+    accountActions = [
+      {
+        href: "/me/profile",
+        label: "Crear perfil lector",
+        primary: true,
+      },
+      {
+        href: "/me#mis-solicitudes",
+        label: "Ver mis perfiles",
+        primary: false,
+      },
+    ]
+  }
 
   return (
     <div className="text-zinc-100">
@@ -128,26 +238,89 @@ export default async function Home() {
             >
               Iniciar sesión
             </Link>
-          ) : claimedAuthorSlug ? (
-            <Link
-              href={`/authors/${claimedAuthorSlug}`}
-              className="rounded-full bg-yellow-500 px-6 py-3 font-medium text-black transition hover:bg-yellow-400"
-            >
-              Mi página de autor
-            </Link>
           ) : (
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/70 px-6 py-4">
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/70 px-5 py-4 sm:px-6">
               <p className="text-sm text-zinc-300">
-                Puedes reclamar tu perfil de autor desde uno de tus libros.
+                {accountMessage}
               </p>
-              <Link
-                href="/libros"
-                className="mt-2 inline-block text-sm font-medium text-yellow-400 hover:underline"
-              >
-                Buscar mi libro →
-              </Link>
+              <div className="mt-3 flex flex-wrap justify-center gap-2">
+                {accountActions.map((action) => (
+                  <Link
+                    key={action.href}
+                    href={action.href}
+                    className={`rounded-full px-4 py-2 text-sm font-medium transition ${action.primary
+                      ? "bg-yellow-500 text-black hover:bg-yellow-400"
+                      : "border border-zinc-600 text-zinc-200 hover:bg-zinc-800"
+                      }`}
+                  >
+                    {action.label}
+                  </Link>
+                ))}
+              </div>
+              {showAuthorClaimLink && (
+                <p className="mt-3 text-xs text-zinc-500">
+                  ¿También publicas?{" "}
+                  <Link
+                    href="/libros"
+                    className="text-yellow-400 hover:underline"
+                  >
+                    Busca tu libro para reclamar tu perfil de autor.
+                  </Link>
+                </p>
+              )}
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="px-4 pb-12 pt-4 sm:px-6">
+        <div className="mx-auto max-w-5xl rounded-3xl border border-zinc-800 bg-zinc-900/70 p-5 sm:p-8">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-yellow-400">
+              Empieza aquí
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
+              Crea tu espacio en Caza Indie
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-base">
+              Te mostramos cómo comenzar en unos cuantos pasos, ya sea que
+              quieras organizar tus lecturas o compartir tu obra.
+            </p>
+          </div>
+
+          <div className="mt-7 grid gap-4 md:grid-cols-2">
+            <Link
+              href="/tutorial/lectores"
+              className="group rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5 transition hover:border-yellow-500/50 hover:bg-yellow-500/10"
+            >
+              <span className="text-2xl" aria-hidden="true">📚</span>
+              <h3 className="mt-3 text-lg font-semibold group-hover:text-yellow-300">
+                Quiero participar como lector
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                Organiza tus lecturas y crea un perfil para compartirlas.
+              </p>
+              <span className="mt-4 inline-flex text-sm font-semibold text-yellow-400">
+                Ver tutorial para lectores →
+              </span>
+            </Link>
+
+            <Link
+              href="/tutorial/autores"
+              className="group rounded-2xl border border-blue-500/20 bg-blue-500/5 p-5 transition hover:border-blue-500/50 hover:bg-blue-500/10"
+            >
+              <span className="text-2xl" aria-hidden="true">✍️</span>
+              <h3 className="mt-3 text-lg font-semibold group-hover:text-blue-300">
+                Quiero crear mi página de autor
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                Registra tus libros y prepara un espacio para tus lectores.
+              </p>
+              <span className="mt-4 inline-flex text-sm font-semibold text-blue-300">
+                Ver tutorial para autores →
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -193,7 +366,7 @@ export default async function Home() {
       {/* LIBROS */}
       <section className="py-6 px-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold">Libros</h2>
+          <h2 className="text-2xl font-semibold">Catálogo</h2>
           <Link href="/libros" className="hover:text-white"
             style={{ color: "#eab308" }}>
             Ver todos →
@@ -244,7 +417,8 @@ export default async function Home() {
       {/* RESEÑAS */}
       <section className="pt-18 pb-6 px-6">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold">
+          <h2 className="flex items-center gap-2 text-2xl font-semibold">
+            <LectometerMark variant="inline" />
             Lectómetro
           </h2>
 
@@ -269,18 +443,18 @@ export default async function Home() {
       {/* CTA */}
       {<section className="py-20 text-center">
         <h2 className="text-2xl font-semibold">
-          ¿Eres escritor independiente o conoces a uno?
+          ¿Eres escritor independiente?
         </h2>
 
         <p className="text-zinc-400 mt-4">
-          Comparte esa gran historia para que llegue a nuevos lectores.
+          Agrega uno de tus libros para que pueda llegar a nuevos lectores.
         </p>
 
         <Link
           href="/contact"
           className="inline-block mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full"
         >
-          Recomendar
+          Agregar uno de mis libros
         </Link>
       </section>}
 

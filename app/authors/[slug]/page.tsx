@@ -15,6 +15,9 @@ import { Crown } from "lucide-react";
 import ManageProButton from "@/components/ManageProButton"
 import AuthorInterview from "@/components/authors/AuthorInterview"
 import ShareAuthorButton from "@/components/authors/ShareAuthorButton"
+import { getLinkedPublicReaderForAuthor } from "@/lib/publicProfileLinks"
+import AuthorShareImageButton from "@/components/authors/AuthorShareImageButton"
+import { supabaseAdmin } from "@/lib/supabaseAdmin"
 
 import {
     inter,
@@ -41,6 +44,9 @@ import {
     SiTiktok,
     SiThreads
 } from "react-icons/si"
+// LibraryBig se usaba en el botón separado de perfil lector. Ese botón se
+// comenta más abajo para mantener limpia la cabecera del autor.
+// import { LibraryBig } from "lucide-react"
 export const dynamic = "force-dynamic"
 
 const socialConfig = {
@@ -136,6 +142,8 @@ export default async function AuthorPage({
         )
     }
 
+    const linkedReader = await getLinkedPublicReaderForAuthor(author.id)
+
     let username: string | null = null
 
     const { data: approvedClaim } = await supabase
@@ -162,11 +170,6 @@ export default async function AuthorPage({
 
     let canEdit = false
 
-    const { data: claimsDebug } = await supabase
-        .from("author_claims")
-        .select("*")
-        .eq("author_id", author.id)
-
     if (user) {
         const { data: claim } = await supabase
             .from("author_claims")
@@ -177,6 +180,21 @@ export default async function AuthorPage({
             .maybeSingle()
 
         canEdit = !!claim
+    }
+
+    let hasStripeSubscription = false
+
+    if (canEdit && author.pro === true) {
+        const { data: payment } = await supabaseAdmin
+            .from("author_payments")
+            .select("stripe_subscription_id")
+            .eq("author_id", author.id)
+            .in("status", ["active", "trialing", "past_due"])
+            .not("stripe_subscription_id", "is", null)
+            .limit(1)
+            .maybeSingle()
+
+        hasStripeSubscription = Boolean(payment?.stripe_subscription_id)
     }
 
     const isPro = author.pro === true
@@ -209,10 +227,29 @@ export default async function AuthorPage({
         `)
         .eq("author_id", author.id)
 
-    const multiBooks =
-        relationBooks
-            ?.map(x => x.books)
-            .filter(Boolean) ?? []
+    const multiBooks = (relationBooks ?? [])
+        .flatMap(item => {
+            const relatedBooks = item.books
+
+            return Array.isArray(relatedBooks)
+                ? relatedBooks
+                : relatedBooks
+                    ? [relatedBooks]
+                    : []
+        })
+        .filter(book => book.approved === true)
+
+    const { data: bookSettings } = await supabase
+        .from("author_book_settings")
+        .select("book_id, author_order")
+        .eq("author_id", author.id)
+
+    const orderByBookId = new Map(
+        (bookSettings ?? []).map(setting => [
+            setting.book_id,
+            setting.author_order ?? 0
+        ])
+    )
 
     const booksMap = new Map()
 
@@ -227,7 +264,8 @@ export default async function AuthorPage({
         .from(booksMap.values())
         .sort(
             (a, b) =>
-                (a.author_order ?? 0) - (b.author_order ?? 0)
+                (orderByBookId.get(a.id) ?? a.author_order ?? 0) -
+                (orderByBookId.get(b.id) ?? b.author_order ?? 0)
         )
 
     let visibleInterviewQuestions: Array<{
@@ -448,12 +486,22 @@ export default async function AuthorPage({
                                 <div className="mt-2">
                                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                                         {username && (
-                                            <span
-                                                className="text-lg font-bold tracking-tight"
-                                                style={{ color: heroSecondaryText }}
-                                            >
-                                                @{username}
-                                            </span>
+                                            linkedReader ? (
+                                                <Link
+                                                    href={`/readers/${linkedReader.username}`}
+                                                    className="text-lg font-bold tracking-tight transition-opacity hover:opacity-75"
+                                                    style={{ color: heroSecondaryText }}
+                                                >
+                                                    @{username}
+                                                </Link>
+                                            ) : (
+                                                <span
+                                                    className="text-lg font-bold tracking-tight"
+                                                    style={{ color: heroSecondaryText }}
+                                                >
+                                                    @{username}
+                                                </span>
+                                            )
                                         )}
                                     </div>
 
@@ -574,6 +622,26 @@ export default async function AuthorPage({
                                     </div>
                                 )}
 
+                                {/* El botón separado se comenta para conservar una cabecera limpia.
+                                    Cuando existe un perfil lector público, el @username superior
+                                    funciona como enlace y mantiene el control en show_username. */}
+                                {/* {linkedReader && (
+                                    <div className="flex justify-center lg:justify-start mt-3">
+                                        <Link
+                                            href={`/readers/${linkedReader.username}`}
+                                            className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 hover:opacity-80"
+                                            style={{
+                                                backgroundColor: authorTheme.surface,
+                                                border: `1px solid ${authorTheme.border}`,
+                                                color: authorTheme.text
+                                            }}
+                                        >
+                                            <LibraryBig size={16} aria-hidden="true" />
+                                            Ver perfil de lector
+                                        </Link>
+                                    </div>
+                                )} */}
+
                             </div>
 
                         </div>
@@ -589,7 +657,7 @@ export default async function AuthorPage({
 
                     <div className="flex flex-col sm:flex-row items-center sm:items-center justify-center lg:justify-end gap-3 mt-8">
 
-                        {author.pro && (
+                        {author.pro && hasStripeSubscription && (
                             <div className="flex flex-col items-center justify-center gap-3">
 
                                 <ManageProButton
@@ -607,6 +675,16 @@ export default async function AuthorPage({
                             </div>
                         )}
 
+                        <AuthorShareImageButton
+                            authorId={author.id}
+                            authorSlug={author.slug}
+                            authorName={author.name}
+                            isPro={isPro}
+                            hasFeaturedBook={Boolean(featuredBook)}
+                            hasNews={Boolean(author.news?.type)}
+                            primaryColor={authorTheme.primary}
+                        />
+
                         <Link
                             href="/me"
                             className="inline-flex items-center justify-center w-fit px-4 py-2.5 rounded-lg text-sm text-white transition-all duration-150 active:scale-95 whitespace-nowrap"
@@ -614,7 +692,7 @@ export default async function AuthorPage({
                                 backgroundColor: authorTheme.primary
                             }}
                         >
-                            Mi perfil
+                            Mi espacio
                         </Link>
 
                         <Link
@@ -825,7 +903,8 @@ export default async function AuthorPage({
                                                 mx: featuredBook.asin_mx,
                                                 us: featuredBook.asin_us
                                             },
-                                            featuredBook.cover
+                                            featuredBook.cover,
+                                            featuredBook.cover_source
                                         )}
                                         alt={featuredBook.title}
                                         className="w-full h-full object-cover transition duration-500"
@@ -996,7 +1075,8 @@ export default async function AuthorPage({
                                                         mx: book.asin_mx,
                                                         us: book.asin_us
                                                     },
-                                                    book.cover
+                                                    book.cover,
+                                                    book.cover_source
                                                 )}
                                                 alt={book.title}
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

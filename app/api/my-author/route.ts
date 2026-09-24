@@ -13,16 +13,18 @@ export async function GET() {
 
 
   if (!user) {
-    return NextResponse.json({
-      author: null
-    })
+    return NextResponse.json(
+      { error: "No autenticado", author: null },
+      { status: 401 }
+    )
   }
 
 
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("author_claims")
     .select(`
       author_id,
+      status,
       authors (
         id,
         name,
@@ -30,9 +32,17 @@ export async function GET() {
       )
     `)
     .eq("user_id", user.id)
-    .eq("status", "approved")
+    .in("status", ["pending", "approved"])
+    .order("status", { ascending: true })
+    .limit(1)
     .maybeSingle()
 
+  if (error) {
+    return NextResponse.json(
+      { error: "No se pudo verificar tu autor", author: null },
+      { status: 500 }
+    )
+  }
 
   if (!data?.authors) {
 
@@ -43,8 +53,13 @@ export async function GET() {
   }
 
 
+  const author = Array.isArray(data.authors)
+    ? data.authors[0] ?? null
+    : data.authors
+
   return NextResponse.json({
-    author: data.authors
+    author,
+    claimStatus: data.status
   })
 
 }
