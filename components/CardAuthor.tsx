@@ -83,21 +83,22 @@ export default function CardAuthor({
               {author.name}
             </h3>
 
-            {/*author.pro && (
+            {author.pro === true && (
               <div
-                className="flex items-center justify-center w-6 h-6 rounded-full shrink-0"
+                className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-yellow-400/15 bg-yellow-400/[0.06]"
+                aria-label="Autor PRO"
+                title="Autor PRO"
                 style={{
-                  backgroundColor: "rgba(250, 204, 21, .08)",
-                  border: "1px solid rgba(250, 204, 21, .18)",
-                  boxShadow: "0 0 10px rgba(250, 204, 21, .20)"
+                  boxShadow: "0 0 8px rgba(250, 204, 21, .12)"
                 }}
               >
                 <Crown
-                  size={14}
-                  className="text-yellow-400"
+                  size={12}
+                  className="text-yellow-300/85"
+                  aria-hidden="true"
                 />
               </div>
-            )*/}
+            )}
 
           </div>
 
