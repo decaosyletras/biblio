@@ -310,10 +310,10 @@ export default function ReaderProfileEditorPage() {
             {hasReaderProfile ? (
               <div>
                 <p className="text-sm font-medium text-zinc-200">
-                  Dirección permanente
+                  Dirección permanente (elige un nombre que te caracterice, por ejemplo: decaosyletras)
                 </p>
                 <p className="mt-2 break-all text-lg font-semibold text-yellow-300">
-                  /readers/{profile.username}
+                  /readers/
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                   Esta dirección no puede cambiarse, pero tu nombre visible sí
