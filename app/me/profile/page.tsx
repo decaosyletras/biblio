@@ -310,10 +310,10 @@ export default function ReaderProfileEditorPage() {
             {hasReaderProfile ? (
               <div>
                 <p className="text-sm font-medium text-zinc-200">
-                  Dirección permanente (elige un nombre que te caracterice, por ejemplo: decaosyletras)
+                  Dirección permanente
                 </p>
                 <p className="mt-2 break-all text-lg font-semibold text-yellow-300">
-                  /readers/
+                  /readers/{profile.username}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                   Esta dirección no puede cambiarse, pero tu nombre visible sí
@@ -326,7 +326,7 @@ export default function ReaderProfileEditorPage() {
                   htmlFor="reader-username"
                   className="text-sm font-medium text-zinc-200"
                 >
-                  Elige la dirección de tu perfil
+                  Elige la dirección de tu perfil (por ejemplo: decaosyletras)
                 </label>
                 <div className="mt-2 flex rounded-xl border border-zinc-700 bg-zinc-800 focus-within:border-yellow-500">
                   <span className="flex items-center pl-4 text-zinc-500">/readers/</span>
@@ -349,8 +349,8 @@ export default function ReaderProfileEditorPage() {
                   id="reader-username-help"
                   className="mt-3 text-sm leading-relaxed text-yellow-200/80"
                 >
-                  Ésta será la dirección para compartir tu perfil. Elígela con
-                  cuidado: una vez creado no podrás cambiarla.
+                  Esta será la dirección para compartir tu perfil. Elígela con
+                  cuidado: una vez creado no podrás cambiarla. Hemos llenado el campo con tu correo, pero recomendamos editarlo con un nombre que te identifique en redes sociales.
                 </p>
                 <label className="mt-4 flex cursor-pointer items-start gap-3">
                   <input
