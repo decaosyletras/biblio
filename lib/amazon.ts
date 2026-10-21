@@ -18,7 +18,7 @@ export function getAmazonStore(country: string = "US") {
 
     case "MX":
       return {
-        domain: "amazon.com.mx",
+        domain: "amazon.es",
         tag: null,
         asinKey: "mx",
       }
