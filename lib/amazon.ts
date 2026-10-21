@@ -1,7 +1,7 @@
 import type { BookCoverSource } from "@/types"
 
 const affiliateTags = {
-  ES: "casaindie-21",
+  ES: "casaindie07-21",
   US: "casaindie-20",
 }
 
@@ -18,7 +18,7 @@ export function getAmazonStore(country: string = "US") {
 
     case "MX":
       return {
-        domain: "amazon.com.mx",
+        domain: "amazon.es",
         tag: null,
         asinKey: "mx",
       }
