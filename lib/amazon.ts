@@ -1,7 +1,7 @@
 import type { BookCoverSource } from "@/types"
 
 const affiliateTags = {
-  ES: "casaindie-21",
+  ES: "casaindie07-21",
   US: "casaindie-20",
 }
 
