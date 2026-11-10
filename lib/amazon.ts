@@ -16,17 +16,18 @@ export function getAmazonStore(country: string = "US") {
         asinKey: "es",
       }
 
-    case "MX":
+    /*case "MX":
       return {
         domain: "amazon.com.mx",
         tag: null,
         asinKey: "mx",
-      }
+      }*/
 
     default:
       return {
         domain: "amazon.com",
-        tag: affiliateTags.US,
+        //tag: affiliateTags.US,
+        tag: null,
         asinKey: "us",
       }
   }
